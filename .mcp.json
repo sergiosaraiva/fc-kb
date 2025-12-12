@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "fc-knowledge-base": {
+      "command": "/mnt/c/Work/direct-consolidation-docs/venv/bin/python",
+      "args": ["md/chromadb-docker/mcp-server.py"],
+      "cwd": "/mnt/c/Work/direct-consolidation-docs",
+      "env": {
+        "AWS_PROFILE": "prophix-devops",
+        "AWS_DEFAULT_REGION": "us-east-1",
+        "CHROMADB_HOST": "localhost",
+        "CHROMADB_PORT": "8847",
+        "CHROMADB_TOKEN": "fc-knowledge-base-token"
+      }
+    }
+  }
+}
