@@ -1,0 +1,1029 @@
+# API Reports Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent report generation and viewing
+
+api_reports_endpoints:
+  name: "Reports API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for generating and viewing consolidation reports.
+
+    Reports are the output of the consolidation process, providing:
+    - Consolidated financial statements (balance sheets, income statements)
+    - Intercompany reconciliation reports
+    - Adjustment summaries
+    - Cash flow statements
+    - Custom user-defined reports
+
+    Key concepts:
+    - Static Reports: Predefined system reports (Currencies, Companies, Shareholding, etc.)
+    - Dynamic Reports: User-configurable report definitions
+    - Custom Reports: User-defined report templates (Standard, Flow, Multi-Period, CashFlow, Dimension, Advanced)
+    - Report Batch: Ability to generate multiple reports at once
+    - Cross-Tab Reports: Excel-based pivot-style reports
+
+    Services documented:
+    - DynamicReportsService: Dynamic report selection and execution (2 handlers)
+    - DynamicReportHelper: Report generation and template management (8 handlers)
+    - ReportBatchService: Batch report generation and file management (7 handlers)
+    - ReportCrossTabsService: Excel cross-tab report generation (3 handlers)
+    - CustomReportService: Custom report definition management (3 handlers)
+    - ReportServices: System validation reports (1 handler)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    ReportTypes:
+      description: "Types of static reports available"
+      values:
+        - name: "Currencies"
+          description: "Exchange rates report"
+        - name: "Companies"
+          description: "Company master data report"
+        - name: "Shareholding"
+          description: "Ownership/shareholding structure report"
+        - name: "BundlesLocal"
+          description: "Local bundle amounts report"
+        - name: "BundlesGroup"
+          description: "Consolidated bundle amounts report"
+        - name: "IntercoRecon"
+          description: "Intercompany reconciliation report"
+        - name: "ConsolidatedFlows"
+          description: "Consolidated cash flows report"
+        - name: "GeneralLedger"
+          description: "General ledger detail report"
+        - name: "Adjustments"
+          description: "Adjustment journals report"
+        - name: "CustomReport"
+          description: "User-defined custom report"
+        - name: "ConsolidationsPerEntity"
+          description: "Statutory reports per entity"
+        - name: "ConsolidationSummary"
+          description: "Consolidation process summary"
+        - name: "IntercompanyValidation"
+          description: "Intercompany balance validation"
+
+    CustomReportTypes:
+      description: "Types of custom report definitions"
+      values:
+        - code: "S"
+          name: "Standard"
+          description: "Standard account-based report"
+        - code: "F"
+          name: "Flow"
+          description: "Flow/movement analysis report"
+        - code: "M"
+          name: "MultiPeriod"
+          description: "Multi-period comparative report"
+        - code: "C"
+          name: "CashFlow"
+          description: "Cash flow statement report"
+        - code: "D"
+          name: "Dimension"
+          description: "Dimension/segment analysis report"
+        - code: "A"
+          name: "Advanced"
+          description: "Advanced custom report with full flexibility"
+
+    CrossTabReportTypes:
+      description: "Types of cross-tab reports"
+      values:
+        - value: 1
+          name: "Group"
+          description: "Group-level cross-tab reports"
+        - value: 2
+          name: "Bundles"
+          description: "Bundle data cross-tab reports"
+        - value: 3
+          name: "Accounts"
+          description: "Account-level cross-tab reports"
+        - value: 4
+          name: "Reports"
+          description: "Custom report cross-tabs"
+        - value: 5
+          name: "AuditTrail"
+          description: "Audit trail cross-tab reports"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    DynamicReportDTO:
+      description: "Dynamic report selection item"
+      fields:
+        - name: "Key"
+          type: "string"
+          description: "Report identifier"
+        - name: "Label"
+          type: "string"
+          description: "Report display name"
+
+    ReportBatchDefinitionDTO:
+      description: "Report batch definition"
+      fields:
+        - name: "DefinitionID"
+          type: "integer"
+          description: "Unique definition ID"
+        - name: "Name"
+          type: "string"
+          description: "Definition name"
+        - name: "FileNameTemplate"
+          type: "string"
+          description: "Template for generated file names"
+        - name: "IsPublic"
+          type: "boolean"
+          description: "Whether available to all users"
+        - name: "Role"
+          type: "string"
+          nullable: true
+          description: "Required role for public definitions"
+        - name: "Content"
+          type: "array"
+          nullable: true
+          description: "Report configuration content"
+        - name: "HasWriteAccess"
+          type: "boolean"
+          description: "Whether user can modify"
+
+    ReportBatchFileDTO:
+      description: "Generated report batch file"
+      fields:
+        - name: "FileID"
+          type: "integer"
+          description: "History file ID"
+        - name: "FileName"
+          type: "string"
+          description: "Generated file name"
+        - name: "CreateDate"
+          type: "datetime"
+          description: "Generation timestamp"
+        - name: "UserLogin"
+          type: "string"
+          description: "User who generated"
+        - name: "DefinitionName"
+          type: "string"
+          description: "Source definition name"
+        - name: "FileUrl"
+          type: "string"
+          description: "Download URL"
+
+    CustomReportDTO:
+      description: "Custom report definition"
+      fields:
+        - name: "CustomReportID"
+          type: "integer"
+          description: "Unique report ID"
+        - name: "CustomReportCode"
+          type: "string"
+          description: "Report code"
+        - name: "Description"
+          type: "string"
+          description: "Report description"
+        - name: "GroupCode"
+          type: "string"
+          nullable: true
+          description: "Report group for organization"
+        - name: "AvailableForAnalysisOnly"
+          type: "boolean"
+          description: "Analysis-only flag"
+        - name: "Type"
+          type: "char"
+          description: "S, F, M, C, D, or A"
+          enum_ref: "CustomReportTypes"
+        - name: "DefineURL"
+          type: "string"
+          description: "URL to definition editor"
+
+    CrossTabReportDTO:
+      description: "Cross-tab report item"
+      fields:
+        - name: "ID"
+          type: "integer"
+          description: "Cross-tab report ID"
+        - name: "Report"
+          type: "string"
+          description: "Report display name"
+        - name: "Sample"
+          type: "string"
+          description: "Sample file name"
+        - name: "Active"
+          type: "boolean"
+          description: "Whether report is active"
+        - name: "Selected"
+          type: "boolean"
+          description: "Selection state"
+
+  # ============================================================================
+  # DYNAMIC REPORTS HANDLERS
+  # ============================================================================
+  dynamic_reports_handlers:
+    description: |
+      Endpoints for dynamic report selection and execution.
+      Source: Sigma.Mona.WebApplication/Screens/DynamicReports/DynamicReportsService.cs
+
+    handlers:
+      - name: "DynamicReports_GetReports"
+        description: |
+          Retrieves available dynamic reports for the current user.
+          Filters to reports the user can execute based on permissions.
+        access_right: "ScreenShow_DynamicReports167"
+        async: true
+
+        request:
+          _t: "DynamicReports_GetReports"
+          parameters: []
+          example:
+            json: |
+              {
+                "_t": "DynamicReports_GetReports"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<DynamicReportDTO>"
+              description: "Available reports with Key and Label"
+
+      - name: "DynamicReports_ForwardToInstance"
+        description: |
+          Forwards a message to a DynamicReportHelper instance.
+          Used to route report-specific commands to the appropriate handler.
+        access_right: null
+        async: true
+
+        request:
+          _t: "DynamicReports_ForwardToInstance"
+          notes:
+            - "Forwards to DynamicReportHelper endpoint for processing"
+
+  # ============================================================================
+  # DYNAMIC REPORT HELPER HANDLERS
+  # ============================================================================
+  dynamic_report_helper_handlers:
+    description: |
+      Endpoints for report generation and template management.
+      These are handled by a DynamicReportHelper instance per connection.
+      Source: Sigma.Mona.WebApplication/Screens/DynamicReports/DynamicReportHelper.cs
+
+    handlers:
+      - name: "DynamicReport_SetContent"
+        description: "Sets the report content/configuration"
+        async: false
+
+      - name: "DynamicReport_GetContent"
+        description: "Gets the current report content/configuration"
+        async: false
+
+      - name: "DynamicReport_LoadReport"
+        description: "Loads a report definition by identifier"
+        async: false
+
+      - name: "DynamicReport_Generate"
+        description: |
+          Generates a report and returns download URL.
+          Supports progress reporting for long-running reports.
+        async: true
+
+        request:
+          _t: "DynamicReport_Generate"
+          parameters:
+            - name: "JournalSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by journal summation"
+            - name: "scf_progress_id"
+              type: "string"
+              required: false
+              description: "Progress tracking ID"
+
+        response:
+          success:
+            FileItem:
+              type: "object"
+              description: "Download info with fileName and url"
+
+      - name: "DynamicReport_ImportTemplate"
+        description: |
+          Imports a report template file.
+          Requires CanModifyReport permission.
+        async: true
+
+        request:
+          _t: "DynamicReport_ImportTemplate"
+          parameters:
+            - name: "FormatVersion"
+              type: "integer"
+              required: false
+              description: "Template format version"
+
+      - name: "DynamicReport_ExportTemplate"
+        description: |
+          Exports the current report template to file.
+          Requires CanModifyReport permission.
+        async: false
+
+        request:
+          _t: "DynamicReport_ExportTemplate"
+          parameters:
+            - name: "FormatVersion"
+              type: "integer"
+              required: false
+
+      - name: "DynamicReport_Sign"
+        description: |
+          Signs the report definition for security.
+          Returns signed content and download URL.
+        async: true
+
+        response:
+          success:
+            SignedContent:
+              type: "string"
+            FileName:
+              type: "string"
+            FileUrl:
+              type: "string"
+
+      - name: "DynamicReport_Save"
+        description: |
+          Saves a signed report definition to config.
+          Requires CanModifyReport permission.
+        async: false
+
+        request:
+          _t: "DynamicReport_Save"
+          parameters:
+            - name: "ConfigKey"
+              type: "string"
+              required: true
+              description: "Config key to save to"
+
+  # ============================================================================
+  # REPORT BATCH HANDLERS
+  # ============================================================================
+  report_batch_handlers:
+    description: |
+      Endpoints for batch report generation and file management.
+      Source: Sigma.Mona.WebApplication/Screens/ReportBatch/ReportBatchService.cs
+
+    handlers:
+      - name: "BatchReport_GetDefinitions"
+        description: |
+          Retrieves report batch definitions with filtering and pagination.
+          Returns definitions the user has read access to.
+        access_right: "ReportBatch_GetDefinitions"
+        async: true
+
+        request:
+          _t: "BatchReport_GetDefinitions"
+          parameters:
+            - name: "DefinitionID"
+              type: "integer"
+              required: false
+              description: "Specific definition ID"
+            - name: "FilterName"
+              type: "string"
+              required: false
+              description: "Filter by name pattern"
+            - name: "FilterFileNameTemplate"
+              type: "string"
+              required: false
+              description: "Filter by template pattern"
+            - name: "FilterRole"
+              type: "array<string>"
+              required: false
+              description: "Filter by role codes"
+            - name: "IncludeContent"
+              type: "boolean"
+              required: false
+              default: false
+            - name: "IncludeAccessRights"
+              type: "boolean"
+              required: false
+              default: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["NAME", "FILENAMETEMPLATE", "ISPUBLIC", "ROLE"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "BatchReport_GetDefinitions",
+                "scf_order_by": "NAME ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<ReportBatchDefinitionDTO>"
+            scf_total_row_count:
+              type: "integer"
+
+      - name: "BatchReport_SaveDefinition"
+        description: |
+          Creates or updates a report batch definition.
+          Public definitions require ManagePublicDefinitions permission.
+        access_right: "ReportBatch_ManageDefinitions"
+        async: true
+
+        request:
+          _t: "BatchReport_SaveDefinition"
+          parameters:
+            - name: "DefinitionID"
+              type: "integer"
+              required: false
+              description: "Null for new"
+            - name: "Name"
+              type: "string"
+              required: true
+            - name: "FileNameTemplate"
+              type: "string"
+              required: true
+            - name: "Content"
+              type: "array"
+              required: true
+              description: "Report configuration array"
+            - name: "IsPublic"
+              type: "boolean"
+              required: true
+            - name: "Role"
+              type: "string"
+              required: "if IsPublic=true"
+            - name: "EntityVersion"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            DefinitionID:
+              type: "integer"
+              description: "Saved definition ID"
+
+      - name: "BatchReport_RemoveDefinition"
+        description: |
+          Deletes a report batch definition.
+          Warns if public definition may affect scheduled tasks.
+        access_right: "ReportBatch_ManageDefinitions"
+        async: true
+
+        request:
+          _t: "BatchReport_RemoveDefinition"
+          parameters:
+            - name: "DefinitionID"
+              type: "integer"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+          warnings:
+            - pattern: "ReportBatch_WarningPublicDefinitionModified"
+              cause: "Public definition may be referenced by scheduler"
+
+      - name: "BatchReport_Generate"
+        description: |
+          Generates reports based on a definition or inline configuration.
+          Returns download URL for generated ZIP file.
+        access_right: "ReportBatch_Generate"
+        async: true
+
+        request:
+          _t: "BatchReport_Generate"
+          parameters:
+            - name: "DefinitionID"
+              type: "integer"
+              required: false
+              description: "Use definition's configuration"
+            - name: "Content"
+              type: "array"
+              required: "if DefinitionID not provided"
+              description: "Inline report configuration"
+            - name: "FileNameTemplate"
+              type: "string"
+              required: "if DefinitionID not provided"
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              description: "Override working period"
+            - name: "RefConsoCode"
+              type: "string"
+              required: false
+              description: "Override reference period"
+            - name: "ExecutionLogin"
+              type: "string"
+              required: false
+              description: "Execute as different user (admin only)"
+            - name: "scf_progress_id"
+              type: "string"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "BatchReport_Generate",
+                "DefinitionID": 123,
+                "ConsoCode": "2024.12.A.01"
+              }
+
+        response:
+          success:
+            FileName:
+              type: "string"
+              description: "Generated ZIP file name"
+            FileUrl:
+              type: "string"
+              description: "Download URL"
+
+      - name: "BatchReport_GetFiles"
+        description: |
+          Retrieves generated report batch files with filtering.
+          Returns files the user has access to.
+        access_right: "ReportBatch_GetFiles"
+        async: true
+
+        request:
+          _t: "BatchReport_GetFiles"
+          parameters:
+            - name: "UserLogin"
+              type: "string"
+              required: false
+            - name: "FilterCreateDate"
+              type: "object"
+              required: false
+              description: "Date range filter"
+            - name: "FilterFileName"
+              type: "string"
+              required: false
+            - name: "FilterUserLogin"
+              type: "string"
+              required: false
+            - name: "FilterDefinitionName"
+              type: "string"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["FILENAME", "USERLOGIN", "CREATEDATE", "DEFINITIONNAME"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+
+        response:
+          success:
+            scf_items:
+              type: "array<ReportBatchFileDTO>"
+
+      - name: "BatchReport_RemoveFile"
+        description: |
+          Deletes a generated report batch file.
+        access_right: "ReportBatch_ManageFiles"
+        async: true
+
+        request:
+          _t: "BatchReport_RemoveFile"
+          parameters:
+            - name: "FileID"
+              type: "integer"
+              required: true
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "BatchReport_FillReportBatchDefinitions"
+        description: |
+          Retrieves public report batch definitions for scheduler.
+          Returns simplified list with role information.
+        access_right: "ReportBatch_GetDefinitions"
+        async: true
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              description: "Definitions with DefinitionID, Name, UserRoles"
+
+  # ============================================================================
+  # CROSS-TAB REPORTS HANDLERS
+  # ============================================================================
+  cross_tab_handlers:
+    description: |
+      Endpoints for Excel-based cross-tab report generation.
+      Source: Sigma.Mona.WebApplication/Screens/ReportCrossTabs/ReportCrossTabsService.cs
+
+    handlers:
+      - name: "ReportCrossTabs_GetReportCrossTabs"
+        description: |
+          Retrieves available cross-tab reports by type.
+          Returns list of reports with selection state.
+        access_right: "ReportCrossTabs_GetReportCrossTabs"
+        async: true
+
+        request:
+          _t: "ReportCrossTabs_GetReportCrossTabs"
+          parameters:
+            - name: "ReportType"
+              type: "integer"
+              required: false
+              description: "1=Group, 2=Bundles, 3=Accounts, 4=Reports, 5=AuditTrail"
+              enum_ref: "CrossTabReportTypes"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ReportCrossTabs_GetReportCrossTabs",
+                "ReportType": 1,
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<CrossTabReportDTO>"
+
+      - name: "ReportCrossTabs_GetReportCrossTabSample"
+        description: |
+          Retrieves sample image for a cross-tab report.
+          Returns base64-encoded preview image.
+        access_right: "ReportCrossTabs_GetReportCrossTabs"
+        async: true
+
+        request:
+          _t: "ReportCrossTabs_GetReportCrossTabSample"
+          parameters:
+            - name: "reportID"
+              type: "integer"
+              required: true
+
+        response:
+          success:
+            ReportSampleBase64:
+              type: "string"
+              description: "Base64-encoded sample image"
+            ReportName:
+              type: "string"
+
+      - name: "ReportCrossTabs_LaunchProcessReportsCrossTabs"
+        description: |
+          Generates selected cross-tab reports to Excel files.
+          Supports progress reporting and returns download URLs.
+        access_right: "ReportCrossTabs_GetReportCrossTabs"
+        async: true
+
+        request:
+          _t: "ReportCrossTabs_LaunchProcessReportsCrossTabs"
+          parameters:
+            - name: "reportType"
+              type: "integer"
+              required: true
+              enum_ref: "CrossTabReportTypes"
+            - name: "selectedReports"
+              type: "array<integer>"
+              required: true
+              description: "Cross-tab report IDs to generate"
+            - name: "customReports"
+              type: "string"
+              required: false
+              description: "Custom report ID (for Reports type)"
+            - name: "includeConsolidated"
+              type: "boolean"
+              required: false
+            - name: "journalSummation"
+              type: "string"
+              required: false
+            - name: "scf_progress_id"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ReportCrossTabs_LaunchProcessReportsCrossTabs",
+                "reportType": 1,
+                "selectedReports": [1, 2, 3]
+              }
+
+        response:
+          success:
+            fileNames:
+              type: "array"
+              description: "Generated files with filenamepath and filename"
+
+  # ============================================================================
+  # CUSTOM REPORT HANDLERS
+  # ============================================================================
+  custom_report_handlers:
+    description: |
+      Endpoints for managing custom report definitions.
+      Source: Sigma.Mona.WebApplication/Screens/CustomReport/CustomReportService.cs
+
+    handlers:
+      - name: "CustomReport_GetCustomReports"
+        description: |
+          Retrieves custom report definitions with filtering and pagination.
+          Returns report metadata and definition editor URLs.
+        access_right: "ReportUser_GetReportsDefinitions"
+        async: true
+
+        request:
+          _t: "CustomReport_GetCustomReports"
+          parameters:
+            - name: "CustomReportID"
+              type: "integer"
+              required: false
+            - name: "CustomReportCode"
+              type: "string"
+              required: false
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              description: "Override working period"
+            - name: "FilterCustomReportType"
+              type: "string"
+              required: false
+              description: "S, F, M, C, D, or A"
+            - name: "FilterCustomReportCode"
+              type: "string"
+              required: false
+            - name: "FilterDescription"
+              type: "string"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["CUSTOMREPORTID", "CUSTOMREPORTCODE", "DESCRIPTION", "TYPE"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "CustomReport_GetCustomReports",
+                "FilterCustomReportType": "S",
+                "scf_order_by": "CUSTOMREPORTCODE ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<CustomReportDTO>"
+
+      - name: "CustomReport_GetCustomReportsCodeDescription"
+        description: |
+          Returns custom report code/description pairs for autocomplete.
+        access_right: null
+        async: true
+
+        request:
+          _t: "CustomReport_GetCustomReportsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+              description: "Type=X to filter by report type"
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+
+      - name: "CustomReport_SaveCustomReport"
+        description: |
+          Creates or updates a custom report definition.
+        access_right: "ReportUser_ManageReportsDefinitions"
+        async: true
+
+        request:
+          _t: "CustomReport_SaveCustomReport"
+          parameters:
+            - name: "WorkingReport"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "CustomReportID"
+                  type: "integer"
+                  required: false
+                - name: "CustomReportCode"
+                  type: "string"
+                  required: true
+                - name: "Description"
+                  type: "string"
+                  required: true
+                - name: "Type"
+                  type: "char"
+                  required: true
+                - name: "GroupCode"
+                  type: "string"
+                  required: false
+                - name: "AvailableForAnalysisOnly"
+                  type: "boolean"
+                  required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+  # ============================================================================
+  # SYSTEM VALIDATION REPORT HANDLERS
+  # ============================================================================
+  system_validation_handlers:
+    description: |
+      Endpoints for system validation reports.
+      Source: Sigma.Mona.WebApplication/Screens/Reports/ReportServices.cs
+
+    handlers:
+      - name: "Report_ValidateSystemValidation"
+        description: |
+          Validates system validation report parameters.
+          Checks that required summations and custom reports are selected.
+        access_right: "AccountClass_GetAccountClass"
+        async: false
+
+        request:
+          _t: "Report_ValidateSystemValidation"
+          parameters:
+            - name: "AllChecks"
+              type: "array"
+              required: true
+              description: "Array of validation check items"
+              element_schema:
+                Number:
+                  type: "short"
+                  description: "Check number (320, 330, 340, 710, 720, 730, 740)"
+                CheckBox:
+                  type: "boolean"
+                  description: "Whether check is enabled"
+                SelectCodeDescription:
+                  type: "string"
+                  nullable: true
+                  description: "Selected code for the check"
+                IsAccountSummation:
+                  type: "boolean"
+                  description: "true=Account summation, false=Custom report"
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              description: "Validated checks with IDs resolved"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    generate_report_workflow:
+      name: "Generate Report Workflow"
+      description: "Generate a single dynamic report"
+      steps:
+        - step: 1
+          name: "Get Available Reports"
+          handler: "DynamicReports_GetReports"
+          purpose: "List reports user can execute"
+
+        - step: 2
+          name: "Select Report"
+          description: "User selects report from list"
+          client_side: true
+
+        - step: 3
+          name: "Generate Report"
+          handler: "DynamicReport_Generate"
+          purpose: "Execute report and get download URL"
+
+        - step: 4
+          name: "Download Report"
+          description: "Download generated file from FileUrl"
+          client_side: true
+
+    batch_report_workflow:
+      name: "Batch Report Generation Workflow"
+      description: "Generate multiple reports at once"
+      steps:
+        - step: 1
+          name: "Get Definitions"
+          handler: "BatchReport_GetDefinitions"
+          parameters:
+            IncludeContent: true
+          purpose: "Get available batch definitions"
+
+        - step: 2
+          name: "Select Definition"
+          description: "User selects or creates batch configuration"
+          client_side: true
+
+        - step: 3
+          name: "Generate Batch"
+          handler: "BatchReport_Generate"
+          purpose: "Generate all reports in batch"
+
+        - step: 4
+          name: "Download ZIP"
+          description: "Download generated ZIP file"
+          client_side: true
+
+    cross_tab_report_workflow:
+      name: "Cross-Tab Report Workflow"
+      description: "Generate Excel cross-tab reports"
+      steps:
+        - step: 1
+          name: "Get Report List"
+          handler: "ReportCrossTabs_GetReportCrossTabs"
+          parameters:
+            ReportType: 1
+          purpose: "Get available cross-tab reports"
+
+        - step: 2
+          name: "Preview Sample"
+          handler: "ReportCrossTabs_GetReportCrossTabSample"
+          optional: true
+          purpose: "Preview report layout"
+
+        - step: 3
+          name: "Select Reports"
+          description: "User selects reports to generate"
+          client_side: true
+
+        - step: 4
+          name: "Generate Reports"
+          handler: "ReportCrossTabs_LaunchProcessReportsCrossTabs"
+          purpose: "Generate selected Excel reports"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/DynamicReports/DynamicReportsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/DynamicReports/DynamicReportHelper.cs"
+      - "Sigma.Mona.WebApplication/Screens/ReportBatch/ReportBatchService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ReportCrossTabs/ReportCrossTabsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/CustomReport/CustomReportService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Reports/ReportServices.cs"
+    handler_count: 24
+    purpose: |
+      Enable AI agents to generate and view consolidation reports including:
+      - Dynamic report selection and execution
+      - Batch report generation for multiple reports
+      - Cross-tab Excel report generation
+      - Custom report definition management
+      - System validation reports
+
+      Reports are the primary output of the consolidation process,
+      providing visibility into consolidated financial data, adjustments,
+      intercompany transactions, and regulatory compliance.

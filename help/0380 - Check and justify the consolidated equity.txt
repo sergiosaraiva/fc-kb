@@ -1,0 +1,49 @@
+Topics:
+Equity Analysis, Shareholders Analysis, Justification Process, Reporting
+
+Keywords:
+Equity Analysis, Shareholders Analysis, Justification Process, Reporting, Consolidation Period, Company Code, Journal Entries, Ownership Changes, Data Comparison
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on performing equity and shareholders analysis. It covers how to access and utilize the Equity Analysis and Shareholders Analysis pages to compare ownership and investments across different consolidation periods. The Equity Analysis section explains how to justify equity changes and analyze the fluctuations in equity ownership. The Shareholders Analysis section provides guidance on comparing shareholder investments and identifying variations due to local book entries or adjustments. The documentation ensures accurate tracking of equity and shareholder changes, facilitating comprehensive financial analysis and reporting.
+
+Contents:
+Equity analysis
+The Equity Analysis page provides a convenient way to compare the equity owned by a specific company across two different consolidation periods. It allows you to examine and analyze the changes in equity ownership between these periods. This page can help gain insights into how the ownership stake of a particular company has evolved or fluctuated over time.
+
+To access the Equity Analysis page, click Reports > Drill-Down Analysis > Equity Analysis.
+
+The Equity Analysis page has two main data areas:
+- The top panel contains the equity from the Current Consolidation Period for the selected company.
+- The bottom panel contains the equity from the Reference Consolidation Period for the selected company.
+
+Justify the equity:
+1. In the Company field above the top panel, enter the name of the company or click to search for it. The company code and description of the company are displayed beside the button.
+2. Click . If available, the lines that contribute to the equity justification are displayed for the Current Consolidation and Reference Consolidation periods. The equity of the Current Consolidation Period is shown without the result of the year, while the equity of the Reference Consolidation Period is shown including the result of the year.
+3. For each line, you get the following information: Account, Journal Code, Journal Entry Number, Journal Description, and the Amount. Debit amounts are presented as positive values, while credit amounts are presented as negative values.
+4. The total for all the lines for the Current Consolidation Period is displayed in the Current field, while that of the Reference Consolidation Period is displayed in the Reference field. The difference between the two consolidation periods is displayed in the Difference field under the Reference field.
+5. Select the lines you want to analyze in the Current Consolidation and Reference Consolidation periods. The total for the selected lines is displayed in their respective Selected Amount fields. The difference between selected lines is displayed in the Difference field, right under the Selected Amount field.
+6. Click to launch the justification process. Lines that require removal are selected in both consolidation periods.
+7. Click to remove the selected lines from the lists. Removing lines does not delete the lines — they are just removed from the overview.
+8. Repeat steps 3-7 for the lines that are left over until they are all justified.
+9. To generate a report, click to go to the page.
+
+Shareholders analysis
+The Shareholders Analysis page provides a convenient way to compare the investments of all shareholders in a specific company during two different periods. It enables you to identify any variations between the periods, which could arise from either local book entries (bundle) or adjustments affecting the consolidated equity of the chosen company.
+
+To access the Shareholders Analysis page, click Reports > Drill-Down Analysis > Shareholder Analysis.
+
+The top panel contains the list of shareholders from the Current Consolidation Period. The bottom panel contains the shareholders from the Reference Consolidation Period.
+
+On top of the page is the Company field - drop-down list from which you select the company whose shareholders you want to analyze. The company code and description of the company you select are displayed.
+
+Justify shareholders:
+1. In the Company field, enter the company code or click for the company whose shareholders you want to analyze.
+2. Click .
+3. Analyze the lines that are displayed, and click to remove the unnecessary lines from view. Note: Clicking does not physically delete the lines. They are just removed from the overview.
+4. For each line, you get the following information: Account, Journal Code, Journal Entry Number, Journal Description, Company Name, and the Amount. Debit amounts are presented as positive values, while credit amounts are presented as negative values.
+5. The total for all the lines for the Current Consolidation Period is displayed in the Current field, while that of the Reference Consolidation Period is displayed in the Reference field. The difference between the two consolidation periods is displayed in the Difference field, under the Reference field.
+6. The total for selected lines, if any, is displayed in the Selected Amount field in their different areas. The difference between selected lines is displayed in the Difference field, under the Selected Amount field.
+7. Click to remove the selected lines from the data areas. Click to refresh the page. If you remove any lines, they reappear, allowing you to restart the analysis process.
+8. Click to open the Shareholders Report page.
+9. Click to navigate back and forward across companies.

@@ -1,0 +1,1358 @@
+# API Event Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of consolidation events
+
+api_event_endpoints:
+  name: "Event API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing consolidation events and event details.
+
+    Events define the consolidation process steps and value transformations:
+    - Event headers define processing rules (journal posting, company posting, behavior)
+    - Event details specify account/flow/dimension mappings (From → To transformations)
+    - Events track ownership changes, acquisitions, disposals, and consolidation adjustments
+    - Support percentage-based calculations for minority interests
+
+    Key concepts:
+    - Event Header: Rule definition with posting configuration and behavior flags
+    - Event Detail: Line-level mapping specifying From (source) and To (target) specifications
+    - DataTypes: Closing, ClosingFlow, ClosingDimension, Interco, IntercoFlow, IntercoDimension
+    - AccountTypes: Regular, Calculated (summation), Specific (consolidation-specific)
+    - FlowTypes: Regular, Calculated (summation), Specific (consolidation-specific)
+    - SameAsSource: Option to copy account/flow/dimension from source to target
+    - Percentage: Ownership percentage calculation references (1-25 predefined percentages)
+
+    Services documented:
+    - EventService: Event header management (3 handlers)
+    - EventDetailsService: Event detail line management (4 handlers)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    DataTypes:
+      description: "Types of data for event detail lines"
+      values:
+        - value: 0
+          name: "Undefined"
+          description: "Default/invalid"
+        - value: 1
+          name: "Closing"
+          code: "C"
+          description: "Closing balance amounts"
+        - value: 2
+          name: "ClosingFlow"
+          code: "F"
+          description: "Closing balance with flow breakdown"
+        - value: 3
+          name: "ClosingDimension"
+          code: "D"
+          description: "Closing balance with dimension breakdown"
+        - value: 4
+          name: "Interco"
+          code: "I"
+          description: "Intercompany amounts"
+        - value: 5
+          name: "IntercoFlow"
+          code: "FI"
+          description: "Intercompany amounts with flow breakdown"
+        - value: 6
+          name: "IntercoDimension"
+          description: "Intercompany amounts with dimension breakdown"
+
+    AccountTypes:
+      description: "Account specification types for event details"
+      values:
+        - value: 0
+          name: "Undefined"
+          description: "Default/invalid"
+        - value: 1
+          name: "Regular"
+          translation_key: "Account"
+          description: "Regular account code"
+        - value: 2
+          name: "Calculated"
+          translation_key: "CalculatedAccount"
+          description: "Account summation (calculated account)"
+        - value: 3
+          name: "Specific"
+          translation_key: "SpecificAccount"
+          description: "Consolidation-specific account"
+        - value: 4
+          name: "SameAsSource"
+          translation_key: "EventDetails_SameAsSource"
+          description: "Copy account from source (To side only)"
+
+    FlowTypes:
+      description: "Flow specification types for event details"
+      values:
+        - value: 0
+          name: "Undefined"
+          description: "Default/invalid"
+        - value: 1
+          name: "Regular"
+          translation_key: "Flow"
+          description: "Regular flow code"
+        - value: 2
+          name: "Calculated"
+          translation_key: "CalculatedFlow"
+          description: "Flow summation (calculated flow)"
+        - value: 3
+          name: "Specific"
+          translation_key: "SpecificFlow"
+          description: "Consolidation-specific flow"
+        - value: 4
+          name: "SameAsSource"
+          translation_key: "EventDetails_SameAsSource"
+          description: "Copy flow from source (To side only)"
+
+    DimTypes:
+      description: "Dimension specification types for event details"
+      values:
+        - value: 0
+          name: "Undefined"
+          description: "Default/invalid"
+        - value: 4
+          name: "SameAsSource"
+          translation_key: "EventDetails_SameAsSource"
+          description: "Copy dimension from source (To side only)"
+
+    PeriodTypes:
+      description: "Period reference for event source"
+      values:
+        - char: "C"
+          name: "Current"
+          description: "Current consolidation period"
+        - char: "R"
+          name: "Reference"
+          description: "Reference/prior period"
+
+    CheckTypes:
+      description: "Sign check conditions for From data"
+      values:
+        - value: null
+          name: "None"
+          description: "No check applied"
+        - value: -1
+          name: "Negative"
+          description: "Only if amount < 0"
+        - value: 1
+          name: "PositiveOrZero"
+          description: "Only if amount >= 0"
+
+    SignTypes:
+      description: "Sign multiplier for To data"
+      values:
+        - value: 1
+          name: "Plus"
+          description: "Keep same sign"
+        - value: -1
+          name: "Minus"
+          description: "Reverse sign"
+
+    PartnerMethods:
+      description: "Consolidation method filter for partner"
+      values:
+        - char: ""
+          name: "All"
+          description: "Apply to all methods"
+        - char: "P"
+          name: "Proportional"
+          description: "Proportional consolidation only"
+        - char: "N"
+          name: "NotConsolidated"
+          description: "Not consolidated entities only"
+        - char: "E"
+          name: "Equity"
+          description: "Equity method only"
+        - char: "G"
+          name: "Global"
+          description: "Global/full consolidation only"
+
+    PartnerTypes:
+      description: "Partner company specification for To side"
+      values:
+        - char: "P"
+          name: "SameAsSource"
+          translation_key: "EventDetails_SameAsSource"
+          description: "Use same partner as source"
+        - char: "C"
+          name: "Specific"
+          translation_key: "Specific"
+          description: "Specific company code"
+
+    EventBehavior:
+      description: "Event processing behavior flags"
+      values:
+        - value: 0
+          name: "Standard"
+          description: "Standard processing"
+        - value: 1
+          name: "Special"
+          description: "Special behavior processing"
+
+    FlagLocalCurrency:
+      description: "Currency treatment flag"
+      values:
+        - char: "L"
+          name: "Local"
+          description: "Use local currency amounts"
+        - char: "G"
+          name: "Group"
+          description: "Use group currency amounts"
+
+    MinorityFlag:
+      description: "Minority interest flag"
+      values:
+        - char: "0"
+          name: "NoMinority"
+          description: "Do not calculate minority"
+        - char: "1"
+          name: "CalculateMinority"
+          description: "Calculate minority interest"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    EventDTO:
+      description: "Event header for list view"
+      source: "EventService.cs"
+      fields:
+        - name: "EventID"
+          type: "integer"
+          description: "Unique event identifier"
+        - name: "EventCode"
+          type: "string"
+          description: "Event code"
+        - name: "EventDescription"
+          type: "string"
+          description: "Event description (localized)"
+        - name: "Active"
+          type: "boolean"
+          description: "Whether event is active"
+
+    EventFullDTO:
+      description: "Event header with full configuration (single record)"
+      source: "EventService.cs"
+      fields:
+        - name: "EventID"
+          type: "integer"
+          description: "Unique event identifier"
+        - name: "EventCode"
+          type: "string"
+          description: "Event code"
+        - name: "EventDescription"
+          type: "string"
+          description: "Event description (localized)"
+        - name: "Active"
+          type: "boolean"
+          description: "Whether event is active"
+        - name: "JournalSummationCode"
+          type: "string"
+          nullable: true
+          description: "Journal summation for posting"
+        - name: "JournalSummationDescription"
+          type: "string"
+          nullable: true
+          description: "Journal summation description"
+        - name: "PostingJournalCategory"
+          type: "string"
+          description: "Posting journal type and category code"
+        - name: "PostingJournalCategoryDescription"
+          type: "string"
+          nullable: true
+          description: "Posting journal category description"
+        - name: "PostingCompanyCode"
+          type: "string"
+          nullable: true
+          description: "Company code for posting"
+        - name: "PostingCompanyDescription"
+          type: "string"
+          nullable: true
+          description: "Posting company name"
+        - name: "SortOrder"
+          type: "short"
+          description: "Event execution order"
+        - name: "SelectionMethodID"
+          type: "byte"
+          description: "Consolidation method selection filter"
+        - name: "Behavior"
+          type: "byte"
+          description: "Event processing behavior"
+        - name: "FlagLocalCurrency"
+          type: "string"
+          description: "L=Local, G=Group currency"
+        - name: "MinorityFlag"
+          type: "string"
+          description: "0=No minority, 1=Calculate minority"
+        - name: "ProcedureName"
+          type: "string"
+          description: "Event procedure name"
+        - name: "EventType"
+          type: "string"
+          description: "Event type code"
+        - name: "EventDetailURL"
+          type: "string"
+          description: "URL to event details screen"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    EventDetailDTO:
+      description: "Event detail line (From → To mapping)"
+      source: "EventDetailsService.cs"
+      fields:
+        - name: "EventDetailID"
+          type: "integer"
+          nullable: true
+          description: "Unique detail identifier"
+        - name: "LineNr"
+          type: "short"
+          description: "Line number within event"
+        - name: "Percentage"
+          type: "byte"
+          description: "Percentage reference (1-25)"
+        - name: "PercentageDescription"
+          type: "string"
+          description: "Percentage name (localized)"
+        # From (Source) fields
+        - name: "FromType"
+          type: "byte"
+          description: "Data type (1-6)"
+          enum_ref: "DataTypes"
+        - name: "FromTypeCode"
+          type: "string"
+          description: "Data type code (C/F/I/FI/D)"
+        - name: "FromPeriod"
+          type: "char"
+          description: "C=Current, R=Reference"
+          enum_ref: "PeriodTypes"
+        - name: "FromPeriodCode"
+          type: "string"
+          description: "Period description"
+        - name: "FromCheck"
+          type: "short"
+          nullable: true
+          description: "Sign check condition (-1, null, 1)"
+          enum_ref: "CheckTypes"
+        - name: "FromAccountID"
+          type: "integer"
+          nullable: true
+          description: "Account ID (if regular account)"
+        - name: "FromAccountCode"
+          type: "string"
+          nullable: true
+          description: "Account code"
+        - name: "FromAccountDescription"
+          type: "string"
+          nullable: true
+          description: "Account description"
+        - name: "FromAccountSummationID"
+          type: "integer"
+          nullable: true
+          description: "Account summation ID (if calculated)"
+        - name: "FromAccountSummationCode"
+          type: "string"
+          nullable: true
+          description: "Account summation code"
+        - name: "FromAccountSummationDescription"
+          type: "string"
+          nullable: true
+          description: "Account summation description"
+        - name: "FromConsolidationAccountCode"
+          type: "string"
+          nullable: true
+          description: "Specific account code"
+        - name: "FromConsolidationAccountDescription"
+          type: "string"
+          nullable: true
+          description: "Specific account description"
+        - name: "FromPartnerCompanyCode"
+          type: "string"
+          nullable: true
+          description: "Partner company filter code"
+        - name: "FromPartnerCompanyName"
+          type: "string"
+          nullable: true
+          description: "Partner company name"
+        - name: "FromPartnerMethod"
+          type: "char"
+          nullable: true
+          description: "Partner method filter (P/N/E/G)"
+          enum_ref: "PartnerMethods"
+        - name: "FromFlowCode"
+          type: "string"
+          nullable: true
+          description: "Flow code"
+        - name: "FromFlowDescription"
+          type: "string"
+          nullable: true
+          description: "Flow description"
+        - name: "FromFlowSummationCode"
+          type: "string"
+          nullable: true
+          description: "Flow summation code"
+        - name: "FromFlowSummationDescription"
+          type: "string"
+          nullable: true
+          description: "Flow summation description"
+        - name: "FromConsolidationFlowCode"
+          type: "string"
+          nullable: true
+          description: "Specific flow code"
+        - name: "FromConsolidationFlowDescription"
+          type: "string"
+          nullable: true
+          description: "Specific flow description"
+        - name: "FromDimensionGroupID"
+          type: "integer"
+          nullable: true
+          description: "Dimension group ID"
+        - name: "FromDimensionGroupCode"
+          type: "string"
+          nullable: true
+          description: "Dimension group code"
+        - name: "FromDim1DetailCode"
+          type: "string"
+          nullable: true
+          description: "Dimension 1 detail code"
+        - name: "FromDim2DetailCode"
+          type: "string"
+          nullable: true
+          description: "Dimension 2 detail code"
+        - name: "FromDim3DetailCode"
+          type: "string"
+          nullable: true
+          description: "Dimension 3 detail code"
+        # To (Target) fields
+        - name: "ToType"
+          type: "byte"
+          description: "Target data type"
+        - name: "ToAccountID"
+          type: "integer"
+          nullable: true
+          description: "Target account ID"
+        - name: "ToAccountCode"
+          type: "string"
+          nullable: true
+          description: "Target account code"
+        - name: "ToAccountDescription"
+          type: "string"
+          nullable: true
+          description: "Target account description"
+        - name: "ToConsolidationAccountCode"
+          type: "string"
+          nullable: true
+          description: "Target specific account code"
+        - name: "ToConsolidationAccountDescription"
+          type: "string"
+          nullable: true
+          description: "Target specific account description"
+        - name: "ToPartnerCompanyCode"
+          type: "string"
+          nullable: true
+          description: "Target partner company code"
+        - name: "ToPartnerCompanyName"
+          type: "string"
+          nullable: true
+          description: "Target partner company name"
+        - name: "ToPartnerCompanyType"
+          type: "char"
+          nullable: true
+          description: "P=SameAsSource, C=Specific"
+          enum_ref: "PartnerTypes"
+        - name: "ToFlowCode"
+          type: "string"
+          nullable: true
+          description: "Target flow code"
+        - name: "ToFlowDescription"
+          type: "string"
+          nullable: true
+          description: "Target flow description"
+        - name: "ToConsolidationFlowCode"
+          type: "string"
+          nullable: true
+          description: "Target specific flow code"
+        - name: "ToConsolidationFlowDescription"
+          type: "string"
+          nullable: true
+          description: "Target specific flow description"
+        - name: "ToSign"
+          type: "short"
+          description: "Sign multiplier (+1 or -1)"
+          enum_ref: "SignTypes"
+        - name: "ToDimensionGroupID"
+          type: "integer"
+          nullable: true
+          description: "Target dimension group ID (-1 = SameAsSource)"
+        - name: "ToDimensionGroupCode"
+          type: "string"
+          nullable: true
+          description: "Target dimension group code"
+        - name: "ToDim1DetailCode"
+          type: "string"
+          nullable: true
+          description: "Target dimension 1 detail code"
+        - name: "ToDim2DetailCode"
+          type: "string"
+          nullable: true
+          description: "Target dimension 2 detail code"
+        - name: "ToDim3DetailCode"
+          type: "string"
+          nullable: true
+          description: "Target dimension 3 detail code"
+
+    EventDetailDataDTO:
+      description: "Event item with all dropdown options for editing"
+      source: "EventDetailsService.cs"
+      fields:
+        - name: "EventItem"
+          type: "GetEventResultQuery"
+          description: "Event header information"
+        - name: "DataTypes"
+          type: "array<KeyValuePair<int, string>>"
+          description: "Data type dropdown options"
+        - name: "AccountTypesFrom"
+          type: "array<KeyValuePair<int, string>>"
+          description: "From account type options"
+        - name: "AccountTypesTo"
+          type: "array<KeyValuePair<int, string>>"
+          description: "To account type options (includes SameAsSource)"
+        - name: "FlowTypesFrom"
+          type: "array<KeyValuePair<int, string>>"
+          description: "From flow type options"
+        - name: "FlowTypesTo"
+          type: "array<KeyValuePair<int, string>>"
+          description: "To flow type options (includes SameAsSource)"
+        - name: "SpecificAccounts"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Available specific accounts"
+        - name: "SpecificFlows"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Available specific flows"
+        - name: "DimensionsGroupsFrom"
+          type: "array<KeyValuePair<int?, string>>"
+          description: "From dimension group options"
+        - name: "DimensionsGroupsTo"
+          type: "array<KeyValuePair<int?, string>>"
+          description: "To dimension group options (includes SameAsSource)"
+        - name: "DimensionsData"
+          type: "array<GetDimensionsResultQuery>"
+          description: "Dimension group details with dimension IDs"
+        - name: "PeriodFrom"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Period options (Current/Reference)"
+        - name: "CheckFrom"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Check condition options"
+        - name: "SignTo"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Sign options (+/-)"
+        - name: "PercentagesTo"
+          type: "array<KeyValuePair<int, string>>"
+          description: "Percentage type options (1-25)"
+        - name: "PartnerMethods"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Partner method filter options"
+        - name: "PartnerTypes"
+          type: "array<KeyValuePair<string, string>>"
+          description: "Partner type options (SameAsSource/Specific)"
+
+  # ============================================================================
+  # EVENT HEADER HANDLERS
+  # ============================================================================
+  event_handlers:
+    description: |
+      Endpoints for managing event headers.
+      Source: Sigma.Mona.WebApplication/Screens/Event/EventService.cs
+
+    handlers:
+      - name: "Event_GetEvents"
+        description: |
+          Retrieves events with filtering and pagination.
+          Returns event headers with configuration.
+          Single record includes full details with EntityVersion.
+        access_right: "Event_GetEvents"
+        async: true
+
+        request:
+          _t: "Event_GetEvents"
+          parameters:
+            - name: "EventID"
+              type: "integer"
+              required: false
+              description: "Specific event ID"
+            - name: "EventCode"
+              type: "string"
+              required: false
+              description: "Specific event code"
+            - name: "FilterEventCode"
+              type: "string"
+              required: false
+              description: "Filter by code pattern"
+            - name: "FilterEventDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "FilterActive"
+              type: "boolean"
+              required: false
+              description: "Filter by active status"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["EVENTCODE", "EVENTDESCRIPTION", "SORTORDER"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "Event_GetEvents",
+                "FilterActive": true,
+                "scf_order_by": "SORTORDER ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "Event_GetEvents",
+                "EventID": 123,
+                "scf_include_entities": true
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<EventDTO>"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "EventFullDTO"
+              description: "Full event with EntityVersion"
+
+      - name: "Event_SaveEvent"
+        description: |
+          Creates or updates an event.
+          Validates event code uniqueness.
+          Supports duplicating events with existing details.
+          Auto-calculates sort order for new events.
+        access_right: "Event_ManageEvents"
+        async: true
+
+        request:
+          _t: "Event_SaveEvent"
+          parameters:
+            - name: "Event"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "EventID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new event"
+                - name: "OriginalEventCode"
+                  type: "string"
+                  required: false
+                  description: "Original code (null for new)"
+                - name: "EventCode"
+                  type: "string"
+                  required: true
+                  validation: "ValidateCode for new events"
+                - name: "EventDescription"
+                  type: "string"
+                  required: true
+                - name: "SortOrder"
+                  type: "short"
+                  required: true
+                  description: "Execution order"
+                - name: "Active"
+                  type: "boolean"
+                  required: false
+                  default: false
+                - name: "JournalSummationCode"
+                  type: "string"
+                  required: false
+                - name: "PostingCompanyCode"
+                  type: "string"
+                  required: false
+                - name: "SelectionMethodID"
+                  type: "byte"
+                  required: true
+                  description: "Consolidation method selection"
+                - name: "Behavior"
+                  type: "byte"
+                  required: true
+                - name: "FlagLocalCurrency"
+                  type: "char"
+                  required: true
+                  description: "L=Local, G=Group"
+                - name: "MinorityFlag"
+                  type: "char"
+                  required: true
+                  description: "0=No, 1=Yes"
+                - name: "ProcedureName"
+                  type: "string"
+                  required: true
+                  description: "Event procedure name"
+                - name: "EventType"
+                  type: "string"
+                  required: true
+                - name: "PostingJournalCategory"
+                  type: "string"
+                  required: true
+                  description: "Journal type and category code"
+                - name: "DuplicateEventID"
+                  type: "integer"
+                  required: false
+                  description: "Source event ID to copy details from"
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: "if updating"
+            - name: "IsDuplicateEvent"
+              type: "boolean"
+              required: false
+              description: "True to copy details from DuplicateEventID"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example_new:
+            json: |
+              {
+                "_t": "Event_SaveEvent",
+                "Event": {
+                  "EventID": null,
+                  "EventCode": "EVT001",
+                  "EventDescription": "Goodwill Calculation",
+                  "SortOrder": 10,
+                  "Active": true,
+                  "SelectionMethodID": 1,
+                  "Behavior": 0,
+                  "FlagLocalCurrency": "L",
+                  "MinorityFlag": "1",
+                  "ProcedureName": "P_CALC_GOODWILL",
+                  "EventType": "0",
+                  "PostingJournalCategory": "EG"
+                }
+              }
+          example_duplicate:
+            json: |
+              {
+                "_t": "Event_SaveEvent",
+                "IsDuplicateEvent": true,
+                "Event": {
+                  "EventID": null,
+                  "EventCode": "EVT002",
+                  "EventDescription": "Goodwill Calculation (Copy)",
+                  "SortOrder": 11,
+                  "Active": true,
+                  "DuplicateEventID": 123,
+                  "SelectionMethodID": 1,
+                  "Behavior": 0,
+                  "FlagLocalCurrency": "L",
+                  "MinorityFlag": "1",
+                  "ProcedureName": "P_CALC_GOODWILL",
+                  "EventType": "0",
+                  "PostingJournalCategory": "EG"
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "CodeExists"
+              cause: "Event code already exists"
+            - pattern: "P_VALIDATE_EVENT"
+              cause: "Invalid journal/company configuration"
+
+      - name: "Event_RemoveEvent"
+        description: |
+          Deletes an event and all its detail lines.
+          Renumbers sort order of remaining events.
+        access_right: "Event_ManageEvents"
+        async: true
+
+        request:
+          _t: "Event_RemoveEvent"
+          parameters:
+            - name: "EventCode"
+              type: "string"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Event_RemoveEvent",
+                "EventCode": "EVT001"
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "NOT_FOUND"
+              cause: "Event not found"
+
+  # ============================================================================
+  # EVENT DETAILS HANDLERS
+  # ============================================================================
+  event_details_handlers:
+    description: |
+      Endpoints for managing event detail lines (From → To mappings).
+      Source: Sigma.Mona.WebApplication/Screens/Event/EventDetailsService.cs
+
+    handlers:
+      - name: "EventDetails_GetEventItem"
+        description: |
+          Retrieves event header with all dropdown options for detail editing.
+          Returns data types, account types, flow types, dimension groups,
+          specific accounts/flows, and percentage options.
+        access_right: "EventDetails_GetEventDetails"
+        async: true
+
+        request:
+          _t: "EventDetails_GetEventItem"
+          parameters:
+            - name: "EventHeaderID"
+              type: "integer"
+              required: true
+          example:
+            json: |
+              {
+                "_t": "EventDetails_GetEventItem",
+                "EventHeaderID": 123
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "EventDetailDataDTO"
+              description: "Event with all dropdown options"
+
+      - name: "EventDetails_GetEventDetails"
+        description: |
+          Retrieves event detail lines for an event.
+          Returns From/To specifications for each line.
+        access_right: "EventDetails_GetEventDetails"
+        async: true
+
+        request:
+          _t: "EventDetails_GetEventDetails"
+          parameters:
+            - name: "EventHeaderID"
+              type: "integer"
+              required: true
+            - name: "LineNr"
+              type: "short"
+              required: false
+              description: "Specific line number"
+            - name: "FilterLineNr"
+              type: "string"
+              required: false
+              description: "Filter by line number pattern"
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["LINENR"]
+          example:
+            json: |
+              {
+                "_t": "EventDetails_GetEventDetails",
+                "EventHeaderID": 123,
+                "scf_order_by": "LINENR ASC"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<EventDetailDTO>"
+
+      - name: "EventDetails_SaveEventDetails"
+        description: |
+          Creates or updates an event detail line.
+          Validates From/To specifications based on DataType.
+          Supports SameAsSource option for accounts, flows, and dimensions.
+          Calls P_INSERT_EVENT_DETAIL or P_UPDATE_EVENT_DETAIL stored procedures.
+        access_right: "EventDetails_ManageEventDetails"
+        async: true
+
+        request:
+          _t: "EventDetails_SaveEventDetails"
+          parameters:
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "EventHeaderID"
+              type: "integer"
+              required: true
+            - name: "SelectedAccountTypeTo"
+              type: "byte"
+              required: false
+              description: "Account type for To side (1-4)"
+            - name: "SelectedFlowTypeTo"
+              type: "byte"
+              required: false
+              description: "Flow type for To side (1-4)"
+            - name: "EventDetailDTO"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "EventDetailID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new detail"
+                - name: "LineNr"
+                  type: "short"
+                  required: true
+                - name: "FromType"
+                  type: "byte"
+                  required: true
+                  description: "Data type (1-6)"
+                - name: "FromAccountCode"
+                  type: "string"
+                  required: false
+                  description: "Regular account code"
+                - name: "FromConsolidationAccountCode"
+                  type: "string"
+                  required: false
+                  description: "Specific account code"
+                - name: "FromAccountSummationCode"
+                  type: "string"
+                  required: false
+                  description: "Calculated account code"
+                - name: "FromPeriod"
+                  type: "char"
+                  required: true
+                  description: "C=Current, R=Reference"
+                - name: "FromFlowCode"
+                  type: "string"
+                  required: false
+                - name: "FromConsolidationFlowCode"
+                  type: "string"
+                  required: false
+                - name: "FromFlowSummationCode"
+                  type: "string"
+                  required: false
+                - name: "FromPartnerCompanyCode"
+                  type: "string"
+                  required: false
+                - name: "FromPartnerMethod"
+                  type: "char"
+                  required: false
+                - name: "FromDimensionGroupID"
+                  type: "integer"
+                  required: false
+                - name: "FromDim1DetailCode"
+                  type: "string"
+                  required: false
+                - name: "FromDim2DetailCode"
+                  type: "string"
+                  required: false
+                - name: "FromDim3DetailCode"
+                  type: "string"
+                  required: false
+                - name: "FromCheck"
+                  type: "short"
+                  required: false
+                - name: "ToType"
+                  type: "byte"
+                  required: true
+                - name: "ToAccountCode"
+                  type: "string"
+                  required: false
+                - name: "ToConsolidationAccountCode"
+                  type: "string"
+                  required: false
+                - name: "ToSign"
+                  type: "short"
+                  required: true
+                  description: "1=Plus, -1=Minus"
+                - name: "ToFlowCode"
+                  type: "string"
+                  required: false
+                - name: "ToConsolidationFlowCode"
+                  type: "string"
+                  required: false
+                - name: "ToPartnerCompanyType"
+                  type: "char"
+                  required: false
+                  description: "P=SameAsSource, C=Specific"
+                - name: "ToPartnerCompanyCode"
+                  type: "string"
+                  required: false
+                - name: "ToDimensionGroupID"
+                  type: "integer"
+                  required: false
+                  description: "-1 for SameAsSource"
+                - name: "ToDim1DetailCode"
+                  type: "string"
+                  required: false
+                - name: "ToDim2DetailCode"
+                  type: "string"
+                  required: false
+                - name: "ToDim3DetailCode"
+                  type: "string"
+                  required: false
+                - name: "Percentage"
+                  type: "byte"
+                  required: true
+                  description: "Percentage reference (1-25)"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example_closing:
+            json: |
+              {
+                "_t": "EventDetails_SaveEventDetails",
+                "scf_entity_version": [{"Name": "Event", "Key": "789_123", "Version": 1}],
+                "EventHeaderID": 123,
+                "SelectedAccountTypeTo": 1,
+                "EventDetailDTO": {
+                  "EventDetailID": null,
+                  "LineNr": 10,
+                  "FromType": 1,
+                  "FromAccountCode": "1000",
+                  "FromPeriod": "C",
+                  "ToType": 1,
+                  "ToAccountCode": "2000",
+                  "ToSign": 1,
+                  "Percentage": 1
+                }
+              }
+          example_interco_flow:
+            json: |
+              {
+                "_t": "EventDetails_SaveEventDetails",
+                "scf_entity_version": [{"Name": "Event", "Key": "789_123", "Version": 1}],
+                "EventHeaderID": 123,
+                "SelectedAccountTypeTo": 4,
+                "SelectedFlowTypeTo": 4,
+                "EventDetailDTO": {
+                  "EventDetailID": null,
+                  "LineNr": 20,
+                  "FromType": 5,
+                  "FromAccountSummationCode": "ASSETS",
+                  "FromPeriod": "C",
+                  "FromFlowCode": "OB",
+                  "FromPartnerMethod": "G",
+                  "ToType": 5,
+                  "ToSign": -1,
+                  "ToPartnerCompanyType": "P",
+                  "Percentage": 3
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "FromAccount.Required"
+              cause: "From account/summation/specific required"
+            - pattern: "FromFlow.Required"
+              cause: "From flow required for flow data types"
+            - pattern: "FromDimGroup.Required"
+              cause: "From dimension group required for dimension data types"
+            - pattern: "ToAccount.Required"
+              cause: "To account required (unless SameAsSource)"
+            - pattern: "ToFlow.Required"
+              cause: "To flow required for flow data types (unless SameAsSource)"
+            - pattern: "ToDimGroup.Required"
+              cause: "To dimension group required for dimension data types (unless SameAsSource)"
+            - pattern: "SameAsSource.Invalid"
+              cause: "SameAsSource not valid for this combination"
+            - pattern: "P_VALIDATE_EVENT_DETAIL_FROM_DIM1_NEEDED"
+              cause: "FromDim1DetailCode required"
+            - pattern: "P_VALIDATE_EVENT_DETAIL_TO_DIM1_NEEDED"
+              cause: "ToDim1DetailCode required"
+
+      - name: "EventDetails_RemoveEventDetails"
+        description: |
+          Deletes an event detail line.
+          Renumbers remaining line numbers.
+        access_right: "EventDetails_ManageEventDetails"
+        async: true
+
+        request:
+          _t: "EventDetails_RemoveEventDetails"
+          parameters:
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "EventHeaderID"
+              type: "integer"
+              required: true
+            - name: "EventDetailID"
+              type: "integer"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "EventDetails_RemoveEventDetails",
+                "scf_entity_version": [{"Name": "Event", "Key": "789_123", "Version": 1}],
+                "EventHeaderID": 123,
+                "EventDetailID": 456
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "NOT_FOUND"
+              cause: "Event detail not found"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    event_setup_workflow:
+      name: "Event Setup Workflow"
+      description: "Create and configure consolidation events"
+      steps:
+        - step: 1
+          name: "Create Event"
+          handler: "Event_SaveEvent"
+          purpose: "Define event header with posting configuration"
+
+        - step: 2
+          name: "Get Event Item"
+          handler: "EventDetails_GetEventItem"
+          purpose: "Retrieve dropdown options for detail editing"
+
+        - step: 3
+          name: "Add Event Details"
+          handler: "EventDetails_SaveEventDetails"
+          repeat: true
+          purpose: "Define From → To mappings"
+
+        - step: 4
+          name: "Verify Configuration"
+          handler: "EventDetails_GetEventDetails"
+          purpose: "Review all event detail lines"
+
+    event_duplicate_workflow:
+      name: "Event Duplication Workflow"
+      description: "Create new event by copying existing event"
+      steps:
+        - step: 1
+          name: "Get Source Event"
+          handler: "Event_GetEvents"
+          parameters:
+            scf_include_entities: true
+          purpose: "Retrieve source event"
+
+        - step: 2
+          name: "Create Copy"
+          handler: "Event_SaveEvent"
+          parameters:
+            IsDuplicateEvent: true
+          purpose: "Create new event with copied details"
+
+        - step: 3
+          name: "Verify Copied Details"
+          handler: "EventDetails_GetEventDetails"
+          purpose: "Confirm details were copied"
+
+    consolidation_event_execution_workflow:
+      name: "Consolidation Event Execution"
+      description: "Events executed during consolidation process"
+      notes: "Event execution is part of consolidation - see api-consolidation-endpoints.yaml"
+      reference: "Consolidation_Execute executes events in SortOrder sequence"
+      steps:
+        - step: 1
+          name: "Get Active Events"
+          handler: "Event_GetEvents"
+          parameters:
+            FilterActive: true
+          purpose: "List events to be executed"
+
+        - step: 2
+          name: "Review Event Order"
+          description: "Verify SortOrder sequence"
+          client_side: true
+
+        - step: 3
+          name: "Execute Consolidation"
+          handler: "Consolidation_Execute"
+          source: "api-consolidation-endpoints.yaml"
+          purpose: "Run consolidation (executes events)"
+
+  # ============================================================================
+  # PERCENTAGES REFERENCE
+  # ============================================================================
+  percentage_types:
+    description: "Predefined percentage calculations (1-25)"
+    values:
+      - id: 1
+        key: "EventDetailPercentage1"
+        description: "Percentage type 1"
+      - id: 2
+        key: "EventDetailPercentage2"
+        description: "Percentage type 2"
+      - id: 3
+        key: "EventDetailPercentage3"
+        description: "Percentage type 3"
+      - id: 4
+        key: "EventDetailPercentage4"
+        description: "Percentage type 4"
+      - id: 5
+        key: "EventDetailPercentage5"
+        description: "Percentage type 5"
+      - id: 6
+        key: "EventDetailPercentage6"
+        description: "Percentage type 6"
+      - id: 7
+        key: "EventDetailPercentage7"
+        description: "Percentage type 7"
+      - id: 8
+        key: "EventDetailPercentage8"
+        description: "Percentage type 8"
+      - id: 9
+        key: "EventDetailPercentage9"
+        description: "Percentage type 9"
+      - id: 10
+        key: "EventDetailPercentage10"
+        description: "Percentage type 10"
+      - id: 11
+        key: "EventDetailPercentage11"
+        description: "Percentage type 11"
+      - id: 12
+        key: "EventDetailPercentage12"
+        description: "Percentage type 12"
+      - id: 13
+        key: "EventDetailPercentage13"
+        description: "Percentage type 13"
+      - id: 14
+        key: "EventDetailPercentage14"
+        description: "Percentage type 14"
+      - id: 15
+        key: "EventDetailPercentage15"
+        description: "Percentage type 15"
+      - id: 16
+        key: "EventDetailPercentage16"
+        description: "Percentage type 16"
+      - id: 17
+        key: "EventDetailPercentage17"
+        description: "Percentage type 17"
+      - id: 18
+        key: "EventDetailPercentage18"
+        description: "Percentage type 18"
+      - id: 19
+        key: "EliminationDetailPercentage19"
+        description: "Percentage type 19"
+      - id: 20
+        key: "EliminationDetailPercentage20"
+        description: "Percentage type 20"
+      - id: 21
+        key: "EliminationDetailPercentage21"
+        description: "Percentage type 21"
+      - id: 22
+        key: "EliminationDetailPercentage22"
+        description: "Percentage type 22"
+      - id: 23
+        key: "EliminationDetailPercentage23"
+        description: "Percentage type 23"
+      - id: 24
+        key: "EliminationDetailPercentage24"
+        description: "Percentage type 24"
+      - id: 25
+        key: "EliminationDetailPercentage25"
+        description: "Percentage type 25"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_VALIDATE_EVENT"
+      description: "Validates event configuration and resolves IDs"
+      called_by: "Event_SaveEvent"
+      outputs:
+        - JournalSummationID
+        - PostingJournalTypeID
+        - PostingCompanyID
+        - ConditionAccountID1
+        - ConditionAccountID2
+
+    - name: "P_INSERT_EVENT_DETAIL"
+      description: "Inserts new event detail line"
+      called_by: "EventDetails_SaveEventDetails"
+
+    - name: "P_UPDATE_EVENT_DETAIL"
+      description: "Updates existing event detail line"
+      called_by: "EventDetails_SaveEventDetails"
+
+  # ============================================================================
+  # RELATED ENTITIES
+  # ============================================================================
+  related_entities:
+    EventHeader:
+      description: "Event header entity"
+      table: "EventHeaders"
+      key_fields:
+        - EventHeaderID
+        - ConsoID
+
+    EventDetail:
+      description: "Event detail line entity"
+      table: "EventDetails"
+      key_fields:
+        - EventDetailID
+        - EventHeaderID
+        - ConsoID
+
+    EventProcedure:
+      description: "Event procedure definition"
+      table: "EventProcedures"
+      key_fields:
+        - EventProcedureName
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Event/EventService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Event/EventDetailsService.cs"
+    handler_count: 7
+    purpose: |
+      Enable AI agents to manage consolidation events including:
+      - Creating and maintaining event headers
+      - Defining event detail lines (From → To mappings)
+      - Configuring percentage-based calculations
+      - Managing account/flow/dimension transformations
+      - Supporting SameAsSource options for target specifications
+      - Duplicating events for similar configurations
+
+      Events are essential for:
+      - Defining consolidation process steps
+      - Goodwill and minority interest calculations
+      - Ownership change adjustments
+      - Acquisition and disposal processing
+      - Currency translation adjustments
+      - Intercompany elimination processing
+      - Custom consolidation transformations

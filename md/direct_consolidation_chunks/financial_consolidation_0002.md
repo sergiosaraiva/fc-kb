@@ -1,0 +1,13 @@
+# Chunk 2: DIRECT CONSOLIDATION
+
+## Context
+
+This section covers DIRECT CONSOLIDATION.
+
+## Content
+
+# DIRECT CONSOLIDATION
+
+
+---
+*Chunk 2 | DIRECT CONSOLIDATION*

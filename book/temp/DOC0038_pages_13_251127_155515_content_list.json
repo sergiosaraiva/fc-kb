@@ -1,0 +1,1403 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/54e81ca840b3bd5043e48aba173fcf4a405d1f8792e95811f10dc188c50e1279.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">Accounts before interim dividends</td></tr><tr><td colspan=\"3\">P</td></tr><tr><td>Fin. Invest./A</td><td>80</td><td>Capital 200\nReserves 100\nResult 30</td></tr><tr><td>Cash</td><td>420</td><td>Other liabilities 170</td></tr><tr><td colspan=\"3\">A</td></tr><tr><td rowspan=\"2\">Cash</td><td rowspan=\"2\">400</td><td>Capital 100\nReserves 50\nResult 20</td></tr><tr><td>Other liabilities 230</td></tr></table>",
+        "bbox": [
+            128,
+            124,
+            485,
+            327
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/070bd508a629198b617cb3dde29abd17bb9559d868f58b9a1b815fc8fc7bcf19.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">Accounts after interim dividends (paid)</td></tr><tr><td colspan=\"3\">P</td></tr><tr><td rowspan=\"3\">Fin. Invest./A</td><td rowspan=\"3\">80</td><td>Capital 200</td></tr><tr><td>Reserves 100</td></tr><tr><td>Result 30</td></tr><tr><td rowspan=\"2\">Cash</td><td>420</td><td>8</td></tr><tr><td>8</td><td>Other liabilities 170</td></tr><tr><td colspan=\"3\">A</td></tr><tr><td rowspan=\"4\">Cash</td><td>400</td><td>Capital 100</td></tr><tr><td rowspan=\"3\">(10)</td><td>Reserves 50</td></tr><tr><td>Result 20</td></tr><tr><td>Other liabilities 230</td></tr></table>",
+        "bbox": [
+            508,
+            125,
+            881,
+            327
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "On the left, we have the accounts corresponding to the situation before the decision to pay an interim dividend.",
+        "bbox": [
+            109,
+            358,
+            869,
+            390
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "On the right, we have the situation on December 31 including the booking of the interim dividend.",
+        "bbox": [
+            109,
+            407,
+            871,
+            439
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The recommendation for company A is to ask to book the counterpart of the cash out of 10 to the debit of the Reserves account. This will seem quite unusual for a local accountant but it is necessary for consolidation needs.",
+        "bbox": [
+            109,
+            455,
+            869,
+            503
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Parent company P will book the cash received for  \\(8 = 80\\%\\)  * 10 with a credit on Financial income (P&L).",
+        "bbox": [
+            109,
+            519,
+            869,
+            551
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The consolidation adjustment that will have to be booked is then a debit on this Financial income account and a credit on the Reserves account.",
+        "bbox": [
+            109,
+            568,
+            869,
+            600
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "It is easy to see on this example that the Reserves account is playing a kind of link account because, in consolidation, it is impacted once in P account for credit 8 and in A account for debit  \\(8 = 80\\% * 10\\) . Net impact on Reserves is then zero.",
+        "bbox": [
+            109,
+            616,
+            869,
+            679
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We suppose interim dividends are not paid",
+        "text_level": 1,
+        "bbox": [
+            109,
+            696,
+            571,
+            711
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Sometimes, an interim dividend is decided during the last days of the year, depending on company final profit, with a payment during the first days of next year.",
+        "bbox": [
+            109,
+            727,
+            869,
+            775
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This situation leads to the following recommended booking",
+        "bbox": [
+            109,
+            792,
+            677,
+            809
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "124",
+        "bbox": [
+            468,
+            920,
+            512,
+            935
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/cb3a0618801fb235c7e2216221b8626d3ff43b4ff9bbd634fc2016f6542b1f17.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">Accounts before interim dividends</td><td colspan=\"3\">Accounts after interim dividends (not paid)</td></tr><tr><td colspan=\"3\">P</td><td colspan=\"3\">P</td></tr><tr><td>Fin. Invest./A</td><td>80</td><td>Capital 200</td><td>Fin. Invest./A</td><td>80</td><td>Capital 200</td></tr><tr><td></td><td></td><td>Reserves 100</td><td></td><td></td><td>Reserves 100</td></tr><tr><td></td><td></td><td>Result 30</td><td></td><td></td><td>Result 30</td></tr><tr><td>Cash</td><td>420</td><td>Other liabilities 170</td><td>Receivables/A</td><td>8</td><td>8</td></tr><tr><td></td><td></td><td></td><td>Cash</td><td>420</td><td>Other liabilities 170</td></tr><tr><td colspan=\"3\">A</td><td colspan=\"3\">A</td></tr><tr><td></td><td></td><td>Capital 100</td><td></td><td></td><td>Capital 100</td></tr><tr><td></td><td></td><td>Reserves 50</td><td></td><td></td><td>Reserves 50</td></tr><tr><td></td><td></td><td>Result 20</td><td></td><td></td><td>Result 20</td></tr><tr><td>Cash</td><td>400</td><td>Other liabilities 230</td><td>Cash</td><td>400</td><td>Other liabilities 230</td></tr><tr><td></td><td></td><td></td><td>Payable/P</td><td>8</td><td>Payable/Others 2</td></tr></table>",
+        "bbox": [
+            110,
+            131,
+            864,
+            346
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In company A, there is a debit on Reserves account and a credit on Payables, but 8 out of 10 is defined as an intercompany amount with P, the remaining 2 are paid to  \\(3^{\\text{rd}}\\)  Parties.",
+        "bbox": [
+            108,
+            363,
+            877,
+            410
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In P accounts, the amount of 8 is booked on a Receivables account defined as intercompany with A.",
+        "bbox": [
+            108,
+            426,
+            877,
+            460
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Payables and Receivables will thus not appear in the consolidated accounts because of the intercompany eliminations.",
+        "bbox": [
+            108,
+            475,
+            875,
+            508
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Moreover, the same comment can be done for the Reserves account which has an impact of zero in consolidation.",
+        "bbox": [
+            108,
+            524,
+            875,
+            555
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "8.10 Statutory write-off of a consolidated financial investment",
+        "text_level": 2,
+        "bbox": [
+            110,
+            590,
+            762,
+            634
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 3,
+        "bbox": [
+            110,
+            656,
+            258,
+            671
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here is a group where parent company P has a financial investment in company A for 1000 corresponding to a  \\(100\\%\\)  financial percentage. We can suppose company A has been founded by P a few years ago.",
+        "bbox": [
+            108,
+            689,
+            877,
+            739
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Equity of company A is",
+        "bbox": [
+            110,
+            753,
+            338,
+            771
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Capital : 1000",
+            "Retained earning : (600)",
+            "Loss of Year 1: (200)"
+        ],
+        "bbox": [
+            148,
+            785,
+            427,
+            834
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "giving a net equity of 200.",
+        "bbox": [
+            110,
+            850,
+            370,
+            866
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In Year 1, consolidated reserves are (800) = 100% * 200 - 1000 and this amount is just the accumulated losses of A since the first consolidation.",
+        "bbox": [
+            107,
+            118,
+            871,
+            156
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In Year 2, P decides to book a write-off on that investment for the full amount of 1000. This means the financial investment is now zero.",
+        "bbox": [
+            107,
+            169,
+            871,
+            202
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In the meantime, we receive company A accounts",
+        "bbox": [
+            107,
+            218,
+            594,
+            234
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Capital : 1000",
+            "Retained earning : (800)",
+            "Loss of Year 1 : (200)"
+        ],
+        "bbox": [
+            147,
+            250,
+            426,
+            297
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "again with a loss of (200), leading to a net equity of zero.",
+        "bbox": [
+            109,
+            313,
+            666,
+            330
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Without doing anything about this situation in the consolidation, we would calculate consolidated reserves as  \\(0 = 100\\% * 0 - 0\\) .",
+        "bbox": [
+            107,
+            345,
+            871,
+            377
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "But the evolution between (800) and 0 is supposed to correspond to the result of this year, (200), which is not the case.",
+        "bbox": [
+            107,
+            393,
+            871,
+            428
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The problem comes from the fact that, on one side, we show the bad situation of company A in the consolidated figures by consolidating the company and on the other side, by booking a write-off, P is saying company A situation is bad. If we do nothing, we are saying twice that A situation is bad with different figures. Duplication and contradiction problems arise.",
+        "bbox": [
+            107,
+            442,
+            871,
+            525
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The adjustments",
+        "text_level": 3,
+        "bbox": [
+            109,
+            538,
+            295,
+            554
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Considering A is consolidated, we must reverse the write-off in P accounts by the following consolidation adjustment.",
+        "bbox": [
+            107,
+            569,
+            869,
+            604
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/6e4ebffab716816c617be7226b3fb4b5623a201d09c163ad396a5f17a71e6511.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Financial Invest./A</td><td>1,000</td><td></td></tr><tr><td>Write-off</td><td></td><td>1,000</td></tr></table>",
+        "bbox": [
+            312,
+            612,
+            668,
+            666
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This adjustment has to be maintained in the consolidation as long as the statutory financial investment in P is reduced to zero. If, in a few years, P decides to reverse part of its write-off because situation of A is improving, we will have to do the same with this adjustment.",
+        "bbox": [
+            107,
+            683,
+            871,
+            749
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            67,
+            362,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "8.11 Difference on opening reserves",
+        "text_level": 2,
+        "bbox": [
+            102,
+            119,
+            680,
+            142
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 3,
+        "bbox": [
+            102,
+            162,
+            252,
+            179
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Most groups are producing their consolidated accounts a few weeks after the closing date and sometimes long before the statutory accounts of the subsidiaries. It is indeed not possible to wait for each company to report their accounts after the approval of the shareholders' annual meeting. The consequence is that in the next consolidation we find that the result previously consolidated before is not the final one.",
+        "bbox": [
+            102,
+            195,
+            880,
+            293
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "What to do in such situation?",
+        "bbox": [
+            104,
+            307,
+            394,
+            324
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let's consider an example",
+        "text_level": 3,
+        "bbox": [
+            104,
+            340,
+            394,
+            357
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/5b800abfc16dbfc236a771b258d9350b4c196f3083044eb51186ddf586c15a0e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"6\">A</td></tr><tr><td></td><td>Year 1</td><td>Year 2</td><td></td><td>Year 1</td><td>Year 2</td></tr><tr><td rowspan=\"4\">Other assets</td><td rowspan=\"4\">2,500</td><td rowspan=\"4\">2,900</td><td>Capital</td><td>1,000</td><td>1,000</td></tr><tr><td>Reserves</td><td>700</td><td>850</td></tr><tr><td>Result</td><td>200</td><td>120</td></tr><tr><td>Other liabilities</td><td>600</td><td>930</td></tr></table>",
+        "bbox": [
+            164,
+            375,
+            824,
+            477
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Here are Year 1 and Year 2 statutory accounts of company A.",
+        "bbox": [
+            104,
+            502,
+            710,
+            519
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The Year 1 profit we consolidated was 200, but when we receive the Year 2 accounts, we find an opening equity of  \\(1850 = 1000 + 850\\)  while it should have been  \\(1900 = 1000 + 700 + 200\\) . After investigation, company A confirms there has been a late booking for a provision of 50.",
+        "bbox": [
+            104,
+            534,
+            880,
+            600
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The adjustments",
+        "text_level": 3,
+        "bbox": [
+            104,
+            614,
+            295,
+            633
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "That provision of 50 has to be booked in Year 2 accounts by the following adjustment.",
+        "bbox": [
+            104,
+            646,
+            880,
+            680
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/94f5748b31c6ce492bf3608c71853aad9a118bba800cd491db80e1eb1323bf34.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td></td><td colspan=\"2\">A</td><td></td><td></td></tr><tr><td></td><td>Year 1</td><td>Year 2</td><td></td><td>Year 1</td><td>Year 2</td></tr><tr><td></td><td></td><td></td><td>Capital</td><td>1,000</td><td>1,000</td></tr><tr><td></td><td></td><td></td><td>Reserves(a)</td><td>700</td><td>850</td></tr><tr><td></td><td></td><td></td><td>Result(a)</td><td>200</td><td>50</td></tr><tr><td>Other assets</td><td>2,500</td><td>2,900</td><td>Other liabilities</td><td>600</td><td>(50)</td></tr></table>",
+        "bbox": [
+            167,
+            696,
+            824,
+            829
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            299,
+            69,
+            860,
+            86
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The P&L booking is done on a provision account while the counterpart in the balance sheet is the Reserves account.",
+        "bbox": [
+            108,
+            120,
+            877,
+            153
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "By booking such adjustment, two consolidation principles are respected",
+        "bbox": [
+            110,
+            168,
+            811,
+            185
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- First, reserves are now correctly justified with an adjusted amount of 1900 for Year 2, in line with 1900 in Year 1",
+            "- Any \"mistake\" has to be corrected via adjustments in the consolidated accounts as soon as it has been noticed."
+        ],
+        "bbox": [
+            152,
+            200,
+            872,
+            279
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "8.12 Acquisition of a company with a badwill",
+        "text_level": 2,
+        "bbox": [
+            110,
+            314,
+            815,
+            339
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 3,
+        "bbox": [
+            110,
+            358,
+            260,
+            374
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "When a new company is entering the consolidation scope after a shares acquisition, two questions need an answer",
+        "bbox": [
+            108,
+            390,
+            875,
+            423
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "What is the equity at the date of acquisition?",
+            "- Can the difference between the acquisition price and the percentage of equity acquired be justified by some accounts to reevaluate or deevaluate?"
+        ],
+        "bbox": [
+            148,
+            437,
+            872,
+            516
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "After booking some assets and liabilities accounts against the opening equity, there might remain a residual difference between price and adjusted equity. If this difference is negative, we call it a badwill.",
+        "bbox": [
+            108,
+            534,
+            875,
+            582
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Depending on Local Gaap or IFRS rules, this badwill will be booked on a specific account in the equity or booked in the P&L as a profit.",
+        "bbox": [
+            108,
+            598,
+            875,
+            633
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The situation of a badwill is rather rare. Most of the time, it happens for the three following reasons",
+        "bbox": [
+            108,
+            645,
+            875,
+            680
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- The CEO of a company dies and the family, which is not involved in the business, wishes to sell the company as soon as possible",
+            "- The CEO of a company retires and there is a restructuring to be done with possible employees dismiss. As he doesn't want to make this job himself and support the related costs, the price of the company is of course reduced.",
+            "- An industrial company has some environment costs which will be supported by the acquirer. This again decreases the acquisition price."
+        ],
+        "bbox": [
+            154,
+            695,
+            870,
+            853
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            110,
+            65,
+            366,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We are going to analyse the situation of parent company P acquiring  \\(80\\%\\)  of shares of company A on July  \\(1^{st}\\) . At that date, the equity is 800, including a profit of 20 for the first six months of the year.",
+        "bbox": [
+            109,
+            119,
+            879,
+            172
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "A due diligence shows that there will be some costs for an amount of 100 to be supported by the company during the next two years, starting in Year 2.",
+        "bbox": [
+            109,
+            185,
+            877,
+            219
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The adjustments",
+        "text_level": 3,
+        "bbox": [
+            109,
+            233,
+            299,
+            250
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Here are companies P and A accounts, at the end of Year 1, including already the consolidation adjustments with the necessary comments",
+        "bbox": [
+            109,
+            264,
+            875,
+            299
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/128c0d421d2adb7f387d634f7904c91bc3d42ccbe0bdea9688d16fc99c36c5e5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Fin. Invest./A</td><td>500</td><td>Capital</td><td>1,000</td></tr><tr><td>(c)</td><td>84</td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td></td><td></td><td>Badwill</td><td></td></tr><tr><td></td><td></td><td>(c)</td><td>84</td></tr><tr><td>Other assets</td><td>1,500</td><td>Other liabilities</td><td>600</td></tr></table>",
+        "bbox": [
+            113,
+            323,
+            478,
+            416
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/40f6d947d5fb5b34a5abc9dea762b2b268cfa5776d734bca458a5ee3687b4226.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>280</td></tr><tr><td></td><td></td><td>(a)</td><td>20</td></tr><tr><td></td><td></td><td>(b)</td><td>(70)</td></tr><tr><td></td><td></td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>(a)</td><td>(20)</td></tr><tr><td colspan=\"2\">Assets DT (b) 30</td><td>Provision</td><td></td></tr><tr><td>Other assets</td><td>1,500</td><td>(b)</td><td>100</td></tr><tr><td></td><td></td><td>Other liabilities</td><td>670</td></tr></table>",
+        "bbox": [
+            495,
+            324,
+            860,
+            451
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a) eliminates a profit of 20 which corresponds to a period not belonging to the group. The starting date to show any revenue from A is July  \\(1^{st}\\) . This meets here again one important principle of statutory consolidation: to show the contribution of each company since the beginning of their life in the group. That profit is just transferred in the acquired equity.",
+        "bbox": [
+            109,
+            478,
+            877,
+            561
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The adjustment (a) impacts two accounts in the balance sheet but all income and expense accounts in P&L are in principle impacted to eliminate the first six months.",
+        "bbox": [
+            109,
+            574,
+            875,
+            624
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b) books a provision of 100 to cover future costs identified during the due diligence process. Again, this amount of 100 has an impact on the reserves and not the P&L. A deferred tax of 30 corresponding to a tax rate of  \\(30\\%\\)  is calculated for that adjustment.",
+        "bbox": [
+            109,
+            638,
+            875,
+            704
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c) books the badwill of  \\(84 = 500 - 80\\%\\)  \\* [500 + 280 + 20 + (70)], supposing we are in some non IFRS rules. If IFRS rules are applied, the badwill is booked immediately into the P&L as a profit.",
+        "bbox": [
+            109,
+            717,
+            875,
+            769
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Let's look now at the consolidated accounts of this first year",
+        "bbox": [
+            109,
+            783,
+            696,
+            801
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            71,
+            856,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/4a9a258d2c35d2dd3b86d0b145f2b0d842110389f948f2c874d84ac8f6b6cf2b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A</td></tr><tr><td></td><td>Capital</td><td>1,000</td></tr><tr><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td>Result</td><td>100</td></tr><tr><td></td><td>Conso. Reserves (A)</td><td>24</td></tr><tr><td></td><td>Minor. Interests (A)</td><td>152</td></tr><tr><td></td><td>Badwill</td><td>84</td></tr><tr><td>Assets DT</td><td>Provision</td><td>100</td></tr><tr><td>Other assets</td><td>Other liabilities</td><td>1,270</td></tr></table>",
+        "bbox": [
+            186,
+            118,
+            786,
+            266
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            108,
+            282,
+            173,
+            297
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated Reserves = 24 = 80% * [500 + 280 + 20 + (70) + 50 + (20)] - [500 + 84]",
+            "Minority Interests  \\(= 152 = 20\\% * [500 + 280 + 20 + (70) + 50 + (20)]\\)"
+        ],
+        "bbox": [
+            146,
+            311,
+            870,
+            395
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "A final check can be done on the consolidated reserves because if we go back to the definition, it is the accumulated profit contributed by company A since its life time in the group. Company A indeed, has belonged to the group only for the last six months of this first year, making a profit of  \\(30 = 50 + (20)\\) . The group has  \\(80\\%\\)  of that profit, that is 24.",
+        "bbox": [
+            105,
+            409,
+            875,
+            491
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "What will happen to the badwill in the future?",
+        "text_level": 3,
+        "bbox": [
+            108,
+            506,
+            610,
+            524
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "If the participation of  \\(80\\%\\)  remains unchanged, the badwill will stay unchanged in the equity.",
+        "bbox": [
+            105,
+            538,
+            872,
+            569
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "No reduction of value is accepted for the badwill.",
+        "bbox": [
+            108,
+            569,
+            584,
+            585
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "If company P decides to sell  \\(20\\%\\)  of its participation in the future, then the group will book  \\(\\frac{1}{4}\\)  of the badwill into P&L.",
+        "bbox": [
+            105,
+            601,
+            872,
+            635
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "If the remaining  \\(20\\%\\)  can be acquired in the future, the logic of evaluation of a possible badwill is the same and if a new badwill is confirmed, the second one is just added to the first one.",
+        "bbox": [
+            105,
+            650,
+            875,
+            699
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "8.13 Acquisition of a company with a goodwill",
+        "text_level": 2,
+        "bbox": [
+            105,
+            733,
+            826,
+            756
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 3,
+        "bbox": [
+            108,
+            775,
+            256,
+            792
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "A goodwill occurs when the acquisition price is higher than the corresponding equity acquired.",
+        "bbox": [
+            105,
+            808,
+            870,
+            841
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The main reasons are the following",
+        "bbox": [
+            108,
+            856,
+            453,
+            872
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            110,
+            67,
+            366,
+            81
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "It is generally normal to pay more than the equity",
+            "- Certain values of the acquired company are not reflected in the balance sheet, as"
+        ],
+        "bbox": [
+            144,
+            118,
+            872,
+            183
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The value of the customers",
+            "The value of the employees",
+            "o The value of certain products, trade marks or ideas not booked as intangible assets"
+        ],
+        "bbox": [
+            220,
+            200,
+            872,
+            263
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The fact that by acquiring a company, we eliminate a competitor",
+            "The new shares acquired may give the control on the company"
+        ],
+        "bbox": [
+            144,
+            281,
+            813,
+            329
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Anyway, it is supposed that in case of goodwill, the acquirer identifies the main reasons of paying more than the equity. This approach leads to book adjustments by revaluating some assets with a counterpart in the equity. A new goodwill calculation must be done afterwards and the remaining goodwill will then be considered as an intangible asset in the consolidated balance sheet.",
+        "bbox": [
+            105,
+            346,
+            875,
+            441
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "At this point of the process, these explanations apply to any consolidation rules: IFRS or Local Gaap.",
+        "bbox": [
+            105,
+            458,
+            872,
+            491
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The future of the goodwill depends now on the evaluation rules.",
+        "bbox": [
+            105,
+            505,
+            728,
+            523
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In IFRS, a goodwill remains unchanged during the lifetime of the company in the consolidation scope. At the end of each year, an impairment test is applied to each company in order to compare the present value of the company against the value of the company at acquisition time. If that value has decreased, we will have to book an impairment (=provision, write-off) on the goodwill. That impairment has a negative impact on the P&L.",
+        "bbox": [
+            105,
+            539,
+            875,
+            633
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "By such a process, the goodwill can decrease but cannot be revaluated.",
+        "bbox": [
+            105,
+            634,
+            800,
+            649
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "A last possibility that can be done under IFRS rules is the calculation of a full goodwill whenever the group acquires, for instance, only  \\(80\\%\\)  of a company.",
+        "bbox": [
+            105,
+            667,
+            872,
+            700
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Let's consider the following example.",
+        "bbox": [
+            105,
+            715,
+            466,
+            731
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "A group acquires  \\(80\\%\\)  of a company A for a price of 100. Its equity being 90, the goodwill is equal to  \\(28 = 100 - 80\\% * 90\\) . IFRS rules offer the possibility to calculate a full goodwill as if the group would have bought  \\(100\\%\\) , by calculating a goodwill of  \\(28 / 80\\% = 35\\) .",
+        "bbox": [
+            105,
+            747,
+            872,
+            812
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            302,
+            71,
+            853,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Booking of that goodwill will be as follows",
+        "bbox": [
+            107,
+            119,
+            524,
+            136
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/3e9cfbca5480949b00d67e94f001ae758c18c94b3de046fa8c1f47c67eb3b9ce.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill</td><td>35</td><td></td></tr><tr><td>Financial Invest./A</td><td></td><td>28</td></tr><tr><td>Minority Interests</td><td></td><td>7</td></tr></table>",
+        "bbox": [
+            321,
+            139,
+            674,
+            209
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In Local Gaap, a goodwill must be depreciated on a linear and economical basis. The duration of the depreciation is a choice of the group. In most countries, the number of years is limited.",
+        "bbox": [
+            104,
+            232,
+            882,
+            282
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "No deferred taxes apply to the impairment or the depreciation of a goodwill.",
+        "bbox": [
+            107,
+            294,
+            856,
+            313
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let's consider an example",
+        "text_level": 3,
+        "bbox": [
+            107,
+            329,
+            400,
+            346
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We are going to analyse the situation of parent company P acquiring  \\(80\\%\\)  of shares of company A for a price of 1200 on July  \\(1^{st}\\) . At that date, the equity of A is 860, including a profit of 60 for the first six months of the year.",
+        "bbox": [
+            104,
+            360,
+            884,
+            413
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "A due diligence identifies a tangible asset that should be revaluated for an amount of 500, with a  \\(10\\%\\)  per year depreciation.",
+        "bbox": [
+            104,
+            424,
+            882,
+            459
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The adjustments",
+        "text_level": 3,
+        "bbox": [
+            107,
+            472,
+            299,
+            490
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We present hereunder companies P and A accounts, already including the consolidation adjustments.",
+        "bbox": [
+            104,
+            505,
+            882,
+            539
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/d6c0ff0691941d15bd8443e01b597b769470d08639f4bf072035436ef3ed67ca.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P</td></tr><tr><td rowspan=\"2\">Goodwill (Gross Val.)</td><td rowspan=\"2\">(d) 272</td><td>Capital     2,000</td></tr><tr><td>Reserves   300</td></tr><tr><td rowspan=\"2\">Goodwill (Dep.)</td><td rowspan=\"2\">(e)  (34)</td><td>Result    100</td></tr><tr><td>(e)  (34)</td></tr><tr><td>Fin. Invest./A</td><td>(d) 1,200</td><td></td></tr><tr><td>Other assets</td><td>1,800</td><td>Other liabilities   600</td></tr><tr><td>Total</td><td>2,966</td><td>Total   2,966</td></tr></table>",
+        "bbox": [
+            184,
+            553,
+            835,
+            703
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            109,
+            64,
+            372,
+            81
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/6a0bada2133778c0d58c4171c1d1550a39a84edfa419709ca44847646562de23.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A</td></tr><tr><td>Tang. Assets(Acq.Val.)</td><td>1,000</td><td>Capital</td><td>500</td></tr><tr><td></td><td>(b)</td><td>500</td><td>Reserves</td></tr><tr><td>Tang. Assets(Dep.)</td><td>(300)</td><td></td><td>(a)</td></tr><tr><td></td><td>(c)</td><td>(25)</td><td>(b)</td></tr><tr><td></td><td></td><td>Result</td><td>300</td></tr><tr><td></td><td></td><td></td><td>(a)</td></tr><tr><td></td><td></td><td></td><td>(c)</td></tr><tr><td></td><td></td><td>Liabilities DT</td><td>(15)</td></tr><tr><td></td><td></td><td></td><td>(b)</td></tr><tr><td></td><td></td><td></td><td>(c)</td></tr><tr><td>Other assets</td><td>1,300</td><td>Other liabilities</td><td>1,100</td></tr><tr><td>Total</td><td>2,475</td><td>Total</td><td>2,475</td></tr></table>",
+        "bbox": [
+            187,
+            130,
+            829,
+            342
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a) eliminates the profit of 60 for exactly the same reason as the one we gave for the badwill situation.",
+        "bbox": [
+            109,
+            360,
+            873,
+            395
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b) revaluates the tangible asset for a gross amount of 500. A liabilities deferred tax is booked on the basis of a  \\(40\\%\\)  tax rate, so for 200, and the remaining amount of 300 is booked against the Reserves.",
+        "bbox": [
+            109,
+            408,
+            875,
+            458
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c) is the depreciation of that revaluation, corresponding to the period of the last six months of this year, so  \\(25 = 1/2\\)  of  \\(10\\%\\)  of 500. Of course, there is also a deferred tax impact for  \\(10 = 40\\% * 25\\) . Net impact on P&L is only 15.",
+        "bbox": [
+            109,
+            472,
+            875,
+            538
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Now we have to calculate the difference between the acquisition price of 1200 and  \\(80\\%\\)  of the adjusted equity which is  \\(928 = 80\\% * [500 + 300 + 60 + 300]\\)  giving a goodwill of 272.",
+        "bbox": [
+            109,
+            551,
+            873,
+            603
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d) is the booking of the goodwill which is considered as an intangible asset.",
+        "bbox": [
+            109,
+            617,
+            873,
+            651
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (e) is the depreciation of the goodwill on a basis of 4 years, so 34 =  \\(\\frac{1}{2} * [272 * 25\\%]\\)  because we have to depreciate over the last six months of this first year.",
+        "bbox": [
+            109,
+            664,
+            873,
+            715
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            70,
+            852,
+            87
+        ],
+        "page_idx": 9
+    }
+]

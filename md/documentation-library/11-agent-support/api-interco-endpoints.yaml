@@ -1,0 +1,1370 @@
+# API Intercompany Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of intercompany data entry, rules, and eliminations
+
+api_interco_endpoints:
+  name: "Intercompany API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing intercompany transactions and elimination rules.
+
+    Intercompany management is critical for consolidation because:
+    - Groups must eliminate intercompany transactions on consolidation
+    - Matching validates that both parties recorded the same amounts
+    - Rules define how eliminations are calculated automatically
+
+    Key concepts:
+    - Intercompany Data Entry: Recording transactions between group companies
+    - Partner Companies: The counterparty in an intercompany transaction
+    - Intercompany Rules: Define account mappings for automatic eliminations
+    - Screen Types: 'I' (Interco), 'P' (Partners), 'S' (Participations)
+
+    Services documented:
+    - InterCompanyDataEntryService: Data entry and export (7 handlers)
+    - InterCompanyRulesService: Rule management (7 handlers)
+    - InterCompanyEliminationService: Elimination mappings (2 handlers)
+    - IntercompanyViewerService: Intercompany balance viewer (1 handler)
+
+  # ============================================================================
+  # SCREEN TYPES
+  # ============================================================================
+  enums:
+    ScreenTypes:
+      description: "Types of intercompany data entry screens"
+      values:
+        - code: "I"
+          name: "Intercompany"
+          description: "Standard intercompany data entry"
+          access_right: "InterCompanyDataEntry_GetInterCompanies"
+        - code: "P"
+          name: "Partners"
+          description: "Partner-focused intercompany view"
+          access_right: "InterCompanyDataEntryPartners_GetInterCompanies"
+        - code: "S"
+          name: "Participations"
+          description: "Participation-focused view (subsidiaries)"
+          access_right: "InterCompanyDataEntryParticipations_GetInterCompanies"
+
+    EliminationCodes:
+      description: "Standard elimination code types"
+      values:
+        - code: "CN"
+          name: "Credit Negative"
+          description: "Credit-side negative elimination"
+        - code: "CP"
+          name: "Credit Positive"
+          description: "Credit-side positive elimination"
+        - code: "RN"
+          name: "Debit Negative"
+          description: "Debit-side negative elimination"
+        - code: "RP"
+          name: "Debit Positive"
+          description: "Debit-side positive elimination"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    InterCompanyDataEntryDTO:
+      description: "Intercompany transaction data entry line"
+      fields:
+        - name: "CompanyID"
+          type: "integer"
+          description: "Company recording the transaction"
+        - name: "CurrCode"
+          type: "string"
+          description: "Company's local currency"
+        - name: "AccountID"
+          type: "integer"
+          description: "GL Account ID"
+        - name: "PartnerCompanyID"
+          type: "integer"
+          description: "Intercompany partner company ID"
+        - name: "PartnerCompanyCode"
+          type: "string"
+          description: "Partner company code"
+        - name: "PartnerCompanyName"
+          type: "string"
+          description: "Partner company name"
+        - name: "CurLocalAmount"
+          type: "decimal"
+          nullable: true
+          description: "Current period amount in local currency"
+        - name: "CurTransactionCurrCode"
+          type: "string"
+          nullable: true
+          description: "Transaction currency code"
+        - name: "CurTransactionAmount"
+          type: "decimal"
+          nullable: true
+          description: "Amount in transaction currency"
+        - name: "RefLocalAmount"
+          type: "decimal"
+          nullable: true
+          description: "Reference period amount in local currency"
+        - name: "RefTransactionCurrCode"
+          type: "string"
+          nullable: true
+          description: "Reference transaction currency"
+        - name: "RefTransactionAmount"
+          type: "decimal"
+          nullable: true
+          description: "Reference amount in transaction currency"
+        - name: "HasFlows"
+          type: "boolean"
+          description: "Whether transaction has flow details"
+        - name: "InterwebPartnerCode"
+          type: "string"
+          nullable: true
+          description: "Partner's Interweb code (if integration enabled)"
+        - name: "IsPartnerInInterweb"
+          type: "boolean"
+          description: "Whether partner is in Interweb"
+        - name: "ModifiedBy"
+          type: "string"
+          nullable: true
+          description: "Last modified by user"
+        - name: "ModifiedDate"
+          type: "datetime"
+          nullable: true
+          description: "Last modification timestamp"
+
+    InterCompanyRuleDTO:
+      description: "Intercompany elimination rule"
+      fields:
+        - name: "IntercoRuleID"
+          type: "integer"
+          description: "Unique rule identifier"
+        - name: "IntercoRuleNr"
+          type: "integer"
+          description: "Rule number (for display)"
+        - name: "IntercoRuleDescription"
+          type: "string"
+          description: "Rule description"
+        - name: "LinkAccountDebitID"
+          type: "integer"
+          nullable: true
+          description: "Debit account for elimination"
+        - name: "LinkAccountDebitCode"
+          type: "string"
+          nullable: true
+          description: "Debit account code"
+        - name: "LinkAccountDebitDescription"
+          type: "string"
+          nullable: true
+          description: "Debit account description"
+        - name: "LinkAccountCreditID"
+          type: "integer"
+          nullable: true
+          description: "Credit account for elimination"
+        - name: "LinkAccountCreditCode"
+          type: "string"
+          nullable: true
+          description: "Credit account code"
+        - name: "LinkAccountCreditDescription"
+          type: "string"
+          nullable: true
+          description: "Credit account description"
+        - name: "Threshold"
+          type: "decimal"
+          description: "Elimination threshold amount"
+
+    InterCompanyEliminationDTO:
+      description: "Intercompany elimination account mapping"
+      fields:
+        - name: "IntercoRuleEliminationID"
+          type: "integer"
+          nullable: true
+          description: "Elimination mapping ID"
+        - name: "ConsoID"
+          type: "integer"
+          description: "Consolidation period ID"
+        - name: "IntercoRuleID"
+          type: "integer"
+          description: "Parent rule ID"
+        - name: "EliminationCode"
+          type: "string"
+          description: "Elimination type (CN, CP, RN, RP)"
+        - name: "EliminationCodeDescription"
+          type: "string"
+          description: "Localized elimination description"
+        - name: "DestinationAccountID"
+          type: "integer"
+          nullable: true
+          description: "Destination account for elimination"
+        - name: "AccountCode"
+          type: "string"
+          nullable: true
+          description: "Account code"
+        - name: "AccountDescription"
+          type: "string"
+          nullable: true
+          description: "Account description"
+
+    IntercompanyViewDTO:
+      description: "Intercompany balance comparison view"
+      fields:
+        - name: "CompanyCode"
+          type: "string"
+          description: "Reporting company code"
+        - name: "CompanyName"
+          type: "string"
+          description: "Reporting company name"
+        - name: "CompanyCurr"
+          type: "string"
+          description: "Company currency"
+        - name: "PartnerCode"
+          type: "string"
+          description: "Partner company code"
+        - name: "PartnerName"
+          type: "string"
+          description: "Partner company name"
+        - name: "PartnerCurr"
+          type: "string"
+          description: "Partner currency"
+        - name: "RuleNr"
+          type: "integer"
+          nullable: true
+          description: "Intercompany rule number"
+        - name: "RuleDescr"
+          type: "string"
+          nullable: true
+          description: "Rule description"
+        - name: "UnitsOf"
+          type: "byte"
+          nullable: true
+          description: "Unit multiplier"
+        - name: "NumberOfDecimals"
+          type: "byte"
+          nullable: true
+          description: "Decimal places"
+        - name: "RowsCompany"
+          type: "array"
+          description: "Company's intercompany amounts by account"
+        - name: "RowsPartner"
+          type: "array"
+          description: "Partner's intercompany amounts by account"
+        - name: "CompanyLocalAmountTotal"
+          type: "decimal"
+          nullable: true
+          description: "Total company amount"
+        - name: "PartnerLocalAmountTotal"
+          type: "decimal"
+          nullable: true
+          description: "Total partner amount"
+
+  # ============================================================================
+  # INTERCOMPANY DATA ENTRY HANDLERS
+  # ============================================================================
+  intercompany_data_entry:
+    description: |
+      Endpoints for entering and managing intercompany transaction data.
+      Source: Sigma.Mona.WebApplication/Screens/InterCompanyDataEntry/InterCompanyDataEntryService.cs
+
+    handlers:
+      - name: "InterCompanyDataEntry_GetCompanies"
+        description: |
+          Retrieves companies for intercompany data entry dropdown.
+          Filters based on screen type and user access rights.
+        access_right: "InterCompanyDataEntry_GetInterCompanies"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_GetCompanies"
+          parameters:
+            - name: "ScreenType"
+              type: "char"
+              required: true
+              validation: "ValidateChar"
+              description: "Screen type: 'I' (Interco), 'P' (Partners), 'S' (Participations)"
+              enum_ref: "ScreenTypes"
+            - name: "ConsolidatedCompany"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Filter to consolidated companies only"
+            - name: "Debug"
+              type: "boolean"
+              required: false
+              default: false
+          example:
+            json: |
+              {
+                "_t": "InterCompanyDataEntry_GetCompanies",
+                "ScreenType": "I",
+                "ConsolidatedCompany": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                CompanyID:
+                  type: "integer"
+                CompanyCode:
+                  type: "string"
+                CompanyName:
+                  type: "string"
+
+      - name: "InterCompanyDataEntry_GetAccounts"
+        description: |
+          Retrieves accounts available for intercompany data entry for a company.
+          Can filter to accounts with existing intercompany data or all accounts.
+        access_right: "InterCompanyDataEntry_GetInterCompanies"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_GetAccounts"
+          parameters:
+            - name: "CompanyId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Company to get accounts for"
+            - name: "ScreenType"
+              type: "char"
+              required: true
+              validation: "ValidateChar"
+              description: "Screen type filter"
+            - name: "AllAccounts"
+              type: "boolean"
+              required: false
+              default: true
+              description: "Include all accounts or only those with IC data"
+            - name: "AccountCode"
+              type: "string"
+              required: false
+              description: "Filter by account code pattern"
+            - name: "Debug"
+              type: "boolean"
+              required: false
+              default: false
+          example:
+            json: |
+              {
+                "_t": "InterCompanyDataEntry_GetAccounts",
+                "CompanyId": 123,
+                "ScreenType": "I",
+                "AllAccounts": false
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              description: "Accounts with intercompany capability"
+
+      - name: "InterCompanyDataEntry_GetInterCompanies"
+        description: |
+          Retrieves intercompany transaction data for a company/account.
+          Returns amounts for all partner companies with current and reference values.
+
+          Key response fields:
+          - DataEntryCalculations: Totals for IC, third parties, closing
+          - SelectedCompany/SelectedAccount: Context information
+          - IsInInterwebEnabled: Interweb integration status
+        access_right: "Varies by ScreenType"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_GetInterCompanies"
+          parameters:
+            - name: "CompanyId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Company to get IC data for"
+            - name: "AccountId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Account to get IC data for"
+            - name: "ScreenType"
+              type: "char"
+              required: true
+              description: "'I', 'P', or 'S'"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Include entity version for concurrency"
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompanyDataEntry_GetInterCompanies",
+                "CompanyId": 123,
+                "AccountId": 456,
+                "ScreenType": "I",
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<InterCompanyDataEntryDTO>"
+              description: "IC amounts for all partners"
+            DataEntryCalculations:
+              type: "object"
+              description: "Summary calculations"
+              schema:
+                CurTotalInterCo:
+                  type: "decimal"
+                  description: "Current total intercompany"
+                CurTotalThirdParties:
+                  type: "decimal"
+                  description: "Current third party total"
+                CurClosingAmount:
+                  type: "decimal"
+                  description: "Current closing amount"
+                RefTotalInterCo:
+                  type: "decimal"
+                RefTotalThirdParties:
+                  type: "decimal"
+                RefClosingAmount:
+                  type: "decimal"
+            SelectedCompany:
+              type: "object"
+              schema:
+                CompanyCode: "string"
+                CompanyName: "string"
+                CurrCode: "string"
+            SelectedAccount:
+              type: "object"
+              schema:
+                AccountCode: "string"
+                AccountName: "string"
+            NbrDec:
+              type: "byte"
+              description: "Decimal places"
+            UnitsOf:
+              type: "byte"
+              description: "Unit multiplier (0=units, 1=thousands, 2=millions)"
+            ClientSideCalc:
+              type: "boolean"
+              description: "Enable client-side calculations"
+            ReadOnly:
+              type: "boolean"
+              description: "Whether data is read-only (company locked)"
+            HasDimensions:
+              type: "boolean"
+              description: "Whether account has dimensions"
+            IsInInterwebEnabled:
+              type: "boolean"
+              description: "Interweb integration enabled"
+            EntityVersion:
+              type: "array<EntityVersion>"
+
+      - name: "InterCompanyDataEntry_SaveInterCompanies"
+        description: |
+          Saves intercompany transaction amounts for multiple partners.
+          Validates amounts and updates the data entry table.
+          Triggers advanced formulas after save.
+        access_right: "Varies by ScreenType (ManageInterCompanies)"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_SaveInterCompanies"
+          parameters:
+            - name: "CompanyId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "AccountId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "ScreenType"
+              type: "char"
+              required: true
+            - name: "NbrDec"
+              type: "integer"
+              required: true
+              description: "Decimal places for parsing amounts"
+            - name: "UnitsOf"
+              type: "integer"
+              required: true
+              description: "Unit multiplier for parsing amounts"
+            - name: "IpsList"
+              type: "array"
+              required: true
+              validation: "ValidateList"
+              description: "Array of IC amounts to save"
+              element_schema:
+                PartnerCompanyID:
+                  type: "integer"
+                  required: true
+                CurrCode:
+                  type: "string"
+                  required: true
+                  description: "Company currency code"
+                CurLocalAmount:
+                  type: "string"
+                  description: "Amount in local currency (as string for parsing)"
+                CurTransactionCurrCode:
+                  type: "string"
+                  nullable: true
+                  description: "Transaction currency"
+                CurTransactionAmount:
+                  type: "string"
+                  nullable: true
+                  description: "Amount in transaction currency"
+                OldTransactionCurrCode:
+                  type: "string"
+                  nullable: true
+                  description: "Previous transaction currency (for updates)"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompanyDataEntry_SaveInterCompanies",
+                "CompanyId": 123,
+                "AccountId": 456,
+                "ScreenType": "I",
+                "NbrDec": 2,
+                "UnitsOf": 0,
+                "IpsList": [
+                  {
+                    "PartnerCompanyID": 200,
+                    "CurrCode": "USD",
+                    "CurLocalAmount": "10000.00",
+                    "CurTransactionCurrCode": "EUR",
+                    "CurTransactionAmount": "9200.00"
+                  }
+                ]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_UPDATE_DATAENTRY_INTERCOMPANY_NOT_DECIMAL"
+              cause: "Invalid amount format"
+              error_field: "{PartnerCompanyID};CurLocalAmount"
+
+      - name: "InterCompanyDataEntry_GetImportDataDetails"
+        description: |
+          Retrieves imported data details for a specific IC transaction.
+          Shows original import source data for audit trail.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_GetImportDataDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+              description: "Company code (alternative to ID)"
+            - name: "accountID"
+              type: "integer"
+              required: "if account not provided"
+            - name: "account"
+              type: "string"
+              required: false
+            - name: "partnerCompanyID"
+              type: "integer"
+              required: "if partnerCompany not provided"
+            - name: "partnerCompany"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompanyDataEntry_GetImportDataDetails",
+                "companyID": 123,
+                "accountID": 456,
+                "partnerCompanyID": 200,
+                "consoID": 789
+              }
+
+        response:
+          success:
+            AmountData:
+              type: "object"
+              description: "Current amount data"
+            NbrDec:
+              type: "integer"
+            ImportData:
+              type: "array"
+              description: "Source import data lines"
+            ImportDataNetAmountTotal:
+              type: "decimal"
+            ImportDataDebitTotal:
+              type: "decimal"
+            ImportDataCreditTotal:
+              type: "decimal"
+
+      - name: "InterCompanyDataEntry_ExportImportDataDetails"
+        description: |
+          Exports import data details to Excel file.
+          Returns download URL for the generated file.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_ExportImportDataDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+            - name: "accountID"
+              type: "integer"
+              required: "if account not provided"
+            - name: "account"
+              type: "string"
+              required: false
+            - name: "partnerCompanyID"
+              type: "integer"
+              required: "if partnerCompany not provided"
+            - name: "partnerCompany"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+
+        response:
+          success:
+            fileNames:
+              type: "array"
+              element_schema:
+                filenamepath:
+                  type: "string"
+                  description: "Download URL"
+                filename:
+                  type: "string"
+
+      - name: "InterCompanyDataEntry_ExportInterCompanyData"
+        description: |
+          Exports all intercompany data for a company/account to Excel.
+          Includes current and reference period amounts with totals.
+        access_right: "Varies by ScreenType"
+        async: false
+
+        request:
+          _t: "InterCompanyDataEntry_ExportInterCompanyData"
+          parameters:
+            - name: "CompanyId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "AccountId"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "ScreenType"
+              type: "char"
+              required: true
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompanyDataEntry_ExportInterCompanyData",
+                "CompanyId": 123,
+                "AccountId": 456,
+                "ScreenType": "I"
+              }
+
+        response:
+          success:
+            fileNames:
+              type: "array"
+              element_schema:
+                filenamepath:
+                  type: "string"
+                  description: "Download URL"
+                filename:
+                  type: "string"
+
+  # ============================================================================
+  # INTERCOMPANY RULES HANDLERS
+  # ============================================================================
+  intercompany_rules:
+    description: |
+      Endpoints for managing intercompany elimination rules.
+      Rules define how intercompany transactions are automatically eliminated.
+      Source: Sigma.Mona.WebApplication/Screens/InterCompany/InterCompanyRulesService.cs
+
+    handlers:
+      - name: "InterCompany_GetRules"
+        description: |
+          Retrieves intercompany elimination rules.
+          Supports single rule lookup or filtered list with pagination.
+        access_right: "InterCompany_GetInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_GetRules"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Specific rule ID to retrieve"
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: false
+              description: "Specific rule number to retrieve"
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateConsoCode"
+              description: "Period code (default: working period)"
+            - name: "FilterIntercoRuleNr"
+              type: "string"
+              required: false
+              description: "Filter by rule number pattern"
+            - name: "FilterIntercoRuleDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["INTERCORULENR", "INTERCORULEDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "InterCompany_GetRules",
+                "scf_order_by": "INTERCORULENR ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "InterCompany_GetRules",
+                "IntercoRuleNr": 1,
+                "scf_include_entities": true
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array"
+              element_schema:
+                IntercoRuleID: "integer"
+                IntercoRuleNr: "integer"
+                IntercoRuleDescription: "string"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "InterCompanyRuleDTO"
+              description: "Full rule details with linked accounts"
+            EntityVersion:
+              type: "array<EntityVersion>"
+
+      - name: "InterCompany_GetDebitCredit"
+        description: |
+          Retrieves debit or credit account details for a rule.
+          Used to get the detail lines of an elimination rule.
+        access_right: "InterCompany_GetInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_GetDebitCredit"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+            - name: "DebitCredit"
+              type: "char"
+              required: false
+              description: "'D' for debit accounts, 'C' for credit accounts"
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_GetDebitCredit",
+                "IntercoRuleID": 123,
+                "DebitCredit": "D"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                IntercoRuleDetailID:
+                  type: "integer"
+                AccountCode:
+                  type: "string"
+                AccountDescription:
+                  type: "string"
+
+      - name: "InterCompany_SaveInterCompany"
+        description: |
+          Creates or updates an intercompany elimination rule.
+          Validates account codes exist before saving.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_SaveInterCompany"
+          parameters:
+            - name: "InterCompany"
+              type: "object"
+              required: true
+              description: "Rule data to save"
+              nested_parameters:
+                - name: "IntercoRuleID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new, value for update"
+                - name: "IntercoRuleNr"
+                  type: "integer"
+                  required: true
+                  description: "Rule number"
+                - name: "IntercoRuleDescription"
+                  type: "string"
+                  required: true
+                - name: "Threshold"
+                  type: "decimal"
+                  required: false
+                  description: "Elimination threshold amount"
+                - name: "LinkAccountDebitCode"
+                  type: "string"
+                  required: true
+                  description: "Debit account code"
+                - name: "LinkAccountCreditCode"
+                  type: "string"
+                  required: true
+                  description: "Credit account code"
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_SaveInterCompany",
+                "InterCompany": {
+                  "IntercoRuleID": null,
+                  "IntercoRuleNr": 10,
+                  "IntercoRuleDescription": "Sales/Purchases Elimination",
+                  "Threshold": 100.00,
+                  "LinkAccountDebitCode": "4000",
+                  "LinkAccountCreditCode": "6000"
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "FK_TS013I0_TS010S0"
+              cause: "Invalid debit account code"
+              error_field: "LinkAccountDebitCode"
+            - pattern: "FK_TS013I0_TS010S01"
+              cause: "Invalid credit account code"
+              error_field: "LinkAccountCreditCode"
+
+      - name: "InterCompany_RemoveInterCompany"
+        description: |
+          Deletes an intercompany elimination rule.
+          Also deletes all related rule details.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_RemoveInterCompany"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_RemoveInterCompany",
+                "IntercoRuleID": 123,
+                "scf_entity_version": [{"Name": "InterCompany", "Key": "789_123", "Version": 5}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "NOT_FOUND"
+              cause: "Rule not found"
+
+      - name: "InterCompany_AddInterCompanyDetails"
+        description: |
+          Adds a detail line (account) to an intercompany rule.
+          Used to add additional debit or credit accounts.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_AddInterCompanyDetails"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+              description: "Rule number (for logging)"
+            - name: "DebitCredit"
+              type: "char"
+              required: true
+              description: "'D' for debit, 'C' for credit"
+            - name: "AccountCode"
+              type: "string"
+              required: true
+              description: "Account to add to the rule"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_AddInterCompanyDetails",
+                "IntercoRuleID": 123,
+                "IntercoRuleNr": 10,
+                "DebitCredit": "D",
+                "AccountCode": "4100"
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "InterCompany_RemoveInterCompanyDetails"
+        description: |
+          Removes a detail line from an intercompany rule.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_RemoveInterCompanyDetails"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "IntercoRuleDetailID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_RemoveInterCompanyDetails",
+                "IntercoRuleID": 123,
+                "IntercoRuleDetailID": 456,
+                "IntercoRuleNr": 10,
+                "scf_entity_version": [{"Name": "InterCompany", "Key": "789_123", "Version": 5}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "InterCompany_GetRulesCodeDescription"
+        description: |
+          Returns rule number/description pairs for autocomplete/search.
+        access_right: "InterCompany_GetInterCompanyRules"
+        async: true
+
+        request:
+          _t: "InterCompany_GetRulesCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+              description: "Rule number pattern"
+            - name: "description"
+              type: "string"
+              required: false
+              description: "Description pattern"
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_GetRulesCodeDescription",
+                "code": "1%",
+                "maxRows": 20
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<int,string>>"
+              description: "RuleNr -> 'RuleNr: Description' pairs"
+
+  # ============================================================================
+  # INTERCOMPANY ELIMINATION HANDLERS
+  # ============================================================================
+  intercompany_elimination:
+    description: |
+      Endpoints for managing elimination account mappings for intercompany rules.
+      Maps elimination codes (CN, CP, RN, RP) to destination accounts.
+      Source: Sigma.Mona.WebApplication/Screens/InterCompanyElimination/InterCompanyEliminationService.cs
+
+    handlers:
+      - name: "InterCompanyElimination_GetIntercos"
+        description: |
+          Retrieves elimination account mappings for a rule.
+          Returns all four elimination types with their destination accounts.
+        access_right: "InterCompanyElimination_GetIntercos"
+        async: true
+
+        request:
+          _t: "InterCompanyElimination_GetIntercos"
+          parameters:
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: false
+              description: "Filter by rule number"
+            - name: "FilterEliminationCode"
+              type: "string"
+              required: false
+              description: "Filter by elimination code"
+            - name: "FilterAccountCode"
+              type: "string"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["ELIMINATIONCODE", "ACCOUNTCODE", "ACCOUNTDESCRIPTION"]
+          example:
+            json: |
+              {
+                "_t": "InterCompanyElimination_GetIntercos",
+                "IntercoRuleNr": 10,
+                "scf_order_by": "ELIMINATIONCODE ASC"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<InterCompanyEliminationDTO>"
+
+      - name: "InterCompanyElimination_SaveIntercos"
+        description: |
+          Saves elimination account mappings for a rule.
+          Can create, update, or delete mappings in a single call.
+        access_right: "InterCompanyElimination_ManageIntercos"
+        async: true
+
+        request:
+          _t: "InterCompanyElimination_SaveIntercos"
+          parameters:
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+              description: "Rule number to update"
+            - name: "Items"
+              type: "object"
+              required: true
+              description: "Dictionary of elimination mappings by code"
+              schema:
+                CN:
+                  type: "object"
+                  schema:
+                    AccountCode: "string"
+                CP:
+                  type: "object"
+                  schema:
+                    AccountCode: "string"
+                RN:
+                  type: "object"
+                  schema:
+                    AccountCode: "string"
+                RP:
+                  type: "object"
+                  schema:
+                    AccountCode: "string"
+          example:
+            json: |
+              {
+                "_t": "InterCompanyElimination_SaveIntercos",
+                "IntercoRuleNr": 10,
+                "Items": {
+                  "CN": {"AccountCode": "1100"},
+                  "CP": {"AccountCode": "1200"},
+                  "RN": {"AccountCode": "2100"},
+                  "RP": {"AccountCode": "2200"}
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "InvalidAccountCode"
+              cause: "Account code not found"
+              error_field: "{EliminationCode};AccountCode"
+
+  # ============================================================================
+  # INTERCOMPANY VIEWER HANDLERS
+  # ============================================================================
+  intercompany_viewer:
+    description: |
+      Endpoint for viewing intercompany balance comparison between two companies.
+      Source: Sigma.Mona.WebApplication/Screens/InterCompany/IntercompanyViewerService.cs
+
+    handlers:
+      - name: "IntercompanyViewer_GetIntercompanyView"
+        description: |
+          Retrieves intercompany balance comparison between a company and partner.
+          Shows amounts from both perspectives for reconciliation.
+        access_right: "IntercompanyViewer_GetIntercompanyView"
+        async: true
+
+        request:
+          _t: "IntercompanyViewer_GetIntercompanyView"
+          parameters:
+            - name: "CompanyCode"
+              type: "string"
+              required: true
+              description: "Reporting company code"
+            - name: "PartnerCode"
+              type: "string"
+              required: true
+              description: "Partner company code"
+            - name: "AccountCode"
+              type: "string"
+              required: true
+              description: "Account to compare"
+          example:
+            json: |
+              {
+                "_t": "IntercompanyViewer_GetIntercompanyView",
+                "CompanyCode": "ACME",
+                "PartnerCode": "SUB01",
+                "AccountCode": "4000"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "IntercompanyViewDTO"
+              description: "Complete comparison data with totals"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    intercompany_data_entry_workflow:
+      name: "Intercompany Data Entry Workflow"
+      description: "Complete workflow for entering intercompany transaction data"
+      steps:
+        - step: 1
+          name: "Get Companies"
+          handler: "InterCompanyDataEntry_GetCompanies"
+          parameters:
+            ScreenType: "I"
+          purpose: "Get available companies for data entry"
+
+        - step: 2
+          name: "Get Accounts"
+          handler: "InterCompanyDataEntry_GetAccounts"
+          parameters:
+            AllAccounts: false
+          purpose: "Get accounts with intercompany capability"
+
+        - step: 3
+          name: "Get IC Data"
+          handler: "InterCompanyDataEntry_GetInterCompanies"
+          parameters:
+            scf_include_entities: true
+          purpose: "Retrieve current IC amounts for all partners"
+
+        - step: 4
+          name: "Save IC Data"
+          handler: "InterCompanyDataEntry_SaveInterCompanies"
+          purpose: "Save updated intercompany amounts"
+
+        - step: 5
+          name: "Export Data"
+          handler: "InterCompanyDataEntry_ExportInterCompanyData"
+          optional: true
+          purpose: "Export IC data for review"
+
+    intercompany_rule_setup_workflow:
+      name: "Intercompany Rule Setup Workflow"
+      description: "Create and configure intercompany elimination rules"
+      steps:
+        - step: 1
+          name: "Create Rule"
+          handler: "InterCompany_SaveInterCompany"
+          parameters:
+            IntercoRuleID: null
+          purpose: "Create new elimination rule"
+
+        - step: 2
+          name: "Add Debit Accounts"
+          handler: "InterCompany_AddInterCompanyDetails"
+          parameters:
+            DebitCredit: "D"
+          purpose: "Add debit accounts to rule"
+          repeat: "For each debit account"
+
+        - step: 3
+          name: "Add Credit Accounts"
+          handler: "InterCompany_AddInterCompanyDetails"
+          parameters:
+            DebitCredit: "C"
+          purpose: "Add credit accounts to rule"
+          repeat: "For each credit account"
+
+        - step: 4
+          name: "Configure Elimination Accounts"
+          handler: "InterCompanyElimination_SaveIntercos"
+          purpose: "Map elimination codes to destination accounts"
+
+        - step: 5
+          name: "Verify Rule"
+          handler: "InterCompany_GetRules"
+          purpose: "Confirm rule configuration"
+
+    intercompany_reconciliation_workflow:
+      name: "Intercompany Reconciliation Workflow"
+      description: "Reconcile intercompany balances between companies"
+      steps:
+        - step: 1
+          name: "Select Company Pair"
+          description: "Identify two companies to reconcile"
+          purpose: "Choose company and partner"
+
+        - step: 2
+          name: "View IC Balances"
+          handler: "IntercompanyViewer_GetIntercompanyView"
+          purpose: "Compare amounts from both perspectives"
+
+        - step: 3
+          name: "Identify Differences"
+          description: "Compare CompanyLocalAmountTotal vs PartnerLocalAmountTotal"
+          purpose: "Find mismatches requiring resolution"
+
+        - step: 4
+          name: "Correct Entries"
+          handler: "InterCompanyDataEntry_SaveInterCompanies"
+          condition: "If differences exist"
+          purpose: "Update amounts to match"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_VIEW_DATAENTRY_IPS"
+      description: "Returns intercompany transaction data for all partners"
+      called_by: "InterCompanyDataEntry_GetInterCompanies, ExportInterCompanyData"
+      output_params:
+        - "currCode"
+        - "totalInterco"
+        - "totalThirdParties"
+        - "closingAmount"
+        - "companyCode/Name"
+        - "accountCode/Name"
+        - "nbrDec, unitsOf"
+        - "flagDimensions"
+
+    - name: "P_VIEW_DATAENTRY_IPS_ACCOUNT"
+      description: "Returns accounts for intercompany data entry"
+      called_by: "InterCompanyDataEntry_GetAccounts"
+
+    - name: "P_UPDATE_DATAENTRY_IPS"
+      description: "Updates intercompany transaction amounts"
+      called_by: "InterCompanyDataEntry_SaveInterCompanies"
+
+    - name: "P_VIEW_ICVIEWER"
+      description: "Returns intercompany balance comparison view"
+      called_by: "IntercompanyViewer_GetIntercompanyView"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/InterCompanyDataEntry/InterCompanyDataEntryService.cs"
+      - "Sigma.Mona.WebApplication/Screens/InterCompany/InterCompanyRulesService.cs"
+      - "Sigma.Mona.WebApplication/Screens/InterCompanyElimination/InterCompanyEliminationService.cs"
+      - "Sigma.Mona.WebApplication/Screens/InterCompany/IntercompanyViewerService.cs"
+    handler_count: 17
+    purpose: |
+      Enable AI agents to manage intercompany transactions including:
+      - Entering and exporting intercompany transaction data
+      - Managing intercompany elimination rules
+      - Configuring elimination account mappings
+      - Reconciling intercompany balances between companies
+
+      Critical for consolidation workflow as intercompany eliminations
+      are a core requirement for group financial statements.

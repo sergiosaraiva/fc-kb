@@ -1,0 +1,13 @@
+# Chunk 718: 4 RESTRAINTRATION OF A GROUP
+
+## Context
+
+This section covers 4 RESTRAINTRATION OF A GROUP.
+
+## Content
+
+# 4 RESTRAINTRATION OF A GROUP
+
+
+---
+*Chunk 718 | 4 RESTRAINTRATION OF A GROUP*

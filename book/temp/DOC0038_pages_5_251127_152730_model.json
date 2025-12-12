@@ -1,0 +1,1573 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.111,
+                0.065,
+                0.367,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.119,
+                0.485,
+                0.137
+            ],
+            "angle": 0,
+            "content": "Group with crossed participations"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.342,
+                0.154,
+                0.648,
+                0.309
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.326,
+                0.883,
+                0.378
+            ],
+            "angle": 0,
+            "content": "The control percentage in company C1 is \\(100\\%\\) because the remaining \\(20\\%\\) owned by C2 can be taken into account, C2 obviously being controlled by the group at \\(60\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.391,
+                0.885,
+                0.459
+            ],
+            "angle": 0,
+            "content": "If we keep in mind the basic principle to be applied for the financial percentage of company C1, we just have to inventory all paths starting at P and arriving in C1, multiply the percentages along each path and then add them together."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.472,
+                0.884,
+                0.522
+            ],
+            "angle": 0,
+            "content": "At a first glance, we would say there are two paths, namely P -> C1 giving 80% and P -> C2 -> C1 giving 60% * 20% = 12%, and we would say the indirect financial percentage is 92%. That's not correct!"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.536,
+                0.637,
+                0.553
+            ],
+            "angle": 0,
+            "content": "Here is the correct answer with (nearly) all the paths."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.568,
+                0.821,
+                0.586
+            ],
+            "angle": 0,
+            "content": "We first identify an infinite set of paths starting from \\( P \\) and ending at C1"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.226,
+                0.607,
+                0.785,
+                0.691
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Path 1</td><td>P - C1</td><td>80%</td></tr><tr><td>Path 2</td><td>P - C1 - C2 - C1</td><td>4.8%</td></tr><tr><td>Path 3</td><td>P - C1 - C2 - C1 - C2 - C1</td><td>0.288%</td></tr><tr><td>Path 4</td><td>P - ...</td><td>...</td></tr><tr><td></td><td></td><td>85.088%</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.708,
+                0.882,
+                0.743
+            ],
+            "angle": 0,
+            "content": "but there is also a second set of paths, different from the first one, starting from \\( P \\) and ending in \\( C1 \\) via \\( C2 \\), giving"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.226,
+                0.766,
+                0.783,
+                0.851
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Path 1</td><td>P - C2 - C1</td><td>12%</td></tr><tr><td>Path 2</td><td>P - C2 - C1 - C2 - C1</td><td>0.72%</td></tr><tr><td>Path 3</td><td>P - C2 - C1 - C2 - C1 - C2 - C1</td><td>0.043%</td></tr><tr><td>Path 4</td><td>P - ...</td><td>...</td></tr><tr><td colspan=\"2\"></td><td>12.763%</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.071,
+                0.856,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.119,
+                0.877,
+                0.152
+            ],
+            "angle": 0,
+            "content": "The indirect financial percentage is then \\(97.851\\%\\) instead of the \\(92\\%\\) calculated above."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.168,
+                0.877,
+                0.248
+            ],
+            "angle": 0,
+            "content": "The difference is important and the following question arises: \"What if we forget some paths?\". The answer is quite clear: the group financial percentage is lower then what it is expected to be and the difference with regard to \\(100\\%\\) is given to the \\(3^{\\text{rd}}\\) Parties. So, that means that the Group part in Equity and in profit is less and not correct."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.265,
+                0.877,
+                0.331
+            ],
+            "angle": 0,
+            "content": "Of course, as soon as the mistake has been identified, a correction must be applied. Speaking about financial percentage, this mistake has an impact on the consolidated reserves of the concerned company. If the difference is material, a comment will be added to the notes of the consolidated accounts."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.346,
+                0.629,
+                0.362
+            ],
+            "angle": 0,
+            "content": "A company owns shares of the parent company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.377,
+                0.791,
+                0.395
+            ],
+            "angle": 0,
+            "content": "In this group, company C1 owns \\(10\\%\\) of shares of parent company P."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.31,
+                0.416,
+                0.646,
+                0.557
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.571,
+                0.877,
+                0.604
+            ],
+            "angle": 0,
+            "content": "If we apply the same principles of calculation of the indirect financial percentage of C1, we would find the following"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.208,
+                0.621,
+                0.779,
+                0.705
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.71,
+                0.438,
+                0.726
+            ],
+            "angle": 0,
+            "content": "which makes obviously no sense."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.742,
+                0.877,
+                0.79
+            ],
+            "angle": 0,
+            "content": "In fact, there is a limitation in this calculation rule. It works when subsidiaries owns no shares of the parent company, otherwise a different approach must be defined."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.806,
+                0.876,
+                0.839
+            ],
+            "angle": 0,
+            "content": "The \\(10\\%\\) participation from C1 into P must just be ignored when applying the calculation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.854,
+                0.508,
+                0.872
+            ],
+            "angle": 0,
+            "content": "Let's look at the accounts of company S."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.066,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.246,
+                0.121,
+                0.744,
+                0.237
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">C1</td></tr><tr><td rowspan=\"3\">Invest. In P</td><td rowspan=\"3\">50</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>150</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>Assets</td><td>650</td><td>Liabilities</td><td>300</td></tr><tr><td>Total</td><td>700</td><td>Total</td><td>700</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.261,
+                0.875,
+                0.326
+            ],
+            "angle": 0,
+            "content": "Depending on consolidation rules, one option consists simply in reclassifying that investment of 50 into \"Owned shares\" (Local Gaap). Another option consists in reclassifying that investment directly into the reserves, which is compliant with IFRS rules."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.246,
+                0.334,
+                0.742,
+                0.45
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">C1</td></tr><tr><td></td><td></td><td>Capital</td><td>200</td></tr><tr><td>Invest. In P</td><td>50</td><td>Reserves</td><td>150</td></tr><tr><td></td><td>(50)</td><td>Result</td><td>50</td></tr><tr><td>Assets</td><td>650</td><td></td><td></td></tr><tr><td>Owned shares</td><td>50</td><td>Liabilities</td><td>300</td></tr><tr><td>Total</td><td>700</td><td>Total</td><td>700</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.467,
+                0.859,
+                0.501
+            ],
+            "angle": 0,
+            "content": "Under IFRS rules, investments would be credited by 50 and reserves debited by 50."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.516,
+                0.357,
+                0.532
+            ],
+            "angle": 0,
+            "content": "Consortium structures"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.548,
+                0.874,
+                0.645
+            ],
+            "angle": 0,
+            "content": "We consider two groups of companies A and B without any financial links between A and B, neither between subsidiaries of A with subsidiaries of B. At this point we speak about two independent groups, except the fact that the Boards of A and B consist in majority of the same physical persons. So we can conclude that groups A and B are no so independent that they are looking like."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.301,
+                0.651,
+                0.688,
+                0.826
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.071,
+                0.854,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.119,
+                0.875,
+                0.169
+            ],
+            "angle": 0,
+            "content": "We are faced to a 'consortium\" and depending on local regulations, some countries make mandatory the publication of consolidated accounts for such structure."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.185,
+                0.441,
+                0.202
+            ],
+            "angle": 0,
+            "content": "How to proceed in such situation?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.216,
+                0.874,
+                0.298
+            ],
+            "angle": 0,
+            "content": "It is necessary to introduce what we call a \"fictitious parent company\" (FP) because a parent company must be unique within a consolidation scope. But what will be the balance sheet of FP? On liabilities side, we just add together the issued capital of A and B and on the assets side, we book Investment accounts on A and B with the corresponding capital amounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.313,
+                0.875,
+                0.347
+            ],
+            "angle": 0,
+            "content": "Once such construction is achieved, the consortium comes back to a classical structure with no problem to be consolidated the way we know."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.38,
+                0.853,
+                0.403
+            ],
+            "angle": 0,
+            "content": "3.5 Control percentage - Financial percentage"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.424,
+                0.393,
+                0.442
+            ],
+            "angle": 0,
+            "content": "The percentage of control"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.457,
+                0.875,
+                0.522
+            ],
+            "angle": 0,
+            "content": "The notion of percentage of control has already been widely commented here above. It is recalled that the control percentage determines the consolidation method. Therefore, it must be calculated for each company and for each consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.537,
+                0.875,
+                0.571
+            ],
+            "angle": 0,
+            "content": "The following table lists the basic principles that are to be applied to each individual company:"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.127,
+                0.584,
+                0.86,
+                0.764
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Control percentage</td><td>Level of control</td><td>Consolidation method</td></tr><tr><td>&gt;50%</td><td>Exclusive control</td><td>Global integration</td></tr><tr><td>50% with existence of another shareholder with whom control is shared (*)</td><td>Joint control</td><td>Proportional \nIntegration (or equity \nmethod if IFRS)</td></tr><tr><td>≥20% and &lt;50%</td><td>Significant influence</td><td>Equity method</td></tr><tr><td>&lt; 20%</td><td>No significant influence</td><td>Not consolidated</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.78,
+                0.869,
+                0.813
+            ],
+            "angle": 0,
+            "content": "(*) May also occur with more than two shareholders. The essence here is that the control is shared between a limited number of shareholders."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.831,
+                0.873,
+                0.864
+            ],
+            "angle": 0,
+            "content": "Please note that exceptions are always possible, though one must comply with the requirements of the reference framework that was chosen for the"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.067,
+                0.364,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.121,
+                0.878,
+                0.155
+            ],
+            "angle": 0,
+            "content": "purpose of drawing up the consolidated accounts, whether it's Local Gaap or IFRS."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.169,
+                0.878,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Let's suppose we have to consolidate the following group. First step consists in calculating the control percentage applying to each company of the consolidation scope. Then, on the basis of the table presented above, we attach to each of these companies its consolidation method."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.272,
+                0.255,
+                0.685,
+                0.43
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.45,
+                0.778,
+                0.469
+            ],
+            "angle": 0,
+            "content": "We then calculate the indirect financial percentage in each company."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.482,
+                0.53,
+                0.499
+            ],
+            "angle": 0,
+            "content": "Calculation of the control percentages"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.514,
+                0.421,
+                0.53
+            ],
+            "angle": 0,
+            "content": "C1 is controlled at \\(75\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.546,
+                0.875,
+                0.58
+            ],
+            "angle": 0,
+            "content": "- C2 is controlled at \\(80\\%\\) because P does not control C3 and therefore the \\(7\\%\\) must be ignored"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.594,
+                0.6,
+                0.611
+            ],
+            "angle": 0,
+            "content": "C3 is not controlled because \\(30\\% < 50\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.626,
+                0.875,
+                0.66
+            ],
+            "angle": 0,
+            "content": "C4 is controlled because we have \\(35\\%\\) (P \\(- > C4\\) ) \\(+25\\%\\) (C1 which is controlled by P). The total control percentage is \\(60\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.674,
+                0.875,
+                0.708
+            ],
+            "angle": 0,
+            "content": "- C5 is controlled at \\(60\\% = 35\\%\\) (C2 which is controlled by P) + \\(25\\%\\) (C4 which is controlled \\(- > \\mathrm{C}5)\\)."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.15,
+                0.514,
+                0.875,
+                0.708
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.723,
+                0.719,
+                0.74
+            ],
+            "angle": 0,
+            "content": "Attachment of a consolidation method to each company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.755,
+                0.694,
+                0.772
+            ],
+            "angle": 0,
+            "content": "C1 is controlled at \\(75\\%\\) : Global integration method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.152,
+                0.787,
+                0.694,
+                0.804
+            ],
+            "angle": 0,
+            "content": "C2 is controlled at \\(80\\%\\) : Global integration method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.819,
+                0.613,
+                0.837
+            ],
+            "angle": 0,
+            "content": "C3 is not controlled (30%): Equity method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.851,
+                0.694,
+                0.869
+            ],
+            "angle": 0,
+            "content": "C4 is controlled at \\(60\\%\\) : Global integration method"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.755,
+                0.694,
+                0.869
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.481,
+                0.922,
+                0.512,
+                0.936
+            ],
+            "angle": 0,
+            "content": "48"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.304,
+                0.07,
+                0.856,
+                0.087
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.118,
+                0.695,
+                0.136
+            ],
+            "angle": 0,
+            "content": "C5 is controlled at \\(60\\%\\) : Global integration method."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.151,
+                0.639,
+                0.168
+            ],
+            "angle": 0,
+            "content": "Calculation of the indirect financial percentages:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.184,
+                0.701,
+                0.202
+            ],
+            "angle": 0,
+            "content": "- For C1 : 75% owned directly by the parent company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.215,
+                0.69,
+                0.233
+            ],
+            "angle": 0,
+            "content": "- For C2: \\(82.1\\%\\) which is calculated along two paths"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.147,
+                0.184,
+                0.701,
+                0.233
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.222,
+                0.247,
+                0.775,
+                0.265
+            ],
+            "angle": 0,
+            "content": "\\(\\circ\\) Path 1: \\(80\\%\\) owned directly by the parent company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.275,
+                0.7,
+                0.295
+            ],
+            "angle": 0,
+            "content": "\\(\\text{。}\\) Path \\(2:\\mathsf{P} - > \\mathsf{C3} - > \\mathsf{C2}:30\\%^{*}7\\% = 2.1\\%\\)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.222,
+                0.247,
+                0.775,
+                0.295
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.311,
+                0.706,
+                0.33
+            ],
+            "angle": 0,
+            "content": "For C3 : 30% owned directly by the parent company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.344,
+                0.702,
+                0.361
+            ],
+            "angle": 0,
+            "content": "For C4: 53.75% which is calculated along two paths"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.148,
+                0.311,
+                0.706,
+                0.361
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.376,
+                0.774,
+                0.394
+            ],
+            "angle": 0,
+            "content": "\\(\\circ\\) Path 1: \\(35\\%\\) owned directly by the parent company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.405,
+                0.729,
+                0.424
+            ],
+            "angle": 0,
+            "content": "\\(\\circ\\) Path 2: P -> C1 -> C4: \\(75\\%\\) \\(* 25\\% = 18.75\\%\\)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.224,
+                0.376,
+                0.774,
+                0.424
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.44,
+                0.731,
+                0.457
+            ],
+            "angle": 0,
+            "content": "For C5 : 42.1725% which is calculated along four paths"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.469,
+                0.731,
+                0.488
+            ],
+            "angle": 0,
+            "content": "\\(\\text{口}\\) Path1：P->C4->C5）： \\(35\\%\\) \\* \\(25\\% = 8.75\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.5,
+                0.875,
+                0.536
+            ],
+            "angle": 0,
+            "content": "o Path 2 : P -> C1 -> C4 -> C5) : 75% * 25% * 25% = 4.6875%"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.549,
+                0.719,
+                0.569
+            ],
+            "angle": 0,
+            "content": "\\(\\text{。}\\) Path3：P->C2->C5）: \\(80\\%\\) \\* \\(35\\% = 28\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.224,
+                0.58,
+                0.862,
+                0.601
+            ],
+            "angle": 0,
+            "content": "。 Path 4: P -> C3 -> C2 -> C5): \\(30\\%\\) \\(\\star\\) \\(7\\%\\) \\(\\star\\) \\(35\\% = 0.735\\%\\)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.224,
+                0.469,
+                0.875,
+                0.601
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.635,
+                0.833,
+                0.682
+            ],
+            "angle": 0,
+            "content": "3.6 Algorithm to calculate indirect financial percentages in complex group structures"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.703,
+                0.875,
+                0.769
+            ],
+            "angle": 0,
+            "content": "Mathematics and graphs theory in particular bring an interesting contribution to a difficult situation in consolidation. Indeed, whatever complex can be the structure of a group, there exists an algorithm that calculates the indirect financial percentages."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.783,
+                0.876,
+                0.833
+            ],
+            "angle": 0,
+            "content": "Most of consolidation software provide this function but for groups with a limited number of companies, it is also quite easy to develop that algorithm in a spreadsheet as we explain hereunder."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.847,
+                0.825,
+                0.865
+            ],
+            "angle": 0,
+            "content": "We will give the explanation on the basis of the following group structure."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.111,
+                0.061,
+                0.364,
+                0.077
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.116,
+                0.112,
+                0.396,
+                0.288
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.407,
+                0.116,
+                0.883,
+                0.182
+            ],
+            "angle": 0,
+            "content": "The answer we want to get through the algorithm is \\(86\\% = 80\\% + 60\\% * 10\\%\\) for A, \\(60\\%\\) for B and \\(56.4\\% = 80\\% * 40\\% + 60\\% * 10\\% * 40\\% + 60\\% * 20\\% + 10\\%\\) for C."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.309,
+                0.882,
+                0.341
+            ],
+            "angle": 0,
+            "content": "We first build a matrix with direct percentages between companies. Let's call D that matrix."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.251,
+                0.351,
+                0.735,
+                0.445
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>P</td><td>A</td><td>B</td><td>C</td></tr><tr><td colspan=\"4\"></td></tr><tr><td>0</td><td>0.8</td><td>0.6</td><td>0.1</td></tr><tr><td>0</td><td>0</td><td>0</td><td>0.4</td></tr><tr><td>0</td><td>0.1</td><td>0</td><td>0.2</td></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.47,
+                0.667,
+                0.486
+            ],
+            "angle": 0,
+            "content": "For instance, company B owns \\(20\\% = 0.2\\) in company C."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.503,
+                0.88,
+                0.534
+            ],
+            "angle": 0,
+            "content": "We then define the unit matrix called \\(\\mathbf{I}\\) with 1 on the diagonal and 0 in all the other cells"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.304,
+                0.538,
+                0.731,
+                0.607
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>0</td><td>0</td><td>1</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.632,
+                0.445,
+                0.649
+            ],
+            "angle": 0,
+            "content": "and calculate \\(\\mathbb{I} - \\mathbb{D}\\) in order to get"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.304,
+                0.658,
+                0.731,
+                0.726
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>1</td><td>-0.8</td><td>-0.6</td><td>-0.1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>-0.4</td></tr><tr><td>0</td><td>-0.1</td><td>1</td><td>-0.2</td></tr><tr><td>0</td><td>0</td><td>0</td><td>1</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.745,
+                0.879,
+                0.779
+            ],
+            "angle": 0,
+            "content": "Now, this matrix has to be inverted. It is a function provided by Microsoft Excel ©. We get INV(I - D)"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.304,
+                0.79,
+                0.731,
+                0.858
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>1</td><td>0.86</td><td>0.6</td><td>0.56</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0.4</td></tr><tr><td>0</td><td>0.1</td><td>1</td><td>0.24</td></tr><tr><td>0</td><td>0</td><td>0</td><td>1</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.071,
+                0.855,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.119,
+                0.768,
+                0.135
+            ],
+            "angle": 0,
+            "content": "Using the Excel syntax, each cell of this matrix is defined as follows"
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.322,
+                0.15,
+                0.662,
+                0.169
+            ],
+            "angle": 0,
+            "content": "\\[\n= I N D E X (I N V E R S E (A: B); L I N E, C O L)\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.183,
+                0.876,
+                0.217
+            ],
+            "angle": 0,
+            "content": "where \"A:B\" is the range defining the matrix to be inverted. \"LINE\" is the line number and \"COL\" is the column number of the cell in the output matrix."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.232,
+                0.876,
+                0.266
+            ],
+            "angle": 0,
+            "content": "Finally, we calculate the product of both matrices \\( D \\) and \\( \\text{INV}(I - D) \\) which gives the expected result."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.284,
+                0.29,
+                0.749,
+                0.384
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.409,
+                0.876,
+                0.443
+            ],
+            "angle": 0,
+            "content": "This again is easy to calculate in Excel by using the following syntax for each cell of the output matrix"
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.309,
+                0.456,
+                0.679,
+                0.475
+            ],
+            "angle": 0,
+            "content": "\\[\n= I N D E X (M M U L T (A: B; C: D); L I N E; C O L)\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.489,
+                0.876,
+                0.539
+            ],
+            "angle": 0,
+            "content": "where \"A:B\" is the range of the matrix D, \"C:D\" is the range of the inverse matrix we just calculated and \"LINE\" and \"COL\" are the line and the column number of the corresponding cell of the final matrix."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.553,
+                0.876,
+                0.603
+            ],
+            "angle": 0,
+            "content": "Of course, we are interested only in the first line of that matrix which gives the indirect percentages from P in all other subsidiaries. For instance, we see indeed that P owns indirectly \\(60\\%\\) in B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.618,
+                0.876,
+                0.683
+            ],
+            "angle": 0,
+            "content": "This algorithm works for any structure of any size. Crossed participations or cycle of participations (A -> B -> C -> A) are also accepted. The only restriction is that a subsidiary cannot own shares of the parent company. If so, that link must be ignored."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.065,
+                0.368,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.12,
+                0.779,
+                0.143
+            ],
+            "angle": 0,
+            "content": "4 THE CONSOLIDATION METHODS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.163,
+                0.603,
+                0.186
+            ],
+            "angle": 0,
+            "content": "4 . Global integration method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.207,
+                0.878,
+                0.289
+            ],
+            "angle": 0,
+            "content": "According to the global integration method, assets, liabilities, income and expenses of the owned company will be added to elements of the same type of the parent company. Minority interests (or interests of third parties or not controlling interests) will be calculated on the result and equity of those subsidiaries for which the indirect financial percentage is less than \\(100\\%\\)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.114,
+                0.304,
+                0.212,
+                0.32
+            ],
+            "angle": 0,
+            "content": "Example"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.324,
+                0.324,
+                0.655,
+                0.362
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.385,
+                0.51,
+                0.487
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Investments S</td><td>120</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities</td><td>250</td></tr><tr><td>Total</td><td>1,150</td><td>Total</td><td>1,150</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.513,
+                0.385,
+                0.875,
+                0.487
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">S</td></tr><tr><td></td><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td></td><td>Reserves</td><td>150</td></tr><tr><td></td><td></td><td>Result</td><td>50</td></tr><tr><td>Assets</td><td>700</td><td>Liabilities</td><td>300</td></tr><tr><td>Total</td><td>700</td><td>Total</td><td>700</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.497,
+                0.874,
+                0.543
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>900</td><td>Income</td><td>1,000</td><td>Expenses</td><td>550</td><td>Income</td><td>600</td></tr><tr><td>Result</td><td>100</td><td></td><td></td><td>Result</td><td>50</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.283,
+                0.583,
+                0.745,
+                0.698
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">P + S</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td>Result</td><td>100</td></tr><tr><td></td><td>Conso. reserves (S)</td><td>84</td></tr><tr><td></td><td>Minority int.</td><td>196</td></tr><tr><td>Assets</td><td>1,730</td><td>550</td></tr><tr><td>Total</td><td>1,730</td><td>1,730</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.283,
+                0.708,
+                0.745,
+                0.782
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>1,450</td><td>Income</td><td>1,600</td></tr><tr><td>Result</td><td>150</td><td></td><td></td></tr><tr><td>Minor. int. res.</td><td>24.5</td><td></td><td></td></tr><tr><td>Group res.</td><td>125.5</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.811,
+                0.245,
+                0.829
+            ],
+            "angle": 0,
+            "content": "Explanation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.845,
+                0.763,
+                0.864
+            ],
+            "angle": 0,
+            "content": "For the Assets and Liabilities accounts, they are added up to \\(100\\%\\)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.307,
+                0.072,
+                0.858,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.121,
+                0.423,
+                0.138
+            ],
+            "angle": 0,
+            "content": "Equity of P remains unchanged."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.153,
+                0.878,
+                0.187
+            ],
+            "angle": 0,
+            "content": "However the equity of S is integrated in proportion to the financial percentage:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.202,
+                0.5,
+                0.219
+            ],
+            "angle": 0,
+            "content": "Capital = capital of company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.233,
+                0.53,
+                0.25
+            ],
+            "angle": 0,
+            "content": "- Reserves = reserves of company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.265,
+                0.478,
+                0.281
+            ],
+            "angle": 0,
+            "content": "Result \\(=\\) result of company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.297,
+                0.876,
+                0.331
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves (S) = 84 = 51% × [200+150+50] - 120 (investment in S owned by P)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.345,
+                0.719,
+                0.364
+            ],
+            "angle": 0,
+            "content": "Minority interests (S) = 196 = 49 % x [200+150+50]"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.15,
+                0.202,
+                0.876,
+                0.364
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.378,
+                0.878,
+                0.428
+            ],
+            "angle": 0,
+            "content": "In the Profit and Loss account, the Income and the Expenses are fully integrated (it does not include a possible intercompany problem in the example above)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.442,
+                0.876,
+                0.475
+            ],
+            "angle": 0,
+            "content": "As regards to the result, it is divided between Group part and Minority interests part:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.49,
+                0.621,
+                0.507
+            ],
+            "angle": 0,
+            "content": "Minority interests result \\(= 24.5 = 49\\% * 50\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.522,
+                0.78,
+                0.54
+            ],
+            "angle": 0,
+            "content": "- Group result = 100 (Result of P) + 25.5 = 51%*50 = 125.5"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.15,
+                0.49,
+                0.78,
+                0.54
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.555,
+                0.876,
+                0.587
+            ],
+            "angle": 0,
+            "content": "There is a more accounting way to get the consolidated figures, as explained hereunder."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.134,
+                0.614,
+                0.861,
+                0.677
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Investments S</td><td>120</td><td></td><td>(120)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Assets</td><td>1,030</td><td>700</td><td></td><td></td><td></td><td></td><td>1,730</td></tr><tr><td>Link account</td><td></td><td></td><td>120</td><td></td><td></td><td>(120)</td><td>0</td></tr><tr><td>Total Assets</td><td>1,150</td><td>700</td><td>0</td><td>0</td><td>0</td><td>(120)</td><td>1,730</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.134,
+                0.706,
+                0.861,
+                0.803
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidaton</td></tr><tr><td>Capital</td><td>500</td><td>200</td><td></td><td>(98)</td><td>(102)</td><td></td><td>500</td></tr><tr><td>Reserves</td><td>300</td><td>150</td><td></td><td>(73.5)</td><td>(76.5)</td><td></td><td>300</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td>(24.5)</td><td>(25.5)</td><td></td><td>100</td></tr><tr><td>Conso, reserves (S)</td><td></td><td></td><td></td><td></td><td>204</td><td>(120)</td><td>84</td></tr><tr><td>Minority int.</td><td></td><td></td><td></td><td>196</td><td></td><td></td><td>196</td></tr><tr><td>Liabilities</td><td>250</td><td>300</td><td></td><td></td><td></td><td></td><td>550</td></tr><tr><td>Total Liabilities</td><td>1,150</td><td>700</td><td>0</td><td>0</td><td>0</td><td>1120)</td><td>1,730</td></tr></table>"
+        }
+    ]
+]

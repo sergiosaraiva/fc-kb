@@ -1,0 +1,830 @@
+Topics:
+Comments Report, Consolidated Figures, Consolidated Flow, General Ledger
+
+Keywords:
+Comments Report, Consolidated Figures, Consolidated Flow, General Ledger, Calculated Account, Adjustments, Data Analysis, Report Generation, Financial Transactions, Consolidation Summary, Entity Reports, Difference Analysis, Transfer of Reserves, Minority Report, Equity Report, Financial Transactions, Data Analysis, Report Generation
+
+Summary:
+The provided documentation for the Financial Consolidation product includes comprehensive instructions on generating various types of reports. The Comments Report section explains how to create reports with additional information or explanations on transactions. The Consolidated Figures section details generating reports on all figures converted into group currency, including closing amounts and currency conversion rates. The Consolidated Flow section provides instructions on generating comprehensive reports on total amounts in group currency for specific accounts and flows. The General Ledger section outlines the process for generating detailed reports on financial activities, including calculated accounts and adjustments, ensuring accurate financial data analysis and reporting. Also includes detailed instructions on generating various types of consolidation reports. The Consolidation Summary Reports section explains how to create concise overviews of data collected from multiple companies. The Consolidation Reports per Entity section details generating reports specific to each individual entity within the group. The Difference Analysis section provides steps for identifying and analyzing variations in financial data across periods. The Transfer of Reserves section explains how to document and include reserve transfers that impact the consolidation difference analysis. The documentation ensures accurate and comprehensive financial data reporting and analysis.
+
+Contents:
+
+Question: What does the Comments report page allow you to do?
+Answer: The Comments report page allows you to run reports that contain additional information or explanations on transactions.
+
+Question: What information is displayed in the left-side panel on the Comments report page?
+Answer: The left-side panel displays the Accounts you can select to generate the report, including their Code, Description, Account Type, and Debit/Credit.
+
+Question: How can you narrow down the list of accounts on the Comments report page?
+Answer: You can narrow down the list of accounts by filtering on Type, Debit/Credit, Account Code, or Name.
+
+Question: What does the Consolidated Figures report present?
+Answer: The Consolidated Figures report presents all the figures converted into the group currency.
+
+Question: What types of reports are included in the Consolidated Figures report?
+Answer: The types of reports include the Consolidated Amount report, Currency Conversion report, and Consolidated Amounts by dimension report.
+
+Question: What does the Consolidated Amount report include?
+Answer: The Consolidated Amount report includes closing amounts in group currency per company.
+
+Question: What information is included in the Currency Conversion report?
+Answer: The Currency Conversion report includes calculated conversion rates per company and account.
+
+Question: What details are provided in the Consolidated Amounts by dimension report?
+Answer: The Consolidated Amounts by dimension report includes dimension details for consolidated amounts per dimension group, company, and account.
+
+Question: How do you generate a Consolidated Figures report?
+Answer: To generate a Consolidated Figures report, select a reference consolidation period, choose the type of data, select companies, choose a journal summation option, select the file type, and click to generate the report.
+
+Question: What does a Consolidated Flow report provide?
+Answer: A Consolidated Flow report provides a comprehensive overview of the total amounts in group currency for a specific account and flow.
+
+Question: What types of reports are available in the Consolidated Flow report?
+Answer: Types of reports include Summary report, Contribution by Company report, Contribution by Journal report, Contribution by Company and Journal report, Net Variation – Summary, Net Variation – by Company, and Net Variation – by Partner.
+
+Question: What is the purpose of the Journal Summation drop-down in the Consolidated Flow report?
+Answer: The Journal Summation drop-down is used to select how transactions are organized in the report.
+
+Question: How do you generate a Consolidated Flow report?
+Answer: To generate a Consolidated Flow report, select accounts, companies, a report type, a journal summation option, the file type, and click to generate the report.
+
+Question: What does the Detailed report in the Consolidation Adjustments report include?
+Answer: The Detailed report includes the Debit and Credit amounts of the adjustments.
+
+Question: What information is included in the Detailed with flows report in the Consolidation Adjustments report?
+Answer: The Detailed with flows report includes all the Debit/Credit details of the adjustments as well as the flows.
+
+Question: What information does the Detailed with dimensions report in the Consolidation Adjustments report include?
+Answer: The Detailed with dimensions report includes all the Debit/Credit details of the adjustments as well as the dimensions.
+
+Question: What options are available in the Currency type field for the Consolidation Adjustments report?
+Answer: Options include Local Currency and Group Currency.
+
+Question: What are the available Journal types in the Consolidation Adjustments report?
+Answer: Journal types include B - Bundle Adjustments, E - Events Adjustments, M - Manual Adjustments, T - Automatic Adjustments, and L - Local Adjustments.
+
+Question: What options are available in the Minority Flag field for the Consolidation Adjustments report?
+Answer: Options include After 3rd Parties, Before 3rd Parties, and Both.
+
+Question: What is the Has attachment field used for in the Consolidation Adjustments report?
+Answer: The Has attachment field specifies whether to include adjustments with attachments, without attachments, or both.
+
+Question: What options are available in the File type field for generating reports?
+Answer: Options include PDF, XLS, and XLSX.
+
+Question: How do you generate a comments report?
+Answer: To generate a comments report, select an account from the left-side panel, a company from the right-side panel, specify additional report options, choose the file type, and click to generate the report.
+
+Question: What information can you specify when generating a comments report?
+Answer: You can specify options such as Balance Sheet and P&L, including Local Amounts, and including Debit balances only.
+
+Question: What does the Consolidated Amount report include?
+Answer: The Consolidated Amount report includes closing amounts in group currency per company.
+
+Question: What information does the Currency Conversion report include?
+Answer: The Currency Conversion report includes calculated conversion rates per company and account.
+
+Question: What details are provided in the Consolidated Amounts by dimension report?
+Answer: The Consolidated Amounts by dimension report includes dimension details for consolidated amounts per dimension group, company, and account.
+
+Question: How do you generate a Consolidated Figures report?
+Answer: To generate a Consolidated Figures report, select a reference consolidation period, choose the type of data, select companies, choose a journal summation option, select the file type, and click to generate the report.
+
+Question: What information is included in the Detailed with flows report in the Consolidation Adjustments report?
+Answer: The Detailed with flows report includes all the Debit/Credit details of the adjustments as well as the flows.
+
+Question: What information is included in the Detailed with dimensions report in the Consolidation Adjustments report?
+Answer: The Detailed with dimensions report includes all the Debit/Credit details of the adjustments as well as the dimensions.
+
+Question: What options can you select in the Currency type field for the Consolidation Adjustments report?
+Answer: Options include Local Currency and Group Currency.
+
+Question: What are the available Journal types in the Consolidation Adjustments report?
+Answer: Journal types include B - journals from the Bundle Adjustments, E - journals from the Events Adjustments, M - journals from the Manual Adjustments, T - journals from the Automatic Adjustments, and L - journals from the Local Adjustments.
+
+Question: What does the Consolidation Report (Summary) provide?
+Answer: The Consolidation Report (Summary) provides a concise overview of data collected from multiple companies, presenting the outcomes in a condensed format.
+
+Question: How do you access the Consolidation Reports-Summary page?
+Answer: To access the Consolidation Reports-Summary page, click Reports > Consolidation Reports > Consolidation Reports-Summary.
+
+Question: What information does the Consolidation difference report include?
+Answer: The Consolidation difference report includes the consolidation difference (or contribution in consolidated reserves) between one period and another.
+
+Question: What details are shown in the 3rd party interests analysis report?
+Answer: The 3rd party interests analysis report shows the interests of companies that are not in the group.
+
+Question: What is the purpose of the Equity value of participations report?
+Answer: The Equity value of participations report shows the equity method value analysis per company.
+
+Question: What does the Dividends (by Shareholders) report display?
+Answer: The Dividends (by Shareholders) report shows the dividend received from each company's participation and how much has been declared paid by the participation itself.
+
+Question: How do you generate a consolidation summary report?
+Answer: To generate a consolidation summary report, select a reference consolidation period, choose the type of report, select the file type, and click to generate the report.
+
+Question: What functionality does the Consolidation Reports per Entity page provide?
+Answer: The Consolidation Reports per Entity page provides the functionality to generate consolidation reports that are grouped by entities, presenting consolidated financial information specifically for each individual entity within the group.
+
+Question: How do you access the Consolidation Reports-Entity page?
+Answer: To access the Consolidation Reports-Entity page, click Reports > Consolidation Reports > Consolidation Reports-Entity.
+
+Question: What information is included in the Statutory in Local Currency report?
+Answer: The Statutory in Local Currency report shows the statutory equity by company in the local currency of the company.
+
+Question: What does the Consolidated Equity report display?
+Answer: The Consolidated Equity report shows the consolidated equity by company.
+
+Question: What details are provided in the Shareholders report?
+Answer: The Shareholders report shows the details of the values of the shareholdings by parent companies in the selected companies.
+
+Question: What does the Consolidation Difference report include?
+Answer: The Consolidation Difference report includes the consolidation difference or contribution in consolidated reserves by company.
+
+Question: What is shown in the Translation Adjustment Difference report?
+Answer: The Translation Adjustment Difference report shows the translation adjustment per company.
+
+Question: What information does the 3rd Parties Analysis report display?
+Answer: The 3rd Parties Analysis report shows the third parties analysis by company.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a consolidation report per entity?
+Answer: To generate a consolidation report per entity, select a reference consolidation period, choose companies, select a report type, choose the file type, and click to generate the report.
+
+Question: What is the purpose of the Consolidation Summary Equity Elimination Accounts page?
+Answer: The purpose of the Consolidation Summary Equity Elimination Accounts page is to define and generate a report showing the differences or variations that arise when combining the financial data of the parent company and its subsidiaries, based on the accounts selected.
+
+Question: How do you generate a consolidation difference analysis summary report?
+Answer: To generate a consolidation difference analysis summary report, select the accounts you want on your report, click to return to the Consolidation Reports-Summary page, and then click to generate the report.
+
+Question: What does the Minority or Equity report help you configure?
+Answer: The Minority or Equity report assists in configuring the columns within the 3rd Parties Interest Analysis report where each flow of the specific account will be displayed.
+
+Question: How do you access the Minority Report page?
+Answer: To access the Minority Report page, on the Reports > Consolidation Reports > Consolidation Reports-Summary page, select the 3rd Parties interests option and click Define report.
+
+Question: How do you define a minority report?
+Answer: To define a minority report, select the 3rd Parties interests option, click to configure columns for each flow type, and then click to generate the report.
+
+Question: How do you define an equity report?
+Answer: To define an equity report, select the Equity value of participations option, click to configure columns for each flow type, and then click to generate the report.
+
+Question: What is the purpose of the Transfer of Reserves page?
+Answer: The Transfer of Reserves page allows you to include information about undisclosed transactions within the group, providing an avenue for entering reserve transfers between companies that impact the consolidation difference analysis report.
+
+Question: How do you access the Transfer of Reserves page?
+Answer: To access the Transfer of Reserves page, click Reports > Consolidation Reports > Consolidation Reports-Summary and then click the button.
+
+Question: How do you post a transfer of reserves?
+Answer: To post a transfer of reserves, enter the line number, select a transfer type, enter the amount and description, select the applicable companies, and click to confirm.
+
+Question: How do you generate a report of the transfer of reserves?
+Answer: To generate a report of the transfer of reserves, select the report options, choose the output file type, and click to generate the report.
+
+Question: What does the Consolidation Summary report provide?
+Answer: The Consolidation Summary report provides a concise overview of data collected from multiple companies, presenting the outcomes in a condensed format.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a comments report?
+Answer: To generate a comments report, select an account from the left-side panel, a company from the right-side panel, specify additional report options, choose the file type, and click to generate the report.
+
+Question: What information can you filter on the Comments report page?
+Answer: You can filter accounts by Type, Debit/Credit, Account Code, and Name on the Comments report page.
+
+Question: What is included in the Consolidated Figures report?
+Answer: The Consolidated Figures report includes all figures converted into the group currency, such as closing amounts and currency conversion rates.
+
+Question: What types of reports are available in the Consolidated Figures report?
+Answer: Types of reports include Consolidated Amount report, Currency Conversion report, and Consolidated Amounts by dimension report.
+
+Question: How do you generate a Consolidated Figures report?
+Answer: To generate a Consolidated Figures report, select a reference consolidation period, choose the type of data, select companies, choose a journal summation option, select the file type, and click to generate the report.
+
+Question: What does a Consolidated Flow report provide?
+Answer: A Consolidated Flow report provides a comprehensive overview of the total amounts in group currency for a specific account and flow, considering any adjustments made.
+
+Question: What types of reports are available in the Consolidated Flow report?
+Answer: Types of reports include Summary report, Contribution by Company report, Contribution by Journal, Contribution by Company and Journal, Net Variation – Summary, Net Variation – by Company, and Net Variation – by Partner.
+
+Question: How do you generate a Consolidated Flow report?
+Answer: To generate a Consolidated Flow report, select accounts, companies, a report type, a journal summation option, the file type, and click to generate the report.
+
+Question: What information does the Consolidation Adjustments report provide?
+Answer: The Consolidation Adjustments report offers a detailed breakdown of adjustments made during the consolidation process, including Debit and Credit amounts and any associated flows and dimensions.
+
+Question: What types of reports are available in the Consolidation Adjustments report?
+Answer: Types of reports include Summary report, Detailed report, Detailed with flows report, and Detailed with dimensions report.
+
+Question: How do you create a Consolidation Adjustments report?
+Answer: To create a Consolidation Adjustments report, select a report type, currency type, company, journal summation, journal type, journal category, optional parameters, sorting, attachment options, file type, and click to generate the report.
+
+Question: What is the purpose of the Comments report page?
+Answer: The Comments report page allows you to run reports that contain additional information or explanations on transactions.
+
+Question: How do you narrow down the list of accounts on the Comments report page?
+Answer: You can narrow down the list of accounts by filtering on Type, Debit/Credit, Account Code, or Name.
+
+Question: What options can you select when generating a comments report?
+Answer: Options include selecting Balance Sheet and P&L, including Local Amounts, and including Debit balances only.
+
+Question: What does the Consolidated Amount report include?
+Answer: The Consolidated Amount report includes closing amounts in group currency per company.
+
+Question: What does the Currency Conversion report include?
+Answer: The Currency Conversion report includes calculated conversion rates per company and account.
+
+Question: What does the Consolidated Amounts by dimension report include?
+Answer: The Consolidated Amounts by dimension report includes dimension details for consolidated amounts per dimension group, company, and account.
+
+Question: How do you select the reference consolidation period for a Consolidated Figures report?
+Answer: Enter a reference consolidation period in the Ref Period field or search for one.
+
+Question: What is the Journal Summation field used for in the Consolidated Figures report?
+Answer: The Journal Summation field is used to select options for including Bundle Data, Local Adjustments, Group Adjustments, and Consolidation Adjustments.
+
+Question: What does the Summary report in the Consolidated Flow report include?
+Answer: The Summary report includes balances and flows from the Reference to Current Consolidation Period, per account.
+
+Question: What does the Contribution by Company report include?
+Answer: The Contribution by Company report is a Summary Report broken down further to show contributions by each company.
+
+Question: What does the Contribution by Journal report include?
+Answer: The Contribution by Journal report is a Summary Report broken down further to show contributions by each journal.
+
+Question: What does the Contribution by Company and Journal report include?
+Answer: The Contribution by Company and Journal report is a Summary Report broken down further to show contributions by each company and journal.
+
+Question: What does the Net Variation – Summary report include?
+Answer: The Net Variation – Summary report includes balances and net variation flow from the Reference to Current Consolidation Period, per account.
+
+Question: What does the Net Variation – by Company report include?
+Answer: The Net Variation – by Company report is a Net Variation – Summary broken down further to show contributions by each company.
+
+Question: What does the Net Variation – by Partner report include?
+Answer: The Net Variation – by Partner report is a Net Variation – Summary broken down further to show contributions by each partner.
+
+Question: What is the Journal Summation drop-down used for in the Consolidated Flow report?
+Answer: The Journal Summation drop-down is used to select how you want the transactions organized in the report.
+
+Question: What information does the Detailed report in the Consolidation Adjustments report include?
+Answer: The Detailed report includes the details of Debit and Credit amounts of the adjustments.
+
+Question: What information does the Detailed with flows report in the Consolidation Adjustments report include?
+Answer: The Detailed with flows report includes all the Debit/Credit details of the adjustments as well as the flows.
+
+Question: What information does the Detailed with dimensions report in the Consolidation Adjustments report include?
+Answer: The Detailed with dimensions report includes all the Debit/Credit details of the adjustments as well as the dimensions.
+
+Question: What options can you select in the Currency type field for the Consolidation Adjustments report?
+Answer: Options include Local Currency and Group Currency.
+
+Question: What are the available Journal types in the Consolidation Adjustments report?
+Answer: Journal types include B - journals from the Bundle Adjustments, E - journals from the Events Adjustments, M - journals from the Manual Adjustments, T - journals from the Automatic Adjustments, and L - journals from the Local Adjustments.
+
+Question: What options are available in the Minority Flag field for the Consolidation Adjustments report?
+Answer: Options include After 3rd Parties (Post-minority Adjustments), Before 3rd Parties, and Both.
+
+Question: What is the Has attachment field used for in the Consolidation Adjustments report?
+Answer: The Has attachment field is used to specify whether to include adjustments with attachments, without attachments, or both.
+
+Question: What options are available in the File type field for generating reports?
+Answer: Options include PDF, XLS, and XLSX.
+
+Question: What is the purpose of the Comments report?
+Answer: The Comments report provides additional information or explanations on transactions.
+
+Question: What does the Consolidated Figures report present?
+Answer: The Consolidated Figures report presents all figures converted into the group currency.
+
+Question: What is included in the Consolidated Amount report?
+Answer: The Consolidated Amount report includes closing amounts in group currency per company.
+
+Question: What does the Currency Conversion report include?
+Answer: The Currency Conversion report includes calculated conversion rates per company and account.
+
+Question: What information does the Consolidated Amounts by dimension report include?
+Answer: The Consolidated Amounts by dimension report includes dimension details for consolidated amounts per dimension group, company, and account.
+
+Question: How do you generate a Consolidated Flow report?
+Answer: To generate a Consolidated Flow report, select accounts, companies, a report type, a journal summation option, the file type, and click to generate the report.
+
+Question: What is the Summary report in the Consolidated Flow report?
+Answer: The Summary report includes balances and flows from the Reference to Current Consolidation Period, per account.
+
+Question: What information does the Contribution by Company report provide?
+Answer: The Contribution by Company report provides a breakdown of contributions by each company.
+
+Question: What does the Contribution by Journal report show?
+Answer: The Contribution by Journal report shows a breakdown of contributions by each journal.
+
+Question: What is included in the Contribution by Company and Journal report?
+Answer: The Contribution by Company and Journal report includes contributions broken down by both company and journal.
+
+Question: What does the Net Variation – Summary report include?
+Answer: The Net Variation – Summary report includes balances and net variation flow from the Reference to Current Consolidation Period, per account.
+
+Question: What is the Net Variation – by Company report?
+Answer: The Net Variation – by Company report provides a breakdown of contributions by each company.
+
+Question: What does the Net Variation – by Partner report include?
+Answer: The Net Variation – by Partner report includes contributions broken down by each partner.
+
+Question: What is the purpose of the Journal Summation drop-down in the Consolidated Flow report?
+Answer: The Journal Summation drop-down is used to select how transactions are organized in the report.
+
+Question: What does the Detailed report in the Consolidation Adjustments report include?
+Answer: The Detailed report includes the Debit and Credit amounts of the adjustments.
+
+Question: What is included in the Detailed with flows report in the Consolidation Adjustments report?
+Answer: The Detailed with flows report includes Debit/Credit details and flows of the adjustments.
+
+Question: What does the Detailed with dimensions report in the Consolidation Adjustments report include?
+Answer: The Detailed with dimensions report includes Debit/Credit details and dimensions of the adjustments.
+
+Question: What options are available in the Currency type field for the Consolidation Adjustments report?
+Answer: Options include Local Currency and Group Currency.
+
+Question: What are the available Journal types in the Consolidation Adjustments report?
+Answer: Journal types include B - Bundle Adjustments, E - Events Adjustments, M - Manual Adjustments, T - Automatic Adjustments, and L - Local Adjustments.
+
+Question: What options are available in the Minority Flag field for the Consolidation Adjustments report?
+Answer: Options include After 3rd Parties, Before 3rd Parties, and Both.
+
+Question: What is the Has attachment field used for in the Consolidation Adjustments report?
+Answer: The Has attachment field specifies whether to include adjustments with attachments, without attachments, or both.
+
+Question: What options are available in the File type field for generating reports?
+Answer: Options include PDF, XLS, and XLSX.
+
+Question: What is the purpose of the Comments report?
+Answer: The Comments report provides additional information or explanations on transactions.
+
+Question: What does the Consolidated Figures report present?
+Answer: The Consolidated Figures report presents all figures converted into the group currency.
+
+Question: What is included in the Consolidated Amount report?
+Answer: The Consolidated Amount report includes closing amounts in group currency per company.
+
+Question: What does the Currency Conversion report include?
+Answer: The Currency Conversion report includes calculated conversion rates per company and account.
+
+Question: What information does the Consolidated Amounts by dimension report include?
+Answer: The Consolidated Amounts by dimension report includes dimension details for consolidated amounts per dimension group, company, and account.
+
+Question: How do you generate a Consolidated Flow report?
+Answer: To generate a Consolidated Flow report, select accounts, companies, a report type, a journal summation option, the file type, and click to generate the report.
+
+Question: What is the Summary report in the Consolidated Flow report?
+Answer: The Summary report includes balances and flows from the Reference to Current Consolidation Period, per account.
+
+Question: What information does the Contribution by Company report provide?
+Answer: The Contribution by Company report provides a breakdown of contributions by each company.
+
+Question: What does the Contribution by Journal report show?
+Answer: The Contribution by Journal report shows a breakdown of contributions by each journal.
+
+Question: What is included in the Contribution by Company and Journal report?
+Answer: The Contribution by Company and Journal report includes contributions broken down by both company and journal.
+
+Question: What does the Net Variation – Summary report include?
+Answer: The Net Variation – Summary report includes balances and net variation flow from the Reference to Current Consolidation Period, per account.
+
+Question: What is the Net Variation – by Company report?
+Answer: The Net Variation – by Company report provides a breakdown of contributions by each company.
+
+Question: What does the Net Variation – by Partner report include?
+Answer: The Net Variation – by Partner report includes contributions broken down by each partner.
+
+Question: What is the purpose of the Journal Summation drop-down in the Consolidated Flow report?
+Answer: The Journal Summation drop-down is used to select how transactions are organized in the report.
+
+Question: What does the Detailed report in the Consolidation Adjustments report include?
+Answer: The Detailed report includes the Debit and Credit amounts of the adjustments.
+
+Question: What is included in the Detailed with flows report in the Consolidation Adjustments report?
+Answer: The Detailed with flows report includes Debit/Credit details and flows of the adjustments.
+
+Question: What does the Detailed with dimensions report in the Consolidation Adjustments report include?
+Answer: The Detailed with dimensions report includes Debit/Credit details and dimensions of the adjustments.
+
+Question: What options are available in the Currency type field for the Consolidation Adjustments report?
+Answer: Options include Local Currency and Group Currency.
+
+Question: What are the available Journal types in the Consolidation Adjustments report?
+Answer: Journal types include B - Bundle Adjustments, E - Events Adjustments, M - Manual Adjustments, T - Automatic Adjustments, and L - Local Adjustments.
+
+Question: What options are available in the Minority Flag field for the Consolidation Adjustments report?
+Answer: Options include After 3rd Parties, Before 3rd Parties, and Both.
+
+Question: What is the Has attachment field used for in the Consolidation Adjustments report?
+Answer: The Has attachment field specifies whether to include adjustments with attachments, without attachments, or both.
+
+Question: What options are available in the File type field for generating reports?
+Answer: Options include PDF, XLS, and XLSX.
+
+Question: How do you narrow down the list of accounts on the Comments report page?
+Answer: You can narrow down the list of accounts by filtering on Type, Debit/Credit, Account Code, or Name.
+
+Question: What does the Consolidated Amount report include?
+Answer: The Consolidated Amount report includes closing amounts in group currency per company.
+
+Question: What does the Currency Conversion report include?
+Answer: The Currency Conversion report includes calculated conversion rates per company and account.
+
+Question: What does the Consolidated Amounts by dimension report include?
+Answer: The Consolidated Amounts by dimension report includes dimension details for consolidated amounts per dimension group, company, and account.
+
+Question: How do you generate a Consolidated Figures report?
+Answer: To generate a Consolidated Figures report, select a reference consolidation period, choose the type of data, select companies, choose a journal summation option, select the file type, and click to generate the report.
+
+Question: How do you generate a comments report?
+Answer: To generate a comments report, select an account from the left-side panel, a company from the right-side panel, specify additional report options, choose the file type, and click to generate the report.
+
+Question: What is the purpose of the Comments report page?
+Answer: The Comments report page allows you to run reports that contain additional information or explanations on transactions.
+
+Question: What options can you select when generating a comments report?
+Answer: Options include selecting Balance Sheet and P&L, including Local Amounts, and including Debit balances only.
+
+Question: What does the Consolidated Figures report present?
+Answer: The Consolidated Figures report presents all figures converted into the group currency.
+
+Question: What information does the Detailed report in the Consolidation Adjustments report include?
+Answer: The Detailed report includes the details of Debit and Credit amounts of the adjustments.
+
+Question: What information does the Detailed with flows report in the Consolidation Adjustments report include?
+Answer: The Detailed with flows report includes all the Debit/Credit details of the adjustments as well as the flows.
+
+Question: What information does the Detailed with dimensions report in the Consolidation Adjustments report include?
+Answer: The Detailed with dimensions report includes all the Debit/Credit details of the adjustments as well as the dimensions.
+
+Question: What options can you select in the Currency type field for the Consolidation Adjustments report?
+Answer: Options include Local Currency and Group Currency.
+
+Question: What are the available Journal types in the Consolidation Adjustments report?
+Answer: Journal types include B - journals from the Bundle Adjustments, E - journals from the Events Adjustments, M - journals from the Manual Adjustments, T - journals from the Automatic Adjustments, and L - journals from the Local Adjustments.
+
+Question: What options are available in the Minority Flag field for the Consolidation Adjustments report?
+Answer: Options include After 3rd Parties (Post-minority Adjustments), Before 3rd Parties, and Both.
+
+Question: What is the Has attachment field used for in the Consolidation Adjustments report?
+Answer: The Has attachment field is used to specify whether to include adjustments with attachments, without attachments, or both.
+
+Question: What options are available in the File type field for generating reports?
+Answer: Options include PDF, XLS, and XLSX.
+
+Question: What types of reports are included in the Consolidation Report (Summary)?
+Answer: The types of reports included are the Consolidation difference report, 3rd party interests analysis report, Equity value of participations report, and Dividends (by Shareholders) report.
+
+Question: How do you access the Consolidation Reports-Summary page?
+Answer: To access the Consolidation Reports-Summary page, click Reports > Consolidation Reports > Consolidation Reports-Summary.
+
+Question: What information does the Consolidation difference report provide?
+Answer: The Consolidation difference report includes the consolidation difference (or contribution in consolidated reserves) between one period and another.
+
+Question: What does the 3rd party interests analysis report show?
+Answer: The 3rd party interests analysis report shows the interests of companies that are not in the group.
+
+Question: What details are included in the Equity value of participations report?
+Answer: The Equity value of participations report shows the equity method value analysis per company.
+
+Question: What does the Dividends (by Shareholders) report display?
+Answer: The Dividends (by Shareholders) report shows the dividend received from each company's participation and how much has been declared paid by the participation itself.
+
+Question: How do you generate a consolidation summary report?
+Answer: To generate a consolidation summary report, select a reference consolidation period, choose the type of report, select the file type, and click to generate the report.
+
+Question: What does the Consolidation Reports per Entity page provide?
+Answer: The Consolidation Reports per Entity page provides the functionality to generate consolidation reports that are grouped by entities, presenting consolidated financial information specifically for each individual entity within the group.
+
+Question: How do you access the Consolidation Reports-Entity page?
+Answer: To access the Consolidation Reports-Entity page, click Reports > Consolidation Reports > Consolidation Reports-Entity.
+
+Question: What information does the Statutory in Local Currency report show?
+Answer: The Statutory in Local Currency report shows the statutory equity by company in the local currency of the company.
+
+Question: What does the Consolidated Equity report display?
+Answer: The Consolidated Equity report shows the consolidated equity by company.
+
+Question: What information is provided in the Shareholders report?
+Answer: The Shareholders report shows the details of the values of the shareholdings by parent companies in the selected companies.
+
+Question: What does the Consolidation Difference report include?
+Answer: The Consolidation Difference report includes the consolidation difference or contribution in consolidated reserves by company.
+
+Question: What is shown in the Translation Adjustment Difference report?
+Answer: The Translation Adjustment Difference report shows the translation adjustment per company.
+
+Question: What does the 3rd Parties Analysis report display?
+Answer: The 3rd Parties Analysis report shows the third parties analysis by company.
+
+Question: What information is included in the Equity View Analysis report?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a consolidation report per entity?
+Answer: To generate a consolidation report per entity, select a reference consolidation period, choose companies, select a report type, choose the file type, and click to generate the report.
+
+Question: What is the purpose of the Consolidation Summary Equity Elimination Accounts page?
+Answer: The purpose of the Consolidation Summary Equity Elimination Accounts page is to define and generate a report showing the differences or variations that arise when combining the financial data of the parent company and its subsidiaries, based on the accounts selected.
+
+Question: How do you generate a consolidation difference analysis summary report?
+Answer: To generate a consolidation difference analysis summary report, select the accounts you want on your report, click to return to the Consolidation Reports-Summary page, and then click to generate the report.
+
+Question: What does the Minority or Equity report help you configure?
+Answer: The Minority or Equity report assists in configuring the columns within the 3rd Parties Interest Analysis report where each flow of the specific account will be displayed.
+
+Question: How do you access the Minority Report page?
+Answer: To access the Minority Report page, on the Reports > Consolidation Reports > Consolidation Reports-Summary page, select the 3rd Parties interests option and click Define report.
+
+Question: How do you define a minority report?
+Answer: To define a minority report, select the 3rd Parties interests option, click to configure columns for each flow type, and then click to generate the report.
+
+Question: How do you define an equity report?
+Answer: To define an equity report, select the Equity value of participations option, click to configure columns for each flow type, and then click to generate the report.
+
+Question: What is the purpose of the Transfer of Reserves page?
+Answer: The Transfer of Reserves page allows you to include information about undisclosed transactions within the group, providing an avenue for entering reserve transfers between companies that impact the consolidation difference analysis report.
+
+Question: How do you access the Transfer of Reserves page?
+Answer: To access the Transfer of Reserves page, click Reports > Consolidation Reports > Consolidation Reports-Summary and then click the button.
+
+Question: How do you post a transfer of reserves?
+Answer: To post a transfer of reserves, enter the line number, select a transfer type, enter the amount and description, select the applicable companies, and click to confirm.
+
+Question: How do you generate a report of the transfer of reserves?
+Answer: To generate a report of the transfer of reserves, select the report options, choose the output file type, and click to generate the report.
+
+Question: What does the Consolidation Summary report provide?
+Answer: The Consolidation Summary report provides a concise overview of data collected from multiple companies, presenting the outcomes in a condensed format.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: What types of data can cause differences in the Consolidation Summary Equity Elimination Accounts report?
+Answer: Differences can occur due to intercompany transactions and consolidation adjustments.
+
+Question: How do you include undisclosed transactions within the group in the Transfer of Reserves page?
+Answer: To include undisclosed transactions within the group, enter the reserve transfer details on the Transfer of Reserves page.
+
+Question: What is the purpose of the Consolidation Reports per Entity page?
+Answer: The purpose of the Consolidation Reports per Entity page is to provide the functionality to generate consolidation reports that are grouped by entities.
+
+Question: What information is included in the Dividends (by Shareholders) report?
+Answer: The Dividends (by Shareholders) report includes details of dividends received from each company's participation and the amount declared paid by the participation itself.
+
+Question: How do you access the Consolidation Reports-Entity page?
+Answer: To access the Consolidation Reports-Entity page, click Reports > Consolidation Reports > Consolidation Reports-Entity.
+
+Question: What does the Statutory in Local Currency report show?
+Answer: The Statutory in Local Currency report shows the statutory equity by company in the local currency of the company.
+
+Question: What information does the Consolidated Equity report display?
+Answer: The Consolidated Equity report displays the consolidated equity by company.
+
+Question: What does the Shareholders report include?
+Answer: The Shareholders report includes the details of the values of the shareholdings by parent companies in the selected companies.
+
+Question: What is included in the Consolidation Difference report?
+Answer: The Consolidation Difference report includes the consolidation difference or contribution in consolidated reserves by company.
+
+Question: What is shown in the Translation Adjustment Difference report?
+Answer: The Translation Adjustment Difference report shows the translation adjustment per company.
+
+Question: What information does the 3rd Parties Analysis report display?
+Answer: The 3rd Parties Analysis report displays the third parties analysis by company.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a consolidation report per entity?
+Answer: To generate a consolidation report per entity, select a reference consolidation period, choose the companies, select a report type, and click to generate the report.
+
+Question: What does the Consolidation Summary Equity Elimination Accounts page provide?
+Answer: The Consolidation Summary Equity Elimination Accounts page provides a way to define and generate a report showing the differences or variations that arise when combining the financial data of the parent company and its subsidiaries.
+
+Question: How do you generate a consolidation difference analysis summary report?
+Answer: To generate a consolidation difference analysis summary report, select the accounts you want on your report, return to the Consolidation Reports-Summary page, and click to generate the report.
+
+Question: What does the Minority or Equity report assist in configuring?
+Answer: The Minority or Equity report assists in configuring the columns within the 3rd Parties Interest Analysis report where each flow of the specific account will be displayed.
+
+Question: How do you access the Minority Report page?
+Answer: To access the Minority Report page, on the Reports > Consolidation Reports > Consolidation Reports-Summary page, select the 3rd Parties interests option and click Define report.
+
+Question: How do you define a minority report?
+Answer: To define a minority report, select the 3rd Parties interests option, click to configure columns for each flow type, and click to generate the report.
+
+Question: How do you define an equity report?
+Answer: To define an equity report, select the Equity value of participations option, click to configure columns for each flow type, and click to generate the report.
+
+Question: What is the Transfer of Reserves page used for?
+Answer: The Transfer of Reserves page is used to include information about undisclosed transactions within the group, providing an avenue for entering reserve transfers between companies that impact the consolidation difference analysis report.
+
+Question: How do you access the Transfer of Reserves page?
+Answer: To access the Transfer of Reserves page, click Reports > Consolidation Reports > Consolidation Reports-Summary and then click the button.
+
+Question: How do you post a transfer of reserves?
+Answer: To post a transfer of reserves, enter the line number, select a transfer type, enter the amount and description, select the applicable companies, and click to confirm.
+
+Question: How do you generate a report of the transfer of reserves?
+Answer: To generate a report of the transfer of reserves, select the report options, choose the output file type, and click to generate the report.
+
+Question: What does the Consolidation Summary report provide?
+Answer: The Consolidation Summary report provides a concise overview of data collected from multiple companies, presenting the outcomes in a condensed format.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: What types of data can cause differences in the Consolidation Summary Equity Elimination Accounts report?
+Answer: Differences can occur due to intercompany transactions and consolidation adjustments.
+
+Question: How do you include undisclosed transactions within the group in the Transfer of Reserves page?
+Answer: To include undisclosed transactions within the group, enter the reserve transfer details on the Transfer of Reserves page.
+
+Question: What is the purpose of the Consolidation Reports per Entity page?
+Answer: The purpose of the Consolidation Reports per Entity page is to provide the functionality to generate consolidation reports that are grouped by entities.
+
+Question: What information is included in the Dividends (by Shareholders) report?
+Answer: The Dividends (by Shareholders) report includes details of dividends received from each company's participation and the amount declared paid by the participation itself.
+
+Question: How do you access the Consolidation Reports-Entity page?
+Answer: To access the Consolidation Reports-Entity page, click Reports > Consolidation Reports > Consolidation Reports-Entity.
+
+Question: What does the Statutory in Local Currency report show?
+Answer: The Statutory in Local Currency report shows the statutory equity by company in the local currency of the company.
+
+Question: What information does the Consolidated Equity report display?
+Answer: The Consolidated Equity report displays the consolidated equity by company.
+
+Question: What does the Shareholders report include?
+Answer: The Shareholders report includes the details of the values of the shareholdings by parent companies in the selected companies.
+
+Question: What is included in the Consolidation Difference report?
+Answer: The Consolidation Difference report includes the consolidation difference or contribution in consolidated reserves by company.
+
+Question: What is shown in the Translation Adjustment Difference report?
+Answer: The Translation Adjustment Difference report shows the translation adjustment per company.
+
+Question: What information does the 3rd Parties Analysis report display?
+Answer: The 3rd Parties Analysis report displays the third parties analysis by company.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a consolidation report per entity?
+Answer: To generate a consolidation report per entity, select a reference consolidation period, choose the companies, select a report type, and click to generate the report.
+
+Question: What does the Consolidation Summary Equity Elimination Accounts page provide?
+Answer: The Consolidation Summary Equity Elimination Accounts page provides a way to define and generate a report showing the differences or variations that arise when combining the financial data of the parent company and its subsidiaries.
+
+Question: How do you generate a consolidation difference analysis summary report?
+Answer: To generate a consolidation difference analysis summary report, select the accounts you want on your report, return to the Consolidation Reports-Summary page, and click to generate the report.
+
+Question: What does the Minority or Equity report assist in configuring?
+Answer: The Minority or Equity report assists in configuring the columns within the 3rd Parties Interest Analysis report where each flow of the specific account will be displayed.
+
+Question: How do you access the Minority Report page?
+Answer: To access the Minority Report page, on the Reports > Consolidation Reports > Consolidation Reports-Summary page, select the 3rd Parties interests option and click Define report.
+
+Question: How do you define a minority report?
+Answer: To define a minority report, select the 3rd Parties interests option, click to configure columns for each flow type, and click to generate the report.
+
+Question: How do you define an equity report?
+Answer: To define an equity report, select the Equity value of participations option, click to configure columns for each flow type, and click to generate the report.
+
+Question: What is the Transfer of Reserves page used for?
+Answer: The Transfer of Reserves page is used to include information about undisclosed transactions within the group, providing an avenue for entering reserve transfers between companies that impact the consolidation difference analysis report.
+
+Question: How do you access the Transfer of Reserves page?
+Answer: To access the Transfer of Reserves page, click Reports > Consolidation Reports > Consolidation Reports-Summary and then click the button.
+
+Question: How do you post a transfer of reserves?
+Answer: To post a transfer of reserves, enter the line number, select a transfer type, enter the amount and description, select the applicable companies, and click to confirm.
+
+Question: How do you generate a report of the transfer of reserves?
+Answer: To generate a report of the transfer of reserves, select the report options, choose the output file type, and click to generate the report.
+
+Question: What does the Consolidation Summary report provide?
+Answer: The Consolidation Summary report provides a concise overview of data collected from multiple companies, presenting the outcomes in a condensed format.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: What types of data can cause differences in the Consolidation Summary Equity Elimination Accounts report?
+Answer: Differences can occur due to intercompany transactions and consolidation adjustments.
+
+Question: How do you include undisclosed transactions within the group in the Transfer of Reserves page?
+Answer: To include undisclosed transactions within the group, enter the reserve transfer details on the Transfer of Reserves page.
+
+Question: What is the purpose of the Consolidation Reports per Entity page?
+Answer: The purpose of the Consolidation Reports per Entity page is to provide the functionality to generate consolidation reports that are grouped by entities.
+
+Question: What information is included in the Dividends (by Shareholders) report?
+Answer: The Dividends (by Shareholders) report includes details of dividends received from each company's participation and the amount declared paid by the participation itself.
+
+Question: How do you access the Consolidation Reports-Entity page?
+Answer: To access the Consolidation Reports-Entity page, click Reports > Consolidation Reports > Consolidation Reports-Entity.
+
+Question: What does the Statutory in Local Currency report show?
+Answer: The Statutory in Local Currency report shows the statutory equity by company in the local currency of the company.
+
+Question: What information does the Consolidated Equity report display?
+Answer: The Consolidated Equity report displays the consolidated equity by company.
+
+Question: What does the Shareholders report include?
+Answer: The Shareholders report includes the details of the values of the shareholdings by parent companies in the selected companies.
+
+Question: What is included in the Consolidation Difference report?
+Answer: The Consolidation Difference report includes the consolidation difference or contribution in consolidated reserves by company.
+
+Question: What is shown in the Translation Adjustment Difference report?
+Answer: The Translation Adjustment Difference report shows the translation adjustment per company.
+
+Question: What information does the 3rd Parties Analysis report display?
+Answer: The 3rd Parties Analysis report displays the third parties analysis by company.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a consolidation report per entity?
+Answer: To generate a consolidation report per entity, select a reference consolidation period, choose the companies, select a report type, and click to generate the report.
+
+Question: What does the Consolidation Summary Equity Elimination Accounts page provide?
+Answer: The Consolidation Summary Equity Elimination Accounts page provides a way to define and generate a report showing the differences or variations that arise when combining the financial data of the parent company and its subsidiaries.
+
+Question: How do you generate a consolidation difference analysis summary report?
+Answer: To generate a consolidation difference analysis summary report, select the accounts you want on your report, return to the Consolidation Reports-Summary page, and click to generate the report.
+
+Question: What does the Minority or Equity report assist in configuring?
+Answer: The Minority or Equity report assists in configuring the columns within the 3rd Parties Interest Analysis report where each flow of the specific account will be displayed.
+
+Question: How do you access the Minority Report page?
+Answer: To access the Minority Report page, on the Reports > Consolidation Reports > Consolidation Reports-Summary page, select the 3rd Parties interests option and click Define report.
+
+Question: How do you define a minority report?
+Answer: To define a minority report, select the 3rd Parties interests option, click to configure columns for each flow type, and click to generate the report.
+
+Question: How do you define an equity report?
+Answer: To define an equity report, select the Equity value of participations option, click to configure columns for each flow type, and click to generate the report.
+
+Question: What is the Transfer of Reserves page used for?
+Answer: The Transfer of Reserves page is used to include information about undisclosed transactions within the group, providing an avenue for entering reserve transfers between companies that impact the consolidation difference analysis report.
+
+Question: How do you access the Transfer of Reserves page?
+Answer: To access the Transfer of Reserves page, click Reports > Consolidation Reports > Consolidation Reports-Summary and then click the button.
+
+Question: How do you post a transfer of reserves?
+Answer: To post a transfer of reserves, enter the line number, select a transfer type, enter the amount and description, select the applicable companies, and click to confirm.
+
+Question: How do you generate a report of the transfer of reserves?
+Answer: To generate a report of the transfer of reserves, select the report options, choose the output file type, and click to generate the report.
+
+Question: What does the Consolidation Summary report provide?
+Answer: The Consolidation Summary report provides a concise overview of data collected from multiple companies, presenting the outcomes in a condensed format.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: What types of data can cause differences in the Consolidation Summary Equity Elimination Accounts report?
+Answer: Differences can occur due to intercompany transactions and consolidation adjustments.
+
+Question: How do you include undisclosed transactions within the group in the Transfer of Reserves page?
+Answer: To include undisclosed transactions within the group, enter the reserve transfer details on the Transfer of Reserves page.
+
+Question: What is the purpose of the Consolidation Reports per Entity page?
+Answer: The purpose of the Consolidation Reports per Entity page is to provide the functionality to generate consolidation reports that are grouped by entities.
+
+Question: What information is included in the Dividends (by Shareholders) report?
+Answer: The Dividends (by Shareholders) report includes details of dividends received from each company's participation and the amount declared paid by the participation itself.
+
+Question: How do you access the Consolidation Reports-Entity page?
+Answer: To access the Consolidation Reports-Entity page, click Reports > Consolidation Reports > Consolidation Reports-Entity.
+
+Question: What does the Statutory in Local Currency report show?
+Answer: The Statutory in Local Currency report shows the statutory equity by company in the local currency of the company.
+
+Question: What information does the Consolidated Equity report display?
+Answer: The Consolidated Equity report displays the consolidated equity by company.
+
+Question: What does the Shareholders report include?
+Answer: The Shareholders report includes the details of the values of the shareholdings by parent companies in the selected companies.
+
+Question: What is included in the Consolidation Difference report?
+Answer: The Consolidation Difference report includes the consolidation difference or contribution in consolidated reserves by company.
+
+Question: What is shown in the Translation Adjustment Difference report?
+Answer: The Translation Adjustment Difference report shows the translation adjustment per company.
+
+Question: What information does the 3rd Parties Analysis report display?
+Answer: The 3rd Parties Analysis report displays the third parties analysis by company.
+
+Question: What does the Equity View Analysis report show?
+Answer: The Equity View Analysis report shows the equity value analysis by company.
+
+Question: How do you generate a consolidation report per entity?
+Answer: To generate a consolidation report per entity, select a reference consolidation period, choose the companies, select a report type, and click to generate the report.
+

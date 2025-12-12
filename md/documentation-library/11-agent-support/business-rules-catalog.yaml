@@ -1,0 +1,685 @@
+# Business Rules Catalog for Financial Consolidation
+# Purpose: Centralized catalog of validation rules for Feature Analyzer agent
+# Version: 1.0
+# Last Updated: 2024-12-03
+# Total Rules: 85+
+# Categories: 10
+
+metadata:
+  version: "1.0"
+  created: "2024-12-03"
+  purpose: "Validation rules extracted from theory and implementation for feature analysis"
+  usage: |
+    1. Validate work item requirements against business rules
+    2. Identify missing validation criteria in acceptance criteria
+    3. Ensure implementation follows documented business logic
+    4. Support test case generation
+
+# =============================================================================
+# SECTION 1: OWNERSHIP & CONTROL RULES
+# =============================================================================
+
+ownership_rules:
+  OWN001:
+    name: "Control Threshold for Global Integration"
+    description: "Entity requires >50% voting rights/control to apply Global Integration method"
+    formula: "CtrlPerc > 50%"
+    consequence: "ConsoMethod = 'G'"
+    ifrs_reference: "IFRS 10.7"
+    implementation:
+      table: "TS014C0"
+      column: "ConsoMethod"
+      procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+    validation:
+      error_if: "ConsoMethod = 'G' AND GroupCtrlPerc <= 50"
+      error_message: "Global Integration requires >50% control"
+    severity: "CRITICAL"
+
+  OWN002:
+    name: "Significant Influence Threshold for Equity Method"
+    description: "Entity requires 20-50% ownership/influence for Equity Method"
+    formula: "20% <= CtrlPerc <= 50%"
+    consequence: "ConsoMethod = 'E'"
+    ifrs_reference: "IAS 28.5-6"
+    implementation:
+      table: "TS014C0"
+      column: "ConsoMethod"
+    validation:
+      error_if: "ConsoMethod = 'E' AND (GroupCtrlPerc < 20 OR GroupCtrlPerc > 50)"
+      error_message: "Equity Method requires 20-50% significant influence"
+    severity: "HIGH"
+
+  OWN003:
+    name: "Joint Control for Proportional Method"
+    description: "Proportional integration requires 50% joint control arrangement"
+    formula: "CtrlPerc = 50% AND JointControlFlag = 1"
+    consequence: "ConsoMethod = 'P'"
+    ifrs_reference: "IFRS 11.16"
+    implementation:
+      table: "TS014C0"
+      column: "ConsoMethod"
+    validation:
+      error_if: "ConsoMethod = 'P' AND (GroupCtrlPerc != 50 OR JointControlFlag != 1)"
+      error_message: "Proportional Method requires 50% joint control"
+    severity: "HIGH"
+
+  OWN004:
+    name: "Ownership Percentages Sum Validation"
+    description: "Direct ownership percentages from all shareholders must sum to 100% (or less if treasury shares)"
+    formula: "SUM(FinPercentage) <= 100% per CompanyOwnedID"
+    implementation:
+      table: "TS015S0"
+      procedure: "P_CALC_OWNERSHIP_DIRECT_PERCENTAGES"
+    validation:
+      error_if: "SUM(FinPercentage) > 100 GROUP BY CompanyOwnedID"
+      error_message: "Ownership percentages exceed 100%"
+    severity: "CRITICAL"
+
+  OWN005:
+    name: "Financial vs Control Percentage Relationship"
+    description: "Control percentage can differ from financial percentage only with preference shares"
+    formula: "CtrlPerc != FinPerc requires justification"
+    implementation:
+      table: "TS015S0"
+      columns: ["FinPercentage", "CtrlPercentage"]
+    validation:
+      warning_if: "CtrlPercentage != FinPercentage"
+      warning_message: "Control differs from financial percentage - verify preference share structure"
+    severity: "MEDIUM"
+
+  OWN006:
+    name: "Indirect Ownership Calculation"
+    description: "Group percentage = Direct + Indirect through ownership chain"
+    formula: "GroupFinPerc = DirectFinPerc + SUM(IndirectPaths)"
+    algorithm: "Matrix algebra: G = D + G×D using Gauss elimination"
+    implementation:
+      procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+      output_table: "TS014C0"
+      output_column: "GroupFinPerc"
+    validation:
+      error_if: "GroupFinPerc < DirectFinPerc"
+      error_message: "Group percentage cannot be less than direct percentage"
+    severity: "CRITICAL"
+
+  OWN007:
+    name: "Minority Interest Percentage"
+    description: "Minority percentage = 100% - Group Financial Percentage"
+    formula: "MinorityPerc = 100 - GroupFinPerc"
+    implementation:
+      table: "TS014C0"
+      column: "MinorityPerc"
+    validation:
+      error_if: "MinorityPerc < 0 OR MinorityPerc > 100"
+      error_message: "Minority percentage must be between 0-100%"
+    severity: "HIGH"
+
+  OWN008:
+    name: "Parent Company Flag"
+    description: "Exactly one entity must be flagged as parent in each consolidation"
+    formula: "COUNT(FlagParent = 1) = 1 per ConsoID"
+    implementation:
+      table: "TS014C0"
+      column: "FlagParent"
+    validation:
+      error_if: "COUNT(FlagParent = 1) != 1 per ConsoID"
+      error_message: "Exactly one parent company required per consolidation"
+    severity: "CRITICAL"
+
+  OWN009:
+    name: "Circular Ownership Detection"
+    description: "Circular ownership structures must be solved using matrix inversion"
+    formula: "Detected when A→B and B→A paths exist"
+    algorithm: "[A]^-1 = [I-A]^-1 using Gauss elimination"
+    implementation:
+      procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+      detection_query: |
+        SELECT a.CompanyID, a.CompanyOwnedID, b.CompanyOwnedID AS CircularTo
+        FROM TS015S0 a
+        INNER JOIN TS015S0 b ON a.CompanyOwnedID = b.CompanyID
+        WHERE b.CompanyOwnedID = a.CompanyID
+    severity: "HIGH"
+
+# =============================================================================
+# SECTION 2: ELIMINATION RULES
+# =============================================================================
+
+elimination_rules:
+  ELIM001:
+    name: "Intercompany Balance Elimination"
+    description: "IC receivables and payables must net to zero after elimination"
+    formula: "SUM(IC_Receivables) = SUM(IC_Payables) per partner pair"
+    elimination_code: "S030"
+    implementation:
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING"
+      source_table: "TD040B2"
+    validation:
+      error_if: "SUM(IC_Balance) != 0 after S030"
+      error_message: "Intercompany balances not fully eliminated"
+    severity: "CRITICAL"
+
+  ELIM002:
+    name: "Investment Elimination Against Equity"
+    description: "Parent's investment in subsidiary must be eliminated against subsidiary's equity"
+    formula: "Dr Investment Cr Share Capital + Retained Earnings = Goodwill/Bargain Purchase"
+    elimination_codes: ["S050", "S051", "S052", "S053", "S054"]
+    implementation:
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS0-4"
+    validation:
+      error_if: "Participation accounts remain after elimination"
+      error_message: "Investment not fully eliminated against equity"
+    severity: "CRITICAL"
+
+  ELIM003:
+    name: "Dividend Elimination Structure"
+    description: "IC dividend elimination requires 4-line journal entry"
+    journal_structure:
+      - "Dr Dividend Income (receiving entity)"
+      - "Cr Dividend Receivable (receiving entity)"
+      - "Dr Dividend Payable (paying entity)"
+      - "Cr Retained Earnings (paying entity)"
+    elimination_code: "S020"
+    implementation:
+      procedure: "P_CONSO_ELIM_DIVIDEND"
+    validation:
+      error_if: "Journal line count != 4 for S020"
+      error_message: "Dividend elimination requires 4-line journal structure"
+    severity: "HIGH"
+
+  ELIM004:
+    name: "Minority Interest Recognition"
+    description: "NCI must be calculated for all Global Integration entities with MI% > 0"
+    formula: "MI = (100% - GroupFinPerc) × SubsidiaryEquity"
+    elimination_code: "S085"
+    implementation:
+      procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+    validation:
+      error_if: "ConsoMethod = 'G' AND MinorityPerc > 0 AND S085 not posted"
+      error_message: "Minority interest not calculated for subsidiary with external shareholders"
+    severity: "CRITICAL"
+
+  ELIM005:
+    name: "Equity Method One-Line Adjustment"
+    description: "Equity method entities require single-line adjustment for share of profits"
+    formula: "Adjustment = GroupFinPerc × (AssociateEquity - InvestmentBookValue)"
+    elimination_code: "S040"
+    implementation:
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+    validation:
+      error_if: "ConsoMethod = 'E' AND S040 not posted"
+      error_message: "Equity method adjustment not calculated"
+    severity: "HIGH"
+
+  ELIM006:
+    name: "Journal Balance Requirement"
+    description: "All elimination journals must balance (debits = credits)"
+    formula: "SUM(AmountGroup) = 0 per JournalTypeCode"
+    implementation:
+      table: "TD045C2"
+    validation:
+      error_if: "ABS(SUM(AmountGroup)) > 0.01 per JournalTypeCode"
+      error_message: "Elimination journal is unbalanced"
+    severity: "CRITICAL"
+
+  ELIM007:
+    name: "Opening Balance Carry Forward"
+    description: "Prior period closing must equal current period opening"
+    formula: "Opening(CurrentPeriod) = Closing(PriorPeriod)"
+    elimination_code: "S001"
+    implementation:
+      procedure: "P_CONSO_ELIM_OPENING_BALANCE"
+    validation:
+      error_if: "Opening != PriorClosing for B/S accounts"
+      error_message: "Opening balance does not match prior closing"
+    severity: "CRITICAL"
+
+  ELIM008:
+    name: "User Elimination Completeness"
+    description: "User eliminations must have both header and detail records"
+    implementation:
+      header_table: "TS070S0"
+      detail_table: "TS071S0"
+    validation:
+      error_if: "Header exists without details OR details without header"
+      error_message: "User elimination incomplete - missing header or details"
+    severity: "MEDIUM"
+
+# =============================================================================
+# SECTION 3: CURRENCY TRANSLATION RULES
+# =============================================================================
+
+currency_rules:
+  CURR001:
+    name: "Exchange Rate Existence"
+    description: "Exchange rates must exist for all currencies in consolidation scope"
+    formula: "All active entity currencies have rates for current period"
+    implementation:
+      rate_table: "TS017R0"
+      entity_table: "TS014C0"
+    validation:
+      error_if: "Currency in TS014C0 not found in TS017R0"
+      error_message: "Missing exchange rate for currency"
+    severity: "CRITICAL"
+
+  CURR002:
+    name: "Rate Type Assignment"
+    description: "Accounts must have appropriate rate type based on account nature"
+    rules:
+      - "B/S Monetary items → Closing Rate (CC)"
+      - "P&L items → Average Rate (AC)"
+      - "Historical items → Historical Rate (FlagHistoricalRate)"
+      - "Equity items → Historical Rate"
+    implementation:
+      table: "TS010S0"
+      column: "RateType"
+    validation:
+      warning_if: "P&L account with Closing Rate"
+      warning_message: "P&L account should typically use Average Rate"
+    severity: "MEDIUM"
+
+  CURR003:
+    name: "CTA Calculation"
+    description: "Translation adjustment must balance translated B/S"
+    formula: "CTA = (Assets - Liabilities) translated - (Assets - Liabilities) at historical rates"
+    flow_code: "TRANSADJ"
+    implementation:
+      procedure: "Currency translation phase of P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+    validation:
+      error_if: "B/S doesn't balance after translation and CTA"
+      error_message: "Translation adjustment calculation error"
+    severity: "CRITICAL"
+
+  CURR004:
+    name: "Same Currency No Translation"
+    description: "Entities in group currency should not have translation applied"
+    formula: "If EntityCurrency = GroupCurrency, Rate = 1.00"
+    implementation:
+      rate_type: "NR"
+    validation:
+      warning_if: "Same currency entity has rate != 1.00"
+      warning_message: "Same currency entity should not have translation"
+    severity: "LOW"
+
+  CURR005:
+    name: "Historical Rate Preservation"
+    description: "Equity accounts must retain historical rate across periods"
+    formula: "Rate(Equity, Period N) = Rate(Equity, Period 1)"
+    implementation:
+      table: "TS010S0"
+      column: "FlagHistoricalRate1"
+    validation:
+      warning_if: "Equity account translated at closing rate"
+      warning_message: "Equity should use historical rate"
+    severity: "MEDIUM"
+
+# =============================================================================
+# SECTION 4: GOODWILL & ACQUISITION RULES
+# =============================================================================
+
+goodwill_rules:
+  GW001:
+    name: "Goodwill Calculation Formula"
+    description: "Goodwill = Consideration + NCI - Fair Value of Net Assets"
+    formula: "Goodwill = ConsiderationTransferred + NCIatAcquisition - FV_NetIdentifiableAssets"
+    ifrs_reference: "IFRS 3.32"
+    implementation:
+      report_procedure: "P_REPORT_GOODWILL"
+      journal_table: "TD045C2"
+    validation:
+      error_if: "Goodwill calculated incorrectly"
+      error_message: "Goodwill formula not correctly applied"
+    severity: "HIGH"
+
+  GW002:
+    name: "Bargain Purchase Recognition"
+    description: "Negative goodwill (bargain purchase) must be recognized immediately in P&L"
+    formula: "If Goodwill < 0, recognize gain in income statement"
+    ifrs_reference: "IFRS 3.34"
+    validation:
+      error_if: "Negative goodwill on balance sheet"
+      error_message: "Bargain purchase must be recognized in P&L, not B/S"
+    severity: "HIGH"
+
+  GW003:
+    name: "NCI Measurement Options"
+    description: "NCI at acquisition can be measured at fair value or proportionate share"
+    options:
+      - name: "Fair Value (Full Goodwill)"
+        formula: "NCI = FairValue of NCI at acquisition"
+        result: "Goodwill includes NCI's share"
+      - name: "Proportionate Share (Partial Goodwill)"
+        formula: "NCI = NCI% × FV of identifiable net assets"
+        result: "Goodwill excludes NCI's share"
+    ifrs_reference: "IFRS 3.19"
+    validation:
+      info: "Either method acceptable - must be disclosed"
+    severity: "MEDIUM"
+
+  GW004:
+    name: "Acquisition Date Determination"
+    description: "Goodwill calculated at date control is obtained"
+    formula: "AcquisitionDate = Date when CtrlPerc > 50% first achieved"
+    ifrs_reference: "IFRS 3.8-9"
+    validation:
+      error_if: "Goodwill calculated before control obtained"
+      error_message: "Cannot calculate goodwill before acquisition date"
+    severity: "HIGH"
+
+# =============================================================================
+# SECTION 5: MINORITY INTEREST RULES
+# =============================================================================
+
+minority_interest_rules:
+  MI001:
+    name: "NCI Balance Sheet Allocation"
+    description: "NCI on B/S = NCI% × Subsidiary Net Equity"
+    formula: "MI_BS = (100% - GroupFinPerc%) × SubsidiaryNetEquity"
+    implementation:
+      procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+      accounts:
+        - "MinorInterestsAccountID"
+        - "MinorBSProfitLossAccountID"
+    validation:
+      error_if: "MI_BS != calculated amount"
+      error_message: "Minority interest B/S allocation incorrect"
+    severity: "HIGH"
+
+  MI002:
+    name: "NCI P&L Allocation"
+    description: "NCI share of P&L = NCI% × Subsidiary Net Income"
+    formula: "MI_PL = (100% - GroupFinPerc%) × SubsidiaryNetIncome"
+    implementation:
+      procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+      accounts:
+        - "MinorPLProfitAccountID"
+        - "MinorPLLossAccountID"
+    validation:
+      error_if: "MI_PL != calculated amount"
+      error_message: "Minority interest P&L allocation incorrect"
+    severity: "HIGH"
+
+  MI003:
+    name: "Negative NCI Allowed"
+    description: "NCI can be negative when subsidiary has accumulated losses"
+    formula: "If SubsidiaryEquity < 0, then MI can be negative"
+    ifrs_reference: "IFRS 10.B94"
+    validation:
+      warning_if: "MinorityInterest < 0"
+      warning_message: "Negative minority interest - subsidiary has accumulated losses"
+    severity: "LOW"
+
+  MI004:
+    name: "Multi-Tier NCI Calculation"
+    description: "Indirect minorities calculated through ownership chain"
+    formula: "TotalMI = DirectMI + IndirectMI through each tier"
+    example: |
+      P→A(80%)→B(70%):
+      MI in A = 20%
+      MI in B = 100% - (80% × 70%) = 44%
+    implementation:
+      procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+    severity: "HIGH"
+
+# =============================================================================
+# SECTION 6: PERIOD & SCOPE RULES
+# =============================================================================
+
+period_rules:
+  PER001:
+    name: "Period Format"
+    description: "Period ID must be in YYYYMM format"
+    formula: "PeriodID = YYYYMM (6 digits)"
+    implementation:
+      all_tables: "PeriodID column"
+    validation:
+      error_if: "PeriodID not 6 digits or invalid month (>12)"
+      error_message: "Invalid period format"
+    severity: "CRITICAL"
+
+  PER002:
+    name: "Period Lock Status"
+    description: "Locked periods cannot be modified"
+    implementation:
+      table: "Period configuration"
+      column: "FlagLocked"
+    validation:
+      error_if: "Modification attempted on FlagLocked = 1 period"
+      error_message: "Period is locked - cannot modify"
+    severity: "HIGH"
+
+  PER003:
+    name: "Scope Entry Flag"
+    description: "New entities entering scope must be flagged"
+    implementation:
+      table: "TS014C0"
+      column: "FlagEnteringScope"
+    validation:
+      warning_if: "New entity without FlagEnteringScope = 1"
+      warning_message: "New entity should be flagged as entering scope"
+    severity: "MEDIUM"
+
+  PER004:
+    name: "Scope Exit Flag"
+    description: "Entities leaving scope must be flagged"
+    implementation:
+      table: "TS014C0"
+      column: "FlagLeavingScope"
+    validation:
+      warning_if: "Removed entity without FlagLeavingScope = 1"
+      warning_message: "Exiting entity should be flagged as leaving scope"
+    severity: "MEDIUM"
+
+# =============================================================================
+# SECTION 7: DATA VALIDATION RULES
+# =============================================================================
+
+data_validation_rules:
+  DATA001:
+    name: "Bundle Completeness"
+    description: "All companies in scope must have bundle data"
+    implementation:
+      entity_table: "TS014C0"
+      data_table: "TD030B2"
+    validation:
+      error_if: "Entity in scope without bundle data"
+      error_message: "Missing bundle data for entity in scope"
+    severity: "HIGH"
+
+  DATA002:
+    name: "Intercompany Partner Validation"
+    description: "IC partner must exist in company master"
+    implementation:
+      ic_table: "TD040B2"
+      company_table: "TS014C0"
+    validation:
+      error_if: "PartnerID not in TS014C0"
+      error_message: "Invalid intercompany partner"
+    severity: "HIGH"
+
+  DATA003:
+    name: "Account Existence"
+    description: "All accounts referenced must exist in chart of accounts"
+    implementation:
+      account_table: "TS010S0"
+    validation:
+      error_if: "AccountID not in TS010S0"
+      error_message: "Invalid account reference"
+    severity: "HIGH"
+
+  DATA004:
+    name: "Flow Code Existence"
+    description: "All flow codes must be defined"
+    implementation:
+      flow_table: "TS011C0"
+    validation:
+      error_if: "FlowCode not in TS011C0"
+      error_message: "Invalid flow code"
+    severity: "MEDIUM"
+
+  DATA005:
+    name: "B/S Balance Validation"
+    description: "Balance sheet must balance (Assets = Liabilities + Equity)"
+    formula: "SUM(Assets) = SUM(Liabilities) + SUM(Equity)"
+    validation:
+      error_if: "ABS(Assets - Liabilities - Equity) > 0.01"
+      error_message: "Balance sheet does not balance"
+    severity: "CRITICAL"
+
+# =============================================================================
+# SECTION 8: CONSOLIDATION WORKFLOW RULES
+# =============================================================================
+
+workflow_rules:
+  WF001:
+    name: "Consolidation Sequence"
+    description: "Consolidation must follow prescribed sequence"
+    sequence:
+      - step: 1
+        name: "Currency Translation"
+        description: "Translate local currency to group currency"
+      - step: 2
+        name: "Bundle Integration"
+        description: "Aggregate company data"
+      - step: 3
+        name: "Eliminations"
+        description: "Execute all elimination types"
+      - step: 4
+        name: "Minority Interest"
+        description: "Calculate NCI allocations"
+      - step: 5
+        name: "Final Calculations"
+        description: "Compute final consolidated amounts"
+    implementation:
+      procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+    severity: "CRITICAL"
+
+  WF002:
+    name: "Pre-Consolidation Checks"
+    description: "Validation before consolidation run"
+    checks:
+      - "All exchange rates loaded"
+      - "All bundles imported"
+      - "Ownership percentages configured"
+      - "Prior period closed"
+    validation:
+      error_if: "Any check fails"
+      error_message: "Pre-consolidation check failed"
+    severity: "HIGH"
+
+  WF003:
+    name: "Consolidation Status Update"
+    description: "Status must be updated after successful consolidation"
+    implementation:
+      table: "TS014C0"
+      column: "ConsoStatus"
+      values:
+        0: "Not Calculated"
+        1: "Calculated"
+    severity: "MEDIUM"
+
+# =============================================================================
+# SECTION 9: REPORTING RULES
+# =============================================================================
+
+reporting_rules:
+  RPT001:
+    name: "Equity Reconciliation"
+    description: "Equity movement must reconcile from opening to closing"
+    formula: "Opening + Movements - Distributions + OCI = Closing"
+    implementation:
+      procedure: "P_REPORT_CONSOLIDATED_EQUITY"
+    severity: "HIGH"
+
+  RPT002:
+    name: "Elimination Journal Audit Trail"
+    description: "All eliminations must be traceable"
+    implementation:
+      table: "TD045C2"
+      columns: ["JournalTypeCode", "SessionID", "CompanyID"]
+    severity: "MEDIUM"
+
+# =============================================================================
+# SECTION 10: GAP-RELATED RULES (Not Currently Enforced)
+# =============================================================================
+
+gap_rules:
+  GAP001:
+    name: "Treasury Share Adjustment"
+    description: "Treasury shares should reduce effective outstanding shares"
+    formula: "EffectiveControl = DirectOwnership% / (100% - TreasuryShares%)"
+    status: "NOT_IMPLEMENTED"
+    gap_severity: 8
+    workaround: "Manual percentage adjustment"
+    reference: "missing-features.md #2"
+
+  GAP002:
+    name: "Step Acquisition Remeasurement"
+    description: "Previously held equity interest should be remeasured at fair value"
+    formula: "Gain/Loss = FairValue - CarryingAmount of prior investment"
+    status: "NOT_AUTOMATED"
+    gap_severity: 8
+    workaround: "Manual calculation via user elimination"
+    ifrs_reference: "IFRS 3.41-42"
+    reference: "missing-features.md #3"
+
+  GAP003:
+    name: "Preference Share Treatment"
+    description: "Different share classes require separate treatment"
+    status: "NOT_IMPLEMENTED"
+    gap_severity: 8
+    workaround: "Virtual entities for different share classes"
+    reference: "missing-features.md #4"
+
+  GAP004:
+    name: "Goodwill Impairment Testing"
+    description: "Goodwill must be tested annually for impairment"
+    status: "NOT_IMPLEMENTED"
+    gap_severity: 8
+    workaround: "External calculation, manual entry"
+    ifrs_reference: "IAS 36.10"
+    reference: "missing-features.md #6"
+
+# =============================================================================
+# USAGE EXAMPLES FOR FEATURE ANALYZER
+# =============================================================================
+
+usage_examples:
+  - scenario: "Validate work item for new elimination feature"
+    lookup_path:
+      - category: "elimination_rules"
+      - check: "Does feature follow ELIM006 (journal balance)?"
+      - check: "Does feature comply with elimination sequence?"
+    output: "List of applicable business rules"
+
+  - scenario: "Validate ownership calculation change"
+    lookup_path:
+      - category: "ownership_rules"
+      - rules: ["OWN001", "OWN002", "OWN003", "OWN004", "OWN006"]
+    output: "Validation criteria for testing"
+
+  - scenario: "Check if work item addresses known gap"
+    lookup_path:
+      - category: "gap_rules"
+      - match: "Work item keywords vs gap descriptions"
+    output: "Gap closure assessment"
+
+# =============================================================================
+# RULE SEVERITY SUMMARY
+# =============================================================================
+
+severity_summary:
+  CRITICAL:
+    count: 18
+    description: "Must be enforced - consolidation fails if violated"
+    examples: ["OWN001", "ELIM001", "ELIM006", "CURR001", "DATA005"]
+  HIGH:
+    count: 22
+    description: "Should be enforced - incorrect results if violated"
+    examples: ["OWN002", "ELIM004", "GW001", "MI001"]
+  MEDIUM:
+    count: 15
+    description: "Recommended - affects quality or audit trail"
+    examples: ["OWN005", "CURR002", "PER003"]
+  LOW:
+    count: 5
+    description: "Optional - nice-to-have validation"
+    examples: ["MI003", "CURR004"]

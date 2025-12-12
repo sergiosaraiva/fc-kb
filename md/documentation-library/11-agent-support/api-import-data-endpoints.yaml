@@ -1,0 +1,1222 @@
+# API Import Data Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent data import orchestration
+
+api_import_data_endpoints:
+  name: "Import Data API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for importing financial data into the consolidation system.
+
+    Data import is the primary method for loading external data:
+    - General ledger (GL) data from accounting systems
+    - Budget and forecast data
+    - Adjustment journal entries
+    - Exchange rate data from multiple sources
+    - Multiple file format support (CSV, Excel, XBRL, FTP, Repository, Hub, OData, Staging)
+
+    Key concepts:
+    - Import Structure: Configuration template defining file format and field mappings
+    - Type of Data: Flags controlling what data types to import (closing amounts, flows, dimensions, interco)
+    - Import Mapping: Translation tables for mapping external codes to internal codes
+    - Job-Based Processing: Asynchronous import using Hangfire background jobs
+    - Hub Import: Import from staging tables (HubDataIn) for integration scenarios
+    - Data Source Types: Multiple exchange rate sources (CSV, XLS, ECB API, NBS API, MAS API)
+
+    Services documented:
+    - ImportDataService: GL/budget/forecast data import (5 handlers)
+    - ImportAdjustmentsService: Adjustment journal import (3 handlers)
+    - ImportExchangeRatesService: Exchange rate import from files and APIs (4 handlers)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    FileTypes:
+      description: "Supported import file types"
+      values:
+        - name: "CSV"
+          description: "CSV file upload"
+        - name: "XLS"
+          description: "Excel file upload"
+        - name: "XBRL"
+          description: "XBRL XML file upload"
+        - name: "CSV_FTP"
+          description: "CSV from FTP server"
+        - name: "XLS_FTP"
+          description: "Excel from FTP server"
+        - name: "CSV_REPOSITORY"
+          description: "CSV from document repository"
+        - name: "XLS_REPOSITORY"
+          description: "Excel from document repository"
+        - name: "HUB"
+          description: "Import from Hub staging tables"
+        - name: "OData"
+          description: "Import from OData API"
+        - name: "STAGING"
+          description: "Import from custom staging tables"
+        - name: "First"
+          description: "First Financial format"
+
+    DataSourceTypes:
+      description: "Exchange rate data sources"
+      values:
+        - name: "CSV"
+          description: "CSV file upload"
+        - name: "XLS"
+          description: "Excel file upload"
+        - name: "SDMX_ECB"
+          description: "European Central Bank SDMX API"
+        - name: "SDMX_NBS"
+          description: "National Bank of Serbia SDMX API"
+        - name: "FSX_MAS"
+          description: "Monetary Authority of Singapore API"
+
+    TypeOfAmount:
+      description: "Amount format in import file"
+      values:
+        - char: "N"
+          name: "NetAmounts"
+          description: "Single net amount column"
+        - char: "D"
+          name: "DebitCredit"
+          description: "Separate debit/credit columns"
+
+    OverwriteTypes:
+      description: "Adjustment import overwrite behavior"
+      values:
+        - char: "O"
+          name: "Overwrite"
+          description: "Overwrite existing adjustments"
+        - char: "A"
+          name: "Add"
+          description: "Add to existing adjustments"
+
+    JobTypes:
+      description: "Import job processing stages"
+      values:
+        - value: 1
+          name: "Parsing"
+          description: "Parse and validate file"
+        - value: 2
+          name: "Processing"
+          description: "Process validated data into system"
+        - value: 3
+          name: "ImportHub"
+          description: "Import from Hub staging"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    TypeOfDataDTO:
+      description: "Flags controlling which data types to import"
+      source: "ImportExportStructureServices.cs"
+      fields:
+        - name: "LocalAdjustments"
+          type: "boolean"
+          description: "Import local adjustments"
+        - name: "ClosingAmounts"
+          type: "boolean"
+          description: "Import closing balance amounts"
+        - name: "Flows"
+          type: "boolean"
+          description: "Import flow movements"
+        - name: "Dims"
+          type: "boolean"
+          description: "Import dimension amounts"
+        - name: "ClosingAmountsParticipations"
+          type: "boolean"
+          description: "Import closing amounts for participations"
+        - name: "FlowsParticipations"
+          type: "boolean"
+          description: "Import flow movements for participations"
+        - name: "DimsParticipations"
+          type: "boolean"
+          description: "Import dimension amounts for participations"
+        - name: "ClosingAmountsIntercos"
+          type: "boolean"
+          description: "Import intercompany closing amounts"
+        - name: "FlowsIntercos"
+          type: "boolean"
+          description: "Import intercompany flow movements"
+        - name: "DimsIntercos"
+          type: "boolean"
+          description: "Import intercompany dimension amounts"
+        - name: "ClosingAmountsPartners"
+          type: "boolean"
+          description: "Import partner closing amounts"
+        - name: "FlowsPartners"
+          type: "boolean"
+          description: "Import partner flow movements"
+        - name: "DimsPartners"
+          type: "boolean"
+          description: "Import partner dimension amounts"
+        - name: "DiscardZeroes"
+          type: "boolean"
+          description: "Discard zero amounts during import"
+        - name: "ReplaceImportedTypes"
+          type: "boolean"
+          description: "Replace existing imported type flags"
+        - name: "ReplaceImportedAccounts"
+          type: "boolean"
+          description: "Replace existing imported account data"
+
+    ImportDataMappingParametersDTO:
+      description: "Mapping table references for code translation"
+      fields:
+        - name: "AccountID"
+          type: "integer"
+          nullable: true
+          description: "Account mapping table ID"
+        - name: "NegativeAccountID"
+          type: "integer"
+          nullable: true
+          description: "Negative account mapping table ID"
+        - name: "CompanyID"
+          type: "integer"
+          nullable: true
+          description: "Company mapping table ID"
+        - name: "PartnerID"
+          type: "integer"
+          nullable: true
+          description: "Partner mapping table ID"
+        - name: "FlowID"
+          type: "integer"
+          nullable: true
+          description: "Flow mapping table ID"
+        - name: "DimensionGroupID"
+          type: "integer"
+          nullable: true
+          description: "Dimension group mapping table ID"
+        - name: "DimensionDetailCodeID"
+          type: "integer"
+          nullable: true
+          description: "Dimension detail code mapping table ID"
+
+    ExchangeRateRowDetail:
+      description: "Exchange rate preview row"
+      source: "ImportExchangeRatesService.cs"
+      fields:
+        - name: "RowNr"
+          type: "integer"
+          description: "Row number in file"
+        - name: "CurrencyISO"
+          type: "string"
+          description: "ISO currency code"
+        - name: "CurrencyName"
+          type: "string"
+          description: "Currency name"
+        - name: "ClosingRate"
+          type: "string"
+          description: "Closing rate as string"
+        - name: "AverageYear"
+          type: "string"
+          description: "Annual average rate"
+        - name: "AverageMonth"
+          type: "string"
+          description: "Monthly average rate"
+        - name: "HasConversionError"
+          type: "boolean"
+          nullable: true
+          description: "Whether conversion error occurred"
+        - name: "Errors"
+          type: "array<string>"
+          description: "Validation error messages"
+
+  # ============================================================================
+  # IMPORT DATA HANDLERS (GL/BUDGET/FORECAST)
+  # ============================================================================
+  import_data_handlers:
+    description: |
+      Endpoints for importing general ledger, budget, and forecast data.
+      Source: Sigma.Mona.WebApplication/Screens/ImportData/ImportDataService.cs
+
+    handlers:
+      - name: "ImportData_GetPackageIDCodeDescription"
+        description: |
+          Returns Hub package IDs for autocomplete.
+          Queries HubDataIn staging table for available packages.
+        access_right: null
+        async: true
+
+        request:
+          _t: "ImportData_GetPackageIDCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+              description: "Package ID pattern"
+            - name: "description"
+              type: "string"
+              required: false
+              description: "Description pattern (unused for packages)"
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportData_GetPackageIDCodeDescription",
+                "code": "GL2024%",
+                "maxRows": 20
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+              description: "PackageID -> PackageID pairs"
+
+      - name: "ImportData_ImportFile"
+        description: |
+          Imports GL data from file upload, FTP, repository, or XBRL.
+          Creates ImportData record and launches parsing job.
+          Returns JobID for monitoring progress.
+        access_right: "ImportData_Import"
+        async: false
+        job_triggered: "ImportDataJob (JOBTYPE.PARSING)"
+
+        request:
+          _t: "ImportData_ImportFile"
+          parameters:
+            - name: "ImportExportStructureID"
+              type: "integer"
+              required: true
+              description: "Import structure defining format and mappings"
+            - name: "Sheetname"
+              type: "string"
+              required: false
+              description: "Excel sheet name"
+            - name: "FromRow"
+              type: "integer"
+              required: "not for XBRL"
+              description: "Start row for data"
+            - name: "ToRow"
+              type: "integer"
+              required: false
+              description: "End row for data"
+            - name: "XbrlCompany"
+              type: "string"
+              required: "if FileType=XBRL"
+              description: "Company code for XBRL import"
+            - name: "TypeOfData"
+              type: "object"
+              required: true
+              description: "TypeOfDataDTO object"
+            - name: "ImportDataMappingParameters"
+              type: "object"
+              required: true
+              description: "ImportDataMappingParametersDTO object"
+            - name: "FtpHost"
+              type: "string"
+              required: "if FileType=CSV_FTP or XLS_FTP"
+            - name: "FtpPath"
+              type: "string"
+              required: false
+              description: "FTP directory path (SFTP only)"
+            - name: "FtpUser"
+              type: "string"
+              required: false
+            - name: "FtpPassword"
+              type: "string"
+              required: false
+            - name: "FtpType"
+              type: "string"
+              required: "if FTP"
+              description: "FTP or SFTP"
+            - name: "FtpPort"
+              type: "integer"
+              required: false
+              description: "FTP port (SFTP only)"
+            - name: "FtpFileName"
+              type: "string"
+              required: false
+            - name: "RepositoryFileName"
+              type: "string"
+              required: "if FileType=CSV_REPOSITORY or XLS_REPOSITORY"
+            - name: "RepositoryFolderPathNodeID"
+              type: "integer"
+              required: "if Repository"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example_csv:
+            json: |
+              {
+                "_t": "ImportData_ImportFile",
+                "ImportExportStructureID": 123,
+                "FromRow": 2,
+                "ToRow": 1000,
+                "TypeOfData": {
+                  "ClosingAmounts": true,
+                  "Flows": true,
+                  "Dims": false,
+                  "ClosingAmountsIntercos": true,
+                  "FlowsIntercos": true,
+                  "DiscardZeroes": true,
+                  "ReplaceImportedAccounts": false
+                },
+                "ImportDataMappingParameters": {
+                  "AccountID": 10,
+                  "CompanyID": 5,
+                  "FlowID": 8
+                }
+              }
+          example_hub:
+            json: |
+              {
+                "_t": "ImportData_ImportFile",
+                "ImportExportStructureID": 123,
+                "FromRow": 1,
+                "TypeOfData": {
+                  "ClosingAmounts": true,
+                  "ClosingAmountsIntercos": true
+                },
+                "ImportDataMappingParameters": {
+                  "AccountID": 10
+                }
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+      - name: "ImportData_ImportHub"
+        description: |
+          Imports GL data from Hub staging tables.
+          Validates package exists in HubDataIn before processing.
+          Creates HubAuthorization record for package tracking.
+        access_right: "ImportData_Import"
+        async: false
+        job_triggered: "ImportDataJob (JOBTYPE.IMPORT_HUB)"
+
+        request:
+          _t: "ImportData_ImportHub"
+          parameters:
+            - name: "PackageID"
+              type: "string"
+              required: true
+              description: "Hub package identifier"
+            - name: "ImportExportStructureID"
+              type: "integer"
+              required: true
+            - name: "TypeOfData"
+              type: "object"
+              required: true
+              description: "TypeOfDataDTO object"
+            - name: "ImportDataMappingParameters"
+              type: "object"
+              required: true
+              description: "ImportDataMappingParametersDTO object"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportData_ImportHub",
+                "PackageID": "GL_2024_Q4",
+                "ImportExportStructureID": 123,
+                "TypeOfData": {
+                  "ClosingAmounts": true,
+                  "Flows": true,
+                  "ClosingAmountsIntercos": true,
+                  "FlowsIntercos": true,
+                  "DiscardZeroes": true
+                },
+                "ImportDataMappingParameters": {
+                  "AccountID": 10,
+                  "CompanyID": 5
+                }
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+          errors:
+            - pattern: "There is no data to process for this Package ID"
+              cause: "Package not found in HubDataIn"
+
+      - name: "ImportData_GetAvailableCompanies"
+        description: |
+          Retrieves companies detected in the parsed import file.
+          Returns list of companies available for processing step.
+        access_right: null
+        async: true
+
+        request:
+          _t: "ImportData_GetAvailableCompanies"
+          parameters: []
+          notes:
+            - "Requires uploaded file in session storage"
+            - "Uses SessionID from uploaded file metadata"
+          example:
+            json: |
+              {
+                "_t": "ImportData_GetAvailableCompanies"
+              }
+
+        response:
+          success:
+            Companies:
+              type: "array"
+              element_schema:
+                Key: "string (CompanyCode)"
+                Value: "string (CompanyName)"
+          errors:
+            - pattern: "The uploaded file has not been verified"
+              cause: "File upload/parsing not completed"
+
+      - name: "ImportData_Process"
+        description: |
+          Processes validated import data for selected companies.
+          Creates processing job that loads data into company bundles.
+        access_right: "ImportDataCompany_Import"
+        async: false
+        job_triggered: "ImportDataJob (JOBTYPE.PROCESSING)"
+
+        request:
+          _t: "ImportData_Process"
+          parameters:
+            - name: "CompanyCodes"
+              type: "array<string>"
+              required: true
+              description: "Company codes to import data for"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportData_Process",
+                "CompanyCodes": ["ACME", "GLOBEX", "INITECH"]
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+          errors:
+            - pattern: "FileImport.Required"
+              cause: "File not uploaded or validated"
+
+  # ============================================================================
+  # IMPORT ADJUSTMENTS HANDLERS
+  # ============================================================================
+  import_adjustments_handlers:
+    description: |
+      Endpoints for importing adjustment journal entries.
+      Source: Sigma.Mona.WebApplication/Screens/ImportAdjustments/ImportAdjustmentsService.cs
+
+    handlers:
+      - name: "ImportAdjustments_Upload"
+        description: |
+          Uploads and validates adjustment file or imports from Hub.
+          Parses file structure and validates data format.
+          Returns JobID for monitoring validation progress.
+        access_right: "ImportAdjustments_Upload"
+        async: false
+        job_triggered: "ImportAdjustmentsJob (JOBTYPE.PARSING or IMPORT_PROCESS_HUB)"
+
+        request:
+          _t: "ImportAdjustments_Upload"
+          parameters:
+            - name: "FileType"
+              type: "enum"
+              required: true
+              description: "CSV, XLS, or HUB"
+              enum_ref: "FileTypes"
+            - name: "SheetName"
+              type: "string"
+              required: false
+              description: "Excel sheet name"
+            - name: "OverwriteType"
+              type: "char"
+              required: true
+              description: "O=Overwrite, A=Add"
+              enum_ref: "OverwriteTypes"
+            - name: "UseJournalEntries"
+              type: "boolean"
+              required: false
+              description: "Use journal entry grouping"
+            - name: "GenerateExtraRows"
+              type: "boolean"
+              required: false
+              description: "Generate PLBAL/PLINC balancing rows"
+            - name: "CSVSeparator"
+              type: "char"
+              required: "if FileType=CSV"
+            - name: "DecimalSeparator"
+              type: "char"
+              required: "if FileType=CSV"
+            - name: "ThousandSeparator"
+              type: "char"
+              required: false
+            - name: "TextQuote"
+              type: "char"
+              required: "if FileType=CSV"
+            - name: "PackageID"
+              type: "string"
+              required: "if FileType=HUB"
+              description: "Hub package identifier"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example_csv:
+            json: |
+              {
+                "_t": "ImportAdjustments_Upload",
+                "FileType": "CSV",
+                "OverwriteType": "O",
+                "UseJournalEntries": false,
+                "GenerateExtraRows": true,
+                "CSVSeparator": ";",
+                "DecimalSeparator": ".",
+                "TextQuote": "\""
+              }
+          example_hub:
+            json: |
+              {
+                "_t": "ImportAdjustments_Upload",
+                "FileType": "HUB",
+                "PackageID": "ADJ_2024_Q4",
+                "OverwriteType": "A",
+                "UseJournalEntries": true
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+          errors:
+            - pattern: "FileIsNeeded"
+              cause: "File not uploaded"
+
+      - name: "ImportAdjustments_Process"
+        description: |
+          Processes validated adjustment file into journal entries.
+          Validates PLBAL/PLINC accounts if generating extra rows.
+        access_right: "ImportAdjustments_Process"
+        async: false
+        job_triggered: "ImportAdjustmentsJob (JOBTYPE.PROCESSING)"
+
+        request:
+          _t: "ImportAdjustments_Process"
+          parameters:
+            - name: "GenerateExtraRows"
+              type: "boolean"
+              required: false
+              description: "Generate PLBAL/PLINC balancing rows"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportAdjustments_Process",
+                "GenerateExtraRows": true
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+          errors:
+            - pattern: "GenerateExtraRowsNoPLBAL"
+              cause: "PLBAL specific account not configured"
+            - pattern: "GenerateExtraRowsNoPLINC"
+              cause: "PLINC specific account not configured"
+
+      - name: "ImportAdjustments_GetAdjustmentsPackageIdsCodeDescription"
+        description: |
+          Returns Hub adjustment package IDs for autocomplete.
+          Queries HubAdjustmentsIn staging table.
+        access_right: null
+        async: true
+
+        request:
+          _t: "ImportAdjustments_GetAdjustmentsPackageIdsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportAdjustments_GetAdjustmentsPackageIdsCodeDescription",
+                "code": "ADJ%",
+                "maxRows": 20
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+
+  # ============================================================================
+  # IMPORT EXCHANGE RATES HANDLERS
+  # ============================================================================
+  import_exchange_rates_handlers:
+    description: |
+      Endpoints for importing exchange rates from files and external APIs.
+      Source: Sigma.Mona.WebApplication/Screens/ImportExchangeRates/ImportExchangeRatesService.cs
+
+    handlers:
+      - name: "ImportExchangeRates_PreviewAndValidate"
+        description: |
+          Previews and validates exchange rate data from multiple sources.
+          Supports CSV/XLS upload and external APIs (ECB, NBS, MAS).
+          Returns preview data and validation errors.
+          For API sources, generates error report PDF if validation fails.
+        access_right: "ImportExchangeRates_Upload"
+        async: true
+
+        request:
+          _t: "ImportExchangeRates_PreviewAndValidate"
+          parameters:
+            - name: "DataSourceType"
+              type: "enum"
+              required: true
+              description: "CSV, XLS, SDMX_ECB, SDMX_NBS, or FSX_MAS"
+              enum_ref: "DataSourceTypes"
+            - name: "Currency"
+              type: "string"
+              required: true
+              description: "Target reference currency code"
+            - name: "PeriodYear"
+              type: "integer"
+              required: "if API source"
+              description: "Year for API data retrieval"
+            - name: "PeriodMonth"
+              type: "string"
+              required: false
+              description: "Month (MM format) for API data"
+            - name: "FromCurrencies"
+              type: "array<string>"
+              required: "if SDMX_NBS"
+              description: "Source currency codes to retrieve"
+            - name: "SheetName"
+              type: "string"
+              required: false
+              description: "Excel sheet name"
+            - name: "CSVSeparator"
+              type: "char"
+              required: "if DataSourceType=CSV"
+            - name: "DecimalSeparator"
+              type: "char"
+              required: "if DataSourceType=CSV"
+            - name: "ThousandSeparator"
+              type: "char"
+              required: false
+            - name: "TextQuote"
+              type: "char"
+              required: "if DataSourceType=CSV"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example_csv:
+            json: |
+              {
+                "_t": "ImportExchangeRates_PreviewAndValidate",
+                "DataSourceType": "CSV",
+                "Currency": "EUR",
+                "CSVSeparator": ";",
+                "DecimalSeparator": ".",
+                "TextQuote": "\""
+              }
+          example_api:
+            json: |
+              {
+                "_t": "ImportExchangeRates_PreviewAndValidate",
+                "DataSourceType": "SDMX_ECB",
+                "Currency": "EUR",
+                "PeriodYear": 2024,
+                "PeriodMonth": "12"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              nullable: true
+              description: "Job ID (for CSV/XLS only)"
+            SessionID:
+              type: "integer"
+              description: "Import session ID"
+            FileName:
+              type: "string"
+              nullable: true
+              description: "Error report file name (if validation errors)"
+            FileUrl:
+              type: "string"
+              nullable: true
+              description: "Error report download URL"
+          warnings:
+            - pattern: "ImportExchangerates_ChangeBaseCurrency"
+              cause: "Currency doesn't match current reference currency"
+          errors:
+            - pattern: "ImportExchangerates_PeriodWithNoData"
+              cause: "Period is current or future month (no complete data)"
+            - pattern: "ImportExchangerates_ECB_MinimumPeriod"
+              cause: "Period before ECB minimum date"
+            - pattern: "ImportExchangerates_MAS_MinimumPeriod"
+              cause: "Period before MAS minimum date"
+
+      - name: "ImportExchangeRates_GetPreviewData"
+        description: |
+          Retrieves preview data from validated exchange rate import.
+          Returns rows with currencies, rates, and validation errors.
+        access_right: "ImportExchangeRates_Upload"
+        async: true
+
+        request:
+          _t: "ImportExchangeRates_GetPreviewData"
+          parameters:
+            - name: "DataSourceType"
+              type: "enum"
+              required: true
+              enum_ref: "DataSourceTypes"
+            - name: "SessionID"
+              type: "integer"
+              required: true
+              description: "Import session from PreviewAndValidate"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportExchangeRates_GetPreviewData",
+                "DataSourceType": "CSV",
+                "SessionID": 12345
+              }
+
+        response:
+          success:
+            ExchangeRates:
+              type: "array<ExchangeRateRowDetail>"
+              description: "Preview rows with rates and errors"
+
+      - name: "ImportExchangeRates_Import"
+        description: |
+          Imports validated exchange rates into currency rate tables.
+          Processes data from TmpImportExchangeRates staging table.
+        access_right: "ImportExchangeRates_Process"
+        async: true
+        job_triggered: "ImportExRateJob (JOBTYPE.PROCESSING)"
+
+        request:
+          _t: "ImportExchangeRates_Import"
+          parameters:
+            - name: "DataSourceType"
+              type: "enum"
+              required: true
+              enum_ref: "DataSourceTypes"
+            - name: "SessionID"
+              type: "integer"
+              required: true
+              description: "Import session from PreviewAndValidate"
+            - name: "TargetCurrency"
+              type: "string"
+              required: false
+              description: "Override target currency"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportExchangeRates_Import",
+                "DataSourceType": "SDMX_ECB",
+                "SessionID": 12345,
+                "TargetCurrency": "EUR"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+
+      - name: "ImportExchangeRates_ExportExcelFile"
+        description: |
+          Exports exchange rate data from external API to Excel file.
+          Does not import into system, only generates downloadable file.
+          Useful for auditing API data before import.
+        access_right: "ImportExchangeRates_Process"
+        async: true
+
+        request:
+          _t: "ImportExchangeRates_ExportExcelFile"
+          parameters:
+            - name: "DataSourceType"
+              type: "enum"
+              required: true
+              description: "SDMX_ECB, SDMX_NBS, or FSX_MAS only"
+              enum_ref: "DataSourceTypes"
+            - name: "Currency"
+              type: "string"
+              required: true
+              description: "Target reference currency"
+            - name: "PeriodYear"
+              type: "integer"
+              required: true
+            - name: "PeriodMonth"
+              type: "string"
+              required: false
+            - name: "FromCurrencies"
+              type: "array<string>"
+              required: "if SDMX_NBS"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportExchangeRates_ExportExcelFile",
+                "DataSourceType": "SDMX_ECB",
+                "Currency": "EUR",
+                "PeriodYear": 2024,
+                "PeriodMonth": "11"
+              }
+
+        response:
+          success:
+            FileName:
+              type: "string"
+              description: "Generated Excel file name"
+            FileUrl:
+              type: "string"
+              description: "Download URL"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    gl_data_import_workflow:
+      name: "GL Data Import Workflow"
+      description: "Import general ledger data from file or Hub"
+      steps:
+        - step: 1
+          name: "Upload File or Select Package"
+          description: "Upload CSV/XLS or specify Hub PackageID"
+          client_side: true
+
+        - step: 2
+          name: "Parse and Validate"
+          handler: "ImportData_ImportFile or ImportData_ImportHub"
+          purpose: "Validate file structure and data formats"
+          job_monitoring: true
+
+        - step: 3
+          name: "Review Available Companies"
+          handler: "ImportData_GetAvailableCompanies"
+          purpose: "See companies detected in file"
+
+        - step: 4
+          name: "Select Companies to Import"
+          description: "User selects which companies to process"
+          client_side: true
+
+        - step: 5
+          name: "Process Import"
+          handler: "ImportData_Process"
+          purpose: "Load data into company bundles"
+          job_monitoring: true
+
+        - step: 6
+          name: "Verify Imported Data"
+          handler: "BundleStandard_GetDataEntry"
+          source: "api-data-entry-endpoints.yaml"
+          purpose: "Review imported amounts in data entry"
+
+    adjustment_import_workflow:
+      name: "Adjustment Import Workflow"
+      description: "Import adjustment journal entries"
+      steps:
+        - step: 1
+          name: "Upload File or Select Package"
+          description: "Upload CSV/XLS or specify Hub PackageID"
+          client_side: true
+
+        - step: 2
+          name: "Parse and Validate"
+          handler: "ImportAdjustments_Upload"
+          parameters:
+            OverwriteType: "O or A"
+            UseJournalEntries: "true/false"
+            GenerateExtraRows: "true/false"
+          purpose: "Validate adjustment file structure"
+          job_monitoring: true
+
+        - step: 3
+          name: "Process Adjustments"
+          handler: "ImportAdjustments_Process"
+          purpose: "Create adjustment journals"
+          job_monitoring: true
+
+        - step: 4
+          name: "Review Journals"
+          handler: "Journal_GetJournals"
+          source: "api-adjustment-endpoints.yaml"
+          purpose: "Verify imported adjustments"
+
+    exchange_rate_import_workflow:
+      name: "Exchange Rate Import Workflow"
+      description: "Import exchange rates from files or external APIs"
+      steps:
+        - step: 1
+          name: "Select Data Source"
+          description: "Choose CSV/XLS upload or API source (ECB/NBS/MAS)"
+          client_side: true
+
+        - step: 2
+          name: "Preview and Validate"
+          handler: "ImportExchangeRates_PreviewAndValidate"
+          parameters:
+            Currency: "EUR"
+            PeriodYear: 2024
+            PeriodMonth: "12"
+          purpose: "Retrieve and validate rate data"
+
+        - step: 3
+          name: "Review Preview Data"
+          handler: "ImportExchangeRates_GetPreviewData"
+          purpose: "Inspect rates and validation errors"
+
+        - step: 4
+          name: "Import Rates"
+          handler: "ImportExchangeRates_Import"
+          purpose: "Load rates into currency rate tables"
+          job_monitoring: true
+
+        - step: 5
+          name: "Verify Rates"
+          handler: "Currency_GetExchangeRates"
+          source: "api-currency-endpoints.yaml"
+          purpose: "Confirm imported rates"
+
+    api_export_workflow:
+      name: "API Exchange Rate Export Workflow"
+      description: "Export API data to Excel without importing"
+      steps:
+        - step: 1
+          name: "Export to Excel"
+          handler: "ImportExchangeRates_ExportExcelFile"
+          parameters:
+            DataSourceType: "SDMX_ECB"
+            Currency: "EUR"
+            PeriodYear: 2024
+            PeriodMonth: "12"
+          purpose: "Download API data as Excel file"
+
+        - step: 2
+          name: "Download File"
+          description: "Download generated Excel file"
+          client_side: true
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_VIEW_IMPORTDATA_COMPANIES"
+      description: "Returns companies detected in parsed import file"
+      called_by: "ImportData_GetAvailableCompanies"
+
+    - name: "P_SYS_IMPORTEXCHANGERATE_INSERT"
+      description: "Creates TmpImportExchangeRate record"
+      called_by: "ImportExchangeRatesService"
+
+    - name: "P_SYS_IMPORTEXCHANGERATE_MAPPINGS_INSERT"
+      description: "Creates TmpImportExchangeRateDetails record"
+      called_by: "ImportExchangeRatesService"
+
+    - name: "P_SYS_IMPORTEXCHANGERATE_MAPPINGS"
+      description: "Validates exchange rate data and matches currencies"
+      called_by: "ImportExchangeRatesService"
+
+  # ============================================================================
+  # JOB TYPES
+  # ============================================================================
+  background_jobs:
+    ImportDataJob:
+      description: "Processes GL/budget/forecast data imports"
+      file: "Sigma.Mona.Jobs/Database/ImportDataJob.cs"
+      stages:
+        - name: "PARSING"
+          value: 1
+          description: "Parse and validate file structure"
+        - name: "PROCESSING"
+          value: 2
+          description: "Process validated data into bundles"
+        - name: "IMPORT_HUB"
+          value: 3
+          description: "Import from Hub staging tables"
+
+    ImportAdjustmentsJob:
+      description: "Processes adjustment journal imports"
+      file: "Sigma.Mona.Jobs/Database/ImportAdjustmentsJob.cs"
+      stages:
+        - name: "PARSING"
+          value: 1
+          description: "Parse and validate adjustment file"
+        - name: "PROCESSING"
+          value: 2
+          description: "Create adjustment journals"
+        - name: "IMPORT_PROCESS_HUB"
+          value: 3
+          description: "Import adjustments from Hub"
+
+    ImportExRateJob:
+      description: "Processes exchange rate imports"
+      file: "Sigma.Mona.Jobs/Database/ImportExRateJob.cs"
+      stages:
+        - name: "PARSING"
+          value: 1
+          description: "Parse and validate rate data"
+        - name: "PROCESSING"
+          value: 2
+          description: "Load rates into currency tables"
+
+  # ============================================================================
+  # STAGING TABLES
+  # ============================================================================
+  staging_tables:
+    HubDataIn:
+      description: "Staging table for Hub GL data import"
+      key_fields:
+        - CustomerCode
+        - PackageID
+        - Company
+        - Account
+        - Period
+
+    HubAdjustmentsIn:
+      description: "Staging table for Hub adjustment import"
+      key_fields:
+        - CustomerCode
+        - PackageID
+        - JournalCode
+        - JournalEntry
+
+    TmpImportExchangeRates:
+      description: "Temporary table for exchange rate import session"
+      key_fields:
+        - TmpImportExchangeRateID
+        - SessionID
+        - ReferenceCurrCode
+
+    TmpImportExchangeRateDetails:
+      description: "Temporary table for exchange rate rows"
+      key_fields:
+        - TmpImportExchangeRateDetailsID
+        - TmpImportExchangeRateID
+        - RowNr
+
+    ImportDatas:
+      description: "Import data session tracking"
+      key_fields:
+        - SessionID
+        - ImportExportStructureID
+        - FileName
+
+    ImportAdjustments:
+      description: "Import adjustment session tracking"
+      key_fields:
+        - SessionID
+        - FileName
+        - FileType
+
+  # ============================================================================
+  # EXTERNAL API INTEGRATIONS
+  # ============================================================================
+  external_apis:
+    SDMX_ECB:
+      name: "European Central Bank SDMX API"
+      description: "Retrieves exchange rates from ECB"
+      service_class: "Sigma.SDMX.SdmxService"
+      minimum_period: "1999-01"
+      url_config: "KeyImportExchangeRatesFromECB_URL"
+
+    SDMX_NBS:
+      name: "National Bank of Serbia SDMX API"
+      description: "Retrieves exchange rates from NBS"
+      service_class: "Sigma.SDMX.NBSAPIService"
+      url_config: "KeyImportExchangeRatesFromNBS_URL"
+
+    FSX_MAS:
+      name: "Monetary Authority of Singapore API"
+      description: "Retrieves exchange rates from MAS"
+      service_class: "Sigma.SDMX.MASAPIService"
+      minimum_period: "1981-01"
+      url_config: "KeyImportExchangeRatesFromMAS_URL"
+      api_key_config:
+        - KeyImportExchangeRatesFromMAS_EndOfPeriodAPIKey
+        - KeyImportExchangeRatesFromMAS_AveragePeriodAPIKey
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/ImportData/ImportDataService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ImportAdjustments/ImportAdjustmentsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ImportExchangeRates/ImportExchangeRatesService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ImportExportStructure/ImportExportStructureServices.cs"
+    handler_count: 12
+    purpose: |
+      Enable AI agents to orchestrate data import workflows including:
+      - Importing GL, budget, and forecast data from multiple sources
+      - Importing adjustment journal entries
+      - Importing exchange rates from files and external APIs (ECB, NBS, MAS)
+      - Managing import structures and field mappings
+      - Job-based asynchronous processing with progress monitoring
+      - Hub/staging table integration for system-to-system data flows
+
+      Data import is critical for:
+      - Loading external financial data into consolidation system
+      - Automated data refresh from source systems
+      - Exchange rate updates from central banks
+      - Adjustment entry bulk loading
+      - Integration with ERP and accounting systems

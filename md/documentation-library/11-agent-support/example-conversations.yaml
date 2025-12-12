@@ -1,0 +1,1143 @@
+# Example Conversation Transcripts for Financial Consolidation Agent
+# Purpose: Demonstrate proper knowledge base usage through sample multi-turn conversations
+# Version: 1.0
+
+example_conversations:
+  name: "Financial Consolidation Agent Example Conversations"
+  version: "1.0"
+  description: "Sample multi-turn conversations showing proper knowledge base usage patterns"
+
+  # ============================================================
+  # CONVERSATION 1: DECISION-FIRST PATTERN
+  # Scenario: Determine consolidation method and add subsidiary
+  # ============================================================
+  conversation_1:
+    id: "CONV-001"
+    title: "Adding a New Subsidiary with Method Determination"
+    pattern: "Decision-First"
+    files_used: ["DT-METHOD", "WF-ADDSUB", "TMPL-CONFIG", "RULES-VAL"]
+    complexity: "Medium"
+    turns: 6
+
+    transcript:
+      - turn: 1
+        role: "user"
+        message: "We just acquired 45% of TechCorp. How do I add them to consolidation?"
+
+      - turn: 2
+        role: "agent"
+        intent_classification:
+          primary_intent: "DO"
+          secondary_intent: "DECIDE"
+          entities: ["ownership", "consolidation_method"]
+        files_consulted: ["DT-METHOD"]
+        thinking: |
+          User wants to add a new company (DO intent) but first needs method determination (DECIDE).
+          Following Decision-First pattern from agent-integration-patterns.yaml.
+          45% ownership requires method decision before workflow execution.
+        message: |
+          I'll help you add TechCorp to consolidation. First, let me determine the appropriate consolidation method.
+
+          **Method Determination (45% ownership):**
+
+          Based on consolidation-method-decision.yaml:
+          1. Control percentage: 45% (< 50%)
+          2. Is this a joint arrangement? (Please confirm)
+          3. Do you have board control or other de facto control indicators?
+
+          **Preliminary Assessment:**
+          With 45% ownership and no special circumstances, this would typically be **Equity Method (E)** per IAS 28, as 45% is within the 20-50% significant influence range.
+
+          **Questions to confirm:**
+          - Is TechCorp a joint venture or joint operation?
+          - Do you have board majority or other control indicators?
+
+      - turn: 3
+        role: "user"
+        message: "No, it's not a joint venture. We don't have board control - just significant influence through our ownership stake."
+
+      - turn: 4
+        role: "agent"
+        files_consulted: ["DT-METHOD", "WF-ADDSUB"]
+        context_update:
+          entity:
+            target_company:
+              name: "TechCorp"
+              ownership_percentage: 45
+              consolidation_method: "E"
+          workflow:
+            active_workflow: "WF-ADDSUB"
+            current_step: 0
+        message: |
+          **Method Confirmed: Equity Method (E)**
+
+          Per IAS 28, 45% ownership with significant influence but no control = Equity Method.
+
+          Now I'll guide you through adding TechCorp using workflow-add-subsidiary.yaml:
+
+          ---
+          **Workflow: Add Subsidiary**
+          **Method: Equity Method (E)**
+
+          **Prerequisites (verify these first):**
+          - [ ] ConsoID exists and is not locked
+          - [ ] TechCorp's local currency is defined in the system
+          - [ ] Parent company (your company) exists with method G
+
+          **Step 1: Gather Company Information**
+          Please provide:
+          - Company Code (e.g., "TECHCORP")
+          - Company Name
+          - Local Currency Code
+          - Country Code
+
+          Ready to proceed?
+
+      - turn: 5
+        role: "user"
+        message: "Code: TECH01, Name: TechCorp Inc., Currency: USD, Country: US. Prerequisites are met."
+
+      - turn: 6
+        role: "agent"
+        files_consulted: ["WF-ADDSUB", "TMPL-CONFIG", "RULES-VAL"]
+        context_update:
+          workflow:
+            current_step: 2
+            step_outputs:
+              step_1:
+                company_code: "TECH01"
+                company_name: "TechCorp Inc."
+                currency: "USD"
+                country: "US"
+        message: |
+          **Step 2: Create Company Record**
+
+          Execute this SQL to create TechCorp:
+          ```sql
+          INSERT INTO TS014C0 (
+              ConsoID, CompanyCode, CompanyName,
+              ConsoMethod, CurrencyCode, CountryCode,
+              IsActive
+          )
+          VALUES (
+              @ConsoID, 'TECH01', 'TechCorp Inc.',
+              'E', 'USD', 'US',
+              1
+          );
+          ```
+
+          **Step 3: Create Ownership Link**
+
+          ```sql
+          INSERT INTO TS015S0 (
+              ConsoID, CompanyID, CompanyOwnedID,
+              FinPercentage, CtrlPercentage
+          )
+          SELECT
+              @ConsoID,
+              (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = @ParentCode),
+              (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'TECH01'),
+              45.00,  -- Financial percentage
+              45.00   -- Control percentage
+          ```
+
+          **Verification Query:**
+          ```sql
+          SELECT c.CompanyCode, c.ConsoMethod, o.FinPercentage
+          FROM TS014C0 c
+          LEFT JOIN TS015S0 o ON c.CompanyID = o.CompanyOwnedID
+          WHERE c.CompanyCode = 'TECH01'
+          -- Expected: TECH01, E, 45.00
+          ```
+
+          **Checkpoint:** Run the verification query. Does it show the expected results?
+
+          **Next Steps after verification:**
+          - Step 4: Map special accounts (EquityProfit, EquityLoss for method E)
+          - Step 5: Enter opening balances
+          - Step 6: Run ownership calculation
+
+    learning_points:
+      - "Decision-First pattern: Method determination before workflow"
+      - "Context maintained across turns (entity, workflow state)"
+      - "Checkpoint verification before proceeding"
+      - "SQL templates adapted to specific method (E)"
+
+  # ============================================================
+  # CONVERSATION 2: TROUBLESHOOTING CASCADE PATTERN
+  # Scenario: Elimination not running correctly
+  # ============================================================
+  conversation_2:
+    id: "CONV-002"
+    title: "Troubleshooting Minority Interest Elimination"
+    pattern: "Troubleshooting Cascade"
+    files_used: ["RULES-ERROR", "RULES-VAL", "REF-ELIM", "TEST-FRAMEWORK"]
+    complexity: "High"
+    turns: 8
+
+    transcript:
+      - turn: 1
+        role: "user"
+        message: "S085 minority interest elimination is giving wrong results. The NCI on the balance sheet doesn't match what I calculated manually."
+
+      - turn: 2
+        role: "agent"
+        intent_classification:
+          primary_intent: "TROUBLESHOOT"
+          entities: ["elimination", "error"]
+        files_consulted: ["RULES-ERROR"]
+        thinking: |
+          User reports elimination error. Following Troubleshooting Cascade pattern.
+          S085 = P_CONSO_ELIM_MINORITYINTEREST.
+          Need to diagnose: ownership %, special accounts, elimination order.
+        message: |
+          I'll help diagnose the S085 minority interest issue.
+
+          **Initial Diagnostic Questions:**
+          1. What is the expected NCI amount vs. actual?
+          2. Which subsidiary is affected?
+          3. Is this for balance sheet NCI, P&L NCI, or both?
+
+          **Quick Check - Run this diagnostic:**
+          ```sql
+          -- Check ownership percentages
+          SELECT
+              c.CompanyCode,
+              c.ConsoMethod,
+              o.FinPercentage,
+              o.CtrlPercentage,
+              (100 - o.FinPercentage) AS Expected_NCI_Pct
+          FROM TS014C0 c
+          JOIN TS015S0 o ON c.CompanyID = o.CompanyOwnedID
+          WHERE c.ConsoMethod = 'G'
+            AND c.ConsoID = @ConsoID
+          ORDER BY c.CompanyCode;
+          ```
+
+          What does this show for the affected subsidiary?
+
+      - turn: 3
+        role: "user"
+        message: "The subsidiary is SubCo (80% owned). Expected NCI is 20% of equity = $200,000. But the system shows $180,000. The query shows FinPercentage = 80, so Expected_NCI_Pct = 20."
+
+      - turn: 4
+        role: "agent"
+        files_consulted: ["RULES-VAL", "TEST-FRAMEWORK"]
+        context_update:
+          error:
+            error_type: "S085_AMOUNT_MISMATCH"
+            expected: 200000
+            actual: 180000
+            difference: 20000
+            company: "SubCo"
+            ownership: 80
+        message: |
+          **Ownership looks correct.** $20,000 difference (10% of expected) suggests a calculation issue.
+
+          **Diagnostic Step 2: Check equity base amount**
+          ```sql
+          -- What equity amount is S085 using?
+          SELECT
+              SUM(CASE WHEN FlowID IN (SELECT FlowID WHERE FlowCode = 'CLO')
+                  THEN Amount ELSE 0 END) AS Total_Equity
+          FROM TD021S0
+          WHERE ConsoID = @ConsoID
+            AND CompanyID = (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'SubCo')
+            AND AccountID IN (SELECT AccountID FROM TS002S0 WHERE AccountType = 'E')  -- Equity accounts
+          ```
+
+          **Also check: Is there an indirect ownership path?**
+          ```sql
+          -- Check for multi-tier ownership
+          SELECT * FROM TS015S0
+          WHERE CompanyOwnedID = (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'SubCo')
+          ```
+
+          Run these and let me know:
+          1. Total equity for SubCo
+          2. How many ownership rows exist for SubCo
+
+      - turn: 5
+        role: "user"
+        message: "Total equity is $1,000,000. There's only one ownership row (direct from parent). But wait - I notice there's also a 10% holding from another subsidiary called HoldCo."
+
+      - turn: 6
+        role: "agent"
+        files_consulted: ["RULES-VAL#OWN-007", "REF-ELIM"]
+        thinking: |
+          Multi-tier ownership detected! Parent owns SubCo directly (80%), and HoldCo
+          (presumably a subsidiary) also owns SubCo (10%). This is an indirect holding situation.
+          The effective minority = 100% - (direct + indirect through HoldCo).
+        message: |
+          **Root cause identified: Multi-tier ownership structure**
+
+          You have:
+          - Parent → SubCo: 80% direct
+          - HoldCo → SubCo: 10%
+
+          **Critical Question:** What is Parent's ownership of HoldCo?
+
+          If Parent owns HoldCo (e.g., 100%), then:
+          - Parent's effective ownership of SubCo = 80% + (100% × 10%) = 90%
+          - True NCI = 10% = $100,000
+
+          If Parent owns HoldCo at 80%:
+          - Parent's effective ownership of SubCo = 80% + (80% × 10%) = 88%
+          - True NCI = 12% = $120,000
+
+          **The $180,000 suggests the system calculated 18% NCI.**
+          This would occur if Parent owns HoldCo at 80%:
+          - Direct to SubCo: 80%
+          - Indirect via HoldCo: partially counted
+
+          **Run this to verify effective ownership:**
+          ```sql
+          EXEC P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES @ConsoID = @ConsoID, @Debug = 1
+
+          -- Then check:
+          SELECT CompanyCode, GroupPercentage, MinorPercentage
+          FROM V_OWNERSHIP_EFFECTIVE
+          WHERE CompanyCode = 'SubCo'
+          ```
+
+      - turn: 7
+        role: "user"
+        message: "You're right! Parent owns HoldCo at 100%. The effective ownership shows Group = 90%, Minor = 10%. But TS015S0 only has the 80% direct link, not the 10% from HoldCo."
+
+      - turn: 8
+        role: "agent"
+        files_consulted: ["RULES-ERROR#FAIL-002", "TMPL-CONFIG"]
+        resolution:
+          root_cause: "Missing ownership link in TS015S0"
+          fix: "Add HoldCo → SubCo ownership record"
+        message: |
+          **Resolution: Missing Ownership Link**
+
+          The ownership structure is incomplete. Add the missing link:
+
+          ```sql
+          -- Add HoldCo → SubCo ownership
+          INSERT INTO TS015S0 (
+              ConsoID, CompanyID, CompanyOwnedID,
+              FinPercentage, CtrlPercentage
+          )
+          SELECT
+              @ConsoID,
+              (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'HoldCo'),
+              (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'SubCo'),
+              10.00,
+              10.00;
+          ```
+
+          **Then recalculate:**
+          ```sql
+          -- Recalculate ownership
+          EXEC P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES @ConsoID = @ConsoID
+
+          -- Re-run eliminations
+          EXEC P_CONSO_ELIM @ConsoID = @ConsoID, @ElimCode = 'S085'
+          ```
+
+          **Verify the fix:**
+          ```sql
+          SELECT CompanyCode, GroupPercentage, MinorPercentage
+          FROM V_OWNERSHIP_EFFECTIVE
+          WHERE CompanyCode = 'SubCo'
+          -- Expected: Group = 90%, Minor = 10%
+
+          -- Check NCI amount
+          SELECT SUM(Amount) FROM TD022S0
+          WHERE ElimCode = 'S085' AND CompanyCode = 'SubCo'
+          -- Expected: $100,000 (10% of $1M equity)
+          ```
+
+          **Prevention:** Always verify complete ownership structure when companies have multiple shareholders. Use validation rule OWN-005 to check for missing indirect links.
+
+    learning_points:
+      - "Troubleshooting Cascade: systematic diagnosis across files"
+      - "Multi-tier ownership affects NCI calculation"
+      - "Context maintained with error details"
+      - "Resolution includes verification and prevention"
+
+  # ============================================================
+  # CONVERSATION 3: PLAYBOOK ORCHESTRATION PATTERN
+  # Scenario: Complete acquisition with goodwill
+  # ============================================================
+  conversation_3:
+    id: "CONV-003"
+    title: "Processing Business Acquisition with Goodwill"
+    pattern: "Playbook Orchestration"
+    files_used: ["PB-SCENARIOS#acquisition", "DT-METHOD", "WF-ACQUIRE", "TMPL-CONFIG", "RULES-VAL"]
+    complexity: "High"
+    turns: 10
+
+    transcript:
+      - turn: 1
+        role: "user"
+        message: "We're acquiring 100% of TargetCo for $5 million cash. The fair value of net assets is $4.2 million. How do I process this?"
+
+      - turn: 2
+        role: "agent"
+        intent_classification:
+          primary_intent: "DO"
+          entities: ["acquisition", "goodwill"]
+        files_consulted: ["PB-SCENARIOS#acquisition", "DT-METHOD"]
+        thinking: |
+          Complex acquisition scenario. Using Playbook Orchestration pattern.
+          100% ownership = Global Integration (G).
+          Goodwill = $5M - $4.2M = $800K.
+          Following acquisition_playbook from business-scenario-playbooks.yaml.
+        message: |
+          I'll guide you through this acquisition using our acquisition playbook.
+
+          **Acquisition Summary:**
+          - Purchase Price: $5,000,000
+          - Fair Value of Net Assets: $4,200,000
+          - **Goodwill: $800,000** (Purchase Price - FV Net Assets)
+          - Ownership: 100% → **Global Integration (G)**
+
+          ---
+          **ACQUISITION PLAYBOOK - Phase 1: Method Determination**
+
+          ✓ Ownership: 100% (≥ 50% control threshold)
+          ✓ Method: Global Integration (G) per IFRS 10
+          ✓ Goodwill treatment: Recognize per IFRS 3
+
+          **Phase 1 Complete.** Proceeding to Phase 2.
+
+          ---
+          **Phase 2: Entity Setup**
+
+          Please provide:
+          1. Company Code for TargetCo (e.g., "TARGET01")
+          2. Acquisition Date
+          3. TargetCo's local currency
+          4. Your parent company code
+
+      - turn: 3
+        role: "user"
+        message: "Code: TGT01, Acquisition Date: 2024-01-15, Currency: USD, Parent: PARENT01"
+
+      - turn: 4
+        role: "agent"
+        files_consulted: ["WF-ADDSUB", "TMPL-CONFIG"]
+        context_update:
+          playbook:
+            active_playbook: "acquisition"
+            current_phase: 2
+            decision_results:
+              method: "G"
+              ownership: 100
+              goodwill: 800000
+          entity:
+            target_company:
+              code: "TGT01"
+              name: "TargetCo"
+              acquisition_date: "2024-01-15"
+              currency: "USD"
+              purchase_price: 5000000
+              fv_net_assets: 4200000
+        message: |
+          **Phase 2: Entity Setup - Executing**
+
+          **Step 2.1: Create Company Record**
+          ```sql
+          INSERT INTO TS014C0 (
+              ConsoID, CompanyCode, CompanyName,
+              ConsoMethod, CurrencyCode,
+              AcquisitionDate, IsActive
+          )
+          VALUES (
+              @ConsoID, 'TGT01', 'TargetCo',
+              'G', 'USD',
+              '2024-01-15', 1
+          );
+          ```
+
+          **Step 2.2: Create Ownership Link (100%)**
+          ```sql
+          INSERT INTO TS015S0 (
+              ConsoID, CompanyID, CompanyOwnedID,
+              FinPercentage, CtrlPercentage
+          )
+          SELECT
+              @ConsoID,
+              (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'PARENT01'),
+              (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'TGT01'),
+              100.00, 100.00;
+          ```
+
+          **Step 2.3: Verify Setup**
+          ```sql
+          SELECT c.CompanyCode, c.ConsoMethod, c.AcquisitionDate, o.FinPercentage
+          FROM TS014C0 c
+          JOIN TS015S0 o ON c.CompanyID = o.CompanyOwnedID
+          WHERE c.CompanyCode = 'TGT01'
+          -- Expected: TGT01, G, 2024-01-15, 100.00
+          ```
+
+          **Checkpoint:** Execute the above and confirm TGT01 is set up correctly.
+
+      - turn: 5
+        role: "user"
+        message: "Done. TGT01 shows up correctly with method G and 100% ownership."
+
+      - turn: 6
+        role: "agent"
+        files_consulted: ["WF-ACQUIRE", "TMPL-CONFIG"]
+        context_update:
+          playbook:
+            current_phase: 3
+            phase_checkpoints: ["phase_2_complete"]
+        message: |
+          ✓ **Phase 2 Complete**
+
+          ---
+          **Phase 3: Opening Balance Entry**
+
+          Enter TargetCo's balance sheet at fair value as of acquisition date (2024-01-15).
+
+          **Key items to enter:**
+          | Account Type | Fair Value Amount |
+          |--------------|-------------------|
+          | Assets | (Your FV asset values) |
+          | Liabilities | (Your FV liability values) |
+          | **Net Assets** | **$4,200,000** |
+
+          **Important:**
+          - Enter amounts at FAIR VALUE, not book value
+          - Use Flow = "ACQ" (Acquisition) or your acquisition flow code
+          - All amounts in local currency (USD)
+
+          Once balances are entered, confirm and we'll proceed to goodwill calculation.
+
+      - turn: 7
+        role: "user"
+        message: "Opening balances entered. Total assets $6M, total liabilities $1.8M, net assets $4.2M as expected."
+
+      - turn: 8
+        role: "agent"
+        files_consulted: ["WF-ACQUIRE", "TMPL-CONFIG#user_elimination"]
+        context_update:
+          playbook:
+            current_phase: 4
+            phase_checkpoints: ["phase_2_complete", "phase_3_complete"]
+        message: |
+          ✓ **Phase 3 Complete** - Balances verified ($4.2M net assets)
+
+          ---
+          **Phase 4: Goodwill Calculation and Recording**
+
+          **Goodwill Calculation per IFRS 3:**
+          ```
+          Purchase Consideration:           $5,000,000
+          Less: Fair Value of Net Assets:  ($4,200,000)
+          = Goodwill:                        $800,000
+          ```
+
+          **Record Goodwill via User Elimination:**
+
+          First, create the elimination header:
+          ```sql
+          INSERT INTO TS070S0 (
+              ConsoID, ElimCode, ElimName, ElimLevel,
+              JournalType, IsActive
+          )
+          VALUES (
+              @ConsoID, 'U001', 'TGT01 Acquisition Goodwill', 100,
+              'INIT', 1  -- Initial acquisition journal
+          );
+          ```
+
+          Then create the journal entries:
+          ```sql
+          DECLARE @ElimID INT = SCOPE_IDENTITY();
+
+          -- Debit: Goodwill
+          INSERT INTO TS071S0 (ElimID, AccountCode, DebitCredit, Amount, CompanyCode)
+          SELECT @ElimID,
+                 (SELECT AccountCode FROM TS010C0 WHERE SpecialAccountCode = 'GOODWILL'),
+                 'D', 800000, 'TGT01';
+
+          -- Credit: Investment elimination (equity offset)
+          INSERT INTO TS071S0 (ElimID, AccountCode, DebitCredit, Amount, CompanyCode)
+          SELECT @ElimID,
+                 (SELECT AccountCode FROM TS010C0 WHERE SpecialAccountCode = 'EquityVal'),
+                 'C', 800000, 'TGT01';
+          ```
+
+          **Execute user elimination:**
+          ```sql
+          EXEC P_CONSO_ELIM_USER @ConsoID = @ConsoID, @ElimCode = 'U001'
+          ```
+
+          Confirm when goodwill is recorded.
+
+      - turn: 9
+        role: "user"
+        message: "Goodwill elimination created and executed. I can see the $800K goodwill on the consolidated balance sheet."
+
+      - turn: 10
+        role: "agent"
+        files_consulted: ["PB-SCENARIOS#acquisition", "RULES-VAL"]
+        context_update:
+          playbook:
+            current_phase: 6
+            phase_checkpoints: ["phase_2_complete", "phase_3_complete", "phase_4_complete", "phase_5_complete"]
+        message: |
+          ✓ **Phase 4 Complete** - Goodwill recorded ($800K)
+
+          ---
+          **Phase 5 & 6: Final Validation**
+
+          **Run Consolidation:**
+          ```sql
+          EXEC P_CONSO_CALCULATE_BUNDLE_INTEGRATION @ConsoID = @ConsoID
+          ```
+
+          **Final Validation Checklist:**
+
+          ```sql
+          -- 1. Verify goodwill on consolidated B/S
+          SELECT SUM(Amount) AS Goodwill
+          FROM TD021S0 d
+          JOIN TS002S0 a ON d.AccountID = a.AccountID
+          WHERE a.SpecialAccountCode = 'GOODWILL'
+            AND d.ConsoID = @ConsoID
+          -- Expected: $800,000
+
+          -- 2. Verify investment eliminated
+          SELECT SUM(Amount) AS Investment
+          FROM TD021S0 d
+          JOIN TS002S0 a ON d.AccountID = a.AccountID
+          WHERE a.SpecialAccountCode = 'EquityVal'
+            AND d.CompanyID = (SELECT CompanyID FROM TS014C0 WHERE CompanyCode = 'PARENT01')
+          -- Expected: Investment in TGT01 eliminated
+
+          -- 3. Balance sheet balances
+          SELECT
+              SUM(CASE WHEN AccountType = 'A' THEN Amount ELSE 0 END) AS Assets,
+              SUM(CASE WHEN AccountType IN ('L','E') THEN Amount ELSE 0 END) AS LiabEquity
+          FROM TD021S0 d
+          JOIN TS002S0 a ON d.AccountID = a.AccountID
+          WHERE d.ConsoID = @ConsoID
+          -- Expected: Assets = Liabilities + Equity
+          ```
+
+          ---
+          **ACQUISITION COMPLETE**
+
+          | Item | Status |
+          |------|--------|
+          | Method Determination | ✓ Global (G) |
+          | Entity Setup | ✓ TGT01 created |
+          | Opening Balances | ✓ $4.2M net assets |
+          | Goodwill | ✓ $800K recorded |
+          | Consolidation | ✓ Complete |
+
+          **Post-Acquisition Reminders:**
+          - Annual goodwill impairment testing required (IAS 36)
+          - Document purchase price allocation
+          - Intercompany eliminations will apply going forward
+
+    learning_points:
+      - "Playbook Orchestration: multi-phase execution with checkpoints"
+      - "IFRS 3 goodwill calculation demonstrated"
+      - "User elimination for acquisition accounting"
+      - "Final validation queries to confirm success"
+
+  # ============================================================
+  # CONVERSATION 4: CONFIGURATION ASSEMBLY PATTERN
+  # Scenario: Setting up intercompany elimination
+  # ============================================================
+  conversation_4:
+    id: "CONV-004"
+    title: "Configuring Intercompany Elimination"
+    pattern: "Configuration Assembly"
+    files_used: ["DT-ELIM", "WF-ICELIM", "TMPL-CONFIG", "REF-ELIM", "RULES-VAL"]
+    complexity: "Medium"
+    turns: 6
+
+    transcript:
+      - turn: 1
+        role: "user"
+        message: "I need to set up intercompany elimination for receivables and payables between our subsidiaries."
+
+      - turn: 2
+        role: "agent"
+        intent_classification:
+          primary_intent: "CONFIGURE"
+          entities: ["elimination", "intercompany"]
+        files_consulted: ["DT-ELIM", "WF-ICELIM"]
+        message: |
+          I'll help you configure IC elimination for receivables/payables.
+
+          **Elimination Code Selection (from DT-ELIM):**
+          - S001: Basic intercompany elimination (recommended for simple netting)
+          - S005: Full netting with unmatched balance handling
+
+          **For receivables/payables, S001 is typically used.**
+
+          **Configuration Requirements:**
+          1. IC receivable account (e.g., "IC_AR")
+          2. IC payable account (e.g., "IC_AP")
+          3. Both accounts must have IC partner flag enabled
+
+          What are your IC account codes?
+
+      - turn: 3
+        role: "user"
+        message: "IC receivables: 1310, IC payables: 2110"
+
+      - turn: 4
+        role: "agent"
+        files_consulted: ["TMPL-CONFIG", "REF-ELIM"]
+        context_update:
+          workflow:
+            active_workflow: "WF-ICELIM"
+            current_step: 2
+        message: |
+          **Step 1: Configure Account Flags**
+
+          First, ensure both accounts are flagged for IC elimination:
+          ```sql
+          -- Enable IC flag on receivables
+          UPDATE TS002S0
+          SET FlagIC = 1, FlagICPartner = 1
+          WHERE AccountCode = '1310';
+
+          -- Enable IC flag on payables
+          UPDATE TS002S0
+          SET FlagIC = 1, FlagICPartner = 1
+          WHERE AccountCode = '2110';
+          ```
+
+          **Step 2: Create Elimination Header**
+          ```sql
+          INSERT INTO TS070S0 (
+              ConsoID, ElimCode, ElimName, ElimLevel,
+              JournalType, IsActive, IsSystemElim
+          )
+          VALUES (
+              @ConsoID, 'S001', 'IC AR/AP Elimination', 10,
+              'IC', 1, 1  -- System elimination
+          );
+          ```
+
+          **Step 3: Create Elimination Detail (Account Pair)**
+          ```sql
+          DECLARE @ElimID INT = (SELECT ElimID FROM TS070S0 WHERE ElimCode = 'S001' AND ConsoID = @ConsoID);
+
+          -- Receivables side
+          INSERT INTO TS071S0 (ElimID, AccountCode, DebitCredit, PartnerAccountCode)
+          VALUES (@ElimID, '1310', 'C', '2110');
+
+          -- Payables side
+          INSERT INTO TS071S0 (ElimID, AccountCode, DebitCredit, PartnerAccountCode)
+          VALUES (@ElimID, '2110', 'D', '1310');
+          ```
+
+          Execute these statements and confirm.
+
+      - turn: 5
+        role: "user"
+        message: "Done. The elimination is configured."
+
+      - turn: 6
+        role: "agent"
+        files_consulted: ["RULES-VAL#IC-001", "REF-ELIM"]
+        message: |
+          **Step 4: Verification**
+
+          ```sql
+          -- Test the elimination
+          EXEC P_CONSO_ELIM @ConsoID = @ConsoID, @ElimCode = 'S001', @Debug = 1
+
+          -- Verify IC balances eliminated
+          SELECT
+              c1.CompanyCode AS Company,
+              c2.CompanyCode AS Partner,
+              a.AccountCode,
+              SUM(d.Amount) AS Amount
+          FROM TD021S0 d
+          JOIN TS014C0 c1 ON d.CompanyID = c1.CompanyID
+          JOIN TS014C0 c2 ON d.PartnerID = c2.CompanyID
+          JOIN TS002S0 a ON d.AccountID = a.AccountID
+          WHERE a.AccountCode IN ('1310', '2110')
+            AND d.ConsoID = @ConsoID
+          GROUP BY c1.CompanyCode, c2.CompanyCode, a.AccountCode
+          -- IC balances should net to zero after elimination
+          ```
+
+          **Validation Rule IC-001:**
+          ```sql
+          -- Check IC pairs net to zero
+          SELECT
+              AccountCode,
+              SUM(Amount) AS NetBalance
+          FROM TD022S0  -- Elimination journals
+          WHERE ElimCode = 'S001'
+          GROUP BY AccountCode
+          -- Expected: Net balance = 0 for each account
+          ```
+
+          **Configuration Complete!**
+
+          | Component | Status |
+          |-----------|--------|
+          | Account flags | ✓ IC enabled |
+          | Elimination header | ✓ S001 created |
+          | Account pairs | ✓ 1310 ↔ 2110 |
+          | Test run | ✓ Verify above |
+
+          The S001 elimination will now automatically process IC receivables/payables during consolidation.
+
+    learning_points:
+      - "Configuration Assembly: template + workflow + validation"
+      - "IC elimination requires account flags AND elimination config"
+      - "Partner account linking for proper netting"
+      - "Validation queries to verify configuration"
+
+  # ============================================================
+  # CONVERSATION 5: WORKFLOW-DRIVEN PATTERN
+  # Scenario: Year-end close process
+  # ============================================================
+  conversation_5:
+    id: "CONV-005"
+    title: "Year-End Consolidation Close"
+    pattern: "Workflow-Driven"
+    files_used: ["WF-YEAREND", "PB-SCENARIOS#year_end_close", "RULES-VAL", "DT-CURRENCY"]
+    complexity: "High"
+    turns: 8
+
+    transcript:
+      - turn: 1
+        role: "user"
+        message: "We need to close the December 2024 consolidation. What's the process?"
+
+      - turn: 2
+        role: "agent"
+        intent_classification:
+          primary_intent: "DO"
+          entities: ["period_close"]
+        files_consulted: ["WF-YEAREND", "RULES-VAL#PC-*"]
+        message: |
+          I'll guide you through the year-end close using workflow-year-end-close.yaml.
+
+          **Year-End Close Workflow - December 2024**
+
+          ---
+          **Phase 1: Pre-Close Validation**
+
+          Run these prerequisite checks:
+
+          ```sql
+          -- PC-001: All companies consolidated
+          SELECT CompanyCode, Status_Bundles
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsoMethod IN ('G', 'P')
+            AND Status_Bundles != 0
+          -- Expected: No rows (all status = 0)
+
+          -- PC-002: Exchange rates complete
+          SELECT DISTINCT c.CurrencyCode
+          FROM TS014C0 c
+          WHERE c.ConsoID = @ConsoID
+            AND NOT EXISTS (
+                SELECT 1 FROM TS017R0 r
+                WHERE r.CurrencyFrom = c.CurrencyCode
+                  AND r.Period = '2024-12'
+            )
+          -- Expected: No rows (all currencies have rates)
+
+          -- PC-003: No calculation errors
+          SELECT * FROM T_CONSO_ERROR_LOG
+          WHERE ConsoID = @ConsoID AND Period = '2024-12'
+          -- Expected: No error rows
+          ```
+
+          Run these checks and report any issues.
+
+      - turn: 3
+        role: "user"
+        message: "PC-001 passed. PC-002 shows one subsidiary (JapanCo) missing December rates. PC-003 is clean."
+
+      - turn: 4
+        role: "agent"
+        files_consulted: ["DT-CURRENCY", "TMPL-CONFIG"]
+        context_update:
+          workflow:
+            active_workflow: "WF-YEAREND"
+            current_step: 1
+            blockers: ["missing_exchange_rates"]
+        message: |
+          **Blocker Found: Missing Exchange Rates for JapanCo**
+
+          Before proceeding, add the missing rates:
+
+          ```sql
+          -- Add December 2024 rates for JPY
+          INSERT INTO TS017R0 (
+              ConsoID, CurrencyFrom, CurrencyTo, Period,
+              RateType, ExchangeRate
+          )
+          VALUES
+              -- Closing rate (CC)
+              (@ConsoID, 'JPY', 'USD', '2024-12', 'CC', 0.0067),
+              -- Average rate (AC)
+              (@ConsoID, 'JPY', 'USD', '2024-12', 'AC', 0.0068),
+              -- Month-end rate (MC)
+              (@ConsoID, 'JPY', 'USD', '2024-12', 'MC', 0.0067);
+          ```
+
+          **Verify rates loaded:**
+          ```sql
+          SELECT * FROM TS017R0
+          WHERE CurrencyFrom = 'JPY' AND Period = '2024-12'
+          -- Should show 3 rate types
+          ```
+
+          Once rates are loaded, re-run PC-002 and confirm it passes.
+
+      - turn: 5
+        role: "user"
+        message: "Rates added. PC-002 now passes - all currencies have December rates."
+
+      - turn: 6
+        role: "agent"
+        files_consulted: ["WF-YEAREND", "REF-CONSO"]
+        context_update:
+          workflow:
+            current_step: 2
+            blockers: []
+        message: |
+          ✓ **Phase 1 Complete** - All prerequisites passed
+
+          ---
+          **Phase 2: Run Consolidation**
+
+          Execute full consolidation for December 2024:
+
+          ```sql
+          EXEC P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+              @ConsoID = @ConsoID,
+              @Period = '2024-12',
+              @Debug = 0
+          ```
+
+          This will:
+          1. Currency translation (JapanCo and other foreign subs)
+          2. Ownership calculation
+          3. All eliminations (IC, Participation, Dividend, MI)
+          4. Final aggregation
+
+          **Monitor Progress:**
+          ```sql
+          SELECT CompanyCode, Status_Bundles, LastConsoDate
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+          ORDER BY LastConsoDate DESC
+          ```
+
+          Confirm when consolidation completes.
+
+      - turn: 7
+        role: "user"
+        message: "Consolidation completed. All companies show Status_Bundles = 0 and LastConsoDate = today."
+
+      - turn: 8
+        role: "agent"
+        files_consulted: ["RULES-VAL#BS-*", "WF-YEAREND"]
+        context_update:
+          workflow:
+            current_step: 5
+        message: |
+          ✓ **Phase 2 Complete** - Consolidation executed
+
+          ---
+          **Phase 3: Final Validation**
+
+          ```sql
+          -- BS-001: Balance sheet balances
+          SELECT
+              SUM(CASE WHEN AccountType = 'A' THEN Amount ELSE 0 END) AS Assets,
+              SUM(CASE WHEN AccountType = 'L' THEN Amount ELSE 0 END) AS Liabilities,
+              SUM(CASE WHEN AccountType = 'E' THEN Amount ELSE 0 END) AS Equity,
+              SUM(CASE WHEN AccountType = 'A' THEN Amount ELSE 0 END) -
+              SUM(CASE WHEN AccountType IN ('L','E') THEN Amount ELSE 0 END) AS Difference
+          FROM TD021S0 d
+          JOIN TS002S0 a ON d.AccountID = a.AccountID
+          WHERE d.ConsoID = @ConsoID AND d.Period = '2024-12'
+          -- Expected: Difference = 0
+
+          -- BS-002: Elimination journals balance
+          SELECT ElimCode,
+              SUM(DebitAmount) AS Debits,
+              SUM(CreditAmount) AS Credits,
+              SUM(DebitAmount) - SUM(CreditAmount) AS Difference
+          FROM TD022S0
+          WHERE ConsoID = @ConsoID AND Period = '2024-12'
+          GROUP BY ElimCode
+          -- Expected: All differences = 0
+
+          -- IC-003: IC balances eliminated
+          SELECT SUM(Amount) AS IC_Balance
+          FROM TD021S0 d
+          JOIN TS002S0 a ON d.AccountID = a.AccountID
+          WHERE a.FlagIC = 1
+            AND d.ConsoID = @ConsoID
+            AND d.Period = '2024-12'
+          -- Expected: 0 or immaterial
+          ```
+
+          **Phase 4: Lock Period**
+
+          Once validation passes:
+          ```sql
+          UPDATE T_CONSO_PERIOD
+          SET IsLocked = 1, LockedDate = GETDATE(), LockedBy = @UserID
+          WHERE ConsoID = @ConsoID AND Period = '2024-12'
+          ```
+
+          ---
+          **YEAR-END CLOSE COMPLETE**
+
+          | Phase | Status |
+          |-------|--------|
+          | Pre-Close Validation | ✓ All checks passed |
+          | Consolidation Run | ✓ Complete |
+          | Final Validation | ✓ (Run above queries) |
+          | Period Lock | □ Execute when ready |
+
+          **Post-Close Actions:**
+          - Generate consolidation package reports
+          - Document any manual adjustments
+          - Archive elimination journals
+          - Prepare for audit review
+
+    learning_points:
+      - "Workflow-Driven: step-by-step with dynamic blockers"
+      - "Prerequisites must pass before consolidation"
+      - "Validation queries at multiple checkpoints"
+      - "Period locking prevents accidental changes"
+
+  # ============================================================
+  # CONVERSATION 6: QUICK DECISION (SIMPLE)
+  # Scenario: Simple rate type question
+  # ============================================================
+  conversation_6:
+    id: "CONV-006"
+    title: "Quick Rate Type Decision"
+    pattern: "Decision Response"
+    files_used: ["DT-CURRENCY"]
+    complexity: "Low"
+    turns: 2
+
+    transcript:
+      - turn: 1
+        role: "user"
+        message: "What exchange rate should I use for fixed assets?"
+
+      - turn: 2
+        role: "agent"
+        intent_classification:
+          primary_intent: "DECIDE"
+          entities: ["currency"]
+        files_consulted: ["DT-CURRENCY"]
+        message: |
+          **Rate Type for Fixed Assets: Historical Rate (HR)**
+
+          Per IAS 21 and currency-translation-decision.yaml:
+
+          | Item | Rate Type | Code | Rationale |
+          |------|-----------|------|-----------|
+          | Fixed Assets | Historical | HR | Non-monetary asset, use rate at acquisition |
+
+          **Configuration:**
+          ```sql
+          -- Check/set fixed asset account rate type
+          SELECT AccountCode, RateType1, FlagHistoricalRate1
+          FROM TS002S0
+          WHERE AccountType = 'A' AND AccountCode LIKE '1%'  -- Asset accounts
+          -- Fixed assets should have FlagHistoricalRate1 = 1
+          ```
+
+          **Note:** If using **Temporal Method** (hyperinflationary economy), fixed assets also use historical rate. Only under Current Rate Method are non-monetary items sometimes translated at closing rate for simplicity.
+
+          **Related:** See exchange-rate-types.md for complete rate type reference.
+
+    learning_points:
+      - "Simple questions get direct answers"
+      - "Include configuration verification"
+      - "Reference documentation for deep dives"
+
+  # ============================================================
+  # SUMMARY AND METRICS
+  # ============================================================
+  summary:
+    total_conversations: 6
+    patterns_demonstrated:
+      - pattern: "Decision-First"
+        conversation: "CONV-001"
+        description: "Method determination before workflow execution"
+
+      - pattern: "Troubleshooting Cascade"
+        conversation: "CONV-002"
+        description: "Systematic error diagnosis across multiple files"
+
+      - pattern: "Playbook Orchestration"
+        conversation: "CONV-003"
+        description: "Multi-phase complex scenario execution"
+
+      - pattern: "Configuration Assembly"
+        conversation: "CONV-004"
+        description: "Building configuration from templates and workflows"
+
+      - pattern: "Workflow-Driven"
+        conversation: "CONV-005"
+        description: "Step-by-step execution with dynamic blocker handling"
+
+      - pattern: "Decision Response"
+        conversation: "CONV-006"
+        description: "Simple direct answer for quick questions"
+
+    files_coverage:
+      decision_trees: ["DT-METHOD", "DT-ELIM", "DT-CURRENCY"]
+      workflows: ["WF-ADDSUB", "WF-ACQUIRE", "WF-ICELIM", "WF-YEAREND"]
+      references: ["REF-ELIM", "REF-CONSO"]
+      rules: ["RULES-VAL", "RULES-ERROR"]
+      templates: ["TMPL-CONFIG"]
+      playbooks: ["PB-SCENARIOS"]
+      testing: ["TEST-FRAMEWORK"]
+
+    conversation_metrics:
+      total_turns: 40
+      avg_turns_per_conversation: 6.7
+      sql_examples_provided: 45
+      validation_queries: 25
+      checkpoints_demonstrated: 12
+
+    key_techniques:
+      - "Intent classification at conversation start"
+      - "Context maintenance across turns"
+      - "Checkpoint verification before proceeding"
+      - "SQL templates adapted to specific scenarios"
+      - "Validation queries at each step"
+      - "Resolution with prevention guidance"
+      - "Learning points summarized per conversation"
+
+    usage_guidance: |
+      These example conversations demonstrate how an agent should:
+
+      1. **Classify Intent**: Identify DO, DECIDE, TROUBLESHOOT, CONFIGURE, or VERIFY intent
+      2. **Select Pattern**: Choose appropriate orchestration pattern
+      3. **Maintain Context**: Track entity, workflow, playbook, and error state
+      4. **Provide SQL**: Adapt templates to specific parameters
+      5. **Verify Progress**: Use checkpoints and validation queries
+      6. **Document Learning**: Summarize key takeaways
+
+      Use these transcripts as:
+      - Training data for agent fine-tuning
+      - Validation examples for testing agent responses
+      - Reference patterns for implementing new conversations

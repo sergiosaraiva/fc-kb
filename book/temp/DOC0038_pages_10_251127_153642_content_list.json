@@ -1,0 +1,1471 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/eb8c1ddae6cca10bb76b9c598f5371f0ab272ec96959b5a735d216e8e8e04113.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A (Year 3)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital 200</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves  (22)</td></tr><tr><td>Cash</td><td>210</td><td>Result 32</td></tr></table>",
+        "bbox": [
+            110,
+            118,
+            618,
+            187
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "How to book professional consolidation adjustments during these three years?",
+        "bbox": [
+            108,
+            213,
+            870,
+            232
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The adjustments - Year 1",
+        "text_level": 2,
+        "bbox": [
+            110,
+            247,
+            391,
+            263
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 1, we proceed as follows:",
+        "bbox": [
+            110,
+            279,
+            540,
+            295
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/6e39e66e9ff56650a073709593c385d0b04d806fa1a1d95173f7915225be8d72.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Asset (Acq. Val.)</td><td>110(b)</td><td>Capital</td><td>200</td></tr><tr><td>Asset (Deprec.)</td><td>(11)(a)</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>(10)c)</td><td>Result</td><td>(11)(a)</td></tr><tr><td></td><td></td><td></td><td>(11)(b)</td></tr><tr><td></td><td></td><td></td><td>(10)(c)</td></tr><tr><td></td><td></td><td></td><td>(10)</td></tr></table>",
+        "bbox": [
+            110,
+            308,
+            875,
+            456
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Book an adjustment depreciation of 10 based on the correct value of 100 for that asset",
+        "bbox": [
+            105,
+            471,
+            875,
+            503
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The adjustments = Year 2",
+        "text_level": 2,
+        "bbox": [
+            108,
+            519,
+            389,
+            535
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 2, we are in an on going process and we proceed as follows",
+        "bbox": [
+            108,
+            551,
+            870,
+            569
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/56f74da309fc25c14101036671a1b434756fcd6e48ce8c50d089fd407db880f6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"4\">A (Year 2)</td><td rowspan=\"8\">Adjustment (a): Reverse the statutory depreciations of 22, one impacting the P&amp;L for 11 and the other one impacting the Reserves for 11</td></tr><tr><td rowspan=\"2\">Asset (Acq. Val.)</td><td rowspan=\"2\">(b)</td><td>110</td><td>Capital</td><td>200</td></tr><tr><td>(10)</td><td></td><td></td></tr><tr><td rowspan=\"5\">Asset (Deprec.)</td><td rowspan=\"2\">(a)</td><td>22</td><td>Reserves</td><td>(11)</td></tr><tr><td>(22)</td><td></td><td></td></tr><tr><td rowspan=\"3\">(c)</td><td rowspan=\"3\">(20)</td><td rowspan=\"3\">Result</td><td>(a) 11</td></tr><tr><td>(b) (10)</td></tr><tr><td>(c) (10)</td></tr><tr><td rowspan=\"3\">Cash</td><td rowspan=\"3\" colspan=\"2\">90</td><td rowspan=\"3\">Result</td><td>(11)</td><td rowspan=\"3\">Adjustment (b): Eliminate the secondary costs of 10 and book them in Reserves</td></tr><tr><td>(a) 11</td></tr><tr><td>(c) (10)</td></tr></table>",
+        "bbox": [
+            110,
+            598,
+            870,
+            743
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Book depreciations of 20, 10 impacting the P&L and the other 10 impacting the Reserves",
+        "bbox": [
+            105,
+            759,
+            868,
+            793
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "To say it in other words, we carry forward in Year 2 to Reserves all adjustments impacting the P&L in Year 1. We usually speak about carry forward of historical adjustments.",
+        "bbox": [
+            105,
+            808,
+            870,
+            857
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            64,
+            362,
+            80
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The adjustments = Year 3",
+        "text_level": 2,
+        "bbox": [
+            109,
+            116,
+            392,
+            134
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 3, that asset is not in company A accounts any more. The problem is that the sale has been done based on a statutory value of 88 which is different from the value in consolidation of 80. For a given price of 120, the statutory profit is 32 and the consolidation profit is 40.",
+        "bbox": [
+            109,
+            149,
+            877,
+            216
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here are the adjustments.",
+        "bbox": [
+            109,
+            230,
+            367,
+            247
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/2580533b572d641becf1a187cefc2f642b228dda20d079591893e2a20f8faa87.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"4\">A (Year 3)</td><td>Adjustment (z): Reverse the</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>200</td><td></td><td>sale which has been done on</td></tr><tr><td>(z)</td><td>110</td><td></td><td></td><td></td><td>the basis of values not</td></tr><tr><td>(b)</td><td>(10)</td><td></td><td></td><td></td><td>acceptable from a</td></tr><tr><td>(d)</td><td>(100)</td><td></td><td></td><td></td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>(22)</td><td></td><td>consolidation point of view</td></tr><tr><td>(z)</td><td>(22)</td><td></td><td>(a)</td><td>22</td><td></td></tr><tr><td>(a)</td><td>22</td><td></td><td>(b)</td><td>(10)</td><td></td></tr><tr><td>(c)</td><td>(20)</td><td></td><td>(c)</td><td>(20)</td><td>Adjustment (a): Carry</td></tr><tr><td>(d)</td><td>20</td><td></td><td></td><td></td><td>forward the historical</td></tr><tr><td>Cash</td><td>210</td><td>Result</td><td>32</td><td></td><td>adjustment (a) of Year 2</td></tr><tr><td>(z)</td><td>(120)</td><td></td><td>(z)</td><td>(32)</td><td>related to the reverse of the</td></tr><tr><td>(d)</td><td>120</td><td></td><td>(d)</td><td>40</td><td>depreciation of 22</td></tr></table>",
+        "bbox": [
+            113,
+            257,
+            875,
+            444
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): Carry forward the historical adjustment (b) of Year 2 related to the reverse of the secondary costs of 10",
+        "bbox": [
+            109,
+            454,
+            875,
+            488
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Carry forwards the historical adjustment (c) of Year 2 related to the consolidation depreciation of 20",
+        "bbox": [
+            109,
+            502,
+            873,
+            536
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): Make the sale in consolidation, based on a price of 120 and a net value of 80, giving a profit of 40.",
+        "bbox": [
+            109,
+            552,
+            875,
+            584
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Finally, we can see that assets and cash accounts are impacted for zero, the P&L for a profit of 8 and the Reserves for a debit of 8.",
+        "bbox": [
+            109,
+            600,
+            854,
+            633
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The final adjustments could just have been",
+        "bbox": [
+            109,
+            647,
+            531,
+            663
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/3097145938141a4faee698051bb48e10bd3293ce2977df93eb60df0e3ee784ae.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>8</td><td></td></tr><tr><td>Result</td><td></td><td>8</td></tr></table>",
+        "bbox": [
+            341,
+            678,
+            660,
+            730
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "but a little bit more difficult to understand for inexperienced people.",
+        "bbox": [
+            109,
+            744,
+            767,
+            761
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Now, it can be interesting to compare the impact from a statutory point of view, supposing we adjust nothing, or from a consolidation point of view. Here is the summary.",
+        "bbox": [
+            109,
+            776,
+            875,
+            826
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            68,
+            854,
+            86
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/315dc629a230ef23c00d7ed1316310fe2a0a022a31e4f55d260b4a2abe8291fc.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year1</td><td>Year2</td><td>Year3</td><td>Total</td></tr><tr><td>Statutory</td><td>(11)</td><td>(11)</td><td>32</td><td>10</td></tr><tr><td>Consolidation</td><td>(20)</td><td>(10)</td><td>40</td><td>10</td></tr></table>",
+        "bbox": [
+            206,
+            115,
+            772,
+            168
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Over these three years, the net impact on P&L is 10 and the net impact after consolidation adjustments in also 10. Was it worth to adjust that situation? No considering the total impact, but yes if we look at individual years where the profit is quite different.",
+        "bbox": [
+            109,
+            181,
+            873,
+            245
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Did we have the choice to adjust or not. No if group's rules are clear and a materiality level is defined. This example indeed shows that it is quite a lot of work to adjust such situation. That's the reason why we recommend defining, in accordance with Auditors, realistic thresholds.",
+        "bbox": [
+            109,
+            245,
+            875,
+            311
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Over that difficulty, one should keep in mind that as soon as an asset has been adjusted by means of a consolidation adjustment, it is important to verify each year if the concerned asset is still in the accounts of the company.",
+        "bbox": [
+            109,
+            326,
+            873,
+            377
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In our example, if the reporting system doesn't ask such question, the risk is to continue to book consolidation adjustments for an asset that is no longer in the accounts!",
+        "bbox": [
+            109,
+            389,
+            873,
+            439
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "8.3 Disposal of an asset between two companies, with a group profit",
+        "text_level": 1,
+        "bbox": [
+            109,
+            472,
+            713,
+            519
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 2,
+        "bbox": [
+            109,
+            538,
+            259,
+            557
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Three years ago, company A acquired a tangible asset for a price of 300 depreciated by 30 over a period of 10 years. This year (let's call it Year 1), this asset whose net value is now  \\(210 = 300 - 3^*30\\)  is sold to group company B for a price of 280, giving a gain of 70 for company A. Company B decides to depreciate the asset over the remaining economical period of 7 years with an annual depreciation of  \\(40 = 280 / 7\\) .",
+        "bbox": [
+            109,
+            571,
+            873,
+            669
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "During Year 2, that asset remains in company B and its net value is  \\(200 = 280 - 2 * 40\\) .",
+        "bbox": [
+            109,
+            683,
+            871,
+            715
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Beginning of Year 3, company B decides to sell that asset to  \\(3^{\\text{rd}}\\)  Parties for a price of 260, making a gain of 60.",
+        "bbox": [
+            109,
+            730,
+            871,
+            765
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "What will be the impact of this transaction on the consolidated accounts?",
+        "bbox": [
+            109,
+            778,
+            816,
+            796
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Some questions about the transaction",
+        "text_level": 2,
+        "bbox": [
+            109,
+            811,
+            523,
+            828
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Company A is making a profit of 70 with company B. Supposing that within the same year, B is selling the same asset to a third company C of the same",
+        "bbox": [
+            109,
+            843,
+            871,
+            878
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            62,
+            364,
+            77
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "group, again with a gain, we would conclude this kind of transactions is a marvellous tool to generate profits. Obviously, this cannot be acceptable and consequently must be eliminated. But how?",
+        "bbox": [
+            111,
+            119,
+            875,
+            169
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We can define three approaches to eliminate such group profit (or loss).",
+        "bbox": [
+            111,
+            184,
+            808,
+            201
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The first approach consists in noticing that the transaction is made in the conditions of the market and then it is acceptable not to eliminate the group profit. However we would like to add a comment to this approach. Let's suppose a company having a land acquired a long time ago. This land remained in the accounts at acquisition value. Meanwhile, that land is now close to a highway access and located in a new and well-equipped activity area. The value of that land has been multiplied by three and the disposal to another group company would have two impacts: a huge gain in P&L and a corresponding revaluation of the land. But the transaction being made at market conditions, we eliminate nothing. We think the correct approach would be to eliminate the group profit and, possibly book a revaluation of the land to reflect a correct fair value with an impact in equity, not in the P&L.",
+        "bbox": [
+            111,
+            216,
+            875,
+            409
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The second approach consists in eliminating the profit in company A accounts and eliminating the same amount from the acquisition price in company B accounts. Of course, the statutory depreciation amount must also be adjusted to make it compliant with the adjusted acquisition value. In this approach, we would eliminate the profit in A accounts by booking a \"Deferred income\" account and, in company B accounts, the elimination of the profit in the asset would be done against a \"Deferred expense\" account. Both deferred accounts would be defined as intercompany accounts in order no to appear in the financial consolidated statement. Indeed, this is an internal group transaction that cannot appear in the accounts. Speaking about deferred accounts implies that these accounts must be closed sooner or later. Most of the time, the event will be the disposal of that asset finally to  \\(3^{rd}\\)  Parties. If this event cannot be predictable, the third approach should be used.",
+        "bbox": [
+            111,
+            425,
+            875,
+            634
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The third approach is quite similar to the previous one, but instead of using deferred accounts, we use Reserves accounts. In such case, a particular attention must be drawn because a technical difficulty could arise if companies are not owned at the same financial percentage.",
+        "bbox": [
+            111,
+            649,
+            875,
+            714
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The situation described below will be adjusted, based on the second approach.",
+        "bbox": [
+            111,
+            730,
+            875,
+            763
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            303,
+            71,
+            854,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The adjustments = Year 1",
+        "text_level": 2,
+        "bbox": [
+            110,
+            120,
+            394,
+            137
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 1, companies A and B present the following statutory accounts after having booked the necessary consolidation adjustments.",
+        "bbox": [
+            108,
+            152,
+            875,
+            186
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/b123b89af3df298427a54a441099adb031ca96f462d124012540da2fbf1fd643.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 1)</td><td></td><td colspan=\"4\">B (Year 1)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>1,000</td><td>Asset (Acq. Val.)</td><td>280</td><td>Capital</td><td>500</td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>0</td><td>(b)</td><td>(70)</td><td>Reserves</td><td>0</td><td></td></tr><tr><td></td><td></td><td>Result</td><td>70</td><td>(a)</td><td>(40)</td><td></td><td></td><td></td></tr><tr><td></td><td></td><td>(a)</td><td>(70)</td><td>(c)</td><td>(30)</td><td></td><td></td><td></td></tr><tr><td>Cash</td><td>1,070</td><td>Def. Income/B</td><td>70</td><td>Cash</td><td>220</td><td>Result</td><td>(40)</td><td></td></tr><tr><td></td><td></td><td>(a)</td><td></td><td>Def. Expense/A</td><td>(a)</td><td></td><td>40</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>(b)</td><td>(c)</td><td></td><td>(30)</td><td></td></tr></table>",
+        "bbox": [
+            114,
+            200,
+            875,
+            310
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company A adjustment (a): We eliminate the group profit of 70 and transfer it to the Deferred income account, which is intercompany with company B.",
+        "bbox": [
+            108,
+            325,
+            875,
+            359
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustment (a): We reverse the statutory depreciation of 40 which is calculated on an amount not acceptable from a consolidation point of view.",
+        "bbox": [
+            108,
+            373,
+            875,
+            423
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustment (b): The 70 profit which is included in the acquisition value is reversed against the Deferred Expense account, which is also intercompany with A.",
+        "bbox": [
+            108,
+            436,
+            875,
+            486
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustment (c): And finally, we depreciate the asset for 30.",
+        "bbox": [
+            108,
+            502,
+            809,
+            519
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "If we look at these final adjusted accounts, we find a net value of the asset for 180 and a depreciation in the P&L for 30, just as if this transaction would not have taken place.",
+        "bbox": [
+            108,
+            533,
+            875,
+            583
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The adjustments - Year 2",
+        "text_level": 2,
+        "bbox": [
+            110,
+            598,
+            391,
+            614
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 2, no new transaction happens and the asset is still in company B accounts, but at consolidation level, adjustments of Year 1 must be carried forward into the Year 2 consolidation (historical adjustments carry forward principle).",
+        "bbox": [
+            108,
+            631,
+            875,
+            696
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/e22977b97985c56efa0d5821985dd5d6949f1ab57d9378c622d2f4f88bf9b8c0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 2)</td><td></td><td colspan=\"4\">B (Year 2)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>1,000</td><td>Asset (Acq. Val.)</td><td>280</td><td>Capital</td><td>500</td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>70</td><td>(b)</td><td>(70)</td><td>Reserves</td><td>(40)</td><td></td></tr><tr><td></td><td></td><td>(a)</td><td>(70)</td><td>Asset (Deprec.)</td><td>(80)</td><td>(a)</td><td>40</td><td></td></tr><tr><td></td><td></td><td>Result</td><td>0</td><td>(a)</td><td>80</td><td>(c)</td><td>(30)</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>(c)</td><td>(60)</td><td></td><td></td><td></td></tr><tr><td>Cash</td><td>1,070</td><td>Def. Income/B</td><td>70</td><td>Cash</td><td>220</td><td>Result</td><td>(40)</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>Def. Expense/A</td><td>(a)</td><td>40</td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>(b)</td><td>70</td><td>(c)</td><td>(30)</td><td></td></tr></table>",
+        "bbox": [
+            110,
+            721,
+            870,
+            831
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company A adjustment (a): This adjustment is the same as the one booked in Year 1, with the P&L impact carried forward to Reserves",
+        "bbox": [
+            108,
+            846,
+            870,
+            879
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            65,
+            366,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "page_number",
+        "text": "98",
+        "bbox": [
+            476,
+            923,
+            506,
+            936
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Com~anB adjustment (a): We have to reverse now two depreciations, one impacting the P&L and the other one of Year 1 impacting the Reserves",
+        "bbox": [
+            105,
+            118,
+            875,
+            156
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Com~anB adjustment (b): This adjustment is the same as the one booked in Year 1.",
+        "bbox": [
+            105,
+            168,
+            877,
+            202
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustment (c): We have to depreciate twice the asset on the basis of the consolidation value, one impact of (30) is for the P&L of this year and the other impact of (30) is on the Reserves account.",
+        "bbox": [
+            105,
+            216,
+            877,
+            266
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Behind these adjustments, there are two methodology principles",
+        "bbox": [
+            105,
+            281,
+            741,
+            298
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Each time an adjustment is booked on the P&L, we have to find the same booking on the Reserves next year",
+            "Each time an adjustment is booked on the Reserves, we have to find the same booking on the Reserves next year"
+        ],
+        "bbox": [
+            152,
+            313,
+            875,
+            395
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "otherwise we would get some unjustified variation of reserves.",
+        "bbox": [
+            108,
+            409,
+            718,
+            427
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The adjustments = Year 3",
+        "text_level": 2,
+        "bbox": [
+            108,
+            440,
+            391,
+            458
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 3, the asset is disposed to  \\(3^{\\text{rd}}\\)  Parties. The first idea would be to say that there is nothing else to do. The problem is that the disposal has been done with the statutory net value of the asset but in consolidation we consider another value. So, let's be careful and let's proceed step by step.",
+        "bbox": [
+            105,
+            472,
+            877,
+            540
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/12b4ba3b69329f28fc64bdc6300c2efe94895fbb453f70fa086b09e4209b12ef.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 3)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>1,000</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>70(a) (70)</td></tr><tr><td></td><td></td><td>Result(b)</td><td>0</td></tr><tr><td>Cash</td><td>1,070</td><td>Def. Income/B(a)(b)</td><td>70(a) (70)</td></tr></table>",
+        "bbox": [
+            110,
+            551,
+            489,
+            673
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Company A adjustment (a): This adjustment is again the same as the one booked in Year 2",
+        "bbox": [
+            504,
+            553,
+            875,
+            601
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Com~anvA adjustment (b): Now that the asset has left the group, we can reverse the Deferred income and book it to the P&L. We give the profit",
+        "bbox": [
+            504,
+            617,
+            875,
+            683
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "back to A.",
+        "bbox": [
+            108,
+            683,
+            211,
+            698
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Com~anB adjustment (z): We first reverse the selling transaction because made with statutory amounts. So we find back in the accounts the acquisition value, the cumulated depreciations, the reverse of the cash received and the reverse of the gain on disposal",
+        "bbox": [
+            108,
+            714,
+            480,
+            844
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/70224ba0386f39bb19aebfa0a6e256befc0a7dee741ca79005e5cf77bc8501c0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">B (Year 3)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>500</td></tr><tr><td>(z)</td><td>280</td><td></td><td></td></tr><tr><td>(b)</td><td>(70)</td><td></td><td></td></tr><tr><td>(d)</td><td>(210)</td><td></td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>(80)</td></tr><tr><td>(z)</td><td>(80)</td><td>(a)</td><td>80</td></tr><tr><td>(a)</td><td>80</td><td>(c)</td><td>(60)</td></tr><tr><td>(c)</td><td>(60)</td><td></td><td></td></tr><tr><td>(d)</td><td>60</td><td></td><td></td></tr><tr><td>Cash</td><td>480</td><td>Result</td><td>60</td></tr><tr><td>(z)</td><td>(260)</td><td>(z)</td><td>(60)</td></tr><tr><td>(d)</td><td>260</td><td>(d)</td><td>110</td></tr><tr><td>Def. Expense/A</td><td>(b)</td><td>70</td><td>(e)</td></tr><tr><td>(e)</td><td>(70)</td><td></td><td></td></tr></table>",
+        "bbox": [
+            493,
+            698,
+            875,
+            888
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            302,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustments (a,b,c): These adjustments are just the carried forward of Year 2 adjustments with Reserves impact",
+        "bbox": [
+            104,
+            119,
+            880,
+            151
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustment (d): Then we make the sale with consolidation amounts, giving a gain of 110",
+        "bbox": [
+            104,
+            169,
+            880,
+            201
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Company B adjustment (e): And finally, we have to reverse to P&L the Deferred expense of 70 which is still open in the accounts",
+        "bbox": [
+            104,
+            219,
+            880,
+            251
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "To summarize, we could just book one adjustment in A accounts and another",
+        "bbox": [
+            104,
+            269,
+            880,
+            285
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/e9cf6b8ce896216cf21a4d9dfdbcd41fe6c382365851dcfa1d1f95627fc85fa7.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company A</td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>70</td><td></td></tr><tr><td>Result</td><td></td><td>70</td></tr></table>",
+        "bbox": [
+            109,
+            298,
+            453,
+            351
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "one in B accounts, as follows",
+        "bbox": [
+            107,
+            351,
+            394,
+            366
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/93cdef737c5add0021d350bd55b57d6b4778136ce6e8497940ae817e51a60517.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company B</td><td>Debit</td><td>Credit</td></tr><tr><td>Result</td><td>20</td><td></td></tr><tr><td>Reserves</td><td></td><td>20</td></tr></table>",
+        "bbox": [
+            513,
+            298,
+            856,
+            351
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "but again we would do it with a loss of clarity, excepted if we keep an additional explanation in notes to the accounts.",
+        "bbox": [
+            104,
+            382,
+            880,
+            416
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "To close this example, it can be interesting to compare the P&L impact in case we would have booked no adjustments (approach 1) with the approach 2 developed above. The amounts are summarized hereunder",
+        "bbox": [
+            104,
+            432,
+            880,
+            483
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/c25192a0c64aeb332e1a3e2256af418c87ba7a08f496671424d228a29aaa9444.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Approach 1</td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Total</td></tr><tr><td>Company A</td><td>70</td><td>0</td><td>0</td><td>70</td></tr><tr><td>Company B</td><td>(40)</td><td>(40)</td><td>60</td><td>(20)</td></tr><tr><td>Total</td><td>30</td><td>(40)</td><td>60</td><td>50</td></tr></table>",
+        "bbox": [
+            224,
+            497,
+            794,
+            567
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/ef5bc5934899ded06c42d3e48d7eda9fab115d2118be85e773fe36f05801fa4f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Approach 2</td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Total</td></tr><tr><td>Company A</td><td>0</td><td>0</td><td>70</td><td>70</td></tr><tr><td>Company B</td><td>(30)</td><td>(30)</td><td>40</td><td>(20)</td></tr><tr><td>Total</td><td>(30)</td><td>(30)</td><td>110</td><td>50</td></tr></table>",
+        "bbox": [
+            224,
+            590,
+            792,
+            659
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The total contribution of each company in the P&L over these three years is the same in both approaches: 70 for A and (20) for B. But the contribution for each year is quite different. In fact, in approach 2, profit is taken in P&L only when the asset leaves the group. Before that, the principle of prudence is applied.",
+        "bbox": [
+            104,
+            675,
+            877,
+            756
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Of course, considering these figures and practices, it is important for the company A manager to be aware of these approaches and to specify in his contract on which profit his bonus will be calculated ...",
+        "bbox": [
+            104,
+            771,
+            877,
+            821
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            109,
+            64,
+            366,
+            79
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "8.4 Elimination of stocks margins",
+        "text_level": 1,
+        "bbox": [
+            109,
+            122,
+            653,
+            145
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 2,
+        "bbox": [
+            109,
+            164,
+            260,
+            182
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In most of the industrial groups, some companies are dedicated to supply on the market and make products and some other companies are dedicated to sell these products. In such situation, the normal practice for the industrial companies is to sell the products to the commercial companies, including a benefit called stocks margin. From that point of view, these transactions imply a group profit and, as was explained in the previous section, it should be eliminated. However, we will see that the set of consolidation adjustments differs from the previous one because of the stocks accounts.",
+        "bbox": [
+            113,
+            197,
+            873,
+            325
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For the explanation, let's consider a company A manufacturing some products and selling them to a commercial company B which, in turn, sells these products on the market. We will also suppose that each stock stays in the companies accounts for less than a year.",
+        "bbox": [
+            109,
+            325,
+            873,
+            391
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In Year 1, the group decides for the first time to eliminate stocks margins. Company A sells to company B some stocks for a price of 350 and initially booked for 300, making a stock margin of 50.",
+        "bbox": [
+            109,
+            405,
+            871,
+            455
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In Year 2, company A sells again some stocks to company B for a price of 460 and initially booked for 400, making a stocks margin of 60. The Year 1 stocks bought by company B are no longer in its accounts because sold to the market.",
+        "bbox": [
+            109,
+            468,
+            873,
+            535
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "How do we eliminate these stocks margins?",
+        "bbox": [
+            109,
+            548,
+            544,
+            567
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The adjustments - Year 1",
+        "text_level": 2,
+        "bbox": [
+            109,
+            581,
+            392,
+            597
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We first consider the statutory journal entry (1) booked in company A for the sale of the products to company B. The stocks of 300 are sold for a cash value of 350 generating a stocks margin of 50. Notice that the sales to B for 350 in the P&L are declared as intercompany.",
+        "bbox": [
+            109,
+            613,
+            481,
+            759
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/c80eb5763809704e58d9efd0ddbbb60c46c1c61d99923e4544b404e479fbb740.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Stocks</td><td>300</td><td>Capital</td><td>500</td></tr><tr><td></td><td>(1) (300)</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>200</td><td>Result</td><td>0</td></tr><tr><td></td><td>(1) 350</td><td>(1)</td><td>50</td></tr><tr><td>Purchases</td><td>300</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td></td><td>(1)</td><td>350</td></tr><tr><td>Stocks var.</td><td>(300)</td><td>Stocks var.</td><td>0</td></tr><tr><td>Result</td><td>0</td><td>(1)</td><td>(300)</td></tr><tr><td></td><td>(1) 50</td><td></td><td></td></tr></table>",
+        "bbox": [
+            493,
+            594,
+            878,
+            756
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            304,
+            72,
+            852,
+            90
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In company B accounts, we see a booking (2) of stocks for 350.",
+        "bbox": [
+            110,
+            120,
+            737,
+            137
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/8c455e3b140e5a6b46297960066ad86c97280ddad386cc9e2fbd1da94f103a9b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">B (Year 1)</td></tr><tr><td>Stocks</td><td>0</td><td>Capital</td><td>800</td></tr><tr><td></td><td>(2) 350</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>800</td><td>Result</td><td>0</td></tr><tr><td></td><td>(2) (350)</td><td></td><td></td></tr><tr><td>Purchases/A</td><td>0</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td>(2) 350</td><td></td><td></td></tr><tr><td>Stocks var.</td><td>0</td><td>Stocks var.</td><td>0</td></tr><tr><td></td><td>(2) (350)</td><td></td><td></td></tr><tr><td>Result</td><td>0</td><td></td><td></td></tr></table>",
+        "bbox": [
+            114,
+            165,
+            525,
+            329
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Notice that the Purchases account is also intercompany.",
+        "bbox": [
+            110,
+            344,
+            656,
+            361
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Everything is consistent except the fact that there is a group profit of 50 that has to be eliminated.",
+        "bbox": [
+            110,
+            376,
+            877,
+            409
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here are the consolidation adjustments.",
+        "bbox": [
+            110,
+            424,
+            502,
+            442
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/2ad62656f99b3f22b1bfcd04df23cb1971e533da02dfebc607956d98395566ff.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Stocks</td><td>0</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td></td><td>(a)</td><td>50</td></tr><tr><td>Cash</td><td>550</td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>(a)</td><td>(50)</td></tr><tr><td>Purchases</td><td>300</td><td>Sales/B</td><td>350</td></tr><tr><td></td><td></td><td>(a)</td><td>(50)</td></tr><tr><td>Stocks var.</td><td>(300)</td><td>Stocks var.</td><td>(300)</td></tr><tr><td>Result</td><td>50</td><td></td><td></td></tr><tr><td>(a)</td><td>(50)</td><td></td><td></td></tr></table>",
+        "bbox": [
+            114,
+            453,
+            500,
+            633
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The 50 profit is eliminated by reducing the sales because we consider that the group value of the stocks is 300 instead of 350. Of course, at this moment, we introduce a difference between the two intercompany positions.",
+        "bbox": [
+            512,
+            456,
+            875,
+            569
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The other peculiarity to be indicated is the use of the reserves account. In the previous case we have used",
+        "bbox": [
+            510,
+            585,
+            875,
+            633
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "deferred accounts which were corresponding to what we called the \"Approach 2\". In this section we use 'Approach 3' in order to give a complete overview.",
+        "bbox": [
+            110,
+            633,
+            872,
+            667
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In B accounts, we also consider the group value of the stocks and this is the reason of the credit 50 with a counterpart on the Reserves account again.",
+        "bbox": [
+            108,
+            696,
+            442,
+            778
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Notice that both Reserves accounts are impacted together for a net value of zero if each company A and B is owned at the same financial percentage.",
+        "bbox": [
+            108,
+            793,
+            442,
+            875
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/c9d314b9d084a58cb92dff9b4d37b9a3b8e74b9c8a80e9e5dc69bae071faf5de.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">B (Year 1)</td></tr><tr><td>Stocks</td><td>350</td><td>Capital</td><td>800</td></tr><tr><td></td><td>(b)(50)</td><td>Reserves</td><td>0</td></tr><tr><td></td><td></td><td>(b)(50)</td><td></td></tr><tr><td>Cash</td><td>450</td><td>Result</td><td>0</td></tr><tr><td>Purchases/A</td><td>350</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td>(b)(50)</td><td></td><td></td></tr><tr><td>Stocks var.</td><td>(350)</td><td>Stocks var.</td><td>0</td></tr><tr><td></td><td>(b)</td><td>50</td><td></td></tr><tr><td>Result</td><td>0</td><td></td><td></td></tr></table>",
+        "bbox": [
+            455,
+            693,
+            864,
+            875
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            370,
+            81
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "As the stocks purchased have a value of 300, we have to correct the values in the P&L to be consistent. That's a good point because now intercompany positions are again in line.",
+        "bbox": [
+            103,
+            117,
+            875,
+            168
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The adjustments = Year 2",
+        "text_level": 2,
+        "bbox": [
+            103,
+            183,
+            389,
+            200
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Again, we first consider the statutory journal entry (3) in company A accounts which is similar to the one seen in Year 2.",
+        "bbox": [
+            103,
+            215,
+            872,
+            247
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/bb916bb868fd071dc00772dbba6980fddabc07a1ab4db236f2b0fdc22fbd8bea.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td>Stocks</td><td>400</td><td>Capital</td><td>500</td></tr><tr><td>(3)</td><td>(400)</td><td>Reserves</td><td>50</td></tr><tr><td>Cash</td><td>150</td><td>Result</td><td>0</td></tr><tr><td>(3)</td><td>460</td><td>(3)</td><td>60</td></tr><tr><td>Purchases</td><td>400</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td></td><td>(3)</td><td>460</td></tr><tr><td>Stocks var.</td><td>(400)</td><td>Stocks var.</td><td>0</td></tr><tr><td>Result</td><td>0</td><td>(3)</td><td>(400)</td></tr><tr><td>(3)</td><td>60</td><td></td><td></td></tr></table>",
+        "bbox": [
+            108,
+            263,
+            453,
+            409
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/665e39556f9ac57f927c07f740575f75736bff48bf463dddba87516ce33fc5f9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">B (Year 2)</td></tr><tr><td>Stocks</td><td>0</td><td>Capital     800</td></tr><tr><td></td><td>(4) 460</td><td>Reserves     0</td></tr><tr><td>Cash</td><td>950</td><td>Result    150</td></tr><tr><td></td><td>(4)  (460)</td><td></td></tr><tr><td>Purchases/A</td><td>0</td><td>Sales/B   500</td></tr><tr><td></td><td>(4) 460</td><td></td></tr><tr><td>Stocks var.</td><td>0</td><td>Stocks var. (350)</td></tr><tr><td></td><td>(4)  (460)</td><td></td></tr><tr><td>Result</td><td>150</td><td></td></tr></table>",
+        "bbox": [
+            510,
+            263,
+            875,
+            409
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In B accounts, the statutory journal",
+        "bbox": [
+            103,
+            410,
+            497,
+            425
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "entry (4) is also similar to the one in Year 1. Of course, in the meantime, the stocks bought last year have been completely sold to  \\(3^{rd}\\)  Parties. As we isolate the situation, we can suppose these stocks have generated a profit of 150.",
+        "bbox": [
+            103,
+            425,
+            872,
+            473
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Let's book now the consolidation adjustments.",
+        "bbox": [
+            105,
+            488,
+            559,
+            505
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "No surprise for company A. We find the same consolidation adjustment as the one booked in Year 1, except the stocks margin which is now 60.",
+        "bbox": [
+            103,
+            521,
+            875,
+            555
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/f4740b7cbbb48fcb5c3c7c45c5d5dc9c19ae16347b7fc82db695eb362b750b4a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td rowspan=\"3\">Stocks</td><td rowspan=\"3\">0</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>50</td></tr><tr><td>(c)</td><td>60</td></tr><tr><td rowspan=\"2\">Cash</td><td rowspan=\"2\">610</td><td>Result</td><td>60</td></tr><tr><td>(c)</td><td>(60)</td></tr><tr><td rowspan=\"2\">Purchases</td><td rowspan=\"2\">400</td><td>Sales/B</td><td>460</td></tr><tr><td>(c)</td><td>(60)</td></tr><tr><td>Stocks var.</td><td>(400)</td><td>Stocks var.</td><td>(400)</td></tr><tr><td>Result</td><td>60</td><td></td><td></td></tr><tr><td>(c)</td><td>(60)</td><td></td><td></td></tr></table>",
+        "bbox": [
+            108,
+            565,
+            453,
+            725
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/375f3521142c279521492626c5f7e6eebebeb455b38b96ddfb4dd5062e989178.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">B (Year 2)</td></tr><tr><td>Stocks</td><td>460</td><td>Capital</td><td>800</td></tr><tr><td></td><td>(b)(d)(e)</td><td>(50)Reserves</td><td>0</td></tr><tr><td></td><td></td><td>(b)(e)</td><td>(50)</td></tr><tr><td>Cash</td><td>490</td><td>Result</td><td>150</td></tr><tr><td></td><td></td><td>(d)</td><td>50</td></tr><tr><td>Purchases/A</td><td>460</td><td>Sales/B</td><td>500</td></tr><tr><td></td><td>(e)</td><td>(60)</td><td></td></tr><tr><td>Stocks var.</td><td>(460)</td><td>Stocks var.</td><td>(350)</td></tr><tr><td></td><td>(e)</td><td>60</td><td>(d)</td></tr><tr><td>Result</td><td>150</td><td></td><td></td></tr><tr><td></td><td>(d)</td><td>50</td><td></td></tr></table>",
+        "bbox": [
+            512,
+            567,
+            875,
+            755
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For company B it is a little bit more complicated. First, we have to carry forward the \"historical\" adjustment (b) of Year 1 because it has an impact on the Reserves with another account. But this credit on Stocks account cannot be kept because these stocks have been sold in the meantime. So, we reverse that adjustment by the journal entry (d). You can notice that we improve the",
+        "bbox": [
+            103,
+            772,
+            875,
+            856
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            300,
+            70,
+            851,
+            86
+        ],
+        "page_idx": 9
+    }
+]

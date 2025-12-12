@@ -1,0 +1,1225 @@
+# Code Pattern Library for Technical Designer Agent
+# Version: 1.0
+# Created: 2024-12-04
+# Purpose: Extractable code patterns for code generation in PATH C (Technical Designer)
+#
+# This library contains real patterns extracted from the Prophix.Conso codebase
+# for use in scaffolding new implementations.
+
+metadata:
+  version: "1.0"
+  last_updated: "2024-12-04"
+  total_patterns: 12
+  categories:
+    - message_handlers
+    - stored_procedures
+    - jobs
+    - dtos
+    - tests
+    - database_scripts
+
+# =============================================================================
+# SECTION 1: MESSAGE HANDLER PATTERNS
+# =============================================================================
+
+message_handlers:
+
+  # ---------------------------------------------------------------------------
+  # Pattern 1: EF Message Handler (Recipe 4 - Modern Pattern)
+  # ---------------------------------------------------------------------------
+  ef_handler_read:
+    name: "EF Read Handler (Recipe 4)"
+    use_case: "Query data using Entity Framework with validation"
+    source_reference: "Sigma.Mona.WebApplication/Screens/UserSettings/UserSettingsService.cs"
+    framework: "Entity Framework 6.4.4"
+
+    signature: |
+      internal static async Task {HandlerName}(
+          Business.SessionController helper,
+          EF.MonaDbContext dc,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+
+    template: |
+      /// <summary>
+      /// Message handler for '{HandlerName}'
+      /// </summary>
+      internal static async Task {HandlerName}(
+          Business.SessionController helper,
+          EF.MonaDbContext dc,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+
+          // 1. Access Rights Check
+          await helper.EnsureAccessRight(dc, Business.UserActions.{UserAction});
+
+          // 2. Parse and Validate Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+          var {param1} = validation.ValidateID("{Param1Name}", required: true);
+          var {param2} = validation.ValidateString("{Param2Name}", required: false, nullIfEmpty: true);
+          var {param3} = validation.ValidateBool("{Param3Name}", required: false) ?? false;
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Business Logic / Data Query
+          logHelper.AddLogMessage("Querying data");
+          var query = dc.{EntitySet}
+              .Where(x => x.{FilterProperty} == {param1})
+              {AdditionalFilters};
+
+          var result = await query
+              .Select(x => new {ResponseDTO}
+              {
+                  {PropertyMappings}
+              })
+              .ToListAsync();
+
+          // 4. Return Response
+          responseMessage["{response_key}"] = result;
+      }
+
+    required_usings:
+      - "System.Collections.Generic"
+      - "System.Data.Entity"
+      - "System.Linq"
+      - "System.Threading.Tasks"
+      - "Sigma.Mona.Common.Utility"
+
+    placeholders:
+      - name: "{HandlerName}"
+        description: "Handler method name (e.g., Company_GetCompanies)"
+        example: "Elimination_GetEliminations"
+      - name: "{UserAction}"
+        description: "Access right constant from Business.UserActions"
+        example: "Elimination_View"
+      - name: "{EntitySet}"
+        description: "DbContext entity set name"
+        example: "Eliminations"
+      - name: "{ResponseDTO}"
+        description: "Response DTO class or anonymous type"
+        example: "EliminationDTO"
+
+    validation_patterns:
+      - method: "ValidateID"
+        description: "Validate integer ID parameter"
+        example: "validation.ValidateID(\"ConsoID\", required: true)"
+      - method: "ValidateString"
+        description: "Validate string parameter"
+        example: "validation.ValidateString(\"Code\", required: false, nullIfEmpty: true)"
+      - method: "ValidateBool"
+        description: "Validate boolean parameter"
+        example: "validation.ValidateBool(\"IncludeInactive\", required: false) ?? false"
+      - method: "ValidateConsoCodeExisting"
+        description: "Validate conso code exists"
+        example: "validation.ValidateConsoCodeExisting(dc, helper, \"ConsoCode\", required: true)"
+
+  # ---------------------------------------------------------------------------
+  # Pattern 2: EF Write Handler with Transaction (Recipe 4)
+  # ---------------------------------------------------------------------------
+  ef_handler_write:
+    name: "EF Write Handler with Transaction (Recipe 4)"
+    use_case: "Create/Update/Delete data with transaction management"
+    source_reference: "Sigma.Mona.WebApplication/Screens/UserSecurity/UserSecurityService.cs"
+    framework: "Entity Framework 6.4.4"
+
+    template: |
+      /// <summary>
+      /// Message handler for '{HandlerName}'
+      /// </summary>
+      internal static async Task {HandlerName}(
+          Business.SessionController helper,
+          EF.MonaDbContext dc,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+
+          try
+          {
+              // 1. Access Rights Check
+              await helper.EnsureAccessRight(dc, Business.UserActions.{UserAction});
+
+              // 2. Parse and Validate Parameters
+              logHelper.AddLogMessage("Parsing parameters");
+              var request = helper.GetRequestValue<{RequestDTO}>(nameof({HandlerName}));
+
+              validation
+                  .Required(request.{RequiredProperty1}, nameof(request.{RequiredProperty1}))
+                  .Required(request.{RequiredProperty2}, nameof(request.{RequiredProperty2}));
+
+              if (validation.HasErrors)
+              {
+                  responseMessage["errors"] = validation.Errors;
+                  return;
+              }
+
+              // 3. Transaction Management
+              using (var updateHelper = await helper.CreateUpdateHelper(dc, exclusive: true))
+              {
+                  // 4. Entity Version Verification (if applicable)
+                  if (request.EntityVersion != null)
+                  {
+                      await updateHelper.VerifyEntityVersions(
+                          new[] { new EntityVersionInfo(EntityTypes.{EntityType}, request.{EntityId}, request.EntityVersion) });
+                  }
+
+                  // 5. Business Logic
+                  logHelper.AddLogMessage("Executing business logic");
+                  {BusinessLogic}
+
+                  // 6. Database Operations
+                  var entity = await dc.{EntitySet}.FindAsync(request.{EntityId});
+                  if (entity == null)
+                  {
+                      validation.AddError("{EntityId}", "NotFound");
+                      responseMessage["errors"] = validation.Errors;
+                      return;
+                  }
+
+                  // Update entity properties
+                  {PropertyUpdates}
+
+                  // 7. Audit Logging
+                  var logEntry = EF.Entities.LogModification.NewLogEntry(
+                      customerID: helper.CustomerID,
+                      logGroup: Data.ModificationsLog.LogGroups.{LogGroup},
+                      messageKey: "{LogMessageKey}",
+                      userID: helper.UserID,
+                      logHelper: logHelper);
+                  dc.LogModifications.Add(logEntry);
+
+                  // 8. Increment Entity Version
+                  await updateHelper.IncreaseEntityVersion(EntityTypes.{EntityType}, request.{EntityId});
+
+                  // 9. Commit Transaction
+                  await updateHelper.Complete();
+              }
+
+              // 10. Return Success Response
+              responseMessage["success"] = true;
+          }
+          catch (Exception ex)
+          {
+              helper.LogHelper.AddExceptionToErrors(ex);
+          }
+      }
+
+    key_concepts:
+      - name: "UpdateHelper"
+        description: "Manages transaction scope and entity versioning"
+      - name: "EntityVersion"
+        description: "Optimistic concurrency control"
+      - name: "LogModification"
+        description: "Audit trail for data changes"
+
+  # ---------------------------------------------------------------------------
+  # Pattern 3: LINQ-to-SQL Handler (Legacy Pattern)
+  # ---------------------------------------------------------------------------
+  linq_handler_legacy:
+    name: "LINQ-to-SQL Handler (Legacy)"
+    use_case: "Legacy handlers using DataContext - for reference/migration"
+    source_reference: "Sigma.Mona.WebApplication/Screens/UserSettings/UserSettingsService.cs:105"
+    note: "DEPRECATED - Use EF pattern for new code. Shown for migration reference."
+
+    template: |
+      /// <summary>
+      /// Message handler for '{HandlerName}' (LEGACY - consider migrating to EF)
+      /// </summary>
+      public static void {HandlerName}(
+          Business.SessionController helper,
+          Message requestMessage,
+          Message responseMessage)
+      {
+          var logHelper = helper.LogHelper;
+          var debug = false;
+          var includeLogs = false;
+
+          using (var dc = Business.DAOFactory.CreateDataContext())
+          try
+          {
+              logHelper.AddLogMessage("Received message '" + requestMessage.MessageType() + "'");
+
+              // 1. Access Rights Check
+              helper.EnsureAccessRight(dc, Business.UserActions.{UserAction});
+
+              // 2. Parse and Validate Parameters
+              logHelper.AddLogMessage("Parse parameters");
+              var validation = new Utility.MessageValidationHelper(
+                  logHelper: logHelper,
+                  messageItem: requestMessage,
+                  errorTranslationKeyPrefix: "{Feature}_");
+
+              debug = validation.ValidateBool("Debug", required: false) ?? false;
+              var {param1} = validation.ValidateID("{Param1Name}", required: true);
+
+              if (logHelper.HasErrors)
+                  goto EXIT;
+
+              // 3. Business Logic
+              {BusinessLogic}
+
+              // 4. Database Operations
+              dc.SubmitChanges();
+
+          EXIT:
+              if (includeLogs)
+                  logHelper.IncludeLogsInResponse(responseMessage);
+          }
+          catch (Exception ex)
+          {
+              logHelper.AddExceptionToErrors(ex);
+          }
+      }
+
+    migration_notes:
+      - "Replace DAOFactory.CreateDataContext() with EF.MonaDbContext injection"
+      - "Replace dc.SubmitChanges() with async SaveChangesAsync()"
+      - "Add async/await throughout"
+      - "Use Recipe 4 EF handler signature"
+
+# =============================================================================
+# SECTION 2: STORED PROCEDURE PATTERNS
+# =============================================================================
+
+stored_procedures:
+
+  # ---------------------------------------------------------------------------
+  # Pattern 4: Elimination Stored Procedure
+  # ---------------------------------------------------------------------------
+  elimination_procedure:
+    name: "Elimination Stored Procedure"
+    use_case: "Calculate and generate elimination journal entries"
+    source_reference: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_MINORITYINTEREST.sql"
+    elimination_code_range: "S001-S094 (system), U### (user-defined)"
+
+    signature: |
+      CREATE PROCEDURE [dbo].[P_CONSO_ELIM_{ELIMINATION_NAME}]
+          @Login nvarchar(256),
+          @SessionID int,
+          @ConsoID int,
+          @RefConsoID int,
+          @PreviousPeriodAdjFlowID int,
+          @ConsoCurrCode nvarchar(3),
+          @ParentCompanyID int,
+          @JournalTypeS001ID int,
+          @UNEXPVarFlowID int,
+          @NETVarFlowID int,
+          @ExecuteDimensions bit,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+
+    template: |
+      /*
+       Author: {Author}
+       Description: {Description}
+
+       History:
+       Date        By      Description
+       ----        ----    ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_CONSO_ELIM_{ELIMINATION_NAME}]
+          @Login nvarchar(256),
+          @SessionID int,
+          @ConsoID int,
+          @RefConsoID int,
+          @PreviousPeriodAdjFlowID int,
+          @ConsoCurrCode nvarchar(3),
+          @ParentCompanyID int,
+          @JournalTypeS001ID int,
+          @UNEXPVarFlowID int,
+          @NETVarFlowID int,
+          @ExecuteDimensions bit,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+      AS BEGIN
+          SET NOCOUNT ON
+
+          -- Declare local variables
+          DECLARE @JournalType{ELIM_CODE}ID int
+          DECLARE @JournalText nvarchar(max), @Behaviour tinyint, @MinorityFlag bit
+          DECLARE @AssociatedJournalTypeID int, @ConsoMethodSelectionID int
+          DECLARE @RoundingDecimal tinyint
+
+          -- Create temp tables for company selection
+          CREATE TABLE #SelectedCompanies (pk int IDENTITY, CompanyID int)
+
+          BEGIN TRY
+              -----------------------------------------
+              -- 1. Get general information
+              -----------------------------------------
+              SELECT @RoundingDecimal = NbrDec
+              FROM dbo.TS096S0 WITH(NOLOCK)
+              WHERE ConsoID = @ConsoID
+
+              -----------------------------------------
+              -- 2. Get elimination configuration ({ELIM_CODE})
+              -----------------------------------------
+              SELECT  @JournalType{ELIM_CODE}ID = a.JournalTypeID,
+                      @JournalText = a.JournalText,
+                      @Behaviour = a.Behaviour,
+                      @MinorityFlag = a.MinorityFlag,
+                      @AssociatedJournalTypeID = a.AssociatedJournalTypeID,
+                      @ConsoMethodSelectionID = a.ConsoMethodSelectionID
+              FROM    dbo.TS070S0 a WITH(NOLOCK)
+                      INNER JOIN dbo.TS070S1 b WITH(NOLOCK)
+                          ON (b.ConsoMethodSelectionID = a.ConsoMethodSelectionID)
+              WHERE   a.ConsoID = @ConsoID AND a.ElimCode = '{ELIM_CODE}'
+
+              IF @@ROWCOUNT = 0
+                  RAISERROR ('Elimination with code {ELIM_CODE} not found', 16, 1)
+
+              -----------------------------------------
+              -- 3. Get specific accounts
+              -----------------------------------------
+              {SPECIAL_ACCOUNT_DECLARATIONS}
+
+              -- Validation
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              -----------------------------------------
+              -- 4. Select companies for elimination
+              -----------------------------------------
+              INSERT INTO #SelectedCompanies (CompanyID)
+              SELECT a.CompanyID
+              FROM #AllCompanies a
+                   INNER JOIN dbo.TS070S2 b WITH(NOLOCK)
+                       ON (b.ConsoMethodSelectionID = @ConsoMethodSelectionID
+                           AND b.ConsoMethod = a.ConsoMethod)
+              WHERE a.IncludedInCompanySelection = 1
+
+              -----------------------------------------
+              -- 5. Calculate elimination amounts
+              -----------------------------------------
+              {CALCULATION_LOGIC}
+
+              -----------------------------------------
+              -- 6. Insert into TMP_TD035C2 (closing amounts)
+              -----------------------------------------
+              INSERT INTO dbo.TMP_TD035C2 (
+                  SessionID, CompanyID, JournalTypeID, JournalEntry, JournalSequence,
+                  AccountID, PartnerCompanyID, CurrCode, Amount, TransactionCurrCode,
+                  TransactionAmount, MinorityFlag, ConsoID, Step)
+              SELECT
+                  @SessionID,
+                  a.CompanyID,
+                  @JournalType{ELIM_CODE}ID,
+                  b.JournalEntry,
+                  1 AS JournalSequence,
+                  {ACCOUNT_MAPPING},
+                  a.PartnerCompanyID,
+                  @ConsoCurrCode AS CurrCode,
+                  ROUND({AMOUNT_CALCULATION}, @RoundingDecimal) AS Amount,
+                  {TRANSACTION_CURRENCY_LOGIC},
+                  @MinorityFlag,
+                  @ConsoID,
+                  {STEP_NUMBER} AS Step
+              FROM {SOURCE_QUERY}
+
+              -----------------------------------------
+              -- 7. Insert into TMP_TD045C2 (flows)
+              -----------------------------------------
+              {FLOW_INSERTION_LOGIC}
+
+              -----------------------------------------
+              -- 8. Create balancing entries
+              -----------------------------------------
+              {BALANCING_ENTRIES}
+
+              -----------------------------------------
+              -- 9. Create journal headers in TMP_TD033E0
+              -----------------------------------------
+              INSERT INTO dbo.TMP_TD033E0 (
+                  SessionID, ConsoID, CompanyID, JournalTypeID, CurrCode,
+                  JournalEntry, JournalText, Behaviour, MinorityFlag,
+                  AssociatedJournalTypeID, CurrencyFlag, [Status],
+                  CreationDate, CreationUserLogin, Step, SourceCompanyID)
+              SELECT
+                  @SessionID,
+                  @ConsoID,
+                  a.CompanyID,
+                  @JournalType{ELIM_CODE}ID,
+                  @ConsoCurrCode,
+                  b.JournalEntry,
+                  @JournalText,
+                  @Behaviour,
+                  @MinorityFlag,
+                  @AssociatedJournalTypeID,
+                  'G' AS CurrencyFlag,
+                  0 AS [Status],
+                  GETUTCDATE() AS CreationDate,
+                  @Login AS CreationUserLogin,
+                  {STEP_NUMBER} AS Step,
+                  a.CompanyID
+              FROM (
+                  SELECT DISTINCT a.CompanyID
+                  FROM dbo.TMP_TD035C2 a WITH(NOLOCK)
+                  WHERE a.SessionID = @SessionID AND Step BETWEEN {STEP_START} AND {STEP_END}
+
+                  UNION
+
+                  SELECT DISTINCT a.CompanyID
+                  FROM dbo.TMP_TD045C2 a WITH(NOLOCK)
+                  WHERE a.SessionID = @SessionID AND Step BETWEEN {STEP_START} AND {STEP_END}
+              ) a
+              INNER JOIN #AllCompanies b ON (b.CompanyID = a.CompanyID)
+
+              -----------------------------------------
+              -- 10. Dimension processing (if enabled)
+              -----------------------------------------
+              IF @ExecuteDimensions = 1
+              BEGIN
+                  {DIMENSION_PROCESSING}
+              END
+
+          END TRY
+
+          BEGIN CATCH
+              DECLARE @errormessage nvarchar(max)
+              SET @errormessage = 'Procedure: ' + ERROR_PROCEDURE() +
+                                  ' - Line: ' + CAST(ERROR_LINE() AS varchar(10)) +
+                                  ' - Message: ' + ERROR_MESSAGE()
+          END CATCH
+
+          CleanupAndEnd:
+              DROP TABLE #SelectedCompanies
+              IF @errormessage IS NOT NULL
+                  RAISERROR (@errormessage, 16, 1)
+      END
+
+    key_tables:
+      - name: "TS070S0"
+        description: "Elimination configuration headers"
+      - name: "TS070S1"
+        description: "Consolidation method selections"
+      - name: "TS070S2"
+        description: "Method-to-elimination mapping"
+      - name: "TMP_TD033E0"
+        description: "Temporary journal headers"
+      - name: "TMP_TD035C2"
+        description: "Temporary closing amounts"
+      - name: "TMP_TD045C2"
+        description: "Temporary flow amounts"
+      - name: "#AllCompanies"
+        description: "Session temp table with company selection"
+
+    step_numbers:
+      S077: 50  # Not Consolidated
+      S079: 51  # Proportional
+      S081: 52  # Equity Method
+      S083: 53  # Intercompany
+      S085: 61  # Minority Interest
+      S087: 55  # Equity Capital
+      S089: 56  # Participations
+
+  # ---------------------------------------------------------------------------
+  # Pattern 5: Calculation Stored Procedure
+  # ---------------------------------------------------------------------------
+  calculation_procedure:
+    name: "Calculation/Integration Stored Procedure"
+    use_case: "Bundle integration, adjustment calculations"
+    source_reference: "Sigma.Database/dbo/Stored Procedures/P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION.sql"
+
+    signature: |
+      CREATE PROCEDURE [dbo].[P_CONSO_CALCULATE_{CALC_NAME}]
+          @UserID int,
+          @ConsoID int,
+          @CompanyIDs varchar(max) = NULL,
+          @ExecuteDimensions bit = 0,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+
+    template: |
+      CREATE PROCEDURE [dbo].[P_CONSO_CALCULATE_{CALC_NAME}]
+          @UserID int,
+          @ConsoID int,
+          @CompanyIDs varchar(max) = NULL,
+          @ExecuteDimensions bit = 0,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+      AS BEGIN
+          SET NOCOUNT ON
+
+          DECLARE @SessionID int, @CustomerID int
+          DECLARE @Login nvarchar(256)
+
+          BEGIN TRY
+              -----------------------------------------
+              -- 1. Initialize Session
+              -----------------------------------------
+              SELECT @CustomerID = CustomerID
+              FROM dbo.TS096S0
+              WHERE ConsoID = @ConsoID
+
+              -- Create async session for progress tracking
+              EXEC dbo.P_ASYNC_SESSION_CREATE
+                  @CustomerID = @CustomerID,
+                  @UserID = @UserID,
+                  @Comment = '{CALC_NAME} started',
+                  @SessionID = @SessionID OUTPUT
+
+              -----------------------------------------
+              -- 2. Prepare Company Selection
+              -----------------------------------------
+              EXEC dbo.P_CONSO_HELPER_FILL_COMPANY_TABLE
+                  @SessionID = @SessionID,
+                  @ConsoID = @ConsoID,
+                  @CompanyIDs = @CompanyIDs,
+                  @errorinfo = @errorinfo OUTPUT
+
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              -----------------------------------------
+              -- 3. Execute Calculation Steps
+              -----------------------------------------
+              {CALCULATION_STEPS}
+
+              -----------------------------------------
+              -- 4. Update Progress
+              -----------------------------------------
+              EXEC dbo.P_ASYNC_SESSION_UPDATE
+                  @SessionID = @SessionID,
+                  @Comment = '{CALC_NAME} completed'
+
+          END TRY
+
+          BEGIN CATCH
+              SET @errorinfo = dbo.AddError(
+                  'STORED_PROCEDURE_ERROR',
+                  ERROR_PROCEDURE(),
+                  ERROR_MESSAGE(),
+                  @errorinfo)
+          END CATCH
+
+          CleanupAndEnd:
+              -- Cleanup session tables
+              EXEC dbo.P_ASYNC_SESSION_CLEANUP @SessionID = @SessionID
+      END
+
+# =============================================================================
+# SECTION 3: HANGFIRE JOB PATTERNS
+# =============================================================================
+
+jobs:
+
+  # ---------------------------------------------------------------------------
+  # Pattern 6: Hangfire Background Job
+  # ---------------------------------------------------------------------------
+  hangfire_job:
+    name: "Hangfire Background Job"
+    use_case: "Long-running operations (consolidation, imports, reports)"
+    source_reference: "Sigma.Mona.Jobs/Database/ConsolidationIntegrationJob.cs"
+    framework: "Hangfire 1.8.1"
+
+    template: |
+      using System;
+      using System.Linq;
+      using Sigma.Utils;
+      using Sigma.Mona.Common.Utility;
+      using Sigma.Mona.Business;
+
+      namespace Sigma.Mona.Jobs.{Category}
+      {
+          using TrK = Resources.TranslationKeys;
+
+          public class {JobName}Job : Job
+          {
+              [System.Diagnostics.Conditional("DEBUG")]
+              protected void LOG(string message) { CommonLibs.Utils.Debug.LOG(this, message); }
+
+              // Job flags enum (if applicable)
+              public enum {OperationType} : byte
+              {
+                  Undefined = 0x0,
+                  {Option1} = 0x1,
+                  {Option2} = 0x2,
+                  {Option3} = 0x4,
+                  All = ({Option1} | {Option2} | {Option3})
+              }
+
+              private const string LogPrefix = "{JobName}Job: ";
+
+              // Required constants
+              public const string JOBFILE = Jobs.AssemblyConstants.AssemblyFileName;
+              public const string JOBCLASS = "Sigma.Mona.Jobs.{Category}.{JobName}Job";
+
+              // Job parameters
+              public const string JobParameter{Param1} = "{Param1}";
+              public const string JobParameter{Param2} = "{Param2}";
+
+              // Progress message keys
+              private const string ProgressMessageKey{Step1} = "{JobName}Progress{Step1}";
+              private const string ProgressMessageKey{Step2} = "{JobName}Progress{Step2}";
+
+              // Session properties
+              private int? UserID => SessionController.UserID;
+              private int CustomerID => SessionController.CustomerID;
+              private volatile Func<bool> AbortAction = null;
+
+              public {JobName}Job()
+              {
+              }
+
+              public override JobResult Execute(JobParams jobVars)
+              {
+                  ASSERT((SessionController != null) && (SessionController.UserID > 0) && (SessionController.CustomerID > 0),
+                      "Property 'SessionController' is supposed to be set and correctly initialized here");
+
+                  var logHelper = LogHelper;
+                  if (logHelper == null)
+                  {
+                      FAIL("Property 'LogHelper' not provided");
+                      logHelper = new LogHelper();
+                  }
+
+                  // 1. Parse Job Parameters
+                  var {param1} = ({Param1Type})jobVars.Get(JobParameter{Param1});
+                  logHelper.AddLogMessage("{Param1}: " + {param1});
+
+                  var {param2} = ({Param2Type})jobVars.Get(JobParameter{Param2});
+                  logHelper.AddLogMessage("{Param2}: " + {param2});
+
+                  // 2. Validate Parameters
+                  if ({param1} == null)
+                      throw new ArgumentException("Parameter '" + JobParameter{Param1} + "' is invalid");
+
+                  // 3. Get Data Context
+                  var dc = MonaDataContext;
+
+                  // 4. Query Required Data
+                  {DataQueryLogic}
+
+                  // 5. Process Items
+                  for (var i = 0; i < items.Length; ++i)
+                  {
+                      var item = items[i];
+                      string progressString = "" + (i + 1) + "/" + items.Length;
+
+                      // Check for cancellation
+                      CheckHFCancellationToken(HFCancellationtoken);
+
+                      // Update progress
+                      logHelper.AddUserMessageTranslated(ProgressMessageKey{Step1}, progressString);
+
+                      try
+                      {
+                          // Execute business logic
+                          {BusinessLogic}
+                      }
+                      catch (Exception ex)
+                      {
+                          logHelper.AddExceptionToErrors(ex);
+                          return null;  // Job failed
+                      }
+
+                      if (logHelper.HasErrors)
+                          return null;  // Job failed
+                  }
+
+                  return new JobResult { Success = true };
+              }
+
+              public override bool Abort()
+              {
+                  var abortAction = AbortAction;
+                  if (abortAction != null)
+                  {
+                      return abortAction();
+                  }
+                  return false;
+              }
+          }
+      }
+
+    key_methods:
+      - name: "Execute"
+        description: "Main entry point, receives JobParams"
+      - name: "Abort"
+        description: "Cancellation handler"
+      - name: "CheckHFCancellationToken"
+        description: "Check for Hangfire cancellation"
+
+    progress_tracking:
+      - method: "logHelper.AddUserMessageTranslated"
+        description: "Send progress message to UI"
+      - method: "logHelper.AddLogMessage"
+        description: "Internal logging"
+
+# =============================================================================
+# SECTION 4: DTO PATTERNS
+# =============================================================================
+
+dtos:
+
+  # ---------------------------------------------------------------------------
+  # Pattern 7: Request/Response DTO
+  # ---------------------------------------------------------------------------
+  request_response_dto:
+    name: "Request/Response DTO"
+    use_case: "Data transfer objects for API handlers"
+    source_reference: "Sigma.Mona/Data/Model/TypeOfDataDTO.cs"
+
+    template: |
+      using System;
+      using System.Collections.Generic;
+
+      namespace Sigma.Mona.{Namespace}.Model
+      {
+          /// <summary>
+          /// Request DTO for {OperationName} operation
+          /// </summary>
+          public class {OperationName}RequestDTO
+          {
+              // Required properties
+              public int ConsoID { get; set; }
+              public int? {EntityId} { get; set; }
+
+              // Optional properties
+              public string {StringProperty} { get; set; }
+              public bool {BoolProperty} { get; set; }
+              public int? {OptionalIntProperty} { get; set; }
+
+              // Collections
+              public List<int> {IdCollection} { get; set; }
+
+              // Entity version for optimistic concurrency
+              public long? EntityVersion { get; set; }
+          }
+
+          /// <summary>
+          /// Response DTO for {OperationName} operation
+          /// </summary>
+          public class {OperationName}ResponseDTO
+          {
+              public int {EntityId} { get; set; }
+              public string Code { get; set; }
+              public string Description { get; set; }
+
+              // Audit properties
+              public DateTime? CreationDate { get; set; }
+              public DateTime? ModificationDate { get; set; }
+              public string CreationUserLogin { get; set; }
+              public string ModificationUserLogin { get; set; }
+
+              // Status/flags
+              public bool IsActive { get; set; }
+              public int Status { get; set; }
+          }
+
+          /// <summary>
+          /// List item DTO for dropdowns/grids
+          /// </summary>
+          public class {EntityName}ListItemDTO
+          {
+              public int {EntityId} { get; set; }
+              public string Code { get; set; }
+              public string Description { get; set; }
+          }
+      }
+
+    naming_conventions:
+      - pattern: "{Operation}RequestDTO"
+        example: "GetEliminationsRequestDTO"
+      - pattern: "{Operation}ResponseDTO"
+        example: "EliminationResponseDTO"
+      - pattern: "{Entity}ListItemDTO"
+        example: "CompanyListItemDTO"
+
+  # ---------------------------------------------------------------------------
+  # Pattern 8: Consolidation-Specific DTO
+  # ---------------------------------------------------------------------------
+  consolidation_dto:
+    name: "Consolidation Data DTO"
+    use_case: "DTOs for consolidation data (amounts, journals, eliminations)"
+
+    template: |
+      public class {EliminationType}DTO
+      {
+          // Identity
+          public int ConsoID { get; set; }
+          public int CompanyID { get; set; }
+          public string CompanyCode { get; set; }
+
+          // Journal info
+          public int JournalTypeID { get; set; }
+          public string JournalTypeCode { get; set; }
+          public int JournalEntry { get; set; }
+          public int JournalSequence { get; set; }
+
+          // Account info
+          public int AccountID { get; set; }
+          public string AccountCode { get; set; }
+          public int? FlowID { get; set; }
+          public string FlowCode { get; set; }
+
+          // Partner info (for IC)
+          public int? PartnerCompanyID { get; set; }
+          public string PartnerCompanyCode { get; set; }
+
+          // Amounts
+          public decimal Amount { get; set; }
+          public decimal? TransactionAmount { get; set; }
+          public string CurrCode { get; set; }
+          public string TransactionCurrCode { get; set; }
+
+          // Flags
+          public bool MinorityFlag { get; set; }
+          public string CurrencyFlag { get; set; }  // 'L' = Local, 'G' = Group
+          public int Status { get; set; }
+      }
+
+# =============================================================================
+# SECTION 5: TEST PATTERNS
+# =============================================================================
+
+tests:
+
+  # ---------------------------------------------------------------------------
+  # Pattern 9: MonaTestFacade Test Class
+  # ---------------------------------------------------------------------------
+  service_test:
+    name: "Service Test with MonaTestFacade"
+    use_case: "Unit/Integration tests for message handlers"
+    source_reference: "Sigma.Mona.Tests/ServiceTests/UserSettings/UserSettingsTests.cs"
+
+    template: |
+      using System;
+      using System.Collections.Generic;
+      using System.Threading.Tasks;
+      using Microsoft.VisualStudio.TestTools.UnitTesting;
+      using Sigma.Mona.WebApplication.Screens.{Feature};
+
+      namespace Sigma.Mona.Tests.ServiceTests.{Feature}
+      {
+          [TestClass]
+          public class {Feature}Tests : TestBase
+          {
+              [ClassInitialize]
+              public static async Task Initialize(TestContext context)
+              {
+                  await GlobalInitialization();
+              }
+
+              /// <summary>
+              /// T{Number}_[Scenario]_[ExpectedResult]
+              /// </summary>
+              [TestMethod]
+              public async Task T{Number}_{HandlerName}_ShouldSucceed()
+              {
+                  // Arrange
+                  var helper = MonaTestFacade.setSession(
+                      null,
+                      MonaTestConfiguration.User_Admin1,
+                      MonaTestConfiguration.WorkingPeriodCode,
+                      MonaTestConfiguration.ReferencePeriodCode);
+                  var logHelper = helper.LogHelper;
+
+                  var request = (new Dictionary<string, object>
+                  {
+                      { "{Param1Name}", {param1Value} },
+                      { "{Param2Name}", {param2Value} }
+                  })
+                  .MessageType(nameof({ServiceClass}.{HandlerName}));
+
+                  // Act
+                  logHelper.AddLogMessage("Send request message");
+                  var response = await MonaTestFacade.SendRequestMessage(helper, request);
+
+                  // Assert
+                  Assert.IsFalse(logHelper.HasErrors, logHelper.GetErrorMessage());
+                  Assert.IsNotNull(response);
+                  Assert.IsNotNull(response.ValidationMessageItem);
+                  {AdditionalAssertions}
+              }
+
+              /// <summary>
+              /// Test validation error handling
+              /// </summary>
+              [TestMethod]
+              public async Task T{Number}_{HandlerName}_MissingRequired_ShouldFail()
+              {
+                  // Arrange
+                  var helper = MonaTestFacade.setSession(
+                      null,
+                      MonaTestConfiguration.User_Admin1,
+                      MonaTestConfiguration.WorkingPeriodCode,
+                      MonaTestConfiguration.ReferencePeriodCode);
+                  var logHelper = helper.LogHelper;
+
+                  // Missing required parameter
+                  var request = (new Dictionary<string, object>
+                  {
+                      // Intentionally missing required parameter
+                  })
+                  .MessageType(nameof({ServiceClass}.{HandlerName}));
+
+                  // Act
+                  var response = await MonaTestFacade.SendRequestMessage(helper, request);
+
+                  // Assert - Should have validation errors
+                  Assert.IsTrue(logHelper.HasErrors || response.ContainsKey("errors"));
+              }
+
+              /// <summary>
+              /// Test permission denied scenario
+              /// </summary>
+              [TestMethod]
+              public async Task T{Number}_{HandlerName}_NoPermission_ShouldFail()
+              {
+                  // Arrange - Use user without required permission
+                  var helper = MonaTestFacade.setSession(
+                      null,
+                      MonaTestConfiguration.User_ReadOnly,  // Limited permissions
+                      MonaTestConfiguration.WorkingPeriodCode,
+                      MonaTestConfiguration.ReferencePeriodCode);
+
+                  var request = (new Dictionary<string, object>
+                  {
+                      { "{Param1Name}", {param1Value} }
+                  })
+                  .MessageType(nameof({ServiceClass}.{HandlerName}));
+
+                  // Act
+                  var response = await MonaTestFacade.SendRequestMessage(helper, request);
+
+                  // Assert - Should have permission error
+                  Assert.IsTrue(helper.LogHelper.HasErrors);
+              }
+          }
+      }
+
+    test_naming_convention:
+      pattern: "T{Number}_{Method}_{Scenario}_{ExpectedResult}"
+      examples:
+        - "T10_GetEliminations_ValidRequest_ShouldSucceed"
+        - "T20_SaveElimination_MissingConsoID_ShouldFail"
+        - "T30_DeleteElimination_NoPermission_ShouldReturnError"
+
+    test_numbering:
+      description: "Use T### format, increment by 10 for new test methods"
+      ranges:
+        - "T10-T19: Basic CRUD operations"
+        - "T20-T29: Validation tests"
+        - "T30-T39: Permission tests"
+        - "T40-T49: Edge cases"
+        - "T50-T59: Integration scenarios"
+
+# =============================================================================
+# SECTION 6: DATABASE SCRIPT PATTERNS
+# =============================================================================
+
+database_scripts:
+
+  # ---------------------------------------------------------------------------
+  # Pattern 10: Update Script with Revision
+  # ---------------------------------------------------------------------------
+  update_script:
+    name: "Database Update Script"
+    use_case: "Schema migrations, data updates"
+    source_reference: "Sigma.Mona/Resources/Utils/UpdateScripts/UpdateScript-ZZ-DataTranslations.sql"
+
+    syntax:
+      revision: "$$REVISION {number|ALL}"
+      use: "$$USE {MonaInstance|Mona|MonaDW|MonaBackup}"
+      go: "$$GO"
+      comment: "$$$"
+
+    template: |
+      $$$===============================================================
+      $$REVISION {RevisionNumber}
+      $$$===============================================================
+      $$$ {Description}
+      $$$ Author: {Author}
+      $$$ Date: {Date}
+      $$$ Story/Bug: #{WorkItemNumber}
+      $$$===============================================================
+
+      $$USE Mona
+
+      $$$ Add new column
+      IF NOT EXISTS (
+          SELECT 1 FROM sys.columns
+          WHERE object_id = OBJECT_ID(N'[dbo].[{TableName}]')
+          AND name = '{ColumnName}'
+      )
+      BEGIN
+          ALTER TABLE [dbo].[{TableName}]
+          ADD [{ColumnName}] {DataType} {Nullable} {DefaultValue}
+      END
+
+      $$GO
+
+      $$$ Add index
+      IF NOT EXISTS (
+          SELECT 1 FROM sys.indexes
+          WHERE name = 'IX_{TableName}_{ColumnName}'
+          AND object_id = OBJECT_ID(N'[dbo].[{TableName}]')
+      )
+      BEGIN
+          CREATE NONCLUSTERED INDEX [IX_{TableName}_{ColumnName}]
+          ON [dbo].[{TableName}] ([{ColumnName}])
+      END
+
+      $$GO
+
+      $$$ Data migration
+      UPDATE [dbo].[{TableName}]
+      SET [{ColumnName}] = {DefaultValue}
+      WHERE [{ColumnName}] IS NULL
+
+      $$GO
+
+    revision_numbering:
+      format: "YYYYMMNNNN"
+      example: "2024120001"
+      description: "Year + Month + 4-digit sequence"
+
+  # ---------------------------------------------------------------------------
+  # Pattern 11: Stored Procedure Creation Script
+  # ---------------------------------------------------------------------------
+  stored_procedure_script:
+    name: "Stored Procedure Migration Script"
+    use_case: "Add or update stored procedures"
+
+    template: |
+      $$$===============================================================
+      $$REVISION {RevisionNumber}
+      $$$===============================================================
+      $$$ Create/Update stored procedure: {ProcedureName}
+      $$$===============================================================
+
+      $$USE Mona
+
+      IF EXISTS (SELECT 1 FROM sys.procedures WHERE name = '{ProcedureName}')
+      BEGIN
+          DROP PROCEDURE [dbo].[{ProcedureName}]
+      END
+
+      $$GO
+
+      CREATE PROCEDURE [dbo].[{ProcedureName}]
+          {Parameters}
+      AS BEGIN
+          SET NOCOUNT ON
+          {ProcedureBody}
+      END
+
+      $$GO
+
+  # ---------------------------------------------------------------------------
+  # Pattern 12: Translation Key Insert
+  # ---------------------------------------------------------------------------
+  translation_insert:
+    name: "Translation Key Insert"
+    use_case: "Add new translation keys"
+    source_reference: "Sigma.Mona/Resources/Utils/UpdateScripts/UpdateScript-ZZ-DataTranslations.sql"
+
+    template: |
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1025, N'{Arabic}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1030, N'{Danish}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1031, N'{German}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1036, N'{French}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1040, N'{Italian}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1043, N'{Dutch}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1045, N'{Polish}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 1049, N'{Russian}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 2052, N'{Chinese}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 2057, N'{English}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 2060, N'{BelgianFrench}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 2067, N'{BelgianDutch}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 2070, N'{Portuguese}')
+      INSERT INTO dbo.T_TRANSLATION ([Key], [LanguageLCID], [Value]) VALUES (N'{Key}', 3082, N'{Spanish}')
+
+    language_codes:
+      - lcid: 1025
+        language: "Arabic"
+      - lcid: 1030
+        language: "Danish"
+      - lcid: 1031
+        language: "German"
+      - lcid: 1036
+        language: "French"
+      - lcid: 1040
+        language: "Italian"
+      - lcid: 1043
+        language: "Dutch"
+      - lcid: 1045
+        language: "Polish"
+      - lcid: 1049
+        language: "Russian"
+      - lcid: 2052
+        language: "Chinese Simplified"
+      - lcid: 2057
+        language: "English (UK)"
+      - lcid: 2060
+        language: "Belgian French"
+      - lcid: 2067
+        language: "Belgian Dutch"
+      - lcid: 2070
+        language: "Portuguese"
+      - lcid: 3082
+        language: "Spanish"
+
+# =============================================================================
+# PATTERN SELECTION GUIDE
+# =============================================================================
+
+pattern_selection_guide:
+  description: "Use this guide to select the appropriate pattern for your implementation"
+
+  decision_tree:
+    - question: "What type of implementation?"
+      options:
+        - answer: "API Handler"
+          follow_up: "New or existing data context?"
+          options:
+            - answer: "New implementation"
+              pattern: "ef_handler_read or ef_handler_write"
+            - answer: "Modifying legacy code"
+              pattern: "linq_handler_legacy (for reference)"
+
+        - answer: "Database Operation"
+          follow_up: "What type of operation?"
+          options:
+            - answer: "Elimination logic"
+              pattern: "elimination_procedure"
+            - answer: "Calculation/integration"
+              pattern: "calculation_procedure"
+            - answer: "Schema change"
+              pattern: "update_script"
+
+        - answer: "Background Job"
+          pattern: "hangfire_job"
+
+        - answer: "Data Transfer"
+          pattern: "request_response_dto or consolidation_dto"
+
+        - answer: "Test"
+          pattern: "service_test"
+
+# =============================================================================
+# RELATED DOCUMENTATION
+# =============================================================================
+
+related_documentation:
+  - name: "LINQ to EF Migration Rules"
+    path: "docs/EF_Migration/LINQ_to_EF_MigrationRules.md"
+    use_case: "Converting LINQ-to-SQL to Entity Framework"
+
+  - name: "Message Handler Architecture"
+    path: "CLAUDE.md (Architecture section)"
+    use_case: "Handler signature reference"
+
+  - name: "Stored Procedures Catalog"
+    path: "docs/DC/md/documentation-library/07-database-implementation/stored-procedures-catalog.md"
+    use_case: "Existing procedure reference"
+
+  - name: "Test Patterns Skill"
+    path: ".claude/skills/guiding-test-creation/SKILL.md"
+    use_case: "TDD approach and MonaTestFacade usage"

@@ -1,0 +1,13 @@
+# Chunk 630: 2 CAPITAL TRANSACTIONS
+
+## Context
+
+This section covers 2 CAPITAL TRANSACTIONS.
+
+## Content
+
+# 2 CAPITAL TRANSACTIONS
+
+
+---
+*Chunk 630 | 2 CAPITAL TRANSACTIONS*

@@ -1,0 +1,1173 @@
+# API Architecture Diagrams - Financial Consolidation AI Agent
+# Purpose: ASCII text art diagrams for backend/API flow visualization
+# Version: 1.0
+# Created: 2024-12-03
+
+api_architecture_diagrams:
+  name: "Financial Consolidation Backend Architecture Diagrams"
+  version: "1.0"
+  description: |
+    ASCII text art diagrams illustrating backend data flows, API call chains,
+    and processing pipelines for AI agents orchestrating consolidation workflows.
+
+    Diagrams cover:
+    - Consolidation execution flow
+    - Data flow through database tables
+    - Elimination processing pipeline
+    - Ownership calculation algorithm
+    - Import/export processing
+    - Job execution patterns
+
+  # ============================================================================
+  # DIAGRAM 1: CONSOLIDATION EXECUTION FLOW
+  # ============================================================================
+  consolidation_execution:
+    id: "DIAG-001"
+    name: "Consolidation Execution Flow"
+    description: "Complete flow from API call through job execution to results"
+
+    diagram: |
+
+      CONSOLIDATION EXECUTION FLOW
+      ============================
+
+      API LAYER                    JOB LAYER                    DATABASE LAYER
+      =========                    =========                    ==============
+
+      Consolidation_Execute
+              |
+              | ConsoIDs, StoredProcedures flags
+              v
+      +------------------+
+      | Validate Request |
+      | - Period exists  |
+      | - Not locked     |
+      | - Permissions    |
+      +------------------+
+              |
+              v
+      +------------------+         +-------------------------+
+      | Queue Hangfire   |-------->| ConsolidationIntegration|
+      | Job              |         | Job.Execute()           |
+      +------------------+         +-------------------------+
+              |                              |
+              | Returns JobID                | For each ConsoID:
+              v                              v
+      +------------------+         +-------------------------+
+      | Job_GetJobStatus |<--------| 1. Lock consolidation   |-----> TS096S0.Locked
+      | (polling)        |         +-------------------------+
+      +------------------+                   |
+              ^                              v
+              |                    +-------------------------+
+              |                    | 2. Ownership calc       |-----> P_CALC_OWNERSHIP_*
+              |                    |    (if needed)          |-----> TS014C0.GroupPerc
+              |                    +-------------------------+
+              |                              |
+              |                              v
+              |                    +-------------------------+
+              |                    | 3. Bundle Integration   |-----> P_CONSO_CALCULATE_
+              |                    |    (Bundles flag=0x2)   |       BUNDLE_INTEGRATION
+              |                    +-------------------------+-----> TD035C2 (output)
+              |                              |
+              |                              v
+              |                    +-------------------------+
+              |                    | 4. Adjustment Integration|----> P_CONSO_CALCULATE_
+              |                    |    (Adjustments flag=0x4)|      ADJUSTMENTS_INTEGRATION
+              |                    +-------------------------+-----> TD035C2 (merged)
+              |                              |
+              |                              v
+              |                    +-------------------------+
+              |                    | 5. Eliminations         |-----> P_CONSO_ELIM
+              |                    |    (Elims flag=0x8)     |-----> TD045C2 (journals)
+              |                    +-------------------------+
+              |                              |
+              |                              v
+              |                    +-------------------------+
+              +--------------------| 6. Unlock & complete    |-----> TS096S0.Unlocked
+                                   +-------------------------+
+
+
+      STORED PROCEDURES FLAGS (StoredProceduresToExecute)
+      ===================================================
+
+        Bit Value    Flag Name         Procedure Called
+        ---------    ---------         ----------------
+        0x1 (1)      LinkedCategories  P_CONSO_LINKED_CATEGORY
+        0x2 (2)      Bundles           P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+        0x4 (4)      Adjustments       P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION
+        0x8 (8)      Elims             P_CONSO_ELIM
+        0xF (15)     All               All of the above
+
+
+    api_handlers:
+      - Consolidation_Execute
+      - Job_GetJobStatus
+      - Job_GetJobProgress
+      - Job_GetJobLog
+
+    stored_procedures:
+      - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+      - P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+      - P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION
+      - P_CONSO_ELIM
+
+    tables_affected:
+      - TS096S0 (lock status)
+      - TS014C0 (company percentages)
+      - TD035C2 (consolidated amounts)
+      - TD045C2 (elimination journals)
+
+  # ============================================================================
+  # DIAGRAM 2: DATA FLOW THROUGH TABLES
+  # ============================================================================
+  data_flow_tables:
+    id: "DIAG-002"
+    name: "Data Flow Through Database Tables"
+    description: "How financial data flows from input through consolidation to output"
+
+    diagram: |
+
+      DATA FLOW THROUGH DATABASE TABLES
+      =================================
+
+
+      INPUT LAYER (Local Data)
+      ========================
+
+      +-------------+     +-------------+     +-------------+
+      | TD030B2     |     | TD040B2     |     | TD050B2     |
+      | Local       |     | Flow        |     | Dimension   |
+      | Bundles     |     | Breakdown   |     | Breakdown   |
+      +-------------+     +-------------+     +-------------+
+            |                   |                   |
+            | AmountLocal       | AmountLocal       | AmountLocal
+            |                   |                   |
+            +-------------------+-------------------+
+                                |
+                                v
+      +------------------------------------------------------------------+
+      |                  P_CONSO_CALCULATE_BUNDLE_INTEGRATION             |
+      |                                                                   |
+      |   1. Currency Translation (Local → Group currency)               |
+      |   2. Percentage Integration (Amount × GroupPerc)                 |
+      |   3. Write to consolidated tables                                |
+      +------------------------------------------------------------------+
+                                |
+                                v
+
+      CONSOLIDATED LAYER (Group Data)
+      ===============================
+
+      +-------------+     +-------------+     +-------------+
+      | TD035C2     |     | TD045C2     |     | TD055C2     |
+      | Consolidated|     | Flow        |     | Dimension   |
+      | Amounts     |     | Breakdown   |     | Breakdown   |
+      +-------------+     +-------------+     +-------------+
+            |                   |                   |
+            | AmountLocal       | AmountLocal       | AmountLocal
+            | AmountGroup       | AmountGroup       | AmountGroup
+            | AmountIntegrated  | AmountIntegrated  | AmountIntegrated
+            |                   |                   |
+            +-------------------+-------------------+
+                                |
+                                v
+      +------------------------------------------------------------------+
+      |                         P_CONSO_ELIM                              |
+      |                                                                   |
+      |   Creates elimination journals in TD045C2                        |
+      |   (IC eliminations, equity method, minority interest, etc.)      |
+      +------------------------------------------------------------------+
+                                |
+                                v
+
+      OUTPUT LAYER (Elimination Journals)
+      ===================================
+
+      +------------------------------------------------------------------+
+      |                          TD045C2                                  |
+      |                    Elimination Journals                           |
+      +------------------------------------------------------------------+
+      |  JournalTypeID  |  CompanyID  |  AccountID  |  Amount  | D/C     |
+      |-----------------|-------------|-------------|----------|---------|
+      |  S083 (IC)      |  SubCo      |  ICPayable  |  -1000   | Credit  |
+      |  S083 (IC)      |  Parent     |  ICReceive  |   1000   | Debit   |
+      |  S085 (MI)      |  SubCo      |  Equity     |   -200   | Credit  |
+      |  S085 (MI)      |  SubCo      |  NCI        |    200   | Debit   |
+      +------------------------------------------------------------------+
+
+
+      TABLE NAMING CONVENTION
+      =======================
+
+        Prefix    Meaning              Examples
+        ------    -------              --------
+        TS        Setup/Master         TS014C0 (Companies), TS010S0 (Accounts)
+        TD        Transaction Data     TD030B2 (Bundles), TD035C2 (Consolidated)
+        TMP       Temporary/Staging    TMP_IMPORTDATA_MAPPINGS
+        TL        Log                  TL020S0 (Job Log)
+
+        Suffix    Meaning
+        ------    -------
+        B2        Bundle level 2 (account+flow)
+        C2        Consolidated level 2
+        I2        Intercompany level 2
+        E0/E2     Elimination/Adjustment entries
+        S0        Setup level 0 (header)
+
+    key_tables:
+      input:
+        - "TD030B2: Local bundle amounts (AmountLocal)"
+        - "TD040B2: Flow breakdown"
+        - "TD050B2: Dimension breakdown"
+        - "TD030I2: Intercompany amounts"
+        - "TD030E0/E2: Adjustment journals"
+
+      consolidated:
+        - "TD035C2: Consolidated amounts (AmountGroup, AmountIntegrated)"
+        - "TD045C2: Consolidated flow breakdown"
+        - "TD055C2: Consolidated dimension breakdown"
+        - "TD045C2: Elimination journal entries"
+
+      master:
+        - "TS014C0: Companies (ConsoMethod, GroupPerc)"
+        - "TS010S0: Accounts (special flags)"
+        - "TS011C0: Flows"
+        - "TS015S0: Ownership links"
+        - "TS017R0: Exchange rates"
+
+  # ============================================================================
+  # DIAGRAM 3: ELIMINATION PROCESSING PIPELINE
+  # ============================================================================
+  elimination_pipeline:
+    id: "DIAG-003"
+    name: "Elimination Processing Pipeline"
+    description: "How P_CONSO_ELIM orchestrates elimination procedures"
+
+    diagram: |
+
+      ELIMINATION PROCESSING PIPELINE
+      ===============================
+
+      P_CONSO_ELIM (Orchestrator)
+      ===========================
+              |
+              v
+      +------------------+
+      | 1. Initialize    |
+      |    - Get active  |
+      |      eliminations|
+      |    - Sort by     |
+      |      Level       |
+      +------------------+
+              |
+              | SELECT FROM TS070S0
+              | WHERE Active = 1
+              | ORDER BY Level
+              v
+      +------------------+
+      | 2. Cursor loop   |
+      |    through elims |
+      +------------------+
+              |
+              |  For each elimination:
+              v
+      +---------------------------------------------------------------+
+      |                    ELIMINATION DISPATCH                        |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   ElimCode        Procedure                   Purpose          |
+      |   --------        ---------                   -------          |
+      |                                                                |
+      |   S001-S019       P_CONSO_ELIM_GENERAL        General elims    |
+      |       |                                                        |
+      |       +---> S001: Opening balance adjustments                  |
+      |       +---> S002: Prior period corrections                     |
+      |                                                                |
+      |   S020-S039       P_CONSO_ELIM_DIVIDEND       Dividend elims   |
+      |       |                                                        |
+      |       +---> S020: IC dividend received/paid                    |
+      |       +---> S021: Dividend to parent                           |
+      |                                                                |
+      |   S050-S069       P_CONSO_ELIM_PARTICIPATION  Investment elims |
+      |       |                                                        |
+      |       +---> S050: Investment vs subsidiary equity              |
+      |       +---> S051: Goodwill amortization                        |
+      |       +---> S054: Consolidation reserves                       |
+      |                                                                |
+      |   S080-S089       P_CONSO_ELIM_EQUITY/MI      Equity & NCI     |
+      |       |                                                        |
+      |       +---> S080: Equity method (associates)                   |
+      |       +---> S085: Minority interest (NCI)                      |
+      |                                                                |
+      |   S083            P_CONSO_ELIM_INTERCOMPANY   IC eliminations  |
+      |       |                                                        |
+      |       +---> Eliminate IC receivables/payables                  |
+      |       +---> Eliminate IC revenue/expense                       |
+      |                                                                |
+      |   S090-S094       P_CONSO_ELIM_ADVANCED       Advanced elims   |
+      |       |                                                        |
+      |       +---> S090: Proportional consolidation                   |
+      |       +---> S094: Translation adjustments                      |
+      |                                                                |
+      |   U###            P_CONSO_ELIM_USER           User-defined     |
+      |       |                                                        |
+      |       +---> Custom elimination procedures                      |
+      |                                                                |
+      +---------------------------------------------------------------+
+              |
+              | Each procedure:
+              | 1. Calculate amounts
+              | 2. Create journal entries in TD045C2
+              | 3. Return @errorinfo
+              v
+      +------------------+
+      | 3. Aggregate     |
+      |    results       |
+      +------------------+
+              |
+              v
+      +------------------+
+      | 4. Return        |
+      |    @errorinfo    |
+      +------------------+
+
+
+      ELIMINATION JOURNAL STRUCTURE (TD045C2)
+      =======================================
+
+      +----------+----------+----------+----------+--------+-------+
+      | ConsoID  | JournalID| CompanyID| AccountID| Amount | D/C   |
+      +----------+----------+----------+----------+--------+-------+
+      |          |          |          |          |        |       |
+      |  Entry created by elimination procedure:          |       |
+      |  - JournalTypeID links to TS070S0.ElimCode        |       |
+      |  - Balanced entries (Dr = Cr)                     |       |
+      |  - Company = affected subsidiary                  |       |
+      |                                                   |       |
+      +----------+----------+----------+----------+--------+-------+
+
+
+    elimination_codes:
+      general: "S001-S019"
+      dividend: "S020-S039"
+      participation: "S050-S069"
+      equity_nci: "S080-S089"
+      intercompany: "S083"
+      advanced: "S090-S094"
+      user_defined: "U###"
+
+    key_procedures:
+      - P_CONSO_ELIM (orchestrator)
+      - P_CONSO_ELIM_GENERAL
+      - P_CONSO_ELIM_DIVIDEND
+      - P_CONSO_ELIM_PARTICIPATION
+      - P_CONSO_ELIM_EQUITY
+      - P_CONSO_ELIM_MINORITYINTEREST
+      - P_CONSO_ELIM_INTERCOMPANY
+      - P_CONSO_ELIM_USER
+
+  # ============================================================================
+  # DIAGRAM 4: OWNERSHIP CALCULATION FLOW
+  # ============================================================================
+  ownership_calculation:
+    id: "DIAG-004"
+    name: "Ownership Calculation Flow"
+    description: "How indirect ownership percentages are calculated using matrix algebra"
+
+    diagram: |
+
+      OWNERSHIP CALCULATION FLOW
+      ==========================
+
+
+      INPUT: Direct Ownership Links (TS015S0)
+      =======================================
+
+      +------------------+     +------------------+     +------------------+
+      | Parent (100%)    |---->| SubA (80%)       |---->| SubB (60%)       |
+      | FlagParent = 1   |     | Direct from P    |     | Direct from A    |
+      +------------------+     +------------------+     +------------------+
+                                      |
+                                      +--------------> SubC (40%)
+                                                       Direct from A
+
+
+      DIRECT OWNERSHIP TABLE (TS015S0)
+      ================================
+
+        CompanyID    CompanyOwnedID    FinPercentage    CtrlPercentage
+        ---------    --------------    -------------    --------------
+        Parent       SubA              80%              80%
+        SubA         SubB              60%              60%
+        SubA         SubC              40%              40%
+
+
+      P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+      =====================================
+              |
+              v
+      +---------------------------------------------------------------+
+      |                    STEP 1: BUILD OWNERSHIP MATRIX              |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   Create matrix M where M[i,j] = ownership of i in j          |
+      |                                                                |
+      |              Parent    SubA    SubB    SubC                    |
+      |   Parent  [   1.00    0.80    0.00    0.00  ]                 |
+      |   SubA    [   0.00    1.00    0.60    0.40  ]                 |
+      |   SubB    [   0.00    0.00    1.00    0.00  ]                 |
+      |   SubC    [   0.00    0.00    0.00    1.00  ]                 |
+      |                                                                |
+      +---------------------------------------------------------------+
+              |
+              v
+      +---------------------------------------------------------------+
+      |                    STEP 2: GAUSS ELIMINATION                   |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   Solve (I - M) × G = P  using Gauss elimination              |
+      |   Where:                                                       |
+      |     I = Identity matrix                                        |
+      |     M = Direct ownership matrix                                |
+      |     G = Group ownership vector (output)                        |
+      |     P = Parent vector [1, 0, 0, 0]                            |
+      |                                                                |
+      |   Handles:                                                     |
+      |   - Multi-tier ownership (A→B→C)                              |
+      |   - Circular ownership (A→B→A)                                |
+      |   - Multiple paths to same company                            |
+      |                                                                |
+      +---------------------------------------------------------------+
+              |
+              v
+      +---------------------------------------------------------------+
+      |                    STEP 3: CALCULATE RESULTS                   |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   GroupPerc = Effective ownership by group                    |
+      |   MinorPerc = 100% - GroupPerc (non-controlling interest)     |
+      |   GroupCtrlPerc = Effective control percentage                |
+      |                                                                |
+      |   Example Results:                                             |
+      |                                                                |
+      |   Company    GroupPerc    MinorPerc    GroupCtrlPerc          |
+      |   -------    ---------    ---------    -------------          |
+      |   Parent     100.00%      0.00%        100.00%                |
+      |   SubA       80.00%       20.00%       80.00%                 |
+      |   SubB       48.00%       52.00%       48.00%    (80%×60%)    |
+      |   SubC       32.00%       68.00%       32.00%    (80%×40%)    |
+      |                                                                |
+      +---------------------------------------------------------------+
+              |
+              v
+      +---------------------------------------------------------------+
+      |                    STEP 4: DETERMINE CONSO METHOD              |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   Based on GroupCtrlPerc:                                     |
+      |                                                                |
+      |   GroupCtrlPerc >= 50%  →  G (Global/Full consolidation)      |
+      |   GroupCtrlPerc >= 20%  →  E (Equity method)                  |
+      |   GroupCtrlPerc < 20%   →  N (Not consolidated)               |
+      |   Joint arrangement     →  P (Proportional) or E              |
+      |                                                                |
+      |   Output written to TS014C0:                                  |
+      |   - GroupPerc                                                  |
+      |   - MinorPerc                                                  |
+      |   - GroupCtrlPerc                                              |
+      |   - ConsoMethod (G/E/P/N)                                     |
+      |                                                                |
+      +---------------------------------------------------------------+
+
+
+      CIRCULAR OWNERSHIP EXAMPLE
+      ==========================
+
+        Company A owns 60% of Company B
+        Company B owns 30% of Company A
+
+        Direct Matrix:           After Gauss Elimination:
+                  A      B                    A        B
+        A  [   1.00   0.60  ]      GroupPerc:  100%    72.29%
+        B  [   0.30   1.00  ]      (accounts for circular flow)
+
+
+    api_handlers:
+      - Ownership_GetOwnership
+      - Ownership_SaveOwnership
+      - Ownership_CalculatePercentages
+
+    key_tables:
+      - "TS015S0: Direct ownership links (input)"
+      - "TS014C0: Calculated percentages (output)"
+
+    output_fields:
+      - "GroupPerc: Effective group ownership %"
+      - "MinorPerc: Non-controlling interest %"
+      - "GroupCtrlPerc: Effective control %"
+      - "ConsoMethod: G/E/P/N"
+
+  # ============================================================================
+  # DIAGRAM 5: IMPORT PROCESSING FLOW
+  # ============================================================================
+  import_processing:
+    id: "DIAG-005"
+    name: "Import Processing Flow"
+    description: "Three-phase import pattern from file upload to permanent tables"
+
+    diagram: |
+
+      IMPORT PROCESSING FLOW (3-Phase Pattern)
+      ========================================
+
+
+      PHASE 1: MAPPINGS
+      =================
+
+      External File (CSV/Excel/XML)
+              |
+              v
+      +------------------+
+      | ImportData_      |
+      | ImportFile       |
+      +------------------+
+              |
+              | Parse file structure
+              | Extract rows
+              v
+      +------------------+
+      | P_SYS_IMPORTDATA_|
+      | MAPPINGS         |
+      +------------------+
+              |
+              | For each row:
+              | - Validate format
+              | - Map external codes → internal IDs
+              | - Set DoImport = 1 (valid) or 0 (invalid)
+              | - Set ErrorCode if validation fails
+              v
+      +---------------------------------------------------------------+
+      |                  TMP_IMPORTDATA_MAPPINGS                       |
+      +---------------------------------------------------------------+
+      | pk | SessionID | SourceCompanyCode | CompanyID | DoImport | Error |
+      |----|-----------|-------------------|-----------|----------|-------|
+      | 1  | 12345     | "SUBCO-A"         | 101       | 1        | NULL  |
+      | 2  | 12345     | "SUBCO-B"         | 102       | 1        | NULL  |
+      | 3  | 12345     | "UNKNOWN"         | NULL      | 0        | INV_CO|
+      +---------------------------------------------------------------+
+
+
+      PHASE 2: VALIDATION & REVIEW
+      ============================
+
+      +------------------+
+      | ImportData_      |
+      | GetMappings      |
+      +------------------+
+              |
+              | Returns mapping rows with:
+              | - DoImport flag
+              | - ErrorCode/ErrorMessage
+              | - Mapped IDs
+              v
+      +------------------+
+      | AI Agent Review  |
+      | - Check errors   |
+      | - Fix mappings   |
+      | - Approve rows   |
+      +------------------+
+              |
+              | Options:
+              | A) Fix source file, re-import
+              | B) Create missing master data
+              | C) Skip invalid rows (DoImport=0)
+              | D) Proceed with valid rows
+              v
+
+
+      PHASE 3: PROCESS
+      ================
+
+      +------------------+
+      | ImportData_      |
+      | Process          |
+      +------------------+
+              |
+              | Parameters:
+              | - SessionID
+              | - ReplaceImportedAccounts (clear first?)
+              | - SumIntercos (aggregate IC?)
+              v
+      +------------------+
+      | P_SYS_IMPORTDATA_|
+      | PROCESS          |
+      +------------------+
+              |
+              | 1. Filter DoImport = 1
+              | 2. Apply MappingFactor
+              | 3. Insert to permanent tables
+              | 4. Update company status
+              | 5. Cleanup staging
+              v
+      +---------------------------------------------------------------+
+      |                    PERMANENT TABLES                            |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   TD030B2 (Local Bundles)                                     |
+      |   +----------+----------+----------+-------------+            |
+      |   | ConsoID  | CompanyID| AccountID| AmountLocal |            |
+      |   +----------+----------+----------+-------------+            |
+      |                                                                |
+      |   TS014C0 (Company Status)                                    |
+      |   +----------+----------+----------------+                    |
+      |   | CompanyID| ConsoID  | Status_Bundles |  ← Set to 1       |
+      |   +----------+----------+----------------+     (needs integ)  |
+      |                                                                |
+      +---------------------------------------------------------------+
+
+
+      IMPORT ERROR CODES
+      ==================
+
+        ErrorCode          Meaning                    Resolution
+        ---------          -------                    ----------
+        INVALID_COMPANY    Company code not found     Create company or fix code
+        INVALID_ACCOUNT    Account code not found     Create account or fix code
+        INVALID_FLOW       Flow code not found        Create flow or fix code
+        INVALID_AMOUNT     Amount format error        Fix number format
+        DUPLICATE_KEY      Duplicate row in file      Remove duplicate
+        MISSING_REQUIRED   Required field empty       Add missing value
+
+
+    api_handlers:
+      - ImportData_ImportFile
+      - ImportData_GetMappings
+      - ImportData_ValidateMappings
+      - ImportData_Process
+
+    stored_procedures:
+      - P_SYS_IMPORTDATA_MAPPINGS
+      - P_SYS_IMPORTDATA_PROCESS
+      - P_SYS_IMPORTDATA_ERROR_INSERT
+
+    staging_tables:
+      - TMP_IMPORTDATA_MAPPINGS
+      - TMP_IMPORTDATA_DETAILS
+
+  # ============================================================================
+  # DIAGRAM 6: JOB EXECUTION PATTERN
+  # ============================================================================
+  job_execution:
+    id: "DIAG-006"
+    name: "Job Execution Pattern"
+    description: "How Hangfire background jobs are queued, executed, and monitored"
+
+    diagram: |
+
+      JOB EXECUTION PATTERN (Hangfire)
+      ================================
+
+
+      API REQUEST
+      ===========
+
+      +------------------+
+      | API Handler      |
+      | (e.g., Conso_    |
+      | Execute)         |
+      +------------------+
+              |
+              | 1. Validate request
+              | 2. Create job parameters
+              v
+      +------------------+
+      | Hangfire.Enqueue |
+      | (JobClass,       |
+      |  JobParams)      |
+      +------------------+
+              |
+              | Returns immediately
+              | with JobID
+              v
+      +------------------+
+      | Return JobID     |
+      | to caller        |
+      +------------------+
+
+
+      HANGFIRE PROCESSING
+      ===================
+
+      +---------------------------------------------------------------+
+      |                     HANGFIRE SERVER                            |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |   Job Queue                                                    |
+      |   +----------------------------------------------------------+|
+      |   | JobID | JobType                    | Status  | Created   ||
+      |   |-------|----------------------------|---------|-----------|
+      |   | 1001  | ConsolidationIntegration   | Queued  | 10:00:00  ||
+      |   | 1002  | ImportData                 | Running | 09:55:00  ||
+      |   | 1003  | ExportReport               | Done    | 09:50:00  ||
+      |   +----------------------------------------------------------+|
+      |                                                                |
+      |   Worker Thread Pool                                          |
+      |   +----------------------------------------------------------+|
+      |   | Worker 1: Processing Job 1002                            ||
+      |   | Worker 2: Idle (will pick up Job 1001)                   ||
+      |   | Worker 3: Idle                                           ||
+      |   +----------------------------------------------------------+|
+      |                                                                |
+      +---------------------------------------------------------------+
+              |
+              | Worker picks up job
+              v
+      +------------------+
+      | Job.Execute()    |
+      | - Runs in        |
+      |   background     |
+      | - Updates        |
+      |   progress       |
+      +------------------+
+              |
+              | Progress updates via LogHelper
+              v
+      +---------------------------------------------------------------+
+      |                     JOB LOG (TL020S0)                          |
+      +---------------------------------------------------------------+
+      | JobID | Timestamp | Message                        | Progress |
+      |-------|-----------|--------------------------------|----------|
+      | 1001  | 10:00:01  | "Starting consolidation"       | 0%       |
+      | 1001  | 10:00:15  | "Processing bundles 1/5"       | 20%      |
+      | 1001  | 10:00:30  | "Processing bundles 2/5"       | 40%      |
+      | 1001  | 10:01:00  | "Running eliminations"         | 80%      |
+      | 1001  | 10:01:30  | "Consolidation complete"       | 100%     |
+      +---------------------------------------------------------------+
+
+
+      MONITORING PATTERN
+      ==================
+
+      +------------------+
+      | Job_GetJobStatus |<----+
+      +------------------+     |
+              |                |
+              | Returns:       |
+              | - Status       | Poll every
+              | - Progress %   | 2-5 seconds
+              | - Messages     |
+              v                |
+      +------------------+     |
+      | Check Status     |-----+
+      |                  |
+      | Queued?  → Wait  |
+      | Running? → Wait  |
+      | Complete? → Done |
+      | Failed?  → Error |
+      +------------------+
+              |
+              | On completion:
+              v
+      +------------------+
+      | Job_GetJobLog    |
+      | (full details)   |
+      +------------------+
+
+
+      JOB STATUS VALUES
+      =================
+
+        Status      Meaning                 Next Action
+        ------      -------                 -----------
+        Queued      Waiting in queue        Wait (poll)
+        Running     Currently executing     Wait (poll), can cancel
+        Succeeded   Completed successfully  Get results
+        Failed      Error occurred          Check log, retry
+        Cancelled   User cancelled          Review, retry if needed
+
+
+      CANCELLATION FLOW
+      =================
+
+      +------------------+         +------------------+
+      | Job_CancelJob    |-------->| HFCancellation   |
+      +------------------+         | Token triggered  |
+                                   +------------------+
+                                            |
+                                            v
+                                   +------------------+
+                                   | Job.Abort()      |
+                                   | called           |
+                                   +------------------+
+                                            |
+                                            v
+                                   +------------------+
+                                   | Status =         |
+                                   | Cancelled        |
+                                   +------------------+
+
+
+    api_handlers:
+      - Job_GetJobStatus
+      - Job_GetJobProgress
+      - Job_GetJobLog
+      - Job_CancelJob
+
+    job_types:
+      - ConsolidationIntegrationJob
+      - ImportDataJob
+      - ExportDataJob
+      - CalculateIndirectPercentagesJob
+      - BackupJob
+      - RestoreJob
+
+  # ============================================================================
+  # DIAGRAM 7: CURRENCY TRANSLATION FLOW
+  # ============================================================================
+  currency_translation:
+    id: "DIAG-007"
+    name: "Currency Translation Flow"
+    description: "How amounts are translated from local to group currency"
+
+    diagram: |
+
+      CURRENCY TRANSLATION FLOW
+      =========================
+
+
+      INPUT: Local Currency Amounts
+      =============================
+
+      +---------------------------------------------------------------+
+      |  TD030B2 (Local Bundles)                                      |
+      +---------------------------------------------------------------+
+      |  CompanyID: SubCo-EUR                                         |
+      |  Currency: EUR (functional)                                   |
+      |                                                                |
+      |  AccountID   | AccountType | AmountLocal (EUR)                |
+      |--------------|-------------|----------------------------------|
+      |  Cash        | B (Balance) | 1,000,000                        |
+      |  Revenue     | P (P&L)     | 5,000,000                        |
+      |  Equipment   | B (Hist)    | 2,000,000                        |
+      +---------------------------------------------------------------+
+
+
+      EXCHANGE RATES (TS017R0)
+      ========================
+
+      +---------------------------------------------------------------+
+      |  Reporting Currency: USD                                       |
+      |  Period: 2024-12                                               |
+      +---------------------------------------------------------------+
+      |  CurrCode | RateType | Rate    | Description                  |
+      |-----------|----------|---------|------------------------------|
+      |  EUR      | CC       | 1.10    | Closing rate (B/S)           |
+      |  EUR      | AC       | 1.08    | Average rate (P&L)           |
+      |  EUR      | HC       | 1.05    | Historical rate              |
+      +---------------------------------------------------------------+
+
+
+      P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+      ====================================
+              |
+              v
+      +---------------------------------------------------------------+
+      |                    TRANSLATION LOGIC                           |
+      +---------------------------------------------------------------+
+      |                                                                |
+      |  For each account, determine rate type:                       |
+      |                                                                |
+      |  Account Type        Rate Type Used    Reason                 |
+      |  ------------        --------------    ------                 |
+      |  B (Balance Sheet)   CC (Closing)      Current value          |
+      |  P (P&L)             AC (Average)      Period average         |
+      |  B + FlagHistRate    HC (Historical)   Original cost          |
+      |                                                                |
+      |  Formula: AmountGroup = AmountLocal × Rate                    |
+      |                                                                |
+      +---------------------------------------------------------------+
+              |
+              v
+
+      OUTPUT: Group Currency Amounts
+      ==============================
+
+      +---------------------------------------------------------------+
+      |  TD035C2 (Consolidated)                                       |
+      +---------------------------------------------------------------+
+      |  CompanyID: SubCo-EUR                                         |
+      |  Group Currency: USD                                          |
+      |                                                                |
+      |  AccountID   | AmountLocal | Rate | AmountGroup              |
+      |--------------|-------------|------|--------------------------|
+      |  Cash        | 1,000,000   | 1.10 | 1,100,000 (CC)          |
+      |  Revenue     | 5,000,000   | 1.08 | 5,400,000 (AC)          |
+      |  Equipment   | 2,000,000   | 1.05 | 2,100,000 (HC)          |
+      +---------------------------------------------------------------+
+
+
+      TRANSLATION DIFFERENCE HANDLING
+      ===============================
+
+      +---------------------------------------------------------------+
+      |                                                                |
+      |  When B/S doesn't balance after translation:                  |
+      |                                                                |
+      |  Total Assets (CC)      = 10,000,000 USD                      |
+      |  Total Liabilities (CC) =  8,500,000 USD                      |
+      |  Equity (mix of rates)  =  1,400,000 USD                      |
+      |  ----------------------------------------                      |
+      |  Difference             =    100,000 USD                      |
+      |                                                                |
+      |  Posted to special accounts:                                  |
+      |  - TDBS (Translation Difference B/S)                          |
+      |  - TDPLCredit / TDPLDebit (P&L impact)                       |
+      |                                                                |
+      +---------------------------------------------------------------+
+
+
+      RATE TYPE REFERENCE
+      ===================
+
+        Code    Name              Usage
+        ----    ----              -----
+        CC      Closing Current   Balance sheet (monetary)
+        AC      Average Current   P&L items
+        MC      Manual Closing    Override closing rate
+        MA      Manual Average    Override average rate
+        HC      Historical        Non-monetary B/S (PPE, equity)
+        CR      Closing Ref       Reference period closing
+        AR      Average Ref       Reference period average
+        NR      No Rate           Same currency (rate = 1)
+
+
+    api_handlers:
+      - Currency_GetExchangeRates
+      - Currency_SaveExchangeRates
+      - ImportExchangeRates_Import
+
+    stored_procedures:
+      - P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+
+    theory_references:
+      - exchange-rate-types.md
+      - translation-methods.md
+      - translation-adjustments.md
+
+  # ============================================================================
+  # DIAGRAM 8: API CALL CHAIN PATTERNS
+  # ============================================================================
+  api_call_chains:
+    id: "DIAG-008"
+    name: "Common API Call Chain Patterns"
+    description: "Typical sequences of API calls for common operations"
+
+    diagram: |
+
+      API CALL CHAIN PATTERNS
+      =======================
+
+
+      PATTERN 1: EXECUTE CONSOLIDATION
+      ================================
+
+      Step  API Handler                  Purpose
+      ----  -----------                  -------
+
+       1    Consolidation_GetStatus      Check period not locked
+            |
+            v
+       2    Ownership_CalculatePercentages   Ensure ownership current
+            |                                (if structure changed)
+            v
+       3    Consolidation_Execute        Queue consolidation job
+            |                            → Returns JobID
+            v
+       4    Job_GetJobStatus             Poll until complete
+            |   (repeat)                 → Status: Running → Succeeded
+            v
+       5    Report_ExecuteReport         Generate results report
+
+
+      PATTERN 2: IMPORT DATA
+      ======================
+
+       1    ImportData_ImportFile        Upload and parse file
+            |                            → Returns SessionID
+            v
+       2    ImportData_GetMappings       Review mapping results
+            |                            → Check DoImport, ErrorCode
+            v
+       3    [Fix issues if any]          Create missing master data
+            |                            or correct source file
+            v
+       4    ImportData_Process           Execute import
+            |                            → Data in TD030B2
+            v
+       5    Consolidation_Execute        Integrate imported data
+
+
+      PATTERN 3: ADD NEW SUBSIDIARY
+      =============================
+
+       1    Company_SaveCompany          Create company record
+            |                            → CompanyID returned
+            v
+       2    Ownership_SaveOwnership      Create ownership link
+            |                            → Link to parent
+            v
+       3    Ownership_CalculatePercentages   Calculate effective %
+            |                                → GroupPerc, ConsoMethod
+            v
+       4    Currency_SaveExchangeRates   Add FX rates (if new currency)
+            |
+            v
+       5    [Import or enter data]       Populate local bundles
+            |
+            v
+       6    Consolidation_Execute        Include in consolidation
+
+
+      PATTERN 4: CONFIGURE ELIMINATION
+      ================================
+
+       1    Elimination_GetEliminations  Check existing config
+            |
+            v
+       2    Account_GetAccounts          Find special accounts
+            |                            → Accounts with FlagXXX
+            v
+       3    Account_SaveAccount          Set special account flags
+            |                            → FlagDivReceived, etc.
+            v
+       4    Elimination_SaveElimination  Enable/configure elimination
+            |                            → Active = 1
+            v
+       5    Consolidation_Execute        Run with eliminations
+
+
+      PATTERN 5: PERIOD CLOSE
+      =======================
+
+       1    ValidationReportRule_Execute   Run validation checks
+            |                              → Pass/Fail results
+            v
+       2    [Fix any issues]              Address validation failures
+            |
+            v
+       3    Consolidation_Execute         Final consolidation run
+            |
+            v
+       4    Report_ExecuteReport          Generate period-end reports
+            |
+            v
+       5    Report_ExportReport           Export to Excel/PDF
+            |
+            v
+       6    Consolidation_Lock            Lock period
+            |
+            v
+       7    ConsoPeriod_Rollforward       Create next period
+
+
+      PATTERN 6: ERROR RECOVERY
+      =========================
+
+       1    Job_GetJobStatus              Check failed job
+            |                             → Status: Failed
+            v
+       2    Job_GetJobLog                 Get error details
+            |                             → Error code, message
+            v
+       3    [Diagnose using decision tree]
+            |
+            v
+       4    [Fix root cause]              Configure missing item,
+            |                             fix data, etc.
+            v
+       5    Consolidation_Execute         Retry consolidation
+
+
+    patterns:
+      - name: "Execute Consolidation"
+        steps: 5
+        handlers: ["Consolidation_GetStatus", "Ownership_CalculatePercentages",
+                   "Consolidation_Execute", "Job_GetJobStatus", "Report_ExecuteReport"]
+
+      - name: "Import Data"
+        steps: 5
+        handlers: ["ImportData_ImportFile", "ImportData_GetMappings",
+                   "ImportData_Process", "Consolidation_Execute"]
+
+      - name: "Add Subsidiary"
+        steps: 6
+        handlers: ["Company_SaveCompany", "Ownership_SaveOwnership",
+                   "Ownership_CalculatePercentages", "Currency_SaveExchangeRates",
+                   "Consolidation_Execute"]
+
+      - name: "Period Close"
+        steps: 7
+        handlers: ["ValidationReportRule_Execute", "Consolidation_Execute",
+                   "Report_ExecuteReport", "Report_ExportReport",
+                   "Consolidation_Lock", "ConsoPeriod_Rollforward"]
+
+  # ============================================================================
+  # QUICK REFERENCE
+  # ============================================================================
+  quick_reference:
+    diagram_index:
+      - id: "DIAG-001"
+        name: "Consolidation Execution Flow"
+        use_for: "Understanding full consolidation process"
+
+      - id: "DIAG-002"
+        name: "Data Flow Through Tables"
+        use_for: "Tracing data from input to output"
+
+      - id: "DIAG-003"
+        name: "Elimination Pipeline"
+        use_for: "Understanding elimination processing"
+
+      - id: "DIAG-004"
+        name: "Ownership Calculation"
+        use_for: "Understanding percentage calculation"
+
+      - id: "DIAG-005"
+        name: "Import Processing"
+        use_for: "Understanding 3-phase import pattern"
+
+      - id: "DIAG-006"
+        name: "Job Execution"
+        use_for: "Understanding Hangfire job flow"
+
+      - id: "DIAG-007"
+        name: "Currency Translation"
+        use_for: "Understanding FX translation"
+
+      - id: "DIAG-008"
+        name: "API Call Chains"
+        use_for: "Common operation sequences"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-03"
+    version: "1.0"
+    diagram_count: 8
+
+    purpose: |
+      ASCII text art diagrams for AI agents to understand backend architecture
+      and data flows without requiring graphical rendering. Diagrams focus on:
+
+      - API handler call sequences
+      - Stored procedure orchestration
+      - Database table relationships
+      - Job execution patterns
+      - Error recovery flows
+
+    related_files:
+      - api-index.yaml
+      - api-agent-prompts.yaml
+      - api-workflow-diagrams.yaml
+      - error-handling-patterns.yaml

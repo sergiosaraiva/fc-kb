@@ -1,0 +1,515 @@
+Topics:
+Company Reports, Intercompany Reconciliation, Local Bundle Reports, Shareholders and Partners
+
+Keywords:
+Company Reports, Intercompany Reconciliation, Local Bundle, Shareholders, Partners, Financial Rights, Control Rights, Adjusted Amounts, Transactions, Data Analysis
+
+Summary:
+The documentation for the Financial Consolidation product covers comprehensive instructions on generating various types of reports, including company reports, intercompany reconciliation, local bundle reports, and shareholders/partners reports. The Company Reports section explains how to generate standard and detailed reports on company information. The Intercompany Reconciliation section details the process of identifying and resolving unmatched intercompany transactions. The Local Bundle Reports section provides instructions on generating reports for local amounts, adjusted amounts, and various related financial details. The Shareholders and Partners section outlines generating reports on financial and control rights of shareholders and partners, along with participation details.
+
+Contents:
+
+Question: How do you access the General Ledger report page?
+Answer: To access the General Ledger report page, click Reports > Standard Reports > General Ledger.
+
+Question: What information does the General Ledger report provide?
+Answer: The General Ledger report provides details of financial activities of companies in the group, including account codes, descriptions, and debit/credit information.
+
+Question: How do you generate a general ledger report?
+Answer: 1. Select the accounts. 2. Select the companies. 3. Enter a calculated account. 4. Select a point of view. 5. Specify sort order. 6. Select the period. 7. Select a journal view. 8. Select the output file type. 9. Click to generate the report.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: How do you generate a bundle last modified report?
+Answer: 1. Select the current consolidation period. 2. Select the reference consolidation period. 3. Select the output file type. 4. Click to generate the report.
+
+Question: What is the purpose of the Company Reports section?
+Answer: The Company Reports section explains how to generate standard and detailed reports on company information.
+
+Question: What is the purpose of the Intercompany Reconciliation section?
+Answer: The Intercompany Reconciliation section details the process of identifying and resolving unmatched intercompany transactions.
+
+Question: What is the purpose of the Local Bundle Reports section?
+Answer: The Local Bundle Reports section provides instructions on generating reports for local amounts, adjusted amounts, and various related financial details.
+
+Question: What is the purpose of the Shareholders and Partners section?
+Answer: The Shareholders and Partners section outlines generating reports on financial and control rights of shareholders and partners, along with participation details.
+
+Question: How do you access the Equity Analysis page?
+Answer: To access the Equity Analysis page, click Reports > Drill-Down Analysis > Equity Analysis.
+
+Question: What does the Equity Analysis page provide?
+Answer: The Equity Analysis page provides a way to compare the equity owned by a specific company across two different consolidation periods.
+
+Question: How do you justify the equity on the Equity Analysis page?
+Answer: 1. Enter the company name. 2. Click . 3. Analyze the lines displayed. 4. Select lines to analyze. 5. Click to launch the justification process. 6. Click to remove selected lines. 7. Repeat until all lines are justified.
+
+Question: What details are provided for each line in the Equity Analysis page?
+Answer: For each line, you get the Account, Journal Code, Journal Entry Number, Journal Description, and the Amount.
+
+Question: How are debit and credit amounts presented in the Equity Analysis page?
+Answer: Debit amounts are presented as positive values, while credit amounts are presented as negative values.
+
+Question: How do you access the Shareholders Analysis page?
+Answer: To access the Shareholders Analysis page, click Reports > Drill-Down Analysis > Shareholder Analysis.
+
+Question: What does the Shareholders Analysis page provide?
+Answer: The Shareholders Analysis page provides a way to compare the investments of all shareholders in a specific company during two different periods.
+
+Question: How do you justify shareholders on the Shareholders Analysis page?
+Answer: 1. Enter the company code. 2. Click . 3. Analyze the lines displayed. 4. Click to remove unnecessary lines. 5. Review account, journal, and amount details. 6. Total amounts are displayed for Current and Reference periods. 7. Click to remove selected lines. 8. Click to refresh the page. 9. Click to open the Shareholders Report page.
+
+Question: What details are provided for each line in the Shareholders Analysis page?
+Answer: For each line, you get the Account, Journal Code, Journal Entry Number, Journal Description, Company Name, and the Amount.
+
+Question: How are amounts presented in the Shareholders Analysis page?
+Answer: Debit amounts are presented as positive values, while credit amounts are presented as negative values.
+
+Question: How do you generate a report on the Shareholders Analysis page?
+Answer: Click to open the Shareholders Report page.
+
+Question: How do you navigate across companies in the Shareholders Analysis page?
+Answer: Click to navigate back and forward across companies.
+
+Question: What is the purpose of the Equity Analysis section?
+Answer: The Equity Analysis section explains how to justify equity changes and analyze fluctuations in equity ownership.
+
+Question: What is the purpose of the Shareholders Analysis section?
+Answer: The Shareholders Analysis section provides guidance on comparing shareholder investments and identifying variations due to local book entries or adjustments.
+
+Question: How do you address discrepancies in shareholder investments?
+Answer: Use the Shareholders Analysis page to compare investments across different periods and identify variations due to local book entries or adjustments.
+
+Question: How do you compare ownership changes in equity analysis?
+Answer: Use the Equity Analysis page to compare the ownership stake of a company across two different consolidation periods and justify the changes.
+
+Question: How do you track equity and shareholder changes?
+Answer: Use the Equity Analysis and Shareholders Analysis pages to compare ownership and investments across different consolidation periods.
+
+Question: How do you analyze changes in bundle data?
+Answer: Generate a Bundle Last Modified report to create a report of recently modified bundles and analyze the changes.
+
+Question: How do you compare equity ownership across consolidation periods?
+Answer: Use the Equity Analysis page to compare the equity owned by a specific company across two different consolidation periods.
+
+Question: How do you compare shareholder investments across periods?
+Answer: Use the Shareholders Analysis page to compare investments of all shareholders in a specific company during two different periods.
+
+Question: What information does the Local Amounts and Adjustments report provide?
+Answer: The Local Amounts and Adjustments report provides details of the statutory accounts, local adjustments, and adjusted accounts.
+
+Question: How do you include a Point of View in a report?
+Answer: Click to search for and select a Point of View.
+
+Question: How do you perform a detailed analysis of local amounts?
+Answer: Generate a Local Amounts report from the Local Bundles page to analyze data of the current and reference environments and their differences.
+
+Question: How do you access the Companies page?
+Answer: To access the Companies page, click Reports > Standard Reports > Companies.
+
+Question: What types of reports are available on the Companies page?
+Answer: The available report types are Standard (user) report and Detailed report.
+
+Question: What information does the Standard company report include?
+Answer: The Standard company report includes local currency, deferred tax settings, consolidation method, number of issued shares, percentage of financial interest of the group, and third parties.
+
+Question: How do you generate a company report?
+Answer: 1. Select the consolidation periods. 2. Select a Report type. 3. Specify Sorting and Filtering options. 4. Select the output file type. 5. Click to generate the report.
+
+Question: What is the purpose of the Detailed company report?
+Answer: The Detailed company report provides an overview of all parameters of the company, showing one company per page.
+
+Question: What filtering options are available when generating a company report?
+Answer: You can filter to include all companies in the group or only the consolidated companies.
+
+Question: What file types can you select for generating a company report?
+Answer: The available file types are PDF, XLS, and XLSX.
+
+Question: How do you access the Intercompany Reconciliation Report page?
+Answer: To access the Intercompany Reconciliation Report page, click Reports > Standard Reports > Intercompany Reconciliation report.
+
+Question: What is the purpose of the Intercompany Reconciliation report?
+Answer: The Intercompany Reconciliation report identifies unmatched intercompany transactions, addressing discrepancies in sales and billing information between intercompany partners.
+
+Question: How do you generate an intercompany reconciliation report?
+Answer: 1. Select the companies. 2. Select the intercompany rules. 3. Specify Filter options. 4. Select Journal Summation and Point of View. 5. Select the output file type. 6. Click to generate the report.
+
+Question: What options can you specify in the Filter section of the Intercompany Reconciliation report?
+Answer: You can specify the type of transactions (Matched or Unmatched), exclude Equity Method and Non-Cash transactions, and choose to merge debit/credit transactions.
+
+Question: What information does the Intercompany Reconciliation report provide?
+Answer: The report provides details of paired transactions with inconsistencies in terms of amounts, currencies, or unmatched transactions.
+
+Question: How do you access the Local Bundles page?
+Answer: To access the Local Bundles page, click Reports > Standard Reports > Local Bundles.
+
+Question: What types of reports can you generate from the Local Bundles page?
+Answer: You can generate Local Amounts report, Adjusted Amounts report, Local Amounts and Adjustments report, Local Adjustments report, Participations report, Intercompanies report, Partners report, Dimensions report, and Flows report.
+
+Question: What does the Local Amounts report provide?
+Answer: The Local Amounts report provides data of the current environment, data of the reference environment, and the difference between both.
+
+Question: How do you generate a local bundle report?
+Answer: 1. Enter a reference consolidation period. 2. Select the type of report. 3. Select the companies. 4. Select the output file type. 5. Click to generate the report.
+
+Question: What information does the Adjusted Amounts report provide?
+Answer: The Adjusted Amounts report provides data of the current environment, data of the reference environment, and the difference between both after local adjustments.
+
+Question: What information does the Local Adjustments report provide?
+Answer: The Local Adjustments report provides an overview of the local adjustments.
+
+Question: What information does the Participations report provide?
+Answer: The Participations report gives details of the shareholding accounts.
+
+Question: What information does the Intercompanies report provide?
+Answer: The Intercompanies report provides a detailed breakdown of all intercompany-related accounts for both actual and reference Consolidation Periods.
+
+Question: What information does the Partners report provide?
+Answer: The Partners report provides a detailed breakdown of all partner-related accounts for both actual and reference Consolidation Periods.
+
+Question: What information does the Dimensions report provide?
+Answer: The Dimensions report provides a detailed breakdown of all dimension-related accounts for both actual and reference Consolidation Periods.
+
+Question: What information does the Flows report provide?
+Answer: The Flows report gives the details of the financial flows, including Manual Flows and Automatic Flows.
+
+Question: How do you access the Participations / Shareholders / Partners page?
+Answer: To access the Participations / Shareholders / Partners page, click Reports > Standard Reports > Participations / Shareholders / Partners.
+
+Question: What types of reports can you generate from the Participations / Shareholders / Partners page?
+Answer: You can generate Shareholders - Financial Rights, Shareholders - Control Rights, Shareholding - Financial Rights, and Shareholding - Control Rights reports.
+
+Question: What information does the Shareholders - Financial Rights report provide?
+Answer: The Shareholders - Financial Rights report shows the direct shareholders of the companies in terms of financial rights.
+
+Question: What information does the Shareholders - Control Rights report provide?
+Answer: The Shareholders - Control Rights report shows the direct shareholders of the companies in terms of control rights.
+
+Question: What information does the Shareholding - Financial Rights report provide?
+Answer: The Shareholding - Financial Rights report shows a company’s shareholdings in other companies in terms of financial rights.
+
+Question: What information does the Shareholding - Control Rights report provide?
+Answer: The Shareholding - Control Rights report shows a company’s shareholdings in other companies in terms of control rights.
+
+Question: How do you generate a shareholding report?
+Answer: 1. Select the consolidation periods. 2. Select a report type. 3. Optionally, select Show changes only. 4. Select the output file type. 5. Click to generate the report.
+
+Question: What option can you select to show changes only in a shareholding report?
+Answer: You can select the Show changes only option to only show changes in shareholders/shareholding rights on the report.
+
+Question: What file types can you select for generating a shareholding report?
+Answer: The available file types are PDF, XLS, and XLSX.
+
+Question: How do you access the Ledger by Calculated Account report page?
+Answer: To access the Ledger by Calculated Account report page, click Reports > Standard Reports > Ledger by Calculated Account.
+
+Question: What information can you include in the Ledger by Calculated Account report?
+Answer: You can include selected calculated accounts, companies, point of view, sort order, period, and journal view.
+
+Question: How do you generate a ledger by calculated account report?
+Answer: 1. Select the accounts. 2. Select the companies. 3. Select a point of view. 4. Specify sort order. 5. Select the period. 6. Select a journal view. 7. Select the output file type. 8. Click to generate the report.
+
+Question: What information can you include in the General Ledger report?
+Answer: You can include selected accounts, companies, calculated account, point of view, sort order, period, and journal view.
+
+Question: How do you generate a general ledger report?
+Answer: 1. Select the accounts. 2. Select the companies. 3. Enter a calculated account. 4. Select a point of view. 5. Specify sort order. 6. Select the period. 7. Select a journal view. 8. Select the output file type. 9. Click to generate the report.
+
+Question: How do you access the General Ledger report page?
+Answer: To access the General Ledger report page, click Reports > Standard Reports > General Ledger.
+
+Question: What information does the General Ledger report provide?
+Answer: The General Ledger report provides details of financial activities of companies in the group, including account codes, descriptions, and debit/credit information.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: What information can you include in the Bundle Last Modified report?
+Answer: You can include the current consolidation period, reference consolidation period, and select the output file type.
+
+Question: How do you generate a bundle last modified report?
+Answer: 1. Select the current consolidation period. 2. Select the reference consolidation period. 3. Select the output file type. 4. Click to generate the report.
+
+Question: What is the purpose of the Company Reports section?
+Answer: The Company Reports section explains how to generate standard and detailed reports on company information.
+
+Question: What is the purpose of the Intercompany Reconciliation section?
+Answer: The Intercompany Reconciliation section details the process of identifying and resolving unmatched intercompany transactions.
+
+Question: What is the purpose of the Local Bundle Reports section?
+Answer: The Local Bundle Reports section provides instructions on generating reports for local amounts, adjusted amounts, and various related financial details.
+
+Question: What is the purpose of the Shareholders and Partners section?
+Answer: The Shareholders and Partners section outlines generating reports on financial and control rights of shareholders and partners, along with participation details.
+
+Question: How do you access the Equity Analysis page?
+Answer: To access the Equity Analysis page, click Reports > Drill-Down Analysis > Equity Analysis.
+
+Question: What does the Equity Analysis page provide?
+Answer: The Equity Analysis page provides a way to compare the equity owned by a specific company across two different consolidation periods.
+
+Question: What information is displayed in the top panel of the Equity Analysis page?
+Answer: The top panel contains the equity from the Current Consolidation Period for the selected company.
+
+Question: What information is displayed in the bottom panel of the Equity Analysis page?
+Answer: The bottom panel contains the equity from the Reference Consolidation Period for the selected company.
+
+Question: How do you justify the equity on the Equity Analysis page?
+Answer: 1. Enter the company name. 2. Click . 3. Analyze the lines displayed. 4. Select lines to analyze. 5. Click to launch the justification process. 6. Click to remove selected lines. 7. Repeat until all lines are justified.
+
+Question: What details are provided for each line in the Equity Analysis page?
+Answer: For each line, you get the Account, Journal Code, Journal Entry Number, Journal Description, and the Amount.
+
+Question: How are debit and credit amounts presented in the Equity Analysis page?
+Answer: Debit amounts are presented as positive values, while credit amounts are presented as negative values.
+
+Question: How do you access the Shareholders Analysis page?
+Answer: To access the Shareholders Analysis page, click Reports > Drill-Down Analysis > Shareholder Analysis.
+
+Question: What does the Shareholders Analysis page provide?
+Answer: The Shareholders Analysis page provides a way to compare the investments of all shareholders in a specific company during two different periods.
+
+Question: How do you justify shareholders on the Shareholders Analysis page?
+Answer: 1. Enter the company code. 2. Click . 3. Analyze the lines displayed. 4. Click to remove unnecessary lines. 5. Review account, journal, and amount details. 6. Total amounts are displayed for Current and Reference periods. 7. Click to remove selected lines. 8. Click to refresh the page. 9. Click to open the Shareholders Report page.
+
+Question: What details are provided for each line in the Shareholders Analysis page?
+Answer: For each line, you get the Account, Journal Code, Journal Entry Number, Journal Description, Company Name, and the Amount.
+
+Question: How are amounts presented in the Shareholders Analysis page?
+Answer: Debit amounts are presented as positive values, while credit amounts are presented as negative values.
+
+Question: How do you generate a report on the Shareholders Analysis page?
+Answer: Click to open the Shareholders Report page.
+
+Question: How do you navigate across companies in the Shareholders Analysis page?
+Answer: Click to navigate back and forward across companies.
+
+Question: What is the purpose of the Equity Analysis section?
+Answer: The Equity Analysis section explains how to justify equity changes and analyze fluctuations in equity ownership.
+
+Question: What is the purpose of the Shareholders Analysis section?
+Answer: The Shareholders Analysis section provides guidance on comparing shareholder investments and identifying variations due to local book entries or adjustments.
+
+Question: What file types can you select for generating an Equity Analysis report?
+Answer: The available file types are PDF, XLS, and XLSX.
+
+Question: What is displayed in the Difference field in the Equity Analysis page?
+Answer: The Difference field shows the difference between the equity of the Current and Reference Consolidation Periods.
+
+Question: What is displayed in the Selected Amount field in the Equity Analysis page?
+Answer: The Selected Amount field shows the total for the selected lines in the Current and Reference periods.
+
+Question: How do you remove lines from the overview in the Equity Analysis page?
+Answer: Click to remove the selected lines. Note: Removing lines does not delete them; they are just removed from the overview.
+
+Question: What is displayed in the Current field in the Equity Analysis page?
+Answer: The Current field shows the total for all the lines for the Current Consolidation Period.
+
+Question: What is displayed in the Reference field in the Equity Analysis page?
+Answer: The Reference field shows the total for all the lines for the Reference Consolidation Period.
+
+Question: How do you access the Drill-Down Analysis page?
+Answer: To access the Drill-Down Analysis page, click Reports > Drill-Down Analysis.
+
+Question: What is the purpose of the Drill-Down Analysis page?
+Answer: The Drill-Down Analysis page allows for detailed data analysis and viewing contributions by company or local amounts.
+
+Question: What options are available for sorting data in the Drill-Down Analysis page?
+Answer: Go to the Sort on box and make a selection.
+
+Question: What options are available for viewing contributions by company in the Drill-Down Analysis page?
+Answer: Go to the Navigation box and select contributions by company.
+
+Question: What options are available for viewing local amounts in the Drill-Down Analysis page?
+Answer: Go to the Navigation box and select local amounts.
+
+Question: What options can you specify for data analysis on the Drill-Down Analysis page?
+Answer: You can sort data and view contributions by company or local amounts for detailed analysis.
+
+Question: How do you perform a drill-down analysis for equity changes?
+Answer: Use the Equity Analysis page to compare equity owned by a company across two consolidation periods and justify the changes.
+
+Question: How do you perform a drill-down analysis for shareholder investments?
+Answer: Use the Shareholders Analysis page to compare shareholder investments across two periods and identify variations due to local book entries or adjustments.
+
+Question: What is the purpose of the Reporting section?
+Answer: The Reporting section provides instructions for generating various types of financial reports, including company reports, intercompany reconciliation, local bundle reports, and shareholders/partners reports.
+
+Question: How do you analyze fluctuations in equity ownership?
+Answer: Use the Equity Analysis page to justify equity changes and analyze fluctuations in ownership between consolidation periods.
+
+Question: How do you compare shareholder investments?
+Answer: Use the Shareholders Analysis page to compare investments across different periods and identify variations due to local book entries or adjustments.
+
+Question: How do you address discrepancies in intercompany transactions?
+Answer: Generate an Intercompany Reconciliation report to identify and resolve unmatched intercompany transactions.
+
+Question: What is the purpose of the Local Bundle Reports section?
+Answer: The Local Bundle Reports section provides instructions on generating reports for local amounts, adjusted amounts, and various related financial details.
+
+Question: How do you track equity and shareholder changes?
+Answer: Use the Equity Analysis and Shareholders Analysis pages to compare ownership and investments across different consolidation periods.
+
+Question: How do you access the Bundle Last Modified report page?
+Answer: To access the Bundle Last Modified report page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: How do you analyze changes in bundle data?
+Answer: Generate a Bundle Last Modified report to create a report of recently modified bundles and analyze the changes.
+
+Question: How do you include a Point of View in a report?
+Answer: Click to search for and select a Point of View.
+
+Question: How do you filter transactions in the Intercompany Reconciliation report?
+Answer: You can filter transactions by type (Matched or Unmatched), exclude Equity Method and Non-Cash transactions, and choose to merge debit/credit transactions.
+
+Question: What is displayed in the Selected Amount field in the Shareholders Analysis page?
+Answer: The Selected Amount field shows the total for the selected lines in the Current and Reference periods.
+
+Question: What is displayed in the Difference field in the Shareholders Analysis page?
+Answer: The Difference field shows the difference between the total amounts of the Current and Reference periods.
+
+Question: How do you perform a detailed analysis of local amounts?
+Answer: Generate a Local Amounts report from the Local Bundles page to analyze data of the current and reference environments and their differences.
+
+Question: How do you view changes in shareholders/shareholding rights?
+Answer: Generate a shareholding report and select the Show changes only option to view changes in shareholders/shareholding rights.
+
+Question: How do you include calculated accounts in a report?
+Answer: From the Accounts list, select the account(s) you want on the report, including calculated accounts.
+
+Question: How do you arrange a report by accounts or companies?
+Answer: Select the sort order as either by accounts or by companies when generating the report.
+
+Question: How do you include a journal view in a report?
+Answer: Select a journal view from the Journal Summation drop-down list.
+
+Question: How do you view contributions by company in a report?
+Answer: Select the contributions by company option in the Navigation box on the Drill-Down Analysis page.
+
+Question: How do you compare equity ownership across consolidation periods?
+Answer: Use the Equity Analysis page to compare the equity owned by a specific company across two different consolidation periods.
+
+Question: How do you compare shareholder investments across periods?
+Answer: Use the Shareholders Analysis page to compare investments of all shareholders in a specific company during two different periods.
+
+Question: What information does the Local Amounts and Adjustments report provide?
+Answer: The Local Amounts and Adjustments report provides details of the statutory accounts, local adjustments, and adjusted accounts.
+
+Question: What is the purpose of the Audit Trail section?
+Answer: The Audit Trail section provides steps for creating reports designed for auditing consolidated data, ensuring thorough examination and analysis of financial information.
+
+Question: How do you analyze control rights of shareholders?
+Answer: Generate a Shareholders - Control Rights report to analyze the direct shareholders of the companies in terms of control rights.
+
+Question: How do you analyze financial rights of shareholders?
+Answer: Generate a Shareholders - Financial Rights report to analyze the direct shareholders of the companies in terms of financial rights.
+
+Question: How do you analyze financial rights of a company’s shareholdings?
+Answer: Generate a Shareholding - Financial Rights report to analyze a company’s shareholdings in other companies in terms of financial rights.
+
+Question: How do you analyze control rights of a company’s shareholdings?
+Answer: Generate a Shareholding - Control Rights report to analyze a company’s shareholdings in other companies in terms of control rights.
+
+Question: How do you generate an audit trail report?
+Answer: 1. Select the consolidation periods. 2. Select a journal view. 3. Choose the report to generate. 4. Select the output file type. 5. Click to generate the report.
+
+Question: What is the purpose of the Shareholders Analysis section?
+Answer: The Shareholders Analysis section provides guidance on comparing shareholder investments and identifying variations due to local book entries or adjustments.
+
+Question: How do you address discrepancies in shareholder investments?
+Answer: Use the Shareholders Analysis page to compare investments across different periods and identify variations due to local book entries or adjustments.
+
+Question: How do you compare ownership changes in equity analysis?
+Answer: Use the Equity Analysis page to compare the ownership stake of a company across two different consolidation periods and justify the changes.
+
+Question: What is the purpose of the Reporting section?
+Answer: The Reporting section provides instructions for generating various types of financial reports, including company reports, intercompany reconciliation, local bundle reports, and shareholders/partners reports.
+
+Question: How do you analyze fluctuations in equity ownership?
+Answer: Use the Equity Analysis page to justify equity changes and analyze fluctuations in ownership between consolidation periods.
+
+Question: How do you compare shareholder investments?
+Answer: Use the Shareholders Analysis page to compare investments across different periods and identify variations due to local book entries or adjustments.
+
+Question: How do you address discrepancies in intercompany transactions?
+Answer: Generate an Intercompany Reconciliation report to identify and resolve unmatched intercompany transactions.
+
+Question: What is the purpose of the Local Bundle Reports section?
+Answer: The Local Bundle Reports section provides instructions on generating reports for local amounts, adjusted amounts, and various related financial details.
+
+Question: How do you track equity and shareholder changes?
+Answer: Use the Equity Analysis and Shareholders Analysis pages to compare ownership and investments across different consolidation periods.
+
+Question: How do you access the Bundle Last Modified report page?
+Answer: To access the Bundle Last Modified report page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: How do you analyze changes in bundle data?
+Answer: Generate a Bundle Last Modified report to create a report of recently modified bundles and analyze the changes.
+
+Question: How do you include a Point of View in a report?
+Answer: Click to search for and select a Point of View.
+
+Question: How do you filter transactions in the Intercompany Reconciliation report?
+Answer: You can filter transactions by type (Matched or Unmatched), exclude Equity Method and Non-Cash transactions, and choose to merge debit/credit transactions.
+
+Question: What is displayed in the Selected Amount field in the Shareholders Analysis page?
+Answer: The Selected Amount field shows the total for the selected lines in the Current and Reference periods.
+
+Question: What is displayed in the Difference field in the Shareholders Analysis page?
+Answer: The Difference field shows the difference between the total amounts of the Current and Reference periods.
+
+Question: How do you perform a detailed analysis of local amounts?
+Answer: Generate a Local Amounts report from the Local Bundles page to analyze data of the current and reference environments and their differences.
+
+Question: How do you view changes in shareholders/shareholding rights?
+Answer: Generate a shareholding report and select the Show changes only option to view changes in shareholders/shareholding rights.
+
+Question: How do you include calculated accounts in a report?
+Answer: From the Accounts list, select the account(s) you want on the report, including calculated accounts.
+
+Question: How do you arrange a report by accounts or companies?
+Answer: Select the sort order as either by accounts or by companies when generating the report.
+
+Question: How do you include a journal view in a report?
+Answer: Select a journal view from the Journal Summation drop-down list.
+
+Question: How do you view contributions by company in a report?
+Answer: Select the contributions by company option in the Navigation box on the Drill-Down Analysis page.
+
+Question: How do you compare equity ownership across consolidation periods?
+Answer: Use the Equity Analysis page to compare the equity owned by a specific company across two different consolidation periods.
+
+Question: How do you compare shareholder investments across periods?
+Answer: Use the Shareholders Analysis page to compare investments of all shareholders in a specific company during two different periods.
+
+Question: What information does the Local Amounts and Adjustments report provide?
+Answer: The Local Amounts and Adjustments report provides details of the statutory accounts, local adjustments, and adjusted accounts.
+
+Question: What is the purpose of the Audit Trail section?
+Answer: The Audit Trail section provides steps for creating reports designed for auditing consolidated data, ensuring thorough examination and analysis of financial information.
+
+Question: How do you analyze control rights of shareholders?
+Answer: Generate a Shareholders - Control Rights report to analyze the direct shareholders of the companies in terms of control rights.
+
+Question: How do you analyze financial rights of shareholders?
+Answer: Generate a Shareholders - Financial Rights report to analyze the direct shareholders of the companies in terms of financial rights.
+
+Question: How do you analyze financial rights of a company’s shareholdings?
+Answer: Generate a Shareholding - Financial Rights report to analyze a company’s shareholdings in other companies in terms of financial rights.
+
+Question: How do you analyze control rights of a company’s shareholdings?
+Answer: Generate a Shareholding - Control Rights report to analyze a company’s shareholdings in other companies in terms of control rights.
+
+Question: How do you generate an audit trail report?
+Answer: 1. Select the consolidation periods. 2. Select a journal view. 3. Choose the report to generate. 4. Select the output file type. 5. Click to generate the report.
+
+Question: What is the purpose of the Shareholders Analysis section?
+Answer: The Shareholders Analysis section provides guidance on comparing shareholder investments and identifying variations due to local book entries or adjustments.
+
+Question: How do you address discrepancies in shareholder investments?
+Answer: Use the Shareholders Analysis page to compare investments across different periods and identify variations due to local book entries or adjustments.
+
+Question: How do you compare ownership changes in equity analysis?
+Answer: Use the Equity Analysis page to compare the ownership stake of a company across two different consolidation periods and justify the changes.
+

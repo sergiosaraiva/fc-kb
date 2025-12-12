@@ -1,0 +1,80 @@
+Topics:
+Consolidation Status, Consolidation Batch, Bundle Integration, Adjustment Integration
+
+Keywords:
+Consolidation Status, Consolidation Batch, Bundle Integration, Adjustment Integration, Process Eliminations, Financial Consolidation, Company Selection, Run Consolidation, Consolidation Period
+
+Summary:
+The provided documentation for the Financial Consolidation product includes comprehensive instructions on viewing consolidation status, running consolidation batches, integrating bundle data, and processing adjustments. The Consolidation Status section explains how to track the status of consolidation for parent and subsidiary companies, indicating when re-consolidation is necessary. The Consolidation Batch section details running consolidations for multiple periods simultaneously. The Bundle Integration section covers the process of integrating and processing bundles for companies within the group. The Adjustment Integration section provides guidance on integrating journal adjustments and determining when re-consolidation is required. The documentation ensures accurate financial data consolidation and efficient management of intercompany transactions and eliminations.
+
+Contents:
+View consolidation status
+The consolidation Statusboard page enables you to track the consolidation status of either the parent company or subsidiary companies within the group. Various actions, such as currency changes or posting/unposting journals, can impact the consolidation status of a company. Whenever these changes occur, check marks appear in the Bundle, Adjustments, or Conso columns on this page, indicating the need to run a consolidation process to update all the totals accordingly.
+
+To access the Statusboard page, click Consolidation > Consolidation > Statusboard.
+
+Selected by default on this page:
+- Include dimensions
+- All companies in the table
+
+Key notes on this page:
+1. At the Bundle, Adjustments, or Conso levels, a selected box indicates that changes have been made and you have to run consolidation to update all the totals.
+2. Bundles (Integration) - A checkmark indicates that a modification has been made in the statutory accounts or in the other part of the bundles, and that a new consolidation should be performed.
+3. Adjustment (Integration) - A checkmark indicates that a modification has been made in the adjustments, and that a new consolidation should be performed.
+4. Consolidation - A checkmark indicates that a modification has been made in either the bundles or the adjustments, requiring the consolidation to be recalculated.
+
+Run consolidation:
+1. All companies are selected by default. However, to select only the companies that need to be re-consolidated, select .
+2. To include all the dimension in the T journals, leave selected.
+3. Click to run consolidation based on the consolidation period using your selections. For multiple periods, use .
+
+Run consolidation batch
+The Consolidation Batch page allows you to execute consolidations for multiple consolidation periods simultaneously, in a batch. This feature can be particularly helpful when consolidating data for multiple months within a year, such as budget data or monthly forecasts.
+
+To access the Consolidation Batch page, click Consolidation > Consolidation > Statusboard and then click .
+
+Specify the batch settings by providing the following information:
+1. In the From and To rows, specify a range of dates for the consolidation.
+2. In the Category field, select a data category (e.g., Budget, Actuals).
+3. In the Version field, select the version of the consolidation period you want to use.
+4. To include all dimensions in the T journals, select Include dimensions. Otherwise, leave unselected.
+5. Click to run the consolidation batch. Watch for notifications below this button regarding the progress of the consolidation.
+
+Integrate bundle data
+The Integrate Bundles page allows you to integrate and process the bundles (local figures) of the companies in the group.
+
+To access the Integrate Bundles page, click Consolidation > Consolidation > Integrate Bundles.
+
+On this page, you will find all the companies in the group listed. You can select the company on which you want to perform the bundle integration. If the Bundl checkbox (last column) is selected for a company, it triggers the Bundle Integration process.
+
+Process bundle integrations:
+1. To select only those companies that need to be re-consolidated, select . Otherwise, leave unselected and select the desired companies from the list below.
+2. If the checkbox for Bundle is selected for a company, it means a modification has been made in the statutory accounts or in the other part of the bundles and that a new consolidation should be performed.
+3. To integrate the dimensions in the T-journals, select . Otherwise, leave unselected.
+4. Click to start the consolidation process based on your selections.
+
+Integrate adjustments
+On the Integrate Adjustments page, you can do the integration of journal adjustments.
+
+To access the Integrate Adjustments page, click Consolidation > Consolidation > Integrate Adjustments.
+
+On this page, you will find all the companies in the group listed. You can select the company on which you want to perform the adjustment integration. If the Adj checkbox (last column) is selected for a company, it triggers the Adjustment Integration process.
+
+Process adjustment integrations:
+1. To select only those companies that need to be re-consolidated, select . Otherwise, leave unselected and select the desired companies from the list below.
+2. If the checkbox for Adj is selected for a company, it means that a modification has been made in the adjustments and that a new consolidation should be performed.
+3. To integrate the dimensions in the T-journals, select . Otherwise, leave unselected.
+4. Click to start the consolidation process based on your selections.
+
+Process consolidation eliminations
+The Eliminations page is where you carry out the final step of Consolidation. It is where you eliminate intercompany transactions, balances, and activities within the group of companies to present a clear and accurate financial picture of the consolidated entity.
+
+To access the Eliminations page, click Consolidation > Consolidation > Eliminations.
+
+Process eliminations:
+1. Select on status - select this option if you want only those companies that need to be re-consolidated.
+2. Include dimensions - select this option to integrate the dimensions in T- journals.
+3. Select the companies you want to include in the elimination process.
+4. Click . Watch for system prompts on the lower right side of the page for notifications about the process.
+
+These processes ensure that all modifications are appropriately consolidated, providing accurate and up-to-date financial information for the entire group.

@@ -1,0 +1,452 @@
+Topics:
+Navigating Interface, Data Entry and Management, Reporting and Analysis, System Configuration
+
+Keywords:
+Financial Consolidation, Interface Navigation, Data Entry, Report Generation, Workflow, Configuration, Login, Logout, Password Reset, Data Integration, Wildcards, Filters
+
+Summary:
+The document outlines the basic steps and functionalities required to get started with the Financial Consolidation application. It includes detailed instructions on logging in and out, resetting passwords, and navigating the interface. The guide explains how to use various features such as data entry, report generation, workflow management, and system configuration. It also highlights the use of common buttons, filters, and wildcards for efficient data handling and report launching.
+
+Contents:
+
+Question: What is a 'Period' in the context of Financial Consolidation?
+Answer: A 'Period' is a set timeframe for managing financial transactions related to group companies, formatted like 202012ACT001.
+
+Question: How is a 'Flow' defined in Financial Consolidation?
+Answer: A 'Flow' refers to transactional activities impacting the balance sheet, necessary for accurate cash flow calculation, and can be Cash (C) or Non-Cash (NC).
+
+Question: What are 'Dimensions' used for in the application?
+Answer: Dimensions are hierarchical structures used to capture and organize transactions, providing additional insights into financial data.
+
+Question: What does 'Bundle' mean in Financial Consolidation?
+Answer: 'Bundle' describes the local data (accounting entries) of an entity or subsidiary.
+
+Question: What does 'Conso' stand for?
+Answer: 'Conso' is an abbreviation for Consolidation.
+
+Question: What is the meaning of 'IC' in Financial Consolidation?
+Answer: 'IC' stands for Intercompany.
+
+Question: How can you filter lists in the application?
+Answer: Filter lists using the 'Search' button and wildcards like '*' to match any number of characters and '?' to match a single character in a specific location.
+
+Question: What is the function of wildcards in filtering?
+Answer: Wildcards like '*' match any number of characters, and '?' matches a single character, used for querying values in lists.
+
+Question: How are reports launched in the application?
+Answer: Reports can be launched as PDF or Excel files by clicking the 'View report' button, which generates a report and displays a hyperlink to it.
+
+Question: What is the purpose of the 'Generate Report' button?
+Answer: The 'Generate Report' button creates a report in the selected format and stores it temporarily on the user's desktop.
+
+Question: How do you save a generated report?
+Answer: Open the generated report from the temporary drive and save it to a specific location on your desktop.
+
+Question: What is the significance of the 'Help' icon?
+Answer: The 'Help' icon provides access to context-sensitive help files, offering relevant information for navigating the current page.
+
+Question: What are the icons on the side navigation menu used for?
+Answer: The icons on the side navigation menu help navigate and perform tasks such as data entry, workflow setup, and report generation in the application.
+
+Question: How do you use the 'New' button?
+Answer: The 'New' button clears the panel on the right side of the page, allowing you to create a new record or entry.
+
+Question: What is the 'Search' button used for?
+Answer: The 'Search' button is used to look up relevant results for typed-in text, which can be further narrowed using filters.
+
+Question: Why is it important to save your input before leaving a page?
+Answer: If you do not save your input before leaving a page, any unsaved changes will be lost, and your input will not be committed to the database.
+
+Question: What should you do if you do not receive an email to reset your password?
+Answer: If you do not receive an email to reset your password, contact your administrator for assistance.
+
+Question: What is the 'Profile' icon used for?
+Answer: The 'Profile' icon allows you to customize your profile, obtain license details, and log out of the application.
+
+Question: What happens when you click the 'Remove' button?
+Answer: The 'Remove' button temporarily removes the selected item or record, which can be restored later if needed.
+
+Question: What is the 'Consolidation' menu used for?
+Answer: The 'Consolidation' menu handles the core consolidation process, including adjustments, events, intercompany data, and running consolidations.
+
+Question: How can you access reports in Financial Consolidation?
+Answer: Reports can be accessed under the 'Reports' menu, which includes standard reports, user-defined reports, and analysis reports in pivot table format.
+
+Question: What is the purpose of the 'Workflow' menu?
+Answer: The 'Workflow' menu is used for setting up and following up on tasks within the application.
+
+Question: How can you filter lists using wildcards?
+Answer: Wildcards like '*' and '?' can be used to filter lists by matching any number of characters or a single character in a specific location, respectively.
+
+Question: What does the 'Next' button do?
+Answer: The 'Next' button moves to the next available record in the sequence.
+
+Question: What is the function of the 'Previous' button?
+Answer: The 'Previous' button goes back to the preceding record in the sequence.
+
+Question: How can you cancel modifications made to a record?
+Answer: Click the 'Cancel' button to discard all modifications made since the last save.
+
+Question: What does the 'Save' button do?
+Answer: The 'Save' button commits a new record to the database or saves changes made to an existing record.
+
+Question: How do you navigate to your home page in Financial Consolidation?
+Answer: Click the 'Home' icon in the side navigation menu to navigate to your home page.
+
+Question: What is the 'Automation' menu used for?
+Answer: The 'Automation' menu is for managing processes, computing estimates, and running jobs.
+
+Question: How do you handle the import/export of data in Financial Consolidation?
+Answer: Use the 'Transfers' menu to manage the import/export of data, structures, and translations.
+
+Question: What can be managed under the 'Configuration' menu?
+Answer: Manage system structures, periods, and group management under the 'Configuration' menu.
+
+Question: What is the 'Administration' menu used for?
+Answer: The 'Administration' menu is for system and security administration, and control panel management.
+
+Question: How do you access data integration services?
+Answer: Access data integration services through the 'Workflow Definition' section to define integration services with Financial Consolidation.
+
+Question: How can you log in to the Financial Consolidation application?
+Answer: Access the Login page and either enter your Username and Password or click your company ID for Single Sign On (SSO).
+
+Question: What steps should you follow to log out of the application?
+Answer: On the top right of the page, click the profile icon and select Logout.
+
+Question: How do you reset your password if you have forgotten it?
+Answer: Go to the Login page, click the 'Forgot password?' link, enter your Username or Email address, and follow the instructions sent to your email.
+
+Question: What is the purpose of the Prophix logo on the top bar?
+Answer: The Prophix logo opens and closes the navigation panel.
+
+Question: Where can you find links to the Portal and other Prophix applications?
+Answer: Links to the Portal and other Prophix applications are available under the 'Apps' icon on the top bar.
+
+Question: How can you access context-sensitive help in the application?
+Answer: Click the 'Help' icon on any page to open the context-sensitive help file for that page.
+
+Question: How can you change the consolidation period in the application?
+Answer: Click on any of the periods listed under the 'Consolidation Periods' dropdown to select a different consolidation period.
+
+Question: What information is displayed under the 'Notifications' icon?
+Answer: The 'Notifications' icon displays reminders and notifications set up in the application.
+
+Question: How do you define data integration services in Financial Consolidation?
+Answer: Launch Data Integration from the Workflow Definition section to define data integration services.
+
+Question: What can you customize under the 'Profile' icon?
+Answer: Under the 'Profile' icon, you can customize your profile, obtain license details, and log out of the application.
+
+Question: What is the function of the 'Home' icon in the side navigation menu?
+Answer: The 'Home' icon takes users to their home page.
+
+Question: Where do you set up and follow up on tasks in the application?
+Answer: Tasks are set up and followed up under the 'Workflow' menu in the side navigation panel.
+
+Question: What is the purpose of the 'Data Entry' menu?
+Answer: The 'Data Entry' menu is used for entering statutory data and local adjustments.
+
+Question: How can you define parameters like currency rates and scope for consolidation periods?
+Answer: Define parameters like currency rates and scope for consolidation periods under the 'Group' menu.
+
+Question: What can you manage under the 'Automation' menu?
+Answer: The 'Automation' menu is used for process management, computing estimates, and running jobs.
+
+Question: What is the use of the 'Adjustments' menu?
+Answer: The 'Adjustments' menu is for recording corrections or business transactions not yet included in the accounting records as of a specific date.
+
+Question: Where do you handle the core of the consolidation process?
+Answer: The core of the consolidation process is handled under the 'Consolidation' menu, which includes adjustments, events, intercompany data, and running consolidations.
+
+Question: How can you access standard and user-defined reports?
+Answer: Access standard and user-defined reports under the 'Reports' menu, which also includes analysis reports in pivot table format.
+
+Question: What is the 'Transfers' menu used for?
+Answer: The 'Transfers' menu is used for import/export of data, structures, and translations.
+
+Question: What can you manage under the 'Configuration' menu?
+Answer: The 'Configuration' menu includes system structures, periods, and group management.
+
+Question: What is managed under the 'Administration' menu?
+Answer: The 'Administration' menu is for system and security administration and control panel management.
+
+Question: What is the function of the 'Search' button?
+Answer: The 'Search' button looks up relevant results for typed-in text, allowing you to search for entities, dimensions, adjustments, etc.
+
+Question: How do you create a new record in the application?
+Answer: Click the 'New' button to clear the right-side panel and create a new record (entity, flow, adjustment, report).
+
+Question: What happens when you click the 'Remove' button?
+Answer: The 'Remove' button takes the selected item or record away from its current location. Removed records can be restored.
+
+Question: What is the difference between the 'Remove' and 'Delete' buttons?
+Answer: The 'Remove' button temporarily removes an item, while the 'Delete' button permanently erases the selected item or record.
+
+Question: Why is it important to click the 'Save' button?
+Answer: Clicking the 'Save' button commits a new record to the database or saves modifications to an existing record. If not saved, changes will be lost when navigating away from the page.
+
+Question: What does the 'Cancel' button do?
+Answer: The 'Cancel' button cancels all modifications made since the last save.
+
+Question: How can you navigate through records using common buttons?
+Answer: Use the 'Next' button to move to the next record and the 'Previous' button to go back to a previous record.
+
+Question: How do you generate a report?
+Answer: Click the 'Generate Report' button to create a report in the selected format and store it temporarily on your desktop.
+
+Question: What is a 'Period' in the context of Financial Consolidation?
+Answer: A 'Period' is a set timeframe for managing financial transactions related to group companies, formatted like 202012ACT001.
+
+Question: How is a 'Flow' defined in Financial Consolidation?
+Answer: A 'Flow' refers to transactional activities impacting the balance sheet, necessary for accurate cash flow calculation, and can be Cash (C) or Non-Cash (NC).
+
+Question: What are 'Dimensions' used for in the application?
+Answer: Dimensions are hierarchical structures used to capture and organize transactions, providing additional insights into financial data.
+
+Question: What does 'Bundle' mean in Financial Consolidation?
+Answer: 'Bundle' describes the local data (accounting entries) of an entity or subsidiary.
+
+Question: What does 'Conso' stand for?
+Answer: 'Conso' is an abbreviation for Consolidation.
+
+Question: What is the meaning of 'IC' in Financial Consolidation?
+Answer: 'IC' stands for Intercompany.
+
+Question: How can you filter lists in the application?
+Answer: Filter lists using the 'Search' button and wildcards like '*' to match any number of characters and '?' to match a single character in a specific location.
+
+Question: What is the function of wildcards in filtering?
+Answer: Wildcards like '*' match any number of characters, and '?' matches a single character, used for querying values in lists.
+
+Question: How are reports launched in the application?
+Answer: Reports can be launched as PDF or Excel files by clicking the 'View report' button, which generates a report and displays a hyperlink to it.
+
+Question: What is the purpose of the 'Generate Report' button?
+Answer: The 'Generate Report' button creates a report in the selected format and stores it temporarily on the user's desktop.
+
+Question: How do you save a generated report?
+Answer: Open the generated report from the temporary drive and save it to a specific location on your desktop.
+
+Question: What is the significance of the 'Help' icon?
+Answer: The 'Help' icon provides access to context-sensitive help files, offering relevant information for navigating the current page.
+
+Question: What are the icons on the side navigation menu used for?
+Answer: The icons on the side navigation menu help navigate and perform tasks such as data entry, workflow setup, and report generation in the application.
+
+Question: How do you use the 'New' button?
+Answer: The 'New' button clears the panel on the right side of the page, allowing you to create a new record or entry.
+
+Question: What is the 'Search' button used for?
+Answer: The 'Search' button is used to look up relevant results for typed-in text, which can be further narrowed using filters.
+
+Question: Why is it important to save your input before leaving a page?
+Answer: If you do not save your input before leaving a page, any unsaved changes will be lost, and your input will not be committed to the database.
+
+Question: What should you do if you do not receive an email to reset your password?
+Answer: If you do not receive an email to reset your password, contact your administrator for assistance.
+
+Question: What is the 'Profile' icon used for?
+Answer: The 'Profile' icon allows you to customize your profile, obtain license details, and log out of the application.
+
+Question: What happens when you click the 'Remove' button?
+Answer: The 'Remove' button temporarily removes the selected item or record, which can be restored later if needed.
+
+Question: What is the 'Consolidation' menu used for?
+Answer: The 'Consolidation' menu handles the core consolidation process, including adjustments, events, intercompany data, and running consolidations.
+
+Question: How can you access reports in Financial Consolidation?
+Answer: Reports can be accessed under the 'Reports' menu, which includes standard reports, user-defined reports, and analysis reports in pivot table format.
+
+Question: What is the purpose of the 'Workflow' menu?
+Answer: The 'Workflow' menu is used for setting up and following up on tasks within the application.
+
+Question: How can you filter lists using wildcards?
+Answer: Wildcards like '*' and '?' can be used to filter lists by matching any number of characters or a single character in a specific location, respectively.
+
+Question: What does the 'Next' button do?
+Answer: The 'Next' button moves to the next available record in the sequence.
+
+Question: What is the function of the 'Previous' button?
+Answer: The 'Previous' button goes back to the preceding record in the sequence.
+
+Question: How can you cancel modifications made to a record?
+Answer: Click the 'Cancel' button to discard all modifications made since the last save.
+
+Question: What does the 'Save' button do?
+Answer: The 'Save' button commits a new record to the database or saves changes made to an existing record.
+
+Question: How do you navigate to your home page in Financial Consolidation?
+Answer: Click the 'Home' icon in the side navigation menu to navigate to your home page.
+
+Question: What is the 'Automation' menu used for?
+Answer: The 'Automation' menu is for managing processes, computing estimates, and running jobs.
+
+Question: How do you handle the import/export of data in Financial Consolidation?
+Answer: Use the 'Transfers' menu to manage the import/export of data, structures, and translations.
+
+Question: What can be managed under the 'Configuration' menu?
+Answer: Manage system structures, periods, and group management under the 'Configuration' menu.
+
+Question: What is the 'Administration' menu used for?
+Answer: The 'Administration' menu is for system and security administration, and control panel management.
+
+Question: How do you access data integration services?
+Answer: Access data integration services through the 'Workflow Definition' section to define integration services with Financial Consolidation.
+
+Question: What is the purpose of the 'Consolidation Periods' dropdown?
+Answer: The 'Consolidation Periods' dropdown allows you to select different consolidation periods for managing financial data.
+
+Question: What information can you find under the 'Notifications' icon?
+Answer: Find reminders and notifications set up in the application under the 'Notifications' icon.
+
+Question: How do you change the consolidation period?
+Answer: Select a different consolidation period by clicking on any of the periods listed under the 'Consolidation Periods' dropdown.
+
+Question: What is the function of the 'Apps' icon?
+Answer: The 'Apps' icon displays links to the Portal and other Prophix applications.
+
+Question: What does the 'Prophix logo' do?
+Answer: The Prophix logo on the top bar opens and closes the navigation panel.
+
+Question: How can you log in using Single Sign On (SSO)?
+Answer: Click your company ID on the Login page to use your company credentials for Single Sign On (SSO).
+
+Question: What should you do if you forget your password?
+Answer: Access the Login page, click the 'Forgot password?' link, enter your Username or Email address, and follow the instructions sent to your email.
+
+Question: What are wildcards used for in filtering?
+Answer: Wildcards like '*' and '?' are used to stand in for unknown characters when querying values from a list, helping to filter search results.
+
+Question: How do you create a new record?
+Answer: Click the 'New' button to clear the right-side panel and create a new record, such as an entity, flow, adjustment, or report.
+
+Question: What is the purpose of the 'Save' button?
+Answer: The 'Save' button commits a new record to the database or saves modifications to an existing record, ensuring that your input is not lost.
+
+Question: How can you discard changes made to a record?
+Answer: Click the 'Cancel' button to discard all modifications made since the last save, effectively undoing recent changes.
+
+Question: What does the 'Remove' button do?
+Answer: The 'Remove' button temporarily removes the selected item or record from its current location, allowing it to be restored later if necessary.
+
+Question: How can you permanently erase a record?
+Answer: Click the 'Delete' button to permanently erase the selected item or record from the database.
+
+Question: What should you do if you do not receive a password reset email?
+Answer: Contact your administrator if you do not receive an email to reset your password after following the reset instructions.
+
+Question: What is the 'Workflow' menu for?
+Answer: The 'Workflow' menu is used for setting up tasks and following up on them within the application.
+
+Question: How do you navigate through records?
+Answer: Use the 'Next' button to move forward to the next record and the 'Previous' button to go back to the previous record.
+
+Question: What is the 'Profile' icon used for?
+Answer: The 'Profile' icon allows customization of your profile, obtaining license details, and logging out of the application.
+
+Question: How can you filter search results?
+Answer: Filter search results using the 'Search' button in combination with wildcards like '*' and '?' to narrow down your query.
+
+Question: What is the purpose of the 'Reports' menu?
+Answer: The 'Reports' menu provides access to standard reports, user-defined reports, and analysis reports in pivot table format.
+
+Question: How do you generate a report?
+Answer: Click the 'Generate Report' button to create a report in the desired format and store it temporarily on your desktop.
+
+Question: What can you do under the 'Adjustments' menu?
+Answer: The 'Adjustments' menu is used for recording corrections or business transactions not yet included in the accounting records as of a specific date.
+
+Question: How do you handle process management in Financial Consolidation?
+Answer: Handle process management, compute estimates, and run jobs under the 'Automation' menu.
+
+Question: What is the 'Home' icon for?
+Answer: The 'Home' icon in the side navigation menu takes users to their home page within the application.
+
+Question: What is the function of the 'Generate Report' button?
+Answer: The 'Generate Report' button creates a report in the selected format and stores it temporarily on the user's desktop.
+
+Question: How do you save a generated report?
+Answer: Open the generated report from the temporary drive and save it to a specific location on your desktop.
+
+Question: What is the 'Group' menu used for?
+Answer: The 'Group' menu is used for defining parameters like currency rates, periods, and scope for consolidation periods.
+
+Question: What does the 'Help' icon provide?
+Answer: The 'Help' icon provides access to context-sensitive help files, offering relevant information for navigating the current page.
+
+Question: How do you access data integration services?
+Answer: Access data integration services through the 'Workflow Definition' section to define integration services with Financial Consolidation.
+
+Question: What is the purpose of the 'Consolidation Periods' dropdown?
+Answer: The 'Consolidation Periods' dropdown allows you to select different consolidation periods for managing financial data.
+
+Question: What information can you find under the 'Notifications' icon?
+Answer: Find reminders and notifications set up in the application under the 'Notifications' icon.
+
+Question: How do you change the consolidation period?
+Answer: Select a different consolidation period by clicking on any of the periods listed under the 'Consolidation Periods' dropdown.
+
+Question: What is the function of the 'Apps' icon?
+Answer: The 'Apps' icon displays links to the Portal and other Prophix applications.
+
+Question: What does the 'Prophix logo' do?
+Answer: The Prophix logo on the top bar opens and closes the navigation panel.
+
+Question: How can you log in using Single Sign On (SSO)?
+Answer: Click your company ID on the Login page to use your company credentials for Single Sign On (SSO).
+
+Question: What should you do if you forget your password?
+Answer: Access the Login page, click the 'Forgot password?' link, enter your Username or Email address, and follow the instructions sent to your email.
+
+Question: What are wildcards used for in filtering?
+Answer: Wildcards like '*' and '?' are used to stand in for unknown characters when querying values from a list, helping to filter search results.
+
+Question: How do you create a new record?
+Answer: Click the 'New' button to clear the right-side panel and create a new record, such as an entity, flow, adjustment, or report.
+
+Question: What is the purpose of the 'Save' button?
+Answer: The 'Save' button commits a new record to the database or saves modifications to an existing record, ensuring that your input is not lost.
+
+Question: How can you discard changes made to a record?
+Answer: Click the 'Cancel' button to discard all modifications made since the last save, effectively undoing recent changes.
+
+Question: What does the 'Remove' button do?
+Answer: The 'Remove' button temporarily removes the selected item or record from its current location, allowing it to be restored later if necessary.
+
+Question: How can you permanently erase a record?
+Answer: Click the 'Delete' button to permanently erase the selected item or record from the database.
+
+Question: What should you do if you do not receive a password reset email?
+Answer: Contact your administrator if you do not receive an email to reset your password after following the reset instructions.
+
+Question: What is the 'Workflow' menu for?
+Answer: The 'Workflow' menu is used for setting up tasks and following up on them within the application.
+
+Question: How do you navigate through records?
+Answer: Use the 'Next' button to move forward to the next record and the 'Previous' button to go back to the previous record.
+
+Question: What is the 'Profile' icon used for?
+Answer: The 'Profile' icon allows customization of your profile, obtaining license details, and logging out of the application.
+
+Question: How can you filter search results?
+Answer: Filter search results using the 'Search' button in combination with wildcards like '*' and '?' to narrow down your query.
+
+Question: What is the purpose of the 'Reports' menu?
+Answer: The 'Reports' menu provides access to standard reports, user-defined reports, and analysis reports in pivot table format.
+
+Question: How do you generate a report?
+Answer: Click the 'Generate Report' button to create a report in the desired format and store it temporarily on your desktop.
+
+Question: What can you do under the 'Adjustments' menu?
+Answer: The 'Adjustments' menu is used for recording corrections or business transactions not yet included in the accounting records as of a specific date.
+
+Question: How do you handle process management in Financial Consolidation?
+Answer: Handle process management, compute estimates, and run jobs under the 'Automation' menu.
+
+Question: What is the 'Home' icon for?
+Answer: The 'Home' icon in the side navigation menu takes users to their home page within the application.
+
+Question: What is the function of the 'Generate Report' button?
+Answer: The 'Generate Report' button creates a report in the selected format and stores it temporarily on the user's desktop.
+

@@ -1,0 +1,1540 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.118,
+                0.069,
+                0.367,
+                0.083
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.116,
+                0.152,
+                0.874,
+                0.751
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"6\">Year 2</td><td>Year 1</td></tr><tr><td>CONTRIBUTION</td><td>ALPHA</td><td>BETA</td><td>GAMMR</td><td>DELTA</td><td>MU</td><td>CONSO</td><td>CONSO</td></tr><tr><td colspan=\"8\"></td></tr><tr><td>Goodwill (gross val.)</td><td>800</td><td>220</td><td>0</td><td>0</td><td>0</td><td>1,020</td><td>1,200</td></tr><tr><td>Goodwill (deprec.)</td><td>(700)</td><td>(22)</td><td>0</td><td>0</td><td>0</td><td>(722)</td><td>(860)</td></tr><tr><td>Lands</td><td>0</td><td>1,000</td><td>0</td><td>0</td><td>0</td><td>1,000</td><td>2,000</td></tr><tr><td>Tangible assets (acq.val.)</td><td>0</td><td>5,000</td><td>0</td><td>7,200</td><td>6,000</td><td>18,200</td><td>14,400</td></tr><tr><td>Tangible assets (deprec.)</td><td>0</td><td>(2,200)</td><td>0</td><td>(4,320)</td><td>(3,000)</td><td>(9,520)</td><td>(5,500)</td></tr><tr><td>Fin.invest./BETA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Fin.invest./MU</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Equity value</td><td>0</td><td>0</td><td>270</td><td>0</td><td>0</td><td>270</td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>1,600</td><td>7,000</td><td>0</td><td>12,600</td><td>3,000</td><td>24,200</td><td>14,900</td></tr><tr><td>Receivables/DELTA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Cash</td><td>1,500</td><td>1,000</td><td>0</td><td>4,320</td><td>2,000</td><td>8,820</td><td>7,600</td></tr><tr><td>Link account(Intercos)</td><td>1,000</td><td>0</td><td>0</td><td>(1,000)</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Link account(Fin.Inv.)</td><td>11,100</td><td>(3,876)</td><td>(600)</td><td>(3,600)</td><td>(3,024)</td><td>0</td><td>0</td></tr><tr><td></td><td>15,300</td><td>8,122</td><td>(330)</td><td>15,200</td><td>4,976</td><td>43,268</td><td>33,740</td></tr><tr><td colspan=\"8\"></td></tr><tr><td>Capital</td><td>5,000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5,000</td><td>5,000</td></tr><tr><td>Retained earnings</td><td>3,100</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3,100</td><td>3,000</td></tr><tr><td>Reserves</td><td>(652)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(652)</td><td>(620)</td></tr><tr><td>Resu.</td><td>752</td><td>0</td><td>0</td><td>0</td><td>0</td><td>752</td><td>160</td></tr><tr><td>Consolidated reserves</td><td>0</td><td>522</td><td>(330)</td><td>3,405</td><td>216</td><td>3,813</td><td>2,808</td></tr><tr><td>Translation adjustments</td><td>0</td><td>0</td><td>0</td><td>360</td><td>0</td><td>360</td><td>(546)</td></tr><tr><td>Minority interests</td><td>0</td><td>1,100</td><td>0</td><td>4,910</td><td>1,260</td><td>7,270</td><td>5,658</td></tr><tr><td>Provisions</td><td>1,200</td><td>600</td><td>0</td><td>1,530</td><td>0</td><td>3,330</td><td>2,380</td></tr><tr><td>Payables/3rd Parties</td><td>5,900</td><td>5,900</td><td>0</td><td>4,995</td><td>3,500</td><td>20,295</td><td>15,900</td></tr><tr><td>Payables/ALPHA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td></td><td>15,300</td><td>8,122</td><td>(330)</td><td>15,200</td><td>4,976</td><td>43,268</td><td>33,740</td></tr><tr><td colspan=\"8\"></td></tr><tr><td>Turnover/3rd Parties</td><td>12,000</td><td>30,000</td><td>0</td><td>24,000</td><td>4,000</td><td>70,000</td><td>81,000</td></tr><tr><td>Turnover/DELTA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Dividends/DELTA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td>0</td><td>0</td><td>125</td><td>0</td><td>125</td><td>0</td></tr><tr><td>Gain on disposals</td><td>380</td><td>0</td><td>0</td><td>0</td><td>0</td><td>380</td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(14,250)</td><td>(28,400)</td><td>0</td><td>(19,440)</td><td>(3,400)</td><td>(65,490)</td><td>178,620)</td></tr><tr><td>Purchases/ALPHA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Depreciations</td><td>(160)</td><td>(722)</td><td>0</td><td>(480)</td><td>(300)</td><td>(1,662)</td><td>(1,500)</td></tr><tr><td>Provisions</td><td>(200)</td><td>(100)</td><td>0</td><td>(360)</td><td>0</td><td>(660)</td><td>(290)</td></tr><tr><td>Exchange loss(realized)</td><td>(18)</td><td>0</td><td>0</td><td>(120)</td><td>0</td><td>(138)</td><td>0</td></tr><tr><td>Loss on disposals</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Loss on equity cies</td><td>0</td><td>0</td><td>(60)</td><td>0</td><td>0</td><td>(60)</td><td>0</td></tr><tr><td>Link account(Intercos)</td><td>3,000</td><td>0</td><td>0</td><td>(3,000)</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Result</td><td>752</td><td>778</td><td>(60)</td><td>725</td><td>300</td><td>2,495,</td><td>590</td></tr><tr><td>Group result</td><td>752</td><td>622</td><td>(60)</td><td>435</td><td>216</td><td>1,965</td><td>418</td></tr><tr><td>Minority result</td><td>0</td><td>156</td><td>0</td><td>290</td><td>84</td><td>530</td><td>172</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.436,
+                0.074,
+                0.856,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.122,
+                0.871,
+                0.157
+            ],
+            "angle": 0,
+            "content": "Both Year 2 contribution and Year 1 consolidated accounts are displayed for comparison reasons."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.171,
+                0.637,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Here are the most important comments we can make:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.203,
+                0.868,
+                0.235
+            ],
+            "angle": 0,
+            "content": "- The gross value goodwill has decreased because of the disposal of the \\(40\\%\\) shares of GAMMA"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.251,
+                0.868,
+                0.283
+            ],
+            "angle": 0,
+            "content": "However, there is a new goodwill booked in BETA accounts concerning the acquisition of company MU"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.299,
+                0.87,
+                0.362
+            ],
+            "angle": 0,
+            "content": "- Lands account is changing from 2000 to 1000 thanks to the fact that GAMMA is now consolidated with the equity method. Moreover, the group disposal from ALPHA to BETA has no impact on the Year 2 consolidated accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.379,
+                0.87,
+                0.412
+            ],
+            "angle": 0,
+            "content": "- There is now an equity value in the assets again because of the Equity method applied to GAMMA"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.427,
+                0.867,
+                0.459
+            ],
+            "angle": 0,
+            "content": "- All intercompany receivables and payables, including Link accounts, are set to zero"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.475,
+                0.87,
+                0.54
+            ],
+            "angle": 0,
+            "content": "- There is an important increase of the translation adjustments account from (546) to 360 because closing rate is increasing from 0.7 to 0.9. This is a quick check to realise that the consolidated figures behave globally as expected."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.555,
+                0.87,
+                0.604
+            ],
+            "angle": 0,
+            "content": "- GAMMA contribution to the consolidated accounts in Year 2 is zero, except for Equity value, Consolidated reserves and Loss on equity method companies."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.144,
+                0.203,
+                0.87,
+                0.604
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.118,
+                0.07,
+                0.371,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.117,
+                0.125,
+                0.773,
+                0.175
+            ],
+            "angle": 0,
+            "content": "5 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.194,
+                0.666,
+                0.212
+            ],
+            "angle": 0,
+            "content": "In this chapter, we successively analyse the evolution of"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.226,
+                0.418,
+                0.242
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.163,
+                0.258,
+                0.374,
+                0.274
+            ],
+            "angle": 0,
+            "content": "Minority interests"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.163,
+                0.29,
+                0.439,
+                0.307
+            ],
+            "angle": 0,
+            "content": "Translation adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.163,
+                0.322,
+                0.452,
+                0.338
+            ],
+            "angle": 0,
+            "content": "Equity value in the assets"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.162,
+                0.226,
+                0.452,
+                0.338
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.116,
+                0.354,
+                0.361,
+                0.372
+            ],
+            "angle": 0,
+            "content": "for the following reasons"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.386,
+                0.874,
+                0.419
+            ],
+            "angle": 0,
+            "content": "- Notes to the accounts are required for IFRS and most of the Local Gaap"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.434,
+                0.875,
+                0.483
+            ],
+            "angle": 0,
+            "content": "- Justifying evolution of these items by giving a financial or economical signification to each element provides a certain guarantee that the consolidation is \"technically\" correct and auditable"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.498,
+                0.875,
+                0.579
+            ],
+            "angle": 0,
+            "content": "- All Auditors require this information, even if we must sometimes admit, particularly for Minority interests and Translation adjustments, that the exercise asked is more to demonstrate that the consolidation is mastered rather than to prove the importance of the information content."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.155,
+                0.386,
+                0.875,
+                0.579
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.117,
+                0.594,
+                0.469,
+                0.612
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves evolution"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.626,
+                0.679,
+                0.644
+            ],
+            "angle": 0,
+            "content": "Here is the classical report we produce for our case study."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.66,
+                0.908,
+                0.766
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Reserves Year 1</td><td>Result Year 2</td><td>Dividends paid</td><td>Dividends received</td><td>Transfers</td><td>Parent dividends</td><td>Total</td><td>Reserves Year 2</td><td>Check</td></tr><tr><td>ALPHA</td><td>2,540</td><td>752</td><td></td><td>168</td><td>40</td><td>(300)</td><td>3,200</td><td>3,200</td><td>0</td></tr><tr><td>BETA</td><td>300</td><td>622</td><td></td><td></td><td>(400)</td><td></td><td>522</td><td>522</td><td>(0)</td></tr><tr><td>GAMMA</td><td>(630)</td><td>(60)</td><td></td><td></td><td>360</td><td></td><td>(330)</td><td>(330)</td><td>0</td></tr><tr><td>DELTA</td><td>3,138</td><td>435</td><td>(168)</td><td></td><td>0</td><td></td><td>3,405</td><td>3,405</td><td>0</td></tr><tr><td>MU</td><td>0</td><td>216</td><td></td><td></td><td>0</td><td></td><td>216</td><td>216</td><td>0</td></tr><tr><td></td><td>5,348</td><td>1,965</td><td>(168)</td><td>168</td><td>0</td><td>(300)</td><td>7,013</td><td>7,013</td><td>(0)</td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.118,
+                0.779,
+                0.28,
+                0.796
+            ],
+            "angle": 0,
+            "content": "Reserves Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.116,
+                0.81,
+                0.876,
+                0.86
+            ],
+            "angle": 0,
+            "content": "The amounts of this column can be found in the Year 1 contribution report on line \"Consolidated reserves\" for each subsidiary. For company ALPHA, the amount is the sum of Retained earnings, Reserves and Result accounts for"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.433,
+                0.075,
+                0.855,
+                0.091
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.122,
+                0.871,
+                0.157
+            ],
+            "angle": 0,
+            "content": "\\(2540 = 3000 + (620) + 160\\). Of course, company MU is not consolidated in Year 1 and so its consolidated reserves appear for zero."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.172,
+                0.238,
+                0.188
+            ],
+            "angle": 0,
+            "content": "Result Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.203,
+                0.871,
+                0.237
+            ],
+            "angle": 0,
+            "content": "These amounts will be found in the Year 2 contribution on the \"Group result\" line, just one line before the last line."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.251,
+                0.251,
+                0.267
+            ],
+            "angle": 0,
+            "content": "Dividends paid"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.282,
+                0.871,
+                0.334
+            ],
+            "angle": 0,
+            "content": "The only subsidiary paying dividends is DELTA for \\((168) = 60\\% * (400)^{*} 0.7\\). It is the group part of the dividends translated at average rate of Year 1 that we show in this column."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.349,
+                0.292,
+                0.365
+            ],
+            "angle": 0,
+            "content": "Dividends received"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.38,
+                0.871,
+                0.43
+            ],
+            "angle": 0,
+            "content": "We know that these dividends are received by company ALPHA and for the same amount of 168, even if the amount of cash received is different, as 150 in our case study."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.444,
+                0.862,
+                0.462
+            ],
+            "angle": 0,
+            "content": "These two last columns together must be equal to zero. It is a check to make."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.476,
+                0.2,
+                0.493
+            ],
+            "angle": 0,
+            "content": "Transfers"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.509,
+                0.871,
+                0.543
+            ],
+            "angle": 0,
+            "content": "This column may include many transfers of reserves, depending on the consolidation complexity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.557,
+                0.871,
+                0.607
+            ],
+            "angle": 0,
+            "content": "We recommend to keep a single column so as to maintain a reasonable size for this report and to link another report with as many columns of single transfers as necessary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.621,
+                0.615,
+                0.639
+            ],
+            "angle": 0,
+            "content": "Here is this linked report which shows two transfers."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.104,
+                0.649,
+                0.418,
+                0.759
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Transfer (1)</td><td>Transfer (2)</td><td>Total transfers</td></tr><tr><td>ALPHA</td><td>400</td><td>(360)</td><td>40</td></tr><tr><td>BETA</td><td>(400)</td><td></td><td>(400)</td></tr><tr><td>GAMMA</td><td></td><td>360</td><td>360</td></tr><tr><td>DELTA</td><td></td><td></td><td>0</td></tr><tr><td>MU</td><td></td><td></td><td>0</td></tr><tr><td></td><td>0</td><td>0</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.432,
+                0.653,
+                0.869,
+                0.703
+            ],
+            "angle": 0,
+            "content": "Transfer (1) concerns the elimination of the group profit made by selling lands from ALPHA to BETA with a group profit of 500."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.432,
+                0.717,
+                0.869,
+                0.765
+            ],
+            "angle": 0,
+            "content": "We booked an elimination of profit for 400 \\(= 80\\%\\) \\(\\star\\) 500 in ALPHA accounts with a counterpart in the Reserves. At the same"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.766,
+                0.868,
+                0.799
+            ],
+            "angle": 0,
+            "content": "time, we eliminated a profit of 500 on thk Lands account of BETA, again with a counterpart in the Reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.814,
+                0.868,
+                0.849
+            ],
+            "angle": 0,
+            "content": "By proceeding this way, ALPHA Reserves account increases by 400 and BETA Reserves account decreases by (400)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.119,
+                0.07,
+                0.371,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.123,
+                0.88,
+                0.189
+            ],
+            "angle": 0,
+            "content": "Transfer (2) concerns the disposal of \\(40\\%\\) shares of GAMMA to \\(3^{\\text{rd}}\\) Parties. Each time there is a disposal of consolidated shares, a corresponding part of consolidated reserves of the company disappears and the counterpart is found in the \"seller\" company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.205,
+                0.88,
+                0.252
+            ],
+            "angle": 0,
+            "content": "In our case study, the Year 1 consolidated reserves of GAMMA are (630) and a part of \\(360 = 630 * [40\\% / 70\\%]\\) disappears and is transferred on ALPHA line."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.269,
+                0.282,
+                0.285
+            ],
+            "angle": 0,
+            "content": "Parent dividends"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.3,
+                0.88,
+                0.365
+            ],
+            "angle": 0,
+            "content": "This column shows the dividends paid by parent company ALPHA to its shareholders for 300. This amount of cash is leaving the group, on the contrary of subsidiary dividends which move from one company to another but remain in the group."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.381,
+                0.172,
+                0.397
+            ],
+            "angle": 0,
+            "content": "Total"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.413,
+                0.88,
+                0.445
+            ],
+            "angle": 0,
+            "content": "This column is just totaling the amounts of each line starting with Year 1 reserves."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.461,
+                0.281,
+                0.477
+            ],
+            "angle": 0,
+            "content": "Reserves Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.493,
+                0.88,
+                0.525
+            ],
+            "angle": 0,
+            "content": "These amounts can be found in the Year 2 contribution like we explained for Year 1."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.541,
+                0.182,
+                0.557
+            ],
+            "angle": 0,
+            "content": "Check"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.573,
+                0.872,
+                0.605
+            ],
+            "angle": 0,
+            "content": "We usually add this column which calculates the difference between 'Reserves Year 2\" and \"Total\". We must find zero on each line."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.621,
+                0.88,
+                0.654
+            ],
+            "angle": 0,
+            "content": "This is the final check to conclude that the consolidation is technically correct and auditable, speaking about the consolidated reserves."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.669,
+                0.421,
+                0.686
+            ],
+            "angle": 0,
+            "content": "Minority interests evolution"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.702,
+                0.88,
+                0.75
+            ],
+            "angle": 0,
+            "content": "Most of the time, the Minority interests evolution appears to be more technical and difficult to explain. The number of columns depends on the group transactions and the changes in structure."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.766,
+                0.572,
+                0.783
+            ],
+            "angle": 0,
+            "content": "Let's consider its application to our case study."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.437,
+                0.075,
+                0.854,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.108,
+                0.12,
+                0.872,
+                0.214
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Minority interests Year 1</td><td>Result Year 2</td><td>Dividends paid</td><td>CTA</td><td>Change in conso method</td><td>Entry in conso scope</td><td>Others</td><td>Total</td><td>Minority interests Year 2</td><td>Check</td></tr><tr><td>BETA</td><td>1,200</td><td>156</td><td></td><td></td><td>(330)</td><td></td><td>(256)</td><td>1,100</td><td>1,100</td><td>0</td></tr><tr><td>GAMMA</td><td>330</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td>0</td><td>0</td><td>0</td></tr><tr><td>DELTA</td><td>4,128</td><td>290</td><td>(112)</td><td>604</td><td></td><td></td><td></td><td>4,910</td><td>4,910</td><td>0</td></tr><tr><td>MU</td><td>0</td><td>84</td><td></td><td></td><td></td><td>1,176</td><td></td><td>1,260</td><td>1,260</td><td>0</td></tr><tr><td></td><td>5,658</td><td>530</td><td>(112)</td><td>604</td><td>(330)</td><td>1,176</td><td>(256)</td><td>7,270</td><td>7,270</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.231,
+                0.347,
+                0.246
+            ],
+            "angle": 0,
+            "content": "Minority interests Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.263,
+                0.868,
+                0.294
+            ],
+            "angle": 0,
+            "content": "The corresponding amounts can be found in the Year 1 contribution report on the line \"Minority interests\"."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.311,
+                0.24,
+                0.326
+            ],
+            "angle": 0,
+            "content": "Result Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.343,
+                0.86,
+                0.358
+            ],
+            "angle": 0,
+            "content": "These amounts can be found on the last line of the Year 2 contribution report."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.375,
+                0.252,
+                0.39
+            ],
+            "angle": 0,
+            "content": "Dividends paid"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.406,
+                0.868,
+                0.455
+            ],
+            "angle": 0,
+            "content": "This amount is the dividends paid to \\(3^{rd}\\) Parties as \\((112) = 40\\%\\) * (400) ** 0.7. Of course, as we don't consolidate the \\(3^{rd}\\) Parties group, we don't have a similar presentation as for consolidated reserves."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.472,
+                0.15,
+                0.487
+            ],
+            "angle": 0,
+            "content": "CTA"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.503,
+                0.868,
+                0.535
+            ],
+            "angle": 0,
+            "content": "We know that \\(3^{\\text{rd}}\\) Parties are taking their percentage in the currency translation adjustments, including opening, closing and evolution amount."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.551,
+                0.868,
+                0.615
+            ],
+            "angle": 0,
+            "content": "In our case study, this evolution amount is \\(604 = 40\\% * [600 - (910)]\\), where 600 is the closing amount and (910) is the opening amount. These two amounts can be found in Year 2 and Year 1 DELTA consolidation adjustments explained above."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.632,
+                0.42,
+                0.647
+            ],
+            "angle": 0,
+            "content": "Chanae in consolidation method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.664,
+                0.868,
+                0.712
+            ],
+            "angle": 0,
+            "content": "This amount represents the Year 1 contribution of company GAMMA that disappears because the company is not consolidated by the global integration method any more."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.728,
+                0.38,
+                0.744
+            ],
+            "angle": 0,
+            "content": "Entry in consolidation scope"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.76,
+                0.868,
+                0.825
+            ],
+            "angle": 0,
+            "content": "The new company MU is entering the consolidation scope with the global integration method and a minority percentage of \\(28\\% = 100\\% - [80\\% * 90\\%]\\). This percentage applies to the equity at the date of entering the scope, giving \\(1176 = 28\\%\\) \\([3000 + 1000 + 200]\\)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.117,
+                0.068,
+                0.373,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.116,
+                0.123,
+                0.187,
+                0.139
+            ],
+            "angle": 0,
+            "content": "Others"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.155,
+                0.878,
+                0.204
+            ],
+            "angle": 0,
+            "content": "This column concerns different variations that are split in the following report which is linked to the main one. As we are going to see, the amounts are related to some consolidation adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.117,
+                0.215,
+                0.878,
+                0.296
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Others (1)</td><td>Others (2)</td><td>Others (3)</td><td>Total</td><td rowspan=\"6\">Others (1) shows the minority interests taken in the adjustment eliminating the group profit of 500 in the Lands account. That is (100) = 20% * (500).</td></tr><tr><td>BETA</td><td>(100)</td><td>(756)</td><td>600</td><td>(256)</td></tr><tr><td>GAMMA</td><td></td><td></td><td></td><td>0</td></tr><tr><td>DELTA</td><td></td><td></td><td></td><td>0</td></tr><tr><td>M.U</td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>(100)</td><td>(756)</td><td>600</td><td>(256)</td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.116,
+                0.315,
+                0.224,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Others (2)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.347,
+                0.878,
+                0.412
+            ],
+            "angle": 0,
+            "content": "We know that if a company is consolidated by the global integration method for less than \\(100\\%\\), i.e. with minority interests, there is a percentage of minority interests to calculate in the financial investments which are deducted from the minority interests on the liabilities side."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.428,
+                0.877,
+                0.476
+            ],
+            "angle": 0,
+            "content": "In our case study, company BETA in Year 2 owns a financial investment on company MU for 4000. A goodwill of 220 impacts this amount and gives finally a minority interests contribution of (756) = -20% * [4000 + (200)]."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.491,
+                0.222,
+                0.508
+            ],
+            "angle": 0,
+            "content": "Others (3)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.523,
+                0.876,
+                0.573
+            ],
+            "angle": 0,
+            "content": "Company BETA increases its capital by 3000, each shareholder contributing on the basis of its percentage. This means that the minority interests increase by \\(600 = 20\\%\\) * 3000."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.588,
+                0.171,
+                0.604
+            ],
+            "angle": 0,
+            "content": "Total"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.62,
+                0.876,
+                0.653
+            ],
+            "angle": 0,
+            "content": "This column is just totaling the amounts of each line starting with Year 1 minority interests."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.668,
+                0.357,
+                0.685
+            ],
+            "angle": 0,
+            "content": "Minority interests Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.7,
+                0.876,
+                0.731
+            ],
+            "angle": 0,
+            "content": "These amounts can be found in the Year 2 contribution like we explained for Year 1."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.748,
+                0.18,
+                0.764
+            ],
+            "angle": 0,
+            "content": "Check"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.78,
+                0.876,
+                0.812
+            ],
+            "angle": 0,
+            "content": "We usually add this column which calculates the difference between \"Minority interests Year 2\" and \"Total\". We must find zero on each line."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.434,
+                0.074,
+                0.854,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.122,
+                0.48,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Translation adjustments evolution"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.155,
+                0.871,
+                0.205
+            ],
+            "angle": 0,
+            "content": "This is a rather difficult report to produce because the content depends on each individual company, on the currencies and not only on statutory accounts but also on local currency adjustments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.22,
+                0.871,
+                0.253
+            ],
+            "angle": 0,
+            "content": "In our case study, hopefully we have only company DELTA generating a translation adjustment amount."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.268,
+                0.562,
+                0.285
+            ],
+            "angle": 0,
+            "content": "Let's first start by considering figures at \\(100\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.299,
+                0.868,
+                0.332
+            ],
+            "angle": 0,
+            "content": "In Year 1, we have calculated a translation adjustment of (940) based on statutory accounts and 30 related to the provision elimination for 300 CUR."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.333,
+                0.767,
+                0.35
+            ],
+            "angle": 0,
+            "content": "The gives an opening translation adjustment of \\((910) = (940) + 30\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.363,
+                0.869,
+                0.397
+            ],
+            "angle": 0,
+            "content": "In Year 2, the same analysis shows \\(540 = (940) + 1480\\) at statutory level and 60 for the adjustment, so a closing translation adjustment of \\(600 = 540 + 60\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.412,
+                0.637,
+                0.43
+            ],
+            "angle": 0,
+            "content": "We have to justify an evolution of \\( 1510 = 600 - (910) \\)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.104,
+                0.45,
+                0.855,
+                0.643
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"3\">Accounts in local currency</td><td colspan=\"3\">Accounts in conso currency</td><td></td></tr><tr><td>Closing rates</td><td>0.8</td><td rowspan=\"2\" colspan=\"2\"></td><td>0.9</td><td rowspan=\"2\" colspan=\"2\"></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td>Statutory accounts</td><td>Year 1</td><td></td><td>Year 2</td><td></td><td>Year 1</td><td></td><td>Year 2</td></tr><tr><td>Capital \nTranslation adjustment flow</td><td>8,000</td><td></td><td>8,000</td><td></td><td>6,400</td><td></td><td>7,200</td></tr><tr><td>Retained earnings</td><td>4,000</td><td></td><td>4,200</td><td></td><td>3,200</td><td></td><td>3,780</td></tr><tr><td>Transfer flow</td><td></td><td>200</td><td>0.7</td><td></td><td></td><td>140</td><td></td></tr><tr><td>Translation adjustment flow</td><td></td><td></td><td></td><td></td><td></td><td>440</td><td></td></tr><tr><td>Result</td><td>600</td><td></td><td>1,000</td><td></td><td>480</td><td></td><td>900</td></tr><tr><td>Transfer flow</td><td></td><td>(200)</td><td>0.7</td><td></td><td></td><td>(140)</td><td></td></tr><tr><td>Dividends flow</td><td></td><td>(400)</td><td>0.7</td><td></td><td></td><td>(280)</td><td></td></tr><tr><td>Result Year 2 flow</td><td></td><td>1,000</td><td>0.6</td><td></td><td></td><td>600</td><td></td></tr><tr><td>Translation adjustment flow</td><td></td><td></td><td></td><td></td><td></td><td>240</td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.104,
+                0.649,
+                0.365,
+                0.692
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Adjustments</td></tr><tr><td>Elimination of provisions</td></tr><tr><td>Translation adjustment flow</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.377,
+                0.662,
+                0.613,
+                0.691
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>300</td><td></td><td>300</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.626,
+                0.661,
+                0.855,
+                0.691
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>240</td><td>30</td><td>270</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.104,
+                0.702,
+                0.364,
+                0.742
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Translation adjustment flow</td></tr><tr><td>on statutory accounts on adjustments</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.699,
+                0.713,
+                0.78,
+                0.741
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>1,480</td></tr><tr><td>30</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.774,
+                0.868,
+                0.807
+            ],
+            "angle": 0,
+            "content": "We remind Year 1 and Year 2 local currency statutory and adjustments figures in this report, including the flows and the currency rates used."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.822,
+                0.869,
+                0.872
+            ],
+            "angle": 0,
+            "content": "The right hand side shows the translated figures with the translation adjustment flow for each account and for both statutory accounts and adjustments."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.121,
+                0.069,
+                0.373,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.122,
+                0.886,
+                0.173
+            ],
+            "angle": 0,
+            "content": "The total of all translation adjustments flows gives \\( 1510 = 1480 + 30 \\), for statutory accounts and for adjustments respectively, which is the evolution amount to justify."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.187,
+                0.468,
+                0.205
+            ],
+            "angle": 0,
+            "content": "So we explain \\( 1510 = 600 - (910) \\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.219,
+                0.886,
+                0.253
+            ],
+            "angle": 0,
+            "content": "The evolution appearing in the consolidated balance is \\(906 = 360 - (546)\\) and is just the previous relation on which we have applied \\(60\\%\\)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.268,
+                0.367,
+                0.285
+            ],
+            "angle": 0,
+            "content": "Equity value evolution"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.3,
+                0.886,
+                0.349
+            ],
+            "angle": 0,
+            "content": "Evolution of the Equity value account is similar in difficulty to the evolution of Minority interests because we have seen that Equity value and Minority interests are both sides of the same mirror."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.364,
+                0.592,
+                0.382
+            ],
+            "angle": 0,
+            "content": "Here is the report used to justify such evolution."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.393,
+                0.886,
+                0.455
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Equity value Year 1</td><td>Result Year 2</td><td>Dividends paid</td><td>CTA</td><td>Capital increase</td><td>Others</td><td>Entry in conso scope</td><td>Total</td><td>Equity value Year 2</td><td>Check</td></tr><tr><td rowspan=\"2\">GAMMA</td><td>0</td><td>(60)</td><td></td><td></td><td></td><td></td><td>330</td><td>270</td><td>270</td><td>0</td></tr><tr><td>0</td><td>(60)</td><td></td><td></td><td></td><td></td><td>330</td><td>270</td><td>270</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.47,
+                0.884,
+                0.503
+            ],
+            "angle": 0,
+            "content": "We have presented the most frequently used columns although they are not present in our case study."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.518,
+                0.313,
+                0.535
+            ],
+            "angle": 0,
+            "content": "Eauity value Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.55,
+                0.884,
+                0.583
+            ],
+            "angle": 0,
+            "content": "This value is zero because GAMMA was not consolidated by the equity method in Year 1."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.598,
+                0.254,
+                0.615
+            ],
+            "angle": 0,
+            "content": "Result Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.63,
+                0.371,
+                0.648
+            ],
+            "angle": 0,
+            "content": "It is (60) = 30% * (200)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.662,
+                0.395,
+                0.68
+            ],
+            "angle": 0,
+            "content": "Entry in consolidation scope"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.695,
+                0.882,
+                0.744
+            ],
+            "angle": 0,
+            "content": "As an equity method company, GAMMA is entering the consolidation scope on July \\(1^{st}\\), Year 2 with an equity of \\(1100 = 2000 + (900)\\) in which the group part is \\(330 = 30\\% * 1100\\)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.759,
+                0.174,
+                0.775
+            ],
+            "angle": 0,
+            "content": "Total"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.791,
+                0.88,
+                0.824
+            ],
+            "angle": 0,
+            "content": "This column is just totaling the amounts of each line starting with Year 1 minority interests."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.435,
+                0.076,
+                0.854,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.107,
+                0.122,
+                0.296,
+                0.137
+            ],
+            "angle": 0,
+            "content": "Equity value Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.154,
+                0.867,
+                0.185
+            ],
+            "angle": 0,
+            "content": "These amounts can be found in the Year 2 contribution on the Equity value line."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.107,
+                0.203,
+                0.167,
+                0.219
+            ],
+            "angle": 0,
+            "content": "Check"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.234,
+                0.867,
+                0.266
+            ],
+            "angle": 0,
+            "content": "We usually add this column which calculates the difference between \"Equity value Year 2\" and \"Total\". We must find zero on each line."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.107,
+                0.302,
+                0.704,
+                0.347
+            ],
+            "angle": 0,
+            "content": "6 CONSOLIDATED CASH FLOW STATMENT"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.371,
+                0.867,
+                0.45
+            ],
+            "angle": 0,
+            "content": "The consolidated cash flow statement will be produced by first building the statutory cash flow statement for each individual company, that will be added together. Based on this approximation of the consolidated cash flow statement, we are going to book a certain number of adjustments to converge to the final consolidated cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.467,
+                0.867,
+                0.515
+            ],
+            "angle": 0,
+            "content": "The basic information consists in the statutory flows which is a new information it was not necessary to provide in the first part of our case study, excepted for the translation adjustments evolution."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.531,
+                0.867,
+                0.579
+            ],
+            "angle": 0,
+            "content": "For each company, we give Year 1 and Year 2 accounts and the flows explaining their evolution. The exercise consists in picking \"cash\" flows and to introduce them in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.595,
+                0.867,
+                0.675
+            ],
+            "angle": 0,
+            "content": "We are not giving the P&L which can be seen in the previous chapters. We will assume all validations are satisfied and, for instance, consider a depreciation flow as resulting from a depreciation account booked for the same amount in the P&L. The same comments can be made for provisions and gains/losses on disposals flows."
+        }
+    ]
+]

@@ -1,0 +1,1549 @@
+[
+    {
+        "type": "text",
+        "text": "In most countries, capital is presented as 'Subscribed capital' and 'Uncalled capital' on separate lines, sometimes the \"Uncalled capital\" may be booked as an asset.",
+        "bbox": [
+            112,
+            121,
+            872,
+            168
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In the consolidated accounts, these two sub-items are aggregated.",
+        "bbox": [
+            112,
+            186,
+            758,
+            202
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Share premium",
+        "text_level": 2,
+        "bbox": [
+            112,
+            218,
+            279,
+            234
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "It is only the parent company share premium that contributes to this line, the share premium from other companies is eliminated against the reserves.",
+        "bbox": [
+            112,
+            250,
+            875,
+            281
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "For a consortium, share premium behaves as the capital account, it is the addition of the share premium of the different parent companies.",
+        "bbox": [
+            112,
+            282,
+            872,
+            313
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Revaluation reserves",
+        "text_level": 2,
+        "bbox": [
+            112,
+            329,
+            341,
+            346
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In statutory accounts, this account is the counterpart of assets that are revaluated to a fair value.",
+        "bbox": [
+            112,
+            362,
+            872,
+            392
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, we have to make a distinction between the first consolidation of a company and the next consolidations.",
+        "bbox": [
+            112,
+            410,
+            872,
+            442
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "For a first consolidation of a company, these revaluation reserves will be transferred to normal reserves of the company. Moreover, when consolidating a company for the first time, there is an evaluation of assets (and liabilities), in order to allocate part of the goodwill. If this evaluation concludes to revaluation (or devaluation), the impact is also booked directly on the normal reserves of the company.",
+        "bbox": [
+            112,
+            458,
+            872,
+            555
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "For subseauent consolidations, these revaluation reserves are maintained on that account. Possibly, they can also be reversed if not compliant with the consolidation evaluation rules.",
+        "bbox": [
+            112,
+            571,
+            872,
+            618
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The main reason of doing this is to keep the normal reserves evaluated only through P&L impacts. Any other movement on the reserves, without P&L impact, should be booked on this Revaluation reserves account.",
+        "bbox": [
+            112,
+            634,
+            872,
+            683
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Whatever the consolidation method may be, the final amount appearing in the consolidated equity is the indirect financial percentage applied to the Revaluation reserves amount.",
+        "bbox": [
+            112,
+            699,
+            872,
+            746
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Let's conclude with an example on how to justify the evolution of this account by considering a company consolidated with a percentage of  \\(60\\%\\)  in Year 1 and a percentage of  \\(80\\%\\)  in Year 2. We suppose this  \\(80\\%\\)  applies for the full year.",
+        "bbox": [
+            112,
+            763,
+            872,
+            828
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            110,
+            68,
+            364,
+            82
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/9a4c8d245cbd4b30b7d04346bfe99a420dbdc0bf176f42da45f777a3bfa3f1e4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>Year 1</td><td>Increase</td><td>Change in %</td><td>Year 2</td></tr><tr><td>60%</td><td>80%</td><td></td><td>80%</td></tr><tr><td>Statutory</td><td>1,000</td><td>200</td><td></td><td>1,200</td></tr><tr><td>Consolidation</td><td>600</td><td>160</td><td>200</td><td>960</td></tr></table>",
+        "bbox": [
+            167,
+            131,
+            802,
+            200
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "At statutory level, there is an increase flow of 200 explaining the evolution from 1000 to 1200. End of Year 1, 600 is kept at group level and 960 at end of Year 2 while the flow amount contributes for 160. There is a discontinuing effect because of the percentage variation of  \\(20\\%\\)  which requires a technical flow of 200 to put figures back in balance between opening and closing.",
+        "bbox": [
+            88,
+            216,
+            860,
+            298
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This 200 is the consequence of an increase of  \\(20\\%\\)  in the opening value of 1000.",
+        "bbox": [
+            88,
+            313,
+            860,
+            346
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Reserves",
+        "text_level": 2,
+        "bbox": [
+            88,
+            361,
+            197,
+            379
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The evolution of this item should be justified only by the group result and the parent company dividends paid to the shareholders.",
+        "bbox": [
+            88,
+            393,
+            858,
+            428
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "However, let's go back to the detailed content of this account.",
+        "bbox": [
+            88,
+            442,
+            697,
+            459
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "It includes all reserves accounts of the parent company (legal reserves, other reserves, retained earnings, result of the period) and the consolidated reserves of each company belonging to the consolidation scope, whatever consolidation method we apply to each.",
+        "bbox": [
+            88,
+            474,
+            860,
+            540
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves have been explained in Part 2 Chapter 4 and we just recall here the formal definition",
+        "bbox": [
+            88,
+            554,
+            860,
+            588
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n\\% (C)^{*}Equity - \\% (S)^{*}Financial Investment\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            250,
+            598,
+            701,
+            620
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "where  \\(\\% (\\mathsf{C})\\)  means indirect financial percentage owned in company C and  \\(\\% (\\mathsf{S})\\)  means indirect percentage owned in shareholder S of C. There may be more than one shareholder.",
+        "bbox": [
+            88,
+            635,
+            860,
+            683
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Looking at this definition, it is easy to understand that as soon as the percentages are changing from Year 1 to Year 2, whatever the reason is, it becomes doubtful that the evolution will be justified easily.",
+        "bbox": [
+            88,
+            699,
+            860,
+            749
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Moreover, supposing there is no change in the percentages, Equity and Financial investment may also change.",
+        "bbox": [
+            88,
+            762,
+            860,
+            797
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "It is also important to keep in mind that these accounts also include consolidation adjustments, not only of the period, but also from the previous periods (historical adjustments).",
+        "bbox": [
+            88,
+            812,
+            860,
+            863
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            338,
+            71,
+            847,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For all these reasons, we will analyze more in details that Reserves account in the next section and will conclude to the necessity of applying some methodology.",
+        "bbox": [
+            130,
+            120,
+            890,
+            169
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Translation adjustments",
+        "text_level": 2,
+        "bbox": [
+            130,
+            185,
+            394,
+            202
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This account is booked each time we consider a company whose accounts are in a currency different from the consolidation currency. Again, justifying the evolution is really not easy because of so many different rates involved in the translation of equity and financial investments.",
+        "bbox": [
+            130,
+            216,
+            890,
+            281
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Once the justification is done for one company, on the basis of  \\(100\\%\\)  of that account, we have to justify any percentage variation in the same way we did for the \"Revaluation reserves\" account.",
+        "bbox": [
+            130,
+            297,
+            890,
+            345
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The amount finally included in the consolidated equity is the indirect financial percentage of the translation adjustment calculated per each company.",
+        "bbox": [
+            130,
+            360,
+            890,
+            393
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Badwill",
+        "text_level": 2,
+        "bbox": [
+            130,
+            409,
+            213,
+            426
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "If we start by considering IFRS rules, this account needs no explanation because it is not an equity account. A badwill is booked immediately in P&L except if there is already a goodwill for the same company, in such case badwill and goodwill are netted.",
+        "bbox": [
+            130,
+            442,
+            890,
+            506
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "If we are in Local Gaap, badwill is usually an item in the equity.",
+        "bbox": [
+            130,
+            521,
+            742,
+            538
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "It remains unchanged during the time we own the company which has produced that badwill. In case we acquire additional shares implying again a badwill, it will be added to the existing one and the evolution of that account will show this new badwill as a variation. In case of selling shares, the corresponding part of the badwill will be booked in the P&L as a profit and the variation will consist in a P&L impact.",
+        "bbox": [
+            130,
+            554,
+            890,
+            651
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "However, there are some group structures in which a company A (not the parent company) acquires another company B with a badwill. Supposing that company A is consolidated with an indirect percentage of  \\(80\\%\\) , then the final badwill contributing to the consolidated equity will be  \\(80\\%\\)  of that badwill.",
+        "bbox": [
+            130,
+            666,
+            890,
+            730
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Again, if the percentage of company A changes, let's say from  \\(60\\%\\)  last year to  \\(80\\%\\)  this year, there will be a flow variation corresponding to  \\(20\\%\\)  of the opening badwill amount.",
+        "bbox": [
+            130,
+            746,
+            890,
+            795
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Grants",
+        "text_level": 2,
+        "bbox": [
+            130,
+            811,
+            204,
+            828
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In IFRS, grants are considered as debts and do not appear as equity. In Local Gaap, grants may be booked directly in equity because they correspond to",
+        "bbox": [
+            130,
+            841,
+            890,
+            875
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            130,
+            67,
+            379,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "not refundable cash received from some state organization. So it is indeed not a debt...",
+        "bbox": [
+            109,
+            116,
+            871,
+            147
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Basically, this account is changing between opening and closing periods for two reasons: first for new grants received and secondly for part of grants to book in P&L, depending on the depreciation plan of the assets for which these grants have been received.",
+        "bbox": [
+            109,
+            165,
+            871,
+            229
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "From a consolidation point of view, the consolidated amount of grants is the indirect financial percentage in the grants of each company, including grants of parent company.",
+        "bbox": [
+            109,
+            245,
+            871,
+            293
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "If a percentage variation appears between opening and closing, the same principles as for Revaluation reserves apply again.",
+        "bbox": [
+            109,
+            309,
+            871,
+            342
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Minority interests",
+        "text_level": 2,
+        "bbox": [
+            109,
+            356,
+            305,
+            374
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We consider a company with its statutory equity, including consolidation adjustments.",
+        "bbox": [
+            109,
+            388,
+            871,
+            422
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Moreover, for foreign companies, we suppose that equity is translated into consolidation currency.",
+        "bbox": [
+            109,
+            437,
+            871,
+            470
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Minority interests are then calculated as  \\(100\\%\\)  less the indirect financial percentage in each company consolidated by the global integration method.",
+        "bbox": [
+            109,
+            486,
+            871,
+            519
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "It is important to notice that all accounts are considered in this calculation, including revaluation reserves, badwill, translation adjustments and grants.",
+        "bbox": [
+            109,
+            533,
+            867,
+            567
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "To say it in another way, minority interests are calculated on equity at closing rate while consolidated reserves are calculated on historical rate equity, not including revaluation reserves, badwill, translation adjustments and grants for which the group part is presented in the consolidated equity separately.",
+        "bbox": [
+            109,
+            581,
+            871,
+            647
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "To be complete in our explanation, we have to describe two special situations with regard to minority interests.",
+        "bbox": [
+            109,
+            662,
+            871,
+            695
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "First, when a company A owns shares of a company B, but company A is consolidated with an indirect financial percentage of less than  \\(100\\%\\) , Minority interests have to be calculated also in the financial investment amount on company B booked in company A.",
+        "bbox": [
+            109,
+            710,
+            871,
+            774
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Secondly, in a basic approach (Part 2), we have explained that there were Minority interests only in global integration companies. This remains not necessarily true in some group structures where a global integration company owns, for instance, an equity method company. In such situation, there is",
+        "bbox": [
+            109,
+            790,
+            871,
+            855
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            356,
+            68,
+            862,
+            84
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "what we call indirect minority interests in the equity method company. This situation will be explained with more details in the case studies of Part 4.",
+        "bbox": [
+            111,
+            118,
+            877,
+            150
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "2.2 Evolution of consolidated reserves",
+        "text_level": 1,
+        "bbox": [
+            113,
+            184,
+            729,
+            206
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "If we go back to our preliminary definition of consolidated reserves we gave in Part 2 Section 4.4, we said it was, for each company, the accumulation of results less dividends paid since the first day the company has entered the consolidation scope.",
+        "bbox": [
+            111,
+            226,
+            877,
+            292
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Consequently, we can also state that the difference between consolidated reserves between a given period and the previous one must be only the result of that period less the dividend paid, if any.",
+        "bbox": [
+            111,
+            305,
+            877,
+            356
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Moreover, it is understood that all direct booking on the reserves of a company, without impacting the P&L, will be done on another specific account, generally Revaluation reserves.",
+        "bbox": [
+            111,
+            371,
+            877,
+            421
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "When we consider the formula used to calculate the consolidated reserves of a company, as reminded hereunder,",
+        "bbox": [
+            113,
+            435,
+            877,
+            469
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves (of C) =  \\(\\% (\\mathsf{C})^*\\)  Equity -  \\(\\% (\\mathsf{S})^*\\)  Financial Investment",
+        "bbox": [
+            120,
+            480,
+            867,
+            501
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "we easily understand that the previous accounting relation will not be necessarily respected for some changes in the percentages or in the accounts themselves.",
+        "bbox": [
+            111,
+            514,
+            875,
+            562
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "To explain clearly this problem we are going to progress in complexity through different situations and try to build some methodology.",
+        "bbox": [
+            111,
+            578,
+            875,
+            612
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Let's consider the following group structure over Year 1 and Year 2 with the following assumptions:",
+        "bbox": [
+            111,
+            625,
+            875,
+            660
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "image",
+        "img_path": "images/92c8e8eccaa00ffe24a96110f374f9907855093d6e68d66a9a961b26798e6268.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            113,
+            666,
+            324,
+            869
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Companies A and B are supposed to have their statutory accounts in consolidation currency. This condition is not a limitation because by the currency translation step, we reclassify on the Translation adjustments account the currency effects in order to make the evolution of statutory reserves compatible with classical accounting principles.",
+            "- We will calculate only company B consolidated reserves and try each time to justify their evolution from Year 1 to Year 2."
+        ],
+        "bbox": [
+            369,
+            673,
+            877,
+            868
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            62,
+            369,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Situation 1 : The result and dividends effects",
+        "text_level": 3,
+        "bbox": [
+            103,
+            118,
+            595,
+            137
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In this first step we suppose there are no changes in the percentages over the two years and the indirect financial percentage in company B is  \\(48\\% = 80\\%\\) \\(60\\%\\) .",
+        "bbox": [
+            101,
+            152,
+            872,
+            202
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Company B has a statutory profit of 100 and pays a gross dividend of 50 to its shareholders.",
+        "bbox": [
+            101,
+            215,
+            872,
+            247
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/9f1a4c697b1da79b4bdafa243b20d9fbee82db7337b56c717b5cdeb1682f431a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td>Year 1</td><td>Year 2</td></tr><tr><td>Company A</td><td>Fin. Inv./B</td><td>600</td><td>600</td></tr><tr><td colspan=\"4\"></td></tr><tr><td rowspan=\"3\">Company B</td><td>Capital</td><td>1,000</td><td>1,000</td></tr><tr><td>Reserves</td><td>800</td><td>950</td></tr><tr><td>Result</td><td>200</td><td>100</td></tr></table>",
+        "bbox": [
+            201,
+            250,
+            739,
+            366
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves of B for each year are equal to",
+        "bbox": [
+            103,
+            392,
+            625,
+            410
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "-  \\({480} = {48}\\%  * \\left\\lbrack  {{1000} + {800} + {200}}\\right\\rbrack   - {80}\\% {}^{ * }{600}\\)  for Year 1",
+            "-  \\(504 = 48\\%\\)  * [1000 + 950 + 100] - 80% * 600 for Year 2"
+        ],
+        "bbox": [
+            141,
+            423,
+            756,
+            473
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "giving a variation of  \\(24 = 504 - 480\\)  which consists of two components, namely",
+        "bbox": [
+            101,
+            489,
+            866,
+            524
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "-  \\(48 = 48\\%\\)  * 100 corresponding to the group part of the result",
+            "(24)  \\(= 48\\%\\)  (50) corresponding to the group part of the dividends"
+        ],
+        "bbox": [
+            141,
+            535,
+            845,
+            587
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "That is the conclusion we expected from an accounting point of view.",
+        "bbox": [
+            103,
+            602,
+            777,
+            620
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Situation 2 : An increase of capital in company B, without oercentaae variation",
+        "text_level": 3,
+        "bbox": [
+            103,
+            634,
+            872,
+            668
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In this step, we keep the same situation as above but we suppose that company B increases its capital by 500. All shareholders are subscribing on the basis of their participation, so P subscribes  \\(300 = 60\\%\\)  500 and the  \\(3^{\\text{rd}}\\)  Parties  \\(200 = 40\\%\\)  500.",
+        "bbox": [
+            103,
+            683,
+            872,
+            747
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Here are the accounts reflecting the situation",
+        "bbox": [
+            103,
+            763,
+            548,
+            780
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            351,
+            71,
+            862,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/51d4ed2c61d7b690758d07b1d6fcda71d0773a402bcc40509332926c797f0ebc.jpg",
+        "table_caption": [
+            "Year 1 Year 2"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company A</td><td>Fin. Inv./B</td><td>600</td><td>900</td></tr><tr><td colspan=\"2\"></td><td colspan=\"2\"></td></tr><tr><td rowspan=\"3\">Company B</td><td>Capital</td><td>1,000</td><td>1,500</td></tr><tr><td>Reserves</td><td>800</td><td>950</td></tr><tr><td>Result</td><td>200</td><td>100</td></tr></table>",
+        "bbox": [
+            211,
+            149,
+            745,
+            234
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "And the consolidated reserves of B for each year are equal to",
+        "bbox": [
+            112,
+            249,
+            713,
+            266
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "-  \\(480 = 48\\%\\)  [1000 + 800 + 200] - 80% * 600 for Year 1",
+            "-  \\(504 = 48\\%\\)  * [1500 + 950 + 100] - 80% * 900 for Year 2"
+        ],
+        "bbox": [
+            150,
+            278,
+            766,
+            329
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "giving the same variation of  \\(24 = 504 - 480\\)  which consists in two components, namely",
+        "bbox": [
+            112,
+            344,
+            879,
+            379
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "48 = 48% * 100 corresponding to the group part of the result",
+            "(24)  \\(= 48\\%\\)  (50) corresponding to the group part of the dividend"
+        ],
+        "bbox": [
+            150,
+            390,
+            845,
+            442
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This means the capital increase has no effect on the consolidated reserves and it is perfectly normal. The group is not becoming \"richer\" or \"poorer\" because of such capital increase. There is just an amount of cash transferred from company A bank account to company B bank account.",
+        "bbox": [
+            112,
+            458,
+            879,
+            524
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This is a pure internal transaction with no effect on the outside world.",
+        "bbox": [
+            112,
+            536,
+            790,
+            555
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Situation 3 : An increase of capital in company B. with percentage variation",
+        "text_level": 3,
+        "bbox": [
+            112,
+            568,
+            879,
+            604
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "In this step, we suppose  \\(3^{\\text{rd}}\\)  Parties are not willing to subscribe to the capital increase (1 \\(^{\\text{st}}\\)  of January, Year 2), which implies a percentage from A in B changing from  \\(60\\%\\)  to  \\(70\\%\\) . This new percentage should be calculated on the basis on new shares issues. We skip this calculation.",
+        "bbox": [
+            112,
+            618,
+            879,
+            684
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Here are the new group structure and the corresponding statutory accounts.",
+        "bbox": [
+            112,
+            697,
+            855,
+            717
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            372,
+            80
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/7babe03f03e2904605dfaf31979de4aa53dff6f63d1c40f6171429e68273f016.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            105,
+            127,
+            317,
+            330
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/8801c315eaafa573b5f5581d808ada9be5d624745d69834a5ab3173bce79815f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            334,
+            127,
+            879,
+            247
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The consolidated reserves of B for each year are equal to",
+        "bbox": [
+            105,
+            357,
+            667,
+            374
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "480 = 48% * [1000 + 800 + 200] - 80% * 600 for Year 1",
+            "-  \\({548} = 56\\%  * \\left\\lbrack  {{1500} + {950} + {100}}\\right\\rbrack   - {80}\\%  * {1100}\\)  for Year 2"
+        ],
+        "bbox": [
+            144,
+            385,
+            773,
+            437
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "giving a variation of  \\(68 = 548 - 480\\)  which consists in the following components,",
+        "bbox": [
+            105,
+            453,
+            875,
+            487
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "-  \\(56 = 56\\%\\)  * 100 corresponding to the group part of the result",
+            "(24)  \\(= 48\\%\\)  (50) corresponding to the group part of the dividend",
+            "-  \\(156 = 8\\%\\)  * 1950 which is a good illustration of the discontinuing process of consolidation. Between the instant \"before/after\" the increase in capital, the indirect percentage is suddenly increased by  \\(8\\%\\)  acting in the opening equity, not included the capital increase",
+            "-  \\(280 = 80\\%\\)  [70% 500] which is the net part of the capital increase belonging to the group",
+            "(400) = 80% (* (500) corresponding to the group part of the capital increase."
+        ],
+        "bbox": [
+            146,
+            497,
+            875,
+            724
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "If we find again the group result and the group dividends, there are three other components impacting the reserves and which cannot be kept as such.",
+        "bbox": [
+            105,
+            742,
+            875,
+            775
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The net amount of  \\(36 = 156 + 280 - 400\\)  has to be considered as a badwill because by this transaction, the group has gained some reserves.",
+        "bbox": [
+            105,
+            790,
+            875,
+            824
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            355,
+            71,
+            866,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Depending on consolidation rules (IFRS/Local Gaap), we have to book a consolidation adjustment for this amount and to transfer it to the appropriate account.",
+        "bbox": [
+            108,
+            121,
+            875,
+            168
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In order to finalize this step, let's suppose we are consolidating under IFRS rules. Here is the adjustment we would book in company A accounts.",
+        "bbox": [
+            108,
+            168,
+            877,
+            202
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/60bf347eda40f2ed085db4bd44e20f0050af31264e26bb7d85d1a7a4faecd710.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Fin. Inv./B</td><td>45</td><td></td></tr><tr><td>Badwill profit</td><td></td><td>45</td></tr></table>",
+        "bbox": [
+            110,
+            212,
+            413,
+            265
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "But why 45 instead of 36? Because 36 has been calculated as a net group amount. By booking this amount in company A, owned at",
+        "bbox": [
+            427,
+            215,
+            875,
+            266
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "\\(80\\%\\) , we would calculate  \\(28.8 = 80\\%\\)  of 36 instead of 36. Another way to book this adjustment would be to use the amount of 36 but to define the adjustment as impacting the group account at  \\(100\\%\\) . It is a choice. We recommend booking the amount of 45.",
+        "bbox": [
+            108,
+            266,
+            877,
+            331
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "So, consolidated reserves of B have to be recalculated",
+        "bbox": [
+            110,
+            344,
+            639,
+            362
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n512 = 56 \\% ^ {*} [ 1500 + 950 + 100 ] - 80 \\% ^ {*} [ 1100 + \\underline {45} ] \\text {for Year 2}\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            148,
+            373,
+            845,
+            395
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "giving a difference of 32 with Year 1, which again is equal to 56 (the group result) minus 24 (the group dividends).",
+        "bbox": [
+            108,
+            410,
+            875,
+            444
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Finally, we remain again with these two expected components.",
+        "bbox": [
+            108,
+            458,
+            718,
+            473
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Situation 4 : Company A acauires new shares of company B",
+        "text_level": 3,
+        "bbox": [
+            108,
+            489,
+            754,
+            508
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We now forget the capital increase and come back to company B just paying the 50 dividends.",
+        "bbox": [
+            108,
+            521,
+            875,
+            555
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Company A acquires  \\(20\\%\\)  of shares of company B, on the  \\(1^{\\text{st}}\\)  of January Year 2, for a price of 700. These new shares acquired are supposed not giving rights to dividends.",
+        "bbox": [
+            108,
+            570,
+            875,
+            620
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/320cdcbacd348662f417ba6c619791b0c18c0aa73f93d9f3f479888cfc0587bb.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Year 1</td><td>Year 2</td><td>Company A</td><td>Fin. Inv./B</td><td>600</td><td>1,300</td></tr><tr><td>P</td><td>P</td><td rowspan=\"4\">Company B</td><td>Capital</td><td>1,000</td><td>1,000</td></tr><tr><td>80%</td><td>80%</td><td>Reserves</td><td>800</td><td>950</td></tr><tr><td>A</td><td>A</td><td>Result</td><td>200</td><td>100</td></tr><tr><td>60%</td><td>80%</td><td></td><td></td><td></td></tr><tr><td>B</td><td>B</td><td></td><td></td><td></td><td></td></tr></table>",
+        "bbox": [
+            108,
+            640,
+            877,
+            847
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            68,
+            364,
+            83
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves of company B are",
+        "bbox": [
+            100,
+            119,
+            501,
+            136
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "480 = 48% * [1000 + 800 + 200] - 80% * 600 for Year 1",
+            "-  \\(272 = 64\\%\\)  * [1000 + 950 + 100] - 80% * 1300 for Year 2"
+        ],
+        "bbox": [
+            139,
+            147,
+            775,
+            201
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "and the evolution to justify is now (208).",
+        "bbox": [
+            102,
+            217,
+            505,
+            232
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Here are the different components",
+        "bbox": [
+            102,
+            248,
+            445,
+            265
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "-  \\(64 = 64\\% * 100\\)  corresponding to the group part of the result",
+            "(24)  \\(= 48\\%\\)  \\* (50) corresponding to the group part of the dividend",
+            "-  \\(312 = 16\\%\\) \\(\\star\\)  1950 just as in the step before. We instantaneously get  \\(16\\%\\)  more in the opening equity",
+            "(560)  \\(= 80\\%\\)  (700) which is the group part in the acquisition price of B shares acquired."
+        ],
+        "bbox": [
+            139,
+            279,
+            877,
+            427
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The two last items must be considered as a group price of 560 to acquire an additional group part in company B equity for 312 as goodwill on the transaction. Net amount of that goodwill is 248 and we propose the following consolidation adjustment to book in company A accounts",
+        "bbox": [
+            102,
+            443,
+            877,
+            509
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/99ef5c89e5d3597d204bc96ebe89d3f9577e5b8e8be7a58ad95185fc4e23ff73.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill</td><td>310</td><td></td></tr><tr><td>Fin. Inv./B</td><td></td><td>310</td></tr></table>",
+        "bbox": [
+            107,
+            521,
+            411,
+            572
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In this adjustment, the amount of 310 must be seen as  \\(248 / 80\\%\\)  for the same reason as explained in the previous step.",
+        "bbox": [
+            423,
+            522,
+            880,
+            572
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Let's recalculate the consolidated reserves of company B",
+        "bbox": [
+            104,
+            587,
+            665,
+            606
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "520 = 64% * [1000 + 950 + 100] - 80% * [1300 - 310] for Year 2",
+        "bbox": [
+            141,
+            615,
+            856,
+            636
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The difference with Year 1 is now  \\(40 = 64 + (24)\\) .",
+        "bbox": [
+            104,
+            652,
+            599,
+            670
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Situation 5 : Company P acauires new shares of company A",
+        "text_level": 3,
+        "bbox": [
+            104,
+            684,
+            755,
+            701
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The change in structure is now happening above company B.",
+        "bbox": [
+            102,
+            718,
+            653,
+            751
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "It is company P acquiring  \\(10\\%\\)  of company A shares, on the  \\(1^{\\text{st}}\\)  of January Year 2, giving a percentage of  \\(90\\%\\)  from P in A.",
+        "bbox": [
+            102,
+            765,
+            653,
+            814
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "When we consider B situation, nothing has changed.",
+        "bbox": [
+            104,
+            829,
+            618,
+            846
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "image",
+        "img_path": "images/6f02bb1740e04d53f26747919037e6d5d9415a03324d0b762feb5f8719fa925b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            665,
+            718,
+            852,
+            889
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            69,
+            869,
+            85
+        ],
+        "page_idx": 9
+    }
+]

@@ -1,0 +1,186 @@
+Topics:
+Cash-Flow Report Creation, Flow Report Creation, Multi-Period Report Creation, Standard Report Creation
+
+Keywords:
+Cash-Flow Report, Flow Report, Multi-Period Report, Standard Report, User Reports, Report Generation, Financial Data, Data Analysis
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on creating various types of reports. The Cash-Flow Report Creation section explains how to define and generate reports for cash flow statements. The Flow Report Creation section details the process of creating reports based on flow structures across different periods, journals, and accounts. The Multi-Period Report Creation section provides steps for generating reports that span multiple periods, allowing comprehensive financial analysis over time. The Standard Report Creation section outlines the creation of linear reports based on account structures. These instructions ensure accurate and efficient financial reporting and analysis.
+
+Contents:
+Create a cash-flow report
+The User Report Definition - Cash Flow page allows you to create a linear report for the cash flow statement, using the Account and Calculated Account structure, the Flow structure, and the Journal structure. These structures enable you to organize and categorize the different types of financial activities related to cash flow.
+
+The User Report Definition - Cash Flow page is accessed from the page when you select a Cash Flow type report and then, click the Define this report button.
+
+On this page, you will see the following layout for each line:
+- Line Number: each line of the report has a Line Number that allows you to identify it in the report.
+- Group Number: the Group of the selected lines in the report.
+- Type: displays one of the following Line Types: T - Text Line, C - Cash-Flow Line, S - Summation data, P - Page Break.
+- Description: the description of the line: T - Text, C - Cash-Flow Combination, S - Summation.
+- Account: code of the Account or Summation Account being used.
+- Flow: code of Flow or Summation Flows being used.
+- Journal: applicable Journal or Journal View.
+- Sign: shows the amount presented as negative or positive.
+- Period: amounts from the Current C or Reference R Consolidation Period.
+- Visible: option to show or hide the line on the report.
+
+Parameters for adding a new line:
+1. Click . A Details pop-up appears for you to enter the required information for the line.
+2. Enter the line number where you want the new line to appear.
+3. Select a Line Type used in a Cash-Flow User Report.
+4. Enter a Group Number to regroup the lines from the Cash-Flow User Report.
+5. Enter a description for the line.
+6. Adjust Indentation, Font, and Layout as needed.
+7. Change the Sign if necessary.
+8. Select where the amounts come from, either the Current or Reference Consolidation Period.
+9. Select either Account or Calculated Account Code.
+10. Select either the Flow or Calculated Flow Code.
+11. Select either the Journal or Journal View Code.
+12. Decide whether to show or hide the line on the report.
+13. Click .
+14. Click to return to the Define User Reports page and click to view the report containing the parameters you just added.
+
+Modify an existing line:
+1. To modify an existing line on this page, click on the line. The Details pop-up is displayed.
+2. Make your changes.
+3. Click to save your modifications.
+
+Create a flow report
+The User Report Definition - Flow page enables you to create a linear report based on the Flow structure across different Periods, Journals, and Accounts.
+
+The User Report Definition - Flow page is accessed from the page when you select a Flow type report and then, click the Define this report button.
+
+Within the page, you will notice the following column layout:
+- Line Number: each line of the report has a Line Number that allows you to identify it in the report.
+- Type: displays one of the following Line Types: T - Text line, H - Header line, F - Flow data, X - Calculated Flow data, S - Summation data, P - Page Break.
+- Code: this column shows the F - Flow or X - Calculated Flow Code.
+- Description: describes content of line number.
+- Sign: shows the amount presented as negative or positive.
+- Period: amounts from the Current (C) or Reference (R) Consolidation Period.
+- Journal: applicable Journal or Journal View. If this column is blank, then all journals are used.
+- Col1 to Col3: each column displays an Account or Calculated Account per line.
+
+Parameters for adding a new line:
+1. Click . A Details pop-up appears for you to enter the required information for the line.
+2. Enter the line number where you want the new line to appear.
+3. Select a Line Type used in a Flow User Report.
+4. Enter or select a Flow or Calculated Flow. The description of the selected Flow or Calculated Flow appears below the field.
+5. Adjust Indentation, Font, and Layout as needed.
+6. Change the Sign if necessary.
+7. Select where the amounts come from, either the Current or Reference Consolidation Period.
+8. Select the Journal or Journal View to be used for this line.
+9. Select up to three different accounts to display on the report.
+10. Click .
+11. Click to return to the Define User Reports page and click to view the report containing the parameters you just added.
+
+Modify an existing line:
+1. To modify an existing line on this page, click on the line. The Details pop-up is displayed.
+2. Make your changes.
+3. Click to save your modifications.
+
+Create a multi-period report
+The User Report Definition - MultiPeriod page enables you to create a report based on the Account structure across different Flows, Journals, and Periods.
+
+The User Report Definition - MultiPeriod page is accessed from the page when you select a Multi-period type report and then, click the Define this report button.
+
+This page has two tabs: Rows and Columns.
+
+Row definition:
+- Line Number: each line of the report has a Line Number that allows you to identify it in the report.
+- Type: displays one of the following Line Types: T - Text line, A - Account data, S - Summation Account data, P - Page Break.
+- Account: code of the Account or Summation Account being used.
+- Description: describes content of line number.
+- Sign: shows the amount presented as negative or positive.
+
+Parameters for adding a new line (row):
+1. Click . A Details pop-up appears for you to enter the required information for the line.
+2. Enter the line number where you want the new line to appear.
+3. Select the Line Type used in a Multi-Period User Report.
+4. Enter or select the Account or Calculated Account Code.
+5. Adjust Indentation, Font, and Layout as needed.
+6. Change the Sign if necessary.
+7. Click .
+8. Click the Columns tab to proceed to the next step.
+
+Column definition:
+- Column Number: the position or number of the selected Column within the report.
+- Month: select an option from the drop-down.
+- Month Offset: the number of months before or after, relatively from the Period defined within the Category and Cur/Ref fields.
+- Fixed Month: if selected, you must select a fixed month for the column.
+- Last Sequence: if selected, the last existing sequence for that period will be automatically used.
+- Sequence: use this to define the sequence of the selected consolidation period.
+- Same Category: if selected, the same Category / Nature as your Current or Reference Consolidation Period will be used.
+- Category: select a category from the drop-down.
+- Type: indicates the selected amounts as Year to Date (cumulative) amounts or Monthly amounts.
+- Cur/Ref: the Period you want to display on the column, either the Current or the Reference Consolidation Period.
+
+Parameters for adding a new column:
+1. Click . A Details pop-up appears for you to enter the required information for the column.
+2. Define the Column Number.
+3. Select Month and Month Offset.
+4. Define the Sequence and Category.
+5. Select the Type and Cur/Ref.
+6. Click .
+7. Click to return to the Define User Reports page and click to view the report containing the parameters you just added.
+
+Modify an existing line:
+1. To modify an existing line on this page, click on the line. The Details pop-up is displayed.
+2. Make your changes.
+3. Click to save your modifications.
+
+Create a standard report
+The User Report Definition - Standard page enables you to create a linear report based on the Account structure.
+
+The User Report Definition - Standard page is accessed from the page when you select a Standard type report and then, click the Define this report button.
+
+On this page, you will see the following layout for each line:
+- Line Number: each line of the report has a Line Number that allows you to quickly identify it in the report.
+- Type: displays one of the following Line Types: T - Text line, A - Account data, S - Summation Account data, P - Page Break.
+- Code: this column shows the A- Account or S - Calculated Account Code.
+- Description: describes content of line number.
+- Sign: shows the amount presented as negative or positive.
+
+Parameters for adding a new line:
+1. Click . A Details pop-up appears for you to enter the required information for the line.
+2. Enter the line number where you want the new line to appear.
+3. Select a Line Type used in a Standard User Report.
+4. Enter or select the Account or Calculated Account Code.
+5. Adjust Indentation, Font, and Layout as needed.
+6. Change the Sign if necessary.
+7. Click .
+8. Click to return to the Define User Reports page and click to view the report containing the parameters you just added.
+
+Modify an existing line:
+1. To modify an existing line on this page, click on the line. The Details pop-up is displayed.
+2. Make your changes.
+3. Click to save your modifications.
+
+Run user reports
+On the User Reports page, you can select and run the user reports defined on the page.
+
+To access the User Reports page, click Reports > User Reports > User Reports.
+
+Generate a user report:
+1. From the Report drop-down list, select a report.
+2. In the Ref Period field, enter a reference consolidation period or click to search for one.
+3. Select the type of data you want to use for the report from the Data drop-down list.
+4. Select a company.
+5. In the Journal Summation field, select a journal view.
+6. In the Contribution by field, specify how the contribution should be shown.
+7. Select a Point of View.
+8. In the File type field, select the output file type.
+9. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+Drill down a user report
+The User Reports page provides the functionality to drill down into a user report, allowing you to navigate through the data presented from a broad overview to a more detailed perspective. With this report, you have the flexibility to drill down into multiple hierarchies, including POV (Point of View), companies, accounts, journals, and more.
+
+To access the User Reports page, click Reports > Drill-Down Analysis > User Reports.
+
+Drill down a report:
+1. In the Report field, select a user report.
+2. In the Journal Summation field, select a journal view.
+3. Click . The selected report is displayed.
+4. Identify the line you want to analyze on the report, and click the plus sign (+) beside the Description.
+5. In the pop-up, select the structure you want to analyze and drill down into the selected structure.
+6. After drilling down the selected structure, you can drill down on the detail even further using other structures.

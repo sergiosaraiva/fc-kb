@@ -1,0 +1,419 @@
+Topics:
+Intercompany Transactions, Data Validation, Matching and Elimination, Report Generation
+
+Keywords:
+Intercompany Matching, Intercompany Elimination, Validation Report, Matching Rules, Automatic Elimination, Threshold, Partner Companies, Transaction Reconciliation, Currency Impact, Fiscal Year Differences
+
+Summary:
+The provided documentation for the Financial Consolidation product covers detailed instructions on managing intercompany transactions, data validation, intercompany matching and elimination, and report generation. The Intercompany Transactions section explains how to match and reconcile transactions between group companies. The Data Validation section details generating validation reports to identify intercompany differences. The Matching and Elimination section provides steps for setting up automatic eliminations and correcting intercompany details. The Report Generation section explains how to create and download intercompany validation and matching reports.
+
+Contents:
+
+Question: What details are displayed on the Intercompany Matching page?
+Answer: The left-side panel displays details on intercompany matching/unmatching transactions including Rule, Company code and name, local currency, Account, Journal, Entry, Description, and Amount.
+
+Question: How do you set a threshold for intercompany differences?
+Answer: In the Threshold field, click to open the Threshold window, set the amounts for each Intercompany Elimination rule, and click to save the modifications.
+
+Question: How do you print a report of intercompany differences?
+Answer: Click on the Intercompany Matching page, select companies and criteria, and choose the file type before generating the report.
+
+Question: What should you do after modifying a statutory bundle to correct intercompany differences?
+Answer: Carry out a new validation of the statutory bundle to ensure the corrections are accurate.
+
+Question: How do you merge Debit and Credit amounts in intercompany matching?
+Answer: In the Filter group box, select the Merge Debit and Credit amounts option to combine these amounts for reconciliation.
+
+Question: What is the purpose of the Book Difference adjustment?
+Answer: The Book Difference adjustment is used for booking the difference found on an intercompany Balance Sheet account to a translation difference account.
+
+Question: How do you generate a report of matched transactions?
+Answer: On the Intercompany Matching page, click to open the Report page, select companies, criteria, and file type, then generate the report.
+
+Question: How do you access the Define IC Rules page?
+Answer: To access the Define IC Rules page, navigate to the Intercompany Elimination page and click to configure the rules for intercompany transactions.
+
+Question: What is the purpose of the Threshold field in intercompany matching?
+Answer: The Threshold field is used to set the amount under which any intercompany difference is ignored, helping to filter the displayed intercompany information.
+
+Question: How do you use the Reclassify Difference adjustment?
+Answer: The Reclassify Difference adjustment reclassifies the difference found on an intercompany P&L account to a currency translation difference account.
+
+Question: How do you set up Transfer Difference adjustments?
+Answer: Click to redirect to the adjustment page, modify the Posting journal, set up the adjustments, and click to apply.
+
+Question: What options are available in the Filter section for generating an Intercompany Validation report?
+Answer: Options include using Threshold, merging Debit/Credit, showing Unmatched Transactions, and showing Matched Transactions.
+
+Question: What steps are involved in correcting intercompany details?
+Answer: Search for the account, enter the correction amount, and click to add the amount to the Bundle Amount. Then validate the statutory bundle.
+
+Question: What information is displayed under the company identification in intercompany matching?
+Answer: Information displayed includes Account, Journal code and category, Entry number, Description, and Amount in group currency.
+
+Question: What criteria can be used to filter intercompany information?
+Answer: Criteria include Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: What are Transfer Difference adjustments used for?
+Answer: Transfer Difference adjustments are used for transferring the difference amount from group transactions to out-of-group transactions or vice versa.
+
+Question: How do you set up automatic intercompany eliminations?
+Answer: In the Account Number field, click to select the account for automatic elimination, then click to confirm the setup.
+
+Question: What is the purpose of the Intercompany Matching page?
+Answer: The Intercompany Matching page is used for matching transactions between companies in a group for elimination and reconciliation purposes.
+
+Question: What is the function of the Filter group box in intercompany matching?
+Answer: The Filter group box allows users to filter intercompany information by unmatched or matched transactions, excluding equity method and NC transactions, and merging debit and credit amounts.
+
+Question: What are some reasons for intercompany differences?
+Answer: Reasons for intercompany differences include invoice booking discrepancies, different fiscal year-end dates, currency rate impacts, and VAT non-refundability.
+
+Question: How do you generate an Intercompany Validation report?
+Answer: Select a company, partner companies, rules, and file type on the Intercompany Validation report page, then click to generate and view the report.
+
+Question: How does currency rate impact intercompany transactions?
+Answer: Currency rate differences can affect the value of intercompany transactions, leading to discrepancies when consolidating financial data.
+
+Question: How do you correct a difference amount in intercompany matching?
+Answer: Search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: How do you access the Intercompany Validation report page?
+Answer: Click Data Entry > Validation Reports > Intercompany Validation to access the page.
+
+Question: What is the role of the Intercompany Rule in correcting intercompany details?
+Answer: The Intercompany Rule defines how the correction amounts are applied to the reconciliation of intercompany transactions.
+
+Question: How do you apply a correction amount in intercompany matching?
+Answer: Enter the correction amount in the Group Currency or Local Currency field and click to add the difference to the Bundle Amount.
+
+Question: What information is displayed in the right-side panel of the Intercompany Matching page?
+Answer: The right-side panel allows you to filter intercompany information using criteria such as Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you print a report of intercompany differences?
+Answer: Click on the Intercompany Matching page, select companies and criteria, and choose the file type before generating the report.
+
+Question: What steps are involved in setting up automatic intercompany eliminations?
+Answer: Click in the Account Number field, select the account for automatic elimination, and click to confirm the setup.
+
+Question: What should you do after modifying a statutory bundle to correct intercompany differences?
+Answer: Carry out a new validation of the statutory bundle to ensure the corrections are accurate.
+
+Question: How do you access the Intercompany Matching page?
+Answer: To access the Intercompany Matching page, click Consolidation > Consolidation > Intercompany Matching.
+
+Question: What details are displayed on the Intercompany Matching page?
+Answer: The left-side panel displays details on intercompany matching/unmatching transactions including Rule, Company code and name, local currency, Account, Journal, Entry, Description, and Amount.
+
+Question: What is the purpose of the Threshold field in intercompany matching?
+Answer: The Threshold field is used to set the amount under which any intercompany difference is ignored, helping to filter the displayed intercompany information.
+
+Question: How do you set a threshold for intercompany differences?
+Answer: In the Threshold field, click to open the Threshold window, set the amounts for each Intercompany Elimination rule, and click to save the modifications.
+
+Question: How can you correct intercompany details on the Intercompany Matching page?
+Answer: To correct intercompany details, search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: What should you do after modifying a statutory bundle to correct intercompany differences?
+Answer: After modifying a statutory bundle, carry out a new validation of the statutory bundle to ensure the corrections are accurate.
+
+Question: What are the three types of adjustments available for intercompany differences?
+Answer: The three types of adjustments are Transfer Difference, Reclassify Difference, and Book Difference.
+
+Question: How do you set up adjustments for intercompany differences?
+Answer: To set up adjustments, click to redirect to the adjustment page, modify the Posting journal, set up the adjustments, and click to apply.
+
+Question: How can you print intercompany differences or matched transactions?
+Answer: On the Intercompany Matching page, click to open the Report page, select companies, criteria, and file type, then click to generate and view the report.
+
+Question: How do you link intercompany eliminations to rules?
+Answer: On the Intercompany Elimination page, click in the Account Number field, select the account for automatic elimination, and click to return to the Define IC Rules page.
+
+Question: What is the purpose of the Intercompany Validation report?
+Answer: The Intercompany Validation report displays intercompany differences for a chosen company, showing transactions with selected partners based on specified rules.
+
+Question: How do you generate an Intercompany Validation report?
+Answer: On the Intercompany Validation report page, select a company, partner companies, rules, and file type, then click to generate and view the report.
+
+Question: What are some reasons for intercompany differences?
+Answer: Reasons for intercompany differences include invoice booking discrepancies, different fiscal year-end dates, currency rate impacts, and VAT non-refundability.
+
+Question: What is the impact of different fiscal year-end dates on intercompany transactions?
+Answer: Different fiscal year-end dates can cause discrepancies in intercompany transactions as companies may record transactions at different times.
+
+Question: How does currency rate impact intercompany transactions?
+Answer: Currency rate differences can affect the value of intercompany transactions, leading to discrepancies when consolidating financial data.
+
+Question: What is the function of the Filter group box in intercompany matching?
+Answer: The Filter group box allows users to filter intercompany information by unmatched or matched transactions, excluding equity method and NC transactions, and merging debit and credit amounts.
+
+Question: What information is displayed under the company identification in intercompany matching?
+Answer: Information displayed includes Account, Journal code and category, Entry number, Description, and Amount in group currency.
+
+Question: How do you access the Define IC Rules page?
+Answer: To access the Define IC Rules page, navigate to the Intercompany Elimination page and click to configure the rules for intercompany transactions.
+
+Question: What options are available in the Filter section for generating an Intercompany Validation report?
+Answer: Options include using Threshold, merging Debit/Credit, showing Unmatched Transactions, and showing Matched Transactions.
+
+Question: How do you merge Debit and Credit amounts in intercompany matching?
+Answer: In the Filter group box, select the Merge Debit and Credit amounts option to combine these amounts for reconciliation.
+
+Question: What steps are involved in correcting intercompany details?
+Answer: Search for the account, enter the correction amount, and click to add the amount to the Bundle Amount. Then validate the statutory bundle.
+
+Question: What are Transfer Difference adjustments used for?
+Answer: Transfer Difference adjustments are used for transferring the difference amount from group transactions to out-of-group transactions or vice versa.
+
+Question: How do you use the Reclassify Difference adjustment?
+Answer: The Reclassify Difference adjustment reclassifies the difference found on an intercompany P&L account to a currency translation difference account.
+
+Question: What is the purpose of the Book Difference adjustment?
+Answer: The Book Difference adjustment books the difference found on an intercompany Balance Sheet account to a translation difference account.
+
+Question: How do you set up automatic intercompany eliminations?
+Answer: In the Account Number field, click to select the account for automatic elimination, then click to confirm the setup.
+
+Question: What is the purpose of the Intercompany Matching page?
+Answer: The Intercompany Matching page is used for matching transactions between companies in a group for elimination and reconciliation purposes.
+
+Question: How do you filter intercompany information on the Intercompany Matching page?
+Answer: Use the right-side panel to set criteria such as Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: What is the function of the Threshold window in intercompany matching?
+Answer: The Threshold window allows you to set the amounts at which intercompany differences will not be displayed, with different thresholds for each elimination rule.
+
+Question: How do you access the Intercompany Validation report page?
+Answer: Click Data Entry > Validation Reports > Intercompany Validation to access the page.
+
+Question: What is the role of the Intercompany Rule in correcting intercompany details?
+Answer: The Intercompany Rule defines how the correction amounts are applied to the reconciliation of intercompany transactions.
+
+Question: What should you do after correcting intercompany details?
+Answer: After correcting intercompany details, validate the statutory bundle to ensure the changes are accurately reflected.
+
+Question: What information is shown in the left-side panel of the Intercompany Matching page?
+Answer: The left-side panel displays intercompany matching details such as Rule, Company code and name, local currency, Account, Journal, Entry, Description, and Amount.
+
+Question: How do you apply a correction amount in intercompany matching?
+Answer: Enter the correction amount in the Group Currency or Local Currency field and click to add the difference to the Bundle Amount.
+
+Question: How do you print a report of intercompany differences?
+Answer: Click on the Intercompany Matching page, select companies and criteria, and choose the file type before generating the report.
+
+Question: What is the purpose of intercompany matching?
+Answer: Intercompany matching aims to reconcile transactions between group companies, ensuring accurate elimination and reconciliation of intercompany differences.
+
+Question: How do you generate a report of matched transactions?
+Answer: On the Intercompany Matching page, click to open the Report page, select companies, criteria, and file type, then generate the report.
+
+Question: What criteria can be used to filter intercompany information?
+Answer: Criteria include Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you correct a difference amount in intercompany matching?
+Answer: Search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: What is the purpose of the Book Difference adjustment?
+Answer: The Book Difference adjustment is used for booking the difference found on an intercompany Balance Sheet account to a translation difference account.
+
+Question: What options are available in the Filter section of the Intercompany Validation report page?
+Answer: Options include using Threshold, merging Debit/Credit, showing Unmatched Transactions, and showing Matched Transactions.
+
+Question: What information is displayed in the right-side panel of the Intercompany Matching page?
+Answer: The right-side panel allows you to filter intercompany information using criteria such as Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you set up Transfer Difference adjustments?
+Answer: Click to redirect to the adjustment page, modify the Posting journal, set up the adjustments, and click to apply.
+
+Question: What is the purpose of the Reclassify Difference adjustment?
+Answer: The Reclassify Difference adjustment is used to reclassify the difference found on an intercompany P&L account to a currency translation difference account.
+
+Question: How do you generate an Intercompany Validation report?
+Answer: Select a company, partner companies, rules, and file type on the Intercompany Validation report page, then click to generate and view the report.
+
+Question: What steps are involved in setting up automatic intercompany eliminations?
+Answer: Click in the Account Number field, select the account for automatic elimination, and click to confirm the setup.
+
+Question: How do you merge Debit and Credit amounts in intercompany matching?
+Answer: Select the Merge Debit and Credit amounts option in the Filter group box to combine these amounts for reconciliation.
+
+Question: How do you correct intercompany details on the Intercompany Matching page?
+Answer: Search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: What should you do after modifying a statutory bundle to correct intercompany differences?
+Answer: Carry out a new validation of the statutory bundle to ensure the corrections are accurate.
+
+Question: What is the function of the Filter group box in intercompany matching?
+Answer: The Filter group box allows you to filter intercompany information by unmatched or matched transactions, excluding equity method and NC transactions, and merging debit and credit amounts.
+
+Question: What is the purpose of the Threshold field in intercompany matching?
+Answer: The Threshold field is used to set the amount under which any intercompany difference is ignored, helping to filter the displayed intercompany information.
+
+Question: What are some reasons for intercompany differences?
+Answer: Reasons for intercompany differences include invoice booking discrepancies, different fiscal year-end dates, currency rate impacts, and VAT non-refundability.
+
+Question: How does currency rate impact intercompany transactions?
+Answer: Currency rate differences can affect the value of intercompany transactions, leading to discrepancies when consolidating financial data.
+
+Question: How do you access the Define IC Rules page?
+Answer: Navigate to the Intercompany Elimination page and click to configure the rules for intercompany transactions.
+
+Question: How do you print a report of intercompany differences?
+Answer: Click on the Intercompany Matching page, select companies and criteria, and choose the file type before generating the report.
+
+Question: How do you apply a correction amount in intercompany matching?
+Answer: Enter the correction amount in the Group Currency or Local Currency field and click to add the difference to the Bundle Amount.
+
+Question: What is the purpose of the Intercompany Validation report?
+Answer: The Intercompany Validation report displays intercompany differences for a chosen company, showing transactions with selected partners based on specified rules.
+
+Question: How do you generate a report of matched transactions?
+Answer: On the Intercompany Matching page, click to open the Report page, select companies, criteria, and file type, then generate the report.
+
+Question: What information is displayed in the left-side panel of the Intercompany Matching page?
+Answer: The left-side panel displays intercompany matching details such as Rule, Company code and name, local currency, Account, Journal, Entry, Description, and Amount.
+
+Question: What information is shown in the right-side panel of the Intercompany Matching page?
+Answer: The right-side panel allows you to filter intercompany information using criteria such as Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you access the Intercompany Validation report page?
+Answer: Click Data Entry > Validation Reports > Intercompany Validation to access the page.
+
+Question: What are Transfer Difference adjustments used for?
+Answer: Transfer Difference adjustments are used for transferring the difference amount from group transactions to out-of-group transactions or vice versa.
+
+Question: How do you use the Reclassify Difference adjustment?
+Answer: The Reclassify Difference adjustment reclassifies the difference found on an intercompany P&L account to a currency translation difference account.
+
+Question: What is the purpose of the Book Difference adjustment?
+Answer: The Book Difference adjustment books the difference found on an intercompany Balance Sheet account to a translation difference account.
+
+Question: How do you set a threshold for intercompany differences?
+Answer: In the Threshold field, click to open the Threshold window, set the amounts for each Intercompany Elimination rule, and click to save the modifications.
+
+Question: What options are available in the Filter section of the Intercompany Validation report page?
+Answer: Options include using Threshold, merging Debit/Credit, showing Unmatched Transactions, and showing Matched Transactions.
+
+Question: What is the purpose of the Intercompany Matching page?
+Answer: The Intercompany Matching page is used for matching transactions between companies in a group for elimination and reconciliation purposes.
+
+Question: What criteria can be used to filter intercompany information?
+Answer: Criteria include Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you correct a difference amount in intercompany matching?
+Answer: Search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: How do you generate an Intercompany Validation report?
+Answer: Select a company, partner companies, rules, and file type on the Intercompany Validation report page, then click to generate and view the report.
+
+Question: What steps are involved in setting up automatic intercompany eliminations?
+Answer: Click in the Account Number field, select the account for automatic elimination, and click to confirm the setup.
+
+Question: How do you set up Transfer Difference adjustments?
+Answer: Click to redirect to the adjustment page, modify the Posting journal, set up the adjustments, and click to apply.
+
+Question: What is the purpose of the Reclassify Difference adjustment?
+Answer: The Reclassify Difference adjustment is used to reclassify the difference found on an intercompany P&L account to a currency translation difference account.
+
+Question: How do you merge Debit and Credit amounts in intercompany matching?
+Answer: Select the Merge Debit and Credit amounts option in the Filter group box to combine these amounts for reconciliation.
+
+Question: How do you filter intercompany information on the Intercompany Matching page?
+Answer: Use the right-side panel to set criteria such as Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you correct intercompany details on the Intercompany Matching page?
+Answer: Search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: What is the function of the Threshold window in intercompany matching?
+Answer: The Threshold window allows you to set the amounts at which intercompany differences will not be displayed, with different thresholds for each elimination rule.
+
+Question: How do you access the Intercompany Matching page?
+Answer: To access the Intercompany Matching page, click Consolidation > Consolidation > Intercompany Matching.
+
+Question: What details are displayed on the Intercompany Matching page?
+Answer: The left-side panel displays details on intercompany matching/unmatching transactions including Rule, Company code and name, local currency, Account, Journal, Entry, Description, and Amount.
+
+Question: What are some reasons for intercompany differences?
+Answer: Reasons for intercompany differences include invoice booking discrepancies, different fiscal year-end dates, currency rate impacts, and VAT non-refundability.
+
+Question: What information is displayed under the company identification in intercompany matching?
+Answer: Information displayed includes Account, Journal code and category, Entry number, Description, and Amount in group currency.
+
+Question: How do you set up automatic intercompany eliminations?
+Answer: In the Account Number field, click to select the account for automatic elimination, then click to confirm the setup.
+
+Question: What is the purpose of the Book Difference adjustment?
+Answer: The Book Difference adjustment is used for booking the difference found on an intercompany Balance Sheet account to a translation difference account.
+
+Question: How do you set a threshold for intercompany differences?
+Answer: In the Threshold field, click to open the Threshold window, set the amounts for each Intercompany Elimination rule, and click to save the modifications.
+
+Question: How does currency rate impact intercompany transactions?
+Answer: Currency rate differences can affect the value of intercompany transactions, leading to discrepancies when consolidating financial data.
+
+Question: What options are available in the Filter section for generating an Intercompany Validation report?
+Answer: Options include using Threshold, merging Debit/Credit, showing Unmatched Transactions, and showing Matched Transactions.
+
+Question: What is the role of the Intercompany Rule in correcting intercompany details?
+Answer: The Intercompany Rule defines how the correction amounts are applied to the reconciliation of intercompany transactions.
+
+Question: How do you apply a correction amount in intercompany matching?
+Answer: Enter the correction amount in the Group Currency or Local Currency field and click to add the difference to the Bundle Amount.
+
+Question: What information is displayed in the right-side panel of the Intercompany Matching page?
+Answer: The right-side panel allows you to filter intercompany information using criteria such as Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: How do you print a report of intercompany differences?
+Answer: Click on the Intercompany Matching page, select companies and criteria, and choose the file type before generating the report.
+
+Question: What steps are involved in correcting intercompany details?
+Answer: Search for the account, enter the correction amount, and click to add the amount to the Bundle Amount. Then validate the statutory bundle.
+
+Question: What is the purpose of the Threshold field in intercompany matching?
+Answer: The Threshold field is used to set the amount under which any intercompany difference is ignored, helping to filter the displayed intercompany information.
+
+Question: What information is shown in the left-side panel of the Intercompany Matching page?
+Answer: The left-side panel displays intercompany matching details such as Rule, Company code and name, local currency, Account, Journal, Entry, Description, and Amount.
+
+Question: How do you merge Debit and Credit amounts in intercompany matching?
+Answer: In the Filter group box, select the Merge Debit and Credit amounts option to combine these amounts for reconciliation.
+
+Question: How do you use the Reclassify Difference adjustment?
+Answer: The Reclassify Difference adjustment reclassifies the difference found on an intercompany P&L account to a currency translation difference account.
+
+Question: What is the purpose of the Intercompany Matching page?
+Answer: The Intercompany Matching page is used for matching transactions between companies in a group for elimination and reconciliation purposes.
+
+Question: How do you generate a report of matched transactions?
+Answer: On the Intercompany Matching page, click to open the Report page, select companies, criteria, and file type, then generate the report.
+
+Question: What criteria can be used to filter intercompany information?
+Answer: Criteria include Threshold, Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, and Merge Debit/Credit amounts.
+
+Question: What are Transfer Difference adjustments used for?
+Answer: Transfer Difference adjustments are used for transferring the difference amount from group transactions to out-of-group transactions or vice versa.
+
+Question: How do you access the Intercompany Validation report page?
+Answer: Click Data Entry > Validation Reports > Intercompany Validation to access the page.
+
+Question: What is the function of the Filter group box in intercompany matching?
+Answer: The Filter group box allows users to filter intercompany information by unmatched or matched transactions, excluding equity method and NC transactions, and merging debit and credit amounts.
+
+Question: How do you access the Define IC Rules page?
+Answer: To access the Define IC Rules page, navigate to the Intercompany Elimination page and click to configure the rules for intercompany transactions.
+
+Question: How do you correct a difference amount in intercompany matching?
+Answer: Search for the account, enter the correction amount, and click to add the difference amount to the Bundle Amount of the selected account.
+
+Question: What steps are involved in setting up automatic intercompany eliminations?
+Answer: Click in the Account Number field, select the account for automatic elimination, and click to confirm the setup.
+
+Question: What should you do after modifying a statutory bundle to correct intercompany differences?
+Answer: Carry out a new validation of the statutory bundle to ensure the corrections are accurate.
+
+Question: How do you set up Transfer Difference adjustments?
+Answer: Click to redirect to the adjustment page, modify the Posting journal, set up the adjustments, and click to apply.
+
+Question: How do you generate an Intercompany Validation report?
+Answer: Select a company, partner companies, rules, and file type on the Intercompany Validation report page, then click to generate and view the report.
+

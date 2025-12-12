@@ -1,0 +1,654 @@
+# API Error Handling Reference
+# Financial Consolidation Agent API Documentation
+# Version: 1.1
+# Purpose: Map API handlers to error patterns with recovery strategies for AI agents
+# Updated: 2025-12-04 - Added cross-references (Phase 5)
+#
+# RELATED FILES:
+#   - api-error-catalog.yaml: Complete error code reference (canonical source)
+#   - api-debugging-patterns.yaml: Debug patterns and recovery procedures
+#   - api-workflow-state-machine.yaml: Workflow state and prerequisites
+
+api_error_handling:
+  name: "API Error Handling Reference"
+  version: "1.0"
+  created: "2024-12-02"
+  description: |
+    Comprehensive API-level error handling reference for AI agents.
+    Maps 242 API handlers to their error patterns and recovery strategies.
+
+    This file complements error-handling-patterns.yaml (database layer) by
+    focusing on the API/message handler layer.
+
+    Structure:
+    - Error categories with common patterns
+    - Handler-to-error mappings
+    - Recovery strategies
+    - Validation patterns
+
+  # ============================================================================
+  # ERROR RESPONSE STRUCTURE
+  # ============================================================================
+  response_structure:
+    description: "Standard error response format from API handlers"
+
+    success_response:
+      description: "Empty or data response with no errors"
+      example: |
+        {
+          "scf_items": [...],
+          "scf_total_row_count": 10
+        }
+
+    error_response:
+      description: "Response containing error information"
+      structure:
+        scf_error_messages:
+          type: "array<string>"
+          description: "List of error message keys"
+        scf_error_fields:
+          type: "array<string>"
+          description: "Fields that failed validation"
+        scf_warning_messages:
+          type: "array<string>"
+          description: "List of warning message keys"
+      example: |
+        {
+          "scf_error_messages": ["P_CONSO_CHECK_LOCKED"],
+          "scf_error_fields": [],
+          "scf_warning_messages": []
+        }
+
+    detection_pattern:
+      description: "How to detect errors in API responses"
+      code: |
+        // Check for errors
+        if (response.scf_error_messages && response.scf_error_messages.length > 0) {
+          // Handle errors
+          handleErrors(response.scf_error_messages);
+        }
+
+        // Alternative: Check helper.LogHelper.HasErrors in backend
+        if (helper.LogHelper.HasErrors) {
+          // Error occurred during processing
+        }
+
+  # ============================================================================
+  # ERROR CATEGORIES
+  # ============================================================================
+  error_categories:
+
+    # --------------------------------------------------------------------------
+    # LOCK ERRORS
+    # --------------------------------------------------------------------------
+    lock_errors:
+      category: "Period Lock Errors"
+      description: "Errors when attempting to modify locked consolidation periods"
+      severity: "BLOCKING"
+
+      patterns:
+        - code: "P_CONSO_CHECK_LOCKED"
+          description: "Period is locked by administrator"
+          message: "The consolidation period is locked and cannot be modified"
+          affected_handlers:
+            - Event_SaveEvent
+            - Event_RemoveEvent
+            - EventDetails_SaveEventDetails
+            - EventDetails_RemoveEventDetails
+            - ValidationReportRule_SaveValidationReportRule
+            - ValidationReportRule_RemoveValidationReportRule
+            - ValidationReportRule_SaveValidationReportRuleDetails
+            - Elimination_SaveElimination
+            - Elimination_RemoveElimination
+            - Flow_SaveFlow
+            - Flow_RemoveFlow
+            - Account_SaveAccount
+            - Account_RemoveAccount
+            - Company_SaveCompany
+            - Company_RemoveCompany
+            - Journal_SaveJournal
+            - Journal_RemoveJournal
+          recovery:
+            strategy: "Request period unlock from administrator"
+            steps:
+              - "Check period lock status with Consolidation_GetStatus"
+              - "Request administrator to unlock period"
+              - "Retry operation after unlock"
+            automated_check: |
+              // Before attempting save operations, check lock status
+              await Consolidation_GetStatus({ ConsoID: workingConsoID });
+              // If locked, notify user before attempting save
+
+        - code: "ConsoLockedByAdmin"
+          description: "Period locked with administrator details"
+          parameters: ["Login", "Date", "Reason"]
+          message: "Period locked by {0} on {1}. Reason: {2}"
+          recovery:
+            strategy: "Contact specified administrator"
+
+        - code: "ConsoXLockedByAdmin"
+          description: "Specific consolidation locked"
+          parameters: ["ConsoCode", "Login", "Date", "Reason"]
+          message: "Consolidation {0} locked by {1} on {2}. Reason: {3}"
+
+    # --------------------------------------------------------------------------
+    # VALIDATION ERRORS
+    # --------------------------------------------------------------------------
+    validation_errors:
+      category: "Input Validation Errors"
+      description: "Errors from invalid input data"
+      severity: "BLOCKING"
+
+      patterns:
+        - code: "CodeExists"
+          description: "Code already exists (uniqueness violation)"
+          affected_handlers:
+            - Event_SaveEvent
+            - Account_SaveAccount
+            - Flow_SaveFlow
+            - Company_SaveCompany
+            - Currency_SaveCurrency
+            - Dimension_SaveDimension
+            - ValidationReportRule_SaveValidationReportRule
+          recovery:
+            strategy: "Use different code or update existing record"
+            steps:
+              - "Query existing records to find duplicate"
+              - "Either use unique code or update via EntityVersion"
+
+        - code: "Required"
+          description: "Required field missing"
+          field_patterns:
+            - "{FieldName}.Required"
+            - "FromAccount.Required"
+            - "ToAccount.Required"
+            - "FromFlow.Required"
+            - "ToFlow.Required"
+            - "FromDimGroup.Required"
+            - "ToDimGroup.Required"
+          recovery:
+            strategy: "Provide required field values"
+
+        - code: "InvalidCode"
+          description: "Referenced code not found"
+          field_patterns:
+            - "InvalidFlowCode"
+            - "InvalidAccountCode"
+            - "InvalidCompanyCode"
+            - "InvalidDimensionCode"
+          recovery:
+            strategy: "Verify referenced entity exists"
+            steps:
+              - "Query master data to verify code exists"
+              - "Check for typos in code"
+              - "Create missing entity if needed"
+
+        - code: "TooSmallErrorCode"
+          description: "User-defined rule must have ErrorCode > 100"
+          affected_handlers:
+            - ValidationReportRule_SaveValidationReportRule
+          recovery:
+            strategy: "Use ErrorCode value greater than 100"
+            note: "ErrorCodes 1-100 are reserved for system rules"
+
+    # --------------------------------------------------------------------------
+    # CONSTRAINT ERRORS
+    # --------------------------------------------------------------------------
+    constraint_errors:
+      category: "Database Constraint Errors"
+      description: "Errors from database constraint violations"
+      severity: "BLOCKING"
+
+      index_patterns:
+        description: "Unique index violations (IX_*)"
+        examples:
+          - code: "IX_TS019S3"
+            table: "ValidationReportRuleDetails"
+            meaning: "RuleCode already exists"
+            handler: "ValidationReportRule_SaveValidationReportRule"
+
+          - code: "IX_TS010S0"
+            table: "SpecificAccounts"
+            meaning: "Account code already exists"
+            handler: "SpecificAccount_SaveSpecificAccount"
+
+          - code: "IX_TS019S0_1"
+            table: "ValidationReport"
+            meaning: "Validation report code exists"
+            handler: "ValidationReport_Save"
+
+        recovery:
+          strategy: "Query existing record, update instead of insert"
+
+      foreign_key_patterns:
+        description: "Foreign key violations (FK_*)"
+        examples:
+          - code: "FK_TMP_VALIDATION_REPORT_RULE_DETAIL_TS019S5"
+            meaning: "Rule is used by active validation report"
+            handler: "ValidationReportRule_RemoveValidationReportRule"
+            recovery: "Delete dependent validation reports first"
+
+          - code: "FK_TS010G3_TS010G01"
+            meaning: "Account summation has dependent accounts"
+            handler: "AccountSummation_RemoveAccountSummation"
+            recovery: "Remove accounts from summation first"
+
+          - code: "FK_TS013I0_TS010S0"
+            meaning: "Intercompany rule references account"
+            handler: "InterCompanyRules_SaveInterCompanyRule"
+            recovery: "Verify account code exists"
+
+          - code: "FK_TS014C0_TS017R1"
+            meaning: "Currency used by companies"
+            handler: "Currency_RemoveCurrency"
+            recovery: "Reassign companies to different currency first"
+
+          - code: "FK_TS019S5_TS050G4"
+            meaning: "Dimension group used by validation rule"
+            handler: "DimensionGroup_RemoveDimensionGroup"
+            recovery: "Remove from validation rules first"
+
+    # --------------------------------------------------------------------------
+    # CONCURRENCY ERRORS
+    # --------------------------------------------------------------------------
+    concurrency_errors:
+      category: "Optimistic Locking Errors"
+      description: "Errors when entity was modified by another user"
+      severity: "RECOVERABLE"
+
+      patterns:
+        - code: "MultiUserException"
+          description: "Entity modified by another user since loaded"
+          mechanism: "EntityVersion mismatch"
+          affected_handlers: "All handlers using scf_entity_version"
+          recovery:
+            strategy: "Reload entity and retry"
+            steps:
+              - "Re-fetch entity with Get handler"
+              - "Apply changes to fresh data"
+              - "Retry save with new EntityVersion"
+            code_pattern: |
+              try {
+                await Handler_Save({ EntityVersion: currentVersion, ... });
+              } catch (MultiUserException) {
+                // Reload fresh data
+                const fresh = await Handler_Get({ ID: entityId, scf_include_entities: true });
+                // Merge user changes with fresh data
+                const merged = mergeChanges(userChanges, fresh);
+                // Retry with new version
+                await Handler_Save({ EntityVersion: fresh.EntityVersion, ...merged });
+              }
+
+    # --------------------------------------------------------------------------
+    # BUSINESS RULE ERRORS
+    # --------------------------------------------------------------------------
+    business_rule_errors:
+      category: "Business Logic Errors"
+      description: "Errors from consolidation business rule violations"
+      severity: "BLOCKING"
+
+      patterns:
+        - code: "CANT_DELETE_FLOW_BECAUSE_OF_DETAILS"
+          description: "Flow has dependent data entries"
+          handler: "Flow_RemoveFlow"
+          recovery:
+            strategy: "Delete flow data first"
+            steps:
+              - "Query data entries using the flow"
+              - "Delete or reassign data entries"
+              - "Retry flow deletion"
+
+        - code: "FLOW_IN_USE_AS_RATEFLOW"
+          description: "Flow is referenced as rate flow"
+          handler: "Flow_RemoveFlow"
+          severity: "WARNING"
+          recovery:
+            strategy: "Reassign rate flow reference"
+
+        - code: "FLOW_IN_USE_AS_HISTORICALFLOW"
+          description: "Flow is referenced as historical flow"
+          handler: "Flow_RemoveFlow"
+          severity: "WARNING"
+          recovery:
+            strategy: "Reassign historical flow reference"
+
+        - code: "FlowSummationCodesAreRepeated"
+          description: "Flow already exists in summation"
+          handler: "FlowSummation_SaveFlowSummationItemsTree"
+          recovery:
+            strategy: "Remove duplicate flow from summation items"
+
+        - code: "SameAsSource.Invalid"
+          description: "SameAsSource option not valid for this combination"
+          handler: "EventDetails_SaveEventDetails"
+          recovery:
+            strategy: "Specify explicit target instead of SameAsSource"
+
+        - code: "VALIDATION_REPORT_RULE_DETAIL_NO_RIGHT"
+          description: "Cannot add right operand when RightHasAmount is true"
+          handler: "ValidationReportRule_SaveValidationReportRuleDetails"
+          recovery:
+            strategy: "Set RightHasAmount to false or don't add right details"
+
+        - code: "VALIDATION_REPORT_RULE_DETAIL_ACCOUNT_OR_SUMMATION_NEEDED"
+          description: "Either Account or AccountSummationCode required"
+          handler: "ValidationReportRule_SaveValidationReportRuleDetails"
+          recovery:
+            strategy: "Provide either Account or AccountSummationCode"
+
+    # --------------------------------------------------------------------------
+    # DIMENSION VALIDATION ERRORS
+    # --------------------------------------------------------------------------
+    dimension_errors:
+      category: "Dimension Validation Errors"
+      description: "Errors from invalid dimension specifications"
+      severity: "BLOCKING"
+
+      patterns:
+        - code: "VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM1DETAILCODE"
+          description: "Invalid Dim1DetailCode for dimension group"
+          recovery: "Verify Dim1DetailCode exists in dimension group"
+
+        - code: "VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM2DETAILCODE"
+          description: "Invalid Dim2DetailCode for dimension group"
+          recovery: "Verify Dim2DetailCode exists in dimension group"
+
+        - code: "VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM3DETAILCODE"
+          description: "Invalid Dim3DetailCode for dimension group"
+          recovery: "Verify Dim3DetailCode exists in dimension group"
+
+        - code: "P_VALIDATE_EVENT_DETAIL_FROM_DIM1_NEEDED"
+          description: "FromDim1DetailCode required for dimension data type"
+          handler: "EventDetails_SaveEventDetails"
+          recovery: "Provide Dim1DetailCode when using dimension data types"
+
+        - code: "P_VALIDATE_EVENT_DETAIL_TO_DIM1_NEEDED"
+          description: "ToDim1DetailCode required for dimension data type"
+          handler: "EventDetails_SaveEventDetails"
+          recovery: "Provide ToDim1DetailCode or use SameAsSource"
+
+    # --------------------------------------------------------------------------
+    # NOT FOUND ERRORS
+    # --------------------------------------------------------------------------
+    not_found_errors:
+      category: "Entity Not Found Errors"
+      description: "Errors when referenced entity doesn't exist"
+      severity: "BLOCKING"
+
+      patterns:
+        - code: "NOT_FOUND"
+          description: "Generic entity not found"
+          affected_handlers:
+            - Event_RemoveEvent
+            - ValidationReportRule_RemoveValidationReportRule
+            - ValidationReportRule_RemoveValidationReportRuleDetails
+            - Elimination_RemoveElimination
+            - EliminationDetails_RemoveEliminationDetails
+          recovery:
+            strategy: "Verify entity ID exists before operation"
+            steps:
+              - "Query entity with Get handler"
+              - "If not found, entity may have been deleted"
+              - "Refresh UI to show current state"
+
+        - code: "CONSONOTFOUND"
+          description: "Consolidation period not found"
+          recovery:
+            strategy: "Verify ConsoID or reload consolidation list"
+
+  # ============================================================================
+  # HANDLER ERROR MAPPING
+  # ============================================================================
+  handler_error_mapping:
+    description: "Quick reference: which handlers return which errors"
+
+    event_handlers:
+      Event_SaveEvent:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - CodeExists
+          - P_VALIDATE_EVENT
+        possible_warnings: []
+
+      Event_RemoveEvent:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - NOT_FOUND
+        possible_warnings: []
+
+      EventDetails_SaveEventDetails:
+        possible_errors:
+          - FromAccount.Required
+          - FromFlow.Required
+          - FromDimGroup.Required
+          - ToAccount.Required
+          - ToFlow.Required
+          - ToDimGroup.Required
+          - SameAsSource.Invalid
+          - P_VALIDATE_EVENT_DETAIL_FROM_DIM1_NEEDED
+          - P_VALIDATE_EVENT_DETAIL_TO_DIM1_NEEDED
+        possible_warnings: []
+
+      EventDetails_RemoveEventDetails:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - NOT_FOUND
+        possible_warnings: []
+
+    validation_rule_handlers:
+      ValidationReportRule_SaveValidationReportRule:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - TooSmallErrorCode
+          - IX_TS019S3
+          - P_UPDATE_VALIDATION_REPORT_RULE_AMOUNT_REQUIRED
+        possible_warnings: []
+
+      ValidationReportRule_RemoveValidationReportRule:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - NOT_FOUND
+          - FK_TMP_VALIDATION_REPORT_RULE_DETAIL_TS019S5
+        possible_warnings: []
+
+      ValidationReportRule_SaveValidationReportRuleDetails:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - VALIDATION_REPORT_RULE_DETAIL_ACCOUNT_OR_SUMMATION_NEEDED
+          - VALIDATION_REPORT_RULE_DETAIL_NO_RIGHT
+          - VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM1DETAILCODE
+          - VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM2DETAILCODE
+          - VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM3DETAILCODE
+        possible_warnings: []
+
+    flow_handlers:
+      Flow_SaveFlow:
+        possible_errors:
+          - P_CONSO_CHECK_LOCKED
+          - CodeExists
+        possible_warnings: []
+
+      Flow_RemoveFlow:
+        possible_errors:
+          - CANT_DELETE_FLOW_BECAUSE_OF_DETAILS
+        possible_warnings:
+          - FLOW_IN_USE_AS_RATEFLOW
+          - FLOW_IN_USE_AS_HISTORICALFLOW
+
+    ownership_handlers:
+      Ownership_SaveOwnership:
+        possible_errors:
+          - CurFinAmountInvalid
+          - CurVotingAmountInvalid
+          - MultiUserException
+        possible_warnings: []
+
+    specific_flow_handlers:
+      SpecificFlow_SaveSpecificFlow:
+        possible_errors:
+          - InvalidFlowCode
+          - P_CONSO_CHECK_LOCKED
+        possible_warnings: []
+
+  # ============================================================================
+  # RECOVERY PATTERNS
+  # ============================================================================
+  recovery_patterns:
+    description: "Standard recovery patterns for AI agents"
+
+    lock_check_before_save:
+      description: "Check period lock before attempting save"
+      when_to_use: "Before any Save/Remove operation"
+      pattern: |
+        // Step 1: Check lock status
+        const status = await Consolidation_GetStatus({ ConsoID });
+        if (status.IsLocked) {
+          return { error: "Period is locked", action: "REQUEST_UNLOCK" };
+        }
+
+        // Step 2: Proceed with save
+        await Handler_Save({ ... });
+
+    entity_version_retry:
+      description: "Handle optimistic locking conflicts"
+      when_to_use: "After MultiUserException"
+      pattern: |
+        const MAX_RETRIES = 3;
+        for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+          try {
+            const fresh = await Handler_Get({ ID, scf_include_entities: true });
+            const merged = mergeUserChanges(userInput, fresh);
+            await Handler_Save({ ...merged, EntityVersion: fresh.EntityVersion });
+            return { success: true };
+          } catch (error) {
+            if (error !== 'MultiUserException' || attempt === MAX_RETRIES - 1) {
+              throw error;
+            }
+            // Retry with fresh data
+          }
+        }
+
+    pre_delete_dependency_check:
+      description: "Check dependencies before delete"
+      when_to_use: "Before Remove operations"
+      pattern: |
+        // Step 1: Check for dependencies (FK errors)
+        // This varies by entity type
+
+        // For ValidationReportRule:
+        const reports = await ValidationReport_GetReports({ FilterRuleID: ruleId });
+        if (reports.length > 0) {
+          return {
+            error: "Rule has dependent reports",
+            action: "DELETE_REPORTS_FIRST",
+            dependents: reports
+          };
+        }
+
+        // Step 2: Safe to delete
+        await ValidationReportRule_Remove({ RuleID: ruleId });
+
+    code_uniqueness_check:
+      description: "Check code uniqueness before save"
+      when_to_use: "When creating new entities with codes"
+      pattern: |
+        // Step 1: Check if code exists
+        const existing = await Handler_Get({ Code: newCode });
+        if (existing && existing.ID !== currentID) {
+          return {
+            error: "Code already exists",
+            action: "USE_DIFFERENT_CODE",
+            existingEntity: existing
+          };
+        }
+
+        // Step 2: Safe to save
+        await Handler_Save({ Code: newCode, ... });
+
+  # ============================================================================
+  # VALIDATION HELPERS
+  # ============================================================================
+  validation_helpers:
+    description: "Common validation patterns"
+
+    required_field_validation:
+      description: "Validate required fields before API call"
+      fields_by_handler:
+        Event_SaveEvent:
+          - EventCode
+          - EventDescription
+          - SortOrder
+          - SelectionMethodID
+          - FlagLocalCurrency
+          - MinorityFlag
+          - ProcedureName
+          - EventType
+          - PostingJournalCategory
+
+        EventDetails_SaveEventDetails:
+          - EventHeaderID
+          - LineNr
+          - FromType
+          - FromPeriod
+          - ToType
+          - ToSign
+          - Percentage
+
+        ValidationReportRule_SaveValidationReportRule:
+          - RuleCode
+          - RuleDescription
+          - ErrorType
+          - ErrorCode
+          - GroupID
+          - SequenceInGroup
+          - ConsoMethodSelectionID
+          - Operator
+
+        ValidationReportRule_SaveValidationReportRuleDetails:
+          - RuleID
+          - LeftRightOperand
+          - Factor
+          - "Account OR AccountSummationCode"
+
+  # ============================================================================
+  # CROSS-REFERENCE TO DATABASE ERRORS
+  # ============================================================================
+  database_error_reference:
+    description: "Reference to detailed database error patterns"
+    source_file: "error-handling-patterns.yaml"
+    categories_covered:
+      - configuration_errors
+      - lock_errors
+      - ownership_errors
+      - elimination_errors
+      - validation_errors
+      - dimension_errors
+    note: |
+      For detailed database-level error codes and SQL diagnostic queries,
+      see error-handling-patterns.yaml in this directory.
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    purpose: |
+      Enable AI agents to:
+      - Understand which errors each handler can return
+      - Implement proper error handling before API calls
+      - Recover gracefully from common errors
+      - Validate input before submission
+      - Handle optimistic locking conflicts
+
+    related_files:
+      - error-handling-patterns.yaml (database layer errors)
+      - api-index.yaml (handler catalog)
+      - api-validation-report.yaml (handler verification)
+      - api-workflow-diagrams.yaml (workflow context)
+
+    handler_coverage:
+      total_handlers: 242
+      handlers_with_documented_errors: 50+
+      coverage_note: |
+        Error patterns documented for core handlers.
+        Most Save/Remove handlers follow similar patterns.

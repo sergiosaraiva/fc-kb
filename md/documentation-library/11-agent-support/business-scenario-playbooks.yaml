@@ -1,0 +1,1164 @@
+# Business Scenario Playbooks for Financial Consolidation
+# Purpose: End-to-end orchestration of decision trees, workflows, and validations
+# Version: 1.0
+
+business_scenario_playbooks:
+  name: "Financial Consolidation Business Scenario Playbooks"
+  version: "1.0"
+  description: "Complete end-to-end playbooks for complex consolidation scenarios"
+
+  # ============================================================
+  # PLAYBOOK 1: ACQUISITION (M&A Process)
+  # ============================================================
+  acquisition_playbook:
+    name: "Business Acquisition Playbook"
+    description: "Complete M&A process from due diligence through first consolidation"
+    complexity: "High"
+    typical_duration: "1-4 weeks"
+    ifrs_standards: ["IFRS 3", "IFRS 10", "IAS 28"]
+
+    # ----- Entry Points -----
+    entry_decision_tree: "consolidation-method-decision.yaml"
+    entry_question: "What ownership percentage will be acquired?"
+
+    # ----- Prerequisites -----
+    prerequisites:
+      information_required:
+        - name: "Acquisition Agreement"
+          details: ["Purchase price", "Acquisition date", "Shares acquired"]
+        - name: "Target Company Financials"
+          details: ["Balance sheet at acquisition date", "Fair value assessments"]
+        - name: "Ownership Details"
+          details: ["Financial percentage", "Voting percentage", "Control assessment"]
+        - name: "Purchase Price Allocation"
+          details: ["Fair value adjustments", "Intangible assets identified", "Contingent consideration"]
+
+      system_prerequisites:
+        - check: "Consolidation period exists for acquisition date"
+          validation_rule: "PC-006"
+          query: |
+            SELECT ConsoID, ConsoCode, PeriodStart, PeriodEnd
+            FROM TS096S0
+            WHERE PeriodStart <= @AcquisitionDate AND PeriodEnd >= @AcquisitionDate
+
+        - check: "Parent company configured"
+          validation_rule: "OWN-002"
+
+        - check: "Special accounts mapped"
+          config_template: "special_account_configuration.minimum_required_accounts"
+
+    # ----- Phases -----
+    phases:
+
+      # Phase 1: Method Determination
+      phase_1_method_determination:
+        name: "Determine Consolidation Method"
+        duration: "Day 1"
+
+        steps:
+          - step: 1
+            name: "Assess Control"
+            action: "Use consolidation-method-decision.yaml"
+            inputs:
+              - "control_percentage"
+              - "voting_percentage"
+              - "is_joint_arrangement"
+              - "has_board_control"
+              - "has_veto_rights"
+            outputs:
+              - "consolidation_method (G/E/P/N)"
+              - "rationale"
+
+          - step: 2
+            name: "Document Control Assessment"
+            action: "Record IFRS 10 control analysis"
+            documentation:
+              - "Power over investee"
+              - "Exposure to variable returns"
+              - "Ability to use power to affect returns"
+
+        decision_outcomes:
+          G:
+            method: "Global Integration"
+            next_phase: "phase_2_entity_setup"
+            goodwill_required: true
+            nci_calculation: true
+          E:
+            method: "Equity Method"
+            next_phase: "phase_2_entity_setup"
+            goodwill_required: false
+            equity_pickup: true
+          P:
+            method: "Proportional Integration"
+            next_phase: "phase_2_entity_setup"
+            goodwill_required: true
+            proportional_nci: true
+          N:
+            method: "Not Consolidated"
+            next_phase: "phase_2_entity_setup"
+            fair_value_only: true
+
+      # Phase 2: Entity Setup
+      phase_2_entity_setup:
+        name: "Configure New Entity"
+        duration: "Days 2-3"
+        workflow: "workflow-add-subsidiary.yaml"
+
+        steps:
+          - step: 1
+            name: "Create Company Record"
+            action: "Insert into TS014C0"
+            sql: |
+              INSERT INTO TS014C0 (
+                  ConsoID, CompanyCode, CompanyName, CurrCode,
+                  ConsolidatedCompany, ConsoMethod, FlagParent
+              )
+              VALUES (
+                  @ConsoID, @CompanyCode, @CompanyName, @CurrCode,
+                  1,  -- In consolidation scope
+                  @Method,  -- From Phase 1
+                  0   -- Not parent
+              )
+            validation: "Company should appear in company list"
+
+          - step: 2
+            name: "Create Ownership Link"
+            action: "Insert into TS015S0"
+            sql: |
+              INSERT INTO TS015S0 (
+                  ConsoID, CompanyID, CompanyOwnedID,
+                  FinPercentage, CtrlPercentage
+              )
+              SELECT
+                  @ConsoID,
+                  (SELECT CompanyID FROM TS014C0 WHERE ConsoID = @ConsoID AND FlagParent = 1),
+                  (SELECT CompanyID FROM TS014C0 WHERE ConsoID = @ConsoID AND CompanyCode = @CompanyCode),
+                  @FinancialPercentage,
+                  @ControlPercentage
+
+          - step: 3
+            name: "Calculate Ownership Percentages"
+            action: "Execute P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+            sql: |
+              DECLARE @errorinfo xml
+              EXEC P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+                  @ConsoID = @ConsoID,
+                  @CustomerID = @CustomerID,
+                  @UpdateConsoMethod = 1,
+                  @Debug = 1,
+                  @errorinfo = @errorinfo OUTPUT
+            validation_rules: ["OWN-001", "OWN-003", "OWN-004", "OWN-005"]
+
+          - step: 4
+            name: "Verify Exchange Rates"
+            action: "Check TS017R0 for subsidiary currency"
+            validation_rule: "PC-002"
+            config_template: "exchange_rate_configuration.verify_rate_completeness"
+
+        checkpoint:
+          name: "Entity Setup Verification"
+          validations:
+            - "Company appears in TS014C0 with correct method"
+            - "Ownership link exists in TS015S0"
+            - "GroupPerc and MinorPerc calculated"
+            - "Exchange rates exist for company currency"
+
+      # Phase 3: Opening Balance Entry
+      phase_3_opening_balance:
+        name: "Enter Opening Balances at Acquisition"
+        duration: "Days 4-5"
+
+        steps:
+          - step: 1
+            name: "Map Chart of Accounts"
+            action: "Ensure acquired company accounts map to group COA"
+            validation: |
+              SELECT a.Account, a.AccountName, a.AccountType
+              FROM TS010S0 a
+              WHERE a.ConsoID = @ConsoID
+              ORDER BY a.AccountClass, a.Account
+
+          - step: 2
+            name: "Enter Local Currency Balances"
+            action: "Import balance sheet at acquisition date"
+            target_table: "TD030B2"
+            notes:
+              - "Use acquisition date balances"
+              - "All amounts in local currency"
+              - "Flow = CLOSE for balances"
+
+          - step: 3
+            name: "Enter Fair Value Adjustments"
+            action: "Record PPA adjustments as user eliminations"
+            decision_tree: "elimination-code-selection.yaml"
+            elimination_type: "User (U###)"
+            typical_adjustments:
+              - "Property revaluation"
+              - "Intangible asset recognition"
+              - "Inventory write-up"
+              - "Provision adjustments"
+
+          - step: 4
+            name: "Run Bundle Integration"
+            action: "Execute P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+            validation_rule: "PC-001"
+
+      # Phase 4: Goodwill Calculation
+      phase_4_goodwill:
+        name: "Calculate and Record Goodwill"
+        duration: "Days 6-7"
+        applies_to: ["G", "P"]  # Global and Proportional methods
+
+        steps:
+          - step: 1
+            name: "Calculate Goodwill"
+            formula: |
+              Goodwill = Purchase Price
+                       + NCI at acquisition (if full goodwill method)
+                       - Fair Value of Net Assets Acquired
+
+              If negative: Bargain Purchase Gain (recognize in P&L per IFRS 3.34)
+
+            calculation_example:
+              purchase_price: 1000000
+              nci_fair_value: 250000  # Optional: full goodwill method
+              net_assets_fv: 900000
+              goodwill: 350000  # Or 100000 if proportionate NCI
+
+          - step: 2
+            name: "Choose NCI Measurement"
+            options:
+              full_goodwill:
+                description: "NCI at fair value (IFRS 3.19 option)"
+                goodwill_includes: "NCI share of goodwill"
+              proportionate:
+                description: "NCI at proportionate share of net assets"
+                goodwill_includes: "Parent share only"
+
+          - step: 3
+            name: "Create Goodwill User Elimination"
+            action: "Configure U### elimination for goodwill"
+            config_template: "elimination_configuration.user_elimination_template"
+            sql: |
+              -- Create journal type
+              INSERT INTO TS020S0 (ConsoID, JournalTypeCode, Description, Active)
+              VALUES (@ConsoID, 'UGDW', 'Initial Goodwill Recognition', 1)
+
+              -- Create elimination header
+              INSERT INTO TS070S0 (
+                  ConsoID, ElimCode, ElimType, Active, ElimLevel,
+                  JournalTypeID, ConsoMethodSelectionID, Behaviour, MinorityFlag
+              )
+              SELECT @ConsoID, 'U001', 'U', 1, 35, JournalTypeID, 2, 0, 0
+              FROM TS020S0 WHERE ConsoID = @ConsoID AND JournalTypeCode = 'UGDW'
+
+          - step: 4
+            name: "Enter Goodwill Journal"
+            action: "Post goodwill elimination entry"
+            journal_entry:
+              - line: 1
+                account: "GOODWILL (FlagGoodwill = 1)"
+                debit: "@GoodwillAmount"
+                flow: "CLOSE"
+              - line: 2
+                account: "Investment (PartnerType = 2)"
+                credit: "@PurchasePrice"
+                flow: "CLOSE"
+              - line: 3
+                account: "Subsidiary Equity"
+                debit: "@EquityAcquired"
+                flow: "CLOSE"
+              - line: 4
+                account: "ConsoRes (FlagConsoRes = 1)"
+                credit: "@BalancingAmount"
+                flow: "CLOSE"
+
+        checkpoint:
+          name: "Goodwill Verification"
+          validations:
+            - "Goodwill amount per IFRS 3 calculation"
+            - "Journal entry balances (debits = credits)"
+            - "Goodwill appears on consolidated balance sheet"
+
+      # Phase 5: Run Eliminations
+      phase_5_eliminations:
+        name: "Execute Consolidation Eliminations"
+        duration: "Day 8"
+        workflow: "P_CONSO_ELIM execution"
+
+        steps:
+          - step: 1
+            name: "Verify Elimination Configuration"
+            action: "Check TS070S0 for required eliminations"
+            required_eliminations:
+              - "S050-S054: Participation eliminations"
+              - "S085: Minority interest (if Global method)"
+              - "S087: Equity capital elimination"
+              - "User eliminations for goodwill/FV adjustments"
+
+          - step: 2
+            name: "Run System Eliminations"
+            action: "Execute P_CONSO_ELIM"
+            sql: |
+              DECLARE @errorinfo xml
+              EXEC P_CONSO_ELIM
+                  @UserID = @UserID,
+                  @ConsoID = @ConsoID,
+                  @Debug = 1,
+                  @errorinfo = @errorinfo OUTPUT
+
+          - step: 3
+            name: "Verify Elimination Results"
+            validation_rules: ["BS-002", "BS-003"]
+            checks:
+              - "All elimination journals balance"
+              - "Investment account eliminated against subsidiary equity"
+              - "Goodwill recognized"
+              - "NCI calculated correctly (if applicable)"
+
+      # Phase 6: Review and Finalize
+      phase_6_review:
+        name: "Review and Finalize Acquisition"
+        duration: "Days 9-10"
+
+        steps:
+          - step: 1
+            name: "Run Validation Rules"
+            action: "Execute all validation rules"
+            validation_file: "validation-rules.yaml"
+            categories: ["ownership_rules", "balance_sheet_rules"]
+
+          - step: 2
+            name: "Generate Reports"
+            reports:
+              - "Ownership structure report"
+              - "Goodwill calculation schedule"
+              - "Consolidated balance sheet"
+              - "Elimination journal detail"
+
+          - step: 3
+            name: "Document Acquisition"
+            documentation:
+              - "Purchase price allocation memo"
+              - "Control assessment documentation"
+              - "Goodwill calculation workpaper"
+              - "Fair value adjustment schedule"
+
+    # ----- Error Recovery -----
+    error_recovery:
+      - scenario: "FAIL-002"
+        description: "Orphan company (no shareholders)"
+        recovery: "Add ownership link in TS015S0"
+        reference: "error-handling-patterns.yaml"
+
+      - scenario: "FAIL-003"
+        description: "Missing special account"
+        recovery: "Map special account using TS010C0"
+        reference: "configuration-templates.yaml"
+
+      - scenario: "Goodwill calculation error"
+        description: "Goodwill doesn't balance"
+        recovery: |
+          1. Verify purchase price
+          2. Verify net assets at fair value
+          3. Check NCI measurement method
+          4. Reconcile journal entry
+
+    # ----- Success Criteria -----
+    success_criteria:
+      - "Acquired entity appears in consolidation scope"
+      - "Ownership percentages calculated correctly"
+      - "Goodwill/bargain purchase recognized per IFRS 3"
+      - "Investment eliminated against subsidiary equity"
+      - "NCI recognized (if applicable)"
+      - "Consolidated balance sheet balances"
+
+  # ============================================================
+  # PLAYBOOK 2: DISPOSAL (Deconsolidation)
+  # ============================================================
+  disposal_playbook:
+    name: "Entity Disposal Playbook"
+    description: "Deconsolidation with CTA recycling and gain/loss calculation"
+    complexity: "High"
+    typical_duration: "1-2 weeks"
+    ifrs_standards: ["IFRS 10", "IAS 21", "IFRS 5"]
+
+    entry_decision_tree: "consolidation-method-decision.yaml"
+    entry_question: "What ownership percentage remains after disposal?"
+
+    prerequisites:
+      information_required:
+        - name: "Sale Agreement"
+          details: ["Sale price", "Disposal date", "Shares sold"]
+        - name: "Pre-disposal Balances"
+          details: ["Subsidiary carrying amounts", "Accumulated CTA", "Goodwill balance"]
+        - name: "Post-disposal Ownership"
+          details: ["Remaining percentage", "New control assessment"]
+
+    phases:
+
+      phase_1_pre_disposal:
+        name: "Pre-Disposal Preparation"
+        duration: "Days 1-2"
+
+        steps:
+          - step: 1
+            name: "Freeze Subsidiary Balances"
+            action: "Ensure all data up to disposal date is entered"
+            validation: "TD030B2 has complete data"
+
+          - step: 2
+            name: "Calculate Accumulated CTA"
+            action: "Identify CTA to be recycled"
+            query: |
+              SELECT
+                  SUM(AmountGroup) AS AccumulatedCTA
+              FROM TD035C2 d
+              INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+              WHERE d.ConsoID = @ConsoID
+                AND d.CompanyID = @DisposedCompanyID
+                AND a.SpecAccountCode = 'TDBS'  -- or TransReserves
+                AND FlowCode = 'CLOSE'
+
+          - step: 3
+            name: "Identify Goodwill Balance"
+            action: "Get goodwill allocated to disposed entity"
+            query: |
+              SELECT SUM(AmountGroup) AS GoodwillBalance
+              FROM TD035C2 d
+              INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+              WHERE d.ConsoID = @ConsoID
+                AND d.CompanyID = @DisposedCompanyID
+                AND a.FlagGoodwill = 1
+
+      phase_2_disposal_accounting:
+        name: "Record Disposal"
+        duration: "Days 3-5"
+
+        steps:
+          - step: 1
+            name: "Calculate Disposal Gain/Loss"
+            formula: |
+              Disposal Gain/Loss =
+                  Sale Proceeds
+                - Carrying Amount of Net Assets Disposed
+                - Goodwill Allocated to Disposed Entity
+                + Accumulated CTA Recycled to P&L
+                + NCI Derecognized (at disposal date)
+
+            calculation_example:
+              sale_proceeds: 1500000
+              net_assets_disposed: 900000
+              goodwill_allocated: 100000
+              accumulated_cta: -50000
+              nci_derecognized: 150000
+              disposal_gain: 600000
+
+          - step: 2
+            name: "Create Disposal User Elimination"
+            action: "Configure U### elimination for disposal"
+            journal_entries:
+              - description: "Derecognize net assets"
+                entries:
+                  - debit: "Disposal gain/loss (P&L)"
+                    amount: "Net assets"
+                  - credit: "All subsidiary B/S accounts"
+                    amount: "At carrying value"
+
+              - description: "Derecognize goodwill"
+                entries:
+                  - debit: "Disposal gain/loss (P&L)"
+                    amount: "Goodwill balance"
+                  - credit: "Goodwill account"
+                    amount: "Goodwill balance"
+
+              - description: "Recycle CTA to P&L"
+                entries:
+                  - debit: "TDBS (if credit balance)"
+                    amount: "Accumulated CTA"
+                  - credit: "Disposal gain/loss (P&L)"
+                    amount: "Accumulated CTA"
+
+              - description: "Derecognize NCI"
+                entries:
+                  - debit: "Minority Interest (B/S)"
+                    amount: "NCI balance"
+                  - credit: "Disposal gain/loss (P&L)"
+                    amount: "NCI balance"
+
+              - description: "Record sale proceeds"
+                entries:
+                  - debit: "Cash/Receivable"
+                    amount: "Sale proceeds"
+                  - credit: "Disposal gain/loss (P&L)"
+                    amount: "Sale proceeds"
+
+          - step: 3
+            name: "Update Entity Status"
+            action: "Remove from consolidation scope or change method"
+            options:
+              full_disposal:
+                action: "Set ConsolidatedCompany = 0"
+                sql: |
+                  UPDATE TS014C0
+                  SET ConsolidatedCompany = 0
+                  WHERE ConsoID = @ConsoID AND CompanyID = @DisposedCompanyID
+
+              partial_disposal_to_equity:
+                action: "Change method to E"
+                triggers: "S072 elimination (method change)"
+
+              partial_disposal_remains_global:
+                action: "Update ownership percentages"
+                triggers: "Recalculate NCI"
+
+      phase_3_post_disposal:
+        name: "Post-Disposal Processing"
+        duration: "Days 6-7"
+
+        steps:
+          - step: 1
+            name: "Update Ownership Structure"
+            action: "Modify or delete ownership links"
+            sql: |
+              -- For full disposal
+              DELETE FROM TS015S0
+              WHERE ConsoID = @ConsoID AND CompanyOwnedID = @DisposedCompanyID
+
+          - step: 2
+            name: "Recalculate Ownership"
+            action: "Run P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+
+          - step: 3
+            name: "Re-run Eliminations"
+            action: "Execute P_CONSO_ELIM for updated structure"
+
+          - step: 4
+            name: "Validate Results"
+            validation_rules: ["BS-001", "BS-003"]
+            checks:
+              - "Disposed entity no longer in consolidated totals"
+              - "Disposal gain/loss recognized in P&L"
+              - "CTA recycled to P&L"
+              - "Balance sheet balances"
+
+    error_recovery:
+      - scenario: "CTA not recycling"
+        recovery: "Verify TDBS account mapping and accumulated balance"
+
+      - scenario: "Balance sheet out of balance"
+        recovery: "Check disposal journal entry completeness"
+
+    success_criteria:
+      - "Disposal gain/loss calculated per IFRS 10"
+      - "CTA recycled to P&L per IAS 21"
+      - "Goodwill derecognized"
+      - "NCI derecognized"
+      - "Entity removed from consolidation scope"
+
+  # ============================================================
+  # PLAYBOOK 3: OWNERSHIP CHANGE
+  # ============================================================
+  ownership_change_playbook:
+    name: "Ownership Change Playbook"
+    description: "Step acquisitions, partial disposals, and method changes"
+    complexity: "High"
+    typical_duration: "1-2 weeks"
+    ifrs_standards: ["IFRS 3", "IFRS 10", "IAS 28"]
+
+    scenarios:
+
+      # Scenario A: Step Acquisition (E to G)
+      step_acquisition_e_to_g:
+        name: "Step Acquisition - Equity to Global"
+        trigger: "Additional shares acquired, control obtained"
+        previous_method: "E"
+        new_method: "G"
+
+        phases:
+          - phase: 1
+            name: "Record Additional Acquisition"
+            steps:
+              - "Update ownership percentage in TS015S0"
+              - "Recalculate group percentages"
+
+          - phase: 2
+            name: "Remeasure Previous Interest"
+            ifrs_treatment: |
+              IFRS 3.42: Remeasure previously held equity interest
+              at acquisition-date fair value. Recognize gain/loss in P&L.
+            calculation: |
+              Remeasurement Gain/Loss =
+                  Fair Value of Previous Interest at Step-Up Date
+                - Equity Method Carrying Amount
+
+          - phase: 3
+            name: "Calculate Goodwill"
+            formula: |
+              Goodwill =
+                  Consideration for New Shares
+                + Fair Value of Previous Interest
+                + NCI at Acquisition
+                - Fair Value of Net Assets
+
+          - phase: 4
+            name: "Record Method Change"
+            elimination: "S072"
+            special_flows:
+              - "VarConsoMeth_EG"
+
+        user_eliminations_required:
+          - "Remeasurement gain/loss"
+          - "Goodwill recognition"
+          - "Fair value adjustments"
+
+      # Scenario B: Partial Disposal within Control
+      partial_disposal_within_control:
+        name: "Partial Disposal - Remains Global"
+        trigger: "Shares sold but control retained"
+        previous_method: "G"
+        new_method: "G"
+
+        ifrs_treatment: |
+          IFRS 10.23: Transaction with NCI (equity transaction)
+          No gain/loss in P&L. Difference to equity.
+
+        phases:
+          - phase: 1
+            name: "Update Ownership"
+            steps:
+              - "Update FinPercentage in TS015S0"
+              - "Recalculate GroupPerc and MinorPerc"
+
+          - phase: 2
+            name: "Record Equity Transaction"
+            journal_entry:
+              - debit: "Cash/Receivable"
+                amount: "Sale proceeds"
+              - credit: "NCI (Minority Interest)"
+                amount: "NCI increase"
+              - credit: "Parent Equity (ConsoRes)"
+                amount: "Balancing (gain)" # or debit if loss
+
+          - phase: 3
+            name: "Recalculate NCI"
+            action: "S085 elimination recalculates with new percentages"
+
+      # Scenario C: Loss of Control (G to E)
+      loss_of_control:
+        name: "Loss of Control - Global to Equity"
+        trigger: "Shares sold, control lost, significant influence retained"
+        previous_method: "G"
+        new_method: "E"
+
+        ifrs_treatment: |
+          IFRS 10.25: Deconsolidate and recognize any retained interest
+          at fair value. Recognize gain/loss in P&L.
+
+        phases:
+          - phase: 1
+            name: "Deconsolidate"
+            action: "Full deconsolidation per disposal_playbook"
+            includes:
+              - "Derecognize all assets/liabilities"
+              - "Derecognize goodwill"
+              - "Derecognize NCI"
+              - "Recycle CTA"
+
+          - phase: 2
+            name: "Recognize Retained Interest"
+            action: "Recognize at fair value as equity method investment"
+            journal_entry:
+              - debit: "Equity Method Investment (EquityVal)"
+                amount: "Fair value of retained interest"
+              - credit: "Disposal calculation"
+                amount: "Part of gain/loss computation"
+
+          - phase: 3
+            name: "Change Method"
+            action: "Update ConsoMethod to 'E'"
+            elimination: "S072 (VarConsoMeth_GE)"
+
+          - phase: 4
+            name: "Begin Equity Method"
+            action: "S080 elimination for equity pickup"
+
+    method_change_matrix:
+      description: "Accounting treatment by method change direction"
+
+      changes:
+        - from: "E"
+          to: "G"
+          flow: "VarConsoMeth_EG"
+          treatment: "Step acquisition (IFRS 3)"
+          goodwill: "Yes, based on total fair value"
+          gain_loss: "Yes, on remeasurement"
+
+        - from: "G"
+          to: "E"
+          flow: "VarConsoMeth_GE"
+          treatment: "Loss of control (IFRS 10)"
+          goodwill: "Derecognize"
+          gain_loss: "Yes, on disposal + CTA recycling"
+
+        - from: "P"
+          to: "G"
+          flow: "VarConsoMeth_PG"
+          treatment: "Obtain control of joint operation"
+          goodwill: "Yes"
+          gain_loss: "Yes, on remeasurement"
+
+        - from: "G"
+          to: "P"
+          flow: "VarConsoMeth_GP"
+          treatment: "Loss of control, joint operation remains"
+          goodwill: "Derecognize proportionally"
+          gain_loss: "Yes"
+
+        - from: "E"
+          to: "N"
+          flow: "VarConsoMeth_EN"
+          treatment: "Loss of significant influence"
+          goodwill: "N/A"
+          gain_loss: "Yes, on disposal"
+
+        - from: "N"
+          to: "E"
+          flow: "VarConsoMeth_NE"
+          treatment: "Obtain significant influence"
+          goodwill: "N/A"
+          gain_loss: "No"
+
+  # ============================================================
+  # PLAYBOOK 4: YEAR-END CLOSE
+  # ============================================================
+  year_end_close_playbook:
+    name: "Year-End Close Playbook"
+    description: "Complete annual consolidation close with all validation gates"
+    complexity: "Medium"
+    typical_duration: "5-10 business days"
+    workflow: "workflow-year-end-close.yaml"
+
+    phases:
+
+      phase_1_pre_close:
+        name: "Pre-Close Preparation"
+        timeline: "T-10 to T-5 days"
+
+        checklist:
+          - task: "Verify all subsidiaries reported"
+            validation_rule: "PC-001"
+            query: |
+              SELECT CompanyCode, Status_Bundles
+              FROM TS014C0
+              WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+
+          - task: "Exchange rates complete"
+            validation_rule: "PC-002"
+            config_template: "exchange_rate_configuration.verify_rate_completeness"
+
+          - task: "Ownership structure current"
+            validation_rules: ["OWN-001", "OWN-003", "OWN-004", "OWN-005"]
+
+          - task: "Intercompany reconciled"
+            validation_rules: ["IC-001", "IC-002"]
+
+          - task: "Prior period adjustments posted"
+            check: "All adjustments in TD040B2"
+
+      phase_2_data_collection:
+        name: "Data Collection and Integration"
+        timeline: "T-5 to T-3 days"
+
+        steps:
+          - step: 1
+            name: "Collect Subsidiary Data"
+            action: "Import local data packages"
+            target: "TD030B2"
+
+          - step: 2
+            name: "Run Bundle Integration"
+            procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+            validation: "Status_Bundles = 0 for all companies"
+
+          - step: 3
+            name: "Process Adjustments"
+            action: "Enter and integrate group adjustments"
+            target: "TD040B2"
+            procedure: "P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION"
+
+          - step: 4
+            name: "Verify Currency Translation"
+            checks:
+              - "All amounts translated to group currency"
+              - "CTA calculated and posted"
+              - "Historical rates applied correctly"
+
+      phase_3_eliminations:
+        name: "Execute Eliminations"
+        timeline: "T-3 to T-2 days"
+
+        elimination_sequence:
+          - level: 10
+            code: "S001-S005"
+            name: "Intercompany"
+            validation: "IC balances net to zero"
+
+          - level: 20
+            code: "S020"
+            name: "Dividends"
+            validation: "IC dividends eliminated"
+
+          - level: 30
+            code: "S050-S094"
+            name: "Participations"
+            validation: "Investment vs equity offset"
+
+          - level: 35
+            code: "U###"
+            name: "User Eliminations"
+            validation: "Custom adjustments posted"
+
+          - level: 40
+            code: "S085"
+            name: "Minority Interest"
+            validation: "NCI calculated correctly"
+
+          - level: 50
+            code: "S080"
+            name: "Equity Method"
+            validation: "Equity pickup recorded"
+
+        post_elimination_checks:
+          - validation_rule: "BS-002"
+            description: "All elimination journals balance"
+          - validation_rule: "BS-003"
+            description: "Consolidated balance sheet balances"
+          - validation_rule: "IC-003"
+            description: "IC balances eliminated"
+
+      phase_4_review:
+        name: "Review and Analysis"
+        timeline: "T-2 to T-1 days"
+
+        analytical_review:
+          - check: "Year-over-year variance analysis"
+            threshold: "10% variance requires explanation"
+
+          - check: "Equity roll-forward"
+            formula: "Opening + Net Income + OCI - Dividends + Changes = Closing"
+
+          - check: "Cash flow reconciliation"
+            if_applicable: true
+
+          - check: "Segment reconciliation"
+            if_applicable: true
+
+        reports_to_generate:
+          - "Consolidated Balance Sheet"
+          - "Consolidated Income Statement"
+          - "Consolidated Equity Statement"
+          - "Ownership Structure Report"
+          - "Goodwill Schedule"
+          - "Elimination Detail Report"
+          - "IC Reconciliation Report"
+
+      phase_5_finalize:
+        name: "Finalize and Lock"
+        timeline: "T-day"
+
+        steps:
+          - step: 1
+            name: "Final Validation"
+            action: "Run all validation rules"
+            validation_file: "validation-rules.yaml"
+            must_pass: ["All ERROR severity rules"]
+
+          - step: 2
+            name: "Management Review"
+            action: "Obtain sign-off on consolidated financials"
+
+          - step: 3
+            name: "Lock Period"
+            action: "Set ConsoStatus = 'C' (Closed)"
+            sql: |
+              UPDATE TS096S0
+              SET ConsoStatus = 'C',
+                  LockedDate = GETDATE(),
+                  LockedByLogin = @Login,
+                  LockedReason = 'Year-end close'
+              WHERE ConsoID = @ConsoID
+
+          - step: 4
+            name: "Create Next Period"
+            action: "Initialize new consolidation period"
+            includes:
+              - "Copy structure from closed period"
+              - "Carry forward opening balances"
+
+    validation_gates:
+      gate_1:
+        name: "Data Completeness"
+        timing: "Before eliminations"
+        rules: ["PC-001", "PC-002"]
+
+      gate_2:
+        name: "Ownership Validity"
+        timing: "Before eliminations"
+        rules: ["OWN-001", "OWN-002", "OWN-003", "OWN-004", "OWN-005"]
+
+      gate_3:
+        name: "IC Reconciliation"
+        timing: "Before eliminations"
+        rules: ["IC-001", "IC-002"]
+
+      gate_4:
+        name: "Elimination Integrity"
+        timing: "After eliminations"
+        rules: ["BS-002"]
+
+      gate_5:
+        name: "Final Balance"
+        timing: "Before lock"
+        rules: ["BS-001", "BS-003", "IC-003"]
+
+  # ============================================================
+  # PLAYBOOK 5: NEW ENTITY ONBOARDING
+  # ============================================================
+  new_entity_onboarding_playbook:
+    name: "New Entity Onboarding Playbook"
+    description: "From entity creation through first data submission"
+    complexity: "Medium"
+    typical_duration: "3-5 days"
+    workflow: "workflow-add-subsidiary.yaml"
+
+    phases:
+
+      phase_1_entity_creation:
+        name: "Create Entity"
+        duration: "Day 1"
+
+        steps:
+          - step: 1
+            name: "Gather Entity Information"
+            required_data:
+              - field: "Company Code"
+                type: "string"
+                max_length: 12
+                example: "NEWCO01"
+              - field: "Company Name"
+                type: "string"
+                example: "New Company LLC"
+              - field: "Currency"
+                type: "currency_code"
+                example: "USD"
+              - field: "Country"
+                type: "country_code"
+                example: "US"
+
+          - step: 2
+            name: "Determine Consolidation Method"
+            decision_tree: "consolidation-method-decision.yaml"
+            inputs_required:
+              - "Financial ownership percentage"
+              - "Voting/control percentage"
+              - "Joint arrangement assessment"
+
+          - step: 3
+            name: "Create Company Record"
+            sql: |
+              INSERT INTO TS014C0 (
+                  ConsoID, CompanyCode, CompanyName, CurrCode,
+                  ConsolidatedCompany, ConsoMethod, FlagParent
+              )
+              VALUES (
+                  @ConsoID, @CompanyCode, @CompanyName, @CurrCode,
+                  1, @Method, 0
+              )
+
+      phase_2_ownership_setup:
+        name: "Configure Ownership"
+        duration: "Day 1-2"
+
+        steps:
+          - step: 1
+            name: "Create Ownership Links"
+            decision: "Direct or indirect ownership?"
+            direct_sql: |
+              -- Direct ownership from parent
+              INSERT INTO TS015S0 (ConsoID, CompanyID, CompanyOwnedID, FinPercentage, CtrlPercentage)
+              SELECT @ConsoID, @ParentCompanyID, @NewCompanyID, @FinPct, @CtrlPct
+
+            indirect_sql: |
+              -- Ownership through intermediate
+              INSERT INTO TS015S0 (ConsoID, CompanyID, CompanyOwnedID, FinPercentage, CtrlPercentage)
+              SELECT @ConsoID, @IntermediateCompanyID, @NewCompanyID, @FinPct, @CtrlPct
+
+          - step: 2
+            name: "Calculate Group Percentages"
+            procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+            validation_rules: ["OWN-001", "OWN-003", "OWN-005"]
+
+          - step: 3
+            name: "Verify Method Assignment"
+            validation_rule: "OWN-004"
+            query: |
+              SELECT CompanyCode, GroupPerc, MinorPerc, GroupCtrlPerc, ConsoMethod
+              FROM TS014C0
+              WHERE ConsoID = @ConsoID AND CompanyCode = @CompanyCode
+
+      phase_3_account_mapping:
+        name: "Map Chart of Accounts"
+        duration: "Day 2-3"
+
+        steps:
+          - step: 1
+            name: "Review Group COA"
+            action: "Identify accounts entity will report"
+            query: |
+              SELECT Account, AccountName, AccountType, DebitCredit, AccountClass
+              FROM TS010S0
+              WHERE ConsoID = @ConsoID
+              ORDER BY AccountClass, Account
+
+          - step: 2
+            name: "Identify Intercompany Accounts"
+            action: "Flag accounts for IC reporting"
+            note: "Set PartnerType = 1 in TS010S0 for IC accounts"
+
+          - step: 3
+            name: "Verify Special Accounts"
+            action: "Ensure entity can report to required special accounts"
+            config_template: "special_account_configuration.minimum_required_accounts"
+
+      phase_4_currency_setup:
+        name: "Configure Currency Translation"
+        duration: "Day 3"
+
+        steps:
+          - step: 1
+            name: "Verify Exchange Rates Exist"
+            validation_rule: "PC-002"
+            config_template: "exchange_rate_configuration.verify_rate_completeness"
+
+          - step: 2
+            name: "Load Exchange Rates if Missing"
+            config_template: "exchange_rate_configuration.load_exchange_rates"
+
+          - step: 3
+            name: "Configure Account Rate Types"
+            action: "Verify account translation settings"
+            typical_settings:
+              balance_sheet: "CC (Closing)"
+              pl_items: "AC (Average)"
+              equity: "Historical"
+
+      phase_5_ic_partner_setup:
+        name: "Configure IC Relationships"
+        duration: "Day 3-4"
+
+        steps:
+          - step: 1
+            name: "Identify IC Partners"
+            action: "Determine which entities this company trades with"
+            query: |
+              SELECT CompanyID, CompanyCode, CompanyName
+              FROM TS014C0
+              WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+
+          - step: 2
+            name: "Configure IC Accounts"
+            action: "Ensure IC accounts have mirror account mappings"
+            note: "MirrorAccountID in TS010S0 links receivable to payable"
+
+      phase_6_first_submission:
+        name: "First Data Submission"
+        duration: "Day 4-5"
+
+        steps:
+          - step: 1
+            name: "Prepare Data Template"
+            action: "Export data entry template"
+
+          - step: 2
+            name: "Enter Opening Balances"
+            target: "TD030B2"
+            flows: ["OPEN", "CLOSE"]
+            note: "First period may have OPEN = 0"
+
+          - step: 3
+            name: "Enter IC Balances"
+            target: "TD040B2"
+            required_fields:
+              - "PartnerCompanyID (IC counterparty)"
+              - "AmountLocal"
+
+          - step: 4
+            name: "Run Integration"
+            procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+            validation: "Status_Bundles = 0"
+
+          - step: 5
+            name: "Verify in Consolidation"
+            checks:
+              - "Data appears in TD035C2 (consolidated)"
+              - "Currency translation applied correctly"
+              - "Company contributes to group totals"
+
+    onboarding_checklist:
+      - "[ ] Company created in TS014C0"
+      - "[ ] Ownership links created in TS015S0"
+      - "[ ] Group percentages calculated"
+      - "[ ] Exchange rates available"
+      - "[ ] IC partners identified"
+      - "[ ] First data submitted"
+      - "[ ] Bundle integration successful"
+      - "[ ] Eliminations include new entity"
+
+  # ============================================================
+  # PLAYBOOK ORCHESTRATION
+  # ============================================================
+  orchestration:
+    description: "How to select and execute playbooks"
+
+    playbook_selection:
+      triggers:
+        - trigger: "New acquisition announced"
+          playbook: "acquisition_playbook"
+
+        - trigger: "Disposal agreement signed"
+          playbook: "disposal_playbook"
+
+        - trigger: "Ownership percentage changed"
+          playbook: "ownership_change_playbook"
+
+        - trigger: "Year-end approaching"
+          playbook: "year_end_close_playbook"
+
+        - trigger: "New subsidiary created"
+          playbook: "new_entity_onboarding_playbook"
+
+    cross_references:
+      decision_trees:
+        - "consolidation-method-decision.yaml"
+        - "elimination-code-selection.yaml"
+        - "currency-translation-decision.yaml"
+
+      workflows:
+        - "workflow-add-subsidiary.yaml"
+        - "workflow-process-acquisition.yaml"
+        - "workflow-configure-ic-eliminations.yaml"
+        - "workflow-year-end-close.yaml"
+
+      configuration:
+        - "configuration-templates.yaml"
+
+      validation:
+        - "validation-rules.yaml"
+
+      error_handling:
+        - "error-handling-patterns.yaml"
+
+      parameters:
+        - "parameter-reference-consolidation.yaml"
+        - "parameter-reference-eliminations.yaml"

@@ -1,0 +1,1365 @@
+# API Data Entry Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent data entry and bundle management
+
+api_data_entry_endpoints:
+  name: "Data Entry API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing financial data entry in the consolidation system.
+
+    Data entry is the core workflow for capturing subsidiary financial data:
+    - Bundle data entry: GL account balances using input forms
+    - Multi-period data entry: Cross-period comparative data entry
+    - Flow data entry: Movement/flow analysis data
+    - Bundle upload: Bulk data import from files
+
+    Key concepts:
+    - Input Forms: Define account structure and layout for data entry
+    - Options: LocalAmounts, AdjustedBundles, LocalAdjustments, Comments
+    - Cells: Individual data points at row/column intersections
+    - UnitsOf: Scale factor (0=units, 1=thousands, 2=millions)
+
+    Services documented:
+    - BundleStandardPeriodService: Single period data entry (6 handlers)
+    - BundleMultiPeriodService: Multi-period data entry (2 handlers)
+    - FlowDataEntryService: Flow/movement data entry (5 handlers)
+    - UploadBundleService: Bulk upload workflow (4 handlers)
+    - DimensionDataEntryService: Dimension detail entry (4 handlers)
+    - IPSFlowDataEntryService: Intercompany flow entry (6 handlers)
+
+  # ============================================================================
+  # DATA ENTRY OPTIONS ENUM
+  # ============================================================================
+  enums:
+    DataEntryOptions:
+      description: "View options for bundle data entry"
+      values:
+        - value: 1
+          name: "LocalAmounts"
+          description: "Local reported bundle amounts"
+        - value: 2
+          name: "AdjustedBundles"
+          description: "Locally adjusted bundle amounts"
+        - value: 3
+          name: "LocalAdjustments"
+          description: "Local adjustment entries only"
+        - value: 4
+          name: "LocalPlusAdjustmentsN"
+          description: "Local plus adjustments (current period)"
+        - value: 5
+          name: "LocalPlusAdjustmentsN1"
+          description: "Local plus adjustments (prior period)"
+        - value: 6
+          name: "Comments"
+          description: "Comments view mode"
+
+    AccountFilterOptions:
+      description: "Account filter options for flow data entry"
+      values:
+        - value: "A"
+          name: "AllAccounts"
+          description: "All accounts with flow capability"
+        - value: "B"
+          name: "AccountsWithData"
+          description: "Only accounts with existing flow data"
+        - value: "C"
+          name: "UnexplainedVariance"
+          description: "Only accounts with unexplained variance"
+
+    LineTypes:
+      description: "Line types in bundle data entry grid"
+      values:
+        - code: "A"
+          name: "Account"
+          description: "Account data entry line"
+        - code: "S"
+          name: "Summation"
+          description: "Calculated summation line"
+        - code: "T"
+          name: "Total"
+          description: "Total line"
+        - code: "B"
+          name: "Blank"
+          description: "Blank separator line"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    BundleStandardPeriodDTO:
+      description: "Complete bundle data entry response"
+      source: "BundleStandardPeriodService.cs"
+      fields:
+        - name: "InputFormID"
+          type: "integer"
+          description: "Input form identifier"
+        - name: "InputFormCode"
+          type: "string"
+          description: "Input form code"
+        - name: "InputFormName"
+          type: "string"
+          description: "Input form display name"
+        - name: "CompanyID"
+          type: "integer"
+          description: "Company identifier"
+        - name: "CompanyCode"
+          type: "string"
+          description: "Company code"
+        - name: "CompanyName"
+          type: "string"
+          description: "Company display name"
+        - name: "Option"
+          type: "byte"
+          description: "View option (1-6)"
+          enum_ref: "DataEntryOptions"
+        - name: "OptionText"
+          type: "string"
+          description: "Localized option description"
+        - name: "Locked"
+          type: "boolean"
+          description: "Whether data entry is locked"
+        - name: "CurrCode"
+          type: "string"
+          description: "Company currency code"
+        - name: "NbrDec"
+          type: "byte"
+          description: "Number of decimal places"
+        - name: "UnitsOf"
+          type: "byte"
+          description: "Unit scale (0=units, 1=thousands, 2=millions)"
+        - name: "ClientSideCalculations"
+          type: "boolean"
+          description: "Enable client-side formula calculations"
+        - name: "LabelAmountsPowerOf"
+          type: "string"
+          description: "Display label for unit scale"
+        - name: "RowsResult"
+          type: "array<RowsResultDTO>"
+          description: "Row definitions with cells"
+        - name: "ColsResult"
+          type: "array"
+          description: "Column definitions"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          description: "Concurrency control"
+
+    RowsResultDTO:
+      description: "Row definition in bundle data entry"
+      fields:
+        - name: "AccountSum"
+          type: "string"
+          description: "Account or summation code"
+        - name: "Description"
+          type: "string"
+          description: "Row description"
+        - name: "Formula"
+          type: "string"
+          nullable: true
+          description: "Summation formula if applicable"
+        - name: "HasDimensions"
+          type: "boolean"
+          description: "Account has dimension details"
+        - name: "HasFlows"
+          type: "boolean"
+          description: "Account has flow details"
+        - name: "HasIntercos"
+          type: "boolean"
+          description: "Account has intercompany details"
+        - name: "HasParticipations"
+          type: "boolean"
+          description: "Account has participation details"
+        - name: "HasPartners"
+          type: "boolean"
+          description: "Account has partner details"
+        - name: "IdentLevel"
+          type: "short"
+          description: "Indentation level for hierarchy"
+        - name: "IsBold"
+          type: "boolean"
+        - name: "IsItalic"
+          type: "boolean"
+        - name: "IsUnderlined"
+          type: "boolean"
+        - name: "LineNr"
+          type: "short"
+          description: "Line number in form"
+        - name: "LineType"
+          type: "char"
+          description: "A=Account, S=Summation, T=Total, B=Blank"
+        - name: "HasUnexplainedFlow"
+          type: "boolean"
+          description: "Flow variance not fully explained"
+        - name: "HasUnexplainedIC"
+          type: "boolean"
+          description: "Intercompany variance not explained"
+        - name: "HasUnexplainedDim"
+          type: "boolean"
+          description: "Dimension variance not explained"
+        - name: "Cells"
+          type: "array<CellsResultDTO>"
+          description: "Cell values for this row"
+
+    CellsResultDTO:
+      description: "Cell data in bundle data entry"
+      fields:
+        - name: "AccountID"
+          type: "integer"
+          nullable: true
+          description: "Account ID for this cell"
+        - name: "Amount"
+          type: "decimal"
+          nullable: true
+          description: "Current amount value"
+        - name: "OriginalAmount"
+          type: "decimal"
+          nullable: true
+          description: "Original amount before edits"
+        - name: "BaseRecordKeyID"
+          type: "integer"
+          nullable: true
+          description: "Base record key for updates"
+        - name: "ColNr"
+          type: "short"
+          nullable: true
+          description: "Column number"
+        - name: "LineNr"
+          type: "short"
+          nullable: true
+          description: "Line number"
+        - name: "Comment"
+          type: "string"
+          nullable: true
+          description: "Cell comment"
+        - name: "OriginalComment"
+          type: "string"
+          nullable: true
+          description: "Original comment before edits"
+        - name: "CommentEnabled"
+          type: "boolean"
+          description: "Whether comments are allowed"
+        - name: "ReadOnly"
+          type: "boolean"
+          description: "Cell is read-only"
+        - name: "SignMultiplier"
+          type: "short"
+          description: "Sign multiplier for amount"
+        - name: "CssStyle"
+          type: "string"
+          description: "CSS style for cell display"
+        - name: "AccountSumExtraAmounts"
+          type: "decimal"
+          nullable: true
+          description: "Extra amounts for summation"
+
+    TotalsResultDTO:
+      description: "Account totals summary"
+      fields:
+        - name: "CurrCode"
+          type: "string"
+        - name: "NrDec"
+          type: "byte"
+        - name: "BalanceDebit"
+          type: "decimal"
+          nullable: true
+        - name: "BalanceCredit"
+          type: "decimal"
+          nullable: true
+        - name: "PLDebit"
+          type: "decimal"
+          nullable: true
+        - name: "PLCredit"
+          type: "decimal"
+          nullable: true
+        - name: "PLINC"
+          type: "decimal"
+          nullable: true
+          description: "P&L Income total"
+        - name: "PLBAL"
+          type: "decimal"
+          nullable: true
+          description: "P&L Balance total"
+        - name: "ContingenciesDebit"
+          type: "decimal"
+          nullable: true
+        - name: "ContingenciesCredit"
+          type: "decimal"
+          nullable: true
+
+    FlowDataEntryDTO:
+      description: "Flow data entry line"
+      fields:
+        - name: "CompanyID"
+          type: "integer"
+        - name: "CurrCode"
+          type: "string"
+        - name: "AccountID"
+          type: "integer"
+        - name: "FlowID"
+          type: "integer"
+        - name: "Flow"
+          type: "string"
+          description: "Flow code"
+        - name: "FlowDescription"
+          type: "string"
+        - name: "CurLocalAmount"
+          type: "decimal"
+          description: "Current local amount"
+        - name: "TransRate"
+          type: "decimal"
+          description: "Transaction rate"
+        - name: "FlagConso"
+          type: "boolean"
+          description: "Consolidation flow flag"
+        - name: "ClientSideCalculations"
+          type: "boolean"
+        - name: "ModifiedBy"
+          type: "string"
+          nullable: true
+        - name: "ModifiedDate"
+          type: "datetime"
+          nullable: true
+
+  # ============================================================================
+  # BUNDLE STANDARD PERIOD HANDLERS
+  # ============================================================================
+  bundle_standard_period_handlers:
+    description: |
+      Endpoints for single-period bundle data entry.
+      Source: Sigma.Mona.WebApplication/Screens/BundleStandardPeriod/BundleStandardPeriodService.cs
+
+    handlers:
+      - name: "Bundle_GetBundleStandardPeriod"
+        description: |
+          Retrieves bundle data entry form with account rows and values.
+          Returns complete grid structure with cells for data entry.
+          Uses stored procedure P_VIEW_DATAENTRY_BUNDLE_ACCOUNT.
+        access_right: "BundleStandardPeriod_GetBundleStandardPeriod"
+        async: true
+
+        request:
+          _t: "Bundle_GetBundleStandardPeriod"
+          parameters:
+            - name: "InputFormID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Input form to display"
+            - name: "CompanyID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Company for data entry"
+            - name: "Option"
+              type: "integer"
+              required: true
+              description: "View option (1-6)"
+              enum_ref: "DataEntryOptions"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+              default: false
+          example:
+            json: |
+              {
+                "_t": "Bundle_GetBundleStandardPeriod",
+                "InputFormID": 100,
+                "CompanyID": 123,
+                "Option": 1,
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "BundleStandardPeriodDTO"
+              description: "Complete data entry form with rows and cells"
+
+      - name: "Bundle_UpdateBundleStandardPeriod"
+        description: |
+          Saves bundle data entry changes.
+          Updates modified cells and triggers advanced formulas.
+          Only saves cells where Amount != OriginalAmount or Comment changed.
+        access_right: "BundleStandardPeriod_UpdateDataEntry"
+        async: true
+
+        request:
+          _t: "Bundle_UpdateBundleStandardPeriod"
+          parameters:
+            - name: "InputFormID"
+              type: "integer"
+              required: true
+            - name: "InputFormCode"
+              type: "string"
+              required: true
+            - name: "CompanyID"
+              type: "integer"
+              required: true
+            - name: "CompanyCode"
+              type: "string"
+              required: true
+            - name: "Option"
+              type: "integer"
+              required: true
+              description: "Must be LocalAmounts (1) or Comments (6)"
+            - name: "CurrCode"
+              type: "string"
+              required: true
+            - name: "UnitsOf"
+              type: "byte"
+              required: true
+            - name: "RowsData"
+              type: "array"
+              required: true
+              description: "Array of rows with modified cells"
+              element_schema:
+                AccountSum: "string"
+                Cells:
+                  type: "array<CellsResultDTO>"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Bundle_UpdateBundleStandardPeriod",
+                "InputFormID": 100,
+                "InputFormCode": "BS01",
+                "CompanyID": 123,
+                "CompanyCode": "ACME",
+                "Option": 1,
+                "CurrCode": "USD",
+                "UnitsOf": 1,
+                "RowsData": [
+                  {
+                    "AccountSum": "1000",
+                    "Cells": [
+                      {
+                        "AccountID": 456,
+                        "Amount": 150000,
+                        "OriginalAmount": 100000,
+                        "ColNr": 1,
+                        "LineNr": 1,
+                        "SignMultiplier": 1,
+                        "ReadOnly": false
+                      }
+                    ]
+                  }
+                ],
+                "scf_entity_version": [{"Name": "DataEntry", "Key": "789_ACME", "Version": 5}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_UPDATE_DATAENTRY_BUNDLE_ACCOUNT"
+              cause: "Update validation failed"
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+      - name: "Bundle_GetBundleAccountTotals"
+        description: |
+          Retrieves account balance totals for a company.
+          Returns debit/credit totals by account type.
+        access_right: "BundleStandardPeriod_GetBundleAccountTotals"
+        async: true
+
+        request:
+          _t: "Bundle_GetBundleAccountTotals"
+          parameters:
+            - name: "CompanyID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+          example:
+            json: |
+              {
+                "_t": "Bundle_GetBundleAccountTotals",
+                "CompanyID": 123
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "TotalsResultDTO"
+              description: "Balance and P&L totals"
+
+      - name: "Bundle_GetImportDataDetails"
+        description: |
+          Retrieves import data details for a specific account/company.
+          Shows source data from import for audit trail.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+        request:
+          _t: "Bundle_GetImportDataDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+              description: "Company code (alternative to ID)"
+            - name: "accountID"
+              type: "integer"
+              required: "if account not provided"
+            - name: "account"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Bundle_GetImportDataDetails",
+                "companyID": 123,
+                "accountID": 456,
+                "consoID": 789
+              }
+
+        response:
+          success:
+            AmountData:
+              type: "object"
+              description: "Current amount data"
+            NbrDec:
+              type: "integer"
+            scf_items:
+              type: "array"
+              description: "Import data lines"
+            ImportDataNetAmountTotal:
+              type: "decimal"
+            ImportDataDebitTotal:
+              type: "decimal"
+            ImportDataCreditTotal:
+              type: "decimal"
+
+      - name: "Bundle_GetImportDataGLDetails"
+        description: |
+          Retrieves GL entry details from import data.
+          Shows original journal entries for a specific GL entry.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+        request:
+          _t: "Bundle_GetImportDataGLDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+            - name: "glEntry"
+              type: "string"
+              required: false
+              description: "GL entry identifier"
+
+        response:
+          success:
+            GLEntryDescription:
+              type: "string"
+            scf_items:
+              type: "array"
+
+      - name: "Bundle_ExportImportDataDetails"
+        description: |
+          Exports import data details to Excel file.
+          Returns download URL for the generated file.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+        request:
+          _t: "Bundle_ExportImportDataDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+            - name: "accountID"
+              type: "integer"
+              required: "if account not provided"
+            - name: "account"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+
+        response:
+          success:
+            fileNames:
+              type: "array"
+              element_schema:
+                filenamepath:
+                  type: "string"
+                  description: "Download URL"
+                filename:
+                  type: "string"
+
+  # ============================================================================
+  # BUNDLE MULTI-PERIOD HANDLERS
+  # ============================================================================
+  bundle_multi_period_handlers:
+    description: |
+      Endpoints for multi-period comparative data entry.
+      Source: Sigma.Mona.WebApplication/Screens/BundleMultiPeriod/BundleMultiPeriodService.cs
+
+    handlers:
+      - name: "Bundle_GetBundleMultiPeriod"
+        description: |
+          Retrieves multi-period bundle data entry form.
+          Shows data across multiple consolidation periods for comparison.
+          Each column represents a different period.
+        access_right: "BundleMultiPeriod_GetBundleMultiPeriod"
+        async: true
+
+        request:
+          _t: "Bundle_GetBundleMultiPeriod"
+          parameters:
+            - name: "InputFormID"
+              type: "integer"
+              required: true
+            - name: "CompanyID"
+              type: "integer"
+              required: true
+            - name: "Option"
+              type: "integer"
+              required: true
+              description: "1=LocalAmounts, 2=AdjustedBundles, 3=LocalAdjustments"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Bundle_GetBundleMultiPeriod",
+                "InputFormID": 100,
+                "CompanyID": 123,
+                "Option": 1,
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "BundleMultiPeriodDTO"
+              description: "Multi-period form with columns per period"
+
+      - name: "Bundle_UpdateBundleMultiPeriod"
+        description: |
+          Saves multi-period bundle data entry changes.
+          Updates cells across multiple periods.
+          Triggers advanced formulas for each affected period.
+        access_right: "BundleMultiPeriod_UpdateDataEntry"
+        async: true
+
+        request:
+          _t: "Bundle_UpdateBundleMultiPeriod"
+          parameters:
+            - name: "InputFormCode"
+              type: "string"
+              required: true
+            - name: "CompanyCode"
+              type: "string"
+              required: true
+            - name: "Option"
+              type: "integer"
+              required: true
+            - name: "CurrCode"
+              type: "string"
+              required: true
+            - name: "UnitsOf"
+              type: "byte"
+              required: true
+            - name: "ColsData"
+              type: "array"
+              required: true
+              description: "Column definitions with ConsoID"
+              element_schema:
+                ColNr: "short"
+                ConsoID: "integer"
+                HasChange: "boolean"
+            - name: "RowsData"
+              type: "array"
+              required: true
+              description: "Rows with cells"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+          warnings:
+            - pattern: "BundleMultiPeriod_NoAccess"
+              cause: "User lacks access to some periods"
+
+  # ============================================================================
+  # FLOW DATA ENTRY HANDLERS
+  # ============================================================================
+  flow_data_entry_handlers:
+    description: |
+      Endpoints for flow/movement data entry.
+      Source: Sigma.Mona.WebApplication/Screens/Flow/DataEntryService.cs
+
+    handlers:
+      - name: "FlowDataEntry_GetAccounts"
+        description: |
+          Retrieves accounts available for flow data entry.
+          Can filter to all flow-enabled accounts or only those with data.
+        access_right: "FlowDataEntry_GetDataEntries"
+        async: true
+
+        request:
+          _t: "FlowDataEntry_GetAccounts"
+          parameters:
+            - name: "CompanyId"
+              type: "integer"
+              required: true
+            - name: "AllAccounts"
+              type: "string"
+              required: false
+              default: "A"
+              description: "A=All, B=With data, C=Unexplained variance"
+              enum_ref: "AccountFilterOptions"
+            - name: "AccountCode"
+              type: "string"
+              required: false
+              description: "Filter by account code pattern"
+          example:
+            json: |
+              {
+                "_t": "FlowDataEntry_GetAccounts",
+                "CompanyId": 123,
+                "AllAccounts": "B"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                AccountID: "integer"
+                Account: "string"
+                AccountDescription: "string"
+
+      - name: "FlowDataEntry_GetDataEntries"
+        description: |
+          Retrieves flow data entry for a company/account.
+          Returns all flows linked to the account with amounts.
+          Includes opening, closing, and difference to justify.
+        access_right: "FlowDataEntry_GetDataEntries"
+        async: true
+
+        request:
+          _t: "FlowDataEntry_GetDataEntries"
+          parameters:
+            - name: "CompanyId"
+              type: "integer"
+              required: true
+            - name: "AccountId"
+              type: "integer"
+              required: true
+            - name: "IsPopup"
+              type: "boolean"
+              required: true
+              description: "Whether displaying in popup mode"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "FlowDataEntry_GetDataEntries",
+                "CompanyId": 123,
+                "AccountId": 456,
+                "IsPopup": false,
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<FlowDataEntryDTO>"
+            SelectedCompany:
+              type: "object"
+              schema:
+                CompanyCode: "string"
+                CompanyName: "string"
+                CurrCode: "string"
+            SelectedAccount:
+              type: "object"
+              schema:
+                AccountCode: "string"
+                AccountName: "string"
+            NbrDec:
+              type: "byte"
+            UnitsOf:
+              type: "byte"
+            ReadOnly:
+              type: "boolean"
+            Scale:
+              type: "decimal"
+            RefOpeningAmount:
+              type: "decimal"
+              description: "Opening amount from reference period"
+            CurClosingAmount:
+              type: "decimal"
+              description: "Closing amount for current period"
+            DifferenceToJustify:
+              type: "decimal"
+              description: "Closing - Opening - Sum of flows"
+            EntityVersion:
+              type: "array<EntityVersion>"
+
+      - name: "FlowDataEntry_SaveDataEntries"
+        description: |
+          Saves flow data entry changes.
+          Creates, updates, or deletes flow records based on amounts.
+          Triggers advanced formulas after save.
+        access_right: "FlowDataEntry_ManageDataEntries"
+        async: true
+
+        request:
+          _t: "FlowDataEntry_SaveDataEntries"
+          parameters:
+            - name: "CompanyCode"
+              type: "string"
+              required: false
+            - name: "NbrDec"
+              type: "short"
+              required: false
+              default: 6
+            - name: "UnitsOf"
+              type: "short"
+              required: false
+              default: 0
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+            - name: "DataEntries"
+              type: "array"
+              required: false
+              description: "Flow amounts to save"
+              element_schema:
+                CompanyID: "integer"
+                CurrCode: "string"
+                AccountID: "integer"
+                FlowID: "integer"
+                CurLocalAmount: "decimal"
+                TransRate: "decimal"
+          example:
+            json: |
+              {
+                "_t": "FlowDataEntry_SaveDataEntries",
+                "CompanyCode": "ACME",
+                "NbrDec": 2,
+                "UnitsOf": 1,
+                "DataEntries": [
+                  {
+                    "CompanyID": 123,
+                    "CurrCode": "USD",
+                    "AccountID": 456,
+                    "FlowID": 10,
+                    "CurLocalAmount": 50000,
+                    "TransRate": 0
+                  }
+                ]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "P_VALIDATE_ADJUSTMENT_JOURNAL_LINKED"
+              cause: "Period is linked"
+
+      - name: "FlowDataEntry_GetImportDataDetails"
+        description: |
+          Retrieves import data details for a flow entry.
+          Shows source data from import for audit trail.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+        request:
+          _t: "FlowDataEntry_GetImportDataDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+            - name: "accountID"
+              type: "integer"
+              required: "if account not provided"
+            - name: "account"
+              type: "string"
+              required: false
+            - name: "flowID"
+              type: "integer"
+              required: "if flow not provided"
+            - name: "flow"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+
+        response:
+          success:
+            AmountData:
+              type: "object"
+            ImportData:
+              type: "array"
+            ImportDataNetAmountTotal:
+              type: "decimal"
+            ImportDataDebitTotal:
+              type: "decimal"
+            ImportDataCreditTotal:
+              type: "decimal"
+
+      - name: "FlowDataEntry_ExportImportDataDetails"
+        description: |
+          Exports flow import data details to Excel file.
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+        request:
+          _t: "FlowDataEntry_ExportImportDataDetails"
+          parameters:
+            - name: "companyID"
+              type: "integer"
+              required: "if company not provided"
+            - name: "company"
+              type: "string"
+              required: false
+            - name: "accountID"
+              type: "integer"
+              required: "if account not provided"
+            - name: "account"
+              type: "string"
+              required: false
+            - name: "flowID"
+              type: "integer"
+              required: "if flow not provided"
+            - name: "flow"
+              type: "string"
+              required: false
+            - name: "consoID"
+              type: "integer"
+              required: "if consoCode not provided"
+            - name: "consoCode"
+              type: "string"
+              required: false
+
+        response:
+          success:
+            fileNames:
+              type: "array"
+              element_schema:
+                filenamepath: "string"
+                filename: "string"
+
+  # ============================================================================
+  # UPLOAD BUNDLE HANDLERS
+  # ============================================================================
+  upload_bundle_handlers:
+    description: |
+      Endpoints for bulk bundle data upload workflow.
+      Source: Sigma.Mona.WebApplication/Screens/UploadBundle/UploadBundleService.cs
+
+      Upload workflow:
+      1. Upload file -> Get UploadJobID
+      2. Get available consos
+      3. Check data -> Get CheckJobID
+      4. Process data
+
+    handlers:
+      - name: "UploadBundle_Upload"
+        description: |
+          Initiates bundle upload from file.
+          Validates file format and creates upload job.
+          Returns job ID for monitoring upload progress.
+        access_right: "UploadBundle_Upload"
+        async: false
+        background_job: true
+        job_class: "Jobs.ImportExport.ImportBundleJob"
+
+        request:
+          _t: "UploadBundle_Upload"
+          parameters:
+            - name: "TypeOfData"
+              type: "object"
+              required: true
+              description: "Import data type flags"
+              nested_parameters:
+                - name: "LocalAdjustments"
+                  type: "boolean"
+                - name: "ClosingAmounts"
+                  type: "boolean"
+                - name: "ClosingAmountsParticipations"
+                  type: "boolean"
+                - name: "ClosingAmountsIntercos"
+                  type: "boolean"
+                - name: "ClosingAmountsPartners"
+                  type: "boolean"
+                - name: "Flows"
+                  type: "boolean"
+                - name: "FlowsParticipations"
+                  type: "boolean"
+                - name: "FlowsIntercos"
+                  type: "boolean"
+                - name: "FlowsPartners"
+                  type: "boolean"
+                - name: "Dims"
+                  type: "boolean"
+                - name: "DimsParticipations"
+                  type: "boolean"
+                - name: "DimsIntercos"
+                  type: "boolean"
+                - name: "DimsPartners"
+                  type: "boolean"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+          notes:
+            - "File must be uploaded first via file upload mechanism"
+            - "Uploaded file is retrieved from session storage"
+
+        response:
+          success:
+            UploadJobID:
+              type: "integer"
+              description: "Job ID for monitoring upload"
+
+      - name: "UploadBundle_GetUploadsAvailableConsos"
+        description: |
+          Returns consolidation periods available in uploaded file.
+          Called after upload job completes to select target periods.
+        access_right: "UploadBundle_Upload"
+        async: true
+
+        request:
+          _t: "UploadBundle_GetUploadsAvailableConsos"
+          parameters: []
+          notes:
+            - "Requires completed upload job"
+            - "Session must contain verified uploaded file"
+
+        response:
+          success:
+            AvailableUploadBundleConsos:
+              type: "array<KeyValuePair<string,string>>"
+              description: "ConsoID -> ConsoCode pairs"
+
+      - name: "UploadBundle_CheckData"
+        description: |
+          Validates uploaded data against target periods.
+          Creates check job to validate data integrity.
+        access_right: "UploadBundle_CheckData"
+        async: false
+        background_job: true
+        job_class: "Jobs.ImportExport.ImportBundleJob"
+
+        request:
+          _t: "UploadBundle_CheckData"
+          parameters:
+            - name: "Consos"
+              type: "array<string>"
+              required: true
+              description: "Selected consolidation periods"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "UploadBundle_CheckData",
+                "Consos": ["2024.12.A.01", "2024.11.A.01"]
+              }
+
+        response:
+          success:
+            CheckJobID:
+              type: "integer"
+              description: "Job ID for monitoring validation"
+
+      - name: "UploadBundle_Process"
+        description: |
+          Processes validated upload data into target periods.
+          Final step in upload workflow.
+        access_right: "UploadBundle_Process"
+        async: false
+        background_job: true
+        job_class: "Jobs.ImportExport.ImportBundleJob"
+
+        request:
+          _t: "UploadBundle_Process"
+          parameters:
+            - name: "Consos"
+              type: "array<string>"
+              required: true
+              description: "Periods to process"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            ProcessJobID:
+              type: "integer"
+              description: "Job ID for monitoring processing"
+
+  # ============================================================================
+  # DIMENSION DATA ENTRY HANDLERS
+  # ============================================================================
+  dimension_data_entry_handlers:
+    description: |
+      Endpoints for dimension/segment data entry.
+      Source: Sigma.Mona.WebApplication/Screens/DimensionDataEntry/DimensionDataEntryService.cs
+
+    handlers:
+      - name: "DimensionDataEntry_GetDimensionDataEntry"
+        description: "Retrieves dimension data entry form"
+        access_right: "DimensionDataEntry_GetDimensionDataEntry"
+        async: true
+
+      - name: "DimensionDataEntry_GetDimensionDataEntryModel"
+        description: "Retrieves dimension data entry model structure"
+        access_right: "DimensionDataEntry_GetDimensionDataEntry"
+        async: true
+
+      - name: "DimensionDataEntry_GetDimensionGroupList"
+        description: "Retrieves available dimension groups"
+        access_right: "DimensionDataEntry_GetDimensionDataEntry"
+        async: true
+
+      - name: "DimensionDataEntry_SaveDimensionDataEntry"
+        description: "Saves dimension data entry changes"
+        access_right: "DimensionDataEntry_ManageDimensionDataEntry"
+        async: true
+
+  # ============================================================================
+  # IPS FLOW DATA ENTRY HANDLERS
+  # ============================================================================
+  ips_flow_data_entry_handlers:
+    description: |
+      Endpoints for intercompany flow data entry.
+      Source: Sigma.Mona.WebApplication/Screens/IPSFlowDataEntry/IPSFlowDataEntryService.cs
+
+    handlers:
+      - name: "IPSFlowDataEntry_GetCompanies"
+        description: "Retrieves companies for IPS flow data entry"
+        access_right: "IPSFlowDataEntry_GetDataEntries"
+        async: true
+
+      - name: "IPSFlowDataEntry_GetAccounts"
+        description: "Retrieves accounts for IPS flow data entry"
+        access_right: "IPSFlowDataEntry_GetDataEntries"
+        async: true
+
+      - name: "IPSFlowDataEntry_GetDataEntries"
+        description: "Retrieves IPS flow data entries"
+        access_right: "IPSFlowDataEntry_GetDataEntries"
+        async: true
+
+      - name: "IPSFlowDataEntry_SaveDataEntries"
+        description: "Saves IPS flow data entry changes"
+        access_right: "IPSFlowDataEntry_ManageDataEntries"
+        async: true
+
+      - name: "IPSFlowDataEntry_GetImportDataDetails"
+        description: "Retrieves import data details for IPS flow"
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+      - name: "IPSFlowDataEntry_ExportImportDataDetails"
+        description: "Exports IPS flow import details to Excel"
+        access_right: "BundleStandardDataEntry_GetImportDataDetails"
+        async: true
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    bundle_data_entry_workflow:
+      name: "Bundle Data Entry Workflow"
+      description: "Complete workflow for entering financial data"
+      steps:
+        - step: 1
+          name: "Select Input Form and Company"
+          description: "User selects input form and company from dropdowns"
+          purpose: "Establish data entry context"
+
+        - step: 2
+          name: "Load Data Entry Form"
+          handler: "Bundle_GetBundleStandardPeriod"
+          parameters:
+            Option: 1
+            scf_include_entities: true
+          purpose: "Display account structure with existing values"
+
+        - step: 3
+          name: "Enter/Modify Values"
+          description: "User modifies cell amounts and comments"
+          client_side: true
+          purpose: "Capture financial data"
+
+        - step: 4
+          name: "Save Changes"
+          handler: "Bundle_UpdateBundleStandardPeriod"
+          purpose: "Persist changes to database"
+
+        - step: 5
+          name: "View Totals"
+          handler: "Bundle_GetBundleAccountTotals"
+          optional: true
+          purpose: "Verify balance sheet balances"
+
+    flow_data_entry_workflow:
+      name: "Flow Data Entry Workflow"
+      description: "Enter movement/flow analysis data"
+      steps:
+        - step: 1
+          name: "Get Accounts"
+          handler: "FlowDataEntry_GetAccounts"
+          parameters:
+            AllAccounts: "B"
+          purpose: "List accounts with flow capability"
+
+        - step: 2
+          name: "Load Flow Data"
+          handler: "FlowDataEntry_GetDataEntries"
+          purpose: "Display flows with opening/closing amounts"
+
+        - step: 3
+          name: "Enter Flow Amounts"
+          description: "User enters amounts by flow type"
+          purpose: "Explain movement from opening to closing"
+
+        - step: 4
+          name: "Save Flow Data"
+          handler: "FlowDataEntry_SaveDataEntries"
+          purpose: "Persist flow amounts"
+
+    bulk_upload_workflow:
+      name: "Bulk Bundle Upload Workflow"
+      description: "Upload bundle data from file"
+      steps:
+        - step: 1
+          name: "Upload File"
+          handler: "UploadBundle_Upload"
+          output: "UploadJobID"
+
+        - step: 2
+          name: "Monitor Upload"
+          handler: "Job_GetJobStatusPolling"
+          purpose: "Wait for file processing"
+
+        - step: 3
+          name: "Select Periods"
+          handler: "UploadBundle_GetUploadsAvailableConsos"
+          purpose: "Choose target consolidation periods"
+
+        - step: 4
+          name: "Validate Data"
+          handler: "UploadBundle_CheckData"
+          output: "CheckJobID"
+
+        - step: 5
+          name: "Monitor Validation"
+          handler: "Job_GetJobStatusPolling"
+          purpose: "Wait for validation"
+
+        - step: 6
+          name: "Process Import"
+          handler: "UploadBundle_Process"
+          output: "ProcessJobID"
+
+        - step: 7
+          name: "Verify Import"
+          handler: "Bundle_GetBundleStandardPeriod"
+          purpose: "Confirm data imported correctly"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_VIEW_DATAENTRY_BUNDLE_ACCOUNT"
+      description: "Returns bundle data entry grid structure and values"
+      called_by: "Bundle_GetBundleStandardPeriod, Bundle_GetBundleMultiPeriod"
+      returns:
+        - "ACCOUNTResult1: Row definitions"
+        - "ACCOUNTResult2: Column definitions"
+        - "ACCOUNTResult3: Cell values"
+
+    - name: "P_UPDATE_DATAENTRY_BUNDLE_ACCOUNT"
+      description: "Updates bundle account amounts"
+      called_by: "Bundle_UpdateBundleStandardPeriod, Bundle_UpdateBundleMultiPeriod"
+
+    - name: "P_VIEW_BUNDLE_ACCOUNT_TOTALS"
+      description: "Returns account balance totals by type"
+      called_by: "Bundle_GetBundleAccountTotals"
+
+    - name: "P_SYS_IMPORTBUNDLE_GET_CONSOS"
+      description: "Returns available periods from uploaded bundle file"
+      called_by: "UploadBundle_GetUploadsAvailableConsos"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/BundleStandardPeriod/BundleStandardPeriodService.cs"
+      - "Sigma.Mona.WebApplication/Screens/BundleMultiPeriod/BundleMultiPeriodService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Flow/DataEntryService.cs"
+      - "Sigma.Mona.WebApplication/Screens/UploadBundle/UploadBundleService.cs"
+      - "Sigma.Mona.WebApplication/Screens/DimensionDataEntry/DimensionDataEntryService.cs"
+      - "Sigma.Mona.WebApplication/Screens/IPSFlowDataEntry/IPSFlowDataEntryService.cs"
+    handler_count: 27
+    purpose: |
+      Enable AI agents to manage financial data entry including:
+      - Single period bundle data entry with input forms
+      - Multi-period comparative data entry
+      - Flow/movement analysis data entry
+      - Bulk data upload from files
+      - Dimension detail entry
+      - Intercompany flow entry
+
+      Data entry is the core workflow for capturing subsidiary financial
+      data that feeds into consolidation processing.

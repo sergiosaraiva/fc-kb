@@ -1,0 +1,1147 @@
+# API Consolidation Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent orchestration of consolidation operations
+
+api_consolidation_endpoints:
+  name: "Consolidation API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for financial consolidation operations including:
+    - Consolidation Integration (status board, bundles, adjustments, eliminations)
+    - Consolidation Eliminations (automatic and user-defined)
+    - Consolidation Events (preparation, matching, generation)
+
+    These endpoints enable an AI agent to orchestrate the complete consolidation workflow.
+
+  # ============================================================================
+  # CONSOLIDATION INTEGRATION ENDPOINTS
+  # ============================================================================
+  consolidation_integration:
+    description: |
+      Manages the consolidation integration process - the core workflow that executes
+      consolidation calculations including bundles, adjustments, and eliminations.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationIntegration/ConsolidationIntegrationService.cs
+
+    enums:
+      IntegrationTypes:
+        description: "Types of consolidation integration operations"
+        source: "ConsolidationIntegrationController.IntegrationTypes"
+        values:
+          - name: "Undefined"
+            value: 0
+            description: "Default/not specified"
+          - name: "StatusBoard"
+            value: 1
+            description: "Full consolidation status board - executes all procedures"
+            procedures: "All (LinkedCategories | Bundles | Adjustments | Elims)"
+          - name: "Bundles"
+            value: 2
+            description: "Calculate bundles only"
+            procedures: "LinkedCategories | Bundles"
+          - name: "Adjustments"
+            value: 3
+            description: "Calculate adjustments only"
+            procedures: "Adjustments"
+          - name: "Eliminations"
+            value: 4
+            description: "Calculate eliminations only"
+            procedures: "Elims"
+
+    handlers:
+      - name: "ConsolidationIntegration_GetConsolidationIntegration"
+        description: |
+          Retrieves companies and their consolidation status for the integration screen.
+          Returns consolidated companies with their bundle, adjustment, and elimination status.
+        access_right: "ConsolidationIntegration_GetConsolidationIntegration"
+        async: true
+
+        request:
+          _t: "ConsolidationIntegration_GetConsolidationIntegration"
+          parameters:
+            - name: "ConsoID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Consolidation period ID to get integration status for"
+            - name: "Debug"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Enable verbose logging in response"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationIntegration_GetConsolidationIntegration",
+                "ConsoID": 123,
+                "Debug": false
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                IsSelected:
+                  type: "boolean"
+                  description: "Whether company is selected (always true)"
+                ID:
+                  type: "integer"
+                  description: "Company ID"
+                Code:
+                  type: "string"
+                  description: "Company code"
+                Name:
+                  type: "string"
+                  description: "Company name"
+                BundleSelected:
+                  type: "boolean"
+                  description: "Bundle calculation status (Status_Bundles)"
+                AdjmntSelected:
+                  type: "boolean"
+                  description: "Adjustment calculation status (Status_Adjustments)"
+                ElimSelected:
+                  type: "boolean"
+                  description: "Elimination calculation status (Status_ClosingAmounts)"
+            example:
+              json: |
+                {
+                  "scf_items": [
+                    {
+                      "IsSelected": true,
+                      "ID": 456,
+                      "Code": "ACME",
+                      "Name": "Acme Corporation",
+                      "BundleSelected": true,
+                      "AdjmntSelected": false,
+                      "ElimSelected": false
+                    }
+                  ]
+                }
+
+      - name: "ConsolidationIntegration_RunConsolidationIntegration"
+        description: |
+          Executes consolidation integration calculations for selected companies.
+          Creates a background job that runs the specified consolidation procedures.
+          Returns a JobID for monitoring progress.
+        access_right: "ConsolidationIntegration_RunConsolidationIntegration"
+        async: true
+        background_job: true
+        job_class: "Jobs.Database.ConsolidationIntegrationJob"
+
+        request:
+          _t: "ConsolidationIntegration_RunConsolidationIntegration"
+          parameters:
+            - name: "ConsoID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Consolidation period ID"
+            - name: "IntegrationType"
+              type: "integer"
+              required: true
+              validation: "ValidateInt"
+              description: "Type of integration to run (1=StatusBoard, 2=Bundles, 3=Adjustments, 4=Eliminations)"
+              enum_ref: "IntegrationTypes"
+            - name: "CompanyIDs"
+              type: "integer[]"
+              required: true
+              validation: "ValidateList"
+              description: "Array of company IDs to include in calculation"
+            - name: "IncludeDimensions"
+              type: "boolean"
+              required: false
+              default: false
+              validation: "ValidateBool"
+              description: "Whether to include dimension calculations"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Screen structure ID for job tracking"
+            - name: "Debug"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Enable verbose logging"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationIntegration_RunConsolidationIntegration",
+                "ConsoID": 123,
+                "IntegrationType": 1,
+                "CompanyIDs": [456, 457, 458],
+                "IncludeDimensions": true,
+                "ScreenID": 100,
+                "Debug": false
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring progress"
+            example:
+              json: |
+                {
+                  "JobID": 12345
+                }
+          notes:
+            - "Use Job_GetJobStatusPolling to monitor job completion"
+            - "Job names vary by IntegrationType: 'Consolidation Status Board', 'Calculate Bundle', 'Calculate Adjustments', 'Calculate Eliminations'"
+
+  # ============================================================================
+  # CONSOLIDATION ELIMINATIONS ENDPOINTS
+  # ============================================================================
+  consolidation_eliminations:
+    description: |
+      Manages consolidation elimination entries - both automatic (system-generated)
+      and user-defined eliminations used to remove intercompany transactions.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsService.cs
+
+    enums:
+      EliminationTypes:
+        description: "Types of elimination entries"
+        values:
+          - name: "Auto"
+            value: "S"
+            description: "System-generated automatic eliminations"
+          - name: "User"
+            value: "U"
+            description: "User-defined manual eliminations"
+
+      DataTypes:
+        description: "Types of elimination data"
+        values:
+          - name: "Closing"
+            value: 0
+            description: "Closing amounts"
+          - name: "ClosingFlow"
+            value: 1
+            description: "Closing flow amounts"
+          - name: "ClosingDimension"
+            value: 2
+            description: "Closing dimension amounts"
+          - name: "Interco"
+            value: 3
+            description: "Intercompany amounts"
+          - name: "IntercoFlow"
+            value: 4
+            description: "Intercompany flow amounts"
+          - name: "IntercoDimension"
+            value: 5
+            description: "Intercompany dimension amounts"
+
+    handlers:
+      - name: "ConsolidationEliminations_GetEliminations"
+        description: |
+          Retrieves list of elimination entries for the current consolidation period.
+          Supports filtering by elimination type and pagination.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminations_GetEliminations"
+          parameters:
+            - name: "EliminationType"
+              type: "string"
+              required: false
+              validation: "ValidateChar"
+              description: "Filter by type: 'S' (Auto) or 'U' (User)"
+              enum_ref: "EliminationTypes"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+              default: 0
+              description: "Starting row index for pagination"
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+              description: "Maximum rows to return"
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              description: "SQL-style ordering (e.g., 'EliminationCode ASC')"
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Include total matching row count in response"
+            - name: "Debug"
+              type: "boolean"
+              required: false
+              default: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_GetEliminations",
+                "EliminationType": "U",
+                "scf_from_row": 0,
+                "scf_row_count": 50,
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                EliminationID:
+                  type: "integer"
+                  description: "Unique elimination identifier"
+                EliminationCode:
+                  type: "string"
+                  description: "Elimination code"
+                EliminationName:
+                  type: "string"
+                  description: "Elimination description/name"
+                EliminationType:
+                  type: "string"
+                  description: "'S' (Auto) or 'U' (User)"
+                IsLocked:
+                  type: "boolean"
+                  description: "Whether elimination is locked for editing"
+            scf_total_row_count:
+              type: "integer"
+              description: "Total matching records (when pagination enabled)"
+
+      - name: "ConsolidationEliminations_SaveElimination"
+        description: |
+          Creates or updates an elimination entry.
+          Validates elimination code uniqueness and type constraints.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminations_SaveElimination"
+          parameters:
+            - name: "EliminationID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Elimination ID (null for new, value for update)"
+            - name: "EliminationCode"
+              type: "string"
+              required: true
+              validation: "ValidateCode"
+              description: "Unique elimination code"
+            - name: "EliminationName"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Elimination description"
+            - name: "EliminationType"
+              type: "string"
+              required: true
+              validation: "ValidateChar"
+              description: "'S' (Auto) or 'U' (User)"
+            - name: "EntityVersion"
+              type: "array<EntityVersion>"
+              required: false
+              description: "Entity versions for optimistic concurrency"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_SaveElimination",
+                "EliminationID": null,
+                "EliminationCode": "ELIM001",
+                "EliminationName": "Intercompany Sales Elimination",
+                "EliminationType": "U"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "object"
+              description: "Saved elimination entity"
+            EntityVersion:
+              type: "array"
+              description: "Updated entity versions"
+
+      - name: "ConsolidationEliminations_RemoveElimination"
+        description: |
+          Deletes an elimination entry and all its detail lines.
+          Only user-defined eliminations can be removed.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminations_RemoveElimination"
+          parameters:
+            - name: "EliminationID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Elimination ID to delete"
+            - name: "EntityVersion"
+              type: "array<EntityVersion>"
+              required: false
+              description: "Entity versions for optimistic concurrency"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_RemoveElimination",
+                "EliminationID": 123
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - "Elimination not found"
+            - "Cannot delete system-generated eliminations"
+
+  # ============================================================================
+  # CONSOLIDATION ELIMINATION DETAILS ENDPOINTS
+  # ============================================================================
+  consolidation_elimination_details:
+    description: |
+      Manages elimination detail lines - the individual account/amount entries
+      that make up an elimination transaction.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsDetailsService.cs
+
+    handlers:
+      - name: "ConsolidationEliminationsDetails_GetEliminationItem"
+        description: |
+          Retrieves a single elimination header with summary information.
+          Used when opening an elimination for editing.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminationsDetails_GetEliminationItem"
+          parameters:
+            - name: "EliminationID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Elimination ID to retrieve"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Include entity version for locking"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminationsDetails_GetEliminationItem",
+                "EliminationID": 123,
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "object"
+              schema:
+                EliminationID:
+                  type: "integer"
+                EliminationCode:
+                  type: "string"
+                EliminationName:
+                  type: "string"
+                EliminationType:
+                  type: "string"
+                TotalDebit:
+                  type: "decimal"
+                  description: "Sum of debit amounts"
+                TotalCredit:
+                  type: "decimal"
+                  description: "Sum of credit amounts"
+                IsBalanced:
+                  type: "boolean"
+                  description: "Whether debits equal credits"
+            EntityVersion:
+              type: "array"
+
+      - name: "ConsolidationEliminationsDetails_GetEliminationDetails"
+        description: |
+          Retrieves all detail lines for an elimination entry.
+          Returns account assignments with debit/credit amounts.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminationsDetails_GetEliminationDetails"
+          parameters:
+            - name: "EliminationID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Elimination ID to get details for"
+            - name: "DataType"
+              type: "integer"
+              required: false
+              validation: "ValidateInt"
+              description: "Filter by data type (0=Closing, 1=ClosingFlow, etc.)"
+              enum_ref: "DataTypes"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+              default: 0
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+              default: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminationsDetails_GetEliminationDetails",
+                "EliminationID": 123,
+                "DataType": 0,
+                "scf_from_row": 0,
+                "scf_row_count": 100
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                EliminationDetailID:
+                  type: "integer"
+                  description: "Detail line ID"
+                EliminationID:
+                  type: "integer"
+                  description: "Parent elimination ID"
+                CompanyID:
+                  type: "integer"
+                  description: "Company ID for this line"
+                CompanyCode:
+                  type: "string"
+                AccountID:
+                  type: "integer"
+                  description: "GL Account ID"
+                AccountCode:
+                  type: "string"
+                AccountName:
+                  type: "string"
+                DebitAmount:
+                  type: "decimal"
+                  description: "Debit amount (positive)"
+                CreditAmount:
+                  type: "decimal"
+                  description: "Credit amount (positive)"
+                FlowID:
+                  type: "integer"
+                  nullable: true
+                  description: "Flow ID if applicable"
+                Dimensions:
+                  type: "object"
+                  nullable: true
+                  description: "Dimension values if applicable"
+
+      - name: "ConsolidationEliminationsDetails_SaveEliminationDetails"
+        description: |
+          Saves elimination detail lines (create, update, or delete multiple lines).
+          Supports batch operations for efficiency.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminationsDetails_SaveEliminationDetails"
+          parameters:
+            - name: "EliminationID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Parent elimination ID"
+            - name: "Details"
+              type: "array"
+              required: true
+              validation: "ValidateList"
+              description: "Array of detail lines to save"
+              element_schema:
+                EliminationDetailID:
+                  type: "integer"
+                  nullable: true
+                  description: "Null for new, value for update"
+                CompanyID:
+                  type: "integer"
+                  required: true
+                AccountID:
+                  type: "integer"
+                  required: true
+                DebitAmount:
+                  type: "decimal"
+                CreditAmount:
+                  type: "decimal"
+                FlowID:
+                  type: "integer"
+                  nullable: true
+                Dimensions:
+                  type: "object"
+                  nullable: true
+                IsDeleted:
+                  type: "boolean"
+                  default: false
+                  description: "Mark for deletion"
+            - name: "EntityVersion"
+              type: "array<EntityVersion>"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminationsDetails_SaveEliminationDetails",
+                "EliminationID": 123,
+                "Details": [
+                  {
+                    "EliminationDetailID": null,
+                    "CompanyID": 456,
+                    "AccountID": 1001,
+                    "DebitAmount": 10000.00,
+                    "CreditAmount": 0
+                  },
+                  {
+                    "EliminationDetailID": null,
+                    "CompanyID": 457,
+                    "AccountID": 1002,
+                    "DebitAmount": 0,
+                    "CreditAmount": 10000.00
+                  }
+                ]
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              description: "Saved detail lines with IDs"
+            EntityVersion:
+              type: "array"
+
+      - name: "ConsolidationEliminationsDetails_RemoveEliminationDetails"
+        description: |
+          Removes specific elimination detail lines.
+        async: true
+
+        request:
+          _t: "ConsolidationEliminationsDetails_RemoveEliminationDetails"
+          parameters:
+            - name: "EliminationDetailIDs"
+              type: "integer[]"
+              required: true
+              validation: "ValidateList"
+              description: "Array of detail line IDs to delete"
+            - name: "EntityVersion"
+              type: "array<EntityVersion>"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminationsDetails_RemoveEliminationDetails",
+                "EliminationDetailIDs": [1001, 1002, 1003]
+              }
+
+  # ============================================================================
+  # CONSOLIDATION EVENTS ENDPOINTS
+  # ============================================================================
+  consolidation_events:
+    description: |
+      Manages consolidation events - the workflow for preparing and generating
+      consolidation entries including intercompany matching and elimination generation.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationEvents/ConsolidationEventsService.cs
+
+    workflow:
+      description: |
+        Typical consolidation events workflow:
+        1. GetConsolidationEvents - List all events for the period
+        2. GetCompanies - Get companies participating in the event
+        3. GetMatches - Get intercompany transaction matches
+        4. Prepare - Prepare event data for generation
+        5. Generate - Generate consolidation entries
+      steps:
+        - order: 1
+          handler: "ConsolidationEvents_GetConsolidationEvents"
+          purpose: "List consolidation events"
+        - order: 2
+          handler: "ConsolidationEvents_GetCompanies"
+          purpose: "Get participating companies"
+        - order: 3
+          handler: "ConsolidationEvents_GetMatches"
+          purpose: "Review intercompany matches"
+        - order: 4
+          handler: "ConsolidationEvents_Prepare"
+          purpose: "Prepare for generation"
+        - order: 5
+          handler: "ConsolidationEvents_Generate"
+          purpose: "Generate entries"
+
+    handlers:
+      - name: "ConsolidationEvents_GetConsolidationEvents"
+        description: |
+          Retrieves list of consolidation events for the current period.
+          Events represent different types of consolidation operations (eliminations, adjustments, etc.).
+        async: true
+
+        request:
+          _t: "ConsolidationEvents_GetConsolidationEvents"
+          parameters:
+            - name: "ConsoID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Consolidation period ID (defaults to working conso)"
+            - name: "EventType"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by event type"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+              default: 0
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+              default: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEvents_GetConsolidationEvents",
+                "ConsoID": 123,
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                EventID:
+                  type: "integer"
+                  description: "Unique event identifier"
+                EventCode:
+                  type: "string"
+                  description: "Event code"
+                EventName:
+                  type: "string"
+                  description: "Event description"
+                EventType:
+                  type: "string"
+                  description: "Type of consolidation event"
+                Status:
+                  type: "string"
+                  description: "Current event status"
+                CompanyCount:
+                  type: "integer"
+                  description: "Number of companies in event"
+                LastRunDate:
+                  type: "datetime"
+                  nullable: true
+                  description: "Last execution timestamp"
+
+      - name: "ConsolidationEvents_GetCompanies"
+        description: |
+          Retrieves companies participating in a consolidation event.
+          Shows company status and selection for event processing.
+        async: true
+
+        request:
+          _t: "ConsolidationEvents_GetCompanies"
+          parameters:
+            - name: "EventID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Event ID to get companies for"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+              default: 0
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEvents_GetCompanies",
+                "EventID": 456
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                CompanyID:
+                  type: "integer"
+                CompanyCode:
+                  type: "string"
+                CompanyName:
+                  type: "string"
+                IsSelected:
+                  type: "boolean"
+                  description: "Whether company is selected for event"
+                Status:
+                  type: "string"
+                  description: "Company processing status"
+
+      - name: "ConsolidationEvents_GetMatches"
+        description: |
+          Retrieves intercompany transaction matches for reconciliation.
+          Shows matched and unmatched intercompany amounts.
+        async: true
+
+        request:
+          _t: "ConsolidationEvents_GetMatches"
+          parameters:
+            - name: "EventID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Event ID to get matches for"
+            - name: "CompanyID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Filter by specific company"
+            - name: "PartnerCompanyID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Filter by partner company"
+            - name: "MatchStatus"
+              type: "string"
+              required: false
+              description: "Filter by match status (Matched, Unmatched, Difference)"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+              default: 0
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEvents_GetMatches",
+                "EventID": 456,
+                "MatchStatus": "Unmatched"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                MatchID:
+                  type: "integer"
+                CompanyID:
+                  type: "integer"
+                CompanyCode:
+                  type: "string"
+                PartnerCompanyID:
+                  type: "integer"
+                PartnerCompanyCode:
+                  type: "string"
+                AccountID:
+                  type: "integer"
+                AccountCode:
+                  type: "string"
+                Amount:
+                  type: "decimal"
+                  description: "Transaction amount"
+                PartnerAmount:
+                  type: "decimal"
+                  description: "Partner's recorded amount"
+                Difference:
+                  type: "decimal"
+                  description: "Amount - PartnerAmount"
+                MatchStatus:
+                  type: "string"
+                  description: "Matched, Unmatched, or Difference"
+
+      - name: "ConsolidationEvents_Prepare"
+        description: |
+          Prepares consolidation event data for generation.
+          Validates data, calculates matches, and stages entries.
+        async: true
+        background_job: false
+
+        request:
+          _t: "ConsolidationEvents_Prepare"
+          parameters:
+            - name: "EventID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Event ID to prepare"
+            - name: "CompanyIDs"
+              type: "integer[]"
+              required: false
+              validation: "ValidateList"
+              description: "Specific companies to prepare (null = all)"
+            - name: "ForceRecalculate"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Force recalculation even if already prepared"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEvents_Prepare",
+                "EventID": 456,
+                "CompanyIDs": [101, 102, 103],
+                "ForceRecalculate": true
+              }
+
+        response:
+          success:
+            PreparationStatus:
+              type: "string"
+              description: "Preparation result status"
+            MatchedCount:
+              type: "integer"
+              description: "Number of matched transactions"
+            UnmatchedCount:
+              type: "integer"
+              description: "Number of unmatched transactions"
+            DifferenceCount:
+              type: "integer"
+              description: "Number of transactions with differences"
+            warnings:
+              type: "array"
+              description: "Warning messages about data issues"
+
+      - name: "ConsolidationEvents_Generate"
+        description: |
+          Generates consolidation entries from prepared event data.
+          Creates elimination and adjustment entries in the system.
+        async: true
+        background_job: true
+
+        request:
+          _t: "ConsolidationEvents_Generate"
+          parameters:
+            - name: "EventID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Event ID to generate entries for"
+            - name: "CompanyIDs"
+              type: "integer[]"
+              required: false
+              validation: "ValidateList"
+              description: "Specific companies to generate (null = all prepared)"
+            - name: "GenerateEliminations"
+              type: "boolean"
+              required: false
+              default: true
+              description: "Generate elimination entries"
+            - name: "GenerateAdjustments"
+              type: "boolean"
+              required: false
+              default: true
+              description: "Generate adjustment entries"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Screen ID for job tracking"
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEvents_Generate",
+                "EventID": 456,
+                "GenerateEliminations": true,
+                "GenerateAdjustments": true
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+          notes:
+            - "Use Job_GetJobStatusPolling to monitor completion"
+            - "Generated entries appear in ConsolidationEliminations and Adjustments screens"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    description: |
+      Recommended workflow patterns for AI agent orchestration of consolidation.
+
+    complete_consolidation_workflow:
+      name: "Complete Consolidation Workflow"
+      description: "End-to-end consolidation process"
+      steps:
+        - step: 1
+          name: "Get Period Status"
+          handler: "ConsolidationIntegration_GetConsolidationIntegration"
+          purpose: "Check current consolidation status for all companies"
+          decision_point: "Identify which companies need processing"
+
+        - step: 2
+          name: "Review Events"
+          handler: "ConsolidationEvents_GetConsolidationEvents"
+          purpose: "List available consolidation events"
+          decision_point: "Select events to process"
+
+        - step: 3
+          name: "Review Matches"
+          handler: "ConsolidationEvents_GetMatches"
+          purpose: "Check intercompany matching status"
+          decision_point: "Identify unmatched transactions requiring attention"
+
+        - step: 4
+          name: "Prepare Events"
+          handler: "ConsolidationEvents_Prepare"
+          purpose: "Prepare data for generation"
+          decision_point: "Check warnings and unmatched counts"
+
+        - step: 5
+          name: "Generate Entries"
+          handler: "ConsolidationEvents_Generate"
+          purpose: "Create elimination and adjustment entries"
+          monitor: "Job_GetJobStatusPolling"
+
+        - step: 6
+          name: "Run Integration"
+          handler: "ConsolidationIntegration_RunConsolidationIntegration"
+          purpose: "Execute consolidation calculations"
+          monitor: "Job_GetJobStatusPolling"
+
+        - step: 7
+          name: "Review Eliminations"
+          handler: "ConsolidationEliminations_GetEliminations"
+          purpose: "Verify generated eliminations"
+          decision_point: "Check for balanced entries"
+
+    elimination_management_workflow:
+      name: "Manual Elimination Management"
+      description: "Creating and managing user-defined eliminations"
+      steps:
+        - step: 1
+          name: "List Eliminations"
+          handler: "ConsolidationEliminations_GetEliminations"
+          parameters:
+            EliminationType: "U"
+          purpose: "Get existing user eliminations"
+
+        - step: 2
+          name: "Create Elimination"
+          handler: "ConsolidationEliminations_SaveElimination"
+          purpose: "Create new elimination header"
+
+        - step: 3
+          name: "Add Details"
+          handler: "ConsolidationEliminationsDetails_SaveEliminationDetails"
+          purpose: "Add debit/credit lines"
+          constraint: "Ensure debits equal credits"
+
+        - step: 4
+          name: "Verify Balance"
+          handler: "ConsolidationEliminationsDetails_GetEliminationItem"
+          purpose: "Check IsBalanced flag"
+
+  # ============================================================================
+  # CONSOLIDATION SUMMARY EQUITY ELIMINATION ACCOUNTS
+  # ============================================================================
+  consolidation_summary_equity:
+    description: |
+      Manages equity elimination account mappings for consolidation summaries.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationSummaryEquityEliminationAccounts/ConsolidationSummaryEquityEliminationAccountsService.cs
+
+    handlers:
+      - name: "ConsolidationSummaryEquityEliminationAccounts_GetDetails"
+        description: |
+          Retrieves equity elimination account mapping details.
+          Used for configuring how equity eliminations are posted during consolidation.
+        async: true
+
+        request:
+          _t: "ConsolidationSummaryEquityEliminationAccounts_GetDetails"
+          parameters:
+            - name: "ConsoID"
+              type: "integer"
+              required: false
+              description: "Consolidation period ID (defaults to working period)"
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              description: "Equity elimination account mappings"
+
+      - name: "ConsolidationSummaryEquityEliminationAccounts_SaveDetails"
+        description: |
+          Saves equity elimination account mapping details.
+        async: true
+
+        request:
+          _t: "ConsolidationSummaryEquityEliminationAccounts_SaveDetails"
+          parameters:
+            - name: "Details"
+              type: "array"
+              required: true
+              description: "Array of account mapping details to save"
+
+  # ============================================================================
+  # CONSOLIDATION BATCH INTEGRATION
+  # ============================================================================
+  consolidation_batch:
+    description: |
+      Batch consolidation operations for multiple periods.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationBatch/ConsolidationBatchService.cs
+
+    handlers:
+      - name: "ConsolidationIntegration_RunConsolidationIntegrations"
+        description: |
+          Executes consolidation integration for multiple periods in batch mode.
+          Useful for processing multiple consolidation periods in sequence.
+        async: true
+        background_job: true
+
+        request:
+          _t: "ConsolidationIntegration_RunConsolidationIntegrations"
+          parameters:
+            - name: "ConsoIDs"
+              type: "integer[]"
+              required: true
+              description: "Array of consolidation period IDs to process"
+            - name: "IntegrationType"
+              type: "integer"
+              required: true
+              description: "Type of integration (1=StatusBoard, 2=Bundles, 3=Adjustments, 4=Eliminations)"
+            - name: "CompanyIDs"
+              type: "integer[]"
+              required: false
+              description: "Optional filter to specific companies"
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring batch progress"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    updated: "2025-12-04"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationIntegration/ConsolidationIntegrationService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationIntegration/ConsolidationIntegrationController.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsDetailsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationEvents/ConsolidationEventsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationBatch/ConsolidationBatchService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationSummaryEquityEliminationAccounts/ConsolidationSummaryEquityEliminationAccountsService.cs"
+    handler_count: 17
+    update_notes: |
+      2025-12-04: Added 5 missing handlers identified in Phase 4 API Accuracy verification:
+      - ConsolidationIntegration_RunConsolidationIntegrations (batch processing)
+      - ConsolidationSummaryEquityEliminationAccounts_GetDetails
+      - ConsolidationSummaryEquityEliminationAccounts_SaveDetails
+    purpose: |
+      Enable AI agents to orchestrate the complete consolidation workflow including:
+      - Running consolidation integration calculations
+      - Batch consolidation processing across multiple periods
+      - Managing elimination entries (automatic and user-defined)
+      - Processing consolidation events with intercompany matching
+      - Configuring equity elimination accounts
+      - Monitoring background job progress

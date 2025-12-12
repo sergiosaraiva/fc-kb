@@ -1,0 +1,24 @@
+Topics:
+Additional Reports, SQL Query Reports, Custom Reports, Dynamic Reports
+
+Keywords:
+Additional Reports, SQL Queries, Custom Reports, Dynamic Reports, User Input, Data Presentation, Analysis
+
+Summary:
+The documentation for the Financial Consolidation product includes detailed instructions on creating and managing additional reports. The Additional Reports section explains how to use SQL queries to generate custom reports based on user input and dynamic data. These reports can be tailored to present data or analysis that may change frequently, meeting specific user needs. The instructions ensure users can efficiently create, customize, and access various dynamic reports for comprehensive data analysis.
+
+Contents:
+Additional reports
+The Additional Reports page is an interface used for creating SQL queries in the application database to generate custom reports. These additional reports are dynamic and can change content or appearance based on user input. They are used to present data or analysis that may change frequently or require customization based on specific user needs.
+
+To access the Additional Reports page, click Automation > Additional Reports.
+
+The Available Reports panel displays a list of the custom reports available in the application.
+
+Create an additional report:
+1. From the Available Reports panel, click on the report you want. The list of custom variables for that report is displayed on the right-side panel.
+2. In the editable fields, enter or select the required information.
+3. Click to generate the report.
+4. Click the link below to download the report.
+
+The list of additional reports is independent of the application, and the content may change from one installation to another.

@@ -1,0 +1,563 @@
+Topics:
+User Settings, Workflow Management, Data Import and Export, Validation Reports
+
+Keywords:
+Profile, Consolidation Period, Task Management, Gantt Chart, Pie Chart, Status Board, Validation, Document Storage, File Upload, User Access, Import Data, Export Data, Mapping Tables, Adjustments, Data Report, CSV, Excel, HUB, Validation Report, Group Validation, Bundle Validation
+
+Summary:
+The provided documentation for the Financial Consolidation product includes comprehensive instructions on user settings, workflow management, data import and export, and validation reports. The User Settings section covers profile customization, period selection, and language settings. Workflow Management explains how to manage tasks, view Gantt and Pie charts, and export data. The Data Import and Export sections detail handling different file structures, specifying import/export parameters, and validating data quality. The Validation Reports section provides steps to generate and analyze validation reports, including bundle and group validation, and offers detailed guidance on resolving data validation issues.
+
+Contents:
+
+Question: What is the purpose of the User Settings page?
+Answer: The User Settings page allows you to view and edit your profile settings, such as language and consolidation period preferences.
+
+Question: How do you download generated PDF files?
+Answer: To download generated PDF files, select the option on the User Settings page accessed through the Profile icon, and click to confirm.
+
+Question: What can you do on the Workflow page?
+Answer: On the Workflow page, you can view and manage tasks, set preferences, export tasks to Excel, and update task statuses.
+
+Question: How do you show or hide the Gantt chart?
+Answer: To show or hide the Gantt chart, click the corresponding icon to toggle the display.
+
+Question: What information is shown in the Pie chart on the Workflow page?
+Answer: The Pie chart shows the status and count of tasks, with different colors representing different statuses.
+
+Question: How do you start work on a task?
+Answer: To start work on a task, select the company and task, change the status to In progress, and click to navigate to the task page.
+
+Question: How do you complete a task?
+Answer: To complete a task, select the company and task, change the status to Completed, optionally add comments, and click to confirm.
+
+Question: What information is displayed on the Status Board?
+Answer: The Status Board displays company data entry status, including warnings, errors, validation status, and confirmation status.
+
+Question: How do you run validation rules from the Status Board?
+Answer: To run validation rules, select the companies, go to the validation panel, and click Validate.
+
+Question: What can you do in the Document Repository?
+Answer: In the Document Repository, you can view, download, upload, and manage documents based on your access rights.
+
+Question: How do you change the consolidation period?
+Answer: To change the consolidation period, click the Select Period icon, choose the desired period, and click to confirm.
+
+Question: What is period locking?
+Answer: Period locking restricts modifications to specific data types for a period across all companies within the group.
+
+Question: How do you enter a currency exchange rate?
+Answer: To enter a currency exchange rate, select the period and currency, enter the rates, and click to save changes.
+
+Question: How do you add a company?
+Answer: To add a company, click the add icon on the Companies page, enter the required information, and save.
+
+Question: What is the purpose of the Group Structure page?
+Answer: The Group Structure page defines relationships between companies in the group, managing shareholding and consolidation methods.
+
+Question: How do you create a local adjustment?
+Answer: To create a local adjustment, click the add icon on the Local Adjustments View page, enter information on the Manual Input page, and save.
+
+Question: What functions are available on the Local Adjustments Manual Input page?
+Answer: Functions include multiply/divide for efficient reporting, along with entering general adjustment-related information.
+
+Question: What is the purpose of the Flow Management page?
+Answer: The Flow Management page allows you to manage flows, including recalculating flows, updating rates, and reconciling discrepancies.
+
+Question: How do you enter analytical dimensions?
+Answer: Select the company, account, and dimension group, then enter values for the dimensions in the table.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page records transactions conducted with other companies within the group.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click the add icon, enter the Code and Name, select a structure, and map items in the Target table.
+
+Question: How do you create an import file structure?
+Answer: To create an import file structure, enter the file ID, select data type, import options, parameters, and mapping tables, then save.
+
+Question: What is the purpose of the Export File Structure page?
+Answer: The Export File Structure page defines the structure of files to match the data you want to export.
+
+Question: How do you import bundle data?
+Answer: Select the structure from the File Structure list, upload the file, fill in parameters, and click to start the import.
+
+Question: What steps are involved in importing adjustments?
+Answer: Select the file type, upload the file, specify parameters, and click to start the import.
+
+Question: How do you export data?
+Answer: Select the consolidation period, file structure, specify parameters, select data to export, and click to start the export.
+
+Question: What is the purpose of the Import Data Report page?
+Answer: The Import Data Report page generates reports of data imported into the Financial Consolidation application.
+
+Question: How do you view a bundle validation report?
+Answer: Select a company and report, click View report, and investigate issues by clicking on errors or warnings.
+
+Question: How do you download a bundle validation report?
+Answer: Select a company and report, click the download icon, provide required information, and click to generate the report.
+
+Question: How do you set a lock date for data?
+Answer: On the Define Period Locking page, click in the Data Locking Date field to specify a date, and click to confirm.
+
+Question: How do you change the working consolidation period?
+Answer: To change the working consolidation period, access the User Settings page, select the desired period, and click to confirm.
+
+Question: What does the Workflow page display?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status.
+
+Question: How do you start work on a task in the Workflow page?
+Answer: Select the company and task, change the status to 'In progress' in the Task details panel, and click to navigate to the task page.
+
+Question: How do you complete a task in the Workflow page?
+Answer: After completing a task, update the status to 'Completed' in the Task details panel, optionally add comments, and click to confirm.
+
+Question: What is the function of the Status Board?
+Answer: The Status Board provides an overview of the data entry status for all companies in the consolidation, including validation status and error details.
+
+Question: How do you review error details on the Status Board?
+Answer: Click beside the validation status to see the details of balance errors or data loaded for better insight into issues.
+
+Question: What can you do in the Documents Repository?
+Answer: In the Documents Repository, you can view, download, upload, refresh, and delete files, depending on your access rights.
+
+Question: How do you set a lock date for data types?
+Answer: On the Define Period Locking page, specify a lock date in the Data Locking Date field and click to confirm.
+
+Question: How do you unlock data types?
+Answer: To unlock data types, clear the lock date in the Data Locking Date field on the Define Period Locking page and click to confirm.
+
+Question: How do you manually enter currency exchange rates?
+Answer: On the Exchange Rates page, select the period and currency, enter the Close, Average, and Month rates, and click to save changes.
+
+Question: What is the purpose of the Companies page?
+Answer: The Companies page is used for adding, reviewing, or editing companies within the group, including maintaining subsidiary and division information.
+
+Question: How do you add a company?
+Answer: Click the add icon on the Companies page, enter the required information, such as currency code and consolidation method, then save.
+
+Question: What is the Group Structure page used for?
+Answer: The Group Structure page defines the interconnected relationships between all companies within the group, determining the appropriate consolidation method.
+
+Question: How do you view local adjustments?
+Answer: To view local adjustments, go to the Local Adjustments View page, where you can preview, create, modify, or delete adjustments.
+
+Question: What can you do on the Local Adjustments Manual Input page?
+Answer: On the Local Adjustments Manual Input page, you can enter general adjustment-related information, account codes, debit/credit amounts, and use functions like multiply/divide.
+
+Question: What is the purpose of the Flow Management page?
+Answer: The Flow Management page allows you to manage financial flows for a selected company, including recalculating flows, updating rates, and reconciling discrepancies.
+
+Question: How do you manage flows in the Flow Management page?
+Answer: Select the options you want to use, provide required information, and click to save.
+
+Question: What is the purpose of the Analytical Dimensions page?
+Answer: The Analytical Dimensions page allows you to capture financial transactions in more detail by breaking down account values associated with different dimensions.
+
+Question: How do you enter analytical dimensions?
+Answer: To enter analytical dimensions, select the company, account, and dimension group, then enter values for the dimensions in the table and save.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page is used to record transactions conducted with other companies within the group, facilitating accurate intercompany reporting.
+
+Question: How do you enter intercompany transactions?
+Answer: To enter intercompany transactions, select the company, account, and partner, enter transaction amounts, and save the details.
+
+Question: What is the purpose of the Define Mapping Tables page?
+Answer: The Define Mapping Tables page allows you to define mapping tables for different structures used during data import and export.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click the add icon, enter the Code and Name, select a structure, and map items in the Target table.
+
+Question: What is the purpose of the Import File Structure page?
+Answer: The Import File Structure page allows you to define the structure of files to match the data you want to import, ensuring compatibility and accurate data transfer.
+
+Question: How do you create an import file structure?
+Answer: To create an import file structure, enter the file ID, select data type, import options, parameters, and mapping tables, then save.
+
+Question: What is the purpose of the Export File Structure page?
+Answer: The Export File Structure page allows you to define the structure of files to match the data you want to export, facilitating seamless data transfer.
+
+Question: How do you create an export file structure?
+Answer: To create an export file structure, enter the file ID, select data type, export options, parameters, and export rules, then save.
+
+Question: How do you import bundle data?
+Answer: To import bundle data, select the structure from the File Structure list, upload the file, fill in parameters, and start the import.
+
+Question: How do you import adjustments?
+Answer: To import adjustments, select the file type, upload the file, specify parameters, and click to start the import.
+
+Question: How do you export adjustments?
+Answer: To export adjustments, select the consolidation period, file type, specify parameters, select companies and journal types, and start the export.
+
+Question: What is the process to export data?
+Answer: To export data, select the consolidation period, file structure, specify parameters, select data to export, and start the export.
+
+Question: What is the purpose of the Import Data Report page?
+Answer: The Import Data Report page generates reports of data imported into the Financial Consolidation application.
+
+Question: How can you access the User Settings page?
+Answer: To access the User Settings page, click the Profile icon or the Current or Reference consolidation period on top of any page.
+
+Question: What information is displayed on the User Settings page?
+Answer: The User Settings page displays your profile, consolidation periods including their codes, reference period codes, names, and options to change application or data languages.
+
+Question: How do you change the current consolidation period?
+Answer: To change the current consolidation period, click the consolidation period you want to change, then select it from the list and click to confirm.
+
+Question: What do the red and black locks indicate on the User Settings page?
+Answer: On the User Settings page, a red lock indicates a locked period, while a black lock indicates an open period.
+
+Question: How can you filter the list of consolidation periods?
+Answer: You can filter the list of consolidation periods using wildcards like ? and * to narrow down the list based on criteria such as year, nature, or sequence.
+
+Question: How do you change the application or data language?
+Answer: To change the application or data language, go to the User Settings page through the Profile icon, select another language from the drop-down, and click to confirm.
+
+Question: What options are available in the Task list field on the Workflow page?
+Answer: The Task list field on the Workflow page contains a list of tasks assigned to the task owner, and selecting a task shows individual tasks in the chart below.
+
+Question: How can you set your preferences on the Workflow page?
+Answer: You can set your preferences on the Workflow page by controlling the display of the Gantt chart, Pie chart, or Companies list.
+
+Question: What is the purpose of the Gantt chart on the Workflow page?
+Answer: The Gantt chart on the Workflow page displays tasks according to the set timeline and scale.
+
+Question: How do you hide the Gantt chart on the Workflow page?
+Answer: To hide the Gantt chart, click the corresponding icon to cancel the selection.
+
+Question: What does the Pie chart on the Workflow page represent?
+Answer: The Pie chart on the Workflow page represents tasks, showing their status and count.
+
+Question: How do you export tasks to Excel from the Workflow page?
+Answer: To export tasks to Excel, click the Export to Excel icon on the Workflow page, select the list you want to export, and click to export the list to an Excel file.
+
+Question: What steps do you follow to start work on a task?
+Answer: To start work on a task, select the company from the table of companies, select a task from the Task list field, change the status to In progress, and click to navigate to the task page.
+
+Question: How do you complete a task on the Workflow page?
+Answer: To complete a task, select the company, task, change the status to Completed in the Task details panel, optionally add comments, and click to confirm.
+
+Question: How do you reject a task on the Workflow page?
+Answer: To reject a task, select the company, task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: What information is displayed on the Status Board?
+Answer: The Status Board displays an at-a-glance view of all companies in the consolidation, including their data entry process status, warnings, errors, and validation status.
+
+Question: How do you generate a status report from the Status Board?
+Answer: To generate a status report, go to the Status Report panel, select the output file type, and click to generate the report. A download link appears for viewing.
+
+Question: What actions can you perform on the Status Board?
+Answer: On the Status Board, you can generate status reports, run validation rules, review error details, and update data entry status.
+
+Question: How do you change a company's data entry status?
+Answer: To change a company's data entry status, select the company, choose the new status from the Change status panel, and click to confirm.
+
+Question: What is the purpose of the Document Repository?
+Answer: The Document Repository serves as a collaborative storage area for authorized users to view, download, upload, and manage documents.
+
+Question: How do you upload a file to the Document Repository?
+Answer: To upload a file, select a folder in the Document Repository, click the upload icon, enter a description, and click to confirm.
+
+Question: How can administrators manage user access to folders in the Document Repository?
+Answer: Administrators can specify user access and permissions to folders in the Document Repository.
+
+Question: What is the purpose of the Select Period icon?
+Answer: The Select Period icon is used to change the consolidation period displayed on top of every page.
+
+Question: How do you lock data in a consolidation period?
+Answer: To lock data, access the Define Period Locking page, specify a lock date for the data type, and click to confirm.
+
+Question: What happens when you lock a data type?
+Answer: Locking a data type prevents modifications to the selected data type for that period across all companies within the group.
+
+Question: How do you unlock data in a consolidation period?
+Answer: To unlock data, access the Define Period Locking page, click the data you want to unlock, clear the lock date, and click to confirm.
+
+Question: What is the purpose of the Exchange Rates page?
+Answer: The Exchange Rates page is used to enter, import, or export currency exchange rates for a consolidation period.
+
+Question: How do you manually enter a currency exchange rate?
+Answer: To manually enter a currency exchange rate, select the consolidation period and currency, enter the rates, and click to save changes.
+
+Question: How do you import exchange rates?
+Answer: To import exchange rates, access the Import Exchange Rates page, select the file type, upload the file, and transfer the data into the database.
+
+Question: How do you export exchange rates?
+Answer: To export exchange rates, access the Export Exchange Rates page, select the consolidation period and file type, specify parameters, and click to export the rates.
+
+Question: How do you add a company in the Companies page?
+Answer: To add a company, click the add icon on the Companies page, enter the required information, and save.
+
+Question: What additional information can be added to companies?
+Answer: Additional information such as VAT numbers can be added through the Companies Additional Info page.
+
+Question: What is the purpose of the Group Structure page?
+Answer: The Group Structure page defines the interconnected relationships between all companies within the group.
+
+Question: How do you manage direct relationships among entities on the Group Structure page?
+Answer: On the Group Structure page, manage direct relationships by entering and updating the consolidation method and shareholding details.
+
+Question: What is the purpose of the Local Adjustments View page?
+Answer: The Local Adjustments View page allows you to access and review details of local adjustments available in the consolidation.
+
+Question: How do you create a new local adjustment?
+Answer: To create a new local adjustment, click the add icon on the Local Adjustments View page, enter the required information on the Manual Input page, and save.
+
+Question: How do you modify a local adjustment?
+Answer: To modify a local adjustment, select the adjustment on the Local Adjustments View page, click the edit icon, make changes on the Manual Input page, and save.
+
+Question: What information is entered on the Local Adjustments Manual Input page?
+Answer: On the Local Adjustments Manual Input page, enter general adjustment-related information such as company, journal, behavior, attachment, account codes, and debit/credit amounts.
+
+Question: What additional functions are available on the Local Adjustments Manual Input page?
+Answer: Additional functions on the Local Adjustments Manual Input page include multiply/divide for efficient reporting.
+
+Question: What is the purpose of the Flow Management page?
+Answer: The Flow Management page allows you to manage flows for a selected company, including recalculating flows, updating historical rates, and reconciling discrepancies.
+
+Question: How do you manage flows on the Flow Management page?
+Answer: On the Flow Management page, select options to book differences, set flows to zero, merge companies, recalculate specific flows, or update historical rates.
+
+Question: What is the purpose of the Analytical Dimensions page?
+Answer: The Analytical Dimensions page allows you to capture financial transactions in more detail by breaking down values of accounts associated with dimensions across different groups.
+
+Question: How do you enter analytical dimensions?
+Answer: To enter analytical dimensions, select the company, account, and dimension group, then enter values for the dimensions in the table.
+
+Question: What amounts are displayed on the Analytical Dimensions page?
+Answer: Amounts displayed include Adjusted amount, Local amount, Justified amount, and Difference to justify.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page is used to record transactions conducted with other companies within the group.
+
+Question: How do you enter intercompany transactions?
+Answer: To enter intercompany transactions, select the company, account, partner, and enter transaction amounts. Save the transaction details.
+
+Question: What is the purpose of the Define Mapping Tables page?
+Answer: The Define Mapping Tables page allows you to define mapping tables for different structures used during data import/export.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click the add icon, enter the Code and Name, select a structure, and map items in the Target table.
+
+Question: What is the purpose of the Import File Structure page?
+Answer: The Import File Structure page allows you to define the structure of files to match the data you want to import.
+
+Question: How do you create an import file structure?
+Answer: To create an import file structure, enter the file ID, select data type, import options, parameters, and mapping tables, then save.
+
+Question: What is the purpose of the Export File Structure page?
+Answer: The Export File Structure page allows you to define the structure of files to match the data you want to export.
+
+Question: How do you create an export file structure?
+Answer: To create an export file structure, enter the file ID, select data type, export options, parameters, and export rules, then save.
+
+Question: How do you import bundle data?
+Answer: To import bundle data, select the structure from the File Structure list, upload the file, fill in parameters, and click to start the import.
+
+Question: What steps are involved in importing adjustments?
+Answer: To import adjustments, select the file type, upload the file, specify parameters, and click to start the import.
+
+Question: How do you export adjustments?
+Answer: To export adjustments, select the consolidation period, file type, specify parameters, and click to export the adjustments.
+
+Question: How do you export data?
+Answer: To export data, select the consolidation period, file structure, specify parameters, select data to export, and click to start the export.
+
+Question: What is the purpose of the Import Data Report page?
+Answer: The Import Data Report page generates reports of data imported into the Financial Consolidation application.
+
+Question: How do you generate an import data report?
+Answer: To generate an import data report, select the accounts and companies, enter the Calc Account code, sort order, data type, and output file type, then click to generate the report.
+
+Question: What is the purpose of the Bundle Validation page?
+Answer: The Bundle Validation page displays the contents of a validation report, showcasing identified issues within the data and providing a platform to resolve them.
+
+Question: How do you view a bundle validation report?
+Answer: To view a bundle validation report, select a company and report, click View report, and investigate issues by clicking on errors or warnings.
+
+Question: How do you download a bundle validation report?
+Answer: To download a bundle validation report, select a company and report, click the download icon, provide required information, and click to generate the report.
+
+Question: What can you customize on the User Settings page?
+Answer: On the User Settings page, you can customize your profile, change your language settings, and select your working consolidation period.
+
+Question: How do you change your application language?
+Answer: To change your application language, go to the User Settings page through your Profile icon, select a new language from the drop-down, and click to confirm.
+
+Question: What is the function of the Gantt chart on the Workflow page?
+Answer: The Gantt chart on the Workflow page displays tasks according to a timeline, helping you manage and track progress visually.
+
+Question: How do you show or hide the Pie chart on the Workflow page?
+Answer: To show or hide the Pie chart, click the Show/Hide the Pie Chart icon on the Workflow page.
+
+Question: How do you export tasks to Excel?
+Answer: To export tasks to Excel, click the Export to Excel icon on the Workflow page, select the task list, and click to export.
+
+Question: How do you update the status of a task to 'In progress'?
+Answer: Select the company and task, change the status to 'In progress' in the Task details panel, and click to save.
+
+Question: How do you reject a task in the Workflow page?
+Answer: To reject a task, select the company and task, change the status to 'Rejected' in the Task details panel, add comments, and click to confirm.
+
+Question: What information does the Status Board display?
+Answer: The Status Board displays company data entry status, including company code, name, modified date and time, number of warnings and errors, validation status, and data entry status.
+
+Question: How do you generate a status report from the Status Board?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear for viewing.
+
+Question: What actions can you perform in the Document Repository?
+Answer: In the Document Repository, you can view files, download files, upload files, refresh folder content, delete files, and manage documents based on your access rights.
+
+Question: How do you access the Document Repository?
+Answer: To access the Document Repository, click Reports > Document Repository.
+
+Question: What is the process to lock a data type for a period?
+Answer: To lock a data type for a period, go to the Define Period Locking page, specify the lock date in the Data Locking Date field, and click to confirm.
+
+Question: How do you unlock data in a locked period?
+Answer: To unlock data, go to the Define Period Locking page, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: What information is shown in the Period Code panel on the Exchange Rates page?
+Answer: The Period Code panel on the Exchange Rates page shows a list of all consolidation periods, including their codes and names.
+
+Question: How do you manually enter a currency exchange rate?
+Answer: To manually enter a currency exchange rate, select the consolidation period and currency, enter the Close, Average, and Month rates, and click to save changes.
+
+Question: How do you import currency exchange rates?
+Answer: To import currency exchange rates, access the Import Exchange Rates page, select the file type, upload the file, and transfer the data into the database.
+
+Question: How do you export currency exchange rates?
+Answer: To export currency exchange rates, access the Export Exchange Rates page, select the consolidation period, file type, and click to export. A download link will appear for viewing.
+
+Question: What is the purpose of the Companies page?
+Answer: The Companies page is used for adding, reviewing, or editing companies within the group, including maintaining subsidiary and division information.
+
+Question: How do you add a company on the Companies page?
+Answer: To add a company, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save.
+
+Question: What is the Group Structure page used for?
+Answer: The Group Structure page defines the interconnected relationships between all companies within the group, determining the appropriate consolidation method.
+
+Question: How do you enter shareholding details on the Group Structure page?
+Answer: Use the Shareholders tab to enter the number of shares held by other companies in the group and the Participations tab for shares held in other companies.
+
+Question: What is the purpose of the Local Adjustments View page?
+Answer: The Local Adjustments View page allows you to access and review details of local adjustments entered into the application, including creating and modifying adjustments.
+
+Question: How do you create a new local adjustment?
+Answer: To create a new local adjustment, click the add icon on the Local Adjustments View page, enter the required information on the Manual Input page, and save.
+
+Question: What can you do on the Local Adjustments Manual Input page?
+Answer: On the Local Adjustments Manual Input page, you can enter general adjustment-related information, account codes, debit/credit amounts, and use functions like multiply/divide.
+
+Question: What is the purpose of the Flow Management page?
+Answer: The Flow Management page allows you to manage financial flows for a selected company, including recalculating flows, updating rates, and reconciling discrepancies.
+
+Question: How do you book differences on the Flow Management page?
+Answer: To book differences, select the options for booking differences on flows and provide the required information, then click to save.
+
+Question: What options are available for resetting flow values?
+Answer: Options for resetting flow values include setting all flows to zero, setting only selected flows to zero, and setting all flows except specific ones to zero.
+
+Question: What is the purpose of the Analytical Dimensions page?
+Answer: The Analytical Dimensions page allows you to capture financial transactions in more detail by breaking down account values associated with different dimensions.
+
+Question: How do you enter analytical dimensions?
+Answer: To enter analytical dimensions, select the company, account, and dimension group, then enter values for the dimensions in the table and save.
+
+Question: What amounts are displayed on the Analytical Dimensions page?
+Answer: The Analytical Dimensions page displays Adjusted amount, Local amount, Justified amount, and Difference to justify.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page is used to record transactions conducted with other companies within the group, facilitating accurate intercompany reporting.
+
+Question: How do you enter intercompany transactions?
+Answer: To enter intercompany transactions, select the company, account, and partner, enter transaction amounts, and save the details.
+
+Question: What is the purpose of the Define Mapping Tables page?
+Answer: The Define Mapping Tables page allows you to define mapping tables for different structures used during data import and export.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click the add icon, enter the Code and Name, select a structure, and map items in the Target table.
+
+Question: What is the purpose of the Import File Structure page?
+Answer: The Import File Structure page allows you to define the structure of files to match the data you want to import, ensuring compatibility and accurate data transfer.
+
+Question: How do you create an import file structure?
+Answer: To create an import file structure, enter the file ID, select data type, import options, parameters, and mapping tables, then save.
+
+Question: What is the purpose of the Export File Structure page?
+Answer: The Export File Structure page allows you to define the structure of files to match the data you want to export, facilitating seamless data transfer.
+
+Question: How do you create an export file structure?
+Answer: To create an export file structure, enter the file ID, select data type, export options, parameters, and export rules, then save.
+
+Question: How do you import bundle data?
+Answer: To import bundle data, select the structure from the File Structure list, upload the file, fill in parameters, and start the import.
+
+Question: How do you import adjustments?
+Answer: To import adjustments, select the file type, upload the file, specify parameters, and click to start the import.
+
+Question: How do you export adjustments?
+Answer: To export adjustments, select the consolidation period, file type, specify parameters, select companies and journal types, and start the export.
+
+Question: What is the process to export data?
+Answer: To export data, select the consolidation period, file structure, specify parameters, select data to export, and start the export.
+
+Question: What is the purpose of the Import Data Report page?
+Answer: The Import Data Report page generates reports of data imported into the Financial Consolidation application.
+
+Question: How do you generate an Import Data Report?
+Answer: To generate an Import Data Report, select accounts and companies, enter a Calc Account code, select sort order and data type, and generate the report.
+
+Question: How do you view a bundle validation report?
+Answer: To view a bundle validation report, select a company and report, click View report, and investigate issues by clicking on errors or warnings.
+
+Question: What options are available for viewing validation rules?
+Answer: Options for viewing validation rules include All, Errors, and Warnings, to display rules processed successfully, with errors, or with warnings.
+
+Question: How do you download a bundle validation report?
+Answer: To download a bundle validation report, select a company and report, click the download icon, provide required information, and generate the report.
+
+Question: What is the purpose of the Intercompany Matching page?
+Answer: The Intercompany Matching page is used for reconciling and eliminating transactions between companies in a group.
+
+Question: How do you set a threshold on the Intercompany Matching page?
+Answer: To set a threshold, enter the threshold amount in the field provided, specify the amounts for different rules, and save.
+
+Question: What information is displayed on the left-side panel of the Intercompany Matching page?
+Answer: The left-side panel displays details on intercompany matching/unmatching transactions, including company codes, names, local currency, accounts, journals, entries, descriptions, and amounts.
+
+Question: How do you correct intercompany details?
+Answer: To correct intercompany details, search for the account, enter the correction amount in group or local currency, and save the changes.
+
+Question: What are the types of adjustments available for intercompany differences?
+Answer: Types of adjustments include Transfer Difference, Reclassify Difference, and Book Difference.
+
+Question: How do you print intercompany differences or matched transactions?
+Answer: To print intercompany differences or matched transactions, select companies and criteria, choose file type, and generate the report.
+
+Question: What is the purpose of the Intercompany Elimination page?
+Answer: The Intercompany Elimination page establishes automated eliminations for intercompany variances below a specified threshold.
+
+Question: How do you set up automatic intercompany eliminations?
+Answer: To set up automatic intercompany eliminations, select the account, choose the elimination rule, and save the settings.
+
+Question: What are IC Rules?
+Answer: IC Rules are intercompany rules that manage transactions between companies during consolidation.
+
+Question: How do you generate an IC validation report?
+Answer: To generate an IC validation report, select companies and partner companies, choose rules, apply filters, and generate the report.
+
+Question: What is the purpose of the Consolidation Events page?
+Answer: The Consolidation Events page manages events like eliminations, adjustments, and other configurable activities during consolidation.
+
+Question: How do you generate a consolidation event?
+Answer: To generate a consolidation event, select the event and company, display the list of events, select events to generate, and confirm adjustments.
+
+Question: What are custom events in consolidation?
+Answer: Custom events are tailored adjustments created to address specific consolidation needs.
+
+Question: How do you create custom events?
+Answer: To create custom events, enter details such as code, name, and description, define criteria and parameters, save the event, and execute as needed.
+

@@ -1,0 +1,1463 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.129,
+                0.069,
+                0.381,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.128,
+                0.123,
+                0.478,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves evolution"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.129,
+                0.164,
+                0.88,
+                0.239
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends</td><td>Dividends +</td><td>Transfers</td><td>Dividends P</td><td>Year 2 reserves</td></tr><tr><td>P</td><td>1,000</td><td>76</td><td></td><td></td><td>224</td><td></td><td>1,300</td></tr><tr><td>A</td><td>400</td><td>64</td><td></td><td></td><td>(224)</td><td></td><td>240</td></tr><tr><td></td><td>1,400</td><td>140</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1,540</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.126,
+                0.27,
+                0.888,
+                0.303
+            ],
+            "angle": 0,
+            "content": "In this report we see a profit of 64 for company A as being \\(80\\% * 60 + 40\\%\\) * 40."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.126,
+                0.318,
+                0.889,
+                0.385
+            ],
+            "angle": 0,
+            "content": "The 224 amount of transfer corresponds to the reserves disposed. At the end of June Year 2, reserves of company A are \\(448 = 400\\) (consolidated reserves Year 1) \\(+80\\% * 60\\) (group profit first-half year). As we sell \\(40\\%\\) out of \\(80\\%\\), the amount of transfer is equal to \\(224 = 448^{\\star}\\) (\\(40\\% / 80\\%\\))."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.127,
+                0.398,
+                0.432,
+                0.416
+            ],
+            "angle": 0,
+            "content": "Minority interests evolution"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.224,
+                0.443,
+                0.761,
+                0.512
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>% var 1</td><td>Year 2 reserves</td></tr><tr><td>A</td><td>200</td><td>12</td><td>(212)</td><td>0</td></tr><tr><td></td><td>200</td><td>12</td><td>(212)</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.126,
+                0.527,
+                0.886,
+                0.56
+            ],
+            "angle": 0,
+            "content": "The evolution of the minority interests can be justified with the two following columns."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.126,
+                0.574,
+                0.888,
+                0.609
+            ],
+            "angle": 0,
+            "content": "Year 2 result \\(= 12 = 20\\%\\) \\* 60 corresponding to their profit for the first halfyear."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.126,
+                0.622,
+                0.888,
+                0.673
+            ],
+            "angle": 0,
+            "content": "\\(\\% \\text{var} 1 = (212) = 20\\%\\). \\* [500 + 400 + 100 + 60] corresponding to the part of \\(3^{\\text{rd}}\\) Parties in the equity as at June 30 Year 2 that they are loosing considering company A is consolidated by the equity method since that date."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.128,
+                0.687,
+                0.373,
+                0.703
+            ],
+            "angle": 0,
+            "content": "Equity value evolution"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.224,
+                0.703,
+                0.761,
+                0.785
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Equity val.</td><td>Year 2 result</td><td>(2)</td><td>Equity val.</td></tr><tr><td>A</td><td>0</td><td>16</td><td>424</td><td>440</td></tr><tr><td></td><td>0</td><td>16</td><td>424</td><td>,440</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.126,
+                0.815,
+                0.888,
+                0.849
+            ],
+            "angle": 0,
+            "content": "Two columns are also necessary to justify the evolution from zero in Year 1 to 440 in Year 2."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.431,
+                0.074,
+                0.851,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATIONTOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.095,
+                0.122,
+                0.868,
+                0.157
+            ],
+            "angle": 0,
+            "content": "Year 2 result = 16 = 40% * 40 corresponding to the equity profit for the second half-year."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.095,
+                0.168,
+                0.868,
+                0.205
+            ],
+            "angle": 0,
+            "content": "(2) = 424 = 40% * [500 + 500 + 60] corresponding to the equity value of company A on July 1<sup>st</sup> Year 2."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.097,
+                0.238,
+                0.777,
+                0.262
+            ],
+            "angle": 0,
+            "content": "4 RESTRAINTRATION OF A GROUP"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.097,
+                0.28,
+                0.767,
+                0.305
+            ],
+            "angle": 0,
+            "content": "4.1 Internal group disposal of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.323,
+                0.71,
+                0.34
+            ],
+            "angle": 0,
+            "content": "Restructuring a group usually has the following characteristics:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.137,
+                0.356,
+                0.865,
+                0.388
+            ],
+            "angle": 0,
+            "content": "- The companies are maintained in the group, excluding external acquisitions or disposals;"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.137,
+                0.403,
+                0.705,
+                0.42
+            ],
+            "angle": 0,
+            "content": "- Group's shareholders of the companies are changing ;"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.137,
+                0.435,
+                0.858,
+                0.469
+            ],
+            "angle": 0,
+            "content": "- The total number of shares owned in a company remains unchanged, even if that total is split into different other group companies."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.137,
+                0.356,
+                0.865,
+                0.469
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.483,
+                0.868,
+                0.552
+            ],
+            "angle": 0,
+            "content": "Taking a \"helicopter\" view on such a group, we note that there are no cash transactions with \\(3^{\\text{rd}}\\) Parties and the total of shares owned by the group in each individual company and their consolidation method are globally unchanged."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.098,
+                0.564,
+                0.868,
+                0.598
+            ],
+            "angle": 0,
+            "content": "Such restructuring gives the impression of having no impact on the consolidated figures. Unfortunately the reality shows that it is often wrong."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.099,
+                0.612,
+                0.388,
+                0.63
+            ],
+            "angle": 0,
+            "content": "Description of the context"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.644,
+                0.564,
+                0.663
+            ],
+            "angle": 0,
+            "content": "Initially, the group consists in three companies:"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.175,
+                0.671,
+                0.501,
+                0.814
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.612,
+                0.646,
+                0.736,
+                0.852
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.125,
+                0.068,
+                0.38,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.161,
+                0.123,
+                0.426,
+                0.141
+            ],
+            "angle": 0,
+            "content": "The parent company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.161,
+                0.155,
+                0.888,
+                0.189
+            ],
+            "angle": 0,
+            "content": "- Company A acquired beginning of last year, with a goodwill of 400 and depreciated on a \\(20\\%\\) per year basis"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.161,
+                0.203,
+                0.695,
+                0.22
+            ],
+            "angle": 0,
+            "content": "Company B founded by the group a few years ago."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.161,
+                0.123,
+                0.888,
+                0.22
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.122,
+                0.235,
+                0.888,
+                0.269
+            ],
+            "angle": 0,
+            "content": "Beginning of Year 2, parent company P sells its \\(30\\%\\) shares of company A to company B."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.123,
+                0.284,
+                0.373,
+                0.3
+            ],
+            "angle": 0,
+            "content": "Consolidation - Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.122,
+                0.315,
+                0.889,
+                0.349
+            ],
+            "angle": 0,
+            "content": "Here are the statutory accounts of these three companies, already adjusted with the goodwill."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.276,
+                0.359,
+                0.785,
+                0.688
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"2\">Goodwill/A</td><td>(a) 400</td><td>Capital</td><td>1,000</td></tr><tr><td>(b) (160)</td><td>Reserves</td><td>500</td></tr><tr><td>Fin. Inv./A</td><td>2,000</td><td>Result</td><td>(b) (80)</td></tr><tr><td>Fin. Inv./B</td><td>800</td><td>Result</td><td>200</td></tr><tr><td>Other assets</td><td>2,200</td><td>(b) (80)</td><td>3,300</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"4\">Other assets</td><td rowspan=\"4\">6,000</td><td>Capital</td><td>3,000</td></tr><tr><td>Reserves</td><td>1,500</td></tr><tr><td>Result</td><td>500</td></tr><tr><td>Other liabilities</td><td>1,000</td></tr><tr><td colspan=\"4\">B</td></tr><tr><td rowspan=\"4\">Other assets</td><td rowspan=\"4\">3,000</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>400</td></tr><tr><td>Result</td><td>500</td></tr><tr><td>Other liabilities</td><td>1,100</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.122,
+                0.701,
+                0.741,
+                0.719
+            ],
+            "angle": 0,
+            "content": "Adjustment (a): Gross goodwill at acquisition time, on year ago"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.12,
+                0.732,
+                0.886,
+                0.782
+            ],
+            "angle": 0,
+            "content": "Adjustment (b): Depreciations of this goodwill, with the first \\(20\\%\\) booked on the Reserves account, corresponding to Year 0 and \\(20\\%\\) booked on the P&L for this Year 1."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.428,
+                0.074,
+                0.844,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.122,
+                0.53,
+                0.138
+            ],
+            "angle": 0,
+            "content": "Consolidated accounts present no difficulties"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.269,
+                0.152,
+                0.777,
+                0.282
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"3\">P + A + B</td></tr><tr><td rowspan=\"3\">Goodwill</td><td rowspan=\"3\">240</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>420</td></tr><tr><td>Result</td><td>120</td></tr><tr><td rowspan=\"3\">Equity value (A)</td><td rowspan=\"3\">1,500</td><td>Conso. Res.(A)</td><td>(100)</td></tr><tr><td>Conso. Res.(B)</td><td>720</td></tr><tr><td>Minority int.(B)</td><td>380</td></tr><tr><td>Other assets</td><td>5,200</td><td>Other liabilities</td><td>4,400</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.095,
+                0.3,
+                0.162,
+                0.314
+            ],
+            "angle": 0,
+            "content": "where"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.133,
+                0.329,
+                0.856,
+                0.365
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves (A) = (100) = 30% * [3000 + 1500 + 500] - [2000 + (400)]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.133,
+                0.375,
+                0.851,
+                0.396
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves (B) = 720 = 80% * [1000 + 400 + 500] - 800"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.133,
+                0.409,
+                0.744,
+                0.429
+            ],
+            "angle": 0,
+            "content": "Minority interests (B) \\(= 380 = 20\\%\\) \\* [1000 + 400 + 500]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.133,
+                0.44,
+                0.718,
+                0.462
+            ],
+            "angle": 0,
+            "content": "Equity value (A) \\(= 1500 = 30\\%\\) [3000 + 1500 + 500]"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.133,
+                0.329,
+                0.856,
+                0.462
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.095,
+                0.478,
+                0.575,
+                0.494
+            ],
+            "angle": 0,
+            "content": "Some aquestions before consolidatina Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.51,
+                0.859,
+                0.56
+            ],
+            "angle": 0,
+            "content": "We are typically in a situation where apparently nothing has changed. The two companies A and B are still in the group and owned with the same number of shares. Moreover, their consolidation methods are also unchanged."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.095,
+                0.573,
+                0.373,
+                0.59
+            ],
+            "angle": 0,
+            "content": "Has nothing really changed?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.605,
+                0.856,
+                0.636
+            ],
+            "angle": 0,
+            "content": "Well, only the indirect financial percentage in company A decreases from \\(30\\%\\) to \\(24\\% = 80\\% * 30\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.654,
+                0.857,
+                0.703
+            ],
+            "angle": 0,
+            "content": "By considering the statutory accounts, we will also notice that the financial investment on company A owned initially by parent company P has been sold with a gain of 500, which of course will have to be eliminated."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.718,
+                0.729,
+                0.735
+            ],
+            "angle": 0,
+            "content": "But there are some other questions about that group transaction."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.75,
+                0.559,
+                0.767
+            ],
+            "angle": 0,
+            "content": "What about the goodwill of 400 on company A?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.093,
+                0.782,
+                0.858,
+                0.832
+            ],
+            "angle": 0,
+            "content": "In Year 1, the goodwill was booked in parent company P accounts. Now, the goodwill should be transferred to company B accounts, which is the new owner of company A."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.13,
+                0.069,
+                0.383,
+                0.083
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.122,
+                0.893,
+                0.17
+            ],
+            "angle": 0,
+            "content": "And the question is : do we maintain the gross goodwill for its initial value of 400 or do we have to maintain only \\(80\\%\\) of that goodwill, considering that now it is booked in a \\(80\\%\\) owned company?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.171,
+                0.892,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Since Year 1, that gross goodwill is an intangible asset shown in the consolidated accounts for an amount of 400. Respecting an economical point of view, there is no reason to adapt this \"objective\" value, depending on the percentage of the new acquirer company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.251,
+                0.59,
+                0.267
+            ],
+            "angle": 0,
+            "content": "What about the depreciations of that aoodwill ?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.282,
+                0.892,
+                0.346
+            ],
+            "angle": 0,
+            "content": "As soon as the gross goodwill is transferred to another company, all depreciation adjustments must also be transferred with the consequence that some historical reserves will also be transferred from company P to company B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.362,
+                0.461,
+                0.379
+            ],
+            "angle": 0,
+            "content": "What about the aain on disposal ?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.395,
+                0.892,
+                0.475
+            ],
+            "angle": 0,
+            "content": "It is a group result that must be eliminated, whatever the gain may be, material or not. But the problem here comes from a transaction between a \\(100\\%\\) company (the seller) and a \\(80\\%\\) company (the acquirer). We will have to consider a group transaction with a gain of \\(400 = 80\\% * 500\\) and a transaction with \\(3^{\\text{rd}}\\) Parties for 100, to be maintained in the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.491,
+                0.739,
+                0.508
+            ],
+            "angle": 0,
+            "content": "Which percentage to apply for the equity value of company A ?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.524,
+                0.892,
+                0.604
+            ],
+            "angle": 0,
+            "content": "The answer can easily be understood by applying the stage consolidation. By consolidating company A with a percentage of \\(30\\%\\) in company B, the equity value is equal to \\(30\\%\\) of company A equity. Then company B is consolidated with the global integration method in company P and a \\(100\\%\\) integration percentage applies to the equity value. So the answer is \\(30\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.62,
+                0.453,
+                0.636
+            ],
+            "angle": 0,
+            "content": "Minority interests in company A ?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.13,
+                0.652,
+                0.892,
+                0.716
+            ],
+            "angle": 0,
+            "content": "We have seen in several situations before that when an equity method company is owned by a global integration method owned at less than \\(100\\%\\), there are indirect minority interests in the equity method company. In our case study, the percentage of minority interests is \\(6\\% = 20\\% \\times 30\\%\\)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.433,
+                0.075,
+                0.851,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.1,
+                0.123,
+                0.35,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Consolidation - Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.155,
+                0.804,
+                0.172
+            ],
+            "angle": 0,
+            "content": "Let's see how all these problems are booked in the Year 2 consolidation."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.253,
+                0.182,
+                0.764,
+                0.3
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P</td></tr><tr><td></td><td></td><td>Capital</td><td>1,000</td></tr><tr><td></td><td></td><td>Reserves</td><td>700</td></tr><tr><td>Fin. Inv./B</td><td>800</td><td>(c)</td><td>400</td></tr><tr><td></td><td></td><td>Result</td><td>200</td></tr><tr><td></td><td></td><td>(c)</td><td>(400)</td></tr><tr><td>Other assets</td><td>4,600</td><td>Other liabilities</td><td>3,500</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.253,
+                0.318,
+                0.764,
+                0.404
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A</td></tr><tr><td></td><td>Capital</td><td>3,000</td></tr><tr><td></td><td>Reserves</td><td>2,000</td></tr><tr><td></td><td>Result</td><td>300</td></tr><tr><td>Other assets</td><td>6,600</td><td>1,300</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.253,
+                0.421,
+                0.764,
+                0.599
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\"></td><td colspan=\"3\">B</td></tr><tr><td rowspan=\"4\">Goodwill/A</td><td>(a)</td><td>400</td><td>Capital</td><td>1,000</td></tr><tr><td>(b)</td><td>(160)</td><td>Reserves</td><td>900</td></tr><tr><td>(e)</td><td>(65)</td><td>(b)</td><td>(160)</td></tr><tr><td>(f)</td><td>(58)</td><td>Result</td><td>(500)</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td>(a)</td><td>2,500</td><td rowspan=\"3\">(f)</td><td>200</td></tr><tr><td>(d)</td><td>(400)</td><td rowspan=\"2\">(58)</td></tr><tr><td>(e)</td><td>(500)</td></tr><tr><td>Other assets</td><td>1,600</td><td>Other liabilities</td><td>2,000</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.621,
+                0.867,
+                0.656
+            ],
+            "angle": 0,
+            "content": "Adjustment (a): This is the gross goodwill transferred from company P to company A"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.668,
+                0.865,
+                0.751
+            ],
+            "angle": 0,
+            "content": "Adjustment (b): Two depreciations amounts have been booked corresponding to Year 0 and Year 1, while the goodwill was in company P accounts. These historical values are now booked in company B accounts. To be careful, we don't book now the third \\(20\\%\\) depreciation corresponding to Year 2 for some reason explained when considering adjustment (e)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.765,
+                0.865,
+                0.83
+            ],
+            "angle": 0,
+            "content": "Adjustment (c): The group gain on shares disposal for an amount of \\(400 = 80\\% * 500\\) is eliminated. Company P keeps a gain of \\(100 = 500 + (400)\\) in its P&L, corresponding to the sale to \\(3^{rd}\\) Parties. Counterpart of this elimination is the Reserves account."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.847,
+                0.865,
+                0.881
+            ],
+            "angle": 0,
+            "content": "Adjustment (d): The financial investment on company A includes a profit of 500 that we eliminate with a counterpart on the Reserves. After the"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.125,
+                0.069,
+                0.378,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.124,
+                0.884,
+                0.157
+            ],
+            "angle": 0,
+            "content": "consolidation process, the group amount of (400) = 80% * (500) will compensate with the amount of 400 booked in company P accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.171,
+                0.886,
+                0.237
+            ],
+            "angle": 0,
+            "content": "Adjustment (e): This is probably the most surprising and unexpected adjustment. We have indeed to calculate the impact of all these adjustments booked on Reserves and Financial investments, with direct impact on consolidated reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.252,
+                0.884,
+                0.318
+            ],
+            "angle": 0,
+            "content": "On the financial investment side, the group goes from a value of \\(1600 = 2000 + (400)\\) in Year 1 to a value of \\(1280 = 80\\%\\) [2500 + (500) + (400)] in Year 2. The difference of 320 could be considered as the part of financial investment disposed."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.332,
+                0.884,
+                0.382
+            ],
+            "angle": 0,
+            "content": "On the equity side, the group goes from a value of \\((160) = (80) + (80)\\) in Year 1 to \\((128) = 80\\% * (160)\\) in Year 2, concerning the cumulated goodwill depreciations, which represents a gain on equity of \\(32 = (128) - (160)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.396,
+                0.884,
+                0.446
+            ],
+            "angle": 0,
+            "content": "On the other hand, the group is loosing some company A equity by decreasing from \\(30\\%\\) to \\(24\\%\\) on an opening equity of 5000, that is \\((300) = [24\\% - 30\\%]^{\\star} [3000 + 20001\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.46,
+                0.555,
+                0.478
+            ],
+            "angle": 0,
+            "content": "The net loss in equity is \\((268) = 32 + (300)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.493,
+                0.884,
+                0.527
+            ],
+            "angle": 0,
+            "content": "Let's summarise the situation. We can consider that the group 'sells\" an equity of 268 for a \"price\" of 320, making a profit\" of \\(52 = 320 - 268\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.541,
+                0.837,
+                0.559
+            ],
+            "angle": 0,
+            "content": "We decide to book this gain on the goodwill in order to decrease its value."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.12,
+                0.573,
+                0.884,
+                0.639
+            ],
+            "angle": 0,
+            "content": "However, the amount of 52 is a group amount and we are going to book it in company B which is consolidated at \\(80\\%\\). In order to avoid mixing up closing assets amounts and group assets amounts, we adapt this 52 amount to become \\(65 = 52^{*} (100\\% / 80\\%)\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.12,
+                0.652,
+                0.883,
+                0.703
+            ],
+            "angle": 0,
+            "content": "Adjustment (f): The net goodwill opening value is now \\( 175 = 400 + (160) + (65) \\) and its remaining period of depreciation is three years, so we depreciate it by \\( 58 = 175 / 3 \\) in Year 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.121,
+                0.718,
+                0.538,
+                0.735
+            ],
+            "angle": 0,
+            "content": "Finally, here are the consolidated accounts"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.275,
+                0.747,
+                0.78,
+                0.894
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"3\">P + A + B</td></tr><tr><td rowspan=\"3\">Goodwill</td><td rowspan=\"3\">117</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>1,100</td></tr><tr><td>Result</td><td>(200)</td></tr><tr><td rowspan=\"4\">Equity value (A)</td><td rowspan=\"4\">1,590</td><td>Conso. Res.(A)</td><td>(60)</td></tr><tr><td>Conso. Res.(B)</td><td>306</td></tr><tr><td>Minority int.(A)</td><td>318</td></tr><tr><td>Minority int.(B)</td><td>(57)</td></tr><tr><td>Other assets</td><td>6,200</td><td>Other liabilities</td><td>5,500</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.425,
+                0.074,
+                0.843,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.123,
+                0.158,
+                0.137
+            ],
+            "angle": 0,
+            "content": "where"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.152,
+                0.856,
+                0.189
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves (A) = (60) = 24% [3000 + 2000 + 300] - 80% [2500 + (500) + (400) + 65]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.201,
+                0.856,
+                0.237
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves (B) = 306 = 80% * [1000 + 900 + (160) + (500) + 200 + (58)] - 800"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.248,
+                0.743,
+                0.27
+            ],
+            "angle": 0,
+            "content": "Minority interests (A) = 318 = 6% * [3000 + 2000 + 300]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.282,
+                0.854,
+                0.317
+            ],
+            "angle": 0,
+            "content": "Minority interests (B) \\(\\equiv\\) (57) \\(= 20\\%\\) * [1000 + 900 + (160) + (500) + 200 + (58)] - 20% * [2500 + (500) + (400) + 65]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.328,
+                0.717,
+                0.349
+            ],
+            "angle": 0,
+            "content": "Equity value (A) \\(= 1590 = 30\\%\\) [3000 + 2000 + 300]"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.129,
+                0.152,
+                0.856,
+                0.349
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.092,
+                0.363,
+                0.445,
+                0.38
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves evolution"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.15,
+                0.4,
+                0.843,
+                0.49
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends</td><td>Dividends +</td><td>Transfers</td><td>Dividends P</td><td>Year 2 reserves</td></tr><tr><td>P</td><td>540</td><td>(200)</td><td></td><td></td><td>560</td><td></td><td>900</td></tr><tr><td>A</td><td>(100)</td><td>72</td><td></td><td></td><td>(32)</td><td></td><td>(60)</td></tr><tr><td>B</td><td>720</td><td>114</td><td></td><td></td><td>(528)</td><td></td><td>306</td></tr><tr><td></td><td>1,160</td><td>(14)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1,146</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.508,
+                0.856,
+                0.54
+            ],
+            "angle": 0,
+            "content": "To understand the following report, we need to split the \"Transfers\" column in four columns as presented hereunder."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.245,
+                0.559,
+                0.75,
+                0.648
+            ],
+            "angle": 0,
+            "content": "<table><tr><td rowspan=\"2\" colspan=\"2\"></td><td colspan=\"2\">Transfers</td><td></td><td></td></tr><tr><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td></tr><tr><td>P</td><td>128</td><td>(20)</td><td>400</td><td>52</td><td>560</td></tr><tr><td>A</td><td></td><td>20</td><td></td><td>(52)</td><td>(32)</td></tr><tr><td>B</td><td>(128)</td><td></td><td>(400)</td><td></td><td>(528)</td></tr><tr><td></td><td>0,</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.668,
+                0.856,
+                0.701
+            ],
+            "angle": 0,
+            "content": "Column (1): \\(80\\%\\) of the cumulated goodwill depreciations are transferred from company P to company B, which is \\((128) = 80\\%\\) (* (160)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.716,
+                0.856,
+                0.815
+            ],
+            "angle": 0,
+            "content": "Column (2): We have already met this situation several times in some other cases. Each time there is a disposal or a decrease in indirect percentage in a company, the corresponding part on the consolidated reserves is transferred from the initial company to the owner of the shares. In our case study, percentage of company A decreases by \\(6\\%\\) on \\(30\\%\\), giving a transfer of consolidated reserves for an amount of \\((20) = [6\\% / 30\\%]^{*}\\) (100)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.828,
+                0.854,
+                0.864
+            ],
+            "angle": 0,
+            "content": "Column (3): This amount of \\(400 = 80\\%\\) * 500 corresponds to the elimination of the group gain on company A shares from company P to company B."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.13,
+                0.068,
+                0.383,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.122,
+                0.893,
+                0.171
+            ],
+            "angle": 0,
+            "content": "Column (4): This amount is the group goodwill correction. It has been calculated at group level (company P) but booked in company B. That's the reason of the transfer."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.13,
+                0.187,
+                0.432,
+                0.205
+            ],
+            "angle": 0,
+            "content": "Minority interests evolution"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.186,
+                0.228,
+                0.785,
+                0.301
+            ],
+            "angle": 0,
+            "content": "<table><tr><td rowspan=\"2\"></td><td rowspan=\"2\">Year 1 reserves</td><td rowspan=\"2\">Year 2 result</td><td colspan=\"3\">% variations</td><td rowspan=\"2\">Year 2 reserves</td></tr><tr><td>(1)</td><td>(2)</td><td>(3)</td></tr><tr><td>A</td><td>0</td><td>18</td><td>300</td><td></td><td></td><td>318</td></tr><tr><td>B</td><td>380</td><td>28</td><td></td><td>(132)</td><td>(333)</td><td>(57)</td></tr><tr><td></td><td>380</td><td>46</td><td>300</td><td>(132)</td><td>(333)</td><td>261</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.314,
+                0.893,
+                0.364
+            ],
+            "angle": 0,
+            "content": "Year 2 results are just the \\(3^{\\text{rd}}\\) Parties part in the adjusted profit of each company and nothing special needs to be said about that. Let's focus rather on the percentages variations."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.379,
+                0.892,
+                0.444
+            ],
+            "angle": 0,
+            "content": "Column (1): There were no Minority interests in company A at the end of Year 1. But suddenly, on first day of Year 2, the group structure is such that we now have \\(6\\%\\) of Minority interests in the opening equity, that is \\(300 = 6\\%\\) \\* \\([3000 + 20001]\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.459,
+                0.892,
+                0.509
+            ],
+            "angle": 0,
+            "content": "Column (2): In Year 2, \\(3^{\\text{rd}}\\) Parties have now \\(20\\%\\) of the adjustments (b) and (d) impacting company B equity, that is \\((132) = 20\\%^{*}[(160) + (500)]\\) and nothing in Year 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.523,
+                0.892,
+                0.573
+            ],
+            "angle": 0,
+            "content": "Column (3): In Year 2, \\(3^{rd}\\) Parties have now \\(20\\%\\) of the adjusted financial investment in company A that is \\((333) = 20\\% * [2500 + (500) + (400) + 65]\\) and nothing in Year 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.588,
+                0.892,
+                0.637
+            ],
+            "angle": 0,
+            "content": "And to conclude, if the first feeling indeed was that nothing has changed in this group, the above explanations show some difficult and technical requirements of the consolidation."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.129,
+                0.673,
+                0.598,
+                0.698
+            ],
+            "angle": 0,
+            "content": "4.2 Absorption of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.715,
+                0.89,
+                0.749
+            ],
+            "angle": 0,
+            "content": "It is important to make a clear distinction between an absorption of a company and the merge of two companies."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.763,
+                0.89,
+                0.797
+            ],
+            "angle": 0,
+            "content": "The absorption relies on the single fact that the absorbing company owns \\(100\\%\\) of the shares of the company that will be absorbed."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.811,
+                0.89,
+                0.861
+            ],
+            "angle": 0,
+            "content": "A merge of two (or more) companies can result in the ownership by different shareholders at any percentage. The next section will analyze a merge of two companies."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.434,
+                0.075,
+                0.848,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.123,
+                0.434,
+                0.14
+            ],
+            "angle": 0,
+            "content": "The aain or loss on absorption"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.155,
+                0.865,
+                0.19
+            ],
+            "angle": 0,
+            "content": "Before solving a case of absorption from a consolidation point of view, we would like to analyze how absorption is managed in statutory accounting."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.203,
+                0.866,
+                0.237
+            ],
+            "angle": 0,
+            "content": "Here are two companies P and A. P owns \\(100\\%\\) of the shares of A during Year 1 and is consolidated with the global integration method."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.254,
+                0.248,
+                0.744,
+                0.449
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.46,
+                0.75,
+                0.477
+            ],
+            "angle": 0,
+            "content": "The consolidated reserves are equal to \\(300 = 100\\% * 1000 - 700\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.492,
+                0.864,
+                0.542
+            ],
+            "angle": 0,
+            "content": "Beginning of Year 2, P decides to absorb company A. This means that all assets and liabilities belonging to company A are brought to company P, except the equity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.556,
+                0.866,
+                0.59
+            ],
+            "angle": 0,
+            "content": "The financial investment owned by company P on company A has no reason to be maintained because the affiliate does not exist any more."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.604,
+                0.761,
+                0.621
+            ],
+            "angle": 0,
+            "content": "We show hereunder the journal entry (1) related to that absorption."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.256,
+                0.631,
+                0.737,
+                0.733
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.748,
+                0.865,
+                0.814
+            ],
+            "angle": 0,
+            "content": "The booking of assets and liabilities of company A and the elimination of the financial investment is usually not a journal entry in balance. The amount reflecting the difference impacts the P&L and is called the gain or loss on absorption."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.828,
+                0.864,
+                0.864
+            ],
+            "angle": 0,
+            "content": "In some countries and depending on some local accounting regulations, the loss of absorption may be booked in the balance sheet as an intangible asset."
+        }
+    ]
+]

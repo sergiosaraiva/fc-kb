@@ -1,0 +1,1128 @@
+# API Currency and Exchange Rate Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of currencies and exchange rates
+
+api_currency_endpoints:
+  name: "Currency and Exchange Rate API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing currencies and exchange rates in the consolidation system.
+
+    CRITICAL FOR CONSOLIDATION:
+    Multi-currency consolidation requires accurate exchange rates to translate subsidiary
+    financial data to the group reporting currency. These endpoints manage:
+    - Currency master data (currency codes, names, active status)
+    - Exchange rates per consolidation period (closing, average, monthly average)
+    - Import from external sources (ECB, NBS, MAS APIs)
+    - Export for audit and backup
+
+    Key concepts:
+    - Reference Currency: The base currency for a consolidation period (typically group currency)
+    - Closing Rate: Period-end exchange rate for balance sheet items
+    - Average Rate: Period average rate for income statement items
+    - Average Month: Monthly average rate for specific calculations
+
+    Services documented:
+    - CurrencyService: Currency master data (3 handlers)
+    - ExchangeRateService: Exchange rate management (4 handlers)
+    - ExportExchangeRatesService: Rate export (1 handler)
+    - ImportExchangeRatesService: Rate import from files/APIs (4 handlers)
+
+  # ============================================================================
+  # DATA SOURCE TYPES ENUM
+  # ============================================================================
+  enums:
+    DataSourceTypes:
+      description: "Sources for exchange rate import"
+      values:
+        - value: 0
+          name: "CSV"
+          description: "CSV file upload"
+        - value: 1
+          name: "XLS"
+          description: "Excel file upload"
+        - value: 2
+          name: "SDMX_ECB"
+          description: "European Central Bank SDMX API"
+          api_url: "https://data-api.ecb.europa.eu/service/data"
+        - value: 3
+          name: "SDMX_NBS"
+          description: "National Bank of Serbia SDMX API"
+        - value: 4
+          name: "FSX_MAS"
+          description: "Monetary Authority of Singapore FSX API"
+          api_url: "https://eservices.mas.gov.sg/api/action/datastore/search.json"
+
+    RateTypes:
+      description: "Types of exchange rates"
+      values:
+        - name: "ClosingRate"
+          description: "Period-end rate for balance sheet translation"
+          usage: "Assets, liabilities, equity (except retained earnings)"
+        - name: "AverageRate"
+          description: "Period average rate for income statement"
+          usage: "Revenue, expenses, gains, losses"
+        - name: "AverageMonth"
+          description: "Monthly average rate"
+          usage: "Specific monthly calculations, flow analysis"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    CurrencyDTO:
+      description: "Currency master data"
+      source: "CurrencyService.cs"
+      fields:
+        - name: "CurrencyID"
+          type: "integer"
+          description: "Unique currency identifier"
+        - name: "CurrencyCode"
+          type: "string"
+          max_length: 3
+          description: "ISO currency code (e.g., USD, EUR, GBP)"
+        - name: "CurrencyName"
+          type: "string"
+          description: "Currency display name"
+        - name: "Active"
+          type: "boolean"
+          description: "Whether currency is active for use"
+
+    ExchangeRateConsoDTO:
+      description: "Consolidation period with exchange rate summary"
+      source: "ExchangeRateService.cs"
+      fields:
+        - name: "ConsoID"
+          type: "integer"
+          description: "Consolidation period ID"
+        - name: "ConsoCode"
+          type: "string"
+          description: "Period code (YYYY.MM.CAT.SEQ)"
+        - name: "RefConso"
+          type: "string"
+          nullable: true
+          description: "Reference period code"
+        - name: "Currency"
+          type: "string"
+          description: "Reference currency for this period"
+        - name: "CurrencyList"
+          type: "string"
+          description: "Comma-separated list of currencies with rates"
+        - name: "IsLocked"
+          type: "boolean"
+          description: "Whether period is locked for editing"
+
+    ExchangeRateItemDTO:
+      description: "Exchange rate detail for a currency"
+      source: "ExchangeRateService.cs"
+      fields:
+        - name: "CurrencyRateID"
+          type: "integer"
+          nullable: true
+          description: "Rate record ID"
+        - name: "ConsoID"
+          type: "integer"
+          nullable: true
+          description: "Consolidation period ID"
+        - name: "CurrCode"
+          type: "string"
+          description: "Currency code"
+        - name: "ReferenceCurrCode"
+          type: "string"
+          nullable: true
+          description: "Reference currency code"
+        - name: "ReferenceClosingRate"
+          type: "decimal"
+          nullable: true
+          description: "Closing rate from reference period"
+        - name: "ReferenceAverageRate"
+          type: "decimal"
+          nullable: true
+          description: "Average rate from reference period"
+        - name: "ReferenceAverageMonth"
+          type: "decimal"
+          nullable: true
+          description: "Monthly average rate from reference period"
+        - name: "WorkingClosingRate"
+          type: "decimal"
+          nullable: true
+          description: "Closing rate for current period"
+        - name: "WorkingAverageRate"
+          type: "decimal"
+          nullable: true
+          description: "Average rate for current period"
+        - name: "WorkingAverageMonth"
+          type: "decimal"
+          nullable: true
+          description: "Monthly average rate for current period"
+        - name: "ModifiedBy"
+          type: "string"
+          nullable: true
+          description: "Last modified by user"
+        - name: "ModifiedDate"
+          type: "datetime"
+          nullable: true
+          description: "Last modification timestamp"
+
+    ExchangeRateItemPreviewDTO:
+      description: "Exchange rate preview item with validation status"
+      source: "ImportExchangeRatesService.cs"
+      extends: "ExchangeRateItemDTO"
+      additional_fields:
+        - name: "Error"
+          type: "string"
+          nullable: true
+          description: "Validation error message if any"
+
+    ImportPreviewResponse:
+      description: "Response from exchange rate import preview"
+      fields:
+        - name: "SessionID"
+          type: "integer"
+          description: "Session ID for retrieving preview data"
+        - name: "JobID"
+          type: "integer"
+          description: "Background job ID for monitoring progress"
+
+  # ============================================================================
+  # CURRENCY HANDLERS
+  # ============================================================================
+  currency_handlers:
+    description: |
+      Endpoints for managing currency master data.
+      Source: Sigma.Mona.WebApplication/Screens/Currency/CurrencyService.cs
+
+    handlers:
+      - name: "Currency_GetCurrencies"
+        description: |
+          Retrieves currency master data.
+          Supports single currency lookup or filtered list with pagination.
+        access_right: "Currency_GetCurrencies"
+        async: true
+
+        request:
+          _t: "Currency_GetCurrencies"
+          parameters:
+            - name: "CurrencyID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Specific currency ID to retrieve"
+            - name: "CurrencyCode"
+              type: "string"
+              required: false
+              validation: "ValidateCode"
+              description: "Specific currency code (3 characters)"
+            - name: "FilterCurrencyCode"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by currency code pattern"
+            - name: "FilterCurrencyName"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by currency name pattern"
+            - name: "FilterActive"
+              type: "boolean"
+              required: false
+              validation: "ValidateBool"
+              description: "Filter by active status"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+              default: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["CURRENCYCODE", "CURRENCYNAME"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "Currency_GetCurrencies",
+                "FilterActive": true,
+                "scf_order_by": "CURRENCYCODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "Currency_GetCurrencies",
+                "CurrencyCode": "USD",
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<CurrencyDTO>"
+            scf_total_row_count:
+              type: "integer"
+              nullable: true
+            EntityVersion:
+              type: "array<EntityVersion>"
+              nullable: true
+
+      - name: "Currency_SaveCurrency"
+        description: |
+          Creates or updates a currency record.
+          Currency codes must be exactly 3 characters.
+        access_right: "Currency_ManageCurrency"
+        async: true
+
+        request:
+          _t: "Currency_SaveCurrency"
+          parameters:
+            - name: "Currency"
+              type: "object"
+              required: true
+              validation: "ValidateDictionary"
+              description: "Currency data to save"
+              nested_parameters:
+                - name: "CurrencyID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new, value for update"
+                - name: "CurrencyCode"
+                  type: "string"
+                  required: true
+                  validation: "ValidateCode"
+                  description: "ISO currency code (3 characters)"
+                - name: "CurrencyName"
+                  type: "string"
+                  required: true
+                  validation: "ValidateString"
+                  description: "Currency display name"
+                - name: "Active"
+                  type: "boolean"
+                  required: false
+                  default: true
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Currency_SaveCurrency",
+                "Currency": {
+                  "CurrencyID": null,
+                  "CurrencyCode": "CHF",
+                  "CurrencyName": "Swiss Franc",
+                  "Active": true
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "UNIQUE_Currency"
+              cause: "Currency code already exists"
+              error_field: "CurrencyCode"
+
+      - name: "Currency_RemoveCurrency"
+        description: |
+          Removes a currency from the system.
+          If currency is in use by companies or exchange rates, it is deactivated
+          instead of deleted (soft delete behavior).
+        access_right: "Currency_ManageCurrency"
+        async: true
+
+        request:
+          _t: "Currency_RemoveCurrency"
+          parameters:
+            - name: "CurrencyID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Currency ID to remove"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Currency_RemoveCurrency",
+                "CurrencyID": 123,
+                "scf_entity_version": [{"Name": "Currency", "Key": "123", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          behavior:
+            - "If currency is unused: Hard delete from T_CURRENCY"
+            - "If currency is in use: Sets Active=false (soft delete)"
+          errors:
+            - pattern: "NOT_FOUND"
+              cause: "Currency not found"
+
+  # ============================================================================
+  # EXCHANGE RATE HANDLERS
+  # ============================================================================
+  exchange_rate_handlers:
+    description: |
+      Endpoints for managing exchange rates.
+      Source: Sigma.Mona.WebApplication/Screens/ExchangeRates/ExchangeRateService.cs
+
+    handlers:
+      - name: "ExchangeRate_GetExchangeRatesConsos"
+        description: |
+          Retrieves consolidation periods with their exchange rate summary.
+          Shows which currencies have rates defined for each period.
+        access_right: "ExchangeRate_GetExchangeRate"
+        async: true
+
+        request:
+          _t: "ExchangeRate_GetExchangeRatesConsos"
+          parameters:
+            - name: "FilterConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by period code pattern"
+            - name: "FilterRefConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by reference period code"
+            - name: "FilterCurrency"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by reference currency"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["CONSOCODE", "REFCONSO", "CURRENCY"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ExchangeRate_GetExchangeRatesConsos",
+                "scf_order_by": "CONSOCODE DESC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<ExchangeRateConsoDTO>"
+            scf_total_row_count:
+              type: "integer"
+              nullable: true
+
+      - name: "ExchangeRate_GetExchangeRates"
+        description: |
+          Retrieves exchange rates for a consolidation period.
+          Returns rates for all currencies including reference period comparison.
+        access_right: "ExchangeRate_GetExchangeRate"
+        async: true
+
+        request:
+          _t: "ExchangeRate_GetExchangeRates"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateConsoCode"
+              description: "Period code (default: working period)"
+            - name: "ConsoID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Period ID (alternative to ConsoCode)"
+            - name: "FilterCurrCode"
+              type: "string"
+              required: false
+              validation: "ValidateString"
+              description: "Filter by currency code"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["CURRCODE"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ExchangeRate_GetExchangeRates",
+                "ConsoCode": "2024.12.A.01",
+                "scf_include_entities": true,
+                "scf_order_by": "CURRCODE ASC"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<ExchangeRateItemDTO>"
+            EntityVersion:
+              type: "array<EntityVersion>"
+              nullable: true
+            ReferenceCurrency:
+              type: "string"
+              description: "Reference currency code for the period"
+            IsLocked:
+              type: "boolean"
+              description: "Whether period is locked"
+            scf_total_row_count:
+              type: "integer"
+              nullable: true
+
+      - name: "ExchangeRate_GetExchangeRatesPreview"
+        description: |
+          Gets exchange rate preview from temporary import table.
+          Used after import validation to review rates before final import.
+        access_right: "ExchangeRate_GetExchangeRate"
+        async: true
+
+        request:
+          _t: "ExchangeRate_GetExchangeRatesPreview"
+          parameters:
+            - name: "SessionID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Session ID from import preview"
+            - name: "FilterCurrCode"
+              type: "string"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ExchangeRate_GetExchangeRatesPreview",
+                "SessionID": 12345,
+                "scf_order_by": "CURRCODE ASC"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<ExchangeRateItemPreviewDTO>"
+            scf_total_row_count:
+              type: "integer"
+
+      - name: "ExchangeRate_SaveExchangeRates"
+        description: |
+          Saves exchange rates for a consolidation period.
+          REPLACES all existing rates (delete and re-insert pattern).
+          Validates that rates are greater than zero when specified.
+        access_right: "ExchangeRate_ManageExchangeRate"
+        async: true
+
+        request:
+          _t: "ExchangeRate_SaveExchangeRates"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateConsoCode"
+              description: "Period code (default: working period)"
+            - name: "ConsoID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Period ID (alternative to ConsoCode)"
+            - name: "ExchangeRateList"
+              type: "array"
+              required: true
+              validation: "ValidateList"
+              description: "Array of exchange rate items to save"
+              element_schema:
+                CurrCode:
+                  type: "string"
+                  required: true
+                WorkingClosingRate:
+                  type: "decimal"
+                  nullable: true
+                  description: "Closing rate (must be > 0 if specified)"
+                WorkingAverageRate:
+                  type: "decimal"
+                  nullable: true
+                  description: "Average rate (must be > 0 if specified)"
+                WorkingAverageMonth:
+                  type: "decimal"
+                  nullable: true
+                  description: "Monthly average (must be > 0 if specified)"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ExchangeRate_SaveExchangeRates",
+                "ConsoCode": "2024.12.A.01",
+                "ExchangeRateList": [
+                  {
+                    "CurrCode": "EUR",
+                    "WorkingClosingRate": 1.0856,
+                    "WorkingAverageRate": 1.0742,
+                    "WorkingAverageMonth": 1.0800
+                  },
+                  {
+                    "CurrCode": "GBP",
+                    "WorkingClosingRate": 1.2650,
+                    "WorkingAverageRate": 1.2580,
+                    "WorkingAverageMonth": 1.2600
+                  }
+                ]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "ExchangeRateNotValid"
+              cause: "Rate value is zero or negative"
+              error_field: "{CurrCode};{RateType}"
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Consolidation period is locked"
+
+  # ============================================================================
+  # EXPORT EXCHANGE RATES HANDLERS
+  # ============================================================================
+  export_handlers:
+    description: |
+      Endpoints for exporting exchange rates.
+      Source: Sigma.Mona.WebApplication/Screens/ExportExchangeRates/ExportExchangeRatesService.cs
+
+    handlers:
+      - name: "ExportExchangeRates_Export"
+        description: |
+          Exports exchange rates to CSV or Excel file.
+          Runs as background job (ExportExRateJob).
+        access_right: "ExchangeRate_ManageExchangeRate"
+        async: true
+        background_job: true
+        job_class: "Jobs.Database.ExportExRateJob"
+
+        request:
+          _t: "ExportExchangeRates_Export"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateConsoCode"
+              description: "Period to export (default: working period)"
+            - name: "Filetype"
+              type: "string"
+              required: true
+              validation: "ValidateString"
+              enum: ["CSV", "Excel"]
+              description: "Export file format"
+            - name: "CSVSeparator"
+              type: "string"
+              required: false
+              default: ";"
+              description: "CSV field separator"
+            - name: "TextQuote"
+              type: "string"
+              required: false
+              default: "\""
+              description: "Text qualifier character"
+            - name: "DecimalSeparator"
+              type: "string"
+              required: false
+              default: "."
+              description: "Decimal separator"
+            - name: "ThousandSeparator"
+              type: "string"
+              required: false
+              default: ","
+              description: "Thousands separator"
+            - name: "Sheetname"
+              type: "string"
+              required: false
+              default: "Exchange Rates"
+              description: "Excel worksheet name"
+          example:
+            json: |
+              {
+                "_t": "ExportExchangeRates_Export",
+                "ConsoCode": "2024.12.A.01",
+                "Filetype": "Excel",
+                "Sheetname": "Exchange Rates Dec 2024"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+          notes:
+            - "Use Job_GetJobStatusPolling to monitor export progress"
+            - "Job output includes download URL for exported file"
+
+  # ============================================================================
+  # IMPORT EXCHANGE RATES HANDLERS
+  # ============================================================================
+  import_handlers:
+    description: |
+      Endpoints for importing exchange rates from files or external APIs.
+      Source: Sigma.Mona.WebApplication/Screens/ImportExchangeRates/ImportExchangeRatesService.cs
+
+      Supported sources:
+      - CSV files: Manual upload with configurable format
+      - Excel files: Manual upload
+      - ECB API: European Central Bank (SDMX format)
+      - NBS API: National Bank of Serbia (SDMX format)
+      - MAS API: Monetary Authority of Singapore (FSX format)
+
+    handlers:
+      - name: "ImportExchangeRates_PreviewAndValidate"
+        description: |
+          Validates and previews exchange rate import data.
+          For file uploads: Parses and validates the uploaded file.
+          For API sources: Fetches rates from external API.
+
+          Returns SessionID for retrieving preview data and JobID for monitoring.
+        access_right: "ImportExchangeRates_Import"
+        async: true
+        background_job: true
+        job_class: "Jobs.Database.ImportExRateJob"
+
+        request:
+          _t: "ImportExchangeRates_PreviewAndValidate"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateConsoCode"
+              description: "Target period (default: working period)"
+            - name: "DataSourceType"
+              type: "integer"
+              required: true
+              validation: "ValidateInt"
+              enum_ref: "DataSourceTypes"
+              description: "0=CSV, 1=XLS, 2=ECB, 3=NBS, 4=MAS"
+            - name: "RateDate"
+              type: "datetime"
+              required: false
+              description: "Date for API rate fetch"
+            - name: "UploadedFiles"
+              type: "array"
+              required: "when DataSourceType=0 or 1"
+              description: "Uploaded file references"
+            - name: "CSVSeparator"
+              type: "string"
+              required: false
+              default: ";"
+              description: "CSV field separator (for CSV imports)"
+            - name: "TextQuote"
+              type: "string"
+              required: false
+              default: "\""
+              description: "Text qualifier (for CSV imports)"
+            - name: "DecimalSeparator"
+              type: "string"
+              required: false
+              default: "."
+              description: "Decimal separator"
+            - name: "ThousandSeparator"
+              type: "string"
+              required: false
+              default: ","
+              description: "Thousands separator"
+            - name: "FirstRowIsHeader"
+              type: "boolean"
+              required: false
+              default: true
+              description: "Whether first row contains headers"
+          example_csv:
+            json: |
+              {
+                "_t": "ImportExchangeRates_PreviewAndValidate",
+                "ConsoCode": "2024.12.A.01",
+                "DataSourceType": 0,
+                "UploadedFiles": [{"fileName": "rates.csv", "url": "/uploads/..."}],
+                "CSVSeparator": ";",
+                "FirstRowIsHeader": true
+              }
+          example_ecb:
+            json: |
+              {
+                "_t": "ImportExchangeRates_PreviewAndValidate",
+                "ConsoCode": "2024.12.A.01",
+                "DataSourceType": 2,
+                "RateDate": "2024-12-31T00:00:00"
+              }
+
+        response:
+          success:
+            SessionID:
+              type: "integer"
+              description: "Session ID for retrieving preview data"
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring validation"
+          notes:
+            - "Poll Job_GetJobStatusPolling until job completes"
+            - "Then call ImportExchangeRates_GetPreviewData with SessionID"
+
+      - name: "ImportExchangeRates_GetPreviewData"
+        description: |
+          Retrieves validated exchange rate data from temporary table.
+          Called after PreviewAndValidate job completes successfully.
+        access_right: "ImportExchangeRates_Import"
+        async: true
+
+        request:
+          _t: "ImportExchangeRates_GetPreviewData"
+          parameters:
+            - name: "SessionID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Session ID from PreviewAndValidate"
+            - name: "FilterCurrCode"
+              type: "string"
+              required: false
+              description: "Filter by currency code"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportExchangeRates_GetPreviewData",
+                "SessionID": 12345,
+                "scf_order_by": "CURRCODE ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<ExchangeRateItemPreviewDTO>"
+              description: "Preview data with validation errors"
+            scf_total_row_count:
+              type: "integer"
+            RowsWithErrors:
+              type: "integer"
+              description: "Count of rows with validation errors"
+
+      - name: "ImportExchangeRates_Import"
+        description: |
+          Imports validated exchange rate data into the period.
+          Uses data from temporary table (requires prior PreviewAndValidate).
+          Runs as background job.
+        access_right: "ImportExchangeRates_Import"
+        async: true
+        background_job: true
+        job_class: "Jobs.Database.ImportExRateJob"
+
+        request:
+          _t: "ImportExchangeRates_Import"
+          parameters:
+            - name: "SessionID"
+              type: "integer"
+              required: true
+              validation: "ValidateID"
+              description: "Session ID from PreviewAndValidate"
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              validation: "ValidateConsoCode"
+              description: "Target period (default: working period)"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ImportExchangeRates_Import",
+                "SessionID": 12345,
+                "ConsoCode": "2024.12.A.01"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring import"
+          notes:
+            - "Poll Job_GetJobStatusPolling until job completes"
+            - "Verify with ExchangeRate_GetExchangeRates after completion"
+
+      - name: "ImportExchangeRates_ExportExcelFile"
+        description: |
+          Exports data from external API source to Excel file.
+          Used to download ECB/NBS/MAS rates as Excel for review.
+        access_right: "ImportExchangeRates_Import"
+        async: true
+        background_job: true
+
+        request:
+          _t: "ImportExchangeRates_ExportExcelFile"
+          parameters:
+            - name: "DataSourceType"
+              type: "integer"
+              required: true
+              validation: "ValidateInt"
+              description: "2=ECB, 3=NBS, 4=MAS (only API sources)"
+            - name: "RateDate"
+              type: "datetime"
+              required: true
+              description: "Date for API rate fetch"
+          example:
+            json: |
+              {
+                "_t": "ImportExchangeRates_ExportExcelFile",
+                "DataSourceType": 2,
+                "RateDate": "2024-12-31T00:00:00"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID"
+          notes:
+            - "Job output includes download URL for Excel file"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    exchange_rate_setup_workflow:
+      name: "Exchange Rate Setup Workflow"
+      description: "Complete workflow for setting up exchange rates for a period"
+      steps:
+        - step: 1
+          name: "Select Period"
+          handler: "ExchangeRate_GetExchangeRatesConsos"
+          purpose: "List periods and identify target period"
+
+        - step: 2
+          name: "Get Current Rates"
+          handler: "ExchangeRate_GetExchangeRates"
+          parameters:
+            scf_include_entities: true
+          purpose: "View existing rates and reference period comparison"
+
+        - step: 3
+          name: "Update Rates"
+          handler: "ExchangeRate_SaveExchangeRates"
+          purpose: "Save new or updated exchange rates"
+
+        - step: 4
+          name: "Verify"
+          handler: "ExchangeRate_GetExchangeRates"
+          purpose: "Confirm rates saved correctly"
+
+    exchange_rate_import_workflow:
+      name: "Exchange Rate Import Workflow"
+      description: "Import rates from file or external API"
+      steps:
+        - step: 1
+          name: "Preview and Validate"
+          handler: "ImportExchangeRates_PreviewAndValidate"
+          parameters:
+            DataSourceType: "varies"
+          output: "SessionID, JobID"
+
+        - step: 2
+          name: "Monitor Validation"
+          handler: "Job_GetJobStatusPolling"
+          purpose: "Wait for validation to complete"
+
+        - step: 3
+          name: "Review Preview"
+          handler: "ImportExchangeRates_GetPreviewData"
+          purpose: "Review validated data and check for errors"
+          decision:
+            if_errors: "Fix source data and retry from step 1"
+            if_ok: "Continue to step 4"
+
+        - step: 4
+          name: "Import Data"
+          handler: "ImportExchangeRates_Import"
+          output: "JobID"
+
+        - step: 5
+          name: "Monitor Import"
+          handler: "Job_GetJobStatusPolling"
+          purpose: "Wait for import to complete"
+
+        - step: 6
+          name: "Verify Import"
+          handler: "ExchangeRate_GetExchangeRates"
+          purpose: "Confirm rates imported correctly"
+
+    ecb_rate_fetch_workflow:
+      name: "ECB Rate Fetch Workflow"
+      description: "Fetch latest rates from European Central Bank"
+      steps:
+        - step: 1
+          name: "Fetch ECB Rates"
+          handler: "ImportExchangeRates_PreviewAndValidate"
+          parameters:
+            DataSourceType: 2
+            RateDate: "desired date"
+          purpose: "Fetch rates from ECB SDMX API"
+
+        - step: 2
+          name: "Monitor Fetch"
+          handler: "Job_GetJobStatusPolling"
+
+        - step: 3
+          name: "Review Rates"
+          handler: "ImportExchangeRates_GetPreviewData"
+          purpose: "Review fetched rates"
+
+        - step: 4
+          name: "Import to Period"
+          handler: "ImportExchangeRates_Import"
+          purpose: "Import validated rates"
+
+  # ============================================================================
+  # INTEGRATION WITH CONSOLIDATION
+  # ============================================================================
+  consolidation_integration:
+    description: "How exchange rates affect consolidation calculations"
+
+    rate_application:
+      - area: "Balance Sheet Translation"
+        rate_type: "ClosingRate"
+        description: |
+          Assets, liabilities, and most equity items translated at period-end rate.
+          Retained earnings translated at historical rates.
+
+      - area: "Income Statement Translation"
+        rate_type: "AverageRate"
+        description: |
+          Revenue and expenses translated at average rate for the period.
+          Provides smoother representation than closing rates.
+
+      - area: "Flow Analysis"
+        rate_type: "AverageMonth"
+        description: |
+          Monthly flow movements may use monthly average rates.
+          Depends on flow configuration.
+
+      - area: "Translation Differences"
+        description: |
+          Difference between:
+          - Opening balances translated at opening rate
+          - Closing balances translated at closing rate
+          Posted to CTA (Cumulative Translation Adjustment) in equity.
+
+    consolidation_sequence:
+      description: "Exchange rates must be set before consolidation"
+      steps:
+        - "1. Set up currencies (Currency_SaveCurrency)"
+        - "2. Enter/import exchange rates (ExchangeRate_SaveExchangeRates or Import)"
+        - "3. Run currency conversion during consolidation integration"
+        - "4. Review CTA postings in consolidated results"
+
+  # ============================================================================
+  # EXTERNAL API INTEGRATION
+  # ============================================================================
+  external_apis:
+    ecb:
+      name: "European Central Bank"
+      type: "SDMX"
+      base_url: "https://data-api.ecb.europa.eu/service/data"
+      description: |
+        Provides official EUR exchange rates.
+        Rates are against EUR as base currency.
+      data_format: "SDMX-ML (XML)"
+      update_frequency: "Daily (working days)"
+
+    nbs:
+      name: "National Bank of Serbia"
+      type: "SDMX"
+      description: |
+        Provides official RSD exchange rates.
+        Rates are against RSD as base currency.
+      data_format: "SDMX-ML (XML)"
+
+    mas:
+      name: "Monetary Authority of Singapore"
+      type: "FSX"
+      base_url: "https://eservices.mas.gov.sg/api/action/datastore/search.json"
+      description: |
+        Provides official SGD exchange rates.
+        Rates are against SGD as base currency.
+      data_format: "JSON"
+      update_frequency: "Daily"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Currency/CurrencyService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ExchangeRates/ExchangeRateService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ExportExchangeRates/ExportExchangeRatesService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ImportExchangeRates/ImportExchangeRatesService.cs"
+    handler_count: 12
+    purpose: |
+      Enable AI agents to manage currencies and exchange rates including:
+      - Currency master data maintenance
+      - Exchange rate entry for consolidation periods
+      - Import from files (CSV, Excel) and external APIs (ECB, NBS, MAS)
+      - Export for audit and backup
+      - Understanding rate types and consolidation application
+
+      Critical for multi-currency consolidation where subsidiaries report
+      in different currencies than the group reporting currency.

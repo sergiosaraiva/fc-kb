@@ -1,0 +1,1182 @@
+# Agent Integration Patterns for Financial Consolidation
+# Purpose: Define how the 14 YAML knowledge files work together as a unified system
+# Version: 1.0
+
+agent_integration_patterns:
+  name: "Financial Consolidation Agent Integration Patterns"
+  version: "1.0"
+  description: "Orchestration patterns for combining knowledge artifacts into coherent agent responses"
+
+  # ============================================================
+  # KNOWLEDGE BASE INVENTORY
+  # ============================================================
+  knowledge_base_inventory:
+    description: "Complete catalog of agent knowledge files"
+
+    files:
+      decision_trees:
+        - file: "consolidation-method-decision.yaml"
+          id: "DT-METHOD"
+          purpose: "Determine consolidation method (G/E/P/N)"
+          triggers: ["ownership", "method", "control", "consolidate"]
+
+        - file: "elimination-code-selection.yaml"
+          id: "DT-ELIM"
+          purpose: "Route to correct elimination code"
+          triggers: ["elimination", "S0", "U0", "intercompany", "dividend"]
+
+        - file: "currency-translation-decision.yaml"
+          id: "DT-CURRENCY"
+          purpose: "Select translation rate type"
+          triggers: ["exchange rate", "translation", "currency", "rate type"]
+
+      workflows:
+        - file: "workflow-add-subsidiary.yaml"
+          id: "WF-ADDSUB"
+          purpose: "Add new company to consolidation"
+          triggers: ["add subsidiary", "new company", "add entity", "create company"]
+
+        - file: "workflow-process-acquisition.yaml"
+          id: "WF-ACQUIRE"
+          purpose: "Record business combination"
+          triggers: ["acquisition", "acquire", "purchase", "goodwill", "business combination"]
+
+        - file: "workflow-configure-ic-eliminations.yaml"
+          id: "WF-ICELIM"
+          purpose: "Set up IC elimination rules"
+          triggers: ["intercompany setup", "IC elimination", "configure elimination"]
+
+        - file: "workflow-year-end-close.yaml"
+          id: "WF-YEAREND"
+          purpose: "Complete annual consolidation"
+          triggers: ["year-end", "period close", "annual close", "close consolidation"]
+
+      references:
+        - file: "parameter-reference-consolidation.yaml"
+          id: "REF-CONSO"
+          purpose: "Core consolidation procedure parameters"
+          triggers: ["P_CONSO", "procedure", "parameter", "how to call"]
+
+        - file: "parameter-reference-eliminations.yaml"
+          id: "REF-ELIM"
+          purpose: "Elimination procedure parameters"
+          triggers: ["P_CONSO_ELIM", "elimination procedure", "S085", "S080"]
+
+      rules:
+        - file: "validation-rules.yaml"
+          id: "RULES-VAL"
+          purpose: "Data validation and prerequisites"
+          triggers: ["validate", "check", "prerequisite", "before close"]
+
+        - file: "error-handling-patterns.yaml"
+          id: "RULES-ERROR"
+          purpose: "Error catalog and recovery"
+          triggers: ["error", "fail", "not working", "troubleshoot", "debug"]
+
+      templates:
+        - file: "configuration-templates.yaml"
+          id: "TMPL-CONFIG"
+          purpose: "Standard configuration patterns"
+          triggers: ["configure", "setup", "template", "TS070", "special account"]
+
+      playbooks:
+        - file: "business-scenario-playbooks.yaml"
+          id: "PB-SCENARIOS"
+          purpose: "End-to-end business scenarios"
+          triggers: ["acquisition playbook", "disposal", "method change", "onboarding"]
+
+      testing:
+        - file: "agent-testing-framework.yaml"
+          id: "TEST-FRAMEWORK"
+          purpose: "Validate agent outputs"
+          triggers: ["test", "validate agent", "verify", "edge case"]
+
+  # ============================================================
+  # SECTION 1: REQUEST CLASSIFICATION
+  # ============================================================
+  request_classification:
+    description: "How to route user questions to appropriate knowledge files"
+
+    classification_algorithm:
+      steps:
+        - step: 1
+          name: "Extract Intent"
+          description: "Identify primary user intent from question"
+          intent_categories:
+            - category: "LEARN"
+              indicators: ["what is", "explain", "how does", "why"]
+              primary_files: ["documentation library markdown files"]
+
+            - category: "DO"
+              indicators: ["how do I", "steps to", "process for", "add", "create"]
+              primary_files: ["workflows", "playbooks"]
+
+            - category: "DECIDE"
+              indicators: ["what method", "which", "should I", "what rate"]
+              primary_files: ["decision_trees"]
+
+            - category: "TROUBLESHOOT"
+              indicators: ["not working", "error", "fail", "wrong", "why isn't"]
+              primary_files: ["error-handling-patterns", "validation-rules"]
+
+            - category: "CONFIGURE"
+              indicators: ["set up", "configure", "template", "create elimination"]
+              primary_files: ["configuration-templates", "workflows"]
+
+            - category: "VERIFY"
+              indicators: ["check", "validate", "is this correct", "verify"]
+              primary_files: ["validation-rules", "agent-testing-framework"]
+
+        - step: 2
+          name: "Extract Entities"
+          description: "Identify domain entities mentioned"
+          entity_types:
+            consolidation_method:
+              keywords: ["global", "equity", "proportional", "method"]
+              maps_to: ["DT-METHOD", "consolidation-method-determination.md"]
+
+            ownership:
+              keywords: ["percentage", "ownership", "control", "shareholding", "indirect"]
+              maps_to: ["DT-METHOD", "WF-ADDSUB", "ownership-percentages.md"]
+
+            elimination:
+              keywords: ["elimination", "S001", "S020", "S085", "intercompany", "dividend"]
+              maps_to: ["DT-ELIM", "REF-ELIM", "elimination entries docs"]
+
+            currency:
+              keywords: ["rate", "translation", "exchange", "currency", "CTA"]
+              maps_to: ["DT-CURRENCY", "currency translation docs"]
+
+            acquisition:
+              keywords: ["acquisition", "goodwill", "purchase", "NCI", "fair value"]
+              maps_to: ["WF-ACQUIRE", "PB-SCENARIOS#acquisition", "goodwill-calculation.md"]
+
+            disposal:
+              keywords: ["disposal", "deconsolidate", "sell", "exit"]
+              maps_to: ["PB-SCENARIOS#disposal", "deconsolidation.md"]
+
+            period_close:
+              keywords: ["year-end", "close", "period", "finalize"]
+              maps_to: ["WF-YEAREND", "PB-SCENARIOS#year_end"]
+
+            error:
+              keywords: ["error", "fail", "not working", "issue", "problem"]
+              maps_to: ["RULES-ERROR", "common-issues.md"]
+
+        - step: 3
+          name: "Match to Knowledge Files"
+          description: "Select most relevant knowledge files"
+          matching_rules:
+            - rule: "Primary Match"
+              description: "Direct keyword match to file triggers"
+              confidence: "HIGH"
+
+            - rule: "Entity Match"
+              description: "Entity type maps to files"
+              confidence: "MEDIUM"
+
+            - rule: "Intent Match"
+              description: "Intent category suggests file type"
+              confidence: "LOW"
+
+        - step: 4
+          name: "Rank and Select"
+          description: "Prioritize matched files"
+          ranking_criteria:
+            - "Keyword match score"
+            - "Entity relevance"
+            - "Recent context (if multi-turn)"
+            - "User's stated expertise level"
+
+    classification_patterns:
+      pattern_library:
+        - pattern_id: "CLS-001"
+          pattern: "What consolidation method for {X}% ownership?"
+          classification:
+            intent: "DECIDE"
+            entity: "consolidation_method"
+            primary_file: "DT-METHOD"
+            secondary_files: ["consolidation-method-determination.md"]
+          response_template: |
+            Based on {X}% ownership:
+            1. Use decision tree to determine method
+            2. Provide rationale from IFRS standards
+            3. Mention caveats (de facto control, joint arrangements)
+
+        - pattern_id: "CLS-002"
+          pattern: "How do I add a new subsidiary?"
+          classification:
+            intent: "DO"
+            entity: "ownership"
+            primary_file: "WF-ADDSUB"
+            secondary_files: ["direct-indirect-holdings.md", "TMPL-CONFIG"]
+          response_template: |
+            Follow workflow-add-subsidiary.yaml:
+            1. List prerequisites
+            2. Walk through steps
+            3. Provide validation checkpoints
+
+        - pattern_id: "CLS-003"
+          pattern: "Why is {elimination} not running?"
+          classification:
+            intent: "TROUBLESHOOT"
+            entity: "elimination"
+            primary_file: "RULES-ERROR"
+            secondary_files: ["RULES-VAL", "REF-ELIM"]
+          response_template: |
+            Troubleshoot using error-handling-patterns.yaml:
+            1. Check common causes
+            2. Provide diagnostic queries
+            3. Suggest resolution steps
+
+        - pattern_id: "CLS-004"
+          pattern: "Process acquisition of {company} for {amount}"
+          classification:
+            intent: "DO"
+            entity: "acquisition"
+            primary_file: "PB-SCENARIOS#acquisition"
+            secondary_files: ["WF-ACQUIRE", "goodwill-calculation.md"]
+          response_template: |
+            Follow acquisition_playbook:
+            1. Execute all 6 phases
+            2. Track at checkpoints
+            3. Validate at each gate
+
+        - pattern_id: "CLS-005"
+          pattern: "What exchange rate for {account type}?"
+          classification:
+            intent: "DECIDE"
+            entity: "currency"
+            primary_file: "DT-CURRENCY"
+            secondary_files: ["exchange-rate-types.md", "translation-methods.md"]
+          response_template: |
+            Use currency-translation-decision.yaml:
+            1. Determine account classification
+            2. Apply translation method rules
+            3. Return rate type code
+
+        - pattern_id: "CLS-006"
+          pattern: "Validate consolidation before close"
+          classification:
+            intent: "VERIFY"
+            entity: "period_close"
+            primary_file: "RULES-VAL"
+            secondary_files: ["WF-YEAREND", "TEST-FRAMEWORK"]
+          response_template: |
+            Run validation-rules.yaml checks:
+            1. Execute all validation categories
+            2. Report pass/fail for each
+            3. Provide remediation for failures
+
+  # ============================================================
+  # SECTION 2: MULTI-FILE ORCHESTRATION
+  # ============================================================
+  multi_file_orchestration:
+    description: "Patterns for combining decision trees + workflows + playbooks"
+
+    orchestration_patterns:
+
+      # Pattern 1: Decision-First
+      decision_first:
+        name: "Decision-First Pattern"
+        description: "Use decision tree to determine path, then execute workflow"
+        use_when: "User needs guidance on what to do AND how to do it"
+
+        sequence:
+          - step: 1
+            action: "Execute Decision Tree"
+            example: "DT-METHOD to determine consolidation method"
+            output: "Decision result (e.g., method = 'G')"
+
+          - step: 2
+            action: "Select Appropriate Workflow"
+            logic: |
+              IF decision_result == 'G' THEN
+                  workflow = 'WF-ADDSUB' with Global method
+              ELIF decision_result == 'E' THEN
+                  workflow = 'WF-ADDSUB' with Equity method
+
+          - step: 3
+            action: "Execute Workflow"
+            with_context: "Pass decision result as parameter"
+
+          - step: 4
+            action: "Validate Execution"
+            using: "validation-rules.yaml"
+
+        example_scenario:
+          user_question: "We acquired 45% of CompanyX. What do I need to do?"
+          execution:
+            - "DT-METHOD: 45% → Equity Method (E)"
+            - "WF-ADDSUB: Execute with method='E'"
+            - "If acquisition: WF-ACQUIRE phases 1-4"
+            - "RULES-VAL: Verify OWN-001 through OWN-005"
+
+      # Pattern 2: Workflow-Driven
+      workflow_driven:
+        name: "Workflow-Driven Pattern"
+        description: "Execute workflow steps, invoking other files as needed"
+        use_when: "User has clear task, needs step-by-step guidance"
+
+        sequence:
+          - step: 1
+            action: "Load Primary Workflow"
+            example: "WF-YEAREND for year-end close"
+
+          - step: 2
+            action: "Check Prerequisites"
+            invoke: "RULES-VAL for prerequisite validation"
+
+          - step: 3
+            action: "Execute Steps"
+            per_step:
+              - "Execute step action"
+              - "If decision needed: invoke decision tree"
+              - "If configuration needed: use TMPL-CONFIG"
+              - "Validate step completion"
+
+          - step: 4
+            action: "Handle Errors"
+            invoke: "RULES-ERROR if step fails"
+
+        example_scenario:
+          user_question: "Walk me through year-end close"
+          execution:
+            - "Load WF-YEAREND"
+            - "Phase 1: Check prerequisites via RULES-VAL (PC-001 to PC-006)"
+            - "Phase 2: Execute data collection"
+            - "Phase 3: Run eliminations (invoke REF-ELIM for parameters)"
+            - "Phase 4: Validate via RULES-VAL (BS-001 to BS-004)"
+            - "Phase 5: Lock period"
+
+      # Pattern 3: Playbook Orchestration
+      playbook_orchestration:
+        name: "Playbook Orchestration Pattern"
+        description: "Execute complex scenario using playbook as master controller"
+        use_when: "Complex multi-phase business scenario"
+
+        sequence:
+          - step: 1
+            action: "Load Playbook"
+            example: "PB-SCENARIOS#acquisition_playbook"
+
+          - step: 2
+            action: "Execute Entry Decision Tree"
+            playbook_reference: "entry_decision_tree"
+
+          - step: 3
+            action: "For Each Phase"
+            per_phase:
+              - "Load phase steps"
+              - "Execute referenced workflows"
+              - "Invoke configuration templates"
+              - "Validate at checkpoint"
+              - "Handle errors via RULES-ERROR"
+
+          - step: 4
+            action: "Verify Success Criteria"
+            using: "TEST-FRAMEWORK test cases"
+
+        example_scenario:
+          user_question: "Process the acquisition of TargetCo for $5M"
+          execution:
+            - "Load PB-SCENARIOS#acquisition_playbook"
+            - "Phase 1: DT-METHOD → determine method (G)"
+            - "Phase 2: WF-ADDSUB → create entity"
+            - "Phase 3: Enter opening balances"
+            - "Phase 4: Calculate goodwill (reference goodwill-calculation.md)"
+            - "Phase 5: REF-ELIM → run eliminations"
+            - "Phase 6: RULES-VAL → final validation"
+
+      # Pattern 4: Troubleshooting Cascade
+      troubleshooting_cascade:
+        name: "Troubleshooting Cascade Pattern"
+        description: "Systematic error diagnosis across multiple files"
+        use_when: "User reports error or unexpected behavior"
+
+        sequence:
+          - step: 1
+            action: "Classify Error"
+            using: "RULES-ERROR#error_catalog"
+            output: "Error category and code"
+
+          - step: 2
+            action: "Run Diagnostic Queries"
+            from: "RULES-ERROR#failure_scenarios OR TEST-FRAMEWORK#validation_queries"
+
+          - step: 3
+            action: "Check Configuration"
+            using: "TMPL-CONFIG verification queries"
+
+          - step: 4
+            action: "Verify Prerequisites"
+            using: "RULES-VAL applicable rules"
+
+          - step: 5
+            action: "Execute Recovery"
+            from: "RULES-ERROR#recovery_procedures"
+
+        example_scenario:
+          user_question: "S085 minority interest elimination is giving wrong results"
+          execution:
+            - "RULES-ERROR: Identify as elimination error"
+            - "TEST-FRAMEWORK: Run VAL-ELIM-001 (journal balance)"
+            - "TEST-FRAMEWORK: Run VAL-OWN-002 (Group+Minor=100)"
+            - "TMPL-CONFIG: Verify MinorInterests special account mapped"
+            - "RULES-VAL: Check OWN-003 (percentages calculated)"
+            - "REF-ELIM: Verify S085 parameters correct"
+
+      # Pattern 5: Configuration Assembly
+      configuration_assembly:
+        name: "Configuration Assembly Pattern"
+        description: "Build configuration from multiple template sources"
+        use_when: "Setting up new elimination, account mapping, or structure"
+
+        sequence:
+          - step: 1
+            action: "Determine Requirements"
+            using: "Decision tree or user specification"
+
+          - step: 2
+            action: "Load Base Template"
+            from: "TMPL-CONFIG appropriate section"
+
+          - step: 3
+            action: "Apply Workflow Steps"
+            from: "Relevant workflow (WF-ICELIM, etc.)"
+
+          - step: 4
+            action: "Configure Parameters"
+            reference: "REF-CONSO or REF-ELIM for procedure params"
+
+          - step: 5
+            action: "Validate Configuration"
+            using: "RULES-VAL configuration rules"
+
+        example_scenario:
+          user_question: "Set up dividend elimination for new subsidiary"
+          execution:
+            - "DT-ELIM: Confirm S020 for dividend elimination"
+            - "TMPL-CONFIG#dividend_elimination: Load template"
+            - "WF-ICELIM: Follow IC configuration steps"
+            - "TMPL-CONFIG#special_account_configuration: Ensure DivReceived, DivPaid mapped"
+            - "REF-ELIM#S020: Verify procedure parameters"
+            - "RULES-VAL#IC-001: Validate IC setup"
+
+    orchestration_matrix:
+      description: "Quick reference for which files to combine"
+
+      scenarios:
+        - scenario: "New subsidiary setup"
+          primary: "WF-ADDSUB"
+          decision: "DT-METHOD"
+          config: "TMPL-CONFIG#special_account"
+          validate: "RULES-VAL#OWN-*"
+
+        - scenario: "Acquisition with goodwill"
+          primary: "PB-SCENARIOS#acquisition"
+          workflow: "WF-ACQUIRE"
+          decision: "DT-METHOD"
+          config: "TMPL-CONFIG#user_elimination"
+          validate: "RULES-VAL#BS-*"
+
+        - scenario: "Year-end close"
+          primary: "WF-YEAREND"
+          playbook: "PB-SCENARIOS#year_end_close"
+          validate: "RULES-VAL#PC-*"
+          troubleshoot: "RULES-ERROR"
+
+        - scenario: "IC elimination setup"
+          primary: "WF-ICELIM"
+          decision: "DT-ELIM"
+          config: "TMPL-CONFIG#intercompany_basic"
+          reference: "REF-ELIM"
+
+        - scenario: "Disposal/deconsolidation"
+          primary: "PB-SCENARIOS#disposal"
+          config: "TMPL-CONFIG#user_elimination"
+          validate: "RULES-VAL#BS-*"
+
+        - scenario: "Troubleshoot elimination"
+          primary: "RULES-ERROR"
+          diagnose: "TEST-FRAMEWORK#validation_queries"
+          reference: "REF-ELIM"
+          validate: "RULES-VAL"
+
+  # ============================================================
+  # SECTION 3: RESPONSE ASSEMBLY
+  # ============================================================
+  response_assembly:
+    description: "How to construct comprehensive answers from multiple sources"
+
+    assembly_principles:
+      - principle: "Answer First"
+        description: "Lead with the direct answer, then provide supporting detail"
+
+      - principle: "Progressive Disclosure"
+        description: "Start simple, add complexity only if needed"
+
+      - principle: "Actionable Guidance"
+        description: "Include specific steps, SQL, or commands"
+
+      - principle: "Cross-Reference"
+        description: "Link to related documentation for deeper exploration"
+
+      - principle: "Validation Included"
+        description: "Provide way to verify the answer is correct"
+
+    response_templates:
+
+      decision_response:
+        name: "Decision Response Template"
+        use_for: "Questions requiring a decision/choice"
+        structure:
+          - section: "Answer"
+            content: "Direct answer with confidence level"
+            example: "The consolidation method should be **Equity Method (E)** based on 35% ownership."
+
+          - section: "Rationale"
+            content: "Decision tree path that led to answer"
+            example: |
+              Decision path:
+              1. Control percentage (35%) < 50% → Not full control
+              2. No joint arrangement → Not proportional
+              3. 35% ≥ 20% with significant influence → Equity Method
+
+          - section: "IFRS Reference"
+            content: "Applicable accounting standard"
+            example: "Per IAS 28, 20-50% ownership presumes significant influence."
+
+          - section: "Caveats"
+            content: "Conditions that might change the answer"
+            example: |
+              Consider Global Integration if:
+              - De facto control exists (board majority)
+              - Contractual control arrangements
+
+          - section: "Next Steps"
+            content: "What to do with this decision"
+            example: "Proceed with workflow-add-subsidiary.yaml using method='E'"
+
+          - section: "Verification"
+            content: "How to confirm the decision is correct"
+            example: |
+              ```sql
+              SELECT ConsoMethod FROM TS014C0 WHERE CompanyCode = @Code
+              -- Expected: 'E'
+              ```
+
+      workflow_response:
+        name: "Workflow Response Template"
+        use_for: "Questions about how to do something"
+        structure:
+          - section: "Overview"
+            content: "What the workflow accomplishes"
+
+          - section: "Prerequisites"
+            content: "What must be true before starting"
+            from_file: "workflow.prerequisites"
+
+          - section: "Steps"
+            content: "Numbered steps with actions"
+            format: |
+              **Step {n}: {name}**
+              - Action: {description}
+              - SQL: {sql_template}
+              - Verify: {verification_query}
+
+          - section: "Checkpoints"
+            content: "Pause points for verification"
+
+          - section: "Troubleshooting"
+            content: "Common issues and solutions"
+            from_file: "RULES-ERROR"
+
+          - section: "Related"
+            content: "Links to detailed documentation"
+
+      troubleshooting_response:
+        name: "Troubleshooting Response Template"
+        use_for: "Error or problem reports"
+        structure:
+          - section: "Issue Identification"
+            content: "Restate the problem clearly"
+
+          - section: "Likely Causes"
+            content: "Ranked list of probable causes"
+            from_file: "RULES-ERROR#error_catalog"
+
+          - section: "Diagnostic Steps"
+            content: "Queries to identify root cause"
+            format: |
+              **Check {n}: {description}**
+              ```sql
+              {diagnostic_query}
+              ```
+              Expected: {expected_result}
+
+          - section: "Resolution"
+            content: "Steps to fix identified cause"
+            from_file: "RULES-ERROR#recovery_procedures"
+
+          - section: "Prevention"
+            content: "How to avoid this in future"
+
+          - section: "Escalation"
+            content: "What to do if resolution fails"
+
+      playbook_response:
+        name: "Playbook Response Template"
+        use_for: "Complex multi-phase scenarios"
+        structure:
+          - section: "Scenario Summary"
+            content: "What this playbook accomplishes"
+
+          - section: "Timeline"
+            content: "Phases with typical durations"
+
+          - section: "Current Phase"
+            content: "Where we are in the process"
+
+          - section: "Phase Details"
+            content: "Steps for current phase"
+            format: |
+              **Phase {n}: {name}**
+              Objective: {description}
+
+              Steps:
+              1. {step_description}
+                 - Action: {action}
+                 - SQL: {sql}
+
+              Checkpoint: {verification}
+
+          - section: "Success Criteria"
+            content: "How to know this phase is complete"
+
+          - section: "Next Phase Preview"
+            content: "What comes after this phase"
+
+    response_assembly_algorithm:
+      steps:
+        - step: 1
+          name: "Gather Sources"
+          action: "Collect relevant content from matched files"
+
+        - step: 2
+          name: "Select Template"
+          action: "Choose appropriate response template based on intent"
+
+        - step: 3
+          name: "Populate Sections"
+          action: "Fill template sections from gathered content"
+          rules:
+            - "Direct quotes from decision tree results"
+            - "SQL templates from workflows/config"
+            - "Error codes from error handling"
+            - "Validation queries from rules"
+
+        - step: 4
+          name: "Add Context"
+          action: "Include relevant context from conversation"
+
+        - step: 5
+          name: "Include Verification"
+          action: "Add validation query or test case"
+
+        - step: 6
+          name: "Format Output"
+          action: "Apply markdown formatting for readability"
+
+  # ============================================================
+  # SECTION 4: CONTEXT HANDOFF
+  # ============================================================
+  context_handoff:
+    description: "Managing state across multi-step interactions"
+
+    context_model:
+      description: "Information to maintain across conversation turns"
+
+      context_elements:
+        session_context:
+          description: "Information about current session"
+          fields:
+            - name: "consolidation_id"
+              type: "integer"
+              description: "Current ConsoID being worked on"
+
+            - name: "company_code"
+              type: "string"
+              description: "Current company in focus"
+
+            - name: "period"
+              type: "string"
+              description: "Consolidation period (YYYY-MM)"
+
+            - name: "user_expertise"
+              type: "enum"
+              values: ["beginner", "intermediate", "expert"]
+              default: "intermediate"
+
+        workflow_context:
+          description: "State of in-progress workflow"
+          fields:
+            - name: "active_workflow"
+              type: "string"
+              description: "ID of workflow being executed"
+
+            - name: "current_step"
+              type: "integer"
+              description: "Step number within workflow"
+
+            - name: "completed_steps"
+              type: "array"
+              description: "List of completed step IDs"
+
+            - name: "step_outputs"
+              type: "object"
+              description: "Results from completed steps"
+
+        playbook_context:
+          description: "State of in-progress playbook"
+          fields:
+            - name: "active_playbook"
+              type: "string"
+              description: "ID of playbook being executed"
+
+            - name: "current_phase"
+              type: "integer"
+              description: "Phase number"
+
+            - name: "phase_checkpoints"
+              type: "array"
+              description: "Completed checkpoint verifications"
+
+            - name: "decision_results"
+              type: "object"
+              description: "Results from decision trees"
+
+        entity_context:
+          description: "Entities being worked on"
+          fields:
+            - name: "target_company"
+              type: "object"
+              properties:
+                - "company_code"
+                - "company_name"
+                - "ownership_percentage"
+                - "consolidation_method"
+
+            - name: "parent_company"
+              type: "object"
+
+            - name: "related_entities"
+              type: "array"
+
+        error_context:
+          description: "Error state if troubleshooting"
+          fields:
+            - name: "error_code"
+              type: "string"
+
+            - name: "error_message"
+              type: "string"
+
+            - name: "diagnostic_results"
+              type: "array"
+
+            - name: "attempted_fixes"
+              type: "array"
+
+    handoff_patterns:
+
+      workflow_continuation:
+        name: "Workflow Continuation"
+        description: "Resume workflow from last completed step"
+        trigger: "User returns to continue workflow"
+
+        handoff_data:
+          required:
+            - "active_workflow"
+            - "current_step"
+            - "step_outputs"
+          optional:
+            - "consolidation_id"
+            - "company_code"
+
+        resume_logic: |
+          1. Load workflow definition
+          2. Verify prerequisites still met
+          3. Check if current_step needs re-execution
+          4. Present next step with context from step_outputs
+
+        example:
+          previous_turn: "Step 2 complete: Company created in TS014C0"
+          context:
+            active_workflow: "WF-ADDSUB"
+            current_step: 2
+            step_outputs:
+              company_id: 1234
+              company_code: "NEWSUB"
+          continuation: |
+            Continuing workflow-add-subsidiary...
+
+            **Step 3: Create Ownership Link**
+            Using Company ID 1234 from previous step:
+            ```sql
+            INSERT INTO TS015S0 (ConsoID, CompanyID, CompanyOwnedID, FinPercentage, CtrlPercentage)
+            VALUES (@ConsoID, @ParentID, 1234, @FinPct, @CtrlPct)
+            ```
+
+      playbook_phase_transition:
+        name: "Playbook Phase Transition"
+        description: "Move from one playbook phase to next"
+        trigger: "Phase checkpoint passed"
+
+        handoff_data:
+          required:
+            - "active_playbook"
+            - "current_phase"
+            - "phase_checkpoints"
+            - "decision_results"
+
+        transition_logic: |
+          1. Verify phase checkpoint passed
+          2. Record phase completion
+          3. Load next phase definition
+          4. Apply decision_results to phase parameters
+          5. Present phase overview and first step
+
+        example:
+          checkpoint: "Phase 2 complete: Entity configured"
+          context:
+            active_playbook: "PB-SCENARIOS#acquisition"
+            current_phase: 2
+            decision_results:
+              method: "G"
+              ownership: 80
+          transition: |
+            ✓ Phase 2 Complete: Entity Setup
+
+            Moving to **Phase 3: Opening Balance Entry**
+
+            With Global method (80% ownership), you'll need to:
+            1. Map chart of accounts
+            2. Enter local currency balances
+            3. Enter fair value adjustments
+            4. Run bundle integration
+
+      troubleshooting_escalation:
+        name: "Troubleshooting Escalation"
+        description: "Escalate when initial diagnosis incomplete"
+        trigger: "First-level fix didn't resolve issue"
+
+        handoff_data:
+          required:
+            - "error_code"
+            - "diagnostic_results"
+            - "attempted_fixes"
+
+        escalation_logic: |
+          1. Review what was tried
+          2. Expand diagnostic scope
+          3. Check related systems
+          4. Suggest manual investigation
+
+        example:
+          initial_fix: "Verified special account mapped"
+          context:
+            error_code: "S085_WRONG_RESULT"
+            attempted_fixes:
+              - "Checked MinorInterests mapping: OK"
+              - "Verified percentages: OK"
+          escalation: |
+            Initial checks passed but issue persists.
+
+            **Expanded Diagnostics:**
+            1. Check elimination execution order:
+               ```sql
+               SELECT ElimCode, ElimLevel FROM TS070S0
+               WHERE ConsoID = @ConsoID ORDER BY ElimLevel
+               ```
+               Verify S085 runs AFTER participation eliminations (S050-S054)
+
+            2. Check for manual overrides in TS071S0
+
+            3. Review prior period NCI balances
+
+      context_reset:
+        name: "Context Reset"
+        description: "Clear context when switching topics"
+        trigger: "User asks unrelated question"
+
+        reset_logic: |
+          1. Detect topic change via classification
+          2. Archive current context (if workflow in progress, warn user)
+          3. Initialize fresh context for new topic
+          4. Carry forward only session_context
+
+    context_persistence:
+      description: "How context is stored and retrieved"
+
+      storage_format:
+        type: "JSON"
+        example: |
+          {
+            "session": {
+              "consolidation_id": 123,
+              "company_code": "NEWSUB",
+              "user_expertise": "intermediate"
+            },
+            "workflow": {
+              "active_workflow": "WF-ADDSUB",
+              "current_step": 3,
+              "step_outputs": {
+                "1": {"prereq_check": "passed"},
+                "2": {"company_id": 1234}
+              }
+            },
+            "playbook": null,
+            "entity": {
+              "target_company": {
+                "company_code": "NEWSUB",
+                "ownership_percentage": 75,
+                "consolidation_method": "G"
+              }
+            }
+          }
+
+  # ============================================================
+  # SECTION 5: FALLBACK STRATEGIES
+  # ============================================================
+  fallback_strategies:
+    description: "What to do when knowledge base doesn't have an answer"
+
+    fallback_hierarchy:
+      - level: 1
+        name: "Knowledge Gap Detection"
+        description: "Recognize when answer isn't in knowledge base"
+        indicators:
+          - "No keyword matches in any file"
+          - "Entity type not recognized"
+          - "Confidence score below threshold"
+          - "Edge case not in catalog"
+
+      - level: 2
+        name: "Related Content Suggestion"
+        description: "Offer closest available information"
+        action: |
+          "I don't have specific guidance for {topic}, but here's related information:
+          - {related_document_1}
+          - {related_document_2}
+
+          Would any of these help?"
+
+      - level: 3
+        name: "General Principles"
+        description: "Apply consolidation principles when specific answer unavailable"
+        sources:
+          - "IFRS standards documentation"
+          - "Allen White Direct Consolidation theory"
+          - "General accounting principles"
+
+      - level: 4
+        name: "Diagnostic Approach"
+        description: "Guide user to investigate themselves"
+        action: |
+          "This scenario isn't covered in my knowledge base. Here's how to investigate:
+          1. Check {relevant_table} for current configuration
+          2. Review {relevant_procedure} execution
+          3. Consult IFRS {standard} for accounting treatment"
+
+      - level: 5
+        name: "Escalation Path"
+        description: "Recommend human expert consultation"
+        action: |
+          "This appears to be a complex scenario requiring expert judgment.
+          Recommend consulting:
+          - Financial reporting specialist
+          - System administrator
+          - External auditor"
+
+    specific_fallbacks:
+
+      unknown_elimination_code:
+        scenario: "User asks about elimination code not in DT-ELIM"
+        fallback: |
+          This elimination code isn't in my standard catalog.
+
+          For custom eliminations (U### codes):
+          - See: configuration-templates.yaml#user_elimination_template
+          - Reference: user-eliminations.md
+
+          For system eliminations not documented:
+          - Check TS070S0 for configuration:
+            ```sql
+            SELECT * FROM TS070S0 WHERE ElimCode = @Code
+            ```
+          - Review related stored procedure
+
+      complex_ownership_structure:
+        scenario: "Ownership scenario beyond standard patterns"
+        fallback: |
+          This ownership structure has complexities beyond standard patterns.
+
+          Consider:
+          1. Check for circular ownership (EDGE-OWN-001)
+          2. Verify treasury share handling (EDGE-OWN-002)
+          3. Calculate effective control manually
+
+          For de facto control assessment, document:
+          - Power over investee (IFRS 10)
+          - Exposure to variable returns
+          - Ability to use power
+
+          Recommend: Prepare IFRS 10 control analysis memo
+
+      non_standard_ifrs_treatment:
+        scenario: "Accounting treatment not covered"
+        fallback: |
+          The specific IFRS treatment isn't fully documented in this knowledge base.
+
+          Gap document references:
+          - missing-features.md
+          - {specific_gap_document}.md
+
+          Workaround approaches:
+          1. Use user elimination (U###) for manual adjustment
+          2. Document treatment in external memo
+          3. Validate with auditors
+
+          Related standards to consult:
+          - {ifrs_standard}
+
+      system_configuration_unknown:
+        scenario: "Configuration not in templates"
+        fallback: |
+          This configuration pattern isn't in my templates.
+
+          Diagnostic approach:
+          1. Examine existing similar configurations:
+             ```sql
+             SELECT * FROM {config_table}
+             WHERE {similar_criteria}
+             ```
+
+          2. Review system documentation for table structure
+
+          3. Test in non-production environment first
+
+          Reference: data-tables-catalog.md for table schema
+
+      error_not_in_catalog:
+        scenario: "Error code not documented"
+        fallback: |
+          This error isn't in my error catalog.
+
+          General debugging approach:
+          1. Enable debug mode: @Debug = 1
+          2. Check @errorinfo XML output
+          3. Review SQL Server error log
+
+          Error infrastructure pattern:
+          - Errors use AddError/AddWarning functions
+          - Check for RAISERROR in procedure
+
+          If error persists, gather:
+          - Full error message
+          - Procedure name
+          - Input parameters
+          - @errorinfo XML content
+
+    confidence_scoring:
+      description: "Assess certainty of answers"
+
+      confidence_levels:
+        - level: "HIGH"
+          score: "0.9-1.0"
+          criteria:
+            - "Direct match in decision tree"
+            - "Exact workflow step"
+            - "Documented test case"
+          presentation: "Direct answer without qualification"
+
+        - level: "MEDIUM"
+          score: "0.7-0.89"
+          criteria:
+            - "Related content available"
+            - "Pattern match (not exact)"
+            - "Edge case with documented handling"
+          presentation: "Answer with caveats noted"
+
+        - level: "LOW"
+          score: "0.5-0.69"
+          criteria:
+            - "General principles apply"
+            - "Similar scenario documented"
+            - "Partial match"
+          presentation: "Answer with disclaimer and verification steps"
+
+        - level: "UNCERTAIN"
+          score: "<0.5"
+          criteria:
+            - "No direct documentation"
+            - "Novel scenario"
+            - "Multiple possible answers"
+          presentation: "Fallback response with investigation guidance"
+
+  # ============================================================
+  # QUICK REFERENCE
+  # ============================================================
+  quick_reference:
+
+    file_selection_matrix:
+      question_type:
+        "What method?": "DT-METHOD"
+        "Which elimination?": "DT-ELIM"
+        "What rate?": "DT-CURRENCY"
+        "How to add?": "WF-ADDSUB"
+        "How to acquire?": "WF-ACQUIRE + PB-SCENARIOS"
+        "How to close?": "WF-YEAREND"
+        "How to configure?": "TMPL-CONFIG + WF-ICELIM"
+        "Why not working?": "RULES-ERROR + RULES-VAL"
+        "Is this correct?": "RULES-VAL + TEST-FRAMEWORK"
+
+    orchestration_quick_guide:
+      - pattern: "Decision → Action"
+        files: "Decision Tree → Workflow"
+        example: "DT-METHOD → WF-ADDSUB"
+
+      - pattern: "Complex Scenario"
+        files: "Playbook (orchestrates all)"
+        example: "PB-SCENARIOS#acquisition"
+
+      - pattern: "Troubleshoot"
+        files: "Error → Validation → Config"
+        example: "RULES-ERROR → RULES-VAL → TMPL-CONFIG"
+
+      - pattern: "Configure"
+        files: "Template → Reference → Validate"
+        example: "TMPL-CONFIG → REF-ELIM → RULES-VAL"
+
+    response_template_selection:
+      intent:
+        "DECIDE": "decision_response"
+        "DO": "workflow_response"
+        "TROUBLESHOOT": "troubleshooting_response"
+        "CONFIGURE": "workflow_response"
+        "VERIFY": "troubleshooting_response"
+        "LEARN": "documentation reference"
+
+    context_elements_by_scenario:
+      - scenario: "Adding entity"
+        context: ["consolidation_id", "company_code", "ownership_percentage", "method"]
+
+      - scenario: "Running elimination"
+        context: ["consolidation_id", "elimination_code", "journal_type"]
+
+      - scenario: "Year-end close"
+        context: ["consolidation_id", "period", "validation_gates_passed"]
+
+      - scenario: "Troubleshooting"
+        context: ["error_code", "diagnostic_results", "attempted_fixes"]

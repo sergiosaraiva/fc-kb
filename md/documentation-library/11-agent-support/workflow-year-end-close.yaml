@@ -1,0 +1,642 @@
+# Workflow: Year-End Consolidation Close
+# Task: Complete end-to-end annual consolidation close process
+# Complexity: High | Steps: 12 | Estimated Time: 4-8 hours
+# Scope: Full consolidation cycle from data collection to final reporting
+
+workflow:
+  name: "Year-End Consolidation Close"
+  version: "1.0"
+  description: "Comprehensive step-by-step process for annual consolidation close"
+
+  # Metadata
+  category: "Period Close"
+  frequency: "Annual (can adapt for quarterly/monthly)"
+  skill_level: "Advanced"
+  team_involvement: ["Consolidation Team", "Local Finance", "Group Accounting", "Auditors"]
+
+  # Related workflows
+  related_workflows:
+    - "workflow-add-subsidiary.yaml"
+    - "workflow-process-acquisition.yaml"
+    - "workflow-configure-ic-eliminations.yaml"
+
+  # Timeline overview
+  timeline:
+    - phase: "Pre-Close"
+      timing: "T-10 to T-5 days"
+      steps: [1, 2, 3]
+    - phase: "Data Collection"
+      timing: "T-5 to T-2 days"
+      steps: [4, 5]
+    - phase: "Consolidation"
+      timing: "T-2 to T-1 days"
+      steps: [6, 7, 8, 9]
+    - phase: "Review & Finalize"
+      timing: "T-1 to T+0"
+      steps: [10, 11, 12]
+
+  # Prerequisites
+  prerequisites:
+    - id: "prereq_1"
+      description: "All subsidiaries' year-end close complete"
+      owner: "Local Finance Teams"
+
+    - id: "prereq_2"
+      description: "Exchange rates loaded for year-end"
+      check: "CC (closing) and AC (average) rates for all currencies"
+
+    - id: "prereq_3"
+      description: "Prior period carried forward"
+      check: "Opening balances match prior year closing"
+
+    - id: "prereq_4"
+      description: "Consolidation scope confirmed"
+      check: "All acquisitions/disposals reflected"
+
+  # Workflow steps
+  steps:
+    - step: 1
+      name: "Pre-Close: Verify Consolidation Scope"
+      description: "Confirm all entities are correctly included/excluded"
+      phase: "Pre-Close"
+
+      actions:
+        - action: "review_scope"
+          type: "query"
+          sql: |
+            SELECT
+                c.CompanyCode,
+                c.CompanyName,
+                c.ConsoMethod,
+                c.ConsolidatedCompany,
+                c.GroupPerc,
+                c.MinorPerc,
+                c.FlagEnteringScope,
+                c.FlagLeavingScope,
+                CASE
+                    WHEN c.ConsoMethod IN ('G','E','P') AND c.ConsolidatedCompany = 1 THEN 'IN SCOPE'
+                    WHEN c.ConsoMethod = 'N' OR c.ConsolidatedCompany = 0 THEN 'OUT OF SCOPE'
+                    ELSE 'CHECK REQUIRED'
+                END AS ScopeStatus
+            FROM TS014C0 c
+            WHERE c.ConsoID = @ConsoID
+            ORDER BY c.ConsoMethod, c.CompanyCode
+
+        - action: "identify_scope_changes"
+          type: "query"
+          sql: |
+            -- Entities entering or leaving scope
+            SELECT CompanyCode, CompanyName,
+                   'ENTERING' AS ChangeType,
+                   EnteringScopeDate AS ChangeDate
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID AND FlagEnteringScope = 1
+            UNION ALL
+            SELECT CompanyCode, CompanyName,
+                   'LEAVING' AS ChangeType,
+                   LeavingScopeDate AS ChangeDate
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID AND FlagLeavingScope = 1
+
+      checklist:
+        - "[ ] All subsidiaries identified"
+        - "[ ] Consolidation methods correct"
+        - "[ ] Ownership percentages current"
+        - "[ ] Scope changes documented"
+
+    - step: 2
+      name: "Pre-Close: Verify Exchange Rates"
+      description: "Confirm all required exchange rates are loaded"
+      phase: "Pre-Close"
+
+      actions:
+        - action: "check_rate_completeness"
+          type: "query"
+          sql: |
+            -- Check for missing exchange rates
+            SELECT DISTINCT
+                c.CurrCode,
+                c.CompanyCode,
+                c.CompanyName,
+                CASE WHEN r_cc.Rate IS NULL THEN 'MISSING' ELSE 'OK' END AS ClosingRate,
+                CASE WHEN r_ac.Rate IS NULL THEN 'MISSING' ELSE 'OK' END AS AverageRate
+            FROM TS014C0 c
+            LEFT JOIN TS017R0 r_cc ON r_cc.ConsoID = c.ConsoID
+                AND r_cc.PeriodID = @PeriodID
+                AND r_cc.CurrCode = c.CurrCode
+                AND r_cc.RateType = 'CC'
+            LEFT JOIN TS017R0 r_ac ON r_ac.ConsoID = c.ConsoID
+                AND r_ac.PeriodID = @PeriodID
+                AND r_ac.CurrCode = c.CurrCode
+                AND r_ac.RateType = 'AC'
+            WHERE c.ConsoID = @ConsoID
+              AND c.ConsolidatedCompany = 1
+              AND c.CurrCode <> @ConsCurrCode
+              AND (r_cc.Rate IS NULL OR r_ac.Rate IS NULL)
+
+        - action: "verify_rate_reasonableness"
+          type: "query"
+          sql: |
+            -- Compare current vs prior period rates
+            SELECT
+                curr.CurrCode,
+                curr.RateType,
+                prior.Rate AS PriorRate,
+                curr.Rate AS CurrentRate,
+                ((curr.Rate - prior.Rate) / NULLIF(prior.Rate, 0)) * 100 AS ChangePercent
+            FROM TS017R0 curr
+            INNER JOIN TS017R0 prior ON prior.ConsoID = curr.ConsoID
+                AND prior.CurrCode = curr.CurrCode
+                AND prior.RateType = curr.RateType
+                AND prior.PeriodID = @PriorPeriodID
+            WHERE curr.ConsoID = @ConsoID
+              AND curr.PeriodID = @PeriodID
+            ORDER BY ABS(((curr.Rate - prior.Rate) / NULLIF(prior.Rate, 0))) DESC
+
+      validation:
+        checks:
+          - "All currencies have CC and AC rates"
+          - "Rate changes are explainable (no data entry errors)"
+
+    - step: 3
+      name: "Pre-Close: Verify Opening Balances"
+      description: "Confirm opening balances match prior year closing"
+      phase: "Pre-Close"
+
+      actions:
+        - action: "compare_opening_to_prior_closing"
+          type: "query"
+          sql: |
+            -- Opening vs Prior Closing reconciliation
+            SELECT
+                c.CompanyCode,
+                a.Account,
+                prior.AmountGroup AS PriorClosing,
+                curr_open.AmountGroup AS CurrentOpening,
+                prior.AmountGroup - curr_open.AmountGroup AS Difference
+            FROM TS014C0 c
+            CROSS APPLY (
+                SELECT AccountID, SUM(AmountGroup) AS AmountGroup
+                FROM TD035C2
+                WHERE ConsoID = @ConsoID AND CompanyID = c.CompanyID
+                  AND PeriodID = @PriorPeriodID
+                  AND FlowID = @ClosingFlowID
+                GROUP BY AccountID
+            ) prior
+            CROSS APPLY (
+                SELECT AccountID, SUM(AmountGroup) AS AmountGroup
+                FROM TD035C2
+                WHERE ConsoID = @ConsoID AND CompanyID = c.CompanyID
+                  AND PeriodID = @PeriodID
+                  AND FlowID = @OpeningFlowID
+                GROUP BY AccountID
+            ) curr_open
+            INNER JOIN TS010S0 a ON a.AccountID = prior.AccountID
+            WHERE c.ConsoID = @ConsoID
+              AND ABS(prior.AmountGroup - curr_open.AmountGroup) > 0.01
+
+      resolution:
+        if_differences_found: |
+          1. Run P_CONSO_CARRY_FORWARD to refresh opening balances
+          2. Investigate manual adjustments to opening
+          3. Check for prior period adjustments not reflected
+
+    - step: 4
+      name: "Data Collection: Import Local Data"
+      description: "Import trial balances and flows from all subsidiaries"
+      phase: "Data Collection"
+
+      actions:
+        - action: "track_import_status"
+          type: "query"
+          sql: |
+            -- Import status by company
+            SELECT
+                c.CompanyCode,
+                c.CompanyName,
+                c.Status_Bundles,
+                CASE c.Status_Bundles
+                    WHEN 0 THEN 'Imported'
+                    WHEN 1 THEN 'Pending'
+                    ELSE 'Error'
+                END AS ImportStatus,
+                MAX(d.ImportDate) AS LastImportDate
+            FROM TS014C0 c
+            LEFT JOIN TD030B2 d ON d.ConsoID = c.ConsoID AND d.CompanyID = c.CompanyID
+            WHERE c.ConsoID = @ConsoID
+              AND c.ConsolidatedCompany = 1
+            GROUP BY c.CompanyCode, c.CompanyName, c.Status_Bundles
+            ORDER BY c.Status_Bundles DESC, c.CompanyCode
+
+        - action: "import_bundles"
+          type: "procedure"
+          procedure: "P_SYS_IMPORT_BUNDLE"
+          per_company: true
+          guidance: |
+            Import options:
+            1. Excel import via Data Entry screen
+            2. API import via P_SYS_IMPORT_* procedures
+            3. Batch import from source systems
+
+      checkpoint: true
+      checkpoint_message: "All subsidiary data imported?"
+
+      checklist:
+        - "[ ] All G companies imported"
+        - "[ ] All E companies imported (equity pickup data)"
+        - "[ ] All P companies imported"
+        - "[ ] Import validation passed"
+
+    - step: 5
+      name: "Data Collection: Verify Intercompany Data"
+      description: "Reconcile intercompany balances between partners"
+      phase: "Data Collection"
+
+      actions:
+        - action: "run_ic_reconciliation"
+          type: "query"
+          sql: |
+            -- IC reconciliation by partner pair
+            SELECT
+                c1.CompanyCode AS Company,
+                c2.CompanyCode AS Partner,
+                a.Account,
+                SUM(d.AmountLocal) AS CompanyBalance,
+                (
+                    SELECT SUM(d2.AmountLocal) * -1
+                    FROM TD040B2 d2
+                    WHERE d2.ConsoID = @ConsoID
+                      AND d2.CompanyID = c2.CompanyID
+                      AND d2.PartnerCompanyID = c1.CompanyID
+                      AND d2.AccountID = a.MirrorAccountID
+                ) AS PartnerBalance,
+                SUM(d.AmountLocal) + ISNULL((
+                    SELECT SUM(d2.AmountLocal) * -1
+                    FROM TD040B2 d2
+                    WHERE d2.ConsoID = @ConsoID
+                      AND d2.CompanyID = c2.CompanyID
+                      AND d2.PartnerCompanyID = c1.CompanyID
+                      AND d2.AccountID = a.MirrorAccountID
+                ), 0) AS Difference
+            FROM TD040B2 d
+            INNER JOIN TS014C0 c1 ON c1.ConsoID = d.ConsoID AND c1.CompanyID = d.CompanyID
+            INNER JOIN TS014C0 c2 ON c2.ConsoID = d.ConsoID AND c2.CompanyID = d.PartnerCompanyID
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            WHERE d.ConsoID = @ConsoID
+              AND a.FlagInterCompany = 1
+            GROUP BY c1.CompanyCode, c2.CompanyCode, a.Account, a.MirrorAccountID
+            HAVING ABS(SUM(d.AmountLocal) + ISNULL((
+                SELECT SUM(d2.AmountLocal) * -1
+                FROM TD040B2 d2
+                WHERE d2.ConsoID = @ConsoID
+                  AND d2.CompanyID = c2.CompanyID
+                  AND d2.PartnerCompanyID = c1.CompanyID
+                  AND d2.AccountID = a.MirrorAccountID
+            ), 0)) > 1
+
+      resolution:
+        if_differences_found: |
+          1. Contact local entities to reconcile
+          2. Identify timing differences
+          3. Create IC reconciliation adjustments if needed
+          4. Document unreconciled differences
+
+    - step: 6
+      name: "Consolidation: Run Bundle Integration"
+      description: "Convert local data to consolidated currency"
+      phase: "Consolidation"
+
+      actions:
+        - action: "run_bundle_integration"
+          type: "execute"
+          procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+            - "@SessionID = @SessionID"
+
+        - action: "verify_bundle_integration"
+          type: "query"
+          sql: |
+            -- Check bundle integration status
+            SELECT
+                c.CompanyCode,
+                c.Status_Bundles,
+                SUM(CASE WHEN d.AmountLocal IS NOT NULL THEN 1 ELSE 0 END) AS LocalLines,
+                SUM(CASE WHEN d.AmountGroup IS NOT NULL THEN 1 ELSE 0 END) AS GroupLines
+            FROM TS014C0 c
+            LEFT JOIN TD035C2 d ON d.ConsoID = c.ConsoID AND d.CompanyID = c.CompanyID
+            WHERE c.ConsoID = @ConsoID AND c.ConsolidatedCompany = 1
+            GROUP BY c.CompanyCode, c.Status_Bundles
+
+      validation:
+        checks:
+          - "All companies Status_Bundles = 0"
+          - "Group amounts calculated for all lines"
+          - "No currency translation errors"
+
+    - step: 7
+      name: "Consolidation: Process Adjustments"
+      description: "Review and finalize group adjustments"
+      phase: "Consolidation"
+
+      actions:
+        - action: "review_adjustments_status"
+          type: "query"
+          sql: |
+            SELECT
+                c.CompanyCode,
+                j.JournalTypeCode,
+                j.Description,
+                COUNT(*) AS AdjustmentLines,
+                SUM(a.AmountGroup) AS TotalAmount
+            FROM TD033E0 a
+            INNER JOIN TS014C0 c ON c.ConsoID = a.ConsoID AND c.CompanyID = a.CompanyID
+            INNER JOIN TS020S0 j ON j.ConsoID = a.ConsoID AND j.JournalTypeID = a.JournalTypeID
+            WHERE a.ConsoID = @ConsoID
+            GROUP BY c.CompanyCode, j.JournalTypeCode, j.Description
+
+        - action: "verify_adjustments_balanced"
+          type: "query"
+          sql: |
+            -- Check adjustment journals balance
+            SELECT
+                j.JournalTypeCode,
+                c.CompanyCode,
+                SUM(a.AmountGroup) AS Balance
+            FROM TD033E0 a
+            INNER JOIN TS020S0 j ON j.ConsoID = a.ConsoID AND j.JournalTypeID = a.JournalTypeID
+            INNER JOIN TS014C0 c ON c.ConsoID = a.ConsoID AND c.CompanyID = a.CompanyID
+            WHERE a.ConsoID = @ConsoID
+            GROUP BY j.JournalTypeCode, c.CompanyCode
+            HAVING ABS(SUM(a.AmountGroup)) > 0.01
+
+    - step: 8
+      name: "Consolidation: Run Eliminations"
+      description: "Execute all system and user eliminations"
+      phase: "Consolidation"
+
+      actions:
+        - action: "run_eliminations"
+          type: "execute"
+          procedure: "P_CONSO_ELIM"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@UserID = @UserID"
+
+        - action: "verify_elimination_journals"
+          type: "query"
+          sql: |
+            -- Summary of elimination journals
+            SELECT
+                j.JournalTypeCode,
+                j.Description,
+                COUNT(DISTINCT e.CompanyID) AS CompaniesAffected,
+                SUM(CASE WHEN e.Amount > 0 THEN e.Amount ELSE 0 END) AS TotalDebits,
+                SUM(CASE WHEN e.Amount < 0 THEN e.Amount ELSE 0 END) AS TotalCredits,
+                SUM(e.Amount) AS Balance
+            FROM TD045C2 e
+            INNER JOIN TS020S0 j ON j.ConsoID = e.ConsoID AND j.JournalTypeID = e.JournalTypeID
+            WHERE e.ConsoID = @ConsoID
+            GROUP BY j.JournalTypeCode, j.Description
+            ORDER BY j.JournalTypeCode
+
+      validation:
+        checks:
+          - "All elimination journals balance (Sum = 0)"
+          - "S089 participation elimination executed"
+          - "S085 minority interest calculated"
+          - "IC eliminations processed"
+          - "User eliminations applied"
+
+    - step: 9
+      name: "Consolidation: Calculate Final Amounts"
+      description: "Run closing amounts calculation"
+      phase: "Consolidation"
+
+      actions:
+        - action: "calculate_closing_amounts"
+          type: "execute"
+          procedure: "P_CONSO_CALCULATE_CLOSING_AMOUNTS"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+
+        - action: "verify_balance_sheet_balances"
+          type: "query"
+          sql: |
+            -- Verify Balance Sheet balances
+            SELECT
+                'Assets' AS Category,
+                SUM(CASE WHEN a.AccountType = 'B' AND a.BalanceType = 'D' THEN d.AmountGroup ELSE 0 END) AS Total
+            FROM TD035C2 d
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            WHERE d.ConsoID = @ConsoID AND d.FlowID = @ClosingFlowID
+            UNION ALL
+            SELECT
+                'Liabilities + Equity' AS Category,
+                SUM(CASE WHEN a.AccountType = 'B' AND a.BalanceType = 'C' THEN d.AmountGroup ELSE 0 END) AS Total
+            FROM TD035C2 d
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            WHERE d.ConsoID = @ConsoID AND d.FlowID = @ClosingFlowID
+
+      validation:
+        critical_check: "Total Assets = Total Liabilities + Equity"
+
+    - step: 10
+      name: "Review: Generate Reports"
+      description: "Generate consolidation reports for review"
+      phase: "Review & Finalize"
+
+      actions:
+        - action: "generate_consolidated_bs"
+          type: "report"
+          procedure: "P_REPORT_CONSOLIDATED_BALANCE_SHEET"
+
+        - action: "generate_consolidated_pl"
+          type: "report"
+          procedure: "P_REPORT_CONSOLIDATED_PL"
+
+        - action: "generate_equity_reconciliation"
+          type: "report"
+          procedure: "P_REPORT_CONSOLIDATED_EQUITY"
+
+        - action: "generate_goodwill_report"
+          type: "report"
+          procedure: "P_REPORT_GOODWILL"
+
+        - action: "generate_mi_report"
+          type: "report"
+          procedure: "P_REPORT_MINORITY_INTEREST"
+
+      reports_checklist:
+        - "[ ] Consolidated Balance Sheet"
+        - "[ ] Consolidated Income Statement"
+        - "[ ] Consolidated Statement of Changes in Equity"
+        - "[ ] Goodwill Schedule"
+        - "[ ] Minority Interest Schedule"
+        - "[ ] Currency Translation Summary"
+        - "[ ] Elimination Journals Summary"
+
+    - step: 11
+      name: "Review: Analytical Review"
+      description: "Perform analytical review and variance analysis"
+      phase: "Review & Finalize"
+
+      actions:
+        - action: "year_over_year_comparison"
+          type: "query"
+          sql: |
+            -- Key metrics comparison
+            SELECT
+                'Total Assets' AS Metric,
+                curr.Amount AS CurrentYear,
+                prior.Amount AS PriorYear,
+                curr.Amount - prior.Amount AS Change,
+                ((curr.Amount - prior.Amount) / NULLIF(prior.Amount, 0)) * 100 AS ChangePercent
+            FROM (
+                SELECT SUM(AmountGroup) AS Amount
+                FROM TD035C2 d
+                INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+                WHERE d.ConsoID = @ConsoID AND d.PeriodID = @PeriodID
+                  AND a.AccountType = 'B' AND a.BalanceType = 'D'
+                  AND d.FlowID = @ClosingFlowID
+            ) curr
+            CROSS JOIN (
+                SELECT SUM(AmountGroup) AS Amount
+                FROM TD035C2 d
+                INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+                WHERE d.ConsoID = @ConsoID AND d.PeriodID = @PriorPeriodID
+                  AND a.AccountType = 'B' AND a.BalanceType = 'D'
+                  AND d.FlowID = @ClosingFlowID
+            ) prior
+            -- Add more metrics: Revenue, Net Income, Equity, etc.
+
+        - action: "identify_unusual_variances"
+          type: "analysis"
+          guidance: |
+            Flag variances exceeding thresholds:
+            - Balance Sheet items: > 10% change
+            - Revenue/Expenses: > 15% change
+            - Elimination journals: > 20% change from prior year
+
+      review_points:
+        - "[ ] BS movements explained"
+        - "[ ] PL variances understood"
+        - "[ ] Goodwill changes justified"
+        - "[ ] CTA movements tied to FX rates"
+        - "[ ] NCI calculation verified"
+
+    - step: 12
+      name: "Finalize: Close Period"
+      description: "Finalize consolidation and close the period"
+      phase: "Review & Finalize"
+
+      actions:
+        - action: "final_validation"
+          type: "query"
+          sql: |
+            -- Final validation checklist
+            SELECT
+                'Balance Sheet Balances' AS Check,
+                CASE WHEN ABS(SUM(CASE WHEN a.BalanceType = 'D' THEN d.AmountGroup ELSE 0 END) -
+                              ABS(SUM(CASE WHEN a.BalanceType = 'C' THEN d.AmountGroup ELSE 0 END))) < 1
+                     THEN 'PASS' ELSE 'FAIL' END AS Status
+            FROM TD035C2 d
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            WHERE d.ConsoID = @ConsoID AND d.FlowID = @ClosingFlowID AND a.AccountType = 'B'
+            UNION ALL
+            SELECT 'All Companies Consolidated' AS Check,
+                   CASE WHEN COUNT(*) = 0 THEN 'PASS' ELSE 'FAIL' END AS Status
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+              AND (Status_Bundles = 1 OR Status_Adjustments = 1)
+            UNION ALL
+            SELECT 'Elimination Journals Balance' AS Check,
+                   CASE WHEN ABS(SUM(Amount)) < 1 THEN 'PASS' ELSE 'FAIL' END AS Status
+            FROM TD045C2
+            WHERE ConsoID = @ConsoID
+
+        - action: "close_period"
+          type: "execute"
+          sql: |
+            -- Mark period as closed
+            UPDATE TS096S0
+            SET ConsoStatus = 'C',  -- Closed
+                CloseDate = GETDATE(),
+                ClosedBy = @UserID
+            WHERE ConsoID = @ConsoID
+              AND PeriodID = @PeriodID
+
+        - action: "archive_consolidation"
+          type: "procedure"
+          procedure: "P_ARCHIVE_CONSOLIDATION"
+          description: "Create point-in-time snapshot for audit"
+
+      final_checklist:
+        - "[ ] All validation checks pass"
+        - "[ ] Reports reviewed and approved"
+        - "[ ] Audit documentation complete"
+        - "[ ] Period status set to Closed"
+        - "[ ] Backup/archive created"
+
+  # Post-workflow
+  post_workflow:
+    next_period_prep:
+      - description: "Carry forward closing balances"
+        action: "Run P_CONSO_CARRY_FORWARD for next period"
+
+      - description: "Reset entering/leaving scope flags"
+        sql: |
+          UPDATE TS014C0
+          SET FlagEnteringScope = 0, FlagLeavingScope = 0
+          WHERE ConsoID = @ConsoID
+
+      - description: "Update reference period"
+        action: "Set @RefPeriodID for next period comparison"
+
+    audit_documentation:
+      - "Consolidation package for auditors"
+      - "Elimination journal detail"
+      - "Intercompany reconciliation"
+      - "Goodwill and NCI schedules"
+      - "Currency translation summary"
+
+  # Troubleshooting
+  troubleshooting:
+    - issue: "Balance sheet doesn't balance"
+      priority: "Critical"
+      causes:
+        - "Unbalanced elimination journal"
+        - "Currency translation rounding"
+        - "Missing data import"
+      solution: |
+        1. Check elimination journal balances
+        2. Review CTA calculation
+        3. Verify all companies imported
+
+    - issue: "Consolidation taking too long"
+      causes:
+        - "Large data volume"
+        - "Index fragmentation"
+      solution: |
+        1. Run in off-peak hours
+        2. Consider company-by-company processing
+        3. Review database performance
+
+    - issue: "Audit findings on eliminations"
+      causes:
+        - "Incorrect goodwill calculation"
+        - "NCI measurement inconsistency"
+        - "IC not fully eliminated"
+      solution: |
+        1. Review elimination configuration
+        2. Verify against IFRS requirements
+        3. Create correcting adjustments
+
+  # References
+  references:
+    - document: "../03-core-calculations/consolidation-workflow.md"
+    - document: "../08-application-layer/consolidation-services.md"
+    - document: "../17-troubleshooting/common-issues.md"
+    - document: "../20-appendices/quick-reference-card.md"

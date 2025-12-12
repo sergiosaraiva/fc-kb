@@ -1,0 +1,727 @@
+# API Export Data Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent data export orchestration
+
+api_export_data_endpoints:
+  name: "Export Data API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for exporting financial data from the consolidation system.
+
+    Data export is the counterpart to data import, enabling:
+    - Export of consolidated financial data to external systems
+    - Export of local/contribution amounts for reporting
+    - Adjustment journal exports for audit/integration
+    - Exchange rate exports for downstream systems
+    - Multiple file format support (CSV, Excel, Hub)
+
+    Key concepts:
+    - Export Structure: Configuration template defining file format and field mappings
+    - Export Types: Local amounts, contribution, consolidated amounts
+    - Export Flags: Control what data types to export (closing amounts, flows, dimensions, interco)
+    - Job-Based Processing: Asynchronous export using Hangfire background jobs
+    - Hub Export: Export to staging tables (HubDataOut) for integration scenarios
+
+    Services documented:
+    - ExportDataService: GL/budget/forecast data export (1 handler)
+    - ExportAdjustmentsService: Adjustment journal export (1 handler)
+    - ExportExchangeRatesService: Exchange rate export (1 handler)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    ExportTypes:
+      description: "Types of data export operations"
+      values:
+        - char: "L"
+          name: "LocalAmounts"
+          description: "Export local bundle amounts (requires CompanyCodes)"
+        - char: "D"
+          name: "Contribution"
+          description: "Export contribution amounts (supports JournalSummationCode filter)"
+        - char: "C"
+          name: "ConsolidatedAmounts"
+          description: "Export consolidated group amounts (supports JournalSummationCode filter)"
+
+    FileTypes:
+      description: "Supported export file types"
+      values:
+        - value: 0
+          name: "CSV"
+          description: "CSV file export"
+        - value: 1
+          name: "XLS"
+          description: "Excel file export"
+        - name: "HUB"
+          description: "Export to Hub staging tables"
+
+    TypeExportAmounts:
+      description: "Amount export format for adjustments"
+      values:
+        - char: "N"
+          name: "NetAmounts"
+          description: "Single net amount column"
+        - char: "D"
+          name: "DebitCredit"
+          description: "Separate debit/credit columns"
+
+    HubFlowTypes:
+      description: "Hub integration flow types"
+      values:
+        - value: 2
+          name: "ExportData"
+          description: "Export GL/budget/forecast data to Hub"
+        - value: 4
+          name: "ExportAdjustments"
+          description: "Export adjustments to Hub"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    ExportFlagsDTO:
+      description: "Flags controlling which data types to export"
+      source: "ExportDataService.cs"
+      fields:
+        - name: "ClosingAmounts"
+          type: "boolean"
+          description: "Export closing balance amounts"
+        - name: "Flows"
+          type: "boolean"
+          description: "Export flow movements"
+        - name: "Dims"
+          type: "boolean"
+          description: "Export dimension amounts"
+        - name: "ClosingAmountsParticipations"
+          type: "boolean"
+          description: "Export closing amounts for participations"
+        - name: "FlowsParticipations"
+          type: "boolean"
+          description: "Export flow movements for participations"
+        - name: "DimsParticipations"
+          type: "boolean"
+          description: "Export dimension amounts for participations"
+        - name: "ClosingAmountsIntercos"
+          type: "boolean"
+          description: "Export intercompany closing amounts"
+        - name: "FlowsIntercos"
+          type: "boolean"
+          description: "Export intercompany flow movements"
+        - name: "DimsIntercos"
+          type: "boolean"
+          description: "Export intercompany dimension amounts"
+        - name: "ClosingAmountsPartners"
+          type: "boolean"
+          description: "Export partner closing amounts"
+        - name: "FlowsPartners"
+          type: "boolean"
+          description: "Export partner flow movements"
+        - name: "DimsPartners"
+          type: "boolean"
+          description: "Export partner dimension amounts"
+
+  # ============================================================================
+  # EXPORT DATA HANDLERS (GL/BUDGET/FORECAST)
+  # ============================================================================
+  export_data_handlers:
+    description: |
+      Endpoints for exporting general ledger, budget, and forecast data.
+      Source: Sigma.Mona.WebApplication/Screens/ExportData/ExportDataService.cs
+
+    handlers:
+      - name: "ExportData_Export"
+        description: |
+          Exports GL data to file or Hub staging tables.
+          Supports three export types: Local amounts, Contribution, and Consolidated amounts.
+          Creates ExportData record and launches export job.
+          Returns JobID for monitoring progress.
+        access_right: "ExportData_Export"
+        async: false
+        job_triggered: "ExportDataJob"
+
+        request:
+          _t: "ExportData_Export"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: true
+              description: "Consolidation period code to export"
+            - name: "FileStructure"
+              type: "integer"
+              required: true
+              description: "Export structure ID defining format and field mappings"
+            - name: "ExportType"
+              type: "char"
+              required: true
+              description: "L=Local, D=Contribution, C=Consolidated"
+              enum_ref: "ExportTypes"
+            - name: "Sheetname"
+              type: "string"
+              required: false
+              description: "Excel sheet name"
+            - name: "PackageID"
+              type: "string"
+              required: "if FileType=HUB"
+              description: "Hub package identifier for integration export"
+            - name: "CompanyCodes"
+              type: "array<string>"
+              required: "if ExportType=L"
+              description: "Company codes to export (for Local amounts only)"
+            - name: "JournalSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by journal summation (for Contribution/Consolidated)"
+            - name: "ClosingAmounts"
+              type: "boolean"
+              required: false
+              description: "Export closing balance amounts"
+            - name: "Flows"
+              type: "boolean"
+              required: false
+              description: "Export flow movements"
+            - name: "Dims"
+              type: "boolean"
+              required: false
+              description: "Export dimension amounts"
+            - name: "ClosingAmountsParticipations"
+              type: "boolean"
+              required: false
+              description: "Export participation closing amounts"
+            - name: "FlowsParticipations"
+              type: "boolean"
+              required: false
+              description: "Export participation flows"
+            - name: "DimsParticipations"
+              type: "boolean"
+              required: false
+              description: "Export participation dimensions"
+            - name: "ClosingAmountsIntercos"
+              type: "boolean"
+              required: false
+              description: "Export intercompany closing amounts"
+            - name: "FlowsIntercos"
+              type: "boolean"
+              required: false
+              description: "Export intercompany flows"
+            - name: "DimsIntercos"
+              type: "boolean"
+              required: false
+              description: "Export intercompany dimensions"
+            - name: "ClosingAmountsPartners"
+              type: "boolean"
+              required: false
+              description: "Export partner closing amounts"
+            - name: "FlowsPartners"
+              type: "boolean"
+              required: false
+              description: "Export partner flows"
+            - name: "DimsPartners"
+              type: "boolean"
+              required: false
+              description: "Export partner dimensions"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+          example_local:
+            json: |
+              {
+                "_t": "ExportData_Export",
+                "ConsoCode": "2024.12.A.01",
+                "FileStructure": 123,
+                "ExportType": "L",
+                "CompanyCodes": ["ACME", "GLOBEX", "INITECH"],
+                "ClosingAmounts": true,
+                "Flows": true,
+                "ClosingAmountsIntercos": true,
+                "FlowsIntercos": true
+              }
+          example_consolidated:
+            json: |
+              {
+                "_t": "ExportData_Export",
+                "ConsoCode": "2024.12.A.01",
+                "FileStructure": 123,
+                "ExportType": "C",
+                "JournalSummationCode": "ALL",
+                "ClosingAmounts": true,
+                "Flows": true,
+                "Dims": true
+              }
+          example_hub:
+            json: |
+              {
+                "_t": "ExportData_Export",
+                "ConsoCode": "2024.12.A.01",
+                "FileStructure": 456,
+                "ExportType": "C",
+                "PackageID": "EXPORT_2024_Q4",
+                "ClosingAmounts": true,
+                "ClosingAmountsIntercos": true
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+          errors:
+            - pattern: "NOT_FOUND"
+              cause: "Export structure not found"
+            - pattern: "ImportExportStructureFileStructureRequired"
+              cause: "FileStructure parameter is required"
+
+  # ============================================================================
+  # EXPORT ADJUSTMENTS HANDLERS
+  # ============================================================================
+  export_adjustments_handlers:
+    description: |
+      Endpoints for exporting adjustment journal entries.
+      Source: Sigma.Mona.WebApplication/Screens/ExportAdjustments/ExportAdjustmentsService.cs
+
+    handlers:
+      - name: "ExportAdjustments_Export"
+        description: |
+          Exports adjustment journals to file or Hub staging tables.
+          Supports CSV, Excel, and Hub file types.
+          Creates ExportAjustments record and launches export job.
+          Returns JobID for monitoring progress.
+        access_right: "ExportAdjustments_Export"
+        async: false
+        job_triggered: "ExportAdjustmentsJob"
+
+        request:
+          _t: "ExportAdjustments_Export"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: true
+              description: "Consolidation period code to export"
+            - name: "Filetype"
+              type: "short"
+              required: true
+              description: "0=CSV, 1=Excel, 2=Hub"
+              enum_ref: "FileTypes"
+            - name: "CompanyCodes"
+              type: "array<string>"
+              required: true
+              description: "Company codes to include in export"
+            - name: "TypeExportAmounts"
+              type: "char"
+              required: true
+              description: "N=Net amounts, D=Debit/Credit"
+              enum_ref: "TypeExportAmounts"
+            - name: "JournalSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by journal summation"
+            - name: "Sheetname"
+              type: "string"
+              required: false
+              description: "Excel sheet name"
+            - name: "IsExcel2007Format"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Use Excel 2007+ format (.xlsx)"
+            - name: "CSVSeparator"
+              type: "char"
+              required: "if Filetype=0"
+              description: "CSV field separator"
+            - name: "DecimalSeparator"
+              type: "char"
+              required: "if Filetype=0"
+              description: "Decimal separator character"
+            - name: "ThousandSeparator"
+              type: "char"
+              required: false
+              description: "Thousand separator character"
+            - name: "TextQuote"
+              type: "char"
+              required: "if Filetype=0"
+              description: "Text delimiter character"
+            - name: "PackageID"
+              type: "string"
+              required: "if Filetype=HUB"
+              description: "Hub package identifier"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+            - name: "Debug"
+              type: "boolean"
+              required: false
+          example_csv:
+            json: |
+              {
+                "_t": "ExportAdjustments_Export",
+                "ConsoCode": "2024.12.A.01",
+                "Filetype": 0,
+                "CompanyCodes": ["ACME", "GLOBEX"],
+                "TypeExportAmounts": "N",
+                "CSVSeparator": ";",
+                "DecimalSeparator": ".",
+                "TextQuote": "\""
+              }
+          example_excel:
+            json: |
+              {
+                "_t": "ExportAdjustments_Export",
+                "ConsoCode": "2024.12.A.01",
+                "Filetype": 1,
+                "CompanyCodes": ["ACME", "GLOBEX", "INITECH"],
+                "TypeExportAmounts": "D",
+                "Sheetname": "Adjustments",
+                "IsExcel2007Format": true,
+                "JournalSummationCode": "GROUP"
+              }
+          example_hub:
+            json: |
+              {
+                "_t": "ExportAdjustments_Export",
+                "ConsoCode": "2024.12.A.01",
+                "Filetype": 2,
+                "CompanyCodes": ["ACME"],
+                "TypeExportAmounts": "N",
+                "PackageID": "ADJ_EXPORT_2024_Q4"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+
+  # ============================================================================
+  # EXPORT EXCHANGE RATES HANDLERS
+  # ============================================================================
+  export_exchange_rates_handlers:
+    description: |
+      Endpoints for exporting exchange rate data.
+      Source: Sigma.Mona.WebApplication/Screens/ExportExchangeRates/ExportExchangeRatesService.cs
+
+    handlers:
+      - name: "ExportExchangeRates_Export"
+        description: |
+          Exports exchange rates for a consolidation period to file.
+          Supports CSV and Excel file types.
+          Creates export record via P_SYS_EXPORTEXCHANGERATE_INSERT and launches export job.
+          Returns JobID for monitoring progress.
+        access_right: "ExportExchangeRatesService_Export"
+        async: false
+        job_triggered: "ExportExRateJob"
+
+        request:
+          _t: "ExportExchangeRates_Export"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: true
+              description: "Consolidation period code to export rates for"
+            - name: "Filetype"
+              type: "string"
+              required: true
+              description: "CSV or XLS"
+            - name: "Sheetname"
+              type: "string"
+              required: false
+              description: "Excel sheet name"
+            - name: "IsExcel2007Format"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Use Excel 2007+ format (.xlsx)"
+            - name: "CSVSeparator"
+              type: "char"
+              required: "if Filetype=CSV"
+              description: "CSV field separator"
+            - name: "DecimalSeparator"
+              type: "char"
+              required: "if Filetype=CSV"
+              description: "Decimal separator character"
+            - name: "ThousandSeparator"
+              type: "char"
+              required: false
+              description: "Thousand separator character"
+            - name: "TextQuote"
+              type: "char"
+              required: "if Filetype=CSV"
+              description: "Text delimiter character"
+            - name: "ScreenID"
+              type: "integer"
+              required: false
+          example_csv:
+            json: |
+              {
+                "_t": "ExportExchangeRates_Export",
+                "ConsoCode": "2024.12.A.01",
+                "Filetype": "CSV",
+                "CSVSeparator": ";",
+                "DecimalSeparator": ".",
+                "TextQuote": "\""
+              }
+          example_excel:
+            json: |
+              {
+                "_t": "ExportExchangeRates_Export",
+                "ConsoCode": "2024.12.A.01",
+                "Filetype": "XLS",
+                "Sheetname": "Exchange Rates",
+                "IsExcel2007Format": true
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    gl_data_export_workflow:
+      name: "GL Data Export Workflow"
+      description: "Export general ledger data to external systems"
+      steps:
+        - step: 1
+          name: "Select Export Configuration"
+          description: "Choose export structure, period, and export type"
+          client_side: true
+
+        - step: 2
+          name: "Configure Export Flags"
+          description: "Select data types to export (amounts, flows, dimensions, interco)"
+          client_side: true
+
+        - step: 3
+          name: "Execute Export"
+          handler: "ExportData_Export"
+          parameters:
+            ExportType: "L, D, or C"
+          purpose: "Launch export job"
+          job_monitoring: true
+
+        - step: 4
+          name: "Monitor Job Progress"
+          handler: "Job_GetJobStatus"
+          source: "api-job-monitoring-endpoints.yaml"
+          purpose: "Track export progress"
+
+        - step: 5
+          name: "Download Export File"
+          description: "Download generated file from job output"
+          client_side: true
+
+    adjustment_export_workflow:
+      name: "Adjustment Export Workflow"
+      description: "Export adjustment journals"
+      steps:
+        - step: 1
+          name: "Select Companies"
+          description: "Choose companies to include in export"
+          client_side: true
+
+        - step: 2
+          name: "Configure Export Format"
+          description: "Select file type, format options, and amount type"
+          client_side: true
+
+        - step: 3
+          name: "Execute Export"
+          handler: "ExportAdjustments_Export"
+          purpose: "Launch adjustment export job"
+          job_monitoring: true
+
+        - step: 4
+          name: "Download Export File"
+          description: "Download generated file"
+          client_side: true
+
+    exchange_rate_export_workflow:
+      name: "Exchange Rate Export Workflow"
+      description: "Export exchange rates for a period"
+      steps:
+        - step: 1
+          name: "Select Period and Format"
+          description: "Choose consolidation period and file format"
+          client_side: true
+
+        - step: 2
+          name: "Execute Export"
+          handler: "ExportExchangeRates_Export"
+          purpose: "Launch exchange rate export job"
+          job_monitoring: true
+
+        - step: 3
+          name: "Download Export File"
+          description: "Download generated file"
+          client_side: true
+
+    complete_export_workflow:
+      name: "Complete Data Export Workflow"
+      description: "Export all consolidation data (GL, adjustments, rates)"
+      notes: "For full system-to-system integration"
+      steps:
+        - step: 1
+          name: "Export Exchange Rates"
+          handler: "ExportExchangeRates_Export"
+          purpose: "Export rate data first (reference data)"
+
+        - step: 2
+          name: "Export GL Data"
+          handler: "ExportData_Export"
+          parameters:
+            ExportType: "C"
+          purpose: "Export consolidated amounts"
+
+        - step: 3
+          name: "Export Adjustments"
+          handler: "ExportAdjustments_Export"
+          purpose: "Export adjustment journals"
+
+        - step: 4
+          name: "Verify All Jobs Complete"
+          handler: "Job_GetJobStatus"
+          source: "api-job-monitoring-endpoints.yaml"
+          purpose: "Ensure all exports completed successfully"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_SYS_EXPORTDATA_INSERT"
+      description: "Creates ExportData record for GL export"
+      called_by: "ExportDataService"
+      parameters:
+        - SessionID
+        - Login
+        - CustomerID
+        - UserCustomerID
+        - SheetName
+        - ExportType
+        - FileStructure
+        - ConsoIDsXml
+        - CompanyCodesXml
+        - JournalSummationCode
+        - ClosingAmounts (and all export flags)
+
+    - name: "P_SYS_EXPORTEXCHANGERATE_INSERT"
+      description: "Creates ExportExchangeRate record"
+      called_by: "ExportExchangeRatesService"
+      parameters:
+        - Login
+        - CustomerID
+        - ConsoID
+        - SheetName
+        - CSVSeparator
+        - DecimalSeparator
+        - ThousandSeparator
+        - TextQuote
+        - FileType
+        - UserCustomerID
+        - IsExcel2007Format
+
+  # ============================================================================
+  # JOB TYPES
+  # ============================================================================
+  background_jobs:
+    ExportDataJob:
+      description: "Processes GL/budget/forecast data exports"
+      file: "Sigma.Mona.Jobs/Database/ExportDataJob.cs"
+      parameters:
+        - name: "SessionID"
+          description: "Export session ID"
+        - name: "PackageID"
+          description: "Hub package ID (for Hub exports only)"
+        - name: "HubFlow"
+          description: "Hub flow type (2 for data export)"
+
+    ExportAdjustmentsJob:
+      description: "Processes adjustment journal exports"
+      file: "Sigma.Mona.Jobs/Database/ExportAdjustmentsJob.cs"
+      parameters:
+        - name: "SessionID"
+          description: "Export session ID"
+        - name: "PackageID"
+          description: "Hub package ID (for Hub exports only)"
+        - name: "HubFlow"
+          description: "Hub flow type (4 for adjustment export)"
+
+    ExportExRateJob:
+      description: "Processes exchange rate exports"
+      file: "Sigma.Mona.Jobs/Database/ExportExRateJob.cs"
+      parameters:
+        - name: "SessionID"
+          description: "Export session ID"
+
+  # ============================================================================
+  # STAGING TABLES
+  # ============================================================================
+  staging_tables:
+    ExportDatas:
+      description: "Export data session tracking (VIEW entity - uses SP for insert)"
+      key_fields:
+        - SessionID
+        - FileStructure
+        - ExportType
+
+    ExportAjustments:
+      description: "Export adjustment session tracking"
+      key_fields:
+        - SessionID
+        - CompanyCodesXml
+        - ConsoIDsXml
+
+    ExportExchangeRates:
+      description: "Export exchange rate session tracking"
+      key_fields:
+        - SessionID
+        - ConsoID
+
+    HubDataOut:
+      description: "Hub staging table for exported GL data"
+      key_fields:
+        - CustomerCode
+        - PackageID
+        - Company
+        - Account
+        - Period
+
+    HubAdjustmentsOut:
+      description: "Hub staging table for exported adjustments"
+      key_fields:
+        - CustomerCode
+        - PackageID
+        - JournalCode
+        - JournalEntry
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/ExportData/ExportDataService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ExportAdjustments/ExportAdjustmentsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ExportExchangeRates/ExportExchangeRatesService.cs"
+    handler_count: 3
+    purpose: |
+      Enable AI agents to orchestrate data export workflows including:
+      - Exporting GL, budget, and forecast data to multiple formats
+      - Exporting adjustment journal entries
+      - Exporting exchange rates
+      - Hub integration for system-to-system data flows
+      - Job-based asynchronous processing with progress monitoring
+
+      Data export is critical for:
+      - Extracting consolidated financial data for external reporting
+      - Integration with ERP and accounting systems
+      - Audit trail and compliance documentation
+      - Data warehouse population
+      - Downstream system feeds
+
+      Export endpoints mirror import endpoints:
+      - Import Data -> Export Data
+      - Import Adjustments -> Export Adjustments
+      - Import Exchange Rates -> Export Exchange Rates

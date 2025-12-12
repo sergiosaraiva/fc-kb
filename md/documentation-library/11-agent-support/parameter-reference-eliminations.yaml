@@ -1,0 +1,719 @@
+# Parameter Reference: Elimination Stored Procedures
+# Purpose: Complete parameter documentation for elimination procedures
+# Version: 1.0
+
+parameter_reference:
+  name: "Elimination Procedure Parameters"
+  version: "1.0"
+  description: "Parameter reference for elimination stored procedures"
+
+  # ============================================================
+  # P_CONSO_ELIM_DIVIDEND (S020)
+  # Dividend elimination
+  # ============================================================
+  P_CONSO_ELIM_DIVIDEND:
+    description: "Eliminates intercompany dividends"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_DIVIDEND.sql"
+    elim_code: "S020"
+    journal_type: "TD"
+    category: "Dividend Eliminations"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+        description: "User login for audit"
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+        description: "Session ID from P_CONSO_ELIM"
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+        description: "Consolidation ID"
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+        description: "Reference period consolidation ID"
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+        description: "Previous period adjustment flow ID"
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+        description: "Consolidation currency"
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+        description: "Parent company ID"
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+        description: "S001 journal type ID"
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+        description: "Unexplained variance flow ID"
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+        description: "Net variance flow ID"
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        required: false
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        required: false
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    special_accounts:
+      - code: "DivReceived"
+        flag: "FlagDivReceived = 1"
+        description: "Dividend income account (parent)"
+
+      - code: "DivPaid"
+        flag: "FlagDivPaid = 1"
+        description: "Dividend expense account (subsidiary)"
+
+      - code: "DivReceivedEquity"
+        flag: "FlagDivReceivedEquity = 1"
+        description: "Dividend income from equity method investees"
+
+      - code: "INTERIMDIVIDENDS"
+        description: "Interim dividends account"
+
+    elimination_logic: |
+      For Global (G) method:
+        DR: DivReceived (Parent) - Eliminate dividend income
+        CR: DivPaid (Subsidiary) - Eliminate dividend expense
+        Adjustment to ConsoReserves as needed
+
+      For Equity (E) method:
+        DR: DivReceivedEquity - Reduce equity pickup
+        CR: EquityVal - Reduce investment carrying value
+
+    formula: |
+      Elimination Amount = Dividend × (GroupPerc / 100)
+
+  # ============================================================
+  # P_CONSO_ELIM_MINORITYINTEREST (S085)
+  # Minority interest (NCI) calculation
+  # ============================================================
+  P_CONSO_ELIM_MINORITYINTEREST:
+    description: "Calculates and posts non-controlling interest (minority interest)"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_MINORITYINTEREST.sql"
+    elim_code: "S085"
+    journal_type: "TI"
+    category: "Minority Interest"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    special_accounts:
+      - code: "MINORITYINTEREST"
+        description: "Minority Interest - Balance Sheet"
+        purpose: "Accumulated NCI in subsidiary equity"
+
+      - code: "MINORITYINTERESTPL"
+        description: "Minority Interest - P&L"
+        purpose: "NCI share of current period profit/loss"
+
+    calculation: |
+      NCI Balance Sheet = MinorPerc% × Subsidiary Equity at Period End
+      NCI P&L = MinorPerc% × Subsidiary Current Period Profit/Loss
+
+      Where MinorPerc = 100% - GroupPerc
+
+    applicability: |
+      Only for Global (G) method companies where MinorPerc > 0
+
+    journal_entries:
+      - description: "B/S - Recognize NCI in equity"
+        debit: "Equity accounts (group share)"
+        credit: "MINORITYINTEREST"
+
+      - description: "P&L - Allocate profit to NCI"
+        debit: "Profit/Loss (group share)"
+        credit: "MINORITYINTERESTPL"
+
+  # ============================================================
+  # P_CONSO_ELIM_EQUITYMETHOD (S080)
+  # Equity method one-line consolidation
+  # ============================================================
+  P_CONSO_ELIM_EQUITYMETHOD:
+    description: "Processes equity method (one-line) consolidation for associates"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_EQUITYMETHOD.sql"
+    elim_code: "S080"
+    journal_type: "TM"
+    category: "Equity Method"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    special_accounts:
+      - code: "EQUITYVAL"
+        description: "Equity Value - Investment carrying value"
+
+      - code: "EQUITYMETHODINCOME"
+        description: "Share of profit from associates"
+
+    calculation: |
+      Equity Pickup = GroupPerc% × Associate's Net Income
+
+      Investment Carrying Value = Cost + Cumulative Equity Pickup - Dividends Received
+
+    applicability: |
+      Only for Equity (E) method companies
+
+    journal_entries:
+      - description: "Record share of profit"
+        debit: "EQUITYVAL (increase investment)"
+        credit: "EQUITYMETHODINCOME (P&L)"
+
+      - description: "Record share of loss"
+        debit: "EQUITYMETHODINCOME (P&L)"
+        credit: "EQUITYVAL (decrease investment)"
+
+  # ============================================================
+  # P_CONSO_ELIM_INTERCOMPANY (S001-S005)
+  # Intercompany elimination procedures
+  # ============================================================
+  P_CONSO_ELIM_INTERCOMPANY:
+    description: "Basic intercompany elimination"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_INTERCOMPANY.sql"
+    elim_code: "S001"
+    journal_type: "TC"
+    category: "Intercompany"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    account_identification:
+      flag: "FlagInterCompany = 1"
+      partner_type: "PartnerType = 1"
+
+    data_source: "TD040B2 (Intercompany data with PartnerCompanyID)"
+
+    elimination_logic: |
+      For each IC partner pair:
+        Company A IC Receivable vs Company B IC Payable
+        Net to zero on consolidation
+
+  P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL:
+    description: "Full intercompany netting elimination"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL.sql"
+    elim_code: "S005"
+    journal_type: "TC"
+    category: "Intercompany"
+
+    notes: |
+      Same parameters as P_CONSO_ELIM_INTERCOMPANY
+      Performs complete netting of all IC balances to zero
+
+  # ============================================================
+  # P_CONSO_ELIM_EQUITYCAPITAL (S087)
+  # Equity capital elimination
+  # ============================================================
+  P_CONSO_ELIM_EQUITYCAPITAL:
+    description: "Eliminates subsidiary equity capital at group percentage"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_EQUITYCAPITAL.sql"
+    elim_code: "S087"
+    journal_type: "TE"
+    category: "Participation Eliminations"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    account_identification:
+      flag: "FlagEquityElimination = 1"
+      exclude: "PartnerType <> 2 (not participation accounts)"
+
+    special_accounts:
+      - code: "CONSODIFF"
+        description: "Consolidation Difference"
+        purpose: "Offset account for equity elimination"
+
+    calculation: |
+      Elimination Amount = Equity Account Balance × ((GroupPerc + MinorPerc) / 100)
+
+    journal_entries:
+      - description: "Eliminate subsidiary equity"
+        debit: "Equity accounts (Capital, Reserves, Retained Earnings)"
+        credit: "CONSODIFF"
+
+  # ============================================================
+  # P_CONSO_ELIM_CHANGE_METHOD (S072)
+  # Consolidation method change handling
+  # ============================================================
+  P_CONSO_ELIM_CHANGE_METHOD:
+    description: "Handles consolidation method changes between periods"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_CHANGE_METHOD.sql"
+    elim_code: "S072"
+    journal_type: "TX"
+    category: "Method Changes"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    special_flows:
+      - code: "VarConsoMeth_EG"
+        description: "Equity to Global (step acquisition)"
+
+      - code: "VarConsoMeth_GE"
+        description: "Global to Equity (deconsolidation)"
+
+      - code: "VarConsoMeth_PG"
+        description: "Proportional to Global"
+
+      - code: "VarConsoMeth_GP"
+        description: "Global to Proportional"
+
+      - code: "VarConsoMeth_PE"
+        description: "Proportional to Equity"
+
+      - code: "VarConsoMeth_EP"
+        description: "Equity to Proportional"
+
+    detection: |
+      Compares RefConsoMethod (prior period) vs ConsoMethod (current period)
+      in #AllCompanies temp table
+
+  # ============================================================
+  # P_CONSO_ELIM_USER (User Eliminations)
+  # User-defined elimination framework
+  # ============================================================
+  P_CONSO_ELIM_USER:
+    description: "Framework for user-defined eliminations"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM_USER.sql"
+    elim_code: "U###"
+    journal_type: "User-defined"
+    category: "User Eliminations"
+
+    parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        default: 0
+
+      - name: "@Debug"
+        type: "bit"
+        default: 0
+
+      - name: "@errorinfo"
+        type: "xml"
+        direction: "OUTPUT"
+
+    configuration_tables:
+      - table: "TS070S0"
+        description: "Elimination header"
+        key_columns: ["ConsoID", "ElimCode"]
+
+      - table: "TS071S0"
+        description: "Elimination detail lines"
+        key_columns: ["ConsoID", "ElimCode", "LineNo"]
+
+    amount_types:
+      - code: "F"
+        description: "Fixed amount"
+
+      - code: "P"
+        description: "Percentage of source data"
+
+      - code: "D"
+        description: "Data-driven (from actual balances)"
+
+  # ============================================================
+  # Quick Reference: Standard Elimination Parameters
+  # ============================================================
+  standard_elimination_parameters:
+    description: "All P_CONSO_ELIM_* procedures share these parameters"
+
+    parameters:
+      - "@Login nvarchar(256)"
+      - "@SessionID int"
+      - "@ConsoID int"
+      - "@RefConsoID int"
+      - "@PreviousPeriodAdjFlowID int"
+      - "@ConsoCurrCode nvarchar(3)"
+      - "@ParentCompanyID int"
+      - "@JournalTypeS001ID int"
+      - "@UNEXPVarFlowID int"
+      - "@NETVarFlowID int"
+      - "@ExecuteDimensions bit = 0"
+      - "@Debug bit = 0"
+      - "@errorinfo xml OUTPUT"
+
+    calling_convention: |
+      -- All elimination procedures are called by P_CONSO_ELIM
+      -- They are not typically called directly
+      -- P_CONSO_ELIM passes these parameters from its context
+
+  # ============================================================
+  # Elimination Code Summary
+  # ============================================================
+  elimination_codes:
+    - code: "S001"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY"
+      journal: "TC"
+      description: "Basic IC elimination"
+
+    - code: "S002"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_100PC"
+      journal: "TC"
+      description: "100% IC elimination"
+
+    - code: "S005"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL"
+      journal: "TC"
+      description: "Full IC netting"
+
+    - code: "S020"
+      procedure: "P_CONSO_ELIM_DIVIDEND"
+      journal: "TD"
+      description: "Dividend elimination"
+
+    - code: "S072"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal: "TX"
+      description: "Method change handling"
+
+    - code: "S080"
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+      journal: "TM"
+      description: "Equity method"
+
+    - code: "S085"
+      procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+      journal: "TI"
+      description: "Minority interest (NCI)"
+
+    - code: "S087"
+      procedure: "P_CONSO_ELIM_EQUITYCAPITAL"
+      journal: "TE"
+      description: "Equity capital elimination"
+
+    - code: "S089"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS1"
+      journal: "TE"
+      description: "Investment elimination"
+
+    - code: "S090"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS2"
+      journal: "TE"
+      description: "Link account elimination"
+
+    - code: "S093"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS3"
+      journal: "TE"
+      description: "Consolidated reserves"
+
+    - code: "S094"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS4"
+      journal: "TE"
+      description: "Goodwill/bargain"

@@ -1,0 +1,1418 @@
+[
+    {
+        "type": "text",
+        "text": "which is the explanation of the difference on that account.",
+        "bbox": [
+            112,
+            118,
+            677,
+            137
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "A similar error appears for the equity value account because we consider indirectly  \\(8\\% = 40\\%\\)  \\*  \\(20\\%\\)  of the company A as a contribution to that account. This is too much and the equity value should be limited to  \\(40\\%\\)  of company B net equity. It is of course the same amount.",
+        "bbox": [
+            112,
+            151,
+            881,
+            217
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This simple group structure, without complex crossed participation, shows how weak can be the stage technique by leading to wrong consolidated figures.",
+        "bbox": [
+            112,
+            231,
+            879,
+            282
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.5 Consolidation of a consortium",
+        "text_level": 1,
+        "bbox": [
+            114,
+            313,
+            658,
+            335
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "A consortium group has already been defined in Part 2 Section 3.7. However, our objective in this section is to show how to consolidate such particular structure on a basis of an existing situation we met earlier.",
+        "bbox": [
+            112,
+            357,
+            877,
+            407
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Initially, there are two companies P1 and P2 controlled by the same physical persons. P1 and P2 are both groups of companies.",
+        "bbox": [
+            112,
+            423,
+            542,
+            489
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The situation we met was unfortunately a little bit more complex because P1 and P2 were owning together  \\(100\\%\\)  of a common company A. Moreover, there were also crossed participations between P1 and P2 as shown in the following structure. We already presented the consortium with a \"fictitious\" parent company FP.",
+        "bbox": [
+            112,
+            504,
+            540,
+            634
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/fd7047f43aaf6dfd1b5dea16accd352962779afa3ea525a2993dadb233015c42.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            550,
+            419,
+            875,
+            615
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This group will be consolidated over Year 1 (column 1) and Year 2 (column 2) on the basis of the following statutory accounts.",
+        "bbox": [
+            110,
+            646,
+            875,
+            681
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Looking at the equity of each company, we confirm",
+        "bbox": [
+            110,
+            696,
+            612,
+            712
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Company P1 is paying a dividend of 10",
+            "- Company P2 is paying a dividend of 20",
+            "Company A is paying a dividend of 30"
+        ],
+        "bbox": [
+            150,
+            728,
+            569,
+            809
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "And that's the reason why we already booked consolidation adjustments to eliminate group dividends.",
+        "bbox": [
+            110,
+            825,
+            875,
+            859
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            372,
+            80
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/df4417800d0a3d108d699640b24cc13768ae51dbb2840b5a6775692b685c5f0d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\"></td><td colspan=\"3\">P1</td></tr><tr><td>Fin. Inv./P2</td><td>40</td><td>40</td><td>Capital</td><td>100</td><td>100</td></tr><tr><td>Fin. Inv./A</td><td>50</td><td>50</td><td>Reserves</td><td>0</td><td>10</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>15</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>4</td></tr><tr><td></td><td></td><td></td><td>Result</td><td>20</td><td>40</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>(15)</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>(4)</td></tr><tr><td>Other assets</td><td>110</td><td>210</td><td>Other liabilities</td><td>80</td><td>150</td></tr></table>",
+        "bbox": [
+            103,
+            118,
+            875,
+            258
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/b6265132c2b88ef0667a4fd0a6e4e7c7118fbbffb2ce1f5c770ca4aaf6cf9236.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td></td><td colspan=\"3\">P2</td></tr><tr><td>Fin. Inv./P1</td><td>30</td><td>30</td><td>Capital</td><td>200</td></tr><tr><td>Fin. Inv./A</td><td>50</td><td>50</td><td>Reserves</td><td>0</td></tr><tr><td></td><td></td><td></td><td></td><td>15</td></tr><tr><td></td><td></td><td></td><td></td><td>3</td></tr><tr><td></td><td></td><td></td><td>Result</td><td>30</td></tr><tr><td></td><td></td><td></td><td></td><td>25</td></tr><tr><td></td><td></td><td></td><td></td><td>(15)</td></tr><tr><td></td><td></td><td></td><td></td><td>(3)</td></tr><tr><td>Other assets</td><td>320</td><td>420</td><td>Other liabilities</td><td>170</td></tr><tr><td></td><td></td><td></td><td></td><td>265</td></tr></table>",
+        "bbox": [
+            103,
+            269,
+            872,
+            409
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/9ac99367b7dc73445c301d636764a69c55be3a7b6b1c1a6aea45d5c8ff1731a8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"6\">A</td></tr><tr><td></td><td></td><td></td><td>Capital</td><td>100</td><td>100</td></tr><tr><td></td><td></td><td></td><td>Reserves</td><td>0</td><td>10</td></tr><tr><td></td><td></td><td></td><td>Result</td><td>40</td><td>25</td></tr><tr><td>Other assets</td><td>300</td><td>400</td><td>Other liabilities</td><td>160</td><td>265</td></tr></table>",
+        "bbox": [
+            103,
+            420,
+            860,
+            500
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Now we have to build the balance sheet of the fictitious company FP keeping in mind that the capital of a consortium is the sum of the capital amount of each parent of the consortium, so  \\(300 = 100 + 200\\) .",
+        "bbox": [
+            101,
+            514,
+            870,
+            565
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "On the assets side, we will balance that capital with financial investments on P1 and P2 by considering the percentage owned and acting on the corresponding capital. This means the financial investment on P1 will be  \\(70 = 70\\% * 100\\)  and on P2  \\(160 = 80\\% * 200\\) .",
+        "bbox": [
+            101,
+            579,
+            870,
+            645
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Of course, we are not in balance. The special approach is to qualify the missing 70 as own shares at consortium level. It is indeed shares parent companies owned on themselves.",
+        "bbox": [
+            101,
+            659,
+            870,
+            709
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here is that balance sheet.",
+        "bbox": [
+            103,
+            724,
+            366,
+            740
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/b97bf03fada61658e3b9767343ef97784eeaf7f212038b8e3a6b68c99b813844.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"6\">FP</td></tr><tr><td>Fin. Inv./P1</td><td>70</td><td>70</td><td>Capital</td><td>300</td><td>300</td></tr><tr><td>Fin. Inv./P2</td><td>160</td><td>160</td><td></td><td></td><td></td></tr><tr><td>Own shares</td><td>70</td><td>70</td><td></td><td></td><td></td></tr></table>",
+        "bbox": [
+            105,
+            752,
+            864,
+            819
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Before consolidating, we need to calculate the indirect financial percentages in each company. This is not really an issue in this case because all the shares of",
+        "bbox": [
+            101,
+            853,
+            870,
+            888
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            434,
+            73,
+            855,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "each company are owned by the group. There are no  \\(3^{rd}\\)  Parties and so we can consider  \\(100\\%\\)  for each company.",
+        "bbox": [
+            118,
+            121,
+            879,
+            153
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consolidated balance sheet",
+        "text_level": 3,
+        "bbox": [
+            118,
+            169,
+            417,
+            185
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Nothing special makes the process difficult and the consolidated balance sheets is the following",
+        "bbox": [
+            118,
+            202,
+            879,
+            235
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/33de83787848161c383600e44f708144292af446eb0a4ca21ead9e332c6cea62.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"6\">P1 + P2 + A</td></tr><tr><td></td><td></td><td></td><td>Capital</td><td>300</td><td>300</td></tr><tr><td></td><td></td><td></td><td>Reserves</td><td>0</td><td>0</td></tr><tr><td></td><td></td><td></td><td>Result</td><td>0</td><td>0</td></tr><tr><td></td><td></td><td></td><td>Conso. Res.(P1)</td><td>20</td><td>50</td></tr><tr><td></td><td></td><td></td><td>Conso. Res.(P2)</td><td>30</td><td>35</td></tr><tr><td>Own shares</td><td>70</td><td>70</td><td>Conso. Res.(A)</td><td>40</td><td>35</td></tr><tr><td>Other assets</td><td>730</td><td>1,030</td><td>Other liabilities</td><td>410</td><td>680</td></tr></table>",
+        "bbox": [
+            118,
+            248,
+            885,
+            373
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Comments for Year 1",
+        "text_level": 3,
+        "bbox": [
+            118,
+            408,
+            326,
+            423
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (P1) = 20 = 100%  \\(\\star\\)  [100 + 0 + 20] - 70 - 30",
+            "- Consolidated reserves (P2) = 30 = 100%  \\(\\star\\)  [200 + 0 + 30] - 160 - 40",
+            "- Consolidated reserves (A)  \\(= {40} = {100}\\% {}^{ * }\\left\\lbrack  {{100} + 0 + {40}}\\right\\rbrack   - {50} - {50}\\)"
+        ],
+        "bbox": [
+            152,
+            437,
+            879,
+            535
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Comments for Year 2",
+        "text_level": 3,
+        "bbox": [
+            118,
+            551,
+            326,
+            566
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (P1) = 50 = 100% * [100 + 10 + 15 + 4 + 40 - 15 - 4] - 70 - 30",
+            "- Consolidated reserves (P2) = 35 = 100% * [200 + 10 + 15 + 3 + 25 - 15 - 3] - 160 - 40",
+            "- Consolidated reserves (A) = 35 = 100% * [100 + 10 + 25] - 50 - 50"
+        ],
+        "bbox": [
+            152,
+            579,
+            879,
+            696
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves evolution",
+        "text_level": 3,
+        "bbox": [
+            118,
+            711,
+            466,
+            727
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This",
+        "bbox": [
+            118,
+            856,
+            158,
+            871
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/11305dd4c14293371b3568c39526f92e3417680689605f12fa259dd868ffe8fb.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends -</td><td>Dividends +</td><td>Dividends out</td><td>Year 2 reserves</td></tr><tr><td>FP</td><td>0</td><td>0</td><td></td><td>16+7</td><td>(23)</td><td>0</td></tr><tr><td>P1</td><td>20</td><td>21</td><td>(10)</td><td>15+4</td><td></td><td>50</td></tr><tr><td>P2</td><td>30</td><td>7</td><td>(20)</td><td>15+3</td><td></td><td>35</td></tr><tr><td>A</td><td>40</td><td>25</td><td>(30)</td><td></td><td></td><td>35</td></tr><tr><td></td><td>90</td><td>53</td><td>(60)</td><td>60</td><td>(23)</td><td>120</td></tr></table>",
+        "bbox": [
+            192,
+            746,
+            853,
+            863
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            68,
+            370,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "report shows the four companies, including the fictitious parent company and is structured as explained in Part 2 and Part 3.",
+        "bbox": [
+            105,
+            120,
+            870,
+            153
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The only issue concerns the dividends. We first show correctly all dividends paid and received for a total of (60) and 60. However, the 23 received by FP are mentioned as 'Dividends out' in an appropriate column because it represents a cash amount that is leaving the group.",
+        "bbox": [
+            105,
+            168,
+            870,
+            234
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "A final remark can be made about the booking of the owned shares of 70 as they should be transferred in equity when consolidating under IFRS rules. Depending on Local Gaap, maintaining the 70 as an asset can be acceptable.",
+        "bbox": [
+            105,
+            248,
+            870,
+            298
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "2 CAPITAL TRANSACTIONS",
+        "text_level": 1,
+        "bbox": [
+            105,
+            333,
+            654,
+            355
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "2.1 Capital increase with a change of financial percentage during the consolidation period",
+        "text_level": 2,
+        "bbox": [
+            105,
+            374,
+            860,
+            421
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We first consider a parent company P owning  \\(100\\%\\)  of the shares of a company A. If A decides to increase its capital by 100, P will subscribe this amount and nothing will happen in the consolidation. The consolidated reserves of A become  \\(100\\%\\)  * equity before increase + 100 - (financial investment + 100) and the 100 has no impact.",
+        "bbox": [
+            105,
+            442,
+            870,
+            524
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Considering the cash flow statement, we have also seen that 100 is just moving from P bank account to A bank account. Both being consolidated, no cash impact will appear.",
+        "bbox": [
+            105,
+            538,
+            870,
+            587
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Now, if P owns only  \\(80\\%\\)  of A but the capital increase is subscribed by both P and the  \\(3^{\\text{rd}}\\)  Parties in the proportion of  \\(80\\%\\)  and  \\(20\\%\\) , again such situation will have no impact on the consolidated reserves for the same reason as above. On the cash flow statement side, we notice a cash in for  \\(20 = 20\\%\\)  * 100.",
+        "bbox": [
+            105,
+            601,
+            870,
+            683
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "However, other situations become a little more difficult, mainly for the two following reasons",
+        "bbox": [
+            105,
+            699,
+            870,
+            732
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- P, owning  \\(80\\%\\)  of A agrees to subscribe the capital increase but the  \\(3^{rd}\\)  Parties deny. This will imply a percentage variation if P subscribes the total amount of capital increase on its own.",
+            "- If that capital increase, with a percentage variation, occurs during the consolidation period, and not on the first day, the group profit of the year of company A must be calculated with the percentage 'before'"
+        ],
+        "bbox": [
+            141,
+            746,
+            866,
+            860
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            438,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "and 'after\". We need to know the results before and after capital increase. Of course, this will apply for significant amounts.",
+        "bbox": [
+            188,
+            119,
+            886,
+            154
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The case we analyze hereunder includes these two issues.",
+        "bbox": [
+            111,
+            167,
+            685,
+            184
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "image",
+        "img_path": "images/4e156296e5b05c3cfb918ffe42da2f4b1db8d60251496a3e45b1f4e1aaa4aeb3.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            113,
+            195,
+            209,
+            332
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "image",
+        "img_path": "images/bfadfad70fb33eaa1876bf01e7be1f4fab313db2888e7630c6fa000e19a28bbb.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            244,
+            195,
+            342,
+            332
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In Year 1, P is supposed to own 70 shares out of 100 and so consolidates A with the global integration method.",
+        "bbox": [
+            351,
+            197,
+            884,
+            248
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "During Year 2 (not on the first day), A increases its capital by issuing new shares. All details will be given when consolidating Year 2, but let's notice now that there is a percentage increase of  \\(10\\%\\)  for P.",
+        "bbox": [
+            351,
+            263,
+            886,
+            329
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Situation before capital increase = Year 1",
+        "text_level": 3,
+        "bbox": [
+            111,
+            344,
+            569,
+            362
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company A has been founded by company P a few years ago. Its capital is represented by 100 shares. Here are the statutory accounts of these companies.",
+        "bbox": [
+            109,
+            377,
+            884,
+            425
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/31866665d4636ac292c2729ad6abef288fdaf2a050fe6ce7206744874ac993ef.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">140</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>Other assets</td><td>1,360</td><td>Other liabilities</td><td>650</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td></td><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td></td><td>Retained earn.</td><td>(100)</td></tr><tr><td></td><td></td><td>Result</td><td>(20)</td></tr><tr><td>Other assets</td><td>500</td><td>Other liabilities</td><td>420</td></tr></table>",
+        "bbox": [
+            267,
+            434,
+            760,
+            624
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We notice that the equity of A becomes bad. Normally, P should book a write-off on its participation but, in order to keep things simple, we will ignore it. Anyway, in consolidation, such write-off will be reversed.",
+        "bbox": [
+            109,
+            650,
+            880,
+            699
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Consolidated figures are presented below",
+        "bbox": [
+            111,
+            715,
+            520,
+            733
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/33bb12e66d003ebe4f9aaaa659f5d786052965b69d249d6cafb1d33a77cddf95.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td>Result</td><td>50</td></tr><tr><td></td><td>Conso. Res.(A)</td><td>(84)</td></tr><tr><td></td><td>Minority int.(A)</td><td>24</td></tr><tr><td>Other assets</td><td>1,860</td><td>Other liabilities</td></tr></table>",
+        "bbox": [
+            267,
+            752,
+            758,
+            868
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            64,
+            372,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            101,
+            121,
+            169,
+            134
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = (84) = 70% [200 + (100) + (20)] -140",
+            "Minority interests  \\(= 24 = 30\\%\\)  \\* [200 + (100) + (20)]"
+        ],
+        "bbox": [
+            137,
+            149,
+            866,
+            204
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Situation after capital increase = Year 2",
+        "text_level": 3,
+        "bbox": [
+            101,
+            216,
+            540,
+            232
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Here are the statutory accounts of each company, already including the consolidation adjustments, which are commented just after",
+        "bbox": [
+            99,
+            248,
+            870,
+            282
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/aad0601a5543300e04ae2f8915586d6c946df4c295c09f922a2d84d1ca450ec5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Goodwill</td><td>13</td><td>Capital</td><td>500</td></tr><tr><td>Fin. Inv./A</td><td>240</td><td>Reserves</td><td>350</td></tr><tr><td></td><td>(13)</td><td>Result</td><td>40</td></tr><tr><td>Other assets</td><td>1,360</td><td>Other liabilities</td><td>710</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td></td><td></td><td>Capital</td><td>235</td></tr><tr><td></td><td></td><td>Share premium</td><td>65</td></tr><tr><td></td><td></td><td>Retained earn.</td><td>(120)</td></tr><tr><td></td><td></td><td></td><td>(1)*</td></tr><tr><td></td><td></td><td>Result</td><td>10</td></tr><tr><td></td><td></td><td></td><td>1*</td></tr><tr><td>Other assets</td><td>700</td><td>Other liabilities</td><td>510</td></tr></table>",
+        "bbox": [
+            235,
+            297,
+            728,
+            527
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Let's suppose the capital increase occurs on the  \\(1^{\\text{st}}\\)  of July, Year 2. For the first six months of the year, A makes a loss of 10 and for the last six months A makes a profit of 20. This explains a profit of 10 for the twelve months fiscal year.",
+        "bbox": [
+            99,
+            538,
+            868,
+            604
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "On that date, the total equity of A is  \\(70 = 200 - 100 - 20 - 10\\)  represented by 100 existing shares. One existing share equals thus 0.7. The company decides to increase its capital by an amount of 100, issuing 50 new shares for the value of 0.7, so 35 and the remaining 65 is booked as a share premium. This explains the two first accounts of the A equity.",
+        "bbox": [
+            99,
+            617,
+            868,
+            701
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "What is the financial percentae owned in A after capital increase?",
+        "bbox": [
+            101,
+            715,
+            754,
+            732
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Before capital increase, P owned 70 shares out of 100 shares issued and after it owns  \\(120 = 70 + 50\\)  shares out of  \\(100 + 50\\)  shares issued. This means the percentage is now  \\(80\\% = 120 / 150\\) .",
+        "bbox": [
+            99,
+            746,
+            868,
+            797
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            436,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Let's look now at the consolidation adjustments.",
+        "bbox": [
+            116,
+            122,
+            584,
+            137
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Goodwill",
+        "text_level": 3,
+        "bbox": [
+            116,
+            153,
+            204,
+            171
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Each time a variation of percentage happens, we should trigger a goodwill/badwill logic as follows.",
+        "bbox": [
+            116,
+            185,
+            879,
+            219
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "On June 30, Year 2, company P owns an equity equal to  \\(49 = 70\\%\\)  \\* [200 + (100) + (20) + (10)].",
+        "bbox": [
+            116,
+            232,
+            879,
+            266
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "On July 1, Year 2, company owns an equity equal to  \\(136 = 80\\%\\)  [200 + 35 + 65 + (120) + (10)].",
+        "bbox": [
+            116,
+            279,
+            879,
+            316
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This means P has a \"gain\" in equity for  \\(87 = 136 - 49\\) , but on the other side, P has subscribed the capital increase for 100.",
+        "bbox": [
+            116,
+            330,
+            873,
+            361
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Difference between 100 and 87, that is 13, is to be considered as a goodwill.",
+        "bbox": [
+            116,
+            377,
+            860,
+            393
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Correction of the group part in the result of company A",
+        "text_level": 3,
+        "bbox": [
+            116,
+            409,
+            654,
+            426
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Without specifying anything, most of the consolidation software knows the opening and the closing situations. That means that the A profit of 10 being done over twelve months, the corresponding group part will be calculated with the  \\(80\\%\\) , giving 8. This is not correct.",
+        "bbox": [
+            116,
+            442,
+            879,
+            506
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "For the first six months of Year 2, A makes a loss of (10) and the group interest is (7) = 70%  \\(*\\)  (10) and for the last six months its group interest is  \\(16 = 80\\% * 20\\) . So, the correct group result is  \\(9 = (7) + 16\\)  instead of  \\(8 = 80\\% * 10\\) .",
+        "bbox": [
+            116,
+            522,
+            879,
+            585
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The complete consolidation adjustment would be the following.",
+        "bbox": [
+            116,
+            601,
+            727,
+            620
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/79bff1131ae2321f108b51f3f9c8f3fd67414c42e48ebba2151b6c01a1a09ad1.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>1</td><td></td></tr><tr><td>Result</td><td></td><td>1</td></tr><tr><td>Minority result</td><td>1</td><td></td></tr><tr><td>Minority interests</td><td></td><td>1</td></tr></table>",
+        "bbox": [
+            291,
+            638,
+            710,
+            721
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This adjustment must be considered as impacting each account at  \\(100\\%\\) . That's the meaning of the  \\(\\star\\)  against the amounts in the page before.",
+        "bbox": [
+            116,
+            746,
+            827,
+            781
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            68,
+            371,
+            83
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "And here are the consolidated accounts",
+        "bbox": [
+            101,
+            118,
+            489,
+            134
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/1c92e07d410d34857b9fac85de6c5c8d16008e45922752029a637c7b1340fa83.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + A</td></tr><tr><td rowspan=\"5\">Goodwill</td><td rowspan=\"5\">13</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>350</td></tr><tr><td>Result</td><td>40</td></tr><tr><td>Conso. Res.(A)</td><td>(75)</td></tr><tr><td>Minority int.(A)</td><td>38</td></tr><tr><td>Other assets</td><td>2,060</td><td>Other liabilities</td><td>1,220</td></tr></table>",
+        "bbox": [
+            256,
+            147,
+            747,
+            267
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            101,
+            279,
+            167,
+            295
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = (75) = 80% * [235 + 65 + (120) + 10] + (1) + 1 - [240 + (13)]",
+            "Minority interests (A)  \\(= 38 = 20\\%\\)  \\* [235 + 65 - 120 + 10] + 1 + (1)"
+        ],
+        "bbox": [
+            139,
+            310,
+            870,
+            379
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We will conclude by justifying the consolidated reserves evolution of the group",
+        "bbox": [
+            103,
+            390,
+            870,
+            409
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/3394244568ab171de4d6e3e67a50e2d07363abe73395ed2fa1296734768de780.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends</td><td>Dividends +</td><td>Dividends P</td><td>Year 2 reserves</td></tr><tr><td>P</td><td>350</td><td>40</td><td></td><td></td><td></td><td>390</td></tr><tr><td>A</td><td>(84)</td><td>9</td><td></td><td></td><td></td><td>(75)</td></tr><tr><td></td><td>266</td><td>49</td><td>0</td><td>0</td><td>0</td><td>315</td></tr></table>",
+        "bbox": [
+            122,
+            421,
+            858,
+            506
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "and the minority interests",
+        "bbox": [
+            103,
+            522,
+            362,
+            538
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/0f420f33aca83123494a7a32f64446647917efa79b650fffbe9fe7263469313f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>% Var</td><td>Year 2 reserves</td></tr><tr><td>A</td><td>24</td><td>1</td><td>13</td><td>38</td></tr><tr><td></td><td>24</td><td>1</td><td>13</td><td>38</td></tr></table>",
+        "bbox": [
+            239,
+            557,
+            766,
+            625
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This \"  \\(\\%\\)  Var\" says that the  \\({3}^{\\text{rd }}\\)  Parties make a gain of 13 in equity.",
+        "bbox": [
+            103,
+            650,
+            747,
+            667
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Indeed, before the capital increase, they were owning  \\(21 = 30\\%\\)  \\* [200 + (100) + (20) + (10)] and after capital increase they own  \\(34 = 20\\%\\)  \\* [235 + 65 + (100) + (20) + (10)]. The difference is 13 = 34 - 21 which is ... the goodwill of course.",
+        "bbox": [
+            103,
+            680,
+            875,
+            749
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            436,
+            70,
+            855,
+            84
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "2.2 Dividends paid by issuing new shares",
+        "text_level": 2,
+        "bbox": [
+            118,
+            119,
+            782,
+            144
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Parent company P owns 800 shares of company A whose capital is represented by 1000 shares issued. So P consolidates A by the global integration method with a percentage of  \\(80\\%\\) .",
+        "bbox": [
+            116,
+            162,
+            753,
+            211
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 1, company A decides to pay dividends and proposes two options to its shareholders",
+        "bbox": [
+            116,
+            226,
+            753,
+            260
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "image",
+        "img_path": "images/20ddfee01a588e149d21d4e58d5affd590bef4154010bbbc64f555686bf80b97.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            765,
+            163,
+            858,
+            299
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Either they receive a gross dividend of 0.4 per share",
+            "- Or they accept to receive new shares after transferring these dividends to the capital by issuing new shares based on 1 new share received for 4 existing shares and by paying an additional price of 0.2 per new share. Of course, this option implies an increase in capital."
+        ],
+        "bbox": [
+            154,
+            274,
+            881,
+            372
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Company P chooses the second option whilst  \\(3^{\\text{rd}}\\)  Parties ask to receive the cash corresponding to their dividends.",
+        "bbox": [
+            116,
+            385,
+            881,
+            419
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let's see how to consolidate this situation by first considering Year 1 before the transaction and then Year 2 after the transaction.",
+        "bbox": [
+            116,
+            434,
+            881,
+            467
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Consolidation - Year 1",
+        "text_level": 3,
+        "bbox": [
+            116,
+            482,
+            364,
+            500
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We need this first year consolidation to be able to study the evolution of group equity and Minority interests.",
+        "bbox": [
+            116,
+            514,
+            881,
+            549
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here are the statutory accounts of companies P and A",
+        "bbox": [
+            116,
+            562,
+            645,
+            578
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/56a9cdeca74b975fbda8049ae69a7ed127d7fd86a5ba93fc1aae791d551ba160.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td><td colspan=\"3\">A</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">2,000</td><td>Capital</td><td>2,000</td><td></td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>1,000</td><td></td><td>Reserves</td><td>800</td></tr><tr><td>Result</td><td>500</td><td></td><td>Result</td><td>(200)</td></tr><tr><td>Other assets</td><td>3,000</td><td>Other liabilities</td><td>1,500</td><td>Other assets</td><td>2,000</td><td>Other liabilities</td></tr></table>",
+        "bbox": [
+            118,
+            593,
+            886,
+            662
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "and the corresponding consolidated accounts",
+        "bbox": [
+            116,
+            675,
+            556,
+            692
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/567d49e080fc6b75ecb8b746a53bd06273521233f6fd9298d560c071d8942449.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">P + A</td></tr><tr><td></td><td>Capital 2,000</td></tr><tr><td></td><td>Reserves 1,000</td></tr><tr><td></td><td>Result 500</td></tr><tr><td></td><td>Conso. Res.(A) (720)</td></tr><tr><td></td><td>Minority int.(A) 320</td></tr><tr><td>Other assets</td><td>5,000</td></tr><tr><td></td><td>Other liabilities 1,900</td></tr></table>",
+        "bbox": [
+            324,
+            707,
+            736,
+            807
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            118,
+            820,
+            181,
+            834
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            64,
+            371,
+            81
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = (720) = 80% * [1000 + 800 + (200)] - 2000",
+            "Minority interests (A)  \\(= 320 = 20\\% * [1000 + 800 + (200)]\\)"
+        ],
+        "bbox": [
+            139,
+            117,
+            866,
+            185
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "so, a consolidation without any difficulties.",
+        "bbox": [
+            101,
+            200,
+            516,
+            216
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Consolidation - Year 2",
+        "text_level": 3,
+        "bbox": [
+            101,
+            232,
+            351,
+            248
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This consolidation is not as easy as the previous one.",
+        "bbox": [
+            101,
+            265,
+            620,
+            282
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "First, we have to calculate the new financial percentage owned by company P.",
+        "bbox": [
+            101,
+            297,
+            720,
+            330
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Initially, P owns 800 existing shares and the dividends transaction proposes to receive 1 new share against 4 existing shares. There will be 200 new shares fully owned by P, giving a new percentage of  \\(83.33\\% = (800 + 200) / (1000 + 200)\\) .",
+        "bbox": [
+            101,
+            345,
+            720,
+            411
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "image",
+        "img_path": "images/04c4e2c55ffd0b3e70461e5b6d73ceea42e53622c793e9de1113dc0598b2d4a7.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            733,
+            301,
+            855,
+            407
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We now show the statutory accounts of each company, already including statutory bookings related to the dividends and the necessary consolidation adjustments.",
+        "bbox": [
+            101,
+            424,
+            868,
+            475
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/1dfc73d2ab5a120cabe1407eb7280d446ec9be87cd68e75ba5a7746f491f2b16.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"2\">Goodwill</td><td>(b)</td><td>20</td><td>Capital 2,000</td></tr><tr><td>(c)</td><td>(20)</td><td>Reserves 1,200</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td colspan=\"2\">2,000</td><td>Result 320</td></tr><tr><td>(1)</td><td>360</td><td>Result 80</td></tr><tr><td>(b)</td><td>(20)</td><td>(1) 320</td></tr><tr><td rowspan=\"2\">Other assets</td><td colspan=\"2\">3,680</td><td>(a) (320)</td></tr><tr><td>(1)</td><td>(40)</td><td>(c) (20)</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td></td><td>Capital</td><td>1,000</td><td></td></tr><tr><td></td><td>(3)</td><td>320</td><td></td></tr><tr><td></td><td>Share premium</td><td>40</td><td></td></tr><tr><td></td><td>(4)</td><td>600</td><td></td></tr><tr><td></td><td>(2)</td><td>(80)</td><td></td></tr><tr><td></td><td>(3)</td><td>(320)</td><td></td></tr><tr><td>Other assets</td><td>4,400</td><td>100</td><td></td></tr><tr><td>(2)</td><td>(80)</td><td></td><td></td></tr><tr><td>(4)</td><td>40</td><td>Other liabilities 2,700</td><td></td></tr></table>",
+        "bbox": [
+            256,
+            484,
+            754,
+            843
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            436,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 9
+    }
+]

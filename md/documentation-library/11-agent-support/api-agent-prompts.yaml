@@ -1,0 +1,1496 @@
+# API Agent Prompts - Financial Consolidation AI Agent Knowledge Base
+# Purpose: Structured guidance for AI agents working with consolidation APIs
+# Version: 1.0
+# Created: 2024-12-03
+
+api_agent_prompts:
+  name: "Financial Consolidation API Agent Prompts"
+  version: "1.0"
+  description: |
+    Comprehensive prompt engineering framework for AI agents interfacing with
+    the Prophix.Conso financial consolidation API. Provides:
+
+    - Retrieval-augmented prompts for 7 API categories (19 YAML files)
+    - Context injection templates for 242 handlers
+    - Error handling decision trees with recovery paths
+    - Handler-specific guidance and validation rules
+
+    Total API Coverage:
+    - 242 documented handlers
+    - 19 YAML documentation files
+    - 7 API categories
+
+  # ============================================================================
+  # SECTION 1: RETRIEVAL-AUGMENTED PROMPTS BY API CATEGORY
+  # ============================================================================
+  retrieval_prompts:
+    description: |
+      Category-specific prompts for RAG (Retrieval-Augmented Generation) that
+      guide AI agents to retrieve relevant context before responding to queries.
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 1: FOUNDATION APIs
+    # --------------------------------------------------------------------------
+    foundation:
+      category_id: "CAT-FOUNDATION"
+      description: "Core consolidation execution, job monitoring, and shared types"
+      files:
+        - api-common-types.yaml
+        - api-consolidation-endpoints.yaml
+        - api-job-monitoring-endpoints.yaml
+      handler_count: 16
+
+      retrieval_prompt: |
+        ## Foundation API Context Retrieval
+
+        When the user's query involves consolidation execution, job management,
+        or core data types, retrieve the following context:
+
+        **Primary Context Sources:**
+        1. api-consolidation-endpoints.yaml - Core execution handlers
+        2. api-job-monitoring-endpoints.yaml - Job status and progress
+        3. api-common-types.yaml - EntityVersion, enums, pagination
+
+        **Key Concepts to Retrieve:**
+        - StoredProcedures flags (Bundles=0x2, Adjustments=0x4, Elims=0x8)
+        - ConsolidationIntegrationJob execution flow
+        - EntityVersion optimistic locking pattern
+        - Job status states (Queued, Running, Completed, Failed, Cancelled)
+
+        **Cross-Reference When:**
+        - User asks about consolidation execution → api-workflow-diagrams.yaml
+        - User mentions errors → error-handling-patterns.yaml, api-error-handling.yaml
+        - User asks about period selection → api-conso-period-endpoints.yaml
+        - User needs ownership data → api-ownership-endpoints.yaml
+
+      handler_guidance:
+        Consolidation_Execute:
+          purpose: "Trigger consolidation job via ConsolidationIntegrationJob"
+          required_context:
+            - "ConsoIDs - Target consolidation periods"
+            - "StoredProceduresToExecute - Bitwise flags (All=0xF)"
+            - "ExecuteDimensions - Process dimensional data"
+          validation_before_call:
+            - "Verify period not locked (ConsoLocked check)"
+            - "Confirm ownership percentages calculated"
+            - "Check exchange rates exist for all currencies"
+          related_handlers:
+            - Job_GetJobStatus
+            - Job_GetJobProgress
+          theory_references:
+            - consolidation-workflow.md
+            - global-integration.md
+
+        Consolidation_GetStatus:
+          purpose: "Get consolidation period status and lock state"
+          retrieves:
+            - "ConsoStatus (O=Open, L=Locked, P=Processing)"
+            - "LockedByLogin, LockedDate, LockedReason"
+            - "Status_Bundles, Status_Adjustments per company"
+          use_when:
+            - "Before executing consolidation"
+            - "Troubleshooting locked period issues"
+            - "Monitoring processing progress"
+
+        Consolidation_Lock:
+          purpose: "Lock consolidation period to prevent changes"
+          prerequisites:
+            - "All companies integrated (Status_Bundles=0)"
+            - "All eliminations processed"
+            - "Validation rules passed"
+          theory_references:
+            - year-end-close-workflow.md
+
+        Job_GetJobStatus:
+          purpose: "Monitor background job execution"
+          status_values:
+            - "Queued - Job waiting in Hangfire queue"
+            - "Running - Job currently executing"
+            - "Completed - Job finished successfully"
+            - "Failed - Job encountered error"
+            - "Cancelled - Job cancelled by user"
+          polling_pattern: |
+            1. Call Consolidation_Execute → returns JobID
+            2. Poll Job_GetJobStatus every 2-5 seconds
+            3. Check for Completed or Failed status
+            4. On completion, retrieve results via Report_* handlers
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 2: MASTER DATA APIs
+    # --------------------------------------------------------------------------
+    master_data:
+      category_id: "CAT-MASTER"
+      description: "Core master data entities: Company, Account, Flow, Currency, Dimension"
+      files:
+        - api-company-endpoints.yaml
+        - api-account-endpoints.yaml
+        - api-flow-endpoints.yaml
+        - api-currency-endpoints.yaml
+        - api-dimension-endpoints.yaml
+        - api-conso-period-endpoints.yaml
+      handler_count: 89
+
+      retrieval_prompt: |
+        ## Master Data API Context Retrieval
+
+        When the user's query involves master data setup, lookup, or modification,
+        retrieve context from the relevant master data file:
+
+        **Entity-to-File Mapping:**
+        - Companies, subsidiaries, parent → api-company-endpoints.yaml
+        - Accounts, chart of accounts, summations → api-account-endpoints.yaml
+        - Flows, cash flow structure → api-flow-endpoints.yaml
+        - Currencies, exchange rates → api-currency-endpoints.yaml
+        - Dimensions, segments, regions → api-dimension-endpoints.yaml
+        - Periods, consolidation setup → api-conso-period-endpoints.yaml
+
+        **Key Master Data Concepts:**
+        - Company.ConsoMethod (G=Global, P=Proportional, E=Equity, N=Not)
+        - Account.AccountType (B=Balance, P=P&L, O=Other)
+        - Account.FlagXXX (special account flags: DivReceived, Goodwill, etc.)
+        - Flow.FlowType (O=Opening, C=Closing, M=Movement)
+        - Currency rate types (CC=Closing, AC=Average, MC=Manual, etc.)
+
+        **Cross-Reference When:**
+        - User asks about ownership → api-ownership-endpoints.yaml
+        - User asks about data entry → api-data-entry-endpoints.yaml
+        - User mentions special accounts → elimination-execution-engine.md
+
+      handler_guidance:
+        Company_GetCompanies:
+          purpose: "List companies in consolidation scope"
+          key_fields:
+            - "CompanyCode, CompanyName"
+            - "ConsoMethod (consolidation method)"
+            - "ConsolidatedCompany (in scope flag)"
+            - "CurrCode (functional currency)"
+            - "GroupPerc, MinorPerc (calculated percentages)"
+          filters:
+            - "ConsoID - Consolidation period"
+            - "ConsolidatedCompany - Scope filter"
+            - "FlagParent - Parent company only"
+          theory_references:
+            - consolidation-method-determination.md
+            - direct-indirect-holdings.md
+
+        Account_GetAccounts:
+          purpose: "List accounts with configuration"
+          key_fields:
+            - "AccountCode, AccountName, AccountType"
+            - "FlagDivReceived, FlagDivPaid, FlagGoodwill, etc."
+            - "TranslationRateType (CC, AC, HC)"
+            - "FlagInterco (intercompany account)"
+          special_accounts:
+            consolidation:
+              - "FlagDivReceived - Dividend income account"
+              - "FlagDivPaid - Dividend expense account"
+              - "FlagGoodwill - Goodwill asset"
+              - "FlagMinorInterest - NCI balance sheet"
+              - "FlagConsoRes - Consolidated reserves"
+            elimination:
+              - "FlagEquityVal - Equity method investment"
+              - "FlagEquityProfit - Share of profit (equity)"
+              - "FlagParticipation - Investment in subsidiary"
+          theory_references:
+            - special-accounts-mapping.md
+            - elimination-accounts.md
+
+        Currency_GetExchangeRates:
+          purpose: "Retrieve exchange rates for translation"
+          rate_types:
+            CC: "Closing rate (balance sheet)"
+            AC: "Average rate (P&L)"
+            MC: "Manual closing rate"
+            MA: "Manual average rate"
+            CR: "Closing rate reference"
+            AR: "Average rate reference"
+            HC: "Historical rate"
+            NR: "No rate (same currency)"
+          theory_references:
+            - exchange-rate-types.md
+            - translation-methods.md
+
+        ConsoPeriod_GetPeriods:
+          purpose: "List consolidation periods"
+          key_fields:
+            - "ConsoCode, ConsoName, ConsoStatus"
+            - "PeriodStart, PeriodEnd"
+            - "ParentCompanyID"
+            - "CurrCode (reporting currency)"
+          operations:
+            - "Create new period"
+            - "Copy/rollforward period"
+            - "Lock/unlock period"
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 3: OWNERSHIP & STRUCTURE APIs
+    # --------------------------------------------------------------------------
+    ownership_structure:
+      category_id: "CAT-OWNERSHIP"
+      description: "Ownership percentages, control relationships, group structure"
+      files:
+        - api-ownership-endpoints.yaml
+      handler_count: 3
+
+      retrieval_prompt: |
+        ## Ownership API Context Retrieval
+
+        When the user's query involves ownership percentages, control relationships,
+        or consolidation method determination, retrieve ownership context:
+
+        **Primary Context Sources:**
+        1. api-ownership-endpoints.yaml - Ownership handlers
+        2. direct-indirect-holdings.md - Theory reference
+        3. control-vs-ownership.md - Method determination logic
+
+        **Key Ownership Concepts:**
+        - FinPercentage: Financial (economic) ownership
+        - CtrlPercentage: Control (voting) ownership
+        - GroupPerc: Effective group ownership (after indirect calculation)
+        - MinorPerc: Non-controlling interest percentage
+        - GroupCtrlPerc: Effective control percentage
+
+        **Ownership Calculation:**
+        - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES uses Gauss elimination
+        - Handles circular ownership structures
+        - Calculates both direct and indirect holdings
+
+        **Cross-Reference When:**
+        - User asks about consolidation method → consolidation-method-determination.md
+        - User mentions minority interest → minority-interest-calculation.md
+        - User asks about acquisitions → goodwill-calculation.md
+
+      handler_guidance:
+        Ownership_GetOwnership:
+          purpose: "Get direct ownership links between companies"
+          key_fields:
+            - "CompanyID - Owner company"
+            - "CompanyOwnedID - Owned company"
+            - "FinPercentage - Financial ownership %"
+            - "CtrlPercentage - Control/voting %"
+            - "AcquisitionDate - Date acquired"
+          data_source: "TS015S0 table"
+          theory_references:
+            - direct-indirect-holdings.md
+            - voting-rights-analysis.md
+
+        Ownership_SaveOwnership:
+          purpose: "Create or update ownership link"
+          triggers:
+            - "Recalculates GroupPerc/MinorPerc"
+            - "May change ConsoMethod"
+            - "Affects elimination calculations"
+          validation:
+            - "FinPercentage: 0-100%"
+            - "CtrlPercentage: 0-100%"
+            - "No self-ownership"
+          theory_references:
+            - ownership-percentages.md
+
+        Ownership_CalculatePercentages:
+          purpose: "Trigger P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+          algorithm: "Gauss elimination matrix inversion"
+          handles:
+            - "Multi-tier ownership (A→B→C)"
+            - "Circular ownership (A→B→A)"
+            - "Mixed direct/indirect holdings"
+          output:
+            - "TS014C0.GroupPerc - Effective group %"
+            - "TS014C0.MinorPerc - NCI %"
+            - "TS014C0.GroupCtrlPerc - Effective control %"
+            - "TS014C0.ConsoMethod - Auto-determined method"
+          theory_references:
+            - multi-tier-holdings.md
+            - circular-ownership-resolution.md
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 4: DATA ENTRY APIs
+    # --------------------------------------------------------------------------
+    data_entry:
+      category_id: "CAT-DATAENTRY"
+      description: "Local data entry, intercompany transactions, adjustments"
+      files:
+        - api-data-entry-endpoints.yaml
+        - api-interco-endpoints.yaml
+        - api-adjustment-endpoints.yaml
+      handler_count: 64
+
+      retrieval_prompt: |
+        ## Data Entry API Context Retrieval
+
+        When the user's query involves entering financial data, intercompany
+        transactions, or adjustments, retrieve appropriate data entry context:
+
+        **Data Type Routing:**
+        - Local bundle data → api-data-entry-endpoints.yaml
+        - Intercompany transactions → api-interco-endpoints.yaml
+        - Adjustment journals → api-adjustment-endpoints.yaml
+
+        **Data Tables:**
+        - TD030B2: Local bundle amounts (input)
+        - TD040B2: Flow breakdown
+        - TD030I2: Intercompany amounts
+        - TD030E0/E2: Adjustment journals
+        - TD035C2: Consolidated amounts (output)
+        - TD045C2: Elimination journals (output)
+
+        **Data Entry Options (api-data-entry-endpoints.yaml):**
+        - LocalAmounts (1): Raw imported data
+        - AdjustedBundles (2): After local adjustments
+        - LocalAdjustments (3): Adjustment entries only
+        - LocalPlusAdjustmentsN (4): Current period total
+        - Comments (6): Comment view
+
+        **Cross-Reference When:**
+        - User asks about eliminations → api-elimination-endpoints.yaml
+        - User mentions flows → api-flow-endpoints.yaml
+        - User needs account selection → api-account-endpoints.yaml
+
+      handler_guidance:
+        BundleStandard_GetDataEntry:
+          purpose: "Load data entry grid for company"
+          parameters:
+            - "CompanyID - Target company"
+            - "InputFormID - Input form template"
+            - "Option - Data view mode (1-6)"
+          returns:
+            - "Grid structure (rows/columns)"
+            - "Cell amounts and comments"
+            - "Edit permissions (ReadOnly flag)"
+            - "Drill-down indicators (HasFlows, HasIntercos)"
+          theory_references:
+            - data-entry-screens.md
+
+        BundleStandard_SaveDataEntry:
+          purpose: "Save modified cell values"
+          behavior:
+            - "Updates TD030B2 for amounts"
+            - "Sets Status_Bundles=1 (needs integration)"
+            - "Tracks OriginalAmount for change detection"
+          validation:
+            - "Period not locked"
+            - "Account not read-only"
+            - "Amount within configured range"
+
+        IntercoDataEntry_GetData:
+          purpose: "Load intercompany transaction grid"
+          structure:
+            - "Rows: IC accounts"
+            - "Columns: Partner companies"
+            - "Cells: IC amounts"
+          theory_references:
+            - intercompany-eliminations.md
+            - intercompany-netting.md
+
+        IntercoMatching_GetMatching:
+          purpose: "Get IC matching/netting status"
+          returns:
+            - "Matched pairs"
+            - "Unmatched amounts"
+            - "Netting differences"
+          theory_references:
+            - intercompany-reconciliation.md
+
+        Journal_GetJournals:
+          purpose: "List adjustment journals"
+          key_fields:
+            - "JournalTypeCode - Journal classification"
+            - "JournalStatus - Draft/Posted/Approved"
+            - "Debit/Credit amounts"
+          theory_references:
+            - local-adjustments.md
+            - journal-types.md
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 5: CONSOLIDATION CONFIG APIs
+    # --------------------------------------------------------------------------
+    consolidation_config:
+      category_id: "CAT-CONFIG"
+      description: "Events, eliminations, validation rules configuration"
+      files:
+        - api-event-endpoints.yaml
+        - api-elimination-endpoints.yaml
+        - api-validation-rule-endpoints.yaml
+      handler_count: 31
+
+      retrieval_prompt: |
+        ## Consolidation Config API Context Retrieval
+
+        When the user's query involves consolidation events, elimination rules,
+        or validation configuration, retrieve appropriate config context:
+
+        **Configuration Routing:**
+        - Acquisitions, disposals, events → api-event-endpoints.yaml
+        - IC eliminations, equity method → api-elimination-endpoints.yaml
+        - Data quality rules → api-validation-rule-endpoints.yaml
+
+        **Elimination Code Ranges:**
+        - S001-S019: General eliminations
+        - S020-S039: Dividend eliminations
+        - S050-S069: Participation eliminations
+        - S080-S089: Equity method & minority interest
+        - S090-S094: Advanced eliminations
+        - U###: User-defined eliminations
+
+        **Event Types:**
+        - Acquisition (first-time consolidation)
+        - Disposal (exit from scope)
+        - Step acquisition (increase ownership)
+        - Step disposal (decrease ownership)
+        - Change of method (reclassification)
+
+        **Cross-Reference When:**
+        - User asks about elimination execution → elimination-execution-engine.md
+        - User mentions goodwill → goodwill-calculation.md
+        - User asks about validation → validation-rules.yaml
+
+      handler_guidance:
+        Event_GetEvents:
+          purpose: "List consolidation events"
+          event_types:
+            - "Acquisition: Purchase of subsidiary"
+            - "Disposal: Sale/exit of subsidiary"
+            - "StepAcquisition: Additional purchase"
+            - "StepDisposal: Partial sale"
+            - "MethodChange: Reclassify (E→G, G→E, etc.)"
+          theory_references:
+            - acquisition-accounting.md
+            - disposal-accounting.md
+            - step-acquisitions.md
+
+        Event_SaveEvent:
+          purpose: "Configure consolidation event"
+          key_fields:
+            - "EventType"
+            - "EventDate"
+            - "CompanyID (target)"
+            - "PurchasePrice / SalePrice"
+            - "FVNetAssets (fair value)"
+          triggers:
+            - "Goodwill calculation"
+            - "Opening balance adjustments"
+            - "Ownership recalculation"
+
+        Elimination_GetEliminations:
+          purpose: "List configured eliminations"
+          key_fields:
+            - "ElimCode - Elimination identifier"
+            - "Description"
+            - "Active - Enabled/disabled"
+            - "Level - Execution order"
+            - "ProcedureName - Associated SP"
+          theory_references:
+            - elimination-code-catalog.md
+            - elimination-execution-engine.md
+
+        Elimination_SaveElimination:
+          purpose: "Configure elimination rule"
+          configuration:
+            - "Enable/disable elimination"
+            - "Set execution level (order)"
+            - "Map to custom procedure"
+            - "Configure account mappings"
+
+        ValidationReportRule_GetValidationReportRules:
+          purpose: "List validation rules"
+          rule_categories:
+            - "OWN-*: Ownership validation"
+            - "BS-*: Balance sheet checks"
+            - "IC-*: Intercompany reconciliation"
+            - "PC-*: Period close prerequisites"
+          theory_references:
+            - validation-rules.yaml
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 6: DATA TRANSFER APIs
+    # --------------------------------------------------------------------------
+    data_transfer:
+      category_id: "CAT-TRANSFER"
+      description: "Import and export functionality"
+      files:
+        - api-import-data-endpoints.yaml
+        - api-export-data-endpoints.yaml
+      handler_count: 15
+
+      retrieval_prompt: |
+        ## Data Transfer API Context Retrieval
+
+        When the user's query involves importing or exporting data,
+        retrieve appropriate transfer context:
+
+        **Transfer Direction:**
+        - Import (external → system) → api-import-data-endpoints.yaml
+        - Export (system → external) → api-export-data-endpoints.yaml
+
+        **Import Process Phases:**
+        1. MAPPINGS: Parse, validate, map external codes to internal IDs
+        2. VALIDATION: Review DoImport flags, correct errors
+        3. PROCESS: Insert validated rows to permanent tables
+
+        **Import Entity Types:**
+        - Data: GL trial balance (TD030B2)
+        - Adjustments: Journal entries (TD030E0/E2)
+        - Companies: Entity master (TS014C0)
+        - Ownership: Shareholding links (TS015S0)
+        - ExchangeRates: Currency rates (TS017R0)
+
+        **Cross-Reference When:**
+        - User asks about import errors → error-handling-patterns.yaml
+        - User mentions job status → api-job-monitoring-endpoints.yaml
+        - User asks about staging tables → temp-table-patterns.md
+
+      handler_guidance:
+        ImportData_ImportFile:
+          purpose: "Upload and parse import file"
+          supported_formats:
+            - "CSV (comma/tab delimited)"
+            - "Excel (XLSX)"
+            - "XML"
+          process:
+            - "Upload file"
+            - "Parse structure"
+            - "Create TMP_IMPORTDATA_MAPPINGS entries"
+          theory_references:
+            - data-import-services.md
+
+        ImportData_GetMappings:
+          purpose: "Review import mappings before processing"
+          key_fields:
+            - "SourceCompanyCode → CompanyID"
+            - "SourceAccountCode → AccountID"
+            - "Amount"
+            - "DoImport (true/false)"
+            - "ErrorCode, ErrorMessage"
+
+        ImportData_Process:
+          purpose: "Execute import processing"
+          options:
+            - "ReplaceImportedAccounts: Clear before insert"
+            - "ReplaceImportedTypes: Clear by journal type"
+            - "SumIntercos: Aggregate IC transactions"
+          effects:
+            - "Inserts to TD030B2, TD040B2, TD050B2"
+            - "Sets Status_Bundles=1 for affected companies"
+
+        ExportData_Export:
+          purpose: "Export consolidation data"
+          formats:
+            - "Excel (XLSX)"
+            - "CSV"
+            - "XML"
+          data_sources:
+            - "TD035C2 (consolidated amounts)"
+            - "TD045C2 (elimination journals)"
+            - "Reports (via Report_ExecuteReport)"
+
+    # --------------------------------------------------------------------------
+    # CATEGORY 7: REPORTING APIs
+    # --------------------------------------------------------------------------
+    reporting:
+      category_id: "CAT-REPORTS"
+      description: "Report generation and output"
+      files:
+        - api-reports-endpoints.yaml
+      handler_count: 24
+
+      retrieval_prompt: |
+        ## Reporting API Context Retrieval
+
+        When the user's query involves generating reports or viewing
+        consolidation results, retrieve reporting context:
+
+        **Primary Context Source:**
+        - api-reports-endpoints.yaml - All report handlers
+
+        **Report Categories:**
+        - Standard Reports: P_REPORT_* (consolidation summary, etc.)
+        - Cross-Tab Reports: P_REPORT_CROSS_* (multi-dimensional)
+        - Audit Reports: P_REPORT_CROSS_AUDIT_* (compliance)
+        - Custom Reports: P_REPORT_CUSTOM_REPORT_* (user-defined)
+
+        **Report Procedure Patterns:**
+        - Header procedure: Returns report metadata
+        - Detail procedure: Returns report data rows
+
+        **Cross-Reference When:**
+        - User asks about data sources → data-tables-catalog.md
+        - User mentions job scheduling → api-job-monitoring-endpoints.yaml
+        - User needs export → api-export-data-endpoints.yaml
+
+      handler_guidance:
+        Report_GetReports:
+          purpose: "List available report definitions"
+          filters:
+            - "ReportCategory"
+            - "ConsoID"
+            - "User permissions"
+
+        Report_ExecuteReport:
+          purpose: "Execute report and return data"
+          parameters:
+            - "ReportID or ReportCode"
+            - "ConsoID"
+            - "AccountSummationID (row grouping)"
+            - "CompanyFilterMode, CompanyFilterIDs"
+            - "JournalTypeFilter"
+            - "ShowVariance"
+          returns:
+            - "ReportHeader (title, period, etc.)"
+            - "ReportRows (data with amounts)"
+          theory_references:
+            - reporting-services.md
+
+        Report_ExportReport:
+          purpose: "Export report to file"
+          formats:
+            - "Excel (XLSX)"
+            - "PDF"
+            - "CSV"
+            - "HTML"
+          options:
+            - "Include header information"
+            - "Apply formatting"
+            - "Multi-language support"
+
+  # ============================================================================
+  # SECTION 2: CONTEXT INJECTION TEMPLATES
+  # ============================================================================
+  context_injection:
+    description: |
+      Templates for injecting runtime context into AI agent prompts.
+      These templates ensure agents have necessary context for accurate responses.
+
+    # --------------------------------------------------------------------------
+    # SESSION CONTEXT
+    # --------------------------------------------------------------------------
+    session_context:
+      name: "Session Context Template"
+      inject_when: "At conversation start or when context changes"
+      template: |
+        ## Active Session Context
+
+        **Consolidation Context:**
+        - ConsoID: {{ConsoID}}
+        - ConsoCode: {{ConsoCode}}
+        - Period: {{PeriodStart}} to {{PeriodEnd}}
+        - Status: {{ConsoStatus}} (O=Open, L=Locked, P=Processing)
+        - Reporting Currency: {{ConsoCurrency}}
+
+        **User Context:**
+        - UserID: {{UserID}}
+        - CustomerID: {{CustomerID}}
+        - Permissions: {{UserPermissions}}
+
+        **Working Context:**
+        - Active Workflow: {{ActiveWorkflow}}
+        - Last Handler Called: {{LastHandler}}
+        - Pending Operations: {{PendingOps}}
+
+    # --------------------------------------------------------------------------
+    # ENTITY CONTEXT
+    # --------------------------------------------------------------------------
+    entity_context:
+      name: "Entity Context Template"
+      inject_when: "When working with specific company or account"
+      template: |
+        ## Entity Context
+
+        **Company Details:**
+        - CompanyID: {{CompanyID}}
+        - CompanyCode: {{CompanyCode}}
+        - CompanyName: {{CompanyName}}
+        - ConsoMethod: {{ConsoMethod}} (G=Global, E=Equity, P=Proportional)
+        - Functional Currency: {{CurrCode}}
+
+        **Ownership:**
+        - GroupPerc: {{GroupPerc}}%
+        - MinorPerc: {{MinorPerc}}%
+        - GroupCtrlPerc: {{GroupCtrlPerc}}%
+
+        **Status:**
+        - Status_Bundles: {{StatusBundles}} (0=Done, 1=Pending, 2=Processing)
+        - Status_Adjustments: {{StatusAdjustments}}
+        - ConsolidatedCompany: {{InScope}}
+
+    # --------------------------------------------------------------------------
+    # HANDLER CONTEXT
+    # --------------------------------------------------------------------------
+    handler_context:
+      name: "Handler Execution Context Template"
+      inject_when: "Before explaining or troubleshooting handler calls"
+      template: |
+        ## Handler Execution Context
+
+        **Handler:** {{HandlerName}}
+        **Category:** {{HandlerCategory}}
+        **YAML File:** {{YAMLFile}}
+
+        **Request Parameters:**
+        {{#each RequestParams}}
+        - {{name}}: {{value}} ({{type}})
+        {{/each}}
+
+        **Expected Response:**
+        - Success: {{SuccessStructure}}
+        - Error: {{ErrorStructure}}
+
+        **Related Handlers:**
+        {{#each RelatedHandlers}}
+        - {{name}}: {{purpose}}
+        {{/each}}
+
+        **Theory References:**
+        {{#each TheoryRefs}}
+        - {{document}}: {{section}}
+        {{/each}}
+
+    # --------------------------------------------------------------------------
+    # ERROR CONTEXT
+    # --------------------------------------------------------------------------
+    error_context:
+      name: "Error Context Template"
+      inject_when: "When handling errors or troubleshooting"
+      template: |
+        ## Error Context
+
+        **Error Details:**
+        - Error Code: {{ErrorCode}}
+        - Error Message: {{ErrorMessage}}
+        - Severity: {{Severity}} (ERROR/WARNING)
+
+        **Source:**
+        - Handler: {{SourceHandler}}
+        - Procedure: {{SourceProcedure}}
+        - Line: {{ErrorLine}}
+
+        **Affected Entity:**
+        - Entity Type: {{EntityType}}
+        - Entity ID: {{EntityID}}
+        - Entity Code: {{EntityCode}}
+
+        **Diagnostic State:**
+        - Attempted Fixes: {{AttemptedFixes}}
+        - Diagnostic Results: {{DiagnosticResults}}
+
+        **Recovery Options:**
+        {{#each RecoveryOptions}}
+        - {{option}}: {{description}}
+        {{/each}}
+
+    # --------------------------------------------------------------------------
+    # WORKFLOW CONTEXT
+    # --------------------------------------------------------------------------
+    workflow_context:
+      name: "Workflow Progress Context Template"
+      inject_when: "During multi-step operations"
+      template: |
+        ## Workflow Progress Context
+
+        **Workflow:** {{WorkflowName}}
+        **Started:** {{StartTime}}
+        **Current Duration:** {{Duration}}
+
+        **Progress:**
+        - Current Step: {{CurrentStep}} of {{TotalSteps}}
+        - Step Name: {{StepName}}
+        - Step Status: {{StepStatus}}
+
+        **Completed Steps:**
+        {{#each CompletedSteps}}
+        - Step {{number}}: {{name}} - {{status}} ({{duration}})
+        {{/each}}
+
+        **Pending Steps:**
+        {{#each PendingSteps}}
+        - Step {{number}}: {{name}}
+        {{/each}}
+
+        **Blockers:**
+        {{#each Blockers}}
+        - {{blocker}}: {{resolution}}
+        {{/each}}
+
+        **Outputs:**
+        {{#each Outputs}}
+        - {{key}}: {{value}}
+        {{/each}}
+
+  # ============================================================================
+  # SECTION 3: ERROR HANDLING DECISION TREES
+  # ============================================================================
+  error_decision_trees:
+    description: |
+      Decision trees for AI agents to diagnose and resolve API errors.
+      Each tree guides from symptom to resolution.
+
+    # --------------------------------------------------------------------------
+    # TREE 1: CONSOLIDATION EXECUTION ERRORS
+    # --------------------------------------------------------------------------
+    consolidation_errors:
+      tree_id: "DT-CONSO-ERRORS"
+      name: "Consolidation Execution Error Decision Tree"
+      entry_point: "Consolidation_Execute failed or unexpected results"
+
+      nodes:
+        start:
+          question: "What is the error category?"
+          branches:
+            - condition: "ConsoLocked or ConsoLockedByAdmin"
+              next: "lock_resolution"
+            - condition: "SPECIFIC_ACCOUNT_NOT_FOUND"
+              next: "missing_account"
+            - condition: "SPECIFIC_FLOW_NOT_FOUND"
+              next: "missing_flow"
+            - condition: "NO_PARENT or NO_SHAREHOLDER"
+              next: "ownership_issue"
+            - condition: "Exchange rate missing"
+              next: "missing_rate"
+            - condition: "Job failed or timeout"
+              next: "job_issue"
+            - condition: "Unexpected calculation result"
+              next: "calculation_issue"
+            - condition: "Other/Unknown"
+              next: "general_diagnosis"
+
+        lock_resolution:
+          diagnosis: "Period is locked"
+          diagnostic_query: |
+            SELECT ConsoStatus, LockedByLogin, LockedDate, LockedReason
+            FROM TS096S0 WHERE ConsoID = @ConsoID
+          resolution_options:
+            - option: "Wait for concurrent process"
+              condition: "ConsoStatus = 'P'"
+              action: "Monitor until ConsoStatus changes to 'O'"
+            - option: "Request unlock"
+              condition: "LockedByLogin shows administrator"
+              action: "Contact user shown in LockedByLogin"
+            - option: "Force unlock (admin)"
+              condition: "User has admin rights"
+              api_call: "Consolidation_Unlock"
+          next_on_resolved: "retry_consolidation"
+
+        missing_account:
+          diagnosis: "Required special account not configured"
+          diagnostic_query: |
+            SELECT Account, AccountName, FlagDivReceived, FlagDivPaid,
+                   FlagGoodwill, FlagMinorInterest, FlagConsoRes
+            FROM TS010S0 WHERE ConsoID = @ConsoID
+              AND (FlagDivReceived=1 OR FlagDivPaid=1 OR FlagGoodwill=1
+                   OR FlagMinorInterest=1 OR FlagConsoRes=1)
+          resolution_steps:
+            - step: 1
+              action: "Identify which special account is missing from error param"
+            - step: 2
+              action: "Find appropriate GL account"
+              query: "SELECT * FROM TS010S0 WHERE AccountName LIKE '%dividend%'"
+            - step: 3
+              action: "Set the special account flag"
+              api_call: "Account_SaveAccount with FlagXXX=1"
+            - step: 4
+              action: "Retry consolidation"
+          theory_references:
+            - "special-accounts-mapping.md"
+            - "elimination-accounts.md"
+
+        missing_flow:
+          diagnosis: "Required special flow not configured"
+          diagnostic_query: |
+            SELECT FlowCode, FlowName, FlagTransAdj, FlagUnexpVar, FlagDividends
+            FROM TS011C0 WHERE ConsoID = @ConsoID
+          resolution_steps:
+            - step: 1
+              action: "Identify which special flow is missing"
+            - step: 2
+              action: "Configure flow with appropriate flag"
+              api_call: "Flow_SaveFlow with FlagXXX=1"
+          theory_references:
+            - "flow-configuration.md"
+
+        ownership_issue:
+          diagnosis: "Ownership structure incomplete"
+          diagnostic_queries:
+            no_parent: |
+              SELECT ConsoID, ParentCompanyID FROM TS096S0 WHERE ConsoID = @ConsoID
+              UNION
+              SELECT ConsoID, CompanyID FROM TS014C0 WHERE ConsoID = @ConsoID AND FlagParent = 1
+            orphan_companies: |
+              SELECT c.CompanyCode, c.CompanyName
+              FROM TS014C0 c
+              LEFT JOIN TS015S0 o ON o.CompanyOwnedID = c.CompanyID
+              WHERE c.ConsoID = @ConsoID AND c.ConsolidatedCompany = 1
+                AND c.FlagParent = 0 AND o.OwnershipID IS NULL
+          resolution_options:
+            - option: "Add ownership link"
+              condition: "Company should be consolidated"
+              api_call: "Ownership_SaveOwnership"
+            - option: "Remove from scope"
+              condition: "Company should not be consolidated"
+              api_call: "Company_SaveCompany with ConsolidatedCompany=0"
+            - option: "Designate parent"
+              condition: "No parent company"
+              api_call: "Company_SaveCompany with FlagParent=1"
+          theory_references:
+            - "direct-indirect-holdings.md"
+            - "ownership-percentages.md"
+
+        missing_rate:
+          diagnosis: "Exchange rates not configured"
+          diagnostic_query: |
+            SELECT DISTINCT c.CurrCode, c.CompanyCode
+            FROM TS014C0 c
+            LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID AND r.CurrCode = c.CurrCode
+            WHERE c.ConsoID = @ConsoID AND c.ConsolidatedCompany = 1 AND r.CurrCode IS NULL
+          resolution_steps:
+            - step: 1
+              action: "Identify currencies without rates"
+            - step: 2
+              action: "Enter or import exchange rates"
+              api_call: "Currency_SaveExchangeRates"
+            - step: 3
+              action: "Verify all rate types exist (CC, AC minimum)"
+          theory_references:
+            - "exchange-rate-types.md"
+            - "translation-methods.md"
+
+        job_issue:
+          diagnosis: "Background job failed"
+          diagnostic_steps:
+            - step: 1
+              action: "Get job details"
+              api_call: "Job_GetJobStatus"
+            - step: 2
+              action: "Review job log"
+              api_call: "Job_GetJobLog"
+          resolution_options:
+            - option: "Retry job"
+              condition: "Transient error (timeout, deadlock)"
+              action: "Re-call Consolidation_Execute"
+            - option: "Fix underlying issue"
+              condition: "Data error in job log"
+              action: "Address specific error, then retry"
+
+        calculation_issue:
+          diagnosis: "Unexpected calculation results"
+          diagnostic_approach:
+            - step: 1
+              question: "Is ownership percentage wrong?"
+              if_yes: "Check TS015S0 input percentages"
+            - step: 2
+              question: "Is currency translation wrong?"
+              if_yes: "Check exchange rates in TS017R0"
+            - step: 3
+              question: "Is elimination amount wrong?"
+              if_yes: "Check elimination configuration in TS070S0/TS071S0"
+            - step: 4
+              question: "Is data missing?"
+              if_yes: "Check Status_Bundles for all companies"
+          theory_references:
+            - "consolidation-workflow.md"
+            - "elimination-execution-engine.md"
+
+        general_diagnosis:
+          approach: "Systematic error investigation"
+          steps:
+            - step: 1
+              action: "Check ConsoStatus"
+              query: "SELECT ConsoStatus FROM TS096S0 WHERE ConsoID = @ConsoID"
+            - step: 2
+              action: "Check company statuses"
+              query: "SELECT CompanyCode, Status_Bundles, Status_Adjustments FROM TS014C0 WHERE ConsoID = @ConsoID"
+            - step: 3
+              action: "Run with debug flag"
+              api_call: "Consolidation_Execute with Debug=true"
+            - step: 4
+              action: "Review job log for details"
+              api_call: "Job_GetJobLog"
+
+        retry_consolidation:
+          action: "Re-execute consolidation"
+          api_call: "Consolidation_Execute"
+          post_check: "Job_GetJobStatus"
+
+    # --------------------------------------------------------------------------
+    # TREE 2: DATA ENTRY ERRORS
+    # --------------------------------------------------------------------------
+    data_entry_errors:
+      tree_id: "DT-DATAENTRY-ERRORS"
+      name: "Data Entry Error Decision Tree"
+      entry_point: "Data entry save failed or validation error"
+
+      nodes:
+        start:
+          question: "What is the error type?"
+          branches:
+            - condition: "EntityVersion conflict"
+              next: "concurrency_conflict"
+            - condition: "Validation error"
+              next: "validation_error"
+            - condition: "Period locked"
+              next: "period_locked"
+            - condition: "Account read-only"
+              next: "readonly_account"
+            - condition: "Save timeout"
+              next: "timeout_error"
+
+        concurrency_conflict:
+          diagnosis: "Another user modified the data"
+          resolution_options:
+            - option: "Refresh and retry"
+              action: "Re-call Get handler to refresh EntityVersion"
+            - option: "Force save"
+              condition: "User confirms overwrite"
+              action: "Save with new EntityVersion"
+          api_flow:
+            - "BundleStandard_GetDataEntry (refresh)"
+            - "Merge user changes"
+            - "BundleStandard_SaveDataEntry (retry)"
+
+        validation_error:
+          diagnosis: "Data failed validation rules"
+          diagnostic_steps:
+            - step: 1
+              action: "Check error message for field"
+            - step: 2
+              action: "Review validation rule"
+              reference: "validation-rules.yaml"
+          common_validations:
+            - "Amount out of range"
+            - "Required field missing"
+            - "Invalid account for journal type"
+            - "Debit/Credit imbalance"
+
+        period_locked:
+          diagnosis: "Cannot edit locked period"
+          resolution_options:
+            - option: "Request unlock"
+              action: "Contact administrator"
+            - option: "Use different period"
+              action: "Select unlocked period"
+            - option: "Create adjustment in open period"
+              action: "Enter as prior period adjustment"
+
+        readonly_account:
+          diagnosis: "Account marked read-only"
+          causes:
+            - "Account is calculated (formula)"
+            - "Account is system-generated"
+            - "User lacks edit permission"
+          resolution: "Contact administrator or edit different account"
+
+        timeout_error:
+          diagnosis: "Save operation timed out"
+          resolution_steps:
+            - step: 1
+              action: "Check if save completed"
+              api_call: "BundleStandard_GetDataEntry"
+            - step: 2
+              action: "If not saved, reduce batch size"
+            - step: 3
+              action: "Retry save"
+
+    # --------------------------------------------------------------------------
+    # TREE 3: IMPORT ERRORS
+    # --------------------------------------------------------------------------
+    import_errors:
+      tree_id: "DT-IMPORT-ERRORS"
+      name: "Data Import Error Decision Tree"
+      entry_point: "Import failed or mapping errors"
+
+      nodes:
+        start:
+          question: "At which import phase did the error occur?"
+          branches:
+            - condition: "File parse error"
+              next: "parse_error"
+            - condition: "Mapping errors (DoImport=false)"
+              next: "mapping_errors"
+            - condition: "Process failed"
+              next: "process_error"
+            - condition: "Job timeout"
+              next: "job_timeout"
+
+        parse_error:
+          diagnosis: "File format or structure issue"
+          common_causes:
+            - "Wrong delimiter (comma vs tab)"
+            - "Missing header row"
+            - "Invalid characters in data"
+            - "Date format mismatch"
+          resolution:
+            - step: 1
+              action: "Verify file format matches template"
+            - step: 2
+              action: "Check encoding (UTF-8 recommended)"
+            - step: 3
+              action: "Review first few rows for structure"
+
+        mapping_errors:
+          diagnosis: "Data rows failed validation"
+          diagnostic_api: "ImportData_GetMappings"
+          common_error_codes:
+            INVALID_COMPANY: "Company code not found in TS014C0"
+            INVALID_ACCOUNT: "Account code not found in TS010S0"
+            INVALID_FLOW: "Flow code not found in TS011C0"
+            DUPLICATE_KEY: "Duplicate row in import file"
+            INVALID_AMOUNT: "Amount format error"
+          resolution_options:
+            - option: "Fix source data"
+              action: "Correct import file and re-upload"
+            - option: "Create missing master data"
+              action: "Add company/account/flow, then re-import"
+            - option: "Map codes"
+              action: "Update mapping rules"
+            - option: "Skip invalid rows"
+              action: "Process with DoImport=false rows excluded"
+
+        process_error:
+          diagnosis: "Processing phase failed"
+          diagnostic_api: "Job_GetJobLog"
+          common_causes:
+            - "Foreign key violation"
+            - "Unique constraint violation"
+            - "Lock timeout"
+          resolution_steps:
+            - step: 1
+              action: "Review job log for specific error"
+            - step: 2
+              action: "Check target tables for existing data"
+            - step: 3
+              action: "Consider ReplaceImportedAccounts option"
+
+        job_timeout:
+          diagnosis: "Import job exceeded timeout"
+          causes:
+            - "Very large file"
+            - "Database contention"
+          resolution:
+            - option: "Split file into smaller batches"
+            - option: "Run during off-peak hours"
+            - option: "Increase job timeout (admin)"
+
+    # --------------------------------------------------------------------------
+    # TREE 4: ELIMINATION ERRORS
+    # --------------------------------------------------------------------------
+    elimination_errors:
+      tree_id: "DT-ELIM-ERRORS"
+      name: "Elimination Execution Error Decision Tree"
+      entry_point: "Elimination failed or wrong amounts"
+
+      nodes:
+        start:
+          question: "What is the elimination issue?"
+          branches:
+            - condition: "Elimination not running"
+              next: "elim_not_running"
+            - condition: "Wrong elimination amount"
+              next: "wrong_amount"
+            - condition: "Missing elimination journal"
+              next: "missing_journal"
+            - condition: "Specific ElimCode error"
+              next: "specific_elim_error"
+
+        elim_not_running:
+          diagnosis: "Elimination is not being executed"
+          diagnostic_query: |
+            SELECT ElimCode, Description, Active, Level
+            FROM TS070S0 WHERE ConsoID = @ConsoID AND ElimCode = @ElimCode
+          causes:
+            - "Active = 0 (disabled)"
+            - "Elimination not configured"
+            - "No matching data for elimination"
+          resolution:
+            - action: "Enable elimination"
+              api_call: "Elimination_SaveElimination with Active=1"
+
+        wrong_amount:
+          diagnosis: "Elimination calculates wrong amount"
+          diagnostic_approach:
+            - step: 1
+              question: "Check input data correct?"
+              query: "SELECT * FROM TD035C2 WHERE AccountID = @EliminationAccount"
+            - step: 2
+              question: "Check ownership percentage correct?"
+              query: "SELECT GroupPerc, MinorPerc FROM TS014C0"
+            - step: 3
+              question: "Check elimination configuration?"
+              query: "SELECT * FROM TS071S0 WHERE ElimCode = @ElimCode"
+          theory_references:
+            - "elimination-execution-engine.md"
+            - Specific elimination: "S020-dividend.md", "S083-interco.md", etc.
+
+        missing_journal:
+          diagnosis: "Elimination journal not created"
+          diagnostic_query: |
+            SELECT j.JournalTypeCode, COUNT(*) AS Entries
+            FROM TD045C2 e
+            JOIN TS020S0 j ON j.JournalTypeID = e.JournalTypeID
+            WHERE e.ConsoID = @ConsoID
+            GROUP BY j.JournalTypeCode
+          causes:
+            - "No data to eliminate"
+            - "Journal type not configured"
+            - "Elimination deactivated"
+
+        specific_elim_error:
+          dispatch_by_code:
+            S020:
+              name: "Dividend elimination"
+              check: "DivReceived and DivPaid accounts exist"
+              theory: "dividend-eliminations.md"
+            S050:
+              name: "Participation elimination"
+              check: "Participation and EquityVal accounts exist"
+              theory: "participation-eliminations.md"
+            S083:
+              name: "IC elimination"
+              check: "IC accounts flagged, partner data exists"
+              theory: "intercompany-eliminations.md"
+            S085:
+              name: "Minority interest"
+              check: "MinorInterest accounts, ownership > 0"
+              theory: "minority-interest-calculation.md"
+
+  # ============================================================================
+  # SECTION 4: HANDLER-SPECIFIC AGENT GUIDANCE
+  # ============================================================================
+  handler_guidance:
+    description: |
+      Specific guidance for AI agents when recommending or executing API handlers.
+      Includes prerequisites, validation, and follow-up actions.
+
+    guidance_template:
+      structure:
+        - "purpose: What the handler does"
+        - "prerequisites: What must be true before calling"
+        - "parameters: Required and optional parameters"
+        - "validation: Checks to perform"
+        - "follow_up: Actions after successful call"
+        - "error_handling: Common errors and resolutions"
+        - "theory_references: Related documentation"
+
+    # Top 10 most commonly used handlers with detailed guidance
+    top_handlers:
+      Consolidation_Execute:
+        purpose: "Execute full or partial consolidation"
+        prerequisites:
+          - "All companies have Status_Bundles = 0 (integrated)"
+          - "Exchange rates exist for all currencies"
+          - "Ownership percentages calculated"
+          - "Period not locked"
+        parameters:
+          required:
+            - "ConsoIDs: int[] - Consolidation period IDs"
+          optional:
+            - "CompanyIDs: int[] - Subset of companies (null = all)"
+            - "StoredProceduresToExecute: byte - Flags (0xF = All)"
+            - "ExecuteDimensions: bool - Process dimensions"
+        validation:
+          before_call:
+            - "Check ConsoStatus != 'L' (locked)"
+            - "Verify ownership calculated"
+            - "Confirm exchange rates exist"
+          after_call:
+            - "Monitor Job_GetJobStatus"
+            - "Check Job_GetJobLog for errors"
+        follow_up:
+          on_success:
+            - "Generate reports via Report_ExecuteReport"
+            - "Review eliminations via Elimination_GetEliminations"
+          on_failure:
+            - "Check Job_GetJobLog for error details"
+            - "Use error decision tree DT-CONSO-ERRORS"
+        theory_references:
+          - "consolidation-workflow.md"
+          - "5-phase-consolidation.md"
+
+      Company_SaveCompany:
+        purpose: "Create or update company configuration"
+        prerequisites:
+          - "ConsoID exists"
+          - "Valid EntityVersion (for update)"
+        parameters:
+          required:
+            - "CompanyCode: string"
+            - "CompanyName: string"
+            - "CurrCode: string - Functional currency"
+          key_flags:
+            - "ConsolidatedCompany: In consolidation scope"
+            - "FlagParent: Is parent company"
+            - "ConsoMethod: G/P/E/N"
+        validation:
+          - "CompanyCode unique within ConsoID"
+          - "CurrCode exists in currency master"
+          - "Only one FlagParent = 1 per ConsoID"
+        follow_up:
+          - "Add ownership links if ConsolidatedCompany = 1"
+          - "Recalculate ownership percentages"
+
+      Ownership_SaveOwnership:
+        purpose: "Create or update ownership link"
+        prerequisites:
+          - "Both companies exist in ConsoID"
+          - "Owner company != Owned company"
+        parameters:
+          required:
+            - "CompanyID: int - Owner"
+            - "CompanyOwnedID: int - Owned"
+            - "FinPercentage: decimal - Financial %"
+            - "CtrlPercentage: decimal - Control %"
+        validation:
+          - "0 <= FinPercentage <= 100"
+          - "0 <= CtrlPercentage <= 100"
+          - "No self-ownership"
+        follow_up:
+          - "Call Ownership_CalculatePercentages"
+          - "Verify ConsoMethod updated correctly"
+        theory_references:
+          - "direct-indirect-holdings.md"
+          - "ownership-percentages.md"
+
+      ImportData_Process:
+        purpose: "Execute import from staging to permanent tables"
+        prerequisites:
+          - "ImportData_ImportFile completed"
+          - "Mapping errors reviewed via ImportData_GetMappings"
+          - "Period not locked"
+        parameters:
+          required:
+            - "SessionID: int - Import session"
+            - "ConsoID: int"
+          options:
+            - "ReplaceImportedAccounts: bool - Clear before insert"
+            - "ReplaceImportedTypes: bool - Clear by journal type"
+            - "SumIntercos: bool - Aggregate IC"
+        validation:
+          - "Check DoImport = 1 for rows to process"
+          - "Review ErrorCode for any validation failures"
+        follow_up:
+          - "Verify Status_Bundles set to 1"
+          - "Run Bundle Integration"
+        theory_references:
+          - "data-import-services.md"
+
+      Report_ExecuteReport:
+        purpose: "Generate consolidation report"
+        prerequisites:
+          - "Consolidation completed (Status_Bundles = 0)"
+          - "Report definition exists"
+        parameters:
+          required:
+            - "ReportID or ReportCode"
+            - "ConsoID"
+          optional:
+            - "AccountSummationID - Row grouping"
+            - "CompanyFilterMode - All (0) or Selected (1)"
+            - "CompanyFilterIDs - Company list"
+            - "ShowVariance - Compare to reference"
+        validation:
+          - "Report permissions check"
+          - "ConsoID has consolidated data"
+        follow_up:
+          - "Export via Report_ExportReport if needed"
+        theory_references:
+          - "reporting-services.md"
+
+  # ============================================================================
+  # SECTION 5: QUICK REFERENCE
+  # ============================================================================
+  quick_reference:
+    api_category_summary:
+      foundation:
+        files: 3
+        handlers: 16
+        key_handlers: ["Consolidation_Execute", "Job_GetJobStatus"]
+        use_for: "Consolidation execution and monitoring"
+
+      master_data:
+        files: 6
+        handlers: 89
+        key_handlers: ["Company_*", "Account_*", "Currency_*"]
+        use_for: "Setup and configuration"
+
+      ownership_structure:
+        files: 1
+        handlers: 3
+        key_handlers: ["Ownership_SaveOwnership", "Ownership_CalculatePercentages"]
+        use_for: "Ownership and structure management"
+
+      data_entry:
+        files: 3
+        handlers: 64
+        key_handlers: ["BundleStandard_*", "IntercoDataEntry_*", "Journal_*"]
+        use_for: "Financial data input"
+
+      consolidation_config:
+        files: 3
+        handlers: 31
+        key_handlers: ["Event_*", "Elimination_*", "ValidationReportRule_*"]
+        use_for: "Consolidation rules configuration"
+
+      data_transfer:
+        files: 2
+        handlers: 15
+        key_handlers: ["ImportData_*", "ExportData_*"]
+        use_for: "Import/export operations"
+
+      reporting:
+        files: 1
+        handlers: 24
+        key_handlers: ["Report_ExecuteReport", "Report_ExportReport"]
+        use_for: "Report generation"
+
+    error_handling_summary:
+      decision_trees:
+        - "DT-CONSO-ERRORS: Consolidation execution"
+        - "DT-DATAENTRY-ERRORS: Data entry and save"
+        - "DT-IMPORT-ERRORS: Import processing"
+        - "DT-ELIM-ERRORS: Elimination execution"
+
+      common_error_codes:
+        SPECIFIC_ACCOUNT_NOT_FOUND: "Configure special account flag"
+        SPECIFIC_FLOW_NOT_FOUND: "Configure special flow flag"
+        ConsoLocked: "Request unlock or wait"
+        NO_SHAREHOLDER: "Add ownership link"
+        EntityVersion conflict: "Refresh and retry"
+
+    context_injection_summary:
+      session_context: "Inject at start of conversation"
+      entity_context: "Inject when working with specific entity"
+      handler_context: "Inject when explaining/troubleshooting handler"
+      error_context: "Inject when handling errors"
+      workflow_context: "Inject during multi-step operations"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-03"
+    version: "1.0"
+    author: "Documentation automation"
+
+    purpose: |
+      This file provides structured guidance for AI agents working with the
+      Prophix.Conso financial consolidation API. It enables agents to:
+
+      1. Retrieve relevant context based on query category
+      2. Inject appropriate runtime context into prompts
+      3. Navigate error handling decision trees
+      4. Follow handler-specific guidance for accurate responses
+
+    coverage:
+      categories: 7
+      files: 19
+      handlers: 242
+      decision_trees: 4
+      context_templates: 5
+
+    related_files:
+      - "api-index.yaml - Master API catalog"
+      - "prompt-templates.yaml - Agent persona prompts"
+      - "error-handling-patterns.yaml - Error catalog"
+      - "api-workflow-diagrams.yaml - Workflow visualizations"
+      - "validation-rules.yaml - Data validation"
+
+    updates:
+      - date: "2024-12-03"
+        change: "Initial creation with full RAG prompts and decision trees"

@@ -1,0 +1,1557 @@
+[
+    {
+        "type": "text",
+        "text": "and the final consolidated accounts",
+        "bbox": [
+            111,
+            121,
+            459,
+            137
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/e52994c62c5d3b70036cccaaa1531be1c9661ebf5844b9d3147f8bf1baaa2942.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">P + A + B</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">100</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>270</td></tr><tr><td rowspan=\"5\">Tang. assets</td><td rowspan=\"5\">100</td><td>Result</td><td>30</td></tr><tr><td>Cons. Res.(A)</td><td>147</td></tr><tr><td>Cons. Res.(B)</td><td>(6)</td></tr><tr><td>Minor. Int.(A)</td><td>123</td></tr><tr><td>Minor. Int.(B)</td><td>196</td></tr><tr><td>Other assets</td><td>1,910</td><td>Other liabilities</td><td>850</td></tr></table>",
+        "bbox": [
+            248,
+            144,
+            767,
+            292
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "with",
+        "bbox": [
+            111,
+            298,
+            162,
+            313
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves of A = 147 = 70% * [200 + 160 + 50] + 30 + (30) - 140",
+            "- Consolidated reserves of B = (6) = 60% * [300 + 200 + (50) + 40] - [400 + (100)]",
+            "Minority interests of  \\(A = 123 = 30\\%\\)  [200 + 160 + 50]",
+            "Minority interests of B = 196 = 40% * [300 + 200 + (50) + 40]"
+        ],
+        "bbox": [
+            149,
+            327,
+            873,
+            475
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Justification of consolidated reserves evolution",
+        "text_level": 1,
+        "bbox": [
+            111,
+            491,
+            626,
+            508
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We propose to present the status board first and then to bring the necessary comments afterwards",
+        "bbox": [
+            111,
+            522,
+            875,
+            554
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/ded8bd18732a16e9a74ad0d218e1a6347f309f07698f9a90fb5a8533456cd819.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>Conso.\nReserves\nYear 1</td><td>Result\nYear 2</td><td>Dividends\npaid</td><td>Dividends\nreceived</td><td>Transfer\nof\nreserves</td><td>Transfer\nof\nreserves</td><td>Other\ntransfers</td><td>Parent\ndividends</td><td>Total</td><td>Conso.\nReserves\nYear 2</td><td>Difference\n(9)-(8)</td></tr><tr><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5a)</td><td>(5b)</td><td>(6)</td><td>(7)</td><td>(8)</td><td>(9)</td><td>(10)</td></tr><tr><td>P</td><td>250</td><td>30</td><td></td><td>18</td><td></td><td>32</td><td></td><td>(30)</td><td>300</td><td>300</td><td>0</td></tr><tr><td>A</td><td>162</td><td>5</td><td>(18)</td><td></td><td>30</td><td>(32)</td><td></td><td></td><td>147</td><td>147</td><td>0</td></tr><tr><td>B</td><td>0</td><td>24</td><td></td><td></td><td>(30)</td><td></td><td></td><td></td><td>(6)</td><td>(6)</td><td>0</td></tr><tr><td>Total</td><td>412</td><td>59</td><td>(18)</td><td>18</td><td>0</td><td>0</td><td>0</td><td>(30)</td><td>441</td><td>441</td><td>0</td></tr></table>",
+        "bbox": [
+            113,
+            566,
+            879,
+            648
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Column (1) shows the consolidated reserves calculated for Year 1",
+        "bbox": [
+            111,
+            661,
+            748,
+            679
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Column (2) shows the group result of each company, taking into account adjustments and percentage calculation",
+        "bbox": [
+            111,
+            693,
+            875,
+            727
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Columns (3) and (4) shows the group dividends of 18 paid by A and received by P",
+        "bbox": [
+            111,
+            742,
+            875,
+            774
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "To be clear, we opted for two columns to show the group transfers.",
+        "bbox": [
+            111,
+            790,
+            763,
+            808
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Column (5a) shows a transfer of reserves of  \\(30 = 60\\%\\)  * 50, related to the elimination of the group profit. To understand this transfer, let us consider the",
+        "bbox": [
+            111,
+            821,
+            873,
+            856
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            67,
+            369,
+            83
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "adjustments  \\((c^{*})\\)  and (d) which consist in a credit of 30 in A and a debit of  \\(60\\% * 50\\)  in B.",
+        "bbox": [
+            108,
+            118,
+            875,
+            150
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Column (5b) shows a transfer of 32 because of the  \\(20\\%\\)  share disposal. This is also an important point to check. Each time we sell shares the corresponding part of consolidated reserves of the concerned company decreases and the same amount appears as an increase on the line of the vendor.",
+        "bbox": [
+            108,
+            166,
+            875,
+            247
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Let's illustrate it with figures.",
+        "bbox": [
+            108,
+            263,
+            391,
+            279
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves of A in Year 1 (after dividends distribution) are  \\(144 = 162 + (18)\\) . This net amount corresponds to a participation of  \\(90\\%\\) . After the transaction, we only keep  \\(70\\%\\)  of that company. This means we are \"loosing\"  \\(32 = 144^{*}\\)  ( \\(20\\% / 90\\%\\) ) on company A line but the group keeps these reserves of 32 by considering the adjustment (d).",
+        "bbox": [
+            108,
+            295,
+            875,
+            377
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Column (6) is just not applicable in this case study",
+        "bbox": [
+            108,
+            392,
+            605,
+            409
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Column (7) shows P dividends paid",
+        "bbox": [
+            108,
+            424,
+            455,
+            440
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Finally, we see that the Total column (8) is equal, line per line, with the consolidated reserves coming from the Year 2 consolidation.",
+        "bbox": [
+            108,
+            456,
+            875,
+            489
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Again, we confirm this consolidation is technically correct regarding the group equity.",
+        "bbox": [
+            108,
+            505,
+            875,
+            538
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "3 EVOLUTION OF TRANSLATION ADJUSTMENTS",
+        "text_level": 1,
+        "bbox": [
+            108,
+            572,
+            741,
+            617
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "3.1 Some important principles",
+        "text_level": 2,
+        "bbox": [
+            108,
+            639,
+            605,
+            661
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For each foreign company, the translation adjustments amount at the end of a period represents the total adjustments booked on equity and financial investment accounts to maintain them at their historical value, since the first time this company has entered the consolidation scope.",
+        "bbox": [
+            108,
+            683,
+            875,
+            749
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This means that during a certain number of years, not only the initial amounts but each variation of these amounts (increases/decreases of capital, shares acquisitions/disposals, transfer of result to reserves, dividends payments, ...) have been translated with so many different rates that justifying the evolution becomes rather difficult.",
+        "bbox": [
+            108,
+            762,
+            875,
+            844
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            70,
+            862,
+            86
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "It is however true that the evolution of translation adjustments is in most cases required by the Auditors. To proceed further let's come back to some principles.",
+        "bbox": [
+            116,
+            120,
+            873,
+            169
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Period to justify",
+        "text_level": 2,
+        "bbox": [
+            116,
+            184,
+            291,
+            202
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Translation adjustments evolution is justified from one period with regard to the previous closing period. We never justify the evolution since the beginning of the life time of each company in the group. Reference period figures have been audited and the corresponding figures constitute a kind of starting line.",
+        "bbox": [
+            116,
+            216,
+            873,
+            281
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Historical translation adjustments",
+        "text_level": 3,
+        "bbox": [
+            116,
+            295,
+            483,
+            313
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Every year, for each foreign company, there is a consolidation adjustment reclassifying the effect of rates on equity and financial investment accounts to the translation adjustments account in order to keep these accounts at historical rate.",
+        "bbox": [
+            116,
+            327,
+            873,
+            392
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "All these adjustments are individually carried forward to the next consolidation period. Most of the consolidation software are processing this correctly.",
+        "bbox": [
+            116,
+            408,
+            873,
+            456
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This means that, for each company, after a certain number of years, we can find quite a lot of these adjustments. As the justification is made from the current period with the reference period, it is not really a loss of information to aggregate these historical adjustments, in order to keep the consolidation more easily auditable.",
+        "bbox": [
+            116,
+            472,
+            873,
+            553
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The currency translation process",
+        "text_level": 3,
+        "bbox": [
+            116,
+            569,
+            470,
+            585
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Before going ahead, let's also remind that, considering Year 1 and Year 2, the historical value of an amount in Year 2 is equal to its corresponding historical value in Year 1 increased by the variation noticed during Year 2, translated at some transaction rate, which can be the average rate or a certain day rate.",
+        "bbox": [
+            116,
+            601,
+            873,
+            664
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "That historical value compared to the Year 2 value at closing rate gives the translation adjustment of Year 2.",
+        "bbox": [
+            116,
+            680,
+            873,
+            713
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In this process, the historical value of an account is equal to the value of this account at closing rate adjusted by all the translation adjustments aggregated since the early beginning.",
+        "bbox": [
+            116,
+            729,
+            873,
+            778
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            367,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "3.2 Variation analysis from a theoretical point of view",
+        "text_level": 2,
+        "bbox": [
+            109,
+            120,
+            845,
+            165
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The idea is to produce a status board showing, for each foreign company, the effect of rates variations on equity and financial investments accounts.",
+        "bbox": [
+            109,
+            187,
+            871,
+            219
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Beforehand, it seems to us useful to explain some currency translation mechanisms.",
+        "bbox": [
+            109,
+            235,
+            871,
+            267
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Year 1 : First year consolidation for a foreign comuany",
+        "text_level": 3,
+        "bbox": [
+            109,
+            282,
+            698,
+            301
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We will consider one equity account, the capital account for instance. As all balance sheets accounts, its corresponding amount, named M1 is first translated at a certain closing rate named C1. But we know this capital amount entered the consolidation scope a certain day of Year 1 when the rate was H (for Historical).",
+        "bbox": [
+            109,
+            314,
+            871,
+            396
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This capital amount valued for M1 * C1 has to be adjusted by a certain value J1 such that M 1* C1 + J1 = M1 * H.",
+        "bbox": [
+            109,
+            411,
+            871,
+            443
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "So we get  \\(\\mathsf{J1} = \\mathsf{M1} * (\\mathsf{H} - \\mathsf{Cl})\\)  which is the amount of translation adjustment to book on that capital amount and the same amount, opposite sign, that's to say  \\(\\mathsf{M1} * (\\mathsf{C1} - \\mathsf{H})\\) , will be booked on the translation adjustments account.",
+        "bbox": [
+            109,
+            459,
+            871,
+            509
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "At this moment of the explanation, we can state that the variation of translation adjustment for the capital is the difference of rates  \\(C1 - H\\)  on amount  \\(M1\\)  which can be considered as the variation from 0 to  \\(M1\\)  for this Year 1.",
+        "bbox": [
+            109,
+            524,
+            871,
+            588
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Year 2 : A capital increase",
+        "text_level": 3,
+        "bbox": [
+            109,
+            604,
+            394,
+            622
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let's now look how the process is performed during Year 2 with a capital increase of  \\(K\\) , giving  \\(M2 = M1 + K\\)  in foreign currency, with  \\(M2\\)  being the Year 2 closing value of the capital.",
+        "bbox": [
+            109,
+            636,
+            871,
+            686
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We suppose the capital increase happened a certain day of Year 2 with a transaction rate of  \\(T\\) .",
+        "bbox": [
+            109,
+            699,
+            871,
+            733
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "What will be the historical value of the capital at end of Year 2?",
+        "bbox": [
+            109,
+            748,
+            723,
+            765
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The answer is quite easy: M1 * H + K * T but the consolidation process makes it a little bit more complex.",
+        "bbox": [
+            109,
+            780,
+            871,
+            814
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We know that we first get the capital value at end of Year 2 at closing rate C2, giving a value of M2* C2. We also know that the translation adjustment J1 is carried forward to Year 2.",
+        "bbox": [
+            109,
+            828,
+            871,
+            878
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            354,
+            71,
+            864,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "If J2 represents the translation adjustment needed for Year 2, we can write the following",
+        "bbox": [
+            110,
+            120,
+            877,
+            152
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\nM 2 * C 2 + J 1 + J 2 = M 1 * H + K * T\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            311,
+            152,
+            675,
+            168
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\nJ 2 = M 1 * H + K * T - M 2 * C 2 - J 1\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            317,
+            184,
+            669,
+            200
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "and by replacing M2 by  \\(\\mathsf{M1} + \\mathsf{K}\\)  and J1 by  \\(\\mathsf{M1}^{\\star}(\\mathsf{H} - \\mathsf{C1})\\) , we get",
+        "bbox": [
+            110,
+            213,
+            745,
+            234
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\nJ 2 = M 1 * H + K * T - (M 1 + K) * C 2 - M 1 * (H - C 1)\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            226,
+            247,
+            760,
+            266
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\nJ 2 = M 1 * (C 1 - C 2) + K * (T - C 2)\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            317,
+            279,
+            671,
+            298
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "which becomes",
+        "bbox": [
+            110,
+            314,
+            264,
+            329
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\nJ 2 = M 1 ^ {*} (C 2 - C 1) + K ^ {*} (C 2 - T)\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            317,
+            326,
+            671,
+            346
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "if we look at the booking amount on the translation adjustment account (opposite sign).",
+        "bbox": [
+            110,
+            361,
+            813,
+            393
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "And we now see that the Year 2 translation adjustment on this capital account includes two impacts",
+        "bbox": [
+            110,
+            409,
+            877,
+            442
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "A first one is the variation of closing rates on opening amount M1",
+            "- A second one is the variation of closing rate with regard to the transaction rate on the variation amount of the year."
+        ],
+        "bbox": [
+            154,
+            456,
+            875,
+            522
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Generalisation to result. reserves and dividends",
+        "text_level": 3,
+        "bbox": [
+            110,
+            554,
+            635,
+            571
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "By a similar method, we deduce that the amount of translation adjustment of Year 2 impacting the reserves account after appropriation of the part of result which has not been paid as dividends is",
+        "bbox": [
+            110,
+            585,
+            877,
+            635
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n\\begin{array}{r l} \\mathrm {J 2} & = (\\text {O p e n i n g r e s e r v e s Y 1} + \\text {n o n d i s t r i b u t e d R e s u l t o f Y 1}) ^ {*} (\\mathrm {C 2} - \\mathrm {C 1}) \\\\ & + \\mathrm {D} * (\\mathrm {C 2} - \\mathrm {A I}) \\end{array}\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            148,
+            647,
+            836,
+            683
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where D represents the amount of gross dividends paid and A1 is the average rate of Year 1.",
+        "bbox": [
+            110,
+            698,
+            877,
+            730
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "As it can be seen, justifying the evolution of translation adjustments accounts rely more on \"algebra\" calculations than on economical information.",
+        "bbox": [
+            110,
+            746,
+            877,
+            778
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "To comply with this kind of request, we recommend using a status board per company. That's what we are going to explain in the next section, on the basis on a realistic example.",
+        "bbox": [
+            110,
+            793,
+            877,
+            844
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            65,
+            366,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.3 Case study",
+        "text_level": 2,
+        "bbox": [
+            105,
+            118,
+            358,
+            142
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In this case study, we are going to analyze three years of consolidation with the following foreign currency equity evolution and the corresponding rates that will be used.",
+        "bbox": [
+            103,
+            162,
+            875,
+            209
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/f09866e52a32f4378853a30dd2a5ce34a143f5a5e3d98b4d5504962fc5431f73.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 CUR</td><td>Capital increase</td><td>Approp.</td><td>Result</td><td>Year 2 CUR</td><td>Approp.</td><td>Divid.</td><td>Result</td><td>Year 3 CUR</td></tr><tr><td>Capital</td><td>100</td><td>50</td><td></td><td></td><td>150</td><td></td><td></td><td></td><td>150</td></tr><tr><td>Reserves</td><td>80</td><td></td><td>20</td><td></td><td>100</td><td>20</td><td></td><td></td><td>120</td></tr><tr><td>Result</td><td>20</td><td></td><td>(20)</td><td>30</td><td>30</td><td>(20)</td><td>(10)</td><td>10</td><td>10</td></tr><tr><td></td><td>200</td><td>50</td><td>0</td><td>30</td><td>280</td><td>0</td><td>(10)</td><td>10</td><td>280</td></tr></table>",
+        "bbox": [
+            105,
+            219,
+            891,
+            300
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/c3fa6c703efafdbe7db53f182599ca3b4ac59c6a303cfd53e022a127752bc5aa.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Closing rate</td><td>10</td><td></td><td></td><td></td><td>14</td><td></td><td></td><td></td><td>12</td></tr><tr><td>Average rate</td><td>11</td><td></td><td></td><td></td><td>13</td><td></td><td></td><td></td><td>10</td></tr><tr><td>Hist. Rate</td><td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Trans. Rate</td><td></td><td>12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>",
+        "bbox": [
+            105,
+            313,
+            889,
+            369
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "That company enters the group on the  \\(1^{\\text{st}}\\)  of January Year 1 with a total equity of 180 translated at the historical rate of 9. During Year 2, the capital is increased by 50 at a transaction rate of 12.",
+        "bbox": [
+            103,
+            382,
+            875,
+            432
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "A the end of Year 2, the company pays gross dividends of 10.",
+        "bbox": [
+            105,
+            448,
+            713,
+            464
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We propose to proceed in two steps. We first calculate the historical equity of each year and book the corresponding translation adjustments amount on the appropriate account.",
+        "bbox": [
+            103,
+            480,
+            875,
+            529
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We then fill in the status board to justify the evolution of translation adjustments.",
+        "bbox": [
+            103,
+            545,
+            872,
+            577
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Currency translation of Year 1",
+        "text_level": 3,
+        "bbox": [
+            105,
+            593,
+            440,
+            609
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Considering the company entering the consolidation scope on the  \\(1^{\\text{st}}\\)  of January Year 1 with a rate of 9, capital and reserves accounts have a historical value of  \\(900 = 100 * 9\\)  and  \\(720 = 80 * 9\\)  respectively and the profit of 20 is translated at the average rate of 11, giving  \\(220 = 20 * 11\\) .",
+        "bbox": [
+            103,
+            624,
+            875,
+            692
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/1d538bcb58d0c4fd5a0cab351ecadb51ef8efd6764f69a689f0130e5082b4273.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1\nCUR</td><td>At closing\nrate</td><td>31</td><td>Year 1\nEUR</td></tr><tr><td>Capital</td><td>100</td><td>1,000</td><td>(100)</td><td>900</td></tr><tr><td>Reserves</td><td>80</td><td>800</td><td>(80)</td><td>720</td></tr><tr><td>Result</td><td>20</td><td>200</td><td>20</td><td>220</td></tr><tr><td>Trans. Adjust.</td><td></td><td></td><td>160</td><td>160</td></tr><tr><td></td><td>200</td><td>2,000</td><td>0</td><td>2,000</td></tr></table>",
+        "bbox": [
+            203,
+            703,
+            781,
+            821
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column J1 represents the currency translation adjustment for Year 1.",
+        "bbox": [
+            103,
+            850,
+            783,
+            868
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            68,
+            862,
+            85
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "page_number",
+        "text": "189",
+        "bbox": [
+            470,
+            920,
+            512,
+            934
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Currency translation of Year 2",
+        "text_level": 3,
+        "bbox": [
+            110,
+            118,
+            444,
+            134
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Before entering calculation, notice",
+        "bbox": [
+            110,
+            150,
+            447,
+            166
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- There is a capital increase for 50 to be translated at a transaction rate of 12, that is  \\(600 = 50 \\times 12\\)",
+            "The Year 1 profit of 20 is entirely carried forward to the Reserves",
+            "- The Year 1 translation adjustment 31 is carried forward to Year 2 consolidation. In the meantime, the impact on result for 20 is of course carried forward to the Reserves."
+        ],
+        "bbox": [
+            148,
+            181,
+            879,
+            311
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/e5869f02bd1ad4858af5f9346ba85ab08b9e6bfba863a5ccdaf2afac8c3cdc27.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 2\nCUR</td><td>At closing\nrate</td><td>J1</td><td>J2</td><td>Year 2\nEUR</td></tr><tr><td>Capital</td><td>150</td><td>2,100</td><td>(100)</td><td>(500)</td><td>1,500</td></tr><tr><td>Reserves</td><td>100</td><td>1,400</td><td>(60)</td><td>(400)</td><td>940</td></tr><tr><td>Result</td><td>30</td><td>420</td><td></td><td>(30)</td><td>390</td></tr><tr><td>Trans, Adjust.</td><td></td><td></td><td>160</td><td>930</td><td>1,090</td></tr><tr><td></td><td>280</td><td>3,920</td><td>0</td><td>0</td><td>3,920</td></tr></table>",
+        "bbox": [
+            152,
+            330,
+            826,
+            448
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "On this basis, the capital consists in two parts: 100 to be translated at historical rate of 9 and 50 translated at 12, giving a new historical value of  \\(1500 = 100^{*}9 + 50^{*}12\\) . Regarding the closing rate value of 2100, adjusted by J1 for (100), we need an additional J2 adjustment for (500).",
+        "bbox": [
+            110,
+            478,
+            879,
+            544
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "For the Reserves, the same view applies because 100 consists in 80 at historical rate of 9 and 20 at average rate of 11, giving a correct value of 940  \\(= 80 * 9 + 20 * 11\\) . The closing rate value of 1400 adjusted by J1 for (60) must be adjusted by 32 for (400).",
+        "bbox": [
+            110,
+            557,
+            877,
+            623
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "And, finally, the profit of 30 translated at closing rate for  \\(420 = 30 \\times 14\\)  must be adjusted for 30 to bring it to the average rate value of 390.",
+        "bbox": [
+            110,
+            636,
+            877,
+            670
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "It is interesting to notice that the total equity value remains unchanged, at a value of the closing rate because we only book some transfers between equity accounts and the translation adjustments account belongs to equity.",
+        "bbox": [
+            110,
+            686,
+            877,
+            737
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The question that now arises is to explain how do we get a variation of 930 on the translation adjustments account by passing from 160 in Year 1 to 1090 in Year 2.",
+        "bbox": [
+            110,
+            749,
+            877,
+            800
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Let's just apply the formulas explained above.",
+        "bbox": [
+            110,
+            814,
+            561,
+            831
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            64,
+            366,
+            80
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/1c5262ec6956cb39f5c5ed7b83bae393b9f155e39f991403c3b30938b3e49495.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>CTA/opening 14/10</td><td>CTA/variations 14/12</td><td>CTA/divid.</td><td>CTA/result 14/13</td><td>Total</td></tr><tr><td>Capital</td><td>400</td><td>100</td><td></td><td></td><td>500</td></tr><tr><td>Reserves</td><td>400</td><td></td><td></td><td></td><td>400</td></tr><tr><td>Result</td><td></td><td></td><td></td><td>30</td><td>30</td></tr><tr><td></td><td>800</td><td>100</td><td>0</td><td>30</td><td>930</td></tr></table>",
+        "bbox": [
+            128,
+            128,
+            820,
+            231
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For the currency translation adjustment (CTA) on opening",
+        "bbox": [
+            107,
+            262,
+            672,
+            279
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Opening capital of  \\(400 = 100^{\\star}\\)  (14 - 10)",
+            "- Opening reserves (including Year 1 profit) of  \\(400 = 100 * (14 - 10)\\)"
+        ],
+        "bbox": [
+            143,
+            289,
+            841,
+            342
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For the currency translation adjustment (CTA) on variations",
+        "bbox": [
+            107,
+            358,
+            691,
+            374
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Capital increase of  \\(100 = 50 * (14 - 12)\\)",
+        "bbox": [
+            145,
+            390,
+            580,
+            408
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For the currency translation adjustment (CTA) on result",
+        "bbox": [
+            107,
+            423,
+            649,
+            439
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Year 2 result of  \\(30 = 30^{\\star}\\)  (14 - 13)",
+        "bbox": [
+            145,
+            452,
+            537,
+            472
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Currency translation of Year 3",
+        "text_level": 3,
+        "bbox": [
+            107,
+            487,
+            438,
+            503
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For this last year, we just have to take care of dividends paid for 10, the capital increase of Year 2 belongs now to the past and is fully integrated in the 12 adjustment.",
+        "bbox": [
+            105,
+            519,
+            871,
+            568
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/079f791dcf897269913572688db2fd7cb01ab472935f1568dd3a0246f99c0ea2.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 3\nCUR</td><td>At closing\nrate</td><td>11</td><td>32</td><td>33</td><td>Year 3\nEUR</td></tr><tr><td>Capital</td><td>150</td><td>1,800</td><td>(100)</td><td>(500)</td><td>300</td><td>1,500</td></tr><tr><td>Reserves</td><td>120</td><td>1,440</td><td>(60)</td><td>(430)</td><td>250</td><td>1,200</td></tr><tr><td>Result</td><td>10</td><td>120</td><td></td><td></td><td>(20)</td><td>100</td></tr><tr><td>Trans. Adjust.</td><td></td><td></td><td>160</td><td>930</td><td>(530)</td><td>560</td></tr><tr><td></td><td>280</td><td>3,360</td><td>0</td><td>0</td><td>0</td><td>3,360</td></tr></table>",
+        "bbox": [
+            126,
+            595,
+            848,
+            705
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "To understand the above report, we start again with the closing amounts first translated at closing rate of 12 and we carry forward adjustments J1 and J2.",
+        "bbox": [
+            105,
+            737,
+            869,
+            768
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The capital of 1500 is unchanged in this period and so keeps its value of Year 2, that is 1500. To reach this value, we need an adjustment J3 for 300.",
+        "bbox": [
+            105,
+            784,
+            869,
+            816
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Reserves consist in an amount of 100 translated last year for 940 and 20 corresponding to the non distributed part of Year 2 profit whose value at",
+        "bbox": [
+            105,
+            833,
+            869,
+            866
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            356,
+            71,
+            862,
+            84
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "average rate 13 was 260, giving a historical value of 1200. This amount justifies the translation adjustment J3 of 250.",
+        "bbox": [
+            107,
+            117,
+            882,
+            151
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The Year 3 result translated at average of 10 implies a translation adjustment J3 of (20).",
+        "bbox": [
+            107,
+            166,
+            884,
+            201
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We close Year 3 consolidation with a translation adjustment of 560 and 1090 in Year 2, so we have to justify an evolution of (530).",
+        "bbox": [
+            107,
+            213,
+            882,
+            247
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here is the status board explaining that evolution.",
+        "bbox": [
+            107,
+            263,
+            601,
+            279
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/0cccf6d381a856d1be19016efa58b77b8963d13daec9f0bb500858a65001fe9a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>CTA/opening</td><td>CTA/variations</td><td>CTA/divid.</td><td>CTA/result</td><td>Total</td></tr><tr><td></td><td colspan=\"4\">(300)</td><td>(300)</td></tr><tr><td>Reserves</td><td colspan=\"4\">(240)</td><td>(250)</td></tr><tr><td>Result</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>(540)</td><td>0</td><td>(10)</td><td>20</td><td>(530)</td></tr></table>",
+        "bbox": [
+            147,
+            301,
+            850,
+            403
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "For the currency translation adjustment (CTA) on opening",
+        "bbox": [
+            109,
+            432,
+            680,
+            450
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Opening capital of  \\(150^{*}\\)  (12 - 14) = (300)",
+            "- Opening reserves (including non-distributed Year 2 profit)  \\(120^{\\star}\\)  (12 - 14) = (240)"
+        ],
+        "bbox": [
+            147,
+            463,
+            877,
+            531
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "For the currency translation adjustment (CTA) on dividends",
+        "bbox": [
+            107,
+            546,
+            693,
+            562
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Dividend paid for  \\(10^{\\star}\\)  (12 - 13) = (10)",
+        "bbox": [
+            147,
+            575,
+            576,
+            596
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "For the currency translation adjustment (CTA) on result",
+        "bbox": [
+            107,
+            611,
+            659,
+            628
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Year 3 result of  \\(10^{\\star}(12 - 10) = 20\\)",
+        "bbox": [
+            147,
+            640,
+            543,
+            659
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            63,
+            366,
+            79
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "4 EVOLUTION OF MINORITY INTERESTS",
+        "text_level": 1,
+        "bbox": [
+            102,
+            119,
+            676,
+            164
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "4.1 On which accounts are calculated the Minority interests?",
+        "text_level": 2,
+        "bbox": [
+            102,
+            187,
+            773,
+            232
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "To answer the question as stated in the title of this section, we would just like to remind some useful properties with regard to Minority interests.",
+        "bbox": [
+            100,
+            254,
+            877,
+            288
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Minority interests are calculated on all items composing the equity as defined in section 3.1 of Part 3. By all items, we mean capital, reserves, result, badwill (depending on chosen rules), translation adjustments, grants, ...). In other words, we can calculate the Minority interests on the total equity.",
+        "bbox": [
+            100,
+            304,
+            877,
+            371
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Minority Interests are also calculated on financial investments.",
+        "bbox": [
+            102,
+            385,
+            717,
+            402
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "To analyse Minority interests variations, we will need to identify the most important items that explain the equity variation between two successive periods.",
+        "bbox": [
+            100,
+            416,
+            880,
+            466
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Evolution of Minority interests may be analyzed through a status board as we did for the consolidated reserves but, unfortunately, as we will see, the columns are not as standard.",
+        "bbox": [
+            102,
+            481,
+            877,
+            531
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Anyway, we can try to identify the most important variations of equity as follows",
+        "bbox": [
+            102,
+            546,
+            877,
+            578
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Capital increase/decrease",
+            "Result of the year",
+            "Dividends paid",
+            "- Movement on revaluation reserves (with no impact on result)",
+            "Translation adjustments variation",
+            "Variation of badwills",
+            "Variation of grants"
+        ],
+        "bbox": [
+            141,
+            594,
+            781,
+            706
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Moreover, we will have to take care of possible financial investments variations as acquisitions/disposals of shares on consolidated companies.",
+        "bbox": [
+            102,
+            724,
+            877,
+            758
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Finally, we will also consider companies in which the minority percentages may change between periods, including consolidation methods changes with no minority interests in one period and minority interests in the other one.",
+        "bbox": [
+            102,
+            771,
+            877,
+            823
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            69,
+            867,
+            85
+        ],
+        "page_idx": 9
+    }
+]

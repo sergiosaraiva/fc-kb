@@ -1,0 +1,40 @@
+Topics:
+General Ledger Flow Reports, Company Contributions, Audit Trail, Other Accounts
+
+Keywords:
+General Ledger, Flow Report, Company Contribution, Audit Trail, Other Accounts, Consolidation Period, Account, Flow, Currency, Transactions, Data Analysis
+
+Summary:
+The provided documentation for the Financial Consolidation product covers detailed instructions on generating and analyzing general ledger flow reports. It includes sections on creating flow reports, viewing company contributions, accessing audit trails, and exploring other accounts. The General Ledger Flow Reports section explains how to generate and analyze flow reports at the consolidated or group level. The Company Contributions section details how to view contributions by different companies for specific account and flow combinations. The Audit Trail section provides steps for accessing a comprehensive log of flows impacting selected company and account combinations. The Other Accounts section allows users to explore various accounts associated with specific company and account combinations.
+
+Contents:
+General ledger (flow) report
+The General Ledger Flow report offers a convenient means to examine the flows associated with a specific account, either at the consolidated or group level. This report allows you to observe all the transactions or movements that have been used to clarify the changes occurring between the opening and closing periods. It provides a comprehensive account of the variations that have taken place within the specified timeframe.
+
+To access the General Ledger Flow report (drill-down analysis) page, click Reports > Drill-Down Analysis > General Ledger (Flow).
+
+Generate a general ledger flow report:
+1. In the Account field, enter an account code or click to find one.
+2. Click . The system displays the consolidated account balances of the previous consolidation period and the current consolidation period, as well as the various consolidated financial flows which explain the variations between the two periods. The flow details are displayed in the following columns: Flow - Flow code, Flow Description - description of the flow, Amount - Amount, Curr - Currency in which the amount is expressed.
+3. On the list, click on a flow. The and links are activated. Clicking this link opens the General (Flow) Company Contribution page where you can find the contribution by each company to the flow. Clicking this link opens the General (Flow) Other Accounts page where you will find the other consolidated accounts using the selected flow.
+
+General ledger (flow) – company contribution report
+The General Ledger (Flow) - Company Contribution page displays a list of all the companies that contribute to the combination of Account and Flow selected on the General Ledger (Flow) page. When you navigate to the General Ledger (Flows) page, you have the ability to select a specific Account and Flow combination for analysis. After you have made the selection, you can access this page, the General Ledger (Flow) - Company Contribution page, to see the participating companies related to that particular combination. The purpose of this page is to provide an overview of the companies that have transactions or activities associated with the selected Account and Flow. It allows you to understand which entities within your organization are involved in generating the specific flow related to the chosen account.
+
+To access this page, select a row of Flow information on the General Ledger (Flow) page and click .
+
+On this page, you will find the following: The Account and Flow information displayed on top of the page (cannot be edited). A list of all the companies that contribute to the selected account and flow combination above. Button (activated when you click on a company on the list). Clicking this button opens the General Ledger (Flow) – Company Contribution page showing the flows for the selected company and account. Button - clicking this button returns you to the General Ledger (Flow) page.
+
+General ledger (flow) – audit trail
+The General Ledger (Flow) - Audit Trail page displays a comprehensive record of all the flows that contribute to the selected Company and Account combination as chosen on the General Ledger (Flow) - Company Contribution page. When you navigate to the General Ledger (Flow) - Company Contribution page, you have the ability to select a specific Company and Account combination for analysis. Once you have made the selection, you can access this page, the General Ledger (Flow) - Audit Trail page to view a detailed log of all the flows that impact the chosen combination.
+
+To access this page, select a row of Flow information on the General Ledger (Flow) – Company Contribution page and click .
+
+On this page, you will find the following: The Company and Account shown on top of this page. The consolidated account balance of the previous consolidation period and the current consolidation period, along with the various consolidated financial flows which explain the variations between the two periods. Any unexplained flow in the Unexplained Difference field. Button (activated when you click on a flow on the list). Clicking this button opens the Audit Trail Manual Input page. Button - clicking this button returns you to the General Ledger (Flow) – Company Contribution page.
+
+General ledger (flow) – other accounts
+The General Ledger (Flow) – Other Accounts page provides a comprehensive list of accounts that are involved in the selected combination of Account and Company on the General Ledger (Flow) page. This page allows you to view and explore the various accounts that contribute to or are associated with the specific Account and Company combination you have chosen.
+
+To access this page, select a row of Flow information on the General Ledger (Flow) page and click .
+
+On this page, you will find the following: The selected Flow information. A list of all the accounts that contribute to the selected Account and Company combination. Button (activated when you click on an account on the list). Clicking this button opens the General Ledger (Flow) page showing the flows used for the selected account and company combination. Button - clicking this button returns you to the General Ledger (Flow) page.

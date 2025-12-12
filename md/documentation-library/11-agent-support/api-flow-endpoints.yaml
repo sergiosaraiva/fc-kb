@@ -1,0 +1,1236 @@
+# API Flow Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of flows and flow summations
+
+api_flow_endpoints:
+  name: "Flow and Flow Summation API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing flows and flow summations in the consolidation system.
+
+    Flows are movement codes used in financial consolidation:
+    - Track changes/movements in account balances (acquisitions, disposals, revaluations)
+    - Enable cash flow statement generation
+    - Support historical rate calculations
+    - Link to specific flows for consolidation processing
+
+    Key concepts:
+    - Flow: Movement type code (e.g., Opening, Acquisition, Disposal, Closing)
+    - Flow Summation: Hierarchical grouping of flows for reporting
+    - Specific Flow: Predefined consolidation flows (equity method, full consolidation)
+    - Consolidation Flow: Links specific flows to actual flows for a period
+    - Flow Management: Batch operations on flow data
+
+    Services documented:
+    - FlowService: Flow master data (5 handlers)
+    - FlowSummationService: Flow groupings (8 handlers)
+    - FlowManagementService: Flow data management (1 handler)
+    - SpecificFlowService: Consolidation flow linkage (2 handlers)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    IncludeSigns:
+      description: "Sign for including flows in summation"
+      values:
+        - value: 0
+          name: "None"
+          char: "0"
+          description: "Include with original sign"
+        - value: 1
+          name: "Positive"
+          char: "+"
+          description: "Include as positive"
+        - value: -1
+          name: "Negative"
+          char: "-"
+          description: "Include as negative (reverse sign)"
+
+    InputSigns:
+      description: "Data entry sign convention"
+      values:
+        - value: 0
+          name: "Natural"
+          description: "Natural sign based on debit/credit"
+        - value: 1
+          name: "Positive"
+          description: "Always positive input"
+        - value: -1
+          name: "Negative"
+          description: "Always negative input"
+
+    PercentageTypes:
+      description: "Percentage calculation type for flow"
+      values:
+        - value: 0
+          name: "None"
+          description: "No percentage calculation"
+        - value: 1
+          name: "Opening"
+          description: "Use opening percentage"
+        - value: 2
+          name: "Closing"
+          description: "Use closing percentage"
+
+    FlowManagementOperations:
+      description: "Flow management batch operations"
+      values:
+        - code: "11"
+          name: "CopyAllFromReference"
+          description: "Copy all flows from reference period"
+        - code: "12"
+          name: "CopyDifferenceFromReference"
+          description: "Copy difference from reference period"
+        - code: "13"
+          name: "CopyAllFromReferenceIC"
+          description: "Copy all IC flows from reference"
+        - code: "14"
+          name: "CopyDifferenceFromReferenceIC"
+          description: "Copy difference IC flows from reference"
+        - code: "15"
+          name: "CopySpecificFlow"
+          description: "Copy specific flow from reference"
+        - code: "21"
+          name: "DeleteAllFlows"
+          description: "Delete all flow data"
+        - code: "22"
+          name: "DeleteOnlyFlow"
+          description: "Delete specific flow only"
+        - code: "23"
+          name: "DeleteAllExceptFlow"
+          description: "Delete all flows except specified"
+        - code: "30"
+          name: "MergeFlows"
+          description: "Merge flows into target company"
+        - code: "40"
+          name: "RecalculateHistorical"
+          description: "Recalculate historical rates"
+        - code: "50"
+          name: "UpdateHistoricalRate"
+          description: "Update historical rate for flow"
+
+    DetailTypes:
+      description: "Types of flow summation details"
+      values:
+        - char: "F"
+          name: "Flow"
+          description: "Individual flow"
+        - char: "S"
+          name: "FlowSummation"
+          description: "Nested flow summation"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    FlowDTO:
+      description: "Complete flow data structure"
+      source: "FlowService.cs"
+      fields:
+        - name: "FlowID"
+          type: "integer"
+          description: "Unique flow identifier"
+        - name: "FlowCode"
+          type: "string"
+          description: "Flow code"
+        - name: "FlowDescription"
+          type: "string"
+          description: "Flow display name (localized)"
+        - name: "FlagConso"
+          type: "boolean"
+          description: "Include in consolidation"
+        - name: "FlagCash"
+          type: "boolean"
+          description: "Cash flow statement flow"
+        - name: "DefaultSign"
+          type: "short"
+          description: "Default sign for calculations"
+          enum_ref: "IncludeSigns"
+        - name: "InputSign"
+          type: "short"
+          description: "Data entry sign convention"
+          enum_ref: "InputSigns"
+        - name: "FlagHistoricalRate1"
+          type: "boolean"
+          description: "Use historical rate for method 1"
+        - name: "RateType1"
+          type: "string"
+          description: "Rate type for conversion method 1 (C=Closing, A=Average, H=Historical)"
+        - name: "FlagHistoricalRate2"
+          type: "boolean"
+          description: "Use historical rate for method 2"
+        - name: "RateType2"
+          type: "string"
+          description: "Rate type for conversion method 2"
+        - name: "PercentageType"
+          type: "byte"
+          description: "Percentage calculation type (0-2)"
+          enum_ref: "PercentageTypes"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    FlowSummationDTO:
+      description: "Flow summation (grouping) data"
+      source: "FlowSummationService.core.cs"
+      fields:
+        - name: "FlowSummationID"
+          type: "integer"
+          description: "Unique summation identifier"
+        - name: "FlowSummationCode"
+          type: "string"
+          description: "Summation code"
+        - name: "FlowSummationDescription"
+          type: "string"
+          description: "Summation display name"
+        - name: "FlowSummationDetails"
+          type: "array<FlowSummationDetailDTO>"
+          nullable: true
+          description: "Child flows and summations"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    FlowSummationDetailDTO:
+      description: "Detail line in a flow summation"
+      fields:
+        - name: "ID"
+          type: "integer"
+          description: "Detail record ID"
+        - name: "SelectedID"
+          type: "integer"
+          description: "ID of flow or child summation"
+        - name: "Type"
+          type: "char"
+          description: "F=Flow, S=Summation"
+          enum_ref: "DetailTypes"
+        - name: "Code"
+          type: "string"
+          description: "Flow or summation code"
+        - name: "Description"
+          type: "string"
+          description: "Flow or summation description"
+        - name: "Sign"
+          type: "char"
+          description: "+, -, or 0 (include sign)"
+
+    FlowSummationNode:
+      description: "Tree node for hierarchical summation display"
+      fields:
+        - name: "ID"
+          type: "integer"
+        - name: "FlowSummationID"
+          type: "integer"
+          nullable: true
+        - name: "Code"
+          type: "string"
+        - name: "Type"
+          type: "char"
+          description: "F=Flow, S=Summation"
+        - name: "Description"
+          type: "string"
+        - name: "HasChildren"
+          type: "boolean"
+        - name: "IsExpanded"
+          type: "boolean"
+        - name: "DepthLevel"
+          type: "integer"
+
+    SpecificFlowDTO:
+      description: "Specific (consolidation) flow linkage"
+      source: "SpecificFlowService.cs"
+      fields:
+        - name: "ConsolidationFlowID"
+          type: "integer"
+          nullable: true
+          description: "Consolidation flow record ID"
+        - name: "ConsoID"
+          type: "integer"
+          description: "Consolidation period ID"
+        - name: "SpecFlowCode"
+          type: "string"
+          description: "Specific flow code (predefined)"
+        - name: "SpecFlowDescription"
+          type: "string"
+          description: "Specific flow description"
+        - name: "FlowCode"
+          type: "string"
+          nullable: true
+          description: "Linked flow code (null if not linked)"
+        - name: "FlowDescription"
+          type: "string"
+          nullable: true
+          description: "Linked flow description"
+        - name: "Sequence"
+          type: "short"
+          description: "Display sequence"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+  # ============================================================================
+  # FLOW HANDLERS
+  # ============================================================================
+  flow_handlers:
+    description: |
+      Endpoints for managing flow master data.
+      Source: Sigma.Mona.WebApplication/Screens/Flow/FlowService.cs
+
+    handlers:
+      - name: "Flow_GetFlows"
+        description: |
+          Retrieves flow list or single flow with filtering and pagination.
+          Returns flow definitions with conversion settings.
+        access_right: "Flow_GetFlows"
+        async: true
+
+        request:
+          _t: "Flow_GetFlows"
+          parameters:
+            - name: "FlowID"
+              type: "integer"
+              required: false
+              description: "Specific flow ID to retrieve"
+            - name: "FlowCode"
+              type: "string"
+              required: false
+              description: "Specific flow code"
+            - name: "FlowDescription"
+              type: "string"
+              required: false
+              description: "Exact description match"
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              description: "Consolidation period code"
+            - name: "FlowSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by summation membership"
+            - name: "FilterFlowCode"
+              type: "string"
+              required: false
+              description: "Filter by flow code pattern"
+            - name: "FilterFlowDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "OutputOnlyCodes"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Return only flow codes (array of strings)"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["FLOWCODE", "FLOWDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "Flow_GetFlows",
+                "FilterFlowCode": "OP%",
+                "scf_order_by": "FLOWCODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "Flow_GetFlows",
+                "FlowID": 123
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<FlowDTO>"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "FlowDTO"
+              description: "Full flow details with EntityVersion"
+
+      - name: "Flow_SaveFlow"
+        description: |
+          Creates or updates a flow record.
+          Validates flow code uniqueness within period.
+        access_right: "Flow_ManageFlow"
+        async: true
+
+        request:
+          _t: "Flow_SaveFlow"
+          parameters:
+            - name: "Flow"
+              type: "object"
+              required: true
+              description: "Flow data to save"
+              nested_parameters:
+                - name: "FlowID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new flow"
+                - name: "FlowCode"
+                  type: "string"
+                  required: true
+                  validation: "ValidateCode (new only)"
+                - name: "FlowDescription"
+                  type: "string"
+                  required: true
+                - name: "FlagConso"
+                  type: "boolean"
+                  required: false
+                  default: false
+                - name: "FlagCash"
+                  type: "boolean"
+                  required: false
+                  default: false
+                - name: "InputSign"
+                  type: "short"
+                  required: true
+                - name: "DefaultSign"
+                  type: "short"
+                  required: true
+                - name: "FlagHistoricalRate1"
+                  type: "boolean"
+                  required: false
+                - name: "RateType1"
+                  type: "string"
+                  required: true
+                - name: "FlagHistoricalRate2"
+                  type: "boolean"
+                  required: false
+                - name: "RateType2"
+                  type: "string"
+                  required: true
+                - name: "PercentageType"
+                  type: "byte"
+                  required: true
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Flow_SaveFlow",
+                "Flow": {
+                  "FlowID": null,
+                  "FlowCode": "ACQ",
+                  "FlowDescription": "Acquisitions",
+                  "FlagConso": true,
+                  "FlagCash": false,
+                  "InputSign": 1,
+                  "DefaultSign": 1,
+                  "RateType1": "H",
+                  "RateType2": "H",
+                  "PercentageType": 0
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+      - name: "Flow_RemoveFlow"
+        description: |
+          Deletes a flow and cleans up related records.
+          Removes account-flow links, summation memberships, and event details.
+        access_right: "Flow_ManageFlow"
+        async: true
+
+        request:
+          _t: "Flow_RemoveFlow"
+          parameters:
+            - name: "FlowID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Flow_RemoveFlow",
+                "FlowID": 123,
+                "scf_entity_version": [{"Name": "Flow", "Key": "789_123", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          warnings:
+            - pattern: "FLOW_IN_USE_AS_RATEFLOW"
+              cause: "Flow was referenced as rate flow"
+            - pattern: "FLOW_IN_USE_AS_HISTORICALFLOW"
+              cause: "Flow was referenced as historical flow"
+          errors:
+            - pattern: "CANT_DELETE_FLOW_BECAUSE_OF_DETAILS"
+              cause: "Flow has dependent data"
+
+      - name: "Flow_GetFlowsCodeDescription"
+        description: |
+          Returns flow code/description pairs for autocomplete.
+          Supports filtering by account context.
+        access_right: null
+        async: true
+
+        request:
+          _t: "Flow_GetFlowsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+              description: "Flow code pattern"
+            - name: "description"
+              type: "string"
+              required: false
+              description: "Description pattern"
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "addEmptyItemFirst"
+              type: "boolean"
+              required: false
+              default: false
+            - name: "context"
+              type: "string"
+              required: false
+              description: "AccountCode=X to filter by account"
+          example:
+            json: |
+              {
+                "_t": "Flow_GetFlowsCodeDescription",
+                "code": "OP%",
+                "maxRows": 20
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+              description: "Code -> 'Code: Description' pairs"
+
+      - name: "Flow_GetSpecificFlowsCodeDescription"
+        description: |
+          Returns specific flow code/description pairs for autocomplete.
+          Only returns flows linked to consolidation flows.
+        access_right: null
+        async: true
+
+        request:
+          _t: "Flow_GetSpecificFlowsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+
+  # ============================================================================
+  # FLOW SUMMATION HANDLERS
+  # ============================================================================
+  flow_summation_handlers:
+    description: |
+      Endpoints for managing flow summations (groupings).
+      Source: Sigma.Mona.WebApplication/Screens/FlowSummation/FlowSummationService.cs
+      Source: Sigma.Mona.WebApplication/Screens/FlowSummation/FlowSummationService.core.cs
+
+    handlers:
+      - name: "FlowSummation_GetFlowSummations"
+        description: |
+          Retrieves flow summations with optional details.
+          Returns hierarchical grouping information.
+        access_right: "FlowSummation_GetFlowSummations"
+        async: true
+
+        request:
+          _t: "FlowSummation_GetFlowSummations"
+          parameters:
+            - name: "FlowSummationID"
+              type: "integer"
+              required: false
+              description: "Specific summation ID"
+            - name: "FlowSummationCode"
+              type: "string"
+              required: false
+              description: "Specific summation code"
+            - name: "FilterFlowSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by code pattern"
+            - name: "FilterFlowSummationDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["FLOWSUMMATIONCODE", "FLOWSUMMATIONDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "FlowSummation_GetFlowSummations",
+                "scf_order_by": "FLOWSUMMATIONCODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "FlowSummation_GetFlowSummations",
+                "FlowSummationCode": "OPERATING"
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<FlowSummationDTO>"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "FlowSummationDTO"
+              description: "Full summation with details"
+
+      - name: "FlowSummation_SaveFlowSummation"
+        description: |
+          Creates or updates a flow summation.
+          Can also update detail sign assignments.
+        access_right: "FlowSummation_ManageFlowSummation"
+        async: true
+
+        request:
+          _t: "FlowSummation_SaveFlowSummation"
+          parameters:
+            - name: "FlowSummation"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "FlowSummationID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new"
+                - name: "FlowSummationCode"
+                  type: "string"
+                  required: true
+                - name: "FlowSummationDescription"
+                  type: "string"
+                  required: true
+                - name: "FlowSummationDetails"
+                  type: "array"
+                  required: "if updating"
+                  description: "Details with sign updates"
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "FlowSummation_SaveFlowSummation",
+                "FlowSummation": {
+                  "FlowSummationID": null,
+                  "FlowSummationCode": "OPERATING",
+                  "FlowSummationDescription": "Operating Cash Flows"
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "FlowSummation_RemoveFlowSummation"
+        description: |
+          Deletes a flow summation.
+          Uses P_DELETE_FLOW_SUMMATION stored procedure.
+        access_right: "FlowSummation_ManageFlowSummation"
+        async: true
+
+        request:
+          _t: "FlowSummation_RemoveFlowSummation"
+          parameters:
+            - name: "FlowSummationID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "FlowSummation_GetDetails"
+        description: |
+          Returns available flows or summations for adding to a summation.
+          Excludes items already in the summation.
+        access_right: "FlowSummation_GetFlowSummations"
+        async: true
+
+        request:
+          _t: "FlowSummation_GetDetails"
+          parameters:
+            - name: "Type"
+              type: "char"
+              required: true
+              description: "F=Flows, S=Summations"
+            - name: "FlowSummationID"
+              type: "integer"
+              required: false
+              description: "Current summation to exclude from"
+
+        response:
+          success:
+            scf_items:
+              type: "array<FlowSummationDetailDTO>"
+
+      - name: "FlowSummation_AddFlowSummationDetail"
+        description: |
+          Adds flows or child summations to a summation.
+        access_right: "FlowSummation_ManageFlowSummation"
+        async: true
+
+        request:
+          _t: "FlowSummation_AddFlowSummationDetail"
+          parameters:
+            - name: "FlowSummationID"
+              type: "integer"
+              required: true
+            - name: "SelectedSign"
+              type: "char"
+              required: true
+              description: "+, -, or 0"
+            - name: "FlowSummationDetails"
+              type: "array"
+              required: true
+              element_schema:
+                SelectedID:
+                  type: "integer"
+                Type:
+                  type: "char"
+                  description: "F=Flow, S=Summation"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "FlowSummation_AddFlowSummationDetail",
+                "FlowSummationID": 100,
+                "SelectedSign": "+",
+                "FlowSummationDetails": [
+                  {"SelectedID": 1, "Type": "F"},
+                  {"SelectedID": 2, "Type": "F"}
+                ],
+                "scf_entity_version": [{"Name": "FlowSummation", "Key": "789_100", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "FlowSummationCodesAreRepeated"
+              cause: "Flow already exists in summation"
+
+      - name: "FlowSummation_RemoveFlowSummationDetail"
+        description: |
+          Removes flows or child summations from a summation.
+        access_right: "FlowSummation_ManageFlowSummation"
+        async: true
+
+        request:
+          _t: "FlowSummation_RemoveFlowSummationDetail"
+          parameters:
+            - name: "FlowSummationID"
+              type: "integer"
+              required: true
+            - name: "FlowSummationCode"
+              type: "string"
+              required: true
+            - name: "FlowSummationDetails"
+              type: "array"
+              required: true
+              element_schema:
+                ID:
+                  type: "integer"
+                Type:
+                  type: "char"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "FlowSummation_GetFlowSummationsTree"
+        description: |
+          Returns hierarchical tree view of flow summations.
+          Supports lazy loading of children.
+        access_right: "FlowSummation_GetFlowSummations"
+        async: true
+
+        request:
+          _t: "FlowSummation_GetFlowSummationsTree"
+          parameters:
+            - name: "ID"
+              type: "integer"
+              required: false
+              description: "Parent node ID (null for root)"
+            - name: "ConsoID"
+              type: "integer"
+              required: false
+            - name: "Type"
+              type: "char"
+              required: false
+              description: "F=Flow, S=Summation"
+            - name: "FilterCode"
+              type: "string"
+              required: false
+            - name: "FilterDescription"
+              type: "string"
+              required: false
+            - name: "FilterType"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "FlowSummation_GetFlowSummationsTree",
+                "ID": null
+              }
+
+        response:
+          root:
+            scf_items:
+              type: "array<FlowSummationNode>"
+          children:
+            Children:
+              type: "array<FlowSummationNode>"
+
+      - name: "FlowSummation_GetFlowSummationsCodeDescription"
+        description: |
+          Returns summation code/description pairs for autocomplete.
+        access_right: null
+        async: true
+
+        request:
+          _t: "FlowSummation_GetFlowSummationsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+              description: "IgnoreFlowSummationCode=X to exclude"
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+
+  # ============================================================================
+  # FLOW MANAGEMENT HANDLERS
+  # ============================================================================
+  flow_management_handlers:
+    description: |
+      Endpoints for batch flow data management operations.
+      Source: Sigma.Mona.WebApplication/Screens/Flow/FlowManagementService.cs
+
+    handlers:
+      - name: "FlowsManagement_ProcessManagement"
+        description: |
+          Processes batch flow management operations.
+          Supports copy, delete, merge, and historical rate operations.
+          Uses P_SYS_FLOW_MANAGEMENT stored procedure.
+        access_right: "FlowManagement_ManageFlows"
+        async: true
+
+        request:
+          _t: "FlowsManagement_ProcessManagement"
+          parameters:
+            - name: "CompanyID"
+              type: "integer"
+              required: true
+              description: "Target company for operation"
+            - name: "CompanyCode"
+              type: "string"
+              required: true
+            - name: "IC"
+              type: "boolean"
+              required: true
+              description: "Include intercompany flows"
+            - name: "Operation"
+              type: "string"
+              required: true
+              description: "Operation code (11-50)"
+              enum_ref: "FlowManagementOperations"
+            - name: "Other"
+              type: "string"
+              required: "if Operation=15"
+              description: "Flow code for specific flow copy"
+            - name: "OnlyFlow"
+              type: "string"
+              required: "if Operation=22"
+              description: "Flow code for delete only"
+            - name: "AllFlowsExcept"
+              type: "string"
+              required: "if Operation=23"
+              description: "Flow code to keep"
+            - name: "MergeOnFlow"
+              type: "string"
+              required: "if Operation=30"
+              description: "Flow code for merge"
+            - name: "MergeIntoCompany"
+              type: "string"
+              required: "if Operation=30"
+              description: "Target company for merge"
+            - name: "UpdateHistoricalOnFlow"
+              type: "string"
+              required: "if Operation=50"
+              description: "Flow code for rate update"
+            - name: "UpdateHistoricalRate"
+              type: "decimal"
+              required: "if Operation=50"
+              description: "New historical rate value"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example_copy:
+            json: |
+              {
+                "_t": "FlowsManagement_ProcessManagement",
+                "CompanyID": 123,
+                "CompanyCode": "ACME",
+                "IC": true,
+                "Operation": "11"
+              }
+          example_delete:
+            json: |
+              {
+                "_t": "FlowsManagement_ProcessManagement",
+                "CompanyID": 123,
+                "CompanyCode": "ACME",
+                "IC": false,
+                "Operation": "22",
+                "OnlyFlow": "DISPOSE"
+              }
+          example_rate:
+            json: |
+              {
+                "_t": "FlowsManagement_ProcessManagement",
+                "CompanyID": 123,
+                "CompanyCode": "ACME",
+                "IC": false,
+                "Operation": "50",
+                "UpdateHistoricalOnFlow": "ACQ",
+                "UpdateHistoricalRate": 1.2345
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+  # ============================================================================
+  # SPECIFIC FLOW HANDLERS
+  # ============================================================================
+  specific_flow_handlers:
+    description: |
+      Endpoints for managing specific (consolidation) flow linkages.
+      Source: Sigma.Mona.WebApplication/Screens/Flow/SpecificFlowService.cs
+
+    handlers:
+      - name: "SpecificFlow_GetSpecificFlows"
+        description: |
+          Retrieves specific flow linkages for the period.
+          Shows which predefined flows are linked to actual flows.
+        access_right: "SpecificFlow_GetSpecificFlows"
+        async: true
+
+        request:
+          _t: "SpecificFlow_GetSpecificFlows"
+          parameters:
+            - name: "SpecFlowCode"
+              type: "string"
+              required: false
+              description: "Specific flow code to retrieve"
+            - name: "FilterSpecFlowCode"
+              type: "string"
+              required: false
+            - name: "FilterSpecFlowDescription"
+              type: "string"
+              required: false
+            - name: "FilterFlowCode"
+              type: "string"
+              required: false
+              description: "Filter by linked flow code"
+            - name: "FilterFlowDescription"
+              type: "string"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["SPECFLOWCODE", "SPECFLOWDESCRIPTION", "FLOWCODE", "FLOWDESCRIPTION", "SEQUENCE"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "SpecificFlow_GetSpecificFlows",
+                "scf_order_by": "SEQUENCE ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<SpecificFlowDTO>"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "SpecificFlowDTO"
+
+      - name: "SpecificFlow_SaveSpecificFlow"
+        description: |
+          Links or unlinks a specific flow to an actual flow.
+          Pass null FlowCode to unlink.
+          Automatically cleans up event details and eliminations when unlinking.
+        access_right: "SpecificFlow_ManageSpecificFlows"
+        async: true
+
+        request:
+          _t: "SpecificFlow_SaveSpecificFlow"
+          parameters:
+            - name: "SpecificFlow"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "SpecFlowCode"
+                  type: "string"
+                  required: true
+                  description: "Specific flow to link/unlink"
+                - name: "FlowCode"
+                  type: "string"
+                  required: false
+                  description: "Actual flow code (null to unlink)"
+                - name: "FlowDescription"
+                  type: "string"
+                  required: false
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example_link:
+            json: |
+              {
+                "_t": "SpecificFlow_SaveSpecificFlow",
+                "SpecificFlow": {
+                  "SpecFlowCode": "EQUITY_OPEN",
+                  "FlowCode": "OPEN",
+                  "scf_entity_version": [{"Name": "SpecificFlow", "Key": "789_EQUITY_OPEN", "Version": 1}]
+                }
+              }
+          example_unlink:
+            json: |
+              {
+                "_t": "SpecificFlow_SaveSpecificFlow",
+                "SpecificFlow": {
+                  "SpecFlowCode": "EQUITY_OPEN",
+                  "FlowCode": null
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "InvalidFlowCode"
+              cause: "Flow code not found"
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    flow_setup_workflow:
+      name: "Flow Setup Workflow"
+      description: "Complete workflow for setting up flows"
+      steps:
+        - step: 1
+          name: "Create Flow"
+          handler: "Flow_SaveFlow"
+          parameters:
+            FlowID: null
+          purpose: "Create new movement flow"
+
+        - step: 2
+          name: "Link to Specific Flows"
+          handler: "SpecificFlow_SaveSpecificFlow"
+          condition: "If consolidation flow"
+          purpose: "Link to predefined consolidation flows"
+
+        - step: 3
+          name: "Add to Summations"
+          handler: "FlowSummation_AddFlowSummationDetail"
+          purpose: "Include in report groupings"
+
+        - step: 4
+          name: "Link to Accounts"
+          handler: "AccountFlow_AddAccountFlow"
+          source: "api-account-endpoints.yaml"
+          purpose: "Enable flow data entry for accounts"
+
+    flow_summation_workflow:
+      name: "Flow Summation Setup Workflow"
+      description: "Create hierarchical flow groupings"
+      steps:
+        - step: 1
+          name: "Create Summation"
+          handler: "FlowSummation_SaveFlowSummation"
+          purpose: "Create parent summation"
+
+        - step: 2
+          name: "Get Available Flows"
+          handler: "FlowSummation_GetDetails"
+          parameters:
+            Type: "F"
+          purpose: "Find flows to add"
+
+        - step: 3
+          name: "Add Details"
+          handler: "FlowSummation_AddFlowSummationDetail"
+          purpose: "Add flows to summation"
+
+        - step: 4
+          name: "Verify Structure"
+          handler: "FlowSummation_GetFlowSummationsTree"
+          purpose: "Confirm hierarchy is correct"
+
+    flow_data_management_workflow:
+      name: "Flow Data Management Workflow"
+      description: "Manage flow data across periods"
+      steps:
+        - step: 1
+          name: "Select Operation"
+          description: "Choose copy, delete, or merge operation"
+          client_side: true
+
+        - step: 2
+          name: "Execute Operation"
+          handler: "FlowsManagement_ProcessManagement"
+          purpose: "Process batch flow operation"
+
+        - step: 3
+          name: "Verify Data"
+          handler: "FlowDataEntry_GetDataEntries"
+          source: "api-data-entry-endpoints.yaml"
+          purpose: "Confirm operation results"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_SYS_FLOW_MANAGEMENT"
+      description: "Executes batch flow management operations"
+      called_by: "FlowsManagement_ProcessManagement"
+      operations:
+        - "Copy flows from reference period"
+        - "Delete flow data"
+        - "Merge flows between companies"
+        - "Update historical rates"
+
+    - name: "P_DELETE_FLOW_SUMMATION"
+      description: "Deletes flow summation and related records"
+      called_by: "FlowSummation_RemoveFlowSummation"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Flow/FlowService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Flow/FlowService.core.cs"
+      - "Sigma.Mona.WebApplication/Screens/Flow/FlowManagementService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Flow/SpecificFlowService.cs"
+      - "Sigma.Mona.WebApplication/Screens/FlowSummation/FlowSummationService.cs"
+      - "Sigma.Mona.WebApplication/Screens/FlowSummation/FlowSummationService.core.cs"
+    handler_count: 16
+    purpose: |
+      Enable AI agents to manage flow definitions and summations including:
+      - Creating and maintaining movement flow codes
+      - Building flow summation hierarchies for cash flow reporting
+      - Linking specific (consolidation) flows to actual flows
+      - Batch flow data management operations
+      - Supporting cash flow statement generation
+
+      Flows are essential for:
+      - Tracking movements in account balances
+      - Cash flow statement preparation
+      - Historical rate calculations
+      - Movement/variance analysis

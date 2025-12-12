@@ -1,0 +1,368 @@
+Topics:
+Account Analysis, Group Analysis, Bundle Analysis, Audit Trail
+
+Keywords:
+Account Reports, Group Reports, Bundle Reports, Audit Trail, Financial Analysis, Pivot Table, Consolidation, Data Insights, Report Generation
+
+Summary:
+The documentation for the Financial Consolidation product provides detailed instructions on generating various analysis reports. The Account Analysis section explains how to generate reports focused on consolidated data for individual accounts. The Group Analysis section details the process of creating reports revolving around the group structure, offering insights into group-level data. The Bundle Analysis section covers generating reports that focus on bundle data, facilitating in-depth analysis of the bundled information. The Audit Trail section provides steps for creating reports designed for auditing consolidated data, ensuring thorough examination and analysis of financial information.
+
+Contents:
+
+Question: How do you access the Analysis Reports Accounts page?
+Answer: To access the Analysis Reports Accounts page, click Reports > Analysis Reports > Accounts.
+
+Question: What can you do on the Analysis Reports Accounts page?
+Answer: On the Analysis Reports Accounts page, you can generate multiple analysis reports or Pivot Table Reports specifically focused on the consolidated data per account.
+
+Question: How do you generate an account analysis report?
+Answer: To generate an account analysis report, select a journal view in the Journal Summation field, optionally include not consolidated companies, select the report from the list, and click Generate.
+
+Question: What does the sample icon represent in report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include companies that are not consolidated in an account analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: What is the function of the Journal Summation field in report generation?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: How do you access the Analysis Reports Group page?
+Answer: To access the Analysis Reports Group page, click Reports > Analysis Reports > Group.
+
+Question: What can you do on the Analysis Reports Group page?
+Answer: On the Analysis Reports Group page, you can generate multiple analysis reports or Pivot Table Reports that revolve around the group structure.
+
+Question: How do you generate a group analysis report?
+Answer: To generate a group analysis report, select a journal view in the Journal Summation field, optionally include not consolidated companies, select the report from the list, and click Generate.
+
+Question: What does the sample icon show in the group analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include not consolidated companies in a group analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: What information is required to generate a group analysis report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Bundles Reports page?
+Answer: To access the Analysis Bundles Reports page, click Reports > Analysis Reports > Bundles.
+
+Question: What can you do on the Analysis Bundles Reports page?
+Answer: On the Analysis Bundles Reports page, you can generate multiple analysis reports or Pivot Table Reports that focus on the bundle data.
+
+Question: How do you generate a bundle analysis report?
+Answer: To generate a bundle analysis report, select a journal view in the Journal Summation field, select the report from the list, and click Generate.
+
+Question: What does the sample icon represent in the bundle analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you select a journal view for a bundle analysis report?
+Answer: In the Journal Summation field, choose the journal view you want to use for generating the report.
+
+Question: What is the purpose of the Analysis Reports Audit Trail page?
+Answer: The Analysis Reports Audit Trail page is used to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data.
+
+Question: How do you access the Analysis Reports Audit Trail page?
+Answer: To access the Analysis Reports Audit Trail page, click Reports > Analysis Reports > Audit Trail.
+
+Question: How do you generate an audit trail report?
+Answer: To generate an audit trail report, select a journal view in the Journal Summation field, choose a report from the list, and click Generate.
+
+Question: What does the sample icon show in the audit trail report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: What information is needed to generate an audit trail report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Report Reports page?
+Answer: To access the Analysis Report Reports page, click Reports > Analysis Reports > Reports.
+
+Question: What can you do on the Analysis Report Reports page?
+Answer: On the Analysis Report Reports page, you can generate several Analysis Reports or Pivot Table Reports of the consolidated data using a user report layout.
+
+Question: How do you generate an analysis report on the Analysis Report Reports page?
+Answer: To generate an analysis report, select a journal view in the Journal Summation field, choose a custom report layout, select the report from the list, and click Generate.
+
+Question: What is the function of the Custom Report field in generating an analysis report?
+Answer: The Custom Report field allows you to select the user report layout to use for the analysis report.
+
+Question: How do you select a custom report for an analysis report?
+Answer: In the Custom Report field, select the user reports to use as the layout of the analysis report.
+
+Question: What does the sample icon show in the analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: What is the role of the Journal Summation field in generating reports?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: How do you view a sample of the report you want to generate?
+Answer: Click the sample icon for the selected report to view a sample representation.
+
+Question: What can you do on the Analysis Reports Accounts page?
+Answer: On the Analysis Reports Accounts page, you can generate multiple analysis reports or Pivot Table Reports specifically focused on the consolidated data per account.
+
+Question: How do you access the Analysis Reports Accounts page?
+Answer: To access the Analysis Reports Accounts page, click Reports > Analysis Reports > Accounts.
+
+Question: What can you do on the Analysis Reports Accounts page?
+Answer: On the Analysis Reports Accounts page, you can generate multiple analysis reports or Pivot Table Reports specifically focused on the consolidated data per account.
+
+Question: How do you generate an account analysis report?
+Answer: To generate an account analysis report, select a journal view in the Journal Summation field, optionally include not consolidated companies, select the report from the list, and click Generate.
+
+Question: What does the sample icon represent in report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include companies that are not consolidated in an account analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: What is the function of the Journal Summation field in report generation?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: How do you access the Analysis Reports Group page?
+Answer: To access the Analysis Reports Group page, click Reports > Analysis Reports > Group.
+
+Question: What can you do on the Analysis Reports Group page?
+Answer: On the Analysis Reports Group page, you can generate multiple analysis reports or Pivot Table Reports that revolve around the group structure.
+
+Question: How do you generate a group analysis report?
+Answer: To generate a group analysis report, select a journal view in the Journal Summation field, optionally include not consolidated companies, select the report from the list, and click Generate.
+
+Question: What does the sample icon show in the group analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include not consolidated companies in a group analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: What information is required to generate a group analysis report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Bundles Reports page?
+Answer: To access the Analysis Bundles Reports page, click Reports > Analysis Reports > Bundles.
+
+Question: What can you do on the Analysis Bundles Reports page?
+Answer: On the Analysis Bundles Reports page, you can generate multiple analysis reports or Pivot Table Reports that focus on the bundle data.
+
+Question: How do you generate a bundle analysis report?
+Answer: To generate a bundle analysis report, select a journal view in the Journal Summation field, select the report from the list, and click Generate.
+
+Question: What does the sample icon represent in the bundle analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you select a journal view for a bundle analysis report?
+Answer: In the Journal Summation field, choose the journal view you want to use for generating the report.
+
+Question: What is the purpose of the Analysis Reports Audit Trail page?
+Answer: The Analysis Reports Audit Trail page is used to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data.
+
+Question: How do you access the Analysis Reports Audit Trail page?
+Answer: To access the Analysis Reports Audit Trail page, click Reports > Analysis Reports > Audit Trail.
+
+Question: How do you generate an audit trail report?
+Answer: To generate an audit trail report, select a journal view in the Journal Summation field, choose a report from the list, and click Generate.
+
+Question: What does the sample icon show in the audit trail report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: What information is needed to generate an audit trail report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Report Reports page?
+Answer: To access the Analysis Report Reports page, click Reports > Analysis Reports > Reports.
+
+Question: What can you do on the Analysis Report Reports page?
+Answer: On the Analysis Report Reports page, you can generate several Analysis Reports or Pivot Table Reports of the consolidated data using a user report layout.
+
+Question: How do you generate an analysis report on the Analysis Report Reports page?
+Answer: To generate an analysis report, select a journal view in the Journal Summation field, choose a custom report layout, select the report from the list, and click Generate.
+
+Question: What is the function of the Custom Report field in generating an analysis report?
+Answer: The Custom Report field allows you to select the user report layout to use for the analysis report.
+
+Question: How do you select a custom report for an analysis report?
+Answer: In the Custom Report field, select the user reports to use as the layout of the analysis report.
+
+Question: What does the sample icon show in the analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include a journal view in generating an analysis report?
+Answer: In the Journal Summation field, select the journal view you want to use for generating the report.
+
+Question: What are Account Analysis Reports used for?
+Answer: Account Analysis Reports are used to generate multiple analysis reports or Pivot Table Reports focused on the consolidated data per account.
+
+Question: How do you view a sample of the report you want to generate?
+Answer: Click the sample icon for the selected report to view a sample representation.
+
+Question: How do you access the Analysis Reports Group page?
+Answer: To access the Analysis Reports Group page, click Reports > Analysis Reports > Group.
+
+Question: What is the purpose of Group Analysis Reports?
+Answer: Group Analysis Reports are used to generate multiple analysis reports or Pivot Table Reports that revolve around the group structure.
+
+Question: How do you select a report to generate on the Analysis Reports Group page?
+Answer: From the list of Reports, select the report you want to generate and click Generate.
+
+Question: How do you include not consolidated companies in a group analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: What is the role of the Journal Summation field in generating reports?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: How do you access the Analysis Bundles Reports page?
+Answer: To access the Analysis Bundles Reports page, click Reports > Analysis Reports > Bundles.
+
+Question: What is the purpose of Bundle Analysis Reports?
+Answer: Bundle Analysis Reports are used to generate multiple analysis reports or Pivot Table Reports that focus on the bundle data.
+
+Question: How do you generate a bundle analysis report?
+Answer: Select a journal view in the Journal Summation field, choose the report from the list, and click Generate.
+
+Question: What does the sample icon show in the bundle analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: What is required to generate a bundle analysis report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Reports Audit Trail page?
+Answer: To access the Analysis Reports Audit Trail page, click Reports > Analysis Reports > Audit Trail.
+
+Question: What is the purpose of Audit Trail Reports?
+Answer: Audit Trail Reports are used to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data.
+
+Question: How do you generate an audit trail report?
+Answer: Select a journal view in the Journal Summation field, choose the report from the list, and click Generate.
+
+Question: What does the sample icon show in the audit trail report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: What information is needed to generate an audit trail report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Report Reports page?
+Answer: To access the Analysis Report Reports page, click Reports > Analysis Reports > Reports.
+
+Question: What is the purpose of Analysis Report Reports?
+Answer: Analysis Report Reports are used to generate several analysis reports or Pivot Table Reports of the consolidated data using a user report layout.
+
+Question: How do you generate an analysis report on the Analysis Report Reports page?
+Answer: Select a journal view in the Journal Summation field, choose a custom report layout, select the report from the list, and click Generate.
+
+Question: What is the function of the Custom Report field in generating an analysis report?
+Answer: The Custom Report field allows you to select the user report layout to use for the analysis report.
+
+Question: How do you select a custom report for an analysis report?
+Answer: In the Custom Report field, select the user reports to use as the layout of the analysis report.
+
+Question: What does the sample icon show in the analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: What is the role of the Journal Summation field in generating reports?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: How do you view a sample of the report you want to generate?
+Answer: Click the sample icon for the selected report to view a sample representation.
+
+Question: What can you do on the Analysis Reports Accounts page?
+Answer: On the Analysis Reports Accounts page, you can generate multiple analysis reports or Pivot Table Reports specifically focused on the consolidated data per account.
+
+Question: How do you generate an account analysis report?
+Answer: To generate an account analysis report, select a journal view in the Journal Summation field, optionally include not consolidated companies, select the report from the list, and click Generate.
+
+Question: What does the sample icon represent in report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include companies that are not consolidated in an account analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: What is the function of the Journal Summation field in report generation?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: What is the purpose of Group Analysis Reports?
+Answer: Group Analysis Reports are used to generate multiple analysis reports or Pivot Table Reports that revolve around the group structure.
+
+Question: How do you select a report to generate on the Analysis Reports Group page?
+Answer: From the list of Reports, select the report you want to generate and click Generate.
+
+Question: How do you include not consolidated companies in a group analysis report?
+Answer: To include companies that are not consolidated, click Include Not Consolidated Companies before generating the report.
+
+Question: How do you select a journal view for a bundle analysis report?
+Answer: In the Journal Summation field, choose the journal view you want to use for generating the report.
+
+Question: What is the purpose of the Analysis Reports Audit Trail page?
+Answer: The Analysis Reports Audit Trail page is used to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data.
+
+Question: How do you generate an audit trail report?
+Answer: To generate an audit trail report, select a journal view in the Journal Summation field, choose a report from the list, and click Generate.
+
+Question: What does the sample icon show in the audit trail report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you access the Analysis Report Reports page?
+Answer: To access the Analysis Report Reports page, click Reports > Analysis Reports > Reports.
+
+Question: What can you do on the Analysis Report Reports page?
+Answer: On the Analysis Report Reports page, you can generate several Analysis Reports or Pivot Table Reports of the consolidated data using a user report layout.
+
+Question: How do you generate an analysis report on the Analysis Report Reports page?
+Answer: To generate an analysis report, select a journal view in the Journal Summation field, choose a custom report layout, select the report from the list, and click Generate.
+
+Question: What is the function of the Custom Report field in generating an analysis report?
+Answer: The Custom Report field allows you to select the user report layout to use for the analysis report.
+
+Question: How do you select a custom report for an analysis report?
+Answer: In the Custom Report field, select the user reports to use as the layout of the analysis report.
+
+Question: What does the sample icon show in the analysis report generation?
+Answer: The sample icon provides a representation of the selected report but does not reflect the actual data in your database.
+
+Question: How do you include a journal view in generating an analysis report?
+Answer: In the Journal Summation field, select the journal view you want to use for generating the report.
+
+Question: What is required to generate a bundle analysis report?
+Answer: You need to select a journal view in the Journal Summation field and choose a report from the list of available reports.
+
+Question: How do you access the Analysis Reports Audit Trail page?
+Answer: To access the Analysis Reports Audit Trail page, click Reports > Analysis Reports > Audit Trail.
+
+Question: What is the purpose of Audit Trail Reports?
+Answer: Audit Trail Reports are used to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data.
+
+Question: How do you generate an audit trail report?
+Answer: Select a journal view in the Journal Summation field, choose the report from the list, and click Generate.
+
+Question: What is the purpose of Bundle Analysis Reports?
+Answer: Bundle Analysis Reports are used to generate multiple analysis reports or Pivot Table Reports that focus on the bundle data.
+
+Question: What can you do on the Analysis Bundles Reports page?
+Answer: On the Analysis Bundles Reports page, you can generate multiple analysis reports or Pivot Table Reports that focus on the bundle data.
+
+Question: How do you access the Analysis Reports Group page?
+Answer: To access the Analysis Reports Group page, click Reports > Analysis Reports > Group.
+
+Question: What is the role of the Journal Summation field in generating reports?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+
+Question: How do you generate a group analysis report?
+Answer: To generate a group analysis report, select a journal view in the Journal Summation field, optionally include not consolidated companies, select the report from the list, and click Generate.
+
+Question: What is the purpose of the Analysis Reports Audit Trail page?
+Answer: The Analysis Reports Audit Trail page is used to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data.
+
+Question: How do you view a sample of the report you want to generate?
+Answer: Click the sample icon for the selected report to view a sample representation.
+
+Question: How do you include a journal view in generating an analysis report?
+Answer: In the Journal Summation field, select the journal view you want to use for generating the report.
+
+Question: What are Account Analysis Reports used for?
+Answer: Account Analysis Reports are used to generate multiple analysis reports or Pivot Table Reports focused on the consolidated data per account.
+
+Question: How do you access the Analysis Report Reports page?
+Answer: To access the Analysis Report Reports page, click Reports > Analysis Reports > Reports.
+
+Question: What is the function of the Journal Summation field in report generation?
+Answer: The Journal Summation field allows you to select a journal view to use for generating the report.
+

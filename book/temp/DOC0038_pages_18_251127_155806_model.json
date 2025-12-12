@@ -1,0 +1,1782 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.068,
+                0.373,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table_caption",
+            "bbox": [
+                0.46,
+                0.129,
+                0.747,
+                0.151
+            ],
+            "angle": 0,
+            "content": "Year 1 Year 2"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.21,
+                0.161,
+                0.747,
+                0.248
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company A</td><td>Fin. Inv./B</td><td>600</td><td>600</td></tr><tr><td colspan=\"4\"></td></tr><tr><td rowspan=\"3\">Company B</td><td>Capital</td><td>1,000</td><td>1,000</td></tr><tr><td>Reserves</td><td>800</td><td>950</td></tr><tr><td>Result</td><td>200</td><td>100</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.267,
+                0.878,
+                0.318
+            ],
+            "angle": 0,
+            "content": "Let's now proceed as we did before starting by considering this new situation and noticing that if the direct percentage between A and B remains unchanged, the indirect percentage in company B becomes \\(54\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.331,
+                0.513,
+                0.35
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves of company B are"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.36,
+                0.736,
+                0.38
+            ],
+            "angle": 0,
+            "content": "- \\(480 = 48\\% * [1000 + 800 + 200] - 80\\% * 600\\) for Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.393,
+                0.737,
+                0.413
+            ],
+            "angle": 0,
+            "content": "- \\(567 = 54\\% * [1000 + 950 + 100] - 90\\% * 600\\) for Year 2"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.36,
+                0.737,
+                0.413
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.427,
+                0.879,
+                0.461
+            ],
+            "angle": 0,
+            "content": "giving a variation of \\( 87 = 567 - 480 \\) which consists in the following components,"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.473,
+                0.797,
+                0.493
+            ],
+            "angle": 0,
+            "content": "- \\(54 = 54\\%\\) * 100 corresponding to the group part of the result"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.507,
+                0.844,
+                0.526
+            ],
+            "angle": 0,
+            "content": "(24) \\(= 48\\% * (50)\\) corresponding to the group part of the dividend"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.537,
+                0.855,
+                0.557
+            ],
+            "angle": 0,
+            "content": "117 = 6% * 1950 for the same reason as explained in precious step"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.57,
+                0.875,
+                0.605
+            ],
+            "angle": 0,
+            "content": "(60) \\(= 10\\%\\) (600) because we increase by \\(10\\%\\) the group part in the opening value of the Year 1 Financial investment in B."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.15,
+                0.473,
+                0.875,
+                0.605
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.62,
+                0.878,
+                0.685
+            ],
+            "angle": 0,
+            "content": "The two last components can be considered as a group price acquisition of 60 to compare to the corresponding group part of equity we receive for that price, which is 117. This looks like a badwill calculation giving a value of 57. That amount, again, cannot remain in the reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.7,
+                0.878,
+                0.75
+            ],
+            "angle": 0,
+            "content": "The problem is just a little bit more complicated here because the company P transaction of acquiring \\(10\\%\\) of company A shares has probably produced a goodwill. We mean that this badwill should be netted with the goodwill."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.764,
+                0.878,
+                0.813
+            ],
+            "angle": 0,
+            "content": "To confirm this point of view, the best economical reason we can give is that the company P transaction is not buying shares of a company but shares of a subgroup which is A+B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.828,
+                0.878,
+                0.879
+            ],
+            "angle": 0,
+            "content": "In such situation, we recommend to book that badwill in the most appropriate way in company P accounts. By doing this, the two last components are not there anymore."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.353,
+                0.069,
+                0.868,
+                0.086
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.118,
+                0.861,
+                0.136
+            ],
+            "angle": 0,
+            "content": "Situation 6 : And if all transactions were happening at the same time"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.151,
+                0.878,
+                0.185
+            ],
+            "angle": 0,
+            "content": "Indeed, we can imagine all the previous transactions happening at the same time (1<sup>st</sup> of January Year 2), we mean"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.198,
+                0.878,
+                0.233
+            ],
+            "angle": 0,
+            "content": "- Capital increase in company B for an amount of 500, \\(3^{rd}\\) Parties not subscribing to that capital increase"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.248,
+                0.782,
+                0.265
+            ],
+            "angle": 0,
+            "content": "Company A acquiring shares of company B for a price of 500"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.28,
+                0.78,
+                0.298
+            ],
+            "angle": 0,
+            "content": "Company P acquiring shares of company A for a price of 700"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.139,
+                0.198,
+                0.878,
+                0.298
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.313,
+                0.66,
+                0.331
+            ],
+            "angle": 0,
+            "content": "Here are the group structure and the statutory accounts"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.104,
+                0.342,
+                0.88,
+                0.544
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.574,
+                0.506,
+                0.592
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves of company B are"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.141,
+                0.603,
+                0.763,
+                0.623
+            ],
+            "angle": 0,
+            "content": "480 = 48% * [1000 + 800 + 200] - 80% * 600 for Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.142,
+                0.634,
+                0.795,
+                0.654
+            ],
+            "angle": 0,
+            "content": "445.5 = 81% * [1500 + 950 + 100] - 90% * 1800 for Year 2"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.141,
+                0.603,
+                0.795,
+                0.654
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.67,
+                0.472,
+                0.688
+            ],
+            "angle": 0,
+            "content": "and the difference to justify is (34.5)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.703,
+                0.879,
+                0.752
+            ],
+            "angle": 0,
+            "content": "In such a complex structure situation, we recommend to calculate consolidated reserves of B just before the transaction and just after the transaction. The difference should be considered as a goodwill or a badwill."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.768,
+                0.551,
+                0.785
+            ],
+            "angle": 0,
+            "content": "Here are the amounts found for our example"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.142,
+                0.796,
+                0.878,
+                0.831
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves before transaction: \\(480 = 48\\%\\) * 2000 - 80%\n* 600"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.141,
+                0.844,
+                0.878,
+                0.88
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves after transaction: \\(364.5 = 81\\%\\) * 2450 - 90%\n* 1800"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.141,
+                0.796,
+                0.878,
+                0.88
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.065,
+                0.368,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.119,
+                0.878,
+                0.169
+            ],
+            "angle": 0,
+            "content": "This implies a net variation of (115.5). This amount represents a goodwill we book at company P level as an additional goodwill related to the \\(10\\%\\) shares acquired by company P in company A."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.183,
+                0.812,
+                0.202
+            ],
+            "angle": 0,
+            "content": "Situation 7 : Elimination of group profit between two companies"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.215,
+                0.878,
+                0.248
+            ],
+            "angle": 0,
+            "content": "In this last situation, we consider two companies A and B consolidated with the integral consolidation method at the same percentage."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.264,
+                0.878,
+                0.299
+            ],
+            "angle": 0,
+            "content": "The only transaction happening between them is a disposal of an asset from company A to company B with a group profit of 100."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.312,
+                0.878,
+                0.344
+            ],
+            "angle": 0,
+            "content": "Here are the group structure and the adjusted accounts concerned by the transaction."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.361,
+                0.348,
+                0.62,
+                0.454
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.468,
+                0.481,
+                0.57
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"3\">Tang. Assets</td><td rowspan=\"3\">0</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td>(a)</td><td>100</td></tr><tr><td rowspan=\"2\">Assets</td><td rowspan=\"2\">900</td><td>Result</td><td>100</td></tr><tr><td>(a)</td><td>(100)</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.498,
+                0.486,
+                0.862,
+                0.57
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Tang. Assets</td><td>500</td><td>Capital</td><td>1,000</td></tr><tr><td>(b)</td><td>(100)</td><td>Reserves</td><td>(b)</td></tr><tr><td>Assets</td><td>1,600</td><td>Result</td><td>(100)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.586,
+                0.878,
+                0.62
+            ],
+            "angle": 0,
+            "content": "In company A accounts, consolidation adjustment (a) eliminates the group profit of 100 by booking the counterpart on the Reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.633,
+                0.878,
+                0.667
+            ],
+            "angle": 0,
+            "content": "In company B accounts, we eliminate the group profit of 100 included in the Tangible asset acquired and the counterpart is also the Reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.682,
+                0.878,
+                0.731
+            ],
+            "angle": 0,
+            "content": "By booking this way, we see that the net group impact on the reserves is \\( 0 = 80\\% * 100 + 80\\% * (100) \\), but at the same time consolidated reserves of company A increase by 80 and consolidated reserves of B decrease by (80)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.746,
+                0.878,
+                0.794
+            ],
+            "angle": 0,
+            "content": "Moreover, these variations do not impact the P&L. In fact we have what we call a transfer of reserves between both companies. At group level, the net amount is zero as announced above."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.81,
+                0.878,
+                0.876
+            ],
+            "angle": 0,
+            "content": "We are aware to present a particularly easy case by supposing both companies are owned at the same percentage. Some special topics in Part 4 will consider more realistic situations, but the principles explained here are still valid."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.358,
+                0.072,
+                0.865,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.121,
+                0.777,
+                0.166
+            ],
+            "angle": 0,
+            "content": "2.3 A status board to justify consolidated reserves evolution"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.188,
+                0.877,
+                0.239
+            ],
+            "angle": 0,
+            "content": "The situations explained in previous section illustrate the difficulty to validate the evolution of the consolidated reserves of a group and consequently justify the use of some status board to help validation of this technical account."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.252,
+                0.521,
+                0.269
+            ],
+            "angle": 0,
+            "content": "How does this status board look like?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.284,
+                0.722,
+                0.302
+            ],
+            "angle": 0,
+            "content": "This following status board works perfectly well and is adapted"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.317,
+                0.627,
+                0.333
+            ],
+            "angle": 0,
+            "content": "- To groups of any size (number of companies)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.349,
+                0.431,
+                0.366
+            ],
+            "angle": 0,
+            "content": "- To groups of any activity"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.381,
+                0.874,
+                0.446
+            ],
+            "angle": 0,
+            "content": "- To groups independently of their evaluation rules (IFRS or Local Gaap) under the only condition that booking of reserves without impacting the P&L should be done on a specific account (not the consolidated reserves but revaluation reserves)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.147,
+                0.317,
+                0.874,
+                0.446
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.461,
+                0.876,
+                0.51
+            ],
+            "angle": 0,
+            "content": "This status board justifies the group consolidated reserves, not the Minority Interests and the Translation Adjustments which require another format and content."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.526,
+                0.351,
+                0.542
+            ],
+            "angle": 0,
+            "content": "Let's explain its content."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.11,
+                0.555,
+                0.865,
+                0.656
+            ],
+            "angle": 0,
+            "content": "<table><tr><td rowspan=\"2\"></td><td>Conso.ReservesYear 1</td><td>ResultYear 2</td><td>Dividendspaid</td><td>Dividendsreceived</td><td>TransferofReserves</td><td>Othertransfers</td><td>Parentdividends</td><td>Total</td><td>Conso.ReservesYear 2</td><td>Difference(9)-(8)</td></tr><tr><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td><td>(7)</td><td>(8)</td><td>(9)</td><td>(10)</td></tr><tr><td>Parent company</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Company 1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Company 2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>...</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Company N</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Total</td><td></td><td></td><td>X</td><td>(X)</td><td>0</td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.671,
+                0.876,
+                0.704
+            ],
+            "angle": 0,
+            "content": "It looks like a matrix of 10 columns and as many lines as there are companies in the consolidation scope. We usually start with parent company on line 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.719,
+                0.874,
+                0.751
+            ],
+            "angle": 0,
+            "content": "Column (1) contains the consolidated reserves of each company as calculated in Year 1 consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.767,
+                0.753,
+                0.786
+            ],
+            "angle": 0,
+            "content": "Column (2) contains the group part of the result of each company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.799,
+                0.874,
+                0.833
+            ],
+            "angle": 0,
+            "content": "Column (3) shows the group part of dividends paid by each company, parent company excluded"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.847,
+                0.87,
+                0.881
+            ],
+            "angle": 0,
+            "content": "Column (4) shows the group part of dividends received by each company, parent company included"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.067,
+                0.368,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.12,
+                0.877,
+                0.154
+            ],
+            "angle": 0,
+            "content": "Column (5) contains all transfer of reserves between companies, as explained in Situation 7 of previous section"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.169,
+                0.877,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Column (6) is to be used only in case parent company transfers reserves to its capital account. Indeed, in such situation, we notice only a decrease of its reserves and not an increase of the capital because this account is not managed by this status board."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.248,
+                0.875,
+                0.298
+            ],
+            "angle": 0,
+            "content": "Column (7) shows the dividends paid by the parent company. These dividends are in a separate column with regard to the dividends of the other companies, for a reason that will be explained later in this section."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.313,
+                0.743,
+                0.33
+            ],
+            "angle": 0,
+            "content": "Column (8) is just the horizontal total of all amounts of each line"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.345,
+                0.877,
+                0.378
+            ],
+            "angle": 0,
+            "content": "Column (9) contains the consolidated reserves of each company as calculated in Year 2 consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.393,
+                0.796,
+                0.411
+            ],
+            "angle": 0,
+            "content": "Column (10) shows the difference between column (9) and column (8)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.426,
+                0.438,
+                0.443
+            ],
+            "angle": 0,
+            "content": "How to use this status board?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.458,
+                0.76,
+                0.475
+            ],
+            "angle": 0,
+            "content": "A certain number of visual checks can be done as explained below."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.49,
+                0.877,
+                0.587
+            ],
+            "angle": 0,
+            "content": "Check 1 consists to verify that total of column (3) and (4) together is zero. This means that all dividends paid by subsidiaries are effectively received. Supposing this is indeed the case and one dividend received has not been eliminated, then the status board will show an error in column (10). It is important to say that all amounts of column (3) are signed negative and those of column (4) are signed positive."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.602,
+                0.875,
+                0.65
+            ],
+            "angle": 0,
+            "content": "Check 2 consists in verifying that total of column (5) is zero. This means that all amounts of reserves transferred between companies are correctly mentioned."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.666,
+                0.875,
+                0.715
+            ],
+            "angle": 0,
+            "content": "Check 3 consists in verifying the dividends paid by the parent company, including interim dividends and allowances. The reason to use a specific column enables an easier check 1. This cell contains a negative amount."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.73,
+                0.877,
+                0.829
+            ],
+            "angle": 0,
+            "content": "Check 4 consists in verifying each cell of column (10) is equal to zero. If not, this means there is a problem somewhere for that company. Sometimes, it may happen that one line shows an amount and another line shows the same amount with the opposite sign. This means either an adjustment has been booked in a wrong company or some transfer amounts should be put in column (5)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.843,
+                0.875,
+                0.877
+            ],
+            "angle": 0,
+            "content": "Check 5 is a global check on the total line. Column (1) + Column (2) + Column (6) + Column (7) = Column (9). To say it with words, opening"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.353,
+                0.073,
+                0.861,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.121,
+                0.871,
+                0.155
+            ],
+            "angle": 0,
+            "content": "reserves + group profit - parent company dividends + transfer of reserves to capital equal closing reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.169,
+                0.871,
+                0.235
+            ],
+            "angle": 0,
+            "content": "Once all these validations are correct, we usually say that the consolidated equity is technically correct. It doesn't mean completely correct because some adjustments of the period may be wrong or forgotten. Moreover, the content of statutory accounts may contain some wrong information."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.25,
+                0.871,
+                0.299
+            ],
+            "angle": 0,
+            "content": "Anyway, when this status board is \"in balance\" with all zeros in column (10), the difficult step of justifying the consolidated reserves is achieved and the consolidation is under control for this item."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.314,
+                0.871,
+                0.38
+            ],
+            "angle": 0,
+            "content": "This status board has been applied thousands of times to groups sometimes having hundreds of companies. It has also been used for so many different activities and in different countries with a full success. Auditors are asking for this status board."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.394,
+                0.871,
+                0.46
+            ],
+            "angle": 0,
+            "content": "We will conclude by recommending to consolidators not to communicate consolidated figures outside their office before having checked the validity of the status board. If it is not in balance in the way we explained, there are some remaining errors in the consolidation. No doubt about that."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.493,
+                0.858,
+                0.54
+            ],
+            "angle": 0,
+            "content": "2.4 Consolidated reserves status board: A case study"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.56,
+                0.871,
+                0.61
+            ],
+            "angle": 0,
+            "content": "Before leaving this difficult subject, we propose to give an illustration of how to produce such status board on the basis of an example, not too complex but sufficiently realistic to be interesting."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.624,
+                0.871,
+                0.657
+            ],
+            "angle": 0,
+            "content": "In Year 1, the group consists in two companies, P and A, founded by P a few years ago, owned at \\(90\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.672,
+                0.871,
+                0.722
+            ],
+            "angle": 0,
+            "content": "In Year 2, P sells \\(20\\%\\) of A shares to \\(3^{rd}\\) Parties and acquires \\(60\\%\\) of a company B. All these companies are supposed to have the same currency and both transactions are concluded on January \\(1^{st}\\), Year 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.736,
+                0.543,
+                0.753
+            ],
+            "angle": 0,
+            "content": "Here is the group structure for Year 1 and 2."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.117,
+                0.068,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.286,
+                0.131,
+                0.38,
+                0.266
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.419,
+                0.131,
+                0.677,
+                0.267
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.298,
+                0.371,
+                0.314
+            ],
+            "angle": 0,
+            "content": "Consolidation of Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.33,
+                0.88,
+                0.379
+            ],
+            "angle": 0,
+            "content": "Here are the statutory accounts of companies P and A. No consolidation adjustments being required for this Year 1, we present hereunder the consolidated accounts"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.117,
+                0.419,
+                0.484,
+                0.477
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Investments/A</td><td>180</td><td>Capital \nReserves \nResult</td><td></td></tr><tr><td>Other assets</td><td>720</td><td>Other liabilities</td><td>150</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.518,
+                0.407,
+                0.886,
+                0.482
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"3\">Tang. assets</td><td rowspan=\"3\">100</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>150</td></tr><tr><td>Result</td><td>30</td></tr><tr><td>Other assets</td><td>400</td><td>Other liabilities</td><td>120</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.308,
+                0.502,
+                0.675,
+                0.591
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">P + A</td></tr><tr><td>Tang. assets</td><td>100 Capital 500 Reserves 200 Result 50 Cons. Res.(A) 162 Minor. Int.(A) 38</td></tr><tr><td>Other assets</td><td>1,120 Other liabilities 270</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.623,
+                0.467,
+                0.639
+            ],
+            "angle": 0,
+            "content": "with the only following explanations"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.152,
+                0.652,
+                0.853,
+                0.672
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves of A = 162 = 90% [200 + 150 + 30] - 180"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.684,
+                0.735,
+                0.704
+            ],
+            "angle": 0,
+            "content": "Minority interests of A = 38 = 10% [200 + 150 + 30]"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.152,
+                0.652,
+                0.853,
+                0.704
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.719,
+                0.371,
+                0.735
+            ],
+            "angle": 0,
+            "content": "Consolidation of Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.751,
+                0.757,
+                0.768
+            ],
+            "angle": 0,
+            "content": "Here are the statutory accounts of the three companies for Year 2"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.251,
+                0.774,
+                0.77,
+                0.87
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Investments/A</td><td>140</td><td>Capital</td><td>500</td></tr><tr><td>Investments/B</td><td>400</td><td>Reserves</td><td>220</td></tr><tr><td></td><td></td><td>Result</td><td>80</td></tr><tr><td>Other assets</td><td>660</td><td>Other liabilities</td><td>400</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.354,
+                0.073,
+                0.861,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.242,
+                0.12,
+                0.761,
+                0.219
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"3\">Tang. Assets</td><td rowspan=\"3\">0</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>160</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>Other assets</td><td>600</td><td>Other liabilities</td><td>190</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.242,
+                0.239,
+                0.761,
+                0.336
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">B</td></tr><tr><td>Tang. Assets</td><td>150</td><td>Capital</td><td>300</td></tr><tr><td></td><td></td><td>Reserves</td><td>200</td></tr><tr><td></td><td></td><td>Result</td><td>40</td></tr><tr><td>Other assets</td><td>650</td><td>Other liabilities</td><td>260</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.363,
+                0.435,
+                0.38
+            ],
+            "angle": 0,
+            "content": "which reflect the following events"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.395,
+                0.825,
+                0.412
+            ],
+            "angle": 0,
+            "content": "- P sells \\(20\\%\\) of shares of company A to \\(3^{rd}\\) Parties for a price of 70"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.428,
+                0.868,
+                0.46
+            ],
+            "angle": 0,
+            "content": "- P acquires \\(60\\%\\) of shares of company B for a price of 400. This transaction leads to a goodwill that cannot be allocated to assets."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.475,
+                0.868,
+                0.509
+            ],
+            "angle": 0,
+            "content": "- A sells its tangible assets to B for a price of 150, making a group profit of 50"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.524,
+                0.569,
+                0.541
+            ],
+            "angle": 0,
+            "content": "- Parent company P pays dividends of 30"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.556,
+                0.868,
+                0.589
+            ],
+            "angle": 0,
+            "content": "- Company A pays dividends of 20. It has been agreed that P keeps the rights to receive dividends related to the \\(20\\%\\) of shares disposed."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.143,
+                0.395,
+                0.868,
+                0.589
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.604,
+                0.868,
+                0.636
+            ],
+            "angle": 0,
+            "content": "These different events need he following consolidation adjustments explained hereunder."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.652,
+                0.67,
+                0.669
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) : Disposal of 20% of shares of company A"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.684,
+                0.865,
+                0.717
+            ],
+            "angle": 0,
+            "content": "In statutory accounts, the \\(90\\%\\) of shares owned by P have a value of 180. The \\(20\\%\\) disposed have thus a value of \\(40 = 180^{\\star}\\) \\((20\\% / 90\\%)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.732,
+                0.695,
+                0.75
+            ],
+            "angle": 0,
+            "content": "On the basis of a selling price of 70, the statutory gain is 30."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.764,
+                0.868,
+                0.813
+            ],
+            "angle": 0,
+            "content": "In consolidation, the gain or loss is the difference between the same sale price of 70 and the equity value on the \\(1^{\\text{st}}\\) of January Year 2 of the \\(20\\%\\) disposed. Translated into a formula, it becomes"
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.333,
+                0.828,
+                0.639,
+                0.846
+            ],
+            "angle": 0,
+            "content": "\\[\n(2) = 70 - 20 \\% * [ 200 + 160 ]\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.861,
+                0.747,
+                0.878
+            ],
+            "angle": 0,
+            "content": "The statutory gain of 30 is turning into a loss of 2 in consolidation."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.116,
+                0.067,
+                0.373,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.121,
+                0.89,
+                0.157
+            ],
+            "angle": 0,
+            "content": "We have seen in Part 2 Section 8.14 that we have to book the following adjustment"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.347,
+                0.17,
+                0.672,
+                0.239
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Parent P</td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>30</td><td></td></tr><tr><td>Loss on disposal</td><td>2</td><td></td></tr><tr><td>Reserves</td><td></td><td>32</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.266,
+                0.884,
+                0.283
+            ],
+            "angle": 0,
+            "content": "in which we set to zero the statutory gain and we book an additional loss of 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.298,
+                0.868,
+                0.315
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) : Goodwill on the acquisition of \\(60\\%\\) of shares of company B"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.33,
+                0.888,
+                0.412
+            ],
+            "angle": 0,
+            "content": "The acquisition price is 400 for a \\(60\\%\\) of the opening equity of 500, which gives a goodwill of 100. As said above, we suppose it is not possible to allocate this goodwill to assets. Moreover, we will suppose consolidating under IFRS rules with no depreciation of the goodwill, giving the following adjustments in P accounts"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.345,
+                0.426,
+                0.672,
+                0.48
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Parent P</td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill</td><td></td><td></td></tr><tr><td>Fin.Invest./B</td><td colspan=\"2\">100</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.508,
+                0.866,
+                0.525
+            ],
+            "angle": 0,
+            "content": "Adjustments (c*) and (d): Elimination of group profit on the assets disposal"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.54,
+                0.886,
+                0.605
+            ],
+            "angle": 0,
+            "content": "This transaction is supposed to occur just after the disposal of the \\(20\\%\\) of A shares. This means the seller is owned at \\(70\\%\\) and the acquirer is owned at \\(60\\%\\). The statutory profit of A is 50 and the group part in consolidation becomes \\(35 = 70\\% * 50\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.621,
+                0.884,
+                0.67
+            ],
+            "angle": 0,
+            "content": "Because of these different percentages, we have to split these 35 into \\(30 = 60\\%\\) * 50 which is really the group profit and \\(5 = 10\\%\\) * 50 which represents the profit A realizes with the \\(3^{\\text{rd}}\\) Parties of company B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.685,
+                0.828,
+                0.703
+            ],
+            "angle": 0,
+            "content": "There will be two adjustments, one in company A and one in company B."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.721,
+                0.436,
+                0.774
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company A</td><td>Debit</td><td>Credit</td></tr><tr><td>Result (*)</td><td>30</td><td></td></tr><tr><td>Reserves (*)</td><td></td><td>30</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.448,
+                0.734,
+                0.884,
+                0.767
+            ],
+            "angle": 0,
+            "content": "Notice that this adjustment impacts the accounts of A at \\(100\\%\\)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.801,
+                0.436,
+                0.854
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company B</td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>50</td><td></td></tr><tr><td>Tang. Assets</td><td></td><td>50</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.448,
+                0.798,
+                0.885,
+                0.847
+            ],
+            "angle": 0,
+            "content": "Amounts of this adjustment will split into group and Minority interests on the basis of \\(60\\%\\)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.354,
+                0.072,
+                0.864,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.121,
+                0.733,
+                0.139
+            ],
+            "angle": 0,
+            "content": "After consolidation process, we will notice two interesting points"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.152,
+                0.874,
+                0.189
+            ],
+            "angle": 0,
+            "content": "Net impact on Reserves will be 30 from A and (30) = 60% * 50 from B, so an impact of zero"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.201,
+                0.875,
+                0.235
+            ],
+            "angle": 0,
+            "content": "- Contribution of A profit for the group will be \\(5 = 70\\% * 50 + (30)\\) as announced above."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.143,
+                0.152,
+                0.875,
+                0.235
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.25,
+                0.704,
+                0.268
+            ],
+            "angle": 0,
+            "content": "Adjustment (e) : Elimination of dividends paid by company A"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.282,
+                0.876,
+                0.331
+            ],
+            "angle": 0,
+            "content": "P negotiated the preservation of its rights on \\(90\\%\\) of dividends, although it owns now after the sale only \\(70\\%\\). The amount of dividends to eliminate is thus \\(18 = 90\\% * 20\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.361,
+                0.338,
+                0.452,
+                0.355
+            ],
+            "angle": 0,
+            "content": "Parent P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.544,
+                0.338,
+                0.678,
+                0.354
+            ],
+            "angle": 0,
+            "content": "Debit Credit"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.361,
+                0.371,
+                0.456,
+                0.386
+            ],
+            "angle": 0,
+            "content": "Reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.412,
+                0.874,
+                0.445
+            ],
+            "angle": 0,
+            "content": "The dividends of 30 paid by parent company require no consolidation adjustment."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.459,
+                0.875,
+                0.492
+            ],
+            "angle": 0,
+            "content": "Let's now consider the accounts of each company, including these adjustments"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.245,
+                0.49,
+                0.766,
+                0.764
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">B</td></tr><tr><td rowspan=\"2\">Goodwill/B (b)</td><td rowspan=\"2\">100</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>220</td></tr><tr><td rowspan=\"2\">Investments/A</td><td rowspan=\"2\">140</td><td></td><td>(a) 32</td></tr><tr><td>(e)</td><td>18</td></tr><tr><td rowspan=\"3\">Investments/B (b)</td><td>400</td><td>Result</td><td>80</td></tr><tr><td rowspan=\"2\">(100)</td><td></td><td>(a) (32)</td></tr><tr><td>(e)</td><td>(18)</td></tr><tr><td>Other assets</td><td>660</td><td>Other liabilities</td><td>400</td></tr><tr><td colspan=\"4\"></td></tr><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"5\">Tang. Assets</td><td rowspan=\"5\">0</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>160</td></tr><tr><td>(c*)</td><td>30</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>(c*)</td><td>(30)</td></tr><tr><td>Other assets</td><td>600</td><td>Other liabilities</td><td>190</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.249,
+                0.798,
+                0.381,
+                0.816
+            ],
+            "angle": 0,
+            "content": "Tang. Assets"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.459,
+                0.798,
+                0.498,
+                0.815
+            ],
+            "angle": 0,
+            "content": "150"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.51,
+                0.798,
+                0.582,
+                0.816
+            ],
+            "angle": 0,
+            "content": "Capital"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.247,
+                0.862,
+                0.377,
+                0.878
+            ],
+            "angle": 0,
+            "content": "Other assets"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.456,
+                0.862,
+                0.498,
+                0.878
+            ],
+            "angle": 0,
+            "content": "650"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.511,
+                0.847,
+                0.575,
+                0.861
+            ],
+            "angle": 0,
+            "content": "Result"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.511,
+                0.863,
+                0.661,
+                0.878
+            ],
+            "angle": 0,
+            "content": "Other liabilities"
+        }
+    ]
+]

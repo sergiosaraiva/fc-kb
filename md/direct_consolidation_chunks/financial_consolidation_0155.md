@@ -1,0 +1,13 @@
+# Chunk 155: 4 THE CONSOLIDATION METHODS
+
+## Context
+
+This section covers 4 THE CONSOLIDATION METHODS.
+
+## Content
+
+# 4 THE CONSOLIDATION METHODS
+
+
+---
+*Chunk 155 | 4 THE CONSOLIDATION METHODS*

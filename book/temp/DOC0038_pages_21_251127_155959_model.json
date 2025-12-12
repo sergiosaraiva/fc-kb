@@ -1,0 +1,1364 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.066,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.12,
+                0.881,
+                0.187
+            ],
+            "angle": 0,
+            "content": "But how are we able to see this kind of error? We said in the previous section that the net cash calculated in the cash flow statement had to be equal to the net variation of Cash and Cash equivalent accounts deduced from the balance sheet. That's what we mean by an error."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.2,
+                0.88,
+                0.235
+            ],
+            "angle": 0,
+            "content": "The problem is when such error occurs, it is rather difficult to identify its origin."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.249,
+                0.879,
+                0.283
+            ],
+            "angle": 0,
+            "content": "We now consider the cash flow statement deduced from these figures, with some additional comments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.299,
+                0.53,
+                0.448
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Result</td><td>400</td></tr><tr><td>Depreciations</td><td>600</td></tr><tr><td>Provisions</td><td>400</td></tr><tr><td>Gain on disposals</td><td>(200)</td></tr><tr><td>Cash flow</td><td>1,200</td></tr><tr><td>Var. Receivables</td><td>(400)</td></tr><tr><td>Var. Payables</td><td>900</td></tr><tr><td>Working capital</td><td>500</td></tr><tr><td>Cash from operating activities</td><td>1,700</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.542,
+                0.298,
+                0.879,
+                0.363
+            ],
+            "angle": 0,
+            "content": "We start with the profit of 400 and adjust it by eliminating non cash expenses and non cash income. This gives the cash flow."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.542,
+                0.378,
+                0.878,
+                0.426
+            ],
+            "angle": 0,
+            "content": "The net variation of current assets and liabilities is the working capital."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.542,
+                0.427,
+                0.878,
+                0.46
+            ],
+            "angle": 0,
+            "content": "Addition of both gives the cash from operating activities."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.485,
+                0.53,
+                0.601
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Investments</td><td></td></tr><tr><td>Tangible assets</td><td>(3,000)</td></tr><tr><td>Financial invest.</td><td>(800)</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangible assets</td><td>1,200</td></tr><tr><td>Financial invest.</td><td>300</td></tr><tr><td>Cash from Inv./Disinv.</td><td>(2,300)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.542,
+                0.491,
+                0.878,
+                0.554
+            ],
+            "angle": 0,
+            "content": "Investments are negative amounts and presented separately from the disinvestments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.63,
+                0.528,
+                0.731
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Capital increase</td><td>1,000</td></tr><tr><td>Loans reimbursement</td><td>(500)</td></tr><tr><td>Dividends</td><td>(200)</td></tr><tr><td>Cash from financial activities</td><td>300</td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Net cash variation</td><td>(300)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.541,
+                0.634,
+                0.875,
+                0.668
+            ],
+            "angle": 0,
+            "content": "These are the financial transactions of the period."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.747,
+                0.876,
+                0.796
+            ],
+            "angle": 0,
+            "content": "If we go back to the assets above, we will notice that the net variation of the Cash amount is (300) corresponding to the net cash variation calculated in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.811,
+                0.876,
+                0.86
+            ],
+            "angle": 0,
+            "content": "At this stage, we can say that the cash flow statement is technically correct, but it would still need some more investigations on the content of accounts and flows. This is the job of the Auditors and if they make some remarks, this"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.356,
+                0.074,
+                0.863,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.121,
+                0.872,
+                0.153
+            ],
+            "angle": 0,
+            "content": "cash flow statement would be modified only by reclassifications of amounts between lines."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.169,
+                0.872,
+                0.203
+            ],
+            "angle": 0,
+            "content": "In a certain way, we would perform an accounting process by debiting and crediting flows as we usually do it for accounts!"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.236,
+                0.756,
+                0.281
+            ],
+            "angle": 0,
+            "content": "6.4 Flows for the consolidated cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.302,
+                0.872,
+                0.383
+            ],
+            "angle": 0,
+            "content": "We know that the main objective of a consolidation is to show through a set of structured accounting reports what a group of companies has done with the outside world. This economical (non fiscal) picture is provided through balance sheet, P&L and a number of notes to the accounts. But now, we want to know what this group did with its cash?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.399,
+                0.872,
+                0.432
+            ],
+            "angle": 0,
+            "content": "In other words, is it possible to build a cash flow statement for a group of companies in a similar way we proceed for a single company?"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.447,
+                0.298,
+                0.464
+            ],
+            "angle": 0,
+            "content": "Some new issues"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.479,
+                0.872,
+                0.527
+            ],
+            "angle": 0,
+            "content": "We are now in a consolidation environment faced to a certain number of companies and here are some questions related to the cash flow statement we have to build"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.545,
+                0.871,
+                0.592
+            ],
+            "angle": 0,
+            "content": "- How to manage the impacts of currency translation on accounts and flows, being aware that these impacts are to be considered as technical and non cash. Which precautions to take?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.608,
+                0.871,
+                0.641
+            ],
+            "angle": 0,
+            "content": "- How to consider a new company entering the consolidation scope and how will all its assets and liabilities impact the cash flow statement?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.657,
+                0.871,
+                0.704
+            ],
+            "angle": 0,
+            "content": "- How to show the price paid or received concerning a financial investment transaction, knowing that the corresponding account doesn't exist in the balance sheet?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.721,
+                0.871,
+                0.817
+            ],
+            "angle": 0,
+            "content": "- In a consolidated balance sheet, there are some specific accounts as \"Goodwill\", \"Financial investments at equity value\", \"Minority interests\", \"Badwill\", \"Translation adjustments\", ... and these accounts are changing between opening and closing like all the other accounts. How to handle theses specific accounts with regard to the cash flow statement?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.832,
+                0.871,
+                0.865
+            ],
+            "angle": 0,
+            "content": "- How to consider consolidation adjustments when building a cash flow statement?"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.145,
+                0.545,
+                0.871,
+                0.865
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.117,
+                0.069,
+                0.369,
+                0.083
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.122,
+                0.879,
+                0.155
+            ],
+            "angle": 0,
+            "content": "and so many other questions arising from such a complex moving structure as a consolidation scope can be."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.117,
+                0.17,
+                0.427,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Different categories of flows"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.202,
+                0.879,
+                0.266
+            ],
+            "angle": 0,
+            "content": "Going back just for a moment to a single statutory company, as we have already seen, we have defined two kinds of flows: cash flows as acquisitions, disposals, increases in capital, ... and non cash flows as depreciations, provisions, write-off, transfers between accounts, ..."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.282,
+                0.74,
+                0.298
+            ],
+            "angle": 0,
+            "content": "Only cash flows are to be considered in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.315,
+                0.647,
+                0.331
+            ],
+            "angle": 0,
+            "content": "In consolidation, we consider three categories of flows."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.346,
+                0.793,
+                0.362
+            ],
+            "angle": 0,
+            "content": "Cash flows reflecting real financial transactions with the outside world"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.378,
+                0.879,
+                0.476
+            ],
+            "angle": 0,
+            "content": "A simple example would be the acquisition of a tangible asset by a company. If that company is consolidated with the global integration method, the acquisition price would appear as an investment in the cash flow statement. If that company is consolidated with the proportional method at \\(50\\%\\), only \\(50\\%\\) of the investment would appear in the cash flow statement and nothing would appear for an equity method company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.491,
+                0.868,
+                0.507
+            ],
+            "angle": 0,
+            "content": "Cash flows reflectina financial transactions with other companies of the group"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.522,
+                0.879,
+                0.636
+            ],
+            "angle": 0,
+            "content": "It could be an increase of capital in a company A, completely subscribed by the parent company P. In such situation, the cash is moving from the P bank account to the A bank account. In the individual statutory cash flow statement of P and A, we would see that financial transaction but not in the consolidated cash flow statement because it becomes a pure group transaction not made with the outside world. Same comment can be made with regard to intercompany loans."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.652,
+                0.5,
+                0.667
+            ],
+            "angle": 0,
+            "content": "Non cash flows as in statutory accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.683,
+                0.879,
+                0.748
+            ],
+            "angle": 0,
+            "content": "This category of flows is similar to what we have at statutory level. Depreciations, provisions, transfers, ... flows are typical examples of flows to be ignored while building a consolidated cash flow statement, in the same way we ignore them at statutory level."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.763,
+                0.879,
+                0.876
+            ],
+            "angle": 0,
+            "content": "On top of these flows, we also have to consider flows that would be booked in consolidation adjustments. Let's consider a classical example of a tangible asset whose depreciation is based on another value. This would imply an additional depreciation in the balance sheet with the correspondent depreciation in the P&L (same amount!). Moreover, we could possibly have a deferred tax impact. All these amounts are pure non cash items with no interference with the cash flow statement."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.359,
+                0.073,
+                0.864,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.121,
+                0.561,
+                0.137
+            ],
+            "angle": 0,
+            "content": "Non cash flows from the consolidation process"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.153,
+                0.872,
+                0.202
+            ],
+            "angle": 0,
+            "content": "A particular attention should be brought to quite a large number of situations linked to consolidation. It is rather difficult to give a complete list of these situations, however here are some of the main topics"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.218,
+                0.874,
+                0.298
+            ],
+            "angle": 0,
+            "content": "- When consolidating a company for the first time, all assets and liabilities in the balance sheet at the date of acquisition will not impact the cash flow statement. What the group is acquiring are the shares of that company and not its assets and liabilities. The same comment can be made in case of disposal of a company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.315,
+                0.875,
+                0.458
+            ],
+            "angle": 0,
+            "content": "- For all changes in consolidation method for a certain company, we are faced to a similar problem. Let's take an example. In Year 1, a company A is consolidated by the proportional integration at \\(50\\%\\) and in Year 2 by the global integration method with \\(80\\%\\) for the group. Clearly, in the consolidated balance sheet, we show \\(50\\%\\) of the assets in Year 1 and we show \\(100\\%\\) in Year 2. Again, that variation cannot appear in the cash flow statement for the same reason: the cash transaction is the acquisition of additional shares of company A giving the control. That's the only cash information to show."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.474,
+                0.874,
+                0.571
+            ],
+            "angle": 0,
+            "content": "- When two companies in a group are merging, all assets and liabilities of one of these companies are brought to the other company. Most of the time, there is no financial transaction between the two merged companies and the cash flow statement must show nothing about it. We are in a situation of transfer accounts but not inside a single company but between two companies."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.587,
+                0.875,
+                0.699
+            ],
+            "angle": 0,
+            "content": "- When a company A owned at \\(80\\%\\) by its parent company P, increases its capital for an amount of 100 and supposing 80 is subscribed by P and 20 by the \\(3^{\\text{rd}}\\) Parties, this transaction is partly internal to the group for 80 and external to the group for 20. Indeed, 80 is just moving from the P bank account to the A bank account and the remaining 20 represents cash from \\(3^{\\text{rd}}\\) Parties. Only this amount will appear in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.715,
+                0.874,
+                0.795
+            ],
+            "angle": 0,
+            "content": "- The next situation is quite similar to the increase in capital. A company A owned by parent company P at \\(80\\%\\), is paying a dividend of 100. An amount of 80 is paid to P and 20 to the \\(3^{\\text{rd}}\\) Parties. For the same reason as explained above, only (20) will appear as cash out in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.811,
+                0.874,
+                0.876
+            ],
+            "angle": 0,
+            "content": "- When explaining the currency translation on flows, in Part 1, we mentioned the booking of a translation adjustment flow on each assets and liabilities account for all foreign companies, because of the use of different rates. These flows will not appear in the cash flow"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.068,
+                0.367,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.186,
+                0.122,
+                0.875,
+                0.204
+            ],
+            "angle": 0,
+            "content": "statement because they are just technical flows not related to a financial transaction. Moreover, it will be necessary to check that the total of these translation adjustments flows are the same on the assets and liabilities sides, including variation of translation adjustments account in the equity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.218,
+                0.874,
+                0.332
+            ],
+            "angle": 0,
+            "content": "- A company consolidated by the equity method implies the booking of a \"Result from equity method companies\" in the P&L. Such account has to be considered as non cash. Supposing it is a profit, the group received no cash for this income. On the contrary, if that company is paying a dividend, it will appear in the cash flow statement because cash arrives on the bank account of the group shareholder but we don't consolidate the bank account of the equity method company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.347,
+                0.874,
+                0.379
+            ],
+            "angle": 0,
+            "content": "All these examples show that the consolidation process itself makes the building of a consolidated cash flow statement even more difficult."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.395,
+                0.873,
+                0.427
+            ],
+            "angle": 0,
+            "content": "We could summarize all these comments by the following conceptual presentation."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.433,
+                0.87,
+                0.525
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1</td><td>Cash variations</td><td>Non cash variations</td><td>CTA variations</td><td>Structure variations</td><td>Year 2</td></tr><tr><td>ASSETS</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.533,
+                0.869,
+                0.649
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr><td>Year 1</td><td>Cash variations</td><td>Non cash variations</td><td>CTA variations</td><td>Structure variations</td><td>Year 2</td></tr><tr><td>LIABILITIES</td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.664,
+                0.686,
+                0.681
+            ],
+            "angle": 0,
+            "content": "Balance sheet accounts are changing for four basic reasons"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.696,
+                0.822,
+                0.711
+            ],
+            "angle": 0,
+            "content": "- Cash variations which will be imported in the cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.713,
+                0.57,
+                0.727
+            ],
+            "angle": 0,
+            "content": "Non cash variations as depreciations, ..."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.729,
+                0.333,
+                0.742
+            ],
+            "angle": 0,
+            "content": "CTA variations"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.744,
+                0.868,
+                0.775
+            ],
+            "angle": 0,
+            "content": "- Structure variations, including companies acquired and disposed and changes in the consolidation methods"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.147,
+                0.696,
+                0.868,
+                0.775
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.792,
+                0.873,
+                0.873
+            ],
+            "angle": 0,
+            "content": "and the difficult validation to make is that, considering initial opening and closing amounts equal between assets and liabilities, the same condition must be satisfied for each of the four categories. The total of all cash flows coming from assets accounts must be equal to the total of all cash flows coming from the liabilities. And it is the same for the three other columns. Processing this"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.353,
+                0.071,
+                0.867,
+                0.086
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.119,
+                0.878,
+                0.155
+            ],
+            "angle": 0,
+            "content": "validation brings a good assurance to build a technically correct cash flow statement."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.187,
+                0.866,
+                0.234
+            ],
+            "angle": 0,
+            "content": "6.5 How would finally a consolidated cash flow statement look like?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.253,
+                0.878,
+                0.304
+            ],
+            "angle": 0,
+            "content": "To answer this question, we propose to keep the structure of the statutory cash flow statement seen previously and to adapt it to comply with consolidation requirements."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.318,
+                0.878,
+                0.352
+            ],
+            "angle": 0,
+            "content": "The numbers between brackets refer to additional comments given hereunder."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.262,
+                0.367,
+                0.784,
+                0.642
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Consolidated result</td><td>(1)</td></tr><tr><td>Minority result</td><td></td></tr><tr><td>Group result</td><td></td></tr><tr><td>Non cash expenses (+)</td><td></td></tr><tr><td>Losses of equity method companies (+)</td><td>(2)</td></tr><tr><td>Depreciations/impairments of goodwill (+)</td><td>(3)</td></tr><tr><td>Deferred taxes (charges) (+)</td><td>(4)</td></tr><tr><td>Non cash income (-)</td><td></td></tr><tr><td>Profits of equity method companies (-)</td><td>(2)</td></tr><tr><td>Badwills booked in P&amp;L (-)</td><td>(5)</td></tr><tr><td>Deferred taxes (income) (-)</td><td>(4)</td></tr><tr><td>Cash flow</td><td></td></tr><tr><td>Net variation of receivables</td><td>(6)</td></tr><tr><td>Net variations of payables</td><td>(6)</td></tr><tr><td>Working capital</td><td></td></tr><tr><td></td><td></td></tr><tr><td>Cash from operating activities</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.674,
+                0.879,
+                0.756
+            ],
+            "angle": 0,
+            "content": "(1) The cash flow starts with the consolidated result, that is the group result added to the minority result. Behind this, it is important to mention that for integral consolidation method companies we will deal with \\(100\\%\\) of the flows whatever the financial percentage is. That's the reason why we include the result of \\(3^{\\text{rd}}\\) Parties."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.771,
+                0.878,
+                0.806
+            ],
+            "angle": 0,
+            "content": "(2) Losses and profits generated by equity method companies are non cash items. It is just a consequence of the consolidation process."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.818,
+                0.878,
+                0.869
+            ],
+            "angle": 0,
+            "content": "(3) Depending on IFRS (impairments) or Local Gaap (depreciations), goodwill will soon or later impact the P&L. It is of course a non cash item."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.111,
+                0.674,
+                0.879,
+                0.869
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.066,
+                0.373,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.121,
+                0.887,
+                0.189
+            ],
+            "angle": 0,
+            "content": "(4) All deferred taxes do not correspond to any payment. We can say, in a synthetic approach, they are there to show what should have been paid if the consolidation adjustment would have been booked in the legal accounting of the company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.201,
+                0.884,
+                0.234
+            ],
+            "angle": 0,
+            "content": "(5) In IFRS, badwills are considered as a profit, but no cash has been received."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.25,
+                0.885,
+                0.316
+            ],
+            "angle": 0,
+            "content": "(6) For net variations of receivables and payables, it is important to keep in mind that all intercompany flows must be ignored while building the cash flow statement. More generally, this comment is of course true for any intercompany account (loans, ...)."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.115,
+                0.121,
+                0.887,
+                0.316
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.268,
+                0.351,
+                0.788,
+                0.499
+            ],
+            "angle": 0,
+            "content": "<table><tr><td rowspan=\"3\">Investments</td><td>Intangible assets</td><td>(7)</td></tr><tr><td>Tangible assets</td><td></td></tr><tr><td>Financial invest.</td><td>(8)</td></tr><tr><td rowspan=\"3\">Disinvestments</td><td>Intangible assets</td><td>(7)</td></tr><tr><td>Tangible assets</td><td></td></tr><tr><td>Financial invest.</td><td></td></tr><tr><td colspan=\"2\">Cash from Inv./Disinv.</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.524,
+                0.884,
+                0.653
+            ],
+            "angle": 0,
+            "content": "(7) In Local Gaap, an investment (or disinvestment), appears in the cash flow statement for the amount of the transaction, paid or not paid. Let's take an example. A company acquires a land in December Year 1 for a price of 100 and there is an agreement to pay in two slices, 60 in January Year 2 and 40 in January Year 3. The cash flow statement will show an investment of (100). In IFRS, we have to show as an investment only what has been paid. In our example, we would show 0 in Year 1, 60 in Year 2 and 40 in Year 3."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.669,
+                0.882,
+                0.766
+            ],
+            "angle": 0,
+            "content": "(8) Financial investment must show the acquisition price of consolidated companies. Usually such acquisition generates a goodwill or a badwill which must be considered as a \"technical\" part of the acquisition price and being difference with the equity acquired. Goodwill (or badwill) never appears in a cash flow statement, but just the acquisition price. It is the true cash out."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.118,
+                0.524,
+                0.884,
+                0.766
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.358,
+                0.073,
+                0.866,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.264,
+                0.146,
+                0.782,
+                0.309
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Capital increase\nLoans reimbursement\nNew grants\nDividends</td><td>(9)</td></tr><tr><td>Paid by parent company\nPaid to 3rd Parties</td><td>(10)</td></tr><tr><td>Received from equity method companies</td><td>(11)</td></tr><tr><td>Cash from financial activities</td><td></td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Net cash variation</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.331,
+                0.874,
+                0.396
+            ],
+            "angle": 0,
+            "content": "(9) Capital increase (or decrease) is really a difficult part to manage. In some situation a capital increase may appear with a positive sign, sometimes with a negative sign, depending on the consolidation method of the company whose capital is increased."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.41,
+                0.875,
+                0.475
+            ],
+            "angle": 0,
+            "content": "(10) Dividends paid to \\(3^{\\text{rd}}\\) Parties apply, in most cases, to global integration method companies paying dividends. It is a cash out. But this problem is a tricky one and we will come back to this point later on."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.491,
+                0.873,
+                0.54
+            ],
+            "angle": 0,
+            "content": "(11) If profits/losses from equity method companies are non cash items, dividends paid by such companies are really cash entering the group. It must appear in the cash flow statement."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.118,
+                0.331,
+                0.875,
+                0.54
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.555,
+                0.878,
+                0.637
+            ],
+            "angle": 0,
+            "content": "It is maybe the right time to remind that a standard cash flow statement format doesn't exist. The one presented below has been experienced in a large number of groups of variable size (number of companies). Depending on the group activity, the CFO requirements and the Auditors, this format has been adapted."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.651,
+                0.876,
+                0.686
+            ],
+            "angle": 0,
+            "content": "This is only a format problem. All explanations provided in this chapter remain valid, independently of the cash flow statement format."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.717,
+                0.744,
+                0.762
+            ],
+            "angle": 0,
+            "content": "6.6 Let's build a consolidated cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.784,
+                0.875,
+                0.817
+            ],
+            "angle": 0,
+            "content": "In this section, we are going to build the cash flow statement of a group consisting in two companies in Year 1 and three companies in Year 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.832,
+                0.876,
+                0.866
+            ],
+            "angle": 0,
+            "content": "The main question to be asked is which method will be used to build a cash flow statement. Without the use of professional consolidation software, we"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.068,
+                0.367,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.123,
+                0.874,
+                0.157
+            ],
+            "angle": 0,
+            "content": "would recommend to proceed with a spreadsheet approach. It works perfectly well for a reasonable number of companies (5 to 10, not more however)."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.321,
+                0.163,
+                0.699,
+                0.301
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.315,
+                0.641,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Let's take knowledge of the main events of this group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.346,
+                0.874,
+                0.38
+            ],
+            "angle": 0,
+            "content": "- In Year 1, nothing special happened, excepted the existence of intercompany receivables and payables between both companies"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.394,
+                0.873,
+                0.429
+            ],
+            "angle": 0,
+            "content": "In Year 2, company P sells to \\(3^{rd}\\) Parties \\(20\\%\\) of its participation in company A."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.443,
+                0.873,
+                0.477
+            ],
+            "angle": 0,
+            "content": "- The cash received gives the financial means for P to acquire \\(70\\%\\) of a new company B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.491,
+                0.873,
+                0.526
+            ],
+            "angle": 0,
+            "content": "Moreover, \\( \\mathbb{P} \\) increases its capital in order to follow an increase in capital in company B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.539,
+                0.854,
+                0.557
+            ],
+            "angle": 0,
+            "content": "All these transactions take place on the first days of January, Year 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.572,
+                0.875,
+                0.635
+            ],
+            "angle": 0,
+            "content": "- After their general annual meetings closing Year 1, both companies P and A pay dividends. When negotiating the disposal of \\(20\\%\\) of A shares, there was an agreement for P to keep the rights to dividends for these \\(20\\%\\)."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.346,
+                0.875,
+                0.635
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.652,
+                0.768,
+                0.669
+            ],
+            "angle": 0,
+            "content": "All these transactions are clearly reflected in the statutory accounts."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.684,
+                0.82,
+                0.701
+            ],
+            "angle": 0,
+            "content": "Some a general comments before looking to the statutory accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.715,
+                0.771,
+                0.733
+            ],
+            "angle": 0,
+            "content": "The information will follow the same presentation for each company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.748,
+                0.475,
+                0.763
+            ],
+            "angle": 0,
+            "content": "The balance sheet has three columns"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.78,
+                0.521,
+                0.796
+            ],
+            "angle": 0,
+            "content": "One for closing amounts of Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.797,
+                0.521,
+                0.811
+            ],
+            "angle": 0,
+            "content": "One for closing amounts of Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.812,
+                0.873,
+                0.844
+            ],
+            "angle": 0,
+            "content": "- And in between, one column containing the flows explaining the evolution of these amounts."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.78,
+                0.873,
+                0.844
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.355,
+                0.072,
+                0.863,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.121,
+                0.875,
+                0.172
+            ],
+            "angle": 0,
+            "content": "We do not provide the P&L but we confirm that the only non cash amounts it contains are depreciations and gain on disposal on tangible assets and financial investments depending on the companies."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.186,
+                0.795,
+                0.202
+            ],
+            "angle": 0,
+            "content": "These P&L amounts are consistent with the flows in the balance sheet."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.217,
+                0.874,
+                0.283
+            ],
+            "angle": 0,
+            "content": "For each company, we will notice the main figures and then build the statutory cash flow statement. Once all three will be done, we will add them together and book some reclassifications in order to reach the consolidated cash flow statement."
+        },
+        {
+            "type": "table_caption",
+            "bbox": [
+                0.106,
+                0.298,
+                0.472,
+                0.315
+            ],
+            "angle": 0,
+            "content": "Statutory accounts of company P"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.166,
+                0.335,
+                0.819,
+                0.564
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company P</td><td></td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td rowspan=\"2\">Fin. Inv./A</td><td>Disposal</td><td>800</td><td>(350)</td><td>600</td></tr><tr><td>Gain/disposal</td><td></td><td>150</td><td></td></tr><tr><td rowspan=\"2\">Fin. Inv./B</td><td>Acquisition</td><td>0</td><td>300</td><td>860</td></tr><tr><td>Subscription</td><td></td><td>560</td><td></td></tr><tr><td>Receivables/A</td><td>N</td><td>200</td><td>100</td><td>300</td></tr><tr><td>Receivables/-</td><td>tion</td><td>1,600</td><td></td><td>1,800</td></tr><tr><td rowspan=\"2\">Cash</td><td>Net variation</td><td>400</td><td>200</td><td>440</td></tr><tr><td>Net variation</td><td></td><td>40</td><td></td></tr><tr><td></td><td>Total</td><td>3,000</td><td>1,000</td><td>4,000</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.587,
+                0.875,
+                0.639
+            ],
+            "angle": 0,
+            "content": "Company P is selling \\(20\\%\\) of its participation in company A for a price of 350. The book value of the initial \\(80\\%\\) being 800, the book value disposed is \\(200 = 800^{*}\\) \\((20\\% / 80\\%)\\), justifying the gain on disposal of 150."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.651,
+                0.681,
+                0.671
+            ],
+            "angle": 0,
+            "content": "Acquisition of \\(90\\%\\) of company B is done at a price of 300."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.684,
+                0.875,
+                0.75
+            ],
+            "angle": 0,
+            "content": "There are intercompany receivables with company A. The account 'Receivables/-\" means receivables with 3re Parties. We confirm intercompany matching has been successfully done and these intercompany amounts are reconciled."
+        }
+    ]
+]

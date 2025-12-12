@@ -1,0 +1,1496 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.067,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.121,
+                0.456,
+                0.137
+            ],
+            "angle": 0,
+            "content": "Here are the consolidated accounts"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.208,
+                0.155,
+                0.851,
+                0.319
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">P + A</td></tr><tr><td>Goodwill (Gross Val.)</td><td>272</td><td>Capital 2,000</td></tr><tr><td>Goodwill (Dep.)</td><td>(34)</td><td>Reserves 300</td></tr><tr><td></td><td></td><td>Result 66</td></tr><tr><td>Tang. Assets(Acq.Val.)</td><td>1,500</td><td>Conso. Reserves (A) 20</td></tr><tr><td>Tang. Assets(Dep.)</td><td>(325)</td><td>Minor. Interests (A) 237</td></tr><tr><td></td><td></td><td>Liabilities DT 190</td></tr><tr><td>Other assets</td><td>3,100</td><td>Other liabilities 1,700</td></tr><tr><td>Total</td><td>4,513</td><td>Total 4,513</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.345,
+                0.874,
+                0.379
+            ],
+            "angle": 0,
+            "content": "by applying the global integration method with a financial percentage of \\(80\\%\\) on adjusted accounts. In particular"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.392,
+                0.871,
+                0.427
+            ],
+            "angle": 0,
+            "content": "- Consolidated Reserves = 20 = 80% * [500 + 300 + 60 + 300 + 100 + (60) + (15)] - [1200 + (272)]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.44,
+                0.871,
+                0.475
+            ],
+            "angle": 0,
+            "content": "Minority Interests \\(= 237 = 20\\%\\) \\* [500 + 300 + 60 + 300 + 100 + (60) + (15)]"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.148,
+                0.392,
+                0.871,
+                0.475
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.49,
+                0.873,
+                0.524
+            ],
+            "angle": 0,
+            "content": "and we will check again that consolidated reserves of 20 are equal to \\(80\\%\\) of the adjusted profit of company A."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.537,
+                0.631,
+                0.556
+            ],
+            "angle": 0,
+            "content": "What will happen to the aoodwill in the future?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.57,
+                0.873,
+                0.603
+            ],
+            "angle": 0,
+            "content": "If the participation of \\(80\\%\\) remains unchanged, the goodwill will be depreciated on a linear basis."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.618,
+                0.873,
+                0.652
+            ],
+            "angle": 0,
+            "content": "If, for instance, company P decides to sell \\(20\\%\\) of its participation in the future, then the group will book \\(\\frac{1}{4}\\) of the net goodwill into P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.666,
+                0.873,
+                0.731
+            ],
+            "angle": 0,
+            "content": "If the remaining \\(20\\%\\) can be acquired in the future, the logic of evaluation of a possible goodwill is the same and if a new goodwill is confirmed, the second begins a four years life in the group. It is not requested to depreciate that second goodwill in order to finish its life at the same time as the first goodwill."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.746,
+                0.873,
+                0.828
+            ],
+            "angle": 0,
+            "content": "What happens if, buying the remaining \\(20\\%\\), we calculate a badwill? Booking the badwill as explained before, we would have in the consolidated accounts a goodwill corresponding to the first \\(80\\%\\) and simultaneously a badwill for the \\(20\\%\\). This situation is not acceptable. In Local Gaap, we must make a netting between both goodwill and badwill."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.309,
+                0.073,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.121,
+                0.878,
+                0.17
+            ],
+            "angle": 0,
+            "content": "In IFRS, we know a badwill doesn't exist in the consolidated accounts because it is booked immediately in P&L. But, in this special situation, we also have to net both."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.204,
+                0.79,
+                0.248
+            ],
+            "angle": 0,
+            "content": "8.14 Disposal of consolidated shares to 3rd Parties"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.269,
+                0.262,
+                0.287
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.302,
+                0.878,
+                0.352
+            ],
+            "angle": 0,
+            "content": "A company A is consolidated since a number of years and, one day the group decides to sell the company to \\(3^{rd}\\) Parties. Such situation leads to a certain number of remarks, amongst which"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.366,
+                0.875,
+                0.447
+            ],
+            "angle": 0,
+            "content": "- The shareholders' company selling company A makes a gain or loss on disposal which is calculated as the difference between the selling price and the statutory value of the financial investment booked in its accounts. Usually this value corresponds to the historical acquisition value."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.462,
+                0.875,
+                0.577
+            ],
+            "angle": 0,
+            "content": "- From the consolidation point of view, we have seen that company A has a value which corresponds to its net equity. This means that the gain or loss on disposal should be calculated as the difference between the selling price and the percentage owned in company A equity. That gain or loss will not be the same as the one calculated in a statutory point of view. A consolidation adjustment may be necessary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.591,
+                0.875,
+                0.687
+            ],
+            "angle": 0,
+            "content": "- Most of the time, such a disposal never happens the first day of the year. This means that the company has still to be consolidated during the months preceding the disposal. Of course, at the end of the year, the company is not in the consolidation scope any more which means there will be no impact in the consolidated balance sheet but only an impact in the P&L for the months before disposal."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.703,
+                0.874,
+                0.737
+            ],
+            "angle": 0,
+            "content": "- There may be a goodwill booked on company A or a badwill (if Local Gaap) which will have to be reversed via P&L at time of disposal."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.751,
+                0.875,
+                0.848
+            ],
+            "angle": 0,
+            "content": "- When speaking about selling a company, we must understand selling shares of a company. It can happen that we don't sell all the shares of a certain company but only part of them. The consequence is that after disposal of these shares, we still keep the company in the consolidation scope, but with a different financial percentage and maybe with a different consolidation method."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.366,
+                0.875,
+                0.848
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.111,
+                0.067,
+                0.361,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.121,
+                0.867,
+                0.184
+            ],
+            "angle": 0,
+            "content": "- A last remark will concern foreign companies for which we have accumulated translation adjustments. This is again a technical problem we will not discuss in this section. We leave it for Part 4 related to case studies."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.202,
+                0.87,
+                0.234
+            ],
+            "angle": 0,
+            "content": "These remarks show that the disposal of shares of a consolidated company is quite technical."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.25,
+                0.393,
+                0.266
+            ],
+            "angle": 0,
+            "content": "Let's consider an example"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.282,
+                0.87,
+                0.346
+            ],
+            "angle": 0,
+            "content": "Company A has been consolidated with a financial percentage of \\(80\\%\\) since a certain number of years. On the \\(1^{st}\\) of July this year, parent company P, its unique shareholder, decides to sell \\(20\\%\\) of shares to \\(3^{rd}\\) Parties for a price of 500. After disposal, the consolidation method remains the global integration."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.361,
+                0.452,
+                0.377
+            ],
+            "angle": 0,
+            "content": "Profit of A on June 30, Year 2 is 50."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.394,
+                0.867,
+                0.443
+            ],
+            "angle": 0,
+            "content": "At acquisition time, a goodwill of 400 has been booked in P accounts. Consolidation is done under IFRS rules and no impairments have been booked since the beginning."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.459,
+                0.867,
+                0.49
+            ],
+            "angle": 0,
+            "content": "In A accounts, there is one adjustment revaluating a land as allocation of part of the initial goodwill."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.507,
+                0.544,
+                0.523
+            ],
+            "angle": 0,
+            "content": "The scenario we will apply to this situation is"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.538,
+                0.806,
+                0.553
+            ],
+            "angle": 0,
+            "content": "- Consolidate the group before disposal of \\(20\\%\\) of shares (Year 1)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.57,
+                0.736,
+                0.586
+            ],
+            "angle": 0,
+            "content": "- Analyse the disposal from the consolidation point of view"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.603,
+                0.867,
+                0.632
+            ],
+            "angle": 0,
+            "content": "- Consolidate the group at the end of Year 2, after disposal of \\(20\\%\\) of shares"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.651,
+                0.865,
+                0.68
+            ],
+            "angle": 0,
+            "content": "- Justify the consolidated reserves of the group between Year 1 and Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.699,
+                0.692,
+                0.714
+            ],
+            "angle": 0,
+            "content": "- Justify minority interests between Year 1 and Year 2"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.146,
+                0.538,
+                0.867,
+                0.714
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.307,
+                0.073,
+                0.858,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.12,
+                0.367,
+                0.136
+            ],
+            "angle": 0,
+            "content": "Consolidation of Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.153,
+                0.878,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Here are the P and A accounts, including the consolidation adjustments. P owns \\(80\\%\\) of A and consolidates A with the global integration method."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.189,
+                0.204,
+                0.836,
+                0.46
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">P</td></tr><tr><td>Goodwill (Gross Val.)</td><td>(a) 400</td><td>Capital     2,000\nReserves        300\nResult            100</td></tr><tr><td>Fin. Invest./A</td><td>(a) 1,200</td><td></td></tr><tr><td>Other assets</td><td>3,800</td><td>Other liabilities   2,600</td></tr><tr><td>Total</td><td>5,000</td><td>Total     5,000</td></tr><tr><td colspan=\"2\"></td><td></td></tr><tr><td colspan=\"3\">A</td></tr><tr><td>Land</td><td>(b) 1,000</td><td>Capital     1,000\nReserves        500\n(b) 200</td></tr><tr><td>Other assets</td><td>1,800</td><td>Result            100\nOther liabilities   1,200</td></tr><tr><td>Total</td><td>3,000</td><td>Total     3,000</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.475,
+                0.878,
+                0.523
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) concerns the gross value of the goodwill that has been calculated a few years ago when acquiring the company. No impairment has been booked since that time."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.539,
+                0.878,
+                0.588
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) books an allocation of that initial goodwill on a land. For some local reasons, there are no deferred taxes and, of course, speaking about a land, there is no depreciation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.604,
+                0.618,
+                0.621
+            ],
+            "angle": 0,
+            "content": "The consolidated accounts are presented hereunder"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.192,
+                0.64,
+                0.835,
+                0.77
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P + A</td></tr><tr><td rowspan=\"2\">Goodwill (Gross Val.)</td><td rowspan=\"2\">400</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td rowspan=\"3\">Land</td><td rowspan=\"3\">1,200</td><td>Result</td><td>100</td></tr><tr><td>Conso. Reserves (A)</td><td>640</td></tr><tr><td>Minor. Interests (A)</td><td>360</td></tr><tr><td>Other assets</td><td>5,600</td><td>Other liabilities</td><td>3,800</td></tr><tr><td>Total</td><td>7,200</td><td>Total</td><td>7,200</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.796,
+                0.878,
+                0.829
+            ],
+            "angle": 0,
+            "content": "after consolidating company A by the global integration method, which leads to"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.839,
+                0.878,
+                0.879
+            ],
+            "angle": 0,
+            "content": "- Consolidated Reserves = 640 = 80% * [1000 + 500 + 200 + 100] - [1200 + (400)]"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.069,
+                0.364,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.121,
+                0.787,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Minority Interests \\(= 360 = 20\\% * [1000 + 500 + 200 + 100]\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.155,
+                0.628,
+                0.172
+            ],
+            "angle": 0,
+            "content": "So, nothing really particular at the end of this Year 1."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.187,
+                0.479,
+                0.205
+            ],
+            "angle": 0,
+            "content": "Analysis of the selling transaction"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.218,
+                0.871,
+                0.268
+            ],
+            "angle": 0,
+            "content": "This will be the difficult part of this example and our explanations will consider three different methods, each one of course giving the same consolidation adjustment."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.282,
+                0.622,
+                0.3
+            ],
+            "angle": 0,
+            "content": "Method 1: Statutory view versus Consolidation view"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.314,
+                0.872,
+                0.396
+            ],
+            "angle": 0,
+            "content": "At the end of chapter 4, when considering the equity method consolidation, we explained that in consolidation the value of a company was the value of its equity and the problem is that the transaction is booked based not on that equity value but on the historical value of the financial investment in P accounts."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.246,
+                0.421,
+                0.785,
+                0.632
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">In consolidation</td></tr><tr><td>Disposal price</td><td>500</td></tr><tr><td>Equity of company A</td><td></td></tr><tr><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>600</td></tr><tr><td>Profit before disposal</td><td>50</td></tr><tr><td>Consolidation adjust. (Revaluation)</td><td>200</td></tr><tr><td>Total</td><td>1,850</td></tr><tr><td>Percentage disposed</td><td>20%</td></tr><tr><td>Group equity</td><td>370</td></tr><tr><td>Gain on disposal</td><td>130</td></tr><tr><td>Book 1/4 of goodwill to P&amp;L</td><td>100</td></tr><tr><td>Final gain on disposal</td><td>30</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.65,
+                0.7,
+                0.668
+            ],
+            "angle": 0,
+            "content": "Here is the gain on disposal calculated with statutory figures."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.246,
+                0.682,
+                0.784,
+                0.75
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">In statutory accounts</td></tr><tr><td>Disposal price</td><td>500</td></tr><tr><td>Shares value</td><td>300</td></tr><tr><td>Gain on disposal</td><td>200</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.763,
+                0.872,
+                0.879
+            ],
+            "angle": 0,
+            "content": "In consolidation, we consider the adjusted equity. We mean statutory equity and the revaluation of the land for 200. Moreover, the \\(20\\%\\) shares of company A being disposed on July \\(1^{\\text{st}}\\), Year 2, we also include the 50 profit of the first six months of the year. \\(20\\%\\) of the total, 1850, equals 370 which is the equity value of these shares. A first gain is the difference between the selling price and that equity value, 130. Now, initially we booked a goodwill of 400 corresponding to \\(80\\%\\) of shares initially acquired. As we remain with only"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.306,
+                0.073,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.121,
+                0.874,
+                0.157
+            ],
+            "angle": 0,
+            "content": "\\(60\\%\\) after that transaction, \\(100 = 20\\% / 80\\% * 400\\) must be booked as a reduction of that gain, giving a net gain of 30."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.169,
+                0.877,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Comparing both approaches, the first one gives a gain of 200 and the second one a gain of 30 and we have to give priority to the consolidation approach of course. This leads to the following adjustment reducing the statutory gain from 200 to 30"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.266,
+                0.252,
+                0.71,
+                0.304
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>170</td><td></td></tr><tr><td>Consolidated reserves</td><td></td><td>170</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.33,
+                0.876,
+                0.364
+            ],
+            "angle": 0,
+            "content": "and we must admit that for inexperienced readers, the booking of consolidated reserves can seem a little bit strange."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.379,
+                0.627,
+                0.396
+            ],
+            "angle": 0,
+            "content": "Let's try to clarify this point with the second method."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.411,
+                0.463,
+                0.427
+            ],
+            "angle": 0,
+            "content": "Method 2 : A step by step approach"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.443,
+                0.492,
+                0.46
+            ],
+            "angle": 0,
+            "content": "This method contains three main steps"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.475,
+                0.593,
+                0.491
+            ],
+            "angle": 0,
+            "content": "- First we reverse the statutory transaction"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.507,
+                0.874,
+                0.54
+            ],
+            "angle": 0,
+            "content": "- Then we take into account historical adjustments and equity value of the shares disposed instead of the statutory financial investment"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.555,
+                0.685,
+                0.571
+            ],
+            "angle": 0,
+            "content": "Finally, we make the transaction with these values."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.475,
+                0.874,
+                0.571
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.587,
+                0.798,
+                0.605
+            ],
+            "angle": 0,
+            "content": "Reverse the statutory transaction by booking the following adjustment"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.616,
+                0.675,
+                0.684
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Fin. Invest./A</td><td>300</td><td rowspan=\"3\">500</td></tr><tr><td>Other assets</td><td></td></tr><tr><td>Gain on disposal</td><td>200</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.7,
+                0.876,
+                0.75
+            ],
+            "angle": 0,
+            "content": "In which we find back the statutory value of the \\(20\\%\\) of shares disposed for a value of 300, we reverse the cash (Other assets) received for 500 and we eliminate the gain for 200."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.764,
+                0.874,
+                0.797
+            ],
+            "angle": 0,
+            "content": "Book the goodwill attached to the \\(20\\%\\) shares disposed which consists in carrying forward a historical adjustment"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.114,
+                0.809,
+                0.675,
+                0.862
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill</td><td>100</td><td></td></tr><tr><td>Fin. Invest./A</td><td></td><td>100</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.068,
+                0.368,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.122,
+                0.877,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Replace the statutory financial investment by the equity value of the company"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.15,
+                0.679,
+                0.221
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Equity value</td><td>370</td><td></td></tr><tr><td>Net Fin. Invest.</td><td></td><td>200</td></tr><tr><td>Consolidated reserves</td><td></td><td>170</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.235,
+                0.876,
+                0.268
+            ],
+            "angle": 0,
+            "content": "This booking is based on the following relation: equity value = statutory financial value + consolidated reserves, as explained at the end of Chapter 4."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.283,
+                0.877,
+                0.348
+            ],
+            "angle": 0,
+            "content": "In this adjustment, 370 has been calculated a few lines above, 200 is the net value of the financial investment (300 - 100) and 170 is the value of the consolidated reserves accumulated on company A since first consolidation until disposal (limited to \\(20\\%\\))."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.363,
+                0.608,
+                0.38
+            ],
+            "angle": 0,
+            "content": "This may request maybe an additional explanation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.395,
+                0.878,
+                0.525
+            ],
+            "angle": 0,
+            "content": "Let's go back to the consolidated reserves of company A at the end of Year 1, which is 640 as booked in the consolidated balance sheet above. We know that this amount is equal to non-distributed profits during company A life time in the consolidation scope until end of Year 1. But we consider the situation at the end of June Year 2 and, in the meantime, we have to add a group profit of \\(40 = 80\\% * 50\\) to these consolidated reserves. This gives a total of 680 and corresponds to a participation of \\(80\\%\\). For \\(20\\%\\) of shares, these consolidated reserves are equal to \\(170 = 20\\% / 80\\% * 680\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.539,
+                0.69,
+                0.556
+            ],
+            "angle": 0,
+            "content": "We then make the transaction on the basis of these figures"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.574,
+                0.677,
+                0.643
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Other assets</td><td>500</td><td></td></tr><tr><td>Equity value</td><td></td><td>370</td></tr><tr><td>Gain of disposal</td><td></td><td>130</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.651,
+                0.876,
+                0.686
+            ],
+            "angle": 0,
+            "content": "We find back our cash (Other assets) for 500, we sell a financial asset valuated to 370 and this transaction is giving a gain of 170."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.699,
+                0.876,
+                0.733
+            ],
+            "angle": 0,
+            "content": "And finally, the goodwill attached to the \\(20\\%\\) of shares disposed must be written-off"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.745,
+                0.677,
+                0.798
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>100</td><td></td></tr><tr><td>Goodwill</td><td></td><td>100</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.813,
+                0.876,
+                0.847
+            ],
+            "angle": 0,
+            "content": "When we now aggregate these five adjustments, most of these accounts are just compensating and we remain with the following adjustment"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.306,
+                0.073,
+                0.859,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.111,
+                0.118,
+                0.678,
+                0.171
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>170</td><td></td></tr><tr><td>Consolidated reserves</td><td></td><td>170</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.184,
+                0.782,
+                0.202
+            ],
+            "angle": 0,
+            "content": "which is exactly the same as the one we got in the previous method."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.217,
+                0.398,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Method 3 : A direct approach"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.249,
+                0.878,
+                0.283
+            ],
+            "angle": 0,
+            "content": "We would advise not to use only this method without checking the result with one of the two first methods or both."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.298,
+                0.878,
+                0.348
+            ],
+            "angle": 0,
+            "content": "We have seen that the consolidated reserves at the end of June Year 2, attached to the \\(20\\%\\) shares disposed, were equal to 170. This accumulated profit has to be reversed by using the following adjustment"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.356,
+                0.679,
+                0.41
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>170</td><td></td></tr><tr><td>Consolidated reserves</td><td></td><td>170</td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.442,
+                0.807,
+                0.46
+            ],
+            "angle": 0,
+            "content": "Chanae of financial verventae from 80% to 60% durina Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.474,
+                0.879,
+                0.525
+            ],
+            "angle": 0,
+            "content": "We know that company A profit for the first six months of Year 2 is 50. As, at the end of Year 2, the financial percentage is \\(60\\%\\), the consolidation process will apply this percentage to the full year, including the 50."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.539,
+                0.875,
+                0.573
+            ],
+            "angle": 0,
+            "content": "Most of the consolidation software on the market are processing this way, which needs the following adjustment."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.587,
+                0.879,
+                0.637
+            ],
+            "angle": 0,
+            "content": "Indeed, the group profit for the first six months is 40 (\\(= 80\\% * 50\\)) instead of 30 (\\(= 60\\% * 50\\)). This means 10 is missing in the group profit at the end of Year2. And these 10 are given to the \\(3^{rd}\\) Parties!."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.651,
+                0.641,
+                0.668
+            ],
+            "angle": 0,
+            "content": "Here is the adjustment correcting this wrong situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.607,
+                0.676,
+                0.771,
+                0.693
+            ],
+            "angle": 0,
+            "content": "Debit Credit"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.212,
+                0.694,
+                0.307,
+                0.708
+            ],
+            "angle": 0,
+            "content": "Reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.214,
+                0.709,
+                0.34,
+                0.725
+            ],
+            "angle": 0,
+            "content": "Group result"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.214,
+                0.726,
+                0.437,
+                0.741
+            ],
+            "angle": 0,
+            "content": "Minority interest result"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.214,
+                0.741,
+                0.384,
+                0.756
+            ],
+            "angle": 0,
+            "content": "Minorit. interests"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.779,
+                0.878,
+                0.83
+            ],
+            "angle": 0,
+            "content": "It is called a 'after \\(3^{rd}\\) Parties\" or \"top\" or \"group\" adjustment because, regardless of the fact that it is booked in company A accounts, owned at \\(60\\%\\), these amounts must be considered as impacting each account at \\(100\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.844,
+                0.878,
+                0.879
+            ],
+            "angle": 0,
+            "content": "We see that we give an additional profit of 10 to the group and we reduce the \\(3^{rd}\\) Parties profit for the same amount."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.11,
+                0.065,
+                0.367,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.119,
+                0.883,
+                0.185
+            ],
+            "angle": 0,
+            "content": "In the balance sheet, the impact of that adjustment can be seen on group sides because it consists in a transfer between reserves and result but we see nothing on the \\(3^{\\text{rd}}\\) Parties side because Minority interests reserves and result are aggregated."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.199,
+                0.882,
+                0.248
+            ],
+            "angle": 0,
+            "content": "In the P&L, there is no impact on expense and income accounts, but just a transfer between Minority result and Group result, generally on the two last lines."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.263,
+                0.367,
+                0.28
+            ],
+            "angle": 0,
+            "content": "Consolidation of Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.295,
+                0.88,
+                0.33
+            ],
+            "angle": 0,
+            "content": "Here are the accounts of companies P and A including the consolidation adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.168,
+                0.343,
+                0.819,
+                0.477
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"3\">P</td></tr><tr><td rowspan=\"3\">Goodwill (Gross Val.)</td><td rowspan=\"3\">(a) 300</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>400</td></tr><tr><td></td><td>(c) 170</td></tr><tr><td>Fin. Invest./A</td><td>900</td><td>Result</td><td>300</td></tr><tr><td>Other assets</td><td>4,800</td><td>Other liabilities</td><td>(170) 3,000</td></tr><tr><td>Total</td><td>5,700</td><td>Total</td><td>5,700</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.167,
+                0.489,
+                0.816,
+                0.639
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"3\">A</td></tr><tr><td rowspan=\"3\">Land</td><td rowspan=\"3\">1,000(b)</td><td rowspan=\"2\">CapitalReserves</td><td rowspan=\"2\">1,000600(b)(d*)200(10)</td></tr><tr></tr><tr><td>Result(d*)</td><td>15010</td></tr><tr><td>Other assets</td><td>2,300</td><td>Other liabilities</td><td>1,550</td></tr><tr><td>Total</td><td>3,500</td><td>Total</td><td>3,500</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.667,
+                0.879,
+                0.701
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) shows the 300 remaining goodwill related to the \\(60\\%\\) of shares the group still owns."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.715,
+                0.876,
+                0.765
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) concerns the allocation of this initial goodwill on a land for 200. Independently of the \\(20\\%\\) shares disposal, the land is still owned by company A."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.779,
+                0.876,
+                0.813
+            ],
+            "angle": 0,
+            "content": "Adjustment (c) modifies the statutory gain on disposal as explained above for an amount of 170."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.827,
+                0.876,
+                0.877
+            ],
+            "angle": 0,
+            "content": "Adjustment \\((\\mathsf{d}^{*})\\) is the reclassification of the profit of 10 between \\(3^{\\text{rd}}\\) Parties and Group. The \\(\\star\\) indicates these amounts have to be considered at \\(100\\%\\) on each account"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.307,
+                0.071,
+                0.858,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.12,
+                0.536,
+                0.136
+            ],
+            "angle": 0,
+            "content": "We get the following consolidated accounts"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.172,
+                0.163,
+                0.819,
+                0.294
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P + A</td></tr><tr><td rowspan=\"2\">Goodwill (Gross Val.)</td><td rowspan=\"2\">300</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>570</td></tr><tr><td rowspan=\"3\">Land</td><td rowspan=\"3\">1,200</td><td>Result</td><td>130</td></tr><tr><td>Conso. Reserves (A)</td><td>570</td></tr><tr><td>Minor. Interests (A)</td><td>780</td></tr><tr><td>Other assets</td><td>7,100</td><td>Other liabilities</td><td>4,550</td></tr><tr><td>Total</td><td>8,600</td><td>Total</td><td>8,600</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.314,
+                0.178,
+                0.328
+            ],
+            "angle": 0,
+            "content": "where"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.344,
+                0.877,
+                0.378
+            ],
+            "angle": 0,
+            "content": "- Consolidated Reserves = 570 = 60% * [1000 + 600 + 200 + 150] + (10) + 10 - [900 + (300)]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.391,
+                0.878,
+                0.426
+            ],
+            "angle": 0,
+            "content": "Minority Interests = 780 = 40% * [1000 + 600 + 200 + 150] + 10 + (10)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.15,
+                0.344,
+                0.878,
+                0.426
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.441,
+                0.652,
+                0.458
+            ],
+            "angle": 0,
+            "content": "Justify the evolution of the consolidated reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.473,
+                0.88,
+                0.507
+            ],
+            "angle": 0,
+            "content": "In the same way we did for the dividends, we are going to use the following report"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.524,
+                0.859,
+                0.609
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1 Reserves</td><td>Year 2 Result</td><td>Divid. (-) paid</td><td>Divid. (+)</td><td>Transfer</td><td>P Approp.</td><td>Year 2 Reserves</td></tr><tr><td>Company P</td><td>400</td><td>130</td><td></td><td></td><td>170</td><td></td><td>700</td></tr><tr><td>Company A</td><td>640</td><td>100</td><td></td><td></td><td>(170)</td><td></td><td>570</td></tr><tr><td></td><td>1,040</td><td>230</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1,270,</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.624,
+                0.881,
+                0.675
+            ],
+            "angle": 0,
+            "content": "in which the first column shows the contribution of Year 1 reserves of each company and same for the last column corresponding to Year 2. These amounts are coming from Year 1 and Year 2 consolidated balance sheet."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.688,
+                0.88,
+                0.772
+            ],
+            "angle": 0,
+            "content": "The second column shows contribution of Year 2 result of each company. For P, it corresponds to its statutory result of 300 adjusted by the 170 gain on disposal. For A, Year 2 statutory result is 150 consisting in 50 for the first six months and so 100 for the last six months. Applying \\(80\\%\\) to 50 and \\(60\\%\\) to 100, we find indeed 100 for the full year."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.785,
+                0.706,
+                0.802
+            ],
+            "angle": 0,
+            "content": "There are no dividends paid but we keep these two columns."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.817,
+                0.881,
+                0.868
+            ],
+            "angle": 0,
+            "content": "The transfer of reserves appears because of the gain on disposal adjustment. In fact, 170 is leaving company A because of the reduction of \\(20\\%\\) of percentage but these reserves do not leave the group. There are now"
+        }
+    ]
+]

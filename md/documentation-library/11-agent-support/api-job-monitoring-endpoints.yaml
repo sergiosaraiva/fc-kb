@@ -1,0 +1,674 @@
+# API Job Monitoring Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent monitoring of background jobs
+
+api_job_monitoring_endpoints:
+  name: "Job Monitoring API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for monitoring and managing background jobs in the consolidation system.
+
+    CRITICAL FOR AGENT OPERATIONS:
+    Many consolidation operations run as background jobs (async). The agent MUST use
+    these endpoints to monitor job completion before proceeding with dependent operations.
+
+    Background jobs are used by:
+    - ConsolidationIntegration_RunConsolidationIntegration
+    - Ownership_LaunchCalculateIndirectPercentagesJob
+    - ConsolidationEvents_Generate
+    - Import/Export operations
+    - Report generation
+    - Data processing tasks
+
+    Source: Sigma.Mona.WebApplication/Screens/Job/JobService.cs
+
+  # ============================================================================
+  # JOB STATUS ENUMS
+  # ============================================================================
+  enums:
+    JobStatuses:
+      description: "Status codes for background jobs"
+      source: "EF.Entities.Job.Statuses"
+      values:
+        - name: "Pending"
+          value: 0
+          description: "Job is queued but not yet started"
+          translation_key: "Job_Status_Pending"
+          is_terminal: false
+        - name: "Running"
+          value: 1
+          description: "Job is currently executing"
+          translation_key: "Job_Status_Processing"
+          is_terminal: false
+        - name: "Done"
+          value: 2
+          description: "Job completed successfully"
+          translation_key: "Job_Status_Done"
+          is_terminal: true
+        - name: "Error"
+          value: 3
+          description: "Job failed with error"
+          translation_key: "Job_Status_Error"
+          is_terminal: true
+
+    JobFlags:
+      description: "Control flags for job execution"
+      source: "EF.Entities.Job.Flags"
+      values:
+        - name: "None"
+          value: 0
+          description: "No special flags"
+          translation_key: "Job_Flags_None"
+        - name: "Run"
+          value: 1
+          description: "Job should run"
+          translation_key: "Job_Flags_Run"
+        - name: "Kill"
+          value: 2
+          description: "Job should be terminated"
+          translation_key: "Job_Flags_Kill"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    JobDTO:
+      description: "Full job information for job list views"
+      source: "Sigma.Mona.WebApplication/Screens/Job/JobService.cs"
+      fields:
+        - name: "isSelected"
+          type: "boolean"
+          description: "Selection state for UI"
+        - name: "JobID"
+          type: "integer"
+          description: "Unique job identifier"
+        - name: "JobStatus"
+          type: "integer"
+          description: "Current status (0=Pending, 1=Running, 2=Done, 3=Error)"
+          enum_ref: "JobStatuses"
+        - name: "JobStatusDescription"
+          type: "string"
+          description: "Localized status description"
+        - name: "JobFlags"
+          type: "integer"
+          description: "Control flags"
+          enum_ref: "JobFlags"
+        - name: "JobFlagsDescription"
+          type: "string"
+          description: "Localized flags description"
+        - name: "JobStartTime"
+          type: "datetime"
+          nullable: true
+          description: "When job started executing"
+        - name: "JobEndTime"
+          type: "datetime"
+          nullable: true
+          description: "When job completed"
+        - name: "JobPendingTime"
+          type: "datetime"
+          description: "When job was queued"
+        - name: "JobScheduledDateTime"
+          type: "datetime"
+          description: "Scheduled execution time"
+        - name: "JobProgress"
+          type: "string"
+          nullable: true
+          description: "Progress information/warnings"
+        - name: "JobError"
+          type: "string"
+          nullable: true
+          description: "Error message if failed"
+        - name: "JobWarning"
+          type: "string"
+          nullable: true
+          description: "Warning messages"
+        - name: "JobScheduleID"
+          type: "integer"
+          description: "Related job schedule ID"
+        - name: "JobScheduleName"
+          type: "string"
+          description: "Job schedule name"
+        - name: "JobScheduleType"
+          type: "integer"
+          description: "Schedule type (0=Recurring, 1=OneTime)"
+        - name: "JobScheduleDescription"
+          type: "string"
+          description: "Schedule description"
+        - name: "HangfireJobID"
+          type: "string"
+          nullable: true
+          description: "Hangfire queue job ID"
+        - name: "JobMachineOwner"
+          type: "string"
+          nullable: true
+          description: "Server executing the job"
+        - name: "JobScheduleLogin"
+          type: "string"
+          description: "User who created the job"
+        - name: "JobOutputFiles"
+          type: "array<KeyValuePair<string,string>>"
+          nullable: true
+          description: "Output files with download URLs"
+
+    JobStatusPollingResponse:
+      description: "Simplified response for job status polling"
+      fields:
+        - name: "JobStatus"
+          type: "string"
+          description: "Status code as string"
+        - name: "JobStatusText"
+          type: "string"
+          description: "Localized status message"
+        - name: "Files"
+          type: "array"
+          nullable: true
+          description: "Output files when job is done"
+          element_schema:
+            fileName:
+              type: "string"
+            fileSize:
+              type: "long"
+              nullable: true
+            url:
+              type: "string"
+              description: "Download URL"
+        - name: "user_messages"
+          type: "array<string>"
+          description: "Progress/status messages for user"
+        - name: "errors"
+          type: "array<string>"
+          description: "Error messages if job failed"
+        - name: "warnings"
+          type: "array<string>"
+          description: "Warning messages"
+
+  # ============================================================================
+  # HANDLERS
+  # ============================================================================
+  handlers:
+    - name: "Job_GetJobStatusPolling"
+      description: |
+        CRITICAL HANDLER for monitoring background job status.
+
+        This is the primary endpoint for polling job completion. The agent should:
+        1. Call this endpoint after receiving a JobID from an async operation
+        2. Continue polling until JobStatus is terminal (Done=2 or Error=3)
+        3. Check for errors if status is Error
+        4. Retrieve output files if status is Done
+
+        Response includes:
+        - JobStatus: Current status code
+        - JobStatusText: Human-readable status
+        - user_messages: Progress updates (shown to user)
+        - errors: Error messages if failed
+        - Files: Download links for output files
+      access_right: "LogModifications_GetLogLines OR JobSchedule_GetJobStatus OR own job"
+      async: true
+
+      request:
+        _t: "Job_GetJobStatusPolling"
+        parameters:
+          - name: "JobID"
+            type: "integer"
+            required: true
+            validation: "ValidateID"
+            description: "Job ID returned from async operation"
+        example:
+          json: |
+            {
+              "_t": "Job_GetJobStatusPolling",
+              "JobID": 12345
+            }
+
+      response:
+        success:
+          JobStatus:
+            type: "string"
+            description: "Status code: '0'=Pending, '1'=Running, '2'=Done, '3'=Error"
+          JobStatusText:
+            type: "string"
+            description: "Localized status message (e.g., 'Job finished', 'Processing...')"
+          Files:
+            type: "array"
+            nullable: true
+            description: "Output files when job completes successfully"
+          user_messages:
+            type: "array<string>"
+            description: "Progress messages to show user"
+          example_pending:
+            json: |
+              {
+                "JobStatus": "0",
+                "JobStatusText": "Pending",
+                "user_messages": ["Job is queued for processing"]
+              }
+          example_running:
+            json: |
+              {
+                "JobStatus": "1",
+                "JobStatusText": "Processing...",
+                "user_messages": ["Processing company 5 of 10"]
+              }
+          example_done:
+            json: |
+              {
+                "JobStatus": "2",
+                "JobStatusText": "Job finished",
+                "user_messages": ["Consolidation completed successfully"],
+                "Files": [
+                  {
+                    "fileName": "ConsolidationReport.xlsx",
+                    "fileSize": 45678,
+                    "url": "/Downloads/Job/12345/1"
+                  }
+                ]
+              }
+          example_error:
+            json: |
+              {
+                "JobStatus": "3",
+                "JobStatusText": "Error",
+                "errors": ["Failed to calculate eliminations: Invalid ownership percentages"]
+              }
+
+      polling_strategy:
+        description: "Recommended polling strategy for AI agent"
+        initial_delay_ms: 500
+        max_delay_ms: 5000
+        backoff_multiplier: 1.5
+        max_attempts: 120
+        algorithm: |
+          delay = min(initial_delay * (backoff_multiplier ^ attempt), max_delay)
+
+          while attempt < max_attempts:
+            response = call Job_GetJobStatusPolling(JobID)
+            if response.JobStatus in ['2', '3']:  # Done or Error
+              return response
+            wait(delay)
+            attempt++
+            delay = min(delay * backoff_multiplier, max_delay)
+        code_example: |
+          async function pollJobStatus(jobId: number): Promise<JobResult> {
+            let delay = 500;
+            const maxDelay = 5000;
+            const maxAttempts = 120;
+
+            for (let attempt = 0; attempt < maxAttempts; attempt++) {
+              const response = await callHandler('Job_GetJobStatusPolling', { JobID: jobId });
+
+              if (response.JobStatus === '2') {
+                return { success: true, files: response.Files };
+              }
+              if (response.JobStatus === '3') {
+                return { success: false, errors: response.errors };
+              }
+
+              await sleep(delay);
+              delay = Math.min(delay * 1.5, maxDelay);
+            }
+
+            throw new Error('Job polling timeout');
+          }
+
+    - name: "Job_GetJobs"
+      description: |
+        Retrieves a list of jobs with filtering and pagination.
+        Used for job management and monitoring dashboards.
+
+        Supports filtering by:
+        - User login (defaults to current user)
+        - Scheduled date/time range
+      access_right: "Job_GetJobs"
+      async: true
+
+      request:
+        _t: "Job_GetJobs"
+        parameters:
+          - name: "FilterJobScheduleLogin"
+            type: "string"
+            required: false
+            validation: "ValidateString"
+            description: "Filter by user login (default: current user)"
+          - name: "FilterJobScheduledDateTime"
+            type: "object"
+            required: false
+            description: "Date range filter"
+            schema:
+              Type:
+                type: "string"
+                enum: ["Equal", "LessThan", "LessThanOrEqual", "BiggerThan", "BiggerThanOrEqual", "Between"]
+              Value1:
+                type: "datetime"
+                description: "First date value"
+              Value2:
+                type: "datetime"
+                nullable: true
+                description: "Second date value (for Between)"
+          - name: "scf_from_row"
+            type: "integer"
+            required: false
+            default: 0
+          - name: "scf_row_count"
+            type: "integer"
+            required: false
+          - name: "scf_order_by"
+            type: "string"
+            required: false
+            valid_columns:
+              - "JobScheduleName"
+              - "JobScheduleLogin"
+              - "JobFlagsDescription"
+              - "JobScheduledDateTime"
+              - "JobStartTime"
+              - "JobEndTime"
+              - "JobStatusDescription"
+          - name: "scf_include_total_row_count"
+            type: "boolean"
+            required: false
+            default: false
+        example:
+          json: |
+            {
+              "_t": "Job_GetJobs",
+              "FilterJobScheduleLogin": "admin",
+              "FilterJobScheduledDateTime": {
+                "Type": "Between",
+                "Value1": "2024-01-01T00:00:00",
+                "Value2": "2024-01-31T23:59:59"
+              },
+              "scf_from_row": 0,
+              "scf_row_count": 50,
+              "scf_include_total_row_count": true
+            }
+
+      response:
+        success:
+          scf_items:
+            type: "array<JobDTO>"
+            description: "List of jobs matching filter"
+          scf_total_row_count:
+            type: "integer"
+            description: "Total matching jobs (when pagination enabled)"
+
+    - name: "Job_StartNowJobs"
+      description: |
+        Immediately starts (or restarts) selected jobs.
+        Can restart pending jobs or requeue failed jobs.
+      access_right: "Job_ManageJobs"
+      async: true
+
+      request:
+        _t: "Job_StartNowJobs"
+        parameters:
+          - name: "SelectedJobIDs"
+            type: "integer[]"
+            required: true
+            validation: "ValidateList"
+            description: "Array of job IDs to start"
+        example:
+          json: |
+            {
+              "_t": "Job_StartNowJobs",
+              "SelectedJobIDs": [12345, 12346, 12347]
+            }
+
+      response:
+        success:
+          FailedToStart:
+            type: "array<integer>"
+            description: "Job IDs that failed to start"
+          example:
+            json: |
+              {
+                "FailedToStart": []
+              }
+        errors:
+          - pattern: "JobNothingSelected"
+            cause: "Empty SelectedJobIDs array"
+
+    - name: "Job_KillJobs"
+      description: |
+        Terminates running jobs.
+        Uses Hangfire to delete the background job.
+      access_right: "Job_ManageJobs"
+      async: true
+
+      request:
+        _t: "Job_KillJobs"
+        parameters:
+          - name: "SelectedJobIDs"
+            type: "integer[]"
+            required: true
+            validation: "ValidateList"
+            description: "Array of job IDs to kill"
+        example:
+          json: |
+            {
+              "_t": "Job_KillJobs",
+              "SelectedJobIDs": [12345]
+            }
+
+      response:
+        success:
+          description: "Empty response on success"
+        errors:
+          - pattern: "JobNothingSelected"
+            cause: "Empty SelectedJobIDs array"
+
+  # ============================================================================
+  # JOB TYPES
+  # ============================================================================
+  job_types:
+    description: "Common background job types in the consolidation system"
+    jobs:
+      - name: "ConsolidationIntegrationJob"
+        class: "Jobs.Database.ConsolidationIntegrationJob"
+        description: "Runs consolidation calculations (bundles, adjustments, eliminations)"
+        triggered_by: "ConsolidationIntegration_RunConsolidationIntegration"
+        status_messages:
+          running: "JobGenerating"
+          done: "JobDone"
+
+      - name: "CalculateIndirectPercentagesJob"
+        class: "Jobs.Database.CalculateIndirectPercentagesJob"
+        description: "Calculates indirect ownership percentages through ownership chain"
+        triggered_by: "Ownership_LaunchCalculateIndirectPercentagesJob"
+        status_messages:
+          running: "JobGenerating"
+          done: "IndirectPercentagesCalculated"
+
+      - name: "ImportDataJob"
+        class: "Jobs.Database.ImportDataJob"
+        description: "Imports financial data from files"
+        status_messages:
+          running: "JobGenerating"
+          done: "JobFileUploaded"
+
+      - name: "ExportDataJob"
+        class: "Jobs.Database.ExportDataJob"
+        description: "Exports financial data to files"
+        status_messages:
+          running: "JobGenerating"
+          done: "JobFinished"
+        has_output_files: true
+
+      - name: "BackupJob"
+        class: "Jobs.Database.BackupJob"
+        description: "Creates database backup"
+        status_messages:
+          running: "JobBackingUp"
+          done: "JobDownload"
+        has_output_files: true
+
+      - name: "RestoreJob"
+        class: "Jobs.Database.RestoreJob"
+        description: "Restores database from backup"
+        status_messages:
+          running: "JobRestoring"
+          done: "JobAllConsosRestored"
+
+      - name: "CopyConsoJob"
+        class: "Jobs.Database.CopyConsoJob"
+        description: "Copies consolidation period"
+        status_messages:
+          running: "JobProcessing"
+          done: "JobDone"
+
+      - name: "ProcessManagementJob"
+        class: "Jobs.Database.ProcessManagementJob"
+        description: "Runs process management workflows"
+        status_messages:
+          running: "JobGenerating"
+          done: "JobDone"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    async_operation_pattern:
+      name: "Standard Async Operation Pattern"
+      description: "Pattern for handling any async operation that returns a JobID"
+      steps:
+        - step: 1
+          name: "Trigger Operation"
+          description: "Call the handler that creates the background job"
+          example_handlers:
+            - "ConsolidationIntegration_RunConsolidationIntegration"
+            - "Ownership_LaunchCalculateIndirectPercentagesJob"
+            - "ConsolidationEvents_Generate"
+          output: "JobID in response"
+
+        - step: 2
+          name: "Poll Status"
+          handler: "Job_GetJobStatusPolling"
+          description: "Poll until job completes or fails"
+          polling_params:
+            initial_delay: "500ms"
+            max_delay: "5000ms"
+            timeout: "10 minutes"
+          exit_conditions:
+            - "JobStatus = '2' (Done)"
+            - "JobStatus = '3' (Error)"
+
+        - step: 3
+          name: "Handle Result"
+          description: "Process job result based on status"
+          on_done:
+            - "Check user_messages for summary"
+            - "Download Files if present"
+            - "Proceed with dependent operations"
+          on_error:
+            - "Extract error messages"
+            - "Log failure details"
+            - "Optionally retry or escalate"
+
+      code_example: |
+        async function runConsolidationWithMonitoring(params) {
+          // Step 1: Trigger
+          const response = await callHandler(
+            'ConsolidationIntegration_RunConsolidationIntegration',
+            params
+          );
+
+          if (response.errors?.length > 0) {
+            throw new Error(response.errors.join(', '));
+          }
+
+          const jobId = response.JobID;
+
+          // Step 2: Poll
+          const result = await pollJobStatus(jobId);
+
+          // Step 3: Handle Result
+          if (result.success) {
+            console.log('Consolidation completed:', result.messages);
+            return result;
+          } else {
+            throw new Error('Consolidation failed: ' + result.errors.join(', '));
+          }
+        }
+
+    consolidation_workflow_with_jobs:
+      name: "Complete Consolidation Workflow with Job Monitoring"
+      description: "End-to-end consolidation with proper job monitoring"
+      steps:
+        - step: 1
+          name: "Calculate Ownership Percentages"
+          handler: "Ownership_LaunchCalculateIndirectPercentagesJob"
+          monitor: "Job_GetJobStatusPolling"
+          wait_for_completion: true
+
+        - step: 2
+          name: "Run Consolidation Integration"
+          handler: "ConsolidationIntegration_RunConsolidationIntegration"
+          monitor: "Job_GetJobStatusPolling"
+          wait_for_completion: true
+
+        - step: 3
+          name: "Verify Results"
+          handlers:
+            - "ConsolidationIntegration_GetConsolidationIntegration"
+            - "ConsolidationEliminations_GetEliminations"
+          purpose: "Confirm calculations completed correctly"
+
+  # ============================================================================
+  # ERROR HANDLING
+  # ============================================================================
+  error_handling:
+    job_errors:
+      description: "Common job error scenarios and handling"
+      scenarios:
+        - error: "Job not found"
+          cause: "Invalid JobID or job was deleted"
+          response: "DataException with message"
+          handling: "Verify JobID, check if job was killed"
+
+        - error: "Access denied"
+          cause: "User cannot view this job"
+          response: "AccessDeniedException"
+          handling: "User can only view own jobs or needs Job_GetJobs permission"
+
+        - error: "Job timeout"
+          cause: "Job exceeded maximum execution time"
+          response: "JobStatus = '3' (Error)"
+          handling: "Check job logs, may need to retry with smaller scope"
+
+        - error: "Job failed"
+          cause: "Business logic or data error"
+          response: "JobStatus = '3', errors array populated"
+          handling: "Parse error messages, fix underlying issue, retry"
+
+    retry_strategies:
+      description: "When and how to retry failed jobs"
+      strategies:
+        - condition: "Transient error (network, timeout)"
+          action: "Wait and retry with Job_StartNowJobs"
+          max_retries: 3
+
+        - condition: "Data validation error"
+          action: "Fix data issue, create new job"
+          max_retries: 1
+
+        - condition: "Permission error"
+          action: "Do not retry, escalate to admin"
+          max_retries: 0
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Job/JobService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Job/JobController.cs"
+      - "Sigma.Mona/EF/Entities/Job.cs"
+    handler_count: 4
+    purpose: |
+      Enable AI agents to properly monitor and manage background jobs including:
+      - Polling job status until completion
+      - Handling job success and failure scenarios
+      - Managing job lifecycle (start, kill)
+      - Retrieving job output files
+
+      This is CRITICAL infrastructure for any agent orchestrating async operations.

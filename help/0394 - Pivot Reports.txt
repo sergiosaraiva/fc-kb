@@ -1,0 +1,55 @@
+Topics:
+Pivot Report Creation, Pivot Report Configuration, Data Analysis, Report Generation
+
+Keywords:
+Pivot Report, Data Analysis, Report Configuration, Financial Data, User Reports, OLAP Export, Drill Analysis
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on creating and running pivot reports. The Pivot Report Creation section explains how to define and configure pivot reports, allowing for detailed data analysis and customization. The Run Pivot Reports section details the process of running and interacting with pivot reports, including options for filtering, sorting, and saving reports. These instructions ensure users can efficiently create and analyze pivot reports for comprehensive financial insights.
+
+Contents:
+Create a pivot report
+The Define Pivot Reports page offers the functionality to create a new code for a pivot report and define its configuration settings. This allows you to customize the pivot report according to your specific needs and requirements. Pivot reports offer the functionality to drill into the database, allowing you to explore the underlying data in more detail. These reports are built upon user reports, meaning that user reports are a prerequisite for defining a new pivot report.
+
+To access the Define Pivot Reports page, click Reports > Pivot Reports > Define Pivot Reports.
+
+The left-side panel displays a list of existing report definitions. You can select and modify an existing report. The right-side panel is the report definition area.
+
+Duplicate a report:
+1. On the left-side panel, select the report you want to duplicate and click .
+2. In the Code field, enter a unique code.
+3. Optionally, modify any or all of the other fields as needed.
+4. Click .
+
+Configure a pivot report:
+1. Click .
+2. Provide the following information in the fields:
+   - Code: Unique code to identify your definition on the list.
+   - Description: Text describing the use of the report.
+   - Type: Type of the custom report to use, for example, Closing, Flows, Dimensions, etc. Your selection impacts the content of the pivot.
+   - Custom Report: Code of the custom report to use. Only the accounts available directly or indirectly in the selected report type will be available in the pivot.
+   - Journal Summation: Journal to include in the output.
+   - POV1, POV2, POV3: If selected, the drop-down is activated and you can select a POV to include in the drill analysis.
+   - Cube Definitions: Links
+
+the pivot to the output of an OLAP export in order to get better performance re-using previously processed data.
+   - Public: If selected, the report will be available for all users. Otherwise, the report is available for the current user only.
+3. Click .
+4. Click to open the Run Reports page where you actually generate the Pivot report.
+
+Run pivot reports
+The Run Reports page is where you actually run the reports that you configure on the Define Pivot Reports page. Pivot reports allow you to perform your own analysis from the bundle adjusted level to the consolidation data. You can drag and drop fields from the filter area to the row, the column, and the data area. Like in an Excel pivot table, you can select any dimension from the list in the filter section of the page, and put it in row or column and apply filters to that dimension. By adding dimensions, you can see the underlying elements that have impacted the final result displayed in some reports. The figures in the report are refreshed each time the data is updated in Financial Consolidation. You can save your pivot report in order to reuse it; and export it in an Excel format.
+
+To access the Run Reports page, click Reports > Pivot Reports > Run Pivot Reports.
+
+You can also access the Run Reports page when you click or on the Define Pivots Reports page.
+
+Run a pivot report:
+1. Select a report from the Choose your report field. Reports configured on the Define Pivot Reports page are listed in the drop-down.
+2. From the All panel, drag fields to the Row panel, Column panel, or Data panel to split the figures.
+3. For each of the dimensions you selected, you can click to display a drop-drop list that includes a Search function and selection options. Use the Search function to limit the data displayed. For example, to see account numbers beginning with 13, enter 13 in the Search field and press enter.
+4. You have these options to view the selected dimensions:
+   - To see the dimension in a single field, click the arrow beside it to expand it.
+   - To see the selected dimension in all the fields, right-click on any of the fields and then select Expand All from the menu. To collapse the rows, right-click again and select Collapse All.
+5. When you have finished defining the content, click . Saving your report allows you to reuse it. You can also click and save it with a different name.
+6. Click . The report is generated and downloaded to your machine.

@@ -1,0 +1,593 @@
+# Currency Translation Decision Tree
+# Determines: Which rate type (CC, AC, MC, etc.) and method to apply
+# Based on: Account type, conversion method, IAS 21 requirements
+# Implementation: P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_*.sql
+
+decision_tree:
+  name: "Currency Translation Rate Selection"
+  version: "1.0"
+  description: "Determines exchange rate type for currency translation based on account characteristics"
+
+  # Implementation reference
+  implementation:
+    procedures:
+      - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_CLOSING.sql"
+      - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_FLOWS.sql"
+      - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_HISTORICAL.sql"
+      - "P_CONSO_HELPER_FILL_EXCHANGERATE.sql"
+    tables:
+      company: "TS014C0.ConversionMethod"
+      account: "TS010S0.RateType1, RateType2, FlagHistoricalRate1, FlagHistoricalRate2"
+      rates: "TS017R0"
+
+  # Rate type definitions
+  rate_types:
+    CC:
+      code: "CC"
+      name: "Closing Current"
+      description: "Period-end spot rate"
+      usage: "Balance sheet monetary items (standard)"
+      ias21_reference: "IAS 21.23(a)"
+
+    AC:
+      code: "AC"
+      name: "Average Current"
+      description: "Period average rate"
+      usage: "P&L items (standard)"
+      ias21_reference: "IAS 21.23(b)"
+
+    MC:
+      code: "MC"
+      name: "Monthly Cumulative"
+      description: "Progressive monthly average"
+      usage: "P&L with monthly precision"
+      formula: "(CurrentAmount - PriorMonthLC) × MonthAvg + PriorMonthGC"
+
+    CR:
+      code: "CR"
+      name: "Closing Reference"
+      description: "Prior period closing rate"
+      usage: "Opening balance translation"
+
+    AR:
+      code: "AR"
+      name: "Average Reference"
+      description: "Prior period average rate"
+      usage: "Prior period P&L comparison"
+
+    MR:
+      code: "MR"
+      name: "Monthly Reference"
+      description: "Prior period monthly cumulative"
+      usage: "Prior period monthly comparison"
+
+    NR:
+      code: "NR"
+      name: "No Rate"
+      description: "No translation (same currency)"
+      usage: "Company currency = Consolidation currency"
+      rate_value: 1.0
+
+  # Required inputs
+  inputs:
+    - name: "account_type"
+      type: "enum"
+      values: ["balance_sheet", "income_statement", "equity"]
+      source: "TS010S0.AccountType (B=Balance, P=P&L)"
+      description: "Account classification"
+      required: true
+
+    - name: "account_subtype"
+      type: "enum"
+      values: ["monetary", "non_monetary", "capital", "reserves", "retained_earnings", "cta"]
+      description: "Detailed account classification"
+      required: false
+
+    - name: "conversion_method"
+      type: "integer"
+      values: [1, 2]
+      source: "TS014C0.ConversionMethod"
+      description: "Company's conversion method (determines which rate set)"
+      required: true
+      default: 1
+
+    - name: "company_currency"
+      type: "string"
+      source: "TS014C0.CurrCode"
+      description: "Company's local currency"
+      required: true
+
+    - name: "consolidation_currency"
+      type: "string"
+      source: "TS096S0.ConsCurrCode"
+      description: "Group reporting currency"
+      required: true
+
+    - name: "is_hyperinflationary"
+      type: "boolean"
+      description: "Entity operates in hyperinflationary economy (IAS 29)"
+      required: false
+      default: false
+
+    - name: "flag_historical_rate"
+      type: "boolean"
+      source: "TS010S0.FlagHistoricalRate1 or FlagHistoricalRate2"
+      description: "Account requires historical rate treatment"
+      required: false
+
+    - name: "rate_type_override"
+      type: "string"
+      source: "TS010S0.RateType1 or RateType2"
+      description: "Account-specific rate type if configured"
+      required: false
+
+  # Decision tree root
+  root: "check_same_currency"
+
+  # Decision nodes
+  nodes:
+    # Node 1: Check if translation needed
+    check_same_currency:
+      type: "decision"
+      question: "Is company currency the same as consolidation currency?"
+      evaluation: "company_currency == consolidation_currency"
+      branches:
+        - condition: "company_currency == consolidation_currency"
+          result: "NO_TRANSLATION"
+        - condition: "company_currency != consolidation_currency"
+          next: "check_conversion_method"
+
+    # Node 2: Determine which conversion method
+    check_conversion_method:
+      type: "decision"
+      question: "Which conversion method is configured for the company?"
+      evaluation: "conversion_method"
+      guidance: |
+        Conversion Method determines which rate set to use:
+        - Method 1: Uses RateType1 and FlagHistoricalRate1 (standard IAS 21)
+        - Method 2: Uses RateType2 and FlagHistoricalRate2 (alternative/temporal)
+      branches:
+        - condition: "conversion_method == 1"
+          next: "method1_account_type"
+        - condition: "conversion_method == 2"
+          next: "check_hyperinflation"
+
+    # Method 1 (Current Rate Method) Branch
+    method1_account_type:
+      type: "decision"
+      question: "What is the account type?"
+      evaluation: "account_type"
+      branches:
+        - condition: "account_type == 'balance_sheet'"
+          next: "method1_bs_subtype"
+        - condition: "account_type == 'income_statement'"
+          result: "RATE_AC_PL"
+        - condition: "account_type == 'equity'"
+          next: "method1_equity_subtype"
+
+    method1_bs_subtype:
+      type: "decision"
+      question: "Is this an equity account requiring historical rate treatment?"
+      evaluation: "flag_historical_rate == true"
+      branches:
+        - condition: "flag_historical_rate == true"
+          result: "RATE_CC_HISTORICAL"
+        - condition: "flag_historical_rate == false"
+          next: "check_rate_override_bs"
+
+    check_rate_override_bs:
+      type: "decision"
+      question: "Is there a rate type override configured for this account?"
+      evaluation: "rate_type_override != null"
+      branches:
+        - condition: "rate_type_override == 'AC'"
+          result: "RATE_AC_BS_OVERRIDE"
+        - condition: "rate_type_override == 'MC'"
+          result: "RATE_MC_BS"
+        - condition: "rate_type_override != null"
+          result: "RATE_CUSTOM"
+        - condition: "default"
+          result: "RATE_CC_BS"
+
+    method1_equity_subtype:
+      type: "decision"
+      question: "What type of equity account?"
+      evaluation: "account_subtype"
+      branches:
+        - condition: "account_subtype == 'capital'"
+          result: "RATE_CC_HISTORICAL"
+        - condition: "account_subtype == 'reserves'"
+          result: "RATE_CC_HISTORICAL"
+        - condition: "account_subtype == 'retained_earnings'"
+          result: "RATE_CC_HISTORICAL"
+        - condition: "account_subtype == 'cta'"
+          result: "CTA_CALCULATED"
+        - condition: "default"
+          result: "RATE_CC_HISTORICAL"
+
+    # Method 2 (Temporal Method) Branch
+    check_hyperinflation:
+      type: "decision"
+      question: "Is this entity in a hyperinflationary economy (IAS 29)?"
+      evaluation: "is_hyperinflationary"
+      branches:
+        - condition: "is_hyperinflationary == true"
+          next: "temporal_hyperinflation"
+        - condition: "is_hyperinflationary == false"
+          next: "temporal_standard"
+
+    temporal_hyperinflation:
+      type: "decision"
+      question: "What is the account type for hyperinflationary translation?"
+      evaluation: "account_type"
+      guidance: |
+        IAS 29 Hyperinflation Treatment:
+        1. First, restate to current purchasing power using price index
+        2. Then translate using closing rate for ALL items
+        Note: Prophix.Conso requires external restatement before translation
+      branches:
+        - condition: "account_type == 'balance_sheet'"
+          result: "TEMPORAL_HYPER_BS"
+        - condition: "account_type == 'income_statement'"
+          result: "TEMPORAL_HYPER_PL"
+        - condition: "account_type == 'equity'"
+          result: "TEMPORAL_HYPER_EQUITY"
+
+    temporal_standard:
+      type: "decision"
+      question: "What is the account type for temporal method?"
+      evaluation: "account_type"
+      branches:
+        - condition: "account_type == 'balance_sheet'"
+          next: "temporal_bs_type"
+        - condition: "account_type == 'income_statement'"
+          next: "temporal_pl_type"
+        - condition: "account_type == 'equity'"
+          result: "RATE_HISTORICAL"
+
+    temporal_bs_type:
+      type: "decision"
+      question: "Is this a monetary or non-monetary item?"
+      evaluation: "account_subtype"
+      guidance: |
+        Temporal Method for Balance Sheet:
+        - Monetary items (cash, receivables, payables): Closing rate
+        - Non-monetary items (inventory, PPE, intangibles): Historical rate
+      branches:
+        - condition: "account_subtype == 'monetary'"
+          result: "TEMPORAL_CC_MONETARY"
+        - condition: "account_subtype == 'non_monetary'"
+          result: "TEMPORAL_HISTORICAL"
+        - condition: "flag_historical_rate == true"
+          result: "TEMPORAL_HISTORICAL"
+        - condition: "default"
+          result: "TEMPORAL_CC_MONETARY"
+
+    temporal_pl_type:
+      type: "decision"
+      question: "Is this depreciation/amortization or other P&L?"
+      evaluation: "account_subtype"
+      guidance: |
+        Temporal Method for P&L:
+        - Revenue/Expenses: Average rate (approximates transaction date)
+        - Depreciation: Historical rate (matches related asset)
+        - COGS: May require historical rate if inventory at historical
+      branches:
+        - condition: "account_subtype == 'depreciation'"
+          result: "TEMPORAL_HISTORICAL_PL"
+        - condition: "flag_historical_rate == true"
+          result: "TEMPORAL_HISTORICAL_PL"
+        - condition: "default"
+          result: "TEMPORAL_AC_PL"
+
+  # Result definitions
+  results:
+    # No translation needed
+    NO_TRANSLATION:
+      rate_type: "NR"
+      rate_type_name: "No Rate"
+      rate_value: 1.0
+      description: "No translation needed - company and consolidation currencies match"
+      formula: "GroupAmount = LocalAmount"
+      documentation: "../05-currency-translation/translation-methods.md"
+
+    # Method 1 (Current Rate) Results
+    RATE_CC_BS:
+      rate_type: "CC"
+      rate_type_name: "Closing Current"
+      method: "Current Rate (Standard)"
+      description: "Balance sheet items at period-end closing rate"
+      formula: "GroupAmount = LocalAmount × ClosingRate"
+      ias21_paragraph: "23(a)"
+      configuration:
+        table: "TS010S0"
+        column: "RateType1"
+        value: "CC"
+        flag_historical: false
+      documentation: "../05-currency-translation/exchange-rate-types.md"
+
+    RATE_AC_PL:
+      rate_type: "AC"
+      rate_type_name: "Average Current"
+      method: "Current Rate (Standard)"
+      description: "P&L items at period average rate"
+      formula: "GroupAmount = LocalAmount × AverageRate"
+      ias21_paragraph: "23(b)"
+      rationale: "P&L is a 'movie' not a 'picture' - average rate approximates transaction dates"
+      configuration:
+        table: "TS010S0"
+        column: "RateType1"
+        value: "AC"
+        flag_historical: false
+      documentation: "../05-currency-translation/exchange-rate-types.md"
+
+    RATE_MC_BS:
+      rate_type: "MC"
+      rate_type_name: "Monthly Cumulative"
+      method: "Current Rate (Progressive)"
+      description: "Monthly cumulative translation for precision"
+      formula: "(CurrentAmount - PriorMonthLC) × MonthAvg + PriorMonthGC"
+      use_case: "Mid-year entries requiring monthly precision"
+      configuration:
+        table: "TS010S0"
+        column: "RateType1"
+        value: "MC"
+      documentation: "../05-currency-translation/exchange-rate-types.md"
+
+    RATE_AC_BS_OVERRIDE:
+      rate_type: "AC"
+      rate_type_name: "Average Current (Override)"
+      method: "Current Rate (Override)"
+      description: "B/S account with average rate override"
+      use_case: "Special B/S accounts requiring average rate treatment"
+      configuration:
+        table: "TS010S0"
+        column: "RateType1"
+        value: "AC"
+      documentation: "../05-currency-translation/exchange-rate-types.md"
+
+    RATE_CC_HISTORICAL:
+      rate_type: "CC"
+      rate_type_name: "Closing Current with Historical Adjustment"
+      method: "Current Rate with Historical Treatment"
+      description: "Translated at closing rate, then adjusted for historical rate requirement"
+      process:
+        step1: "Translate at closing rate (CC)"
+        step2: "Create T075 adjustment journal to achieve historical rate effect"
+        step3: "Post difference to TDBS (Translation Difference Balance Sheet)"
+      accounts:
+        - "Capital accounts"
+        - "Share premium"
+        - "Reserves at acquisition"
+        - "Other historical equity items"
+      configuration:
+        table: "TS010S0"
+        column: "FlagHistoricalRate1"
+        value: true
+      procedure: "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_HISTORICAL"
+      documentation: "../05-currency-translation/translation-adjustments.md"
+
+    CTA_CALCULATED:
+      rate_type: "CALCULATED"
+      rate_type_name: "Cumulative Translation Adjustment"
+      method: "Balancing Entry"
+      description: "CTA is calculated as the balancing amount"
+      formula: "CTA = Translated B/S Total - Translated Equity - Translated Liabilities"
+      flow: "TRANSADJ"
+      accounts:
+        special: "CTA or Translation Adjustment Reserve"
+      documentation: "../05-currency-translation/translation-adjustments.md"
+
+    RATE_CUSTOM:
+      rate_type: "CUSTOM"
+      rate_type_name: "Custom Rate Type"
+      method: "Account-Specific"
+      description: "Rate type configured at account level"
+      configuration:
+        table: "TS010S0"
+        columns: ["RateType1", "RateType2"]
+      documentation: "../05-currency-translation/exchange-rate-types.md"
+
+    # Method 2 (Temporal) Results
+    TEMPORAL_CC_MONETARY:
+      rate_type: "CC"
+      rate_type_name: "Closing Current (Monetary)"
+      method: "Temporal Method"
+      description: "Monetary items at closing rate under temporal method"
+      items:
+        - "Cash and cash equivalents"
+        - "Trade receivables"
+        - "Trade payables"
+        - "Loans and borrowings"
+        - "Other monetary assets/liabilities"
+      configuration:
+        conversion_method: 2
+        rate_type2: "CC"
+        flag_historical2: false
+      documentation: "../05-currency-translation/translation-methods.md"
+
+    TEMPORAL_HISTORICAL:
+      rate_type: "HISTORICAL"
+      rate_type_name: "Historical Rate (Non-Monetary)"
+      method: "Temporal Method"
+      description: "Non-monetary items at historical rate under temporal method"
+      items:
+        - "Property, plant and equipment"
+        - "Intangible assets"
+        - "Inventory (at cost)"
+        - "Prepaid expenses"
+        - "Deferred tax"
+      implementation: "Achieved via FlagHistoricalRate2 = 1"
+      configuration:
+        conversion_method: 2
+        rate_type2: "CC"
+        flag_historical2: true
+      documentation: "../05-currency-translation/translation-methods.md"
+
+    TEMPORAL_AC_PL:
+      rate_type: "AC"
+      rate_type_name: "Average Current (Temporal P&L)"
+      method: "Temporal Method"
+      description: "Standard P&L items at average rate"
+      rationale: "Approximates transaction date rates"
+      configuration:
+        conversion_method: 2
+        rate_type2: "AC"
+      documentation: "../05-currency-translation/translation-methods.md"
+
+    TEMPORAL_HISTORICAL_PL:
+      rate_type: "HISTORICAL"
+      rate_type_name: "Historical Rate (Temporal P&L)"
+      method: "Temporal Method"
+      description: "P&L items related to non-monetary assets at historical rate"
+      items:
+        - "Depreciation expense"
+        - "Amortization expense"
+        - "COGS (if inventory at historical)"
+      configuration:
+        conversion_method: 2
+        flag_historical2: true
+      documentation: "../05-currency-translation/translation-methods.md"
+
+    RATE_HISTORICAL:
+      rate_type: "HISTORICAL"
+      rate_type_name: "Historical Rate"
+      method: "Temporal/Historical"
+      description: "Equity items at historical rate"
+      implementation: "Via T075 historical translation journals"
+      documentation: "../05-currency-translation/translation-adjustments.md"
+
+    # Hyperinflation Results
+    TEMPORAL_HYPER_BS:
+      rate_type: "CC"
+      rate_type_name: "Closing (Post-Restatement)"
+      method: "IAS 29 Hyperinflation"
+      description: "After IAS 29 restatement, translate all B/S at closing rate"
+      prerequisite: "Local currency amounts must be restated using price index first"
+      warning: "Prophix.Conso does not automate IAS 29 restatement - external calculation required"
+      process:
+        step1: "Restate local amounts to current purchasing power (external)"
+        step2: "Import restated amounts"
+        step3: "Translate all items at closing rate"
+      configuration:
+        conversion_method: 2
+        rate_type2: "CC"
+      documentation: "../05-currency-translation/hyperinflation-accounting.md"
+
+    TEMPORAL_HYPER_PL:
+      rate_type: "CC"
+      rate_type_name: "Closing (Hyperinflation P&L)"
+      method: "IAS 29 Hyperinflation"
+      description: "P&L translated at closing rate (already in current purchasing power)"
+      prerequisite: "Local P&L must be restated for inflation first"
+      configuration:
+        conversion_method: 2
+        rate_type2: "CC"
+      documentation: "../05-currency-translation/hyperinflation-accounting.md"
+
+    TEMPORAL_HYPER_EQUITY:
+      rate_type: "CC"
+      rate_type_name: "Closing (Hyperinflation Equity)"
+      method: "IAS 29 Hyperinflation"
+      description: "Equity restated and translated at closing"
+      note: "Translation difference goes to P&L, not OCI, under IAS 29"
+      configuration:
+        conversion_method: 2
+        rate_type2: "CC"
+      documentation: "../05-currency-translation/hyperinflation-accounting.md"
+
+  # Standard configurations
+  standard_configurations:
+    current_rate_method:
+      name: "IAS 21 Current Rate Method"
+      description: "Standard translation for functional currency subsidiaries"
+      conversion_method: 1
+      account_settings:
+        - account_type: "Assets (B/S)"
+          rate_type1: "CC"
+          flag_historical1: false
+        - account_type: "Liabilities (B/S)"
+          rate_type1: "CC"
+          flag_historical1: false
+        - account_type: "Capital (Equity)"
+          rate_type1: "CC"
+          flag_historical1: true
+        - account_type: "Reserves (Equity)"
+          rate_type1: "CC"
+          flag_historical1: true
+        - account_type: "Income (P&L)"
+          rate_type1: "AC"
+          flag_historical1: false
+        - account_type: "Expenses (P&L)"
+          rate_type1: "AC"
+          flag_historical1: false
+
+    temporal_method:
+      name: "Temporal Method"
+      description: "Alternative method for specific scenarios"
+      conversion_method: 2
+      account_settings:
+        - account_type: "Monetary Assets"
+          rate_type2: "CC"
+          flag_historical2: false
+        - account_type: "Non-Monetary Assets"
+          rate_type2: "CC"
+          flag_historical2: true
+        - account_type: "Monetary Liabilities"
+          rate_type2: "CC"
+          flag_historical2: false
+        - account_type: "Non-Monetary Liabilities"
+          rate_type2: "CC"
+          flag_historical2: true
+        - account_type: "Equity"
+          rate_type2: "CC"
+          flag_historical2: true
+        - account_type: "Income/Expenses"
+          rate_type2: "AC"
+          flag_historical2: false
+        - account_type: "Depreciation/Amortization"
+          rate_type2: "AC"
+          flag_historical2: true
+
+  # Translation difference handling
+  translation_differences:
+    current_rate_method:
+      posting: "OCI (Other Comprehensive Income)"
+      flow: "TRANSADJ"
+      accounts:
+        balance_sheet: "TDBS (Translation Difference Balance Sheet)"
+        income_statement: "TDPL (Translation Difference P&L)"
+      recycling: "Recycled to P&L on disposal of foreign operation"
+      ias21_paragraph: "32"
+
+    temporal_method:
+      posting: "P&L (Current Period)"
+      rationale: "Temporal method differences are operating, not translation"
+      recycling: "N/A - already in P&L"
+
+    hyperinflation:
+      posting: "P&L (Current Period)"
+      rationale: "IAS 29 requires all translation differences in P&L"
+      recycling: "N/A - already in P&L"
+
+  # References
+  references:
+    standards:
+      - "IAS 21 - The Effects of Changes in Foreign Exchange Rates"
+      - "IAS 29 - Financial Reporting in Hyperinflationary Economies"
+    theory:
+      - chunk: "0232"
+        topic: "Currency Translation Principles"
+      - chunk: "0233"
+        topic: "Balance Sheet Translation"
+      - chunk: "0234"
+        topic: "P&L Translation"
+      - chunk: "0235"
+        topic: "Flow Translation"
+      - chunk: "0236-0238"
+        topic: "Translation Adjustments"
+    implementation:
+      - document: "../05-currency-translation/translation-methods.md"
+      - document: "../05-currency-translation/exchange-rate-types.md"
+      - document: "../05-currency-translation/translation-adjustments.md"
+      - document: "../05-currency-translation/hyperinflation-accounting.md"

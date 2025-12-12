@@ -1,0 +1,1595 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.067,
+                0.365,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.131,
+                0.118,
+                0.858,
+                0.193
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P(1)</td><td>S(2)</td><td>S(3)</td><td>S(4)</td><td>Consolidation</td></tr><tr><td>Income</td><td>1,000</td><td>600</td><td></td><td></td><td></td><td></td><td>1,600</td></tr><tr><td>Expenses</td><td>900</td><td>550</td><td></td><td></td><td></td><td></td><td>1,450</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td></td><td></td><td></td><td>150</td></tr><tr><td>3rd Parties result</td><td colspan=\"6\"></td><td>24.5</td></tr><tr><td>Group result</td><td colspan=\"6\"></td><td>125.5</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.209,
+                0.871,
+                0.243
+            ],
+            "angle": 0,
+            "content": "It looks more like a spreadsheet approach with adjustments booked in each company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.258,
+                0.871,
+                0.289
+            ],
+            "angle": 0,
+            "content": "We start first with the statutory accounts of each company, one company per column and then"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.291,
+                0.868,
+                0.322
+            ],
+            "angle": 0,
+            "content": "- Column P (1) eliminates the investments on S by reclassifying them on a Link account"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.337,
+                0.868,
+                0.37
+            ],
+            "angle": 0,
+            "content": "- Column S (2) reclassify \\(49\\%\\) of Minority interests from equity to the corresponding Minority interests account"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.385,
+                0.868,
+                0.433
+            ],
+            "angle": 0,
+            "content": "- Column S (3) eliminates the \\(51\\%\\) group part of equity and reclassifies it on the consolidated reserves. At this point, equity of S is fully eliminated"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.45,
+                0.868,
+                0.498
+            ],
+            "angle": 0,
+            "content": "- Column S (4) consists in booking in S on the Link account the opposite value of the investments on S. The counterpart is booked on Consolidated reserves."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.147,
+                0.291,
+                0.868,
+                0.498
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.514,
+                0.871,
+                0.547
+            ],
+            "angle": 0,
+            "content": "Consolidated accounts are represented in the last column on the right, which consists in a simple horizontal addition of all amounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.563,
+                0.871,
+                0.627
+            ],
+            "angle": 0,
+            "content": "Of course, consolidated value of the Link account is zero by construction and we can see that the Consolidated reserves are obtained by adding 204 which is the group part of equity and (120) which is the value of the investment on S in P accounts."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.661,
+                0.691,
+                0.684
+            ],
+            "angle": 0,
+            "content": "4.2 Proportional integration method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.705,
+                0.87,
+                0.772
+            ],
+            "angle": 0,
+            "content": "According to the method of proportional integration, the Assets, Liabilities, Expenses and Income of a joint subsidiary are included in the consolidated financial statements in proportion to the percentage held by the parent company."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.786,
+                0.208,
+                0.802
+            ],
+            "angle": 0,
+            "content": "Example"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.339,
+                0.81,
+                0.67,
+                0.849
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.3,
+                0.07,
+                0.858,
+                0.086
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.105,
+                0.131,
+                0.516,
+                0.237
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Investments S</td><td>120</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities</td><td>250</td></tr><tr><td>Total</td><td>1,150</td><td>Total</td><td>1,150</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.529,
+                0.131,
+                0.898,
+                0.237
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">S</td></tr><tr><td></td><td></td><td>Capital 200</td></tr><tr><td></td><td></td><td>Reserves 150</td></tr><tr><td></td><td></td><td>Result 50</td></tr><tr><td>Assets</td><td>700</td><td>Liabilities 300</td></tr><tr><td>Total</td><td>700</td><td>Total 700</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.104,
+                0.244,
+                0.508,
+                0.291
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>900</td><td>Income</td><td>1,000</td></tr><tr><td>Result</td><td>100</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.529,
+                0.244,
+                0.897,
+                0.291
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>550</td><td>Income</td><td>600</td></tr><tr><td>Result</td><td>50</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.277,
+                0.319,
+                0.75,
+                0.436
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">P + S</td></tr><tr><td></td><td></td><td>Capital 500</td></tr><tr><td></td><td></td><td>Reserves 300</td></tr><tr><td></td><td></td><td>Result 100</td></tr><tr><td></td><td></td><td>Conso. reserves (S) 80</td></tr><tr><td></td><td></td><td>Minority int. 0</td></tr><tr><td>Assets</td><td>1,380</td><td>Liabilities 400</td></tr><tr><td>Total</td><td>1,380</td><td>Total 1,380</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.277,
+                0.446,
+                0.75,
+                0.521
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>1,175</td><td>Income</td><td>1,300</td></tr><tr><td>Result</td><td>125</td><td></td><td></td></tr><tr><td>Minor. int. res.</td><td>0</td><td></td><td></td></tr><tr><td>Group result</td><td>125</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.541,
+                0.24,
+                0.558
+            ],
+            "angle": 0,
+            "content": "Explanation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.574,
+                0.879,
+                0.625
+            ],
+            "angle": 0,
+            "content": "At the balance sheet, the major difference compared to the global integration comes because the Assets and Liabilities of S are integrated in proportion to the financial percentage held. Therefore:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.638,
+                0.871,
+                0.656
+            ],
+            "angle": 0,
+            "content": "The Capital, the Reserves and the Result of P are integrated at \\(100\\%\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.67,
+                0.877,
+                0.72
+            ],
+            "angle": 0,
+            "content": "- The Capital, the Reserves and the Result of S are integrated at \\(50\\%\\) to calculate the Consolidated reserves \\(= 80 = 50\\%\\) \\* [200+150+50] - 120 (investment of S in P)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.734,
+                0.877,
+                0.769
+            ],
+            "angle": 0,
+            "content": "The Assets of S are integrated at \\(50\\%\\) and the Assets of P at \\(100\\% = [50\\% * 700] + [100\\% * 10301] = 1380\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.782,
+                0.877,
+                0.817
+            ],
+            "angle": 0,
+            "content": "The Liabilities of S are integrated at \\(50\\%\\) and the Liabilities of P at \\(100\\% = [50\\%^{*}300] + [100\\%^{*}250] = 400\\)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.143,
+                0.638,
+                0.877,
+                0.817
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.832,
+                0.877,
+                0.867
+            ],
+            "angle": 0,
+            "content": "For the Profit and Loss account, the accounts of S are integrated in proportion to the financial percentage:"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.065,
+                0.373,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.119,
+                0.884,
+                0.154
+            ],
+            "angle": 0,
+            "content": "The Expenses of S are integrated at \\(50\\%\\) and P at \\(100\\% = [50\\% * 550] + [100\\% / 0] \\times 900] = 1175\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.164,
+                0.885,
+                0.203
+            ],
+            "angle": 0,
+            "content": "The Income of S are integrated at \\(50\\%\\) and P at \\(100\\% = [50\\% \\times 600] + [100\\% \\times 1000] = 1300\\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.214,
+                0.884,
+                0.25
+            ],
+            "angle": 0,
+            "content": "The Result of S is integrated at \\(50\\%\\) and P at \\(100\\% = [50\\%^{*}50] + [100\\% / 100] = 125\\)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.119,
+                0.885,
+                0.25
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.264,
+                0.884,
+                0.297
+            ],
+            "angle": 0,
+            "content": "Let's consider now the accounting approach for this proportional consolidation method."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.132,
+                0.307,
+                0.875,
+                0.371
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Investments S</td><td>120</td><td rowspan=\"2\">700</td><td rowspan=\"2\">(120)</td><td rowspan=\"2\">(350)</td><td></td><td></td><td>0</td></tr><tr><td>Assets</td><td>1,030</td><td></td><td></td><td>1,380</td></tr><tr><td>Link account</td><td></td><td></td><td>120</td><td></td><td></td><td>(120)</td><td>0</td></tr><tr><td>Total Assets</td><td>1,150</td><td>700</td><td>0</td><td>(350)</td><td>0</td><td>(120)</td><td>1,380</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.132,
+                0.4,
+                0.875,
+                0.537
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Capital</td><td>500</td><td>200</td><td></td><td>(100)</td><td>(100)</td><td></td><td>500</td></tr><tr><td>Resewes</td><td>300</td><td>150</td><td></td><td>(75)</td><td>(75)</td><td></td><td>300</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td>(25)</td><td>(25)</td><td></td><td>100</td></tr><tr><td>Conso, resewes(S)</td><td></td><td></td><td></td><td></td><td>200</td><td>(120)</td><td>80</td></tr><tr><td>Minority int.</td><td>P</td><td>S</td><td>P (1)</td><td>S(2)</td><td>S(3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Income</td><td>1,000</td><td>600</td><td></td><td>(300)</td><td></td><td></td><td>1,300</td></tr><tr><td>Expenses</td><td>900</td><td>550</td><td></td><td>(275)</td><td></td><td></td><td>1,175</td></tr><tr><td>Result</td><td>100</td><td>50</td><td>0</td><td>(25)</td><td>0</td><td>0</td><td>125</td></tr><tr><td>3rd Parties result Group result</td><td colspan=\"6\"></td><td>0 125</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.572,
+                0.818,
+                0.59
+            ],
+            "angle": 0,
+            "content": "Again, we start with the statutory accounts of each companies and then"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.185,
+                0.603,
+                0.882,
+                0.638
+            ],
+            "angle": 0,
+            "content": "Column P (1) eliminates the investments in P accounts, just as we did for the global integration method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.652,
+                0.883,
+                0.687
+            ],
+            "angle": 0,
+            "content": "- Column S (2) eliminates the \\(50\\%\\) of Assets, Liabilities, Income and Expenses which cannot be integrated in the consolidated accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.7,
+                0.882,
+                0.734
+            ],
+            "angle": 0,
+            "content": "- Column S (3) eliminates the \\(50\\%\\) of equity and reclassify the total amount on the Consolidated reserves"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.652,
+                0.883,
+                0.734
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.185,
+                0.749,
+                0.882,
+                0.783
+            ],
+            "angle": 0,
+            "content": "Column S (4) processes the investment via the Link account in the same way as before."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.797,
+                0.826,
+                0.815
+            ],
+            "angle": 0,
+            "content": "The consolidated figures are just the one obtained by horizontal addition."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.069,
+                0.861,
+                0.086
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.119,
+                0.486,
+                0.143
+            ],
+            "angle": 0,
+            "content": "4.3 The equity method"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.164,
+                0.883,
+                0.214
+            ],
+            "angle": 0,
+            "content": "An investment consolidated with the equity method is recorded in the consolidated balance sheet for the part held in the share capital of the owned company, including the result of the year."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.229,
+                0.885,
+                0.294
+            ],
+            "angle": 0,
+            "content": "There are therefore, not as in the other two methods, additions of the Assets and Liabilities with the parent company. This makes sense given the fact that the Assets and Liabilities of the company consolidated via equity method are, by definition, not controlled."
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.108,
+                0.326,
+                0.208,
+                0.342
+            ],
+            "angle": 0,
+            "content": "Example"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.342,
+                0.343,
+                0.68,
+                0.382
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.089,
+                0.414,
+                0.518,
+                0.515
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.536,
+                0.414,
+                0.924,
+                0.514
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.091,
+                0.522,
+                0.517,
+                0.568
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>900</td><td>Income</td><td>1,000</td></tr><tr><td>Result</td><td>100</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.536,
+                0.521,
+                0.924,
+                0.566
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Expenses</td><td>550</td><td>Income</td><td>600</td></tr><tr><td>Result</td><td>50</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.266,
+                0.593,
+                0.789,
+                0.783
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">P+S</td></tr><tr><td rowspan=\"5\">Equity value of S</td><td rowspan=\"5\">196</td><td>Capital    500</td></tr><tr><td>Reserves   300</td></tr><tr><td>Result     100</td></tr><tr><td>Conso. reserves (S)  76</td></tr><tr><td>Minority int.  0</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities   250</td></tr><tr><td>Total</td><td>1,226</td><td>Total      1,226</td></tr><tr><td></td><td></td><td></td></tr><tr><td>Expenses</td><td>900</td><td>Income      1,000</td></tr><tr><td>Result</td><td>124.5</td><td>Profit from Equity cies  24.5</td></tr><tr><td>Minor. int. res.</td><td>0</td><td></td></tr><tr><td>Group res.</td><td>124.5</td><td></td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.803,
+                0.245,
+                0.82
+            ],
+            "angle": 0,
+            "content": "Explanation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.836,
+                0.885,
+                0.869
+            ],
+            "angle": 0,
+            "content": "In the equity method, the investment that company P owns in company S is \"upgraded\" to the part owned in the equity of S."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.11,
+                0.065,
+                0.364,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.12,
+                0.445,
+                0.136
+            ],
+            "angle": 0,
+            "content": "In the consolidated balance sheet:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.152,
+                0.822,
+                0.169
+            ],
+            "angle": 0,
+            "content": "The Capital, the Reserves and the Result are those of company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.182,
+                0.871,
+                0.214
+            ],
+            "angle": 0,
+            "content": "The Consolidated reserves are equal to \\(76 = 49\\%\\) \\((200 + 150 + 50)\\) - 120"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.232,
+                0.669,
+                0.248
+            ],
+            "angle": 0,
+            "content": "The Assets and Liabilities are those of company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.264,
+                0.871,
+                0.297
+            ],
+            "angle": 0,
+            "content": "Investments are upgraded and reclassified under the heading \"Equity value of Equity method companies\" = 196 = 49% * (200 + 150 + 50)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.146,
+                0.152,
+                0.871,
+                0.297
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.312,
+                0.405,
+                0.329
+            ],
+            "angle": 0,
+            "content": "In the profit and loss account:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.344,
+                0.717,
+                0.36
+            ],
+            "angle": 0,
+            "content": "The Income and the Expenses are those of company P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.376,
+                0.871,
+                0.409
+            ],
+            "angle": 0,
+            "content": "Is incorporated under the heading \"Profit from Equity companies\" the result of S, attributable to \\( \\mathrm{P} = 24.5 = 49\\% * 50 \\) (result of S)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.424,
+                0.871,
+                0.456
+            ],
+            "angle": 0,
+            "content": "In return, this has an impact on the result of the Group \\(124.5 = 100\\) (result of \\(\\mathsf{P}\\) ) + 24.5"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.146,
+                0.344,
+                0.871,
+                0.456
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.472,
+                0.871,
+                0.553
+            ],
+            "angle": 0,
+            "content": "In a more general situation where there could exist equity companies making losses and others making profits, the final consolidated P&L will present separately \"Profits from Equity companies\" and \"Losses from Equity companies\". This is a mandatory presentation required by all consolidations rules."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.569,
+                0.871,
+                0.617
+            ],
+            "angle": 0,
+            "content": "For those who have to produce a consolidated cash flow statement, notice that the result of S which is incorporated in the accounts of P is not a cash item."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.634,
+                0.53,
+                0.65
+            ],
+            "angle": 0,
+            "content": "Let's now present the accounting approach."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.109,
+                0.672,
+                0.855,
+                0.747
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Investments S</td><td>120</td><td></td><td>(120)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value of S</td><td></td><td></td><td></td><td>196</td><td></td><td></td><td>196</td></tr><tr><td>Assets</td><td>1,030</td><td>700</td><td></td><td>(700)</td><td></td><td></td><td>1,030</td></tr><tr><td>Link account</td><td></td><td></td><td>120</td><td></td><td></td><td>(120)</td><td>0</td></tr><tr><td>Total Assets</td><td>1,150</td><td>700</td><td>0</td><td>(504)</td><td>0</td><td>(120)</td><td>1,226</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.109,
+                0.764,
+                0.855,
+                0.864
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Capital</td><td>500</td><td>200</td><td></td><td>(102)</td><td>(98)</td><td></td><td>500</td></tr><tr><td>Reserves</td><td>300</td><td>150</td><td></td><td>(76.5)</td><td>(73.5)</td><td></td><td>300</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td>(25.5)</td><td>(24.5)</td><td></td><td>100</td></tr><tr><td>Conso. reserves (S)</td><td></td><td></td><td></td><td></td><td>196</td><td>(120)</td><td>76</td></tr><tr><td>Minority int.</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Liabilities</td><td>250</td><td>300</td><td></td><td>(300)</td><td></td><td></td><td>250</td></tr><tr><td>Total Liabilities</td><td>1,150</td><td>700</td><td>0</td><td>(504)</td><td>0</td><td>(120)</td><td>1,226</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.07,
+                0.86,
+                0.086
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.108,
+                0.124,
+                0.865,
+                0.212
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>5 (3)</td><td>S (4)</td><td>Consolidaton</td></tr><tr><td>Income</td><td>1,000</td><td>600</td><td></td><td>(600)</td><td></td><td></td><td>1,000</td></tr><tr><td>Profit from Equity cies</td><td></td><td></td><td></td><td>25</td><td></td><td></td><td>24.5</td></tr><tr><td>Expenses</td><td>900</td><td>550</td><td></td><td>(550)</td><td></td><td></td><td>900</td></tr><tr><td>Result</td><td>100</td><td>50</td><td>0</td><td>(25.5)</td><td>0</td><td>0</td><td>124.5</td></tr><tr><td>3rd Parties result</td><td colspan=\"6\"></td><td>0</td></tr><tr><td>Group result</td><td colspan=\"6\"></td><td>124.5</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.242,
+                0.837,
+                0.261
+            ],
+            "angle": 0,
+            "content": "- Column P (1) eliminates the investment on S via the Link account"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.274,
+                0.883,
+                0.372
+            ],
+            "angle": 0,
+            "content": "- Column S (2) eliminates all accounts that cannot be integrated in the consolidated accounts, that means all Assets, Liabilities excepted the Equity for which the group must keep its \\(49\\%\\), Income and Expenses. Of course, as each column represents an adjustment, it must be in balance and for the balance sheet, we book the \"Equity value of S\" account which is \\(49\\%\\) * Equity of S."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.387,
+                0.672,
+                0.406
+            ],
+            "angle": 0,
+            "content": "- Column S (3) eliminates the group part in equity"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.42,
+                0.882,
+                0.454
+            ],
+            "angle": 0,
+            "content": "- Column S (4) processes the investment via the Link account in the same way as before."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.144,
+                0.242,
+                0.883,
+                0.454
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.107,
+                0.488,
+                0.761,
+                0.511
+            ],
+            "angle": 0,
+            "content": "4.4 Consolidated reserves of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.534,
+                0.883,
+                0.584
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves are the difference between the indirect percentage held in the equity of a subsidiary and the value of the investment that the parent company owns on this subsidiary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.12,
+                0.598,
+                0.873,
+                0.616
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves = financial indirect \\(\\%\\) equity of S - Investment in P"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.632,
+                0.21,
+                0.648
+            ],
+            "angle": 0,
+            "content": "Example"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.663,
+                0.879,
+                0.697
+            ],
+            "angle": 0,
+            "content": "In this example, parent company creates a company C with a Partner, contributing to \\(80\\%\\) and \\(20\\%\\) to the capital respectively."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.382,
+                0.712,
+                0.637,
+                0.826
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.839,
+                0.884,
+                0.873
+            ],
+            "angle": 0,
+            "content": "The following accounts show that at the end of Year 1, company C makes a profit of 50 and a gross dividend of 20 is paid to the shareholders. At the end"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.481,
+                0.924,
+                0.513,
+                0.939
+            ],
+            "angle": 0,
+            "content": "59"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.066,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.12,
+                0.877,
+                0.155
+            ],
+            "angle": 0,
+            "content": "of year 2, company C makes a profit of 40. Here are the accounts of parent and C companies."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.11,
+                0.169,
+                0.49,
+                0.256
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">Parent</td></tr><tr><td>Investments</td><td>160</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities</td><td>250</td></tr><tr><td>Total</td><td>1,190</td><td>Total</td><td>1,150</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.494,
+                0.169,
+                0.872,
+                0.256
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">C at creation date (Year 1)</td></tr><tr><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td>Result</td><td>0</td></tr><tr><td>Assets</td><td>Liabilities</td><td>0</td></tr><tr><td>Total</td><td>200</td><td>200</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.27,
+                0.877,
+                0.32
+            ],
+            "angle": 0,
+            "content": "We will calculate successively the consolidated reserves of company C at creation date, at the end of year 1 and at the end of year 2 by applying three times the same formula."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.333,
+                0.75,
+                0.352
+            ],
+            "angle": 0,
+            "content": "At creation date, consolidated reserves are \\(0 = 80\\%\\) * 200 - 160."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.365,
+                0.481,
+                0.432
+            ],
+            "angle": 0,
+            "content": "At the end of Year 1, consolidated reserves \\(= 40 = 80\\%\\) [200 + 50] - 160, which is just the group profit of Year 1 \\([80\\% * 50]\\)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.492,
+                0.359,
+                0.872,
+                0.445
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">C at the end of ear 1</td></tr><tr><td colspan=\"3\">Capital</td></tr><tr><td colspan=\"3\">Reserves</td></tr><tr><td colspan=\"3\">Result</td></tr><tr><td>Assets</td><td>550</td><td>Liabilities</td></tr><tr><td>Total</td><td>550</td><td>Total</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.463,
+                0.481,
+                0.514
+            ],
+            "angle": 0,
+            "content": "At the end of Year 2, consolidated reserves \\(= 56 = 80\\%\\) [200 + 30 + 40] - 160."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.492,
+                0.463,
+                0.872,
+                0.548
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">C at the end of year 2</td></tr><tr><td></td><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td></td><td>Reserves</td><td>30</td></tr><tr><td></td><td></td><td>Result</td><td>40</td></tr><tr><td>Assets</td><td>670</td><td>Liabilities</td><td>400</td></tr><tr><td>Total</td><td>670</td><td>Total</td><td>670</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.559,
+                0.876,
+                0.593
+            ],
+            "angle": 0,
+            "content": "The meaning of the 56 is the addition of the Year 1 and Year 2 profits for 40 and 32, minus the group dividends \\(= 16 = 80\\%\\) * 20."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.607,
+                0.874,
+                0.657
+            ],
+            "angle": 0,
+            "content": "So we can state that the consolidated reserves are just the accumulation of the group part in the result made each year by company C, less the dividends that are possibly paid during the same period."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.671,
+                0.873,
+                0.706
+            ],
+            "angle": 0,
+            "content": "That is also the reason why, at creation date, the consolidated reserves are zero, because no profit is made at that date."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.72,
+                0.873,
+                0.77
+            ],
+            "angle": 0,
+            "content": "After a certain number of years, we can also confirm that if the consolidated reserves are positive, the net contribution of the company in the group account is certainly a profit."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.786,
+                0.873,
+                0.835
+            ],
+            "angle": 0,
+            "content": "That specific account that appears in the consolidated accounts must be considered indeed as reserves just like other reserves accounts, because it is accumulation of non-distributed results of each company."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.072,
+                0.853,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.121,
+                0.723,
+                0.166
+            ],
+            "angle": 0,
+            "content": "4.5 Comparison between the different consolidation methods"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.187,
+                0.875,
+                0.253
+            ],
+            "angle": 0,
+            "content": "In this chapter, we have considered two companies P and S, P owning S with \\(51\\%\\), \\(50\\%\\) and \\(49\\%\\) successively. For each of these percentages, we have then applied the corresponding consolidation method to statutory accounts which have been maintained identical."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.267,
+                0.876,
+                0.303
+            ],
+            "angle": 0,
+            "content": "What is the effect of these consolidation methods on the same figures? The answer can be found in the following presentation."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.149,
+                0.327,
+                0.812,
+                0.442
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Investments S</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Equity value of S</td><td></td><td></td><td>196</td></tr><tr><td>Assets</td><td>1,730</td><td>1,380</td><td>1,030</td></tr><tr><td>Link account</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Total Assets</td><td>1,730</td><td>1,380</td><td>1,226</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.15,
+                0.472,
+                0.812,
+                0.619
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Capital</td><td>500</td><td>500</td><td>500</td></tr><tr><td>Reserves</td><td>300</td><td>300</td><td>300</td></tr><tr><td>Result</td><td>100</td><td>100</td><td>100</td></tr><tr><td>Conso. reserves (S)</td><td>84</td><td>80</td><td>76</td></tr><tr><td>Minority int.</td><td>196</td><td>0</td><td>0</td></tr><tr><td>Liabilities</td><td>550</td><td>400</td><td>250</td></tr><tr><td>Total Liabilities</td><td>1,730</td><td>1,380</td><td>1,226</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.15,
+                0.644,
+                0.812,
+                0.774
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Income</td><td>1,600</td><td>1,300</td><td>1,000</td></tr><tr><td>Profit from Equity cies</td><td></td><td></td><td>24.5</td></tr><tr><td>Expenses</td><td>1,450</td><td>1,175</td><td>900</td></tr><tr><td>Result</td><td>150</td><td>125</td><td>124.5</td></tr><tr><td>3rd Parties result</td><td>24.5</td><td>0.0</td><td>0.0</td></tr><tr><td>Group result</td><td>125.5</td><td>125.0</td><td>124.5</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.797,
+                0.872,
+                0.832
+            ],
+            "angle": 0,
+            "content": "We can see that the total of the consolidated balance sheet decreases the same time the group is decreasing its level of control on company C."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.845,
+                0.876,
+                0.881
+            ],
+            "angle": 0,
+            "content": "The group equity which is equal to the addition of Capital, Reserves, Result and Consolidated reserves would have been the same if the percentage itself"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.067,
+                0.365,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.121,
+                0.875,
+                0.153
+            ],
+            "angle": 0,
+            "content": "would have remained unchanged. That means the Group equity does not depend on the consolidation method."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.168,
+                0.875,
+                0.202
+            ],
+            "angle": 0,
+            "content": "Of course, this becomes not true if we take into account the Minority interests which can be considered as equity (not debts!)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.216,
+                0.875,
+                0.25
+            ],
+            "angle": 0,
+            "content": "In particular, the consolidated reserves of S are showing a difference of 4 which is due to the effect of the percentage variation of \\(1\\%\\) on its equity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.264,
+                0.875,
+                0.313
+            ],
+            "angle": 0,
+            "content": "Finally, the contribution of S in the group profit is also decreasing because of the \\(1\\%\\). That means the profit doesn't depend on the consolidation method neither."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.115,
+                0.346,
+                0.668,
+                0.393
+            ],
+            "angle": 0,
+            "content": "4.6 The value of a company from a consolidation point of view"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.413,
+                0.875,
+                0.478
+            ],
+            "angle": 0,
+            "content": "The objective of this section is certainly not to give a magic formula for the value of a company. There are so many different values depending on so many various elements that we would be completely out of the subject of this book. In fact, we just want to focus on two values amongst so many others."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.493,
+                0.875,
+                0.575
+            ],
+            "angle": 0,
+            "content": "A first and basic value of an investment in a company A corresponds to the amount booked in parent company P accounts. That amount generally represents the historical acquisition price of the shares, which usually remains unchanged through the time. When P decides to sell these shares, the gain on disposal is just the difference between the selling price and the book value."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.589,
+                0.875,
+                0.671
+            ],
+            "angle": 0,
+            "content": "From the consolidation point of view, the value of company A is the part of the equity owned by P in A. We speak about the 'equity value' which will apply to any company, whenever its consolidation method is. For instance, the equity value of a \\(80\\%\\) owned company, consolidated by the global consolidation method, is just \\(80\\%\\) of its equity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.685,
+                0.875,
+                0.734
+            ],
+            "angle": 0,
+            "content": "That means also, supposing company A is making profits each year without paying dividends, that the equity is increasing and so does the \\(80\\%\\) equity value."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.749,
+                0.692,
+                0.767
+            ],
+            "angle": 0,
+            "content": "Let's summarize what we just said in the following formulas"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.275,
+                0.781,
+                0.712,
+                0.799
+            ],
+            "angle": 0,
+            "content": "Equity value of A = Financial % * Equity of A"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.115,
+                0.814,
+                0.38,
+                0.83
+            ],
+            "angle": 0,
+            "content": "which could be rewritten as"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.175,
+                0.843,
+                0.813,
+                0.878
+            ],
+            "angle": 0,
+            "content": "Equity value of A = Investment in A + Financial % * Equity of A - Investment in A"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.072,
+                0.851,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.121,
+                0.461,
+                0.138
+            ],
+            "angle": 0,
+            "content": "and if we put the following brackets"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.149,
+                0.831,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Equity value of A = Investment in A + [Financial % * Equity of A - Investment in A]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.187,
+                0.24,
+                0.202
+            ],
+            "angle": 0,
+            "content": "we can write"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.217,
+                0.812,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Equity value of A = Investment in A + Consolidated reserves of A"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.25,
+                0.872,
+                0.316
+            ],
+            "angle": 0,
+            "content": "This formula shows very clearly that the difference between the statutory value of A in P accounts and the equity value is equal to the consolidated reserves of A. This is not surprising because in consolidation, we show a company A whose value is increasing year after year depending on its profits."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.33,
+                0.56,
+                0.347
+            ],
+            "angle": 0,
+            "content": "In statutory accounts of \\( \\mathsf{P} \\), the value is frozen."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.362,
+                0.872,
+                0.459
+            ],
+            "angle": 0,
+            "content": "The important consequence of these considerations is the fact that, for instance, if the selling price of a company is 100 and the statutory book value in P is 80, the gain on disposal is 20. If we suppose the equity value of A is 120, there is a loss on disposal of 20 in consolidation. And this is normal, because between the acquisition of A and its disposal, we have shown in consolidation a company becoming more and more \"rich\" or valuable."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.474,
+                0.872,
+                0.524
+            ],
+            "angle": 0,
+            "content": "These considerations explained here will be reminded when we will consider the adjustments needed to process a disposal of a company out of the consolidation scope."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.538,
+                0.872,
+                0.587
+            ],
+            "angle": 0,
+            "content": "But, at this moment, don't get confused when we speak about the equity value of a company, even if this company is not consolidated by the equity method. This is just a wording convention."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.232,
+                0.621,
+                0.828,
+                0.644
+            ],
+            "angle": 0,
+            "content": "THE CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.667,
+                0.872,
+                0.733
+            ],
+            "angle": 0,
+            "content": "The structure of a group is often complicated by the fact that not only the parent company owns subsidiaries but that some subsidiaries can own shares in other subsidiaries. A question arises then on how to consolidate such groups. There are basically two techniques to consolidate such groups:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.747,
+                0.46,
+                0.763
+            ],
+            "angle": 0,
+            "content": "The consolidation by stage."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.779,
+                0.43,
+                0.795
+            ],
+            "angle": 0,
+            "content": "The direct consolidation."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.157,
+                0.747,
+                0.46,
+                0.795
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ]
+]

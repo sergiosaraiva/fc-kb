@@ -1,0 +1,4020 @@
+{
+    "pdf_info": [
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        54,
+                        80,
+                        410,
+                        532
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                54,
+                                80,
+                                410,
+                                532
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        80,
+                                        410,
+                                        532
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                54,
+                                                80,
+                                                410,
+                                                532
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>BETA</td><td>(7)</td><td>(8)</td><td>(9)</td><td>(10)</td><td>(11)</td><td>(12)</td></tr><tr><td>Goodwill (gross val.)</td><td>220</td><td></td><td></td><td></td><td></td><td>220</td></tr><tr><td>Goodwill (deprec.)</td><td>(22)</td><td></td><td></td><td></td><td></td><td>(22)</td></tr><tr><td>Lands</td><td>1,000</td><td></td><td></td><td></td><td></td><td>1,000</td></tr><tr><td>Tangible assets (acq.val.)</td><td>5,000</td><td></td><td></td><td></td><td></td><td>5,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>(2,200)</td><td></td><td></td><td></td><td></td><td>(2,200)</td></tr><tr><td>Fin.invest./BETR</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./MU</td><td>3,780</td><td>(756)</td><td></td><td>(3,024)</td><td></td><td>0</td></tr><tr><td>Equity value</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>7,000</td><td></td><td></td><td></td><td></td><td>7,000</td></tr><tr><td>Receivables/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash</td><td>1,000</td><td></td><td></td><td></td><td></td><td>1,000</td></tr><tr><td>Link account(Intercos)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Fin.Inv.)</td><td>0</td><td></td><td></td><td>3,024</td><td>(6,900)</td><td>(3,876)</td></tr><tr><td></td><td>15,778</td><td>(756)</td><td>0</td><td>0</td><td>(6,900)</td><td>8,122</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Capital</td><td>6,000</td><td>(1,200)</td><td>(4,800)</td><td></td><td></td><td>0</td></tr><tr><td>Retained earnings</td><td>2,300</td><td>(460)</td><td>(1,840)</td><td></td><td></td><td>0</td></tr><tr><td>Reserves</td><td>200</td><td>(40)</td><td>(160)</td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>778</td><td>(156)</td><td>(622)</td><td></td><td></td><td>0</td></tr><tr><td>Consolidated reserves</td><td>0</td><td></td><td>7,422</td><td></td><td>(6,900)</td><td>522</td></tr><tr><td>Translation adjustments</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Minority interests</td><td>0</td><td>1,100</td><td></td><td></td><td></td><td>1,100</td></tr><tr><td>Provisions</td><td>600</td><td></td><td></td><td></td><td></td><td>600</td></tr><tr><td>Payables/3rd Parties</td><td>5,900</td><td></td><td></td><td></td><td></td><td>5,900</td></tr><tr><td>Payables/ALPHA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>15,778</td><td>(756)</td><td>0</td><td>0</td><td>(6,900)</td><td>8,122</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Turnover/3rd Parties</td><td>30,000</td><td></td><td></td><td></td><td></td><td>30,000</td></tr><tr><td>Turnover/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(28,400)</td><td></td><td></td><td></td><td></td><td>(28,400)</td></tr><tr><td>Purchases/ALPHA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td>(722)</td><td></td><td></td><td></td><td></td><td>(722)</td></tr><tr><td>Provisions</td><td>(100)</td><td></td><td></td><td></td><td></td><td>(100)</td></tr><tr><td>Exchange loss( realized)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on disposals</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity cies</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>778</td><td>0</td><td>0</td><td>0</td><td>0</td><td>778</td></tr><tr><td>Group result</td><td colspan=\"5\"></td><td>622</td></tr><tr><td>Minority result</td><td colspan=\"5\"></td><td>156</td></tr></table>",
+                                            "image_path": "f10e208c7c21db862b95b5488bc3dfabc85eb13b5508c0f46692c985abd578aa.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        44,
+                        175,
+                        54
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                44,
+                                175,
+                                54
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        44,
+                                        175,
+                                        54
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 0
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        44,
+                        81,
+                        144,
+                        92
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                44,
+                                81,
+                                144,
+                                92
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        44,
+                                        81,
+                                        144,
+                                        92
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (7)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        44,
+                        103,
+                        299,
+                        116
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                44,
+                                103,
+                                299,
+                                116
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        44,
+                                        103,
+                                        299,
+                                        116
+                                    ],
+                                    "type": "text",
+                                    "content": "We continue by referencing to the subtotal column (7)."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        45,
+                        124,
+                        144,
+                        137
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                45,
+                                124,
+                                144,
+                                137
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        45,
+                                        124,
+                                        144,
+                                        137
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (8)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        44,
+                        148,
+                        184,
+                        181
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                44,
+                                148,
+                                184,
+                                181
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        44,
+                                        148,
+                                        184,
+                                        181
+                                    ],
+                                    "type": "text",
+                                    "content": "We calculate Minority interests by reclassifying "
+                                },
+                                {
+                                    "bbox": [
+                                        44,
+                                        148,
+                                        184,
+                                        181
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "20\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        44,
+                                        148,
+                                        184,
+                                        181
+                                    ],
+                                    "type": "text",
+                                    "content": " of each equity account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "bbox": [
+                        45,
+                        191,
+                        194,
+                        236
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                45,
+                                191,
+                                194,
+                                236
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        45,
+                                        191,
+                                        194,
+                                        236
+                                    ],
+                                    "type": "text",
+                                    "content": "We also consider 20% of Minority interests in the Financial investment, as explained in Part 2 of this book."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        191,
+                        137,
+                        409,
+                        216
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                191,
+                                137,
+                                409,
+                                216
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        191,
+                                        137,
+                                        409,
+                                        216
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                191,
+                                                137,
+                                                409,
+                                                216
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>1,200</td><td></td></tr><tr><td>Retained earnings</td><td>460</td><td></td></tr><tr><td>Reserves</td><td>40</td><td></td></tr><tr><td>Result</td><td>156</td><td></td></tr><tr><td>Fin.invest./MU</td><td></td><td>756</td></tr><tr><td>Minority interests</td><td></td><td>1,100</td></tr></table>",
+                                            "image_path": "0b7cb77232be7d5f0b91074f6eea47767325222e979bbc5404bfbc0bafd9af59.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "bbox": [
+                        46,
+                        246,
+                        146,
+                        258
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                246,
+                                146,
+                                258
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        246,
+                                        146,
+                                        258
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (9)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        46,
+                        268,
+                        186,
+                        323
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                268,
+                                186,
+                                323
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        268,
+                                        186,
+                                        323
+                                    ],
+                                    "type": "text",
+                                    "content": "We then eliminate the group part of "
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        268,
+                                        186,
+                                        323
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "80\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        268,
+                                        186,
+                                        323
+                                    ],
+                                    "type": "text",
+                                    "content": " in the equity and book the counterpart on the Consolidated reserves account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        192,
+                        259,
+                        410,
+                        328
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                192,
+                                259,
+                                410,
+                                328
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        192,
+                                        259,
+                                        410,
+                                        328
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                192,
+                                                259,
+                                                410,
+                                                328
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>4,800</td><td></td></tr><tr><td>Retained earnings</td><td>1,840</td><td></td></tr><tr><td>Reserves</td><td></td><td></td></tr><tr><td>Result</td><td>622</td><td></td></tr><tr><td>Consolidated reserves</td><td></td><td>7,422</td></tr></table>",
+                                            "image_path": "b9b803e9f12e743c8063f57b4360f44af9ad35a8d3eaef91b5ee8082c482d03b.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        47,
+                        344,
+                        153,
+                        356
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                344,
+                                153,
+                                356
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        344,
+                                        153,
+                                        356
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (10)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        47,
+                        368,
+                        186,
+                        400
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                368,
+                                186,
+                                400
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        368,
+                                        186,
+                                        400
+                                    ],
+                                    "type": "text",
+                                    "content": "The net financial investment on company MU is eliminated via the Link account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        193,
+                        355,
+                        410,
+                        392
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                193,
+                                355,
+                                410,
+                                392
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        193,
+                                        355,
+                                        410,
+                                        392
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                193,
+                                                355,
+                                                410,
+                                                392
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Link account(Fin.Inv.)</td><td>3,024</td><td></td></tr><tr><td>Fin.invest./MU</td><td></td><td>3,024</td></tr></table>",
+                                            "image_path": "ad4fc68333e4d15f66adc99ef454c35f8121ab720d3b7490346cae607f367ff6.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 12
+                },
+                {
+                    "bbox": [
+                        47,
+                        410,
+                        154,
+                        423
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                410,
+                                154,
+                                423
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        410,
+                                        154,
+                                        423
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (11)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        47,
+                        432,
+                        187,
+                        476
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                432,
+                                187,
+                                476
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        432,
+                                        187,
+                                        476
+                                    ],
+                                    "type": "text",
+                                    "content": "We finally pick up the adjusted financial value on company BETA in ALPHA accounts and book it on the"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 14
+                },
+                {
+                    "bbox": [
+                        48,
+                        478,
+                        247,
+                        488
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                478,
+                                247,
+                                488
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        478,
+                                        247,
+                                        488
+                                    ],
+                                    "type": "text",
+                                    "content": "Consolidated reserves via the Link account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 15
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        193,
+                        429,
+                        410,
+                        466
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                193,
+                                429,
+                                410,
+                                466
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        193,
+                                        429,
+                                        410,
+                                        466
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                193,
+                                                429,
+                                                410,
+                                                466
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Consolidated reserves</td><td>6,900</td><td></td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td>6,900</td></tr></table>",
+                                            "image_path": "6c861b758af310e8494d3117a82d4bac024430449b122905f576eacccd14e269.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 16,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 16
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        201,
+                        48,
+                        399,
+                        59
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                201,
+                                48,
+                                399,
+                                59
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        201,
+                                        48,
+                                        399,
+                                        59
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 1
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        54,
+                        78,
+                        414,
+                        590
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                54,
+                                78,
+                                414,
+                                590
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        78,
+                                        414,
+                                        590
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                54,
+                                                78,
+                                                414,
+                                                590
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>GAMMA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td></tr><tr><td>Goodwill (gross val.)</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Goodwill (deprec.)</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Lands</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td>5,000</td><td>(5,000)</td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (deprec.)</td><td>(1,300)</td><td>1,300</td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./BETA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./MU</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value</td><td></td><td>270</td><td></td><td></td><td>270</td></tr><tr><td>Receivables/3rd Parties</td><td>3,000</td><td>(3,000)</td><td></td><td></td><td>0</td></tr><tr><td>Receivables/DELTA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash</td><td>1,300</td><td>(1,300)</td><td></td><td></td><td>0</td></tr><tr><td>Link account(s)</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td></td><td></td><td>(600)</td><td>(600)</td></tr><tr><td></td><td>8,000</td><td>(7,730)</td><td>0</td><td>(600)</td><td>(330)</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Capital</td><td>2,000</td><td>(1,400)</td><td>(600)</td><td></td><td>0</td></tr><tr><td>Retained earnings</td><td>(900)</td><td>630</td><td>270</td><td></td><td>0</td></tr><tr><td>Reserves</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>(200)</td><td>140</td><td>60</td><td></td><td>0</td></tr><tr><td>Consolidated reserves</td><td></td><td></td><td>270</td><td>(600)</td><td>(330)</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Minority interests</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Provisions</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Payables/3rd Parties</td><td>7,100</td><td>(7,100)</td><td></td><td></td><td>0</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>8,000</td><td>(7,730)</td><td>0</td><td>(600)</td><td>(330)</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Turnover/3rd Parties</td><td>35,000</td><td>(35,000)</td><td></td><td></td><td>0</td></tr><tr><td>Turnover/DELTA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td>300</td><td>(300)</td><td></td><td></td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(35,000)</td><td>35,000</td><td></td><td></td><td>0</td></tr><tr><td>Purchases/ALPHA</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td>(500)</td><td>500</td><td></td><td></td><td>0</td></tr><tr><td>Provisions</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange loss( realized)</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on disposals</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity</td><td></td><td>(60)</td><td></td><td></td><td>(60)</td></tr><tr><td>Link account(intercompany)</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>(200)</td><td>140</td><td>0</td><td>0</td><td>(60)</td></tr><tr><td>Group result</td><td></td><td></td><td></td><td></td><td>(60)</td></tr><tr><td>Minority result</td><td></td><td></td><td></td><td></td><td>0</td></tr></table>",
+                                            "image_path": "8d82cf04ff7992161d586c0cf30d34f20613f3c97de896d85a4ce22c18f72287.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        43,
+                        175,
+                        53
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                43,
+                                175,
+                                53
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        43,
+                                        175,
+                                        53
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 2
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        44,
+                        82,
+                        156,
+                        93
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                44,
+                                82,
+                                156,
+                                93
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        44,
+                                        82,
+                                        156,
+                                        93
+                                    ],
+                                    "type": "text",
+                                    "content": "GAMMA - Column (1)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        43,
+                        103,
+                        407,
+                        137
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                43,
+                                103,
+                                407,
+                                137
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        43,
+                                        103,
+                                        407,
+                                        137
+                                    ],
+                                    "type": "text",
+                                    "content": "Company GAMMA is consolidated with the equity method this year and its sole equity would be sufficient for the consolidation. However we suppose we still receive a full consolidation bundle."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        44,
+                        148,
+                        156,
+                        158
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                44,
+                                148,
+                                156,
+                                158
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        44,
+                                        148,
+                                        156,
+                                        158
+                                    ],
+                                    "type": "text",
+                                    "content": "GAMMA - Column (2)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 13,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        45,
+                        169,
+                        186,
+                        313
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                45,
+                                169,
+                                186,
+                                313
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        45,
+                                        169,
+                                        186,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": "This adjustment eliminates all amounts that cannot be integrated in the consolidated accounts. It concerns the balance sheet and the P&L. In the balance sheet, we eliminate all assets and liabilities accounts, but only "
+                                },
+                                {
+                                    "bbox": [
+                                        45,
+                                        169,
+                                        186,
+                                        313
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "70\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        45,
+                                        169,
+                                        186,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": " of the equity account. To balance this adjustment, we book the Equity value as "
+                                },
+                                {
+                                    "bbox": [
+                                        45,
+                                        169,
+                                        186,
+                                        313
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "30\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        45,
+                                        169,
+                                        186,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": " of that equity."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "bbox": [
+                        45,
+                        313,
+                        250,
+                        346
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                45,
+                                313,
+                                250,
+                                346
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        45,
+                                        313,
+                                        250,
+                                        346
+                                    ],
+                                    "type": "text",
+                                    "content": "We apply the same approach Loss on equity with the P&L accounts and book the Loss on equity companies account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        191,
+                        169,
+                        409,
+                        324
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                191,
+                                169,
+                                409,
+                                324
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        191,
+                                        169,
+                                        409,
+                                        324
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                191,
+                                                169,
+                                                409,
+                                                324
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Tangible assets (acq-val.)</td><td></td><td>5,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>1,300</td><td></td></tr><tr><td>Equity value</td><td>270</td><td></td></tr><tr><td>Receivables/3rd Parties</td><td></td><td>3,000</td></tr><tr><td>Cash</td><td></td><td>1,300</td></tr><tr><td>Capital</td><td>1,400</td><td></td></tr><tr><td>Retained earnings</td><td></td><td>630</td></tr><tr><td>Payables/3rd Parties</td><td>7,100</td><td></td></tr><tr><td>Turnover/3rd Parties</td><td>35,000</td><td></td></tr><tr><td>Gain on disposals</td><td>300</td><td></td></tr><tr><td>Purchases/3rd Parties</td><td></td><td>35,000</td></tr><tr><td>Depreciations</td><td></td><td>500</td></tr><tr><td>Loss on equity cies</td><td>60</td><td></td></tr></table>",
+                                            "image_path": "449248a274eb44fd7f03bd1900f57ef1a48e89dfa68583c9bb91d373a8941327.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "bbox": [
+                        46,
+                        355,
+                        158,
+                        367
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                355,
+                                158,
+                                367
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        355,
+                                        158,
+                                        367
+                                    ],
+                                    "type": "text",
+                                    "content": "GAMMA - Column (3)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7,
+                    "line_avg_height": 13,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        46,
+                        378,
+                        186,
+                        433
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                378,
+                                186,
+                                433
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        378,
+                                        186,
+                                        433
+                                    ],
+                                    "type": "text",
+                                    "content": "We eliminate "
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        378,
+                                        186,
+                                        433
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "30\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        378,
+                                        186,
+                                        433
+                                    ],
+                                    "type": "text",
+                                    "content": " of the Equity accounts and book the total amount on the Consolidated reserves account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        192,
+                        367,
+                        410,
+                        425
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                192,
+                                367,
+                                410,
+                                425
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        192,
+                                        367,
+                                        410,
+                                        425
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                192,
+                                                367,
+                                                410,
+                                                425
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>600</td><td></td></tr><tr><td>Retained earnings</td><td></td><td>270</td></tr><tr><td>Result</td><td></td><td>60</td></tr><tr><td>Consolidated reserves</td><td></td><td>270</td></tr></table>",
+                                            "image_path": "21be11122fcb53e8c8ebcb4afa1b115e311b114612a85f932ef7760248dba56a.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        47,
+                        444,
+                        159,
+                        456
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                444,
+                                159,
+                                456
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        444,
+                                        159,
+                                        456
+                                    ],
+                                    "type": "text",
+                                    "content": "GAMMA - Column (4)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        46,
+                        466,
+                        186,
+                        511
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                466,
+                                186,
+                                511
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        466,
+                                        186,
+                                        511
+                                    ],
+                                    "type": "text",
+                                    "content": "The amount in this adjustment is the Financial investment value of company GAMMA owned by ALPHA."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        193,
+                        457,
+                        410,
+                        493
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                193,
+                                457,
+                                410,
+                                493
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        193,
+                                        457,
+                                        410,
+                                        493
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                193,
+                                                457,
+                                                410,
+                                                493
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Consolidated reserves</td><td>600</td><td></td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td>600</td></tr></table>",
+                                            "image_path": "3bffe1db274369304b6f1c1bb3ccdfbe7a38ee10467052381f806835eb6ac257.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 12
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        201,
+                        48,
+                        399,
+                        60
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                201,
+                                48,
+                                399,
+                                60
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        201,
+                                        48,
+                                        399,
+                                        60
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 3
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        55,
+                        80,
+                        412,
+                        532
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                55,
+                                80,
+                                412,
+                                532
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        55,
+                                        80,
+                                        412,
+                                        532
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                55,
+                                                80,
+                                                412,
+                                                532
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>DELTA</td><td>(1) (CUR)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr><tr><td>Goodwill (gross val.)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Goodwill (deprec.)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Lands</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td>8,000</td><td>7,200</td><td></td><td></td><td></td><td>7,200</td></tr><tr><td>Tangible assets (deprec.)</td><td>(4,800)</td><td>(4,320)</td><td></td><td></td><td></td><td>(4,320)</td></tr><tr><td>Fin.invest./BETA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./MU</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>14,000</td><td>12,600</td><td></td><td></td><td></td><td>12,600</td></tr><tr><td>Receivables/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash</td><td>4,800</td><td>4,320</td><td></td><td></td><td></td><td>4,320</td></tr><tr><td>Link account(Intelcos)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>22,000</td><td>19,800</td><td>0</td><td>0</td><td>0</td><td>19,800</td></tr><tr><td>Capital</td><td>8,000</td><td>7,200</td><td>800</td><td>(800)</td><td></td><td>7,200</td></tr><tr><td>Retained earnings</td><td>4,200</td><td>3,780</td><td>140</td><td>(380)</td><td></td><td>3,540</td></tr><tr><td>Reserves</td><td></td><td></td><td></td><td></td><td>210</td><td>210</td></tr><tr><td>Result</td><td>1,000</td><td>900</td><td></td><td>(300)</td><td></td><td>600</td></tr><tr><td>Consolidated reserves</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td>(940)</td><td>1,480</td><td>60</td><td>600</td></tr><tr><td>Minority interests</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Provisions</td><td>2,000</td><td>1,800</td><td></td><td></td><td>(270)</td><td>1,530</td></tr><tr><td>Payables/3rd Parties</td><td>5,550</td><td>4,995</td><td></td><td></td><td></td><td>4,995</td></tr><tr><td>Payables/ALPHA</td><td>1,250</td><td>1,125</td><td></td><td></td><td></td><td>1,125</td></tr><tr><td></td><td>22,000</td><td>19,800</td><td>0</td><td>0</td><td>0</td><td>19,800</td></tr><tr><td>Turnover/3rd Parties</td><td>40,000</td><td>24,000</td><td></td><td></td><td></td><td>24,000</td></tr><tr><td>Turnover/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(32,400)</td><td>(19,440)</td><td></td><td></td><td></td><td>(19,440)</td></tr><tr><td>Purchases/ALPHA</td><td>(5,200)</td><td>(3,120)</td><td></td><td></td><td></td><td>(3,120)</td></tr><tr><td>Depreciations</td><td>(800)</td><td>(480)</td><td></td><td></td><td></td><td>(480)</td></tr><tr><td>Provisions</td><td>(600)</td><td>(360)</td><td></td><td></td><td></td><td>(360)</td></tr><tr><td>Exchange loss (realized)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on disposals</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>1,000</td><td>600</td><td>0</td><td>0</td><td>0</td><td>600</td></tr><tr><td>Group result</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Minority result</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>",
+                                            "image_path": "e4529efff56c4fbe09708ec2f192c23e846c297a8e99dda48773a50ff20e61c5.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        57,
+                        44,
+                        175,
+                        53
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                57,
+                                44,
+                                175,
+                                53
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        57,
+                                        44,
+                                        175,
+                                        53
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 4
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        49,
+                        82,
+                        157,
+                        94
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                82,
+                                157,
+                                94
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        82,
+                                        157,
+                                        94
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (1)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 16,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        104,
+                        241,
+                        116
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                104,
+                                241,
+                                116
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        104,
+                                        241,
+                                        116
+                                    ],
+                                    "type": "text",
+                                    "content": "Statutory accounts in local currency CUR."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        49,
+                        126,
+                        157,
+                        138
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                126,
+                                157,
+                                138
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        126,
+                                        157,
+                                        138
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (2)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        149,
+                        412,
+                        171
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                149,
+                                412,
+                                171
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        149,
+                                        412,
+                                        171
+                                    ],
+                                    "type": "text",
+                                    "content": "Accounts translated at closing rate of 0.9 for the balance sheet and at average rate of 0.6 for the P&L."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "bbox": [
+                        50,
+                        181,
+                        157,
+                        193
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                181,
+                                157,
+                                193
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        181,
+                                        157,
+                                        193
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (3)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 5,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        203,
+                        190,
+                        259
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                203,
+                                190,
+                                259
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        203,
+                                        190,
+                                        259
+                                    ],
+                                    "type": "text",
+                                    "content": "We carry forward the corresponding translation adjustment booked in Year 1 consolidation. The Result impact is transferred to the Re"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        196,
+                        199,
+                        415,
+                        245
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                196,
+                                199,
+                                415,
+                                245
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        196,
+                                        199,
+                                        415,
+                                        245
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                196,
+                                                199,
+                                                415,
+                                                245
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td></td><td>800</td></tr><tr><td>Retained earnings</td><td></td><td>140</td></tr><tr><td>Translation adjustments</td><td>940</td><td></td></tr></table>",
+                                            "image_path": "419bc839e098296c8282b3d43b01f0a71fe2e4b3831f14587aa960ba339be1f9.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 7,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 7
+                },
+                {
+                    "bbox": [
+                        50,
+                        269,
+                        157,
+                        281
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                269,
+                                157,
+                                281
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        269,
+                                        157,
+                                        281
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        269,
+                                        157,
+                                        281
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "="
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        269,
+                                        157,
+                                        281
+                                    ],
+                                    "type": "text",
+                                    "content": " Column (4)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        291,
+                        190,
+                        346
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                291,
+                                190,
+                                346
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        291,
+                                        190,
+                                        346
+                                    ],
+                                    "type": "text",
+                                    "content": "A new translation adjustment is necessary because of the historical value of the equity. Where those amounts come from?"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        196,
+                        279,
+                        415,
+                        337
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                196,
+                                279,
+                                415,
+                                337
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        196,
+                                        279,
+                                        415,
+                                        337
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                196,
+                                                279,
+                                                415,
+                                                337
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>800</td><td></td></tr><tr><td>Retained earnings</td><td>380</td><td></td></tr><tr><td>Result</td><td>300</td><td></td></tr><tr><td>Translation adjustments</td><td colspan=\"2\">1,480</td></tr></table>",
+                                            "image_path": "9bbc95d4dbec7b0a1cbc76603fb758a9b3d3bc3d66f420ee5a96466f863f05f7.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 10,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 10
+                },
+                {
+                    "bbox": [
+                        68,
+                        357,
+                        413,
+                        467
+                    ],
+                    "type": "list",
+                    "angle": 0,
+                    "index": 14,
+                    "blocks": [
+                        {
+                            "bbox": [
+                                68,
+                                357,
+                                412,
+                                391
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        68,
+                                        357,
+                                        412,
+                                        391
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "text",
+                                            "content": "- Capital must be valuated finally at a historical value of "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "7200 = 8000"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "text",
+                                            "content": " CUR "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "*"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "text",
+                                            "content": " 0.9. After column (3) adjustment, its value is "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "6400 = 7200 + (800)"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "text",
+                                            "content": ". This explains the debit amount of "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "800 = 7200 - 6400"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                357,
+                                                412,
+                                                391
+                                            ],
+                                            "type": "text",
+                                            "content": "."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 11
+                        },
+                        {
+                            "bbox": [
+                                68,
+                                400,
+                                413,
+                                434
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        68,
+                                        400,
+                                        413,
+                                        434
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                68,
+                                                400,
+                                                413,
+                                                434
+                                            ],
+                                            "type": "text",
+                                            "content": "- Historical value of Retained earnings is "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                400,
+                                                413,
+                                                434
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "3540 = 4000\\ \\mathrm{CUR}^{\\star}0.85 + 200\\ \\mathrm{CUR}^{\\star}0.7"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                400,
+                                                413,
+                                                434
+                                            ],
+                                            "type": "text",
+                                            "content": ". After column (3) adjustment, its value is 3920. This explains the debit amount of "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                400,
+                                                413,
+                                                434
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "380 = 3920 - 3540"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                400,
+                                                413,
+                                                434
+                                            ],
+                                            "type": "text",
+                                            "content": "."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12
+                        },
+                        {
+                            "bbox": [
+                                68,
+                                443,
+                                410,
+                                467
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        68,
+                                        443,
+                                        410,
+                                        467
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                68,
+                                                443,
+                                                410,
+                                                467
+                                            ],
+                                            "type": "text",
+                                            "content": "- Correct value for the Result is "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                443,
+                                                410,
+                                                467
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "600 = 1000\\mathrm{CUR}^{*}0.6"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                443,
+                                                410,
+                                                467
+                                            ],
+                                            "type": "text",
+                                            "content": " instead of 900, giving a correction of "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                443,
+                                                410,
+                                                467
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "300 = 900 - 600"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                443,
+                                                410,
+                                                467
+                                            ],
+                                            "type": "text",
+                                            "content": "."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 13
+                        }
+                    ],
+                    "sub_type": "text"
+                },
+                {
+                    "bbox": [
+                        50,
+                        477,
+                        157,
+                        489
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                477,
+                                157,
+                                489
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        477,
+                                        157,
+                                        489
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (5)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 15,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        500,
+                        190,
+                        543
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                500,
+                                190,
+                                543
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        500,
+                                        190,
+                                        543
+                                    ],
+                                    "type": "text",
+                                    "content": "The Year 1 provision for 300 CUR must be maintained in the consolidation. The local currency adjustment is"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 16
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        196,
+                        487,
+                        415,
+                        534
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                196,
+                                487,
+                                415,
+                                534
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        196,
+                                        487,
+                                        415,
+                                        534
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                196,
+                                                487,
+                                                415,
+                                                534
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Provisions</td><td>270</td><td></td></tr><tr><td>Reserves</td><td></td><td>210</td></tr><tr><td>Translation adjustments</td><td></td><td>60</td></tr></table>",
+                                            "image_path": "109ad2d5fd5cb5a4bbaedfc1a5b3b648403a87c3c3bec4b0e9ed423538394a08.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 17,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 17
+                },
+                {
+                    "bbox": [
+                        49,
+                        543,
+                        412,
+                        588
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                543,
+                                412,
+                                588
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        543,
+                                        412,
+                                        588
+                                    ],
+                                    "type": "text",
+                                    "content": "Provisions Debit 300 and Reserves Credit 300. After translation, Provisions is translated at closing rate of 0.9 and Reserves must be translated at the historical rate (= average rate of Year 1) of 0.7. The difference between the two amounts is booked on the Translation adjustment account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 18
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        206,
+                        50,
+                        405,
+                        61
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                206,
+                                50,
+                                405,
+                                61
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        206,
+                                        50,
+                                        405,
+                                        61
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                476,
+                684
+            ],
+            "page_idx": 5
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        56,
+                        81,
+                        420,
+                        458
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                56,
+                                81,
+                                420,
+                                458
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        81,
+                                        420,
+                                        458
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                56,
+                                                81,
+                                                420,
+                                                458
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>DELTA</td><td>(6)</td><td>(7)</td><td>(8)</td><td>(9)</td><td>(10)</td><td>(11)</td><td>(12)</td><td>(13)</td></tr><tr><td>Goodwill (gross val.)</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Goodwill (deprec.)</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>(Lands)</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td>7,200</td><td></td><td></td><td></td><td></td><td></td><td></td><td>7,200</td></tr><tr><td>Tangible assets (deprec.)</td><td>(4,320)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(4,320)</td></tr><tr><td>Fin.invest./BETA</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./MU</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Patties</td><td>12,600</td><td></td><td></td><td></td><td></td><td></td><td></td><td>12,600</td></tr><tr><td>Receivables/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash</td><td>4,320</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4,320</td></tr><tr><td>Link account(Intercos)</td><td>0</td><td></td><td></td><td>(1,000)</td><td></td><td></td><td></td><td>(1,000)</td></tr><tr><td>Link account(Fin,Inv.)</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(3,600)</td></tr><tr><td></td><td>19,800</td><td>0</td><td>0</td><td>(1,000)</td><td>0</td><td>0</td><td>(3,600)</td><td>15,200</td></tr><tr><td>Capital</td><td>7,200</td><td></td><td></td><td></td><td>(2,880)</td><td>(4,320)</td><td></td><td>0</td></tr><tr><td>Retained earnings</td><td>3,540</td><td></td><td></td><td></td><td>(1,416)</td><td>(2,124)</td><td></td><td>0</td></tr><tr><td>Reserves</td><td>210</td><td></td><td></td><td></td><td>(84)</td><td>(126)</td><td></td><td>0</td></tr><tr><td>Result</td><td>600</td><td>125</td><td></td><td></td><td>(290)</td><td>(435)</td><td></td><td>0</td></tr><tr><td>Consolidated rel.:erves</td><td>0</td><td></td><td></td><td></td><td></td><td>7,005</td><td>(3,600)</td><td>3,405</td></tr><tr><td>Translation adjustments</td><td>600</td><td></td><td></td><td></td><td>(240)</td><td></td><td></td><td>360</td></tr><tr><td>Minority interests</td><td>0</td><td></td><td></td><td></td><td>4,910</td><td></td><td></td><td>4,910</td></tr><tr><td>Provisions</td><td>1,530</td><td></td><td></td><td></td><td></td><td></td><td></td><td>1,530</td></tr><tr><td>Payables/3rd Parties</td><td>4,995</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4,995</td></tr><tr><td>Payables/ALPHA</td><td>1,125</td><td>(125)</td><td></td><td>(1,000)</td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>19,800</td><td>0</td><td>0</td><td>(1,000)</td><td>0</td><td>0</td><td>(3,600)</td><td>15,200</td></tr><tr><td>Turnover/3rd Parties</td><td>24,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>24,000</td></tr><tr><td>Turnover/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td>125</td><td></td><td></td><td></td><td></td><td></td><td>125</td></tr><tr><td>Gain on disposals</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(19,440)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(19,440)</td></tr><tr><td>Purchases/ALPHA</td><td>(3,120)</td><td></td><td>120</td><td>3,000</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td>(480)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(480)</td></tr><tr><td>Provisions</td><td>(360)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(360)</td></tr><tr><td>Exchange loss( realized)</td><td>0</td><td></td><td>(120)</td><td></td><td></td><td></td><td></td><td>(120)</td></tr><tr><td>Loss on disposals</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity cies</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td>0</td><td></td><td></td><td>(3,000)</td><td></td><td></td><td></td><td>(3,000)</td></tr><tr><td>Result</td><td>600</td><td>125</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>725</td></tr><tr><td>Group result</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>435</td></tr><tr><td>Minority result</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>290</td></tr></table>",
+                                            "image_path": "84bfdfd6052a2dbb7d0eea06b45592a27bdbc2477a2a0c7a4addb1369ff05ea5.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        57,
+                        46,
+                        173,
+                        56
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                57,
+                                46,
+                                173,
+                                56
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        57,
+                                        46,
+                                        173,
+                                        56
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "bbox": [
+                        225,
+                        630,
+                        246,
+                        639
+                    ],
+                    "type": "page_number",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                225,
+                                630,
+                                246,
+                                639
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        225,
+                                        630,
+                                        246,
+                                        639
+                                    ],
+                                    "type": "text",
+                                    "content": "410"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                }
+            ],
+            "page_size": [
+                474,
+                683
+            ],
+            "page_idx": 6
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        48,
+                        83,
+                        154,
+                        95
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                83,
+                                154,
+                                95
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        83,
+                                        154,
+                                        95
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (7)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        47,
+                        105,
+                        186,
+                        150
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                105,
+                                186,
+                                150
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        105,
+                                        186,
+                                        150
+                                    ],
+                                    "type": "text",
+                                    "content": "The intercompany being identified as 1000 EUR, we adapt the Payables side by considering an exchange gain"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        193,
+                        98,
+                        413,
+                        136
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                193,
+                                98,
+                                413,
+                                136
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        193,
+                                        98,
+                                        413,
+                                        136
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                193,
+                                                98,
+                                                413,
+                                                136
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Payables/ALPHA</td><td>125</td><td></td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td>125</td></tr></table>",
+                                            "image_path": "4ac30fc9e25f751effae960e63a838516d523edc9e14680d262e023b61d0a91e.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 3,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 3
+                },
+                {
+                    "bbox": [
+                        48,
+                        160,
+                        154,
+                        171
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                160,
+                                154,
+                                171
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        160,
+                                        154,
+                                        171
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (8)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4,
+                    "line_avg_height": 13,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        47,
+                        182,
+                        187,
+                        227
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                182,
+                                187,
+                                227
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        182,
+                                        187,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": "We apply the same principle for the intercompany Purchases but this time it is just a reclassification between"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        193,
+                        171,
+                        410,
+                        207
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                193,
+                                171,
+                                410,
+                                207
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        193,
+                                        171,
+                                        410,
+                                        207
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                193,
+                                                171,
+                                                410,
+                                                207
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Exchange loss(realized)</td><td>120</td><td></td></tr><tr><td>Purchases/ALPHA</td><td></td><td>120</td></tr></table>",
+                                            "image_path": "0c3c1915e0adfa1eff3008657e0960a35bc2bd9f6f7d9d87caf517d7bade1563.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "bbox": [
+                        48,
+                        237,
+                        154,
+                        248
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                237,
+                                154,
+                                248
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        237,
+                                        154,
+                                        248
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (9)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7,
+                    "line_avg_height": 13,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        48,
+                        259,
+                        187,
+                        313
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                259,
+                                187,
+                                313
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        259,
+                                        187,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": "We can eliminate both intercompany amounts via a Link account, the first one in the balance sheet and the second one in the P&L."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        195,
+                        245,
+                        405,
+                        303
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                195,
+                                245,
+                                405,
+                                303
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        195,
+                                        245,
+                                        405,
+                                        303
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                195,
+                                                245,
+                                                405,
+                                                303
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Payables/ALPHA</td><td>1,000</td><td></td></tr><tr><td>Link account(Intercos)</td><td></td><td>1,000</td></tr><tr><td>Link account(Intercos)</td><td>3,000</td><td></td></tr><tr><td>Purchases ALPHA</td><td></td><td></td></tr></table>",
+                                            "image_path": "792982f39e825ecb8b96ad73a690f09d0f425cca246c4dc740ad75400724fdc1.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        49,
+                        324,
+                        161,
+                        336
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                324,
+                                161,
+                                336
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        324,
+                                        161,
+                                        336
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (10)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        48,
+                        347,
+                        187,
+                        381
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                347,
+                                187,
+                                381
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        347,
+                                        187,
+                                        381
+                                    ],
+                                    "type": "text",
+                                    "content": "Elimination of "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        347,
+                                        187,
+                                        381
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "40\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        347,
+                                        187,
+                                        381
+                                    ],
+                                    "type": "text",
+                                    "content": " of each equity account and transfer to the Minority interests."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        194,
+                        324,
+                        405,
+                        407
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                194,
+                                324,
+                                405,
+                                407
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        194,
+                                        324,
+                                        405,
+                                        407
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                194,
+                                                324,
+                                                405,
+                                                407
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>2,880</td><td></td></tr><tr><td>Retained earnings</td><td>1,416</td><td></td></tr><tr><td>Reserves</td><td>84</td><td></td></tr><tr><td>Result</td><td>290</td><td></td></tr><tr><td>Translation adjustments</td><td>240</td><td></td></tr><tr><td>Minority interests</td><td></td><td>4,910</td></tr></table>",
+                                            "image_path": "e864173dfbd1a6a2bb7b31c5307b4089cc73c0d01e583f350949e0e41eec791f.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 12
+                },
+                {
+                    "bbox": [
+                        49,
+                        412,
+                        162,
+                        424
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                412,
+                                162,
+                                424
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        412,
+                                        162,
+                                        424
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (11)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        434,
+                        188,
+                        478
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                434,
+                                188,
+                                478
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        434,
+                                        188,
+                                        478
+                                    ],
+                                    "type": "text",
+                                    "content": "Elimination of "
+                                },
+                                {
+                                    "bbox": [
+                                        49,
+                                        434,
+                                        188,
+                                        478
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "60\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        49,
+                                        434,
+                                        188,
+                                        478
+                                    ],
+                                    "type": "text",
+                                    "content": " of each equity account and transfer to the Consolidated reserves account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 14
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        194,
+                        424,
+                        405,
+                        495
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                194,
+                                424,
+                                405,
+                                495
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        194,
+                                        424,
+                                        405,
+                                        495
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                194,
+                                                424,
+                                                405,
+                                                495
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>4,320</td><td></td></tr><tr><td>Retained earnings</td><td>2,124</td><td></td></tr><tr><td>Reserves</td><td>126</td><td></td></tr><tr><td>Result</td><td>435</td><td></td></tr><tr><td>Consolidated reserves</td><td></td><td>7,005</td></tr></table>",
+                                            "image_path": "b3038dfdbb126e4dd6da69d41c4d7f2b01069e36d47eadd6e8bad65b72414426.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 15,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 15
+                },
+                {
+                    "bbox": [
+                        49,
+                        511,
+                        162,
+                        523
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                511,
+                                162,
+                                523
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        511,
+                                        162,
+                                        523
+                                    ],
+                                    "type": "text",
+                                    "content": "DELTA - Column (12)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 16,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        49,
+                        533,
+                        188,
+                        577
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                533,
+                                188,
+                                577
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        533,
+                                        188,
+                                        577
+                                    ],
+                                    "type": "text",
+                                    "content": "This amount is the Financial investment value booked in ALPHA accounts on company DELTA."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 17
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        194,
+                        525,
+                        405,
+                        562
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                194,
+                                525,
+                                405,
+                                562
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        194,
+                                        525,
+                                        405,
+                                        562
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                194,
+                                                525,
+                                                405,
+                                                562
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Consolidated reserves</td><td>3,600</td><td></td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td>3,600</td></tr></table>",
+                                            "image_path": "4aa03bace5f072ed256497a050c62ead626d8021f888c201b559e0d55cbccaa0.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 18,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 18
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        203,
+                        49,
+                        404,
+                        61
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                203,
+                                49,
+                                404,
+                                61
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        203,
+                                        49,
+                                        404,
+                                        61
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                472,
+                682
+            ],
+            "page_idx": 7
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        55,
+                        81,
+                        401,
+                        560
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                55,
+                                81,
+                                401,
+                                560
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        55,
+                                        81,
+                                        401,
+                                        560
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                55,
+                                                81,
+                                                401,
+                                                560
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>MU</td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr><tr><td>Goodwill (gross val.)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Goodwill (deprec.)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Lands</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td>6,000</td><td></td><td></td><td></td><td></td><td>6,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>(3,000)</td><td></td><td></td><td></td><td></td><td>(3,000)</td></tr><tr><td>Fin.invest./BETA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./MU</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>3,000</td><td></td><td></td><td></td><td></td><td>3,000</td></tr><tr><td>Receivables/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash</td><td>2,000</td><td></td><td></td><td></td><td></td><td>2,000</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td></td><td></td><td></td><td>(3,024)</td><td>(3,024)</td></tr><tr><td></td><td>8,000</td><td>0</td><td>0</td><td>0</td><td>(3,024)</td><td>4,976</td></tr><tr><td colspan=\"7\"></td></tr><tr><td>Capital</td><td>3,000</td><td></td><td>(840)</td><td>(2,160)</td><td></td><td>0</td></tr><tr><td>Retained earnings</td><td>1,000</td><td></td><td>(280)</td><td>(720)</td><td></td><td>0</td></tr><tr><td>Reserves</td><td></td><td>200</td><td>(56)</td><td>(144)</td><td></td><td>0</td></tr><tr><td>Result</td><td>500</td><td>(200)</td><td>(84)</td><td>(216)</td><td></td><td>0</td></tr><tr><td>Consolidated reserves</td><td></td><td></td><td></td><td>3,240</td><td>(3,024)</td><td>216</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Minority interests</td><td></td><td></td><td>1,260</td><td></td><td></td><td>1,260</td></tr><tr><td>Provisions</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Payables/3rd Parties</td><td>3,500</td><td></td><td></td><td></td><td></td><td>3,500</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>8,000</td><td>0</td><td>0</td><td>0</td><td>(3,024)</td><td>4,976</td></tr><tr><td colspan=\"7\"></td></tr><tr><td>Turnover/3rd Parties</td><td>10,000</td><td>(6,000)</td><td></td><td></td><td></td><td>4,000</td></tr><tr><td>Turnover/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(8,900)</td><td>5,500</td><td></td><td></td><td></td><td>(3,400)</td></tr><tr><td>Purchases/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td>(600)</td><td>300</td><td></td><td></td><td></td><td>(300)</td></tr><tr><td>Provisions</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange loss( realized)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on disposals</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity cies</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>500</td><td>(200)</td><td>0</td><td>0</td><td>0</td><td>300</td></tr><tr><td>Group result</td><td></td><td></td><td></td><td></td><td></td><td>216</td></tr><tr><td>Minority result</td><td></td><td></td><td></td><td></td><td></td><td>84</td></tr></table>",
+                                            "image_path": "485a904d3bc272c75be802b1bfec07cc645d5fa411285d8888741a796140bee8.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        47,
+                        175,
+                        58
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                47,
+                                175,
+                                58
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        47,
+                                        175,
+                                        58
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "bbox": [
+                        224,
+                        631,
+                        245,
+                        642
+                    ],
+                    "type": "page_number",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                224,
+                                631,
+                                245,
+                                642
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        224,
+                                        631,
+                                        245,
+                                        642
+                                    ],
+                                    "type": "text",
+                                    "content": "412"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                }
+            ],
+            "page_size": [
+                472,
+                683
+            ],
+            "page_idx": 8
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        46,
+                        103,
+                        135,
+                        114
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                103,
+                                135,
+                                114
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        103,
+                                        135,
+                                        114
+                                    ],
+                                    "type": "text",
+                                    "content": "MU - Column (1)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        46,
+                        126,
+                        406,
+                        148
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                126,
+                                406,
+                                148
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        126,
+                                        406,
+                                        148
+                                    ],
+                                    "type": "text",
+                                    "content": "Statutory accounts of this new company entering the consolidation scope. Notice that these accounts show a profit of 500 for the 12 months of Year 2."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        46,
+                        158,
+                        135,
+                        170
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                158,
+                                135,
+                                170
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        158,
+                                        135,
+                                        170
+                                    ],
+                                    "type": "text",
+                                    "content": "MU - Column (2)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        46,
+                        180,
+                        204,
+                        235
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                180,
+                                204,
+                                235
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        180,
+                                        204,
+                                        235
+                                    ],
+                                    "type": "text",
+                                    "content": "The company having a profit of 200 at the date of acquisition, it must be reversed to the Reserves and all P&L accounts contributing to this result must"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "bbox": [
+                        46,
+                        235,
+                        408,
+                        259
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                46,
+                                235,
+                                408,
+                                259
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        235,
+                                        408,
+                                        259
+                                    ],
+                                    "type": "text",
+                                    "content": "also be eliminated. On the basis of the information given at the beginning of this case study, we have the adjustment, as opposite."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        210,
+                        173,
+                        406,
+                        232
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                210,
+                                173,
+                                406,
+                                232
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        210,
+                                        173,
+                                        406,
+                                        232
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                210,
+                                                173,
+                                                406,
+                                                232
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td></td><td>200</td></tr><tr><td>Turnover/3rd Parties</td><td>6,000</td><td></td></tr><tr><td>Purchases/3rd Parties</td><td></td><td>5,500</td></tr><tr><td>Depreciations</td><td></td><td>300</td></tr></table>",
+                                            "image_path": "e0fcc518a828934da56e86d83dfe13b4c7ba580e5ff2cff3db45226bd5b0434b.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "bbox": [
+                        47,
+                        268,
+                        136,
+                        279
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                268,
+                                136,
+                                279
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        268,
+                                        136,
+                                        279
+                                    ],
+                                    "type": "text",
+                                    "content": "MU - Column (3)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7,
+                    "line_avg_height": 13,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        47,
+                        289,
+                        203,
+                        334
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                289,
+                                203,
+                                334
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        289,
+                                        203,
+                                        334
+                                    ],
+                                    "type": "text",
+                                    "content": "Elimination of "
+                                },
+                                {
+                                    "bbox": [
+                                        47,
+                                        289,
+                                        203,
+                                        334
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "28\\% = 100\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        47,
+                                        289,
+                                        203,
+                                        334
+                                    ],
+                                    "type": "text",
+                                    "content": " - "
+                                },
+                                {
+                                    "bbox": [
+                                        47,
+                                        289,
+                                        203,
+                                        334
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "[80\\% * 90\\%]"
+                                },
+                                {
+                                    "bbox": [
+                                        47,
+                                        289,
+                                        203,
+                                        334
+                                    ],
+                                    "type": "text",
+                                    "content": " of each equity account and transfer to the Minority interests."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        211,
+                        270,
+                        406,
+                        341
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                211,
+                                270,
+                                406,
+                                341
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        211,
+                                        270,
+                                        406,
+                                        341
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                211,
+                                                270,
+                                                406,
+                                                341
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>840</td><td></td></tr><tr><td>Retained earnings</td><td>280</td><td></td></tr><tr><td>Reserves</td><td>56</td><td></td></tr><tr><td>Result</td><td>84</td><td></td></tr><tr><td>Minority interests</td><td></td><td>1,260</td></tr></table>",
+                                            "image_path": "1b2c7121703fd2492287168644848c0b33b3be025296c53249ff140cde5e408b.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        48,
+                        367,
+                        137,
+                        378
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                367,
+                                137,
+                                378
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        367,
+                                        137,
+                                        378
+                                    ],
+                                    "type": "text",
+                                    "content": "MU - Column (4)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        48,
+                        388,
+                        204,
+                        433
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                388,
+                                204,
+                                433
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        388,
+                                        204,
+                                        433
+                                    ],
+                                    "type": "text",
+                                    "content": "Elimination of "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        388,
+                                        204,
+                                        433
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "72\\% = 80\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        388,
+                                        204,
+                                        433
+                                    ],
+                                    "type": "text",
+                                    "content": "\n* 90% of each equity account and\ntransfer to the Consolidated\nreserves account"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        211,
+                        368,
+                        406,
+                        439
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                211,
+                                368,
+                                406,
+                                439
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        211,
+                                        368,
+                                        406,
+                                        439
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                211,
+                                                368,
+                                                406,
+                                                439
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Capital</td><td>840</td><td></td></tr><tr><td>Retained earnings</td><td>280</td><td></td></tr><tr><td>Reserves</td><td>56</td><td></td></tr><tr><td>Result</td><td>84</td><td></td></tr><tr><td>Minority interests</td><td></td><td>1,260</td></tr></table>",
+                                            "image_path": "a8880872d1f28cab94b7ffb30bed0b3d639507722f7ffcc88d67cd73da11025a.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 12
+                },
+                {
+                    "bbox": [
+                        49,
+                        454,
+                        137,
+                        465
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                454,
+                                137,
+                                465
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        454,
+                                        137,
+                                        465
+                                    ],
+                                    "type": "text",
+                                    "content": "MU - Column (5)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        48,
+                        477,
+                        204,
+                        522
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                477,
+                                204,
+                                522
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        477,
+                                        204,
+                                        522
+                                    ],
+                                    "type": "text",
+                                    "content": "This amount is the adjusted Financial investment value booked in ALPHA accounts on company MU."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 14
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        212,
+                        468,
+                        406,
+                        504
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                212,
+                                468,
+                                406,
+                                504
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        212,
+                                        468,
+                                        406,
+                                        504
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                212,
+                                                468,
+                                                406,
+                                                504
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Consolidated reserves</td><td>3,024</td><td></td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td>3,024</td></tr></table>",
+                                            "image_path": "087e463c068bc71b5e96a61045cfd424074ad00c4b799a7dda1e4830ed0beec9.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 15,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 15
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        202,
+                        49,
+                        399,
+                        59
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                202,
+                                49,
+                                399,
+                                59
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        202,
+                                        49,
+                                        399,
+                                        59
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 9
+        }
+    ],
+    "_backend": "vlm",
+    "_version_name": "2.6.5"
+}

@@ -1,0 +1,140 @@
+Topics:
+Company Reports, Intercompany Reconciliation, Local Bundle Reports, Shareholders and Partners
+
+Keywords:
+Company Reports, Intercompany Reconciliation, Local Bundle, Shareholders, Partners, Financial Rights, Control Rights, Adjusted Amounts, Transactions, Data Analysis
+
+Summary:
+The documentation for the Financial Consolidation product covers comprehensive instructions on generating various types of reports, including company reports, intercompany reconciliation, local bundle reports, and shareholders/partners reports. The Company Reports section explains how to generate standard and detailed reports on company information. The Intercompany Reconciliation section details the process of identifying and resolving unmatched intercompany transactions. The Local Bundle Reports section provides instructions on generating reports for local amounts, adjusted amounts, and various related financial details. The Shareholders and Partners section outlines generating reports on financial and control rights of shareholders and partners, along with participation details.
+
+Contents:
+Company reports
+The Companies page allows you to create company reports that contain information about the companies within a group.
+
+To access the Companies page, click Reports > Standard Reports > Companies.
+
+Types of reports
+These report types are available:
+- Standard (user) report: This report gives a summary of the most important parameters of the companies, including the local currency, the deferred tax settings, the consolidation method, the number of issued shares, the percentage of financial interest of the group, and the third parties. This report shows multiple companies per page.
+- Detailed report: This report gives an overview of all parameters of the company. This report shows one company per page.
+
+Generate a report of companies:
+1. In the Period and Ref Period fields, leave the default consolidation periods, or click to select the consolidation period you want.
+2. Select a Report type.
+3. In the Sorting field, specify how the companies should be displayed on the report — by company code or company name.
+4. In the Filtering field, select an option to either include all the companies in the group in the report or only the consolidated companies.
+5. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+6. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+Intercompany reconciliation report
+The Intercompany Reconciliation report is designed to identify unmatched intercompany transactions, which refers to paired transactions that have inconsistencies in terms of amounts, currencies, or those that have not been matched with their corresponding transactions. By running this report, you can effectively address any discrepancies found in sales and billing information between intercompany partners.
+
+To access the Intercompany Reconciliation Report page, click Reports > Standard Reports > Intercompany Reconciliation report.
+
+Generate an intercompany reconciliation report:
+1. In the Companies table, select the companies.
+2. In the Intercompany rules table, select the rule/rules to run on the report.
+3. In the Filter section, specify:
+   - the type of transactions to include on the report. You can select Matched Transactions or Unmatched Transactions, or both.
+   - whether to Exclude Equity Method and Non-Cash (NC) transactions.
+   - whether to Merge Debit/Credit transactions on the report. If this option is not selected, debit/credit transactions will be listed in separate columns.
+4. In the For the selected companies print differences panel, choose how you want differences to be printed.
+5. From the Journal Summation drop-down list, select an option to specify how you want the accounting codes and ledger entries organized on the report.
+6. To include a Point of View, click to search for and select one.
+7. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+8. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+Local bundle report
+On the Local Bundles page, you have the ability to generate reports of local amounts.
+
+To access the Local Bundles page, click Reports > Standard Reports > Local Bundles.
+
+Types of reports:
+- Local Amounts report: This report is based on the statutory accounts (before local adjustments). The first column of the report displays the data of the current environment, the second column displays the data of the reference environment, and the third column calculates the difference between both.
+- Adjusted Amounts report: This report is based on the adjusted accounts (after local adjustments). The first column of the report displays the data of the current environment, the second column displays the data of the reference environment, and the third column calculates the difference between both.
+- Local Amounts and Adjustments report: This report provides details of the statutory accounts in the first column, the details of the local adjustments in the second column, and the details of the adjusted accounts in the third column.
+- Local Adjustments report: This report provides an overview of the local adjustments.
+- Participations report: This report gives details of the shareholding accounts.
+- Intercompanies report: This report provides a detailed breakdown of all intercompany-related accounts for both actual and reference Consolidation Periods.
+- Partners report: This report provides a detailed breakdown of all partner-related accounts for both actual and reference Consolidation Periods.
+- Dimensions report: This report provides a detailed breakdown of all dimension-related accounts for both actual and reference Consolidation Periods.
+- Flows report: This report gives the details of the financial flows. You can restrict what type of flows you want to display in your report.
+  - Manual Flows: Balance Sheet accounts consisting of flows that have been input manually.
+  - Automatic Flows: Balance Sheet accounts consisting of flows automatically generated by Financial Consolidation.
+
+Generate a local bundle report:
+1. In the Ref Period field, enter a reference consolidation period or click to search for one.
+2. Select the type of report you want to run.
+3. In the Companies selection box, select the company you want to use to generate the report. You can select one, multiple, or all companies.
+4. In the File type field, select the output file type.
+5. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+Participations, shareholders, and partners report
+The Participations / Shareholders / Partners report shows the allocation of shares held by participation, shareholders, and partners in the group.
+
+To access the Participations / Shareholders / Partners page, click Reports > Standard Reports > Participations / Shareholders / Partners.
+
+Types of reports:
+- Shareholders - Financial Rights: This report shows the direct shareholders of the companies in terms of financial rights.
+- Shareholders - Control Rights: This report shows the direct shareholders of the companies in terms of control rights.
+- Shareholding - Financial Rights: This report shows a company’s shareholdings in other companies in terms of financial rights.
+- Shareholding - Control Rights: This report shows a company’s shareholdings in other companies in terms of control rights.
+
+Generate a shareholding report:
+1. In the Period and Ref Period fields, leave the default consolidation periods, or click to select the consolidation period you want.
+2. Select a report type.
+3. Optionally, select Show changes only to only show changes in shareholders/shareholding rights on the report.
+4. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+5. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+General ledger by calculated account report
+The Ledger by Calculated Account page allows you to generate reports on selected calculated accounts and companies.
+
+To access the Ledger by Calculated Account report page, click Reports > Standard Reports > Ledger by Calculated Account.
+
+The left-side panel displays the Accounts you can include in the report including their Code and Description.
+
+The right-side panel displays the Companies you can include in your report, including their Code and Description.
+
+Generate a ledger by calculated account report:
+1. From the Accounts list, select the account(s) you want on the report.
+2. From the Companies list, select the companies you want.
+3. Point of View: a dimension setting that controls data displayed in the report. Select a point of view.
+4. Sort order: how the report is arranged. Select either by accounts or by companies.
+5. Period: consolidation periods. Select either the Current consolidation period or the Reference consolidation period.
+6. Journal View: different stages or levels in the consolidation by which you can view the report. Select a journal view.
+7. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+8. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+General ledger report
+The General Ledger report page allows you to create reports of financial activities of companies in the group.
+
+To access the General Ledger report page, click Reports > Standard Reports > General Ledger.
+
+The left-side panel displays the Accounts you can include in the report and their Code and Description, Account Type, Debit/Credit.
+
+The right-side panel displays the Companies you can include in your report, including their Code and Description.
+
+Generate a general ledger report:
+1. From the Accounts list, select the account code(s).
+2. From the Companies list, select the companies you want on the report.
+3. In the Calc Account field, enter the calculated account or click to find a calculated account to include on the report.
+4. From the Point of View drop-down, select a point of view (the dimension setting that will control the data displayed in the report) and then, click to select a Point of View detail.
+5. For Sort Order, specify how you want the report to be arranged.
+6. For Period, select either Current consolidation period or Reference consolidation period.
+
+
+7. From the Journal View drop-down, select a view.
+8. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+9. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.
+
+Bundle last modified report
+The Bundle Last Modified page allows you to create a report of recently modified bundles.
+
+To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Generate a bundle last modified report:
+1. In the Period field, click to search for and select the current consolidation period.
+2. In the Ref Period field, click to search for and select a reference consolidation period.
+3. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+4. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.

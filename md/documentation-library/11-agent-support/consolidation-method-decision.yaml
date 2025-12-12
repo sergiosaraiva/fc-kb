@@ -1,0 +1,397 @@
+# Consolidation Method Decision Tree
+# Determines: G (Global), E (Equity), P (Proportional), N (Not Consolidated)
+# Based on: IFRS 10 (Control), IFRS 11 (Joint Arrangements), IAS 28 (Associates)
+# Implementation: P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES.sql
+
+decision_tree:
+  name: "Consolidation Method Selection"
+  version: "1.0"
+  description: "Determines the consolidation method based on control percentage and qualitative factors"
+
+  # Prophix.Conso implementation reference
+  implementation:
+    procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES.sql"
+    thresholds:
+      proportional_boundary: 50  # @ConsoMethP
+      not_consolidated_boundary: 20  # @ConsoMethN
+    table: "TS014C0"
+    column: "ConsoMethod"
+
+  # Required inputs for decision
+  inputs:
+    - name: "control_percentage"
+      type: "decimal"
+      source: "TS014C0.GroupCtrlPerc"
+      description: "Group control percentage (voting rights)"
+      required: true
+
+    - name: "financial_percentage"
+      type: "decimal"
+      source: "TS014C0.GroupPerc"
+      description: "Group financial percentage (profit rights)"
+      required: false
+
+    - name: "is_parent_company"
+      type: "boolean"
+      source: "TS014C0.CompanyID = @ParentID"
+      description: "Whether this is the consolidation parent"
+      required: true
+
+    - name: "is_joint_venture"
+      type: "boolean"
+      source: "user_assessment"
+      description: "IFRS 11 joint venture (shared control, rights to net assets)"
+      required: false
+      default: false
+
+    - name: "is_joint_operation"
+      type: "boolean"
+      source: "user_assessment"
+      description: "IFRS 11 joint operation (rights to assets, obligations for liabilities)"
+      required: false
+      default: false
+
+    - name: "has_de_facto_control"
+      type: "boolean"
+      source: "user_assessment"
+      description: "Control without majority ownership (IFRS 10.B41-B46)"
+      required: false
+      default: false
+
+    - name: "has_significant_influence"
+      type: "boolean"
+      source: "user_assessment"
+      description: "IAS 28 significant influence indicators"
+      required: false
+      default: null  # Will be inferred from percentage if not provided
+
+    - name: "no_proportional_config"
+      type: "boolean"
+      source: "T_CONFIG.CONSO_NO_PROPORTIONAL"
+      description: "Configuration to disable proportional method"
+      required: false
+      default: false
+
+  # Decision tree root
+  root: "check_parent"
+
+  # Decision nodes
+  nodes:
+    # Node 1: Check if parent company
+    check_parent:
+      type: "decision"
+      question: "Is this the consolidation parent company?"
+      evaluation: "is_parent_company == true"
+      branches:
+        - condition: "is_parent_company == true"
+          result: "GLOBAL_PARENT"
+        - condition: "is_parent_company == false"
+          next: "check_control_majority"
+
+    # Node 2: Check control > 50%
+    check_control_majority:
+      type: "decision"
+      question: "Is control percentage > 50%?"
+      evaluation: "control_percentage > 50"
+      branches:
+        - condition: "control_percentage > 50"
+          result: "GLOBAL_CONTROL"
+        - condition: "control_percentage <= 50"
+          next: "check_de_facto_control"
+
+    # Node 3: Check de facto control (for <= 50%)
+    check_de_facto_control:
+      type: "decision"
+      question: "Does the group have de facto control? (IFRS 10.B41-B46)"
+      evaluation: "has_de_facto_control == true"
+      guidance: |
+        De facto control indicators:
+        - Largest shareholder with dispersed remaining ownership
+        - Board majority through agreements
+        - Power to direct relevant activities via contracts
+        - Principal-agent relationships giving effective control
+      branches:
+        - condition: "has_de_facto_control == true"
+          result: "GLOBAL_DE_FACTO"
+        - condition: "has_de_facto_control == false"
+          next: "check_joint_control"
+
+    # Node 4: Check for joint control (= 50%)
+    check_joint_control:
+      type: "decision"
+      question: "Is control percentage exactly 50% (joint control)?"
+      evaluation: "control_percentage == 50"
+      branches:
+        - condition: "control_percentage == 50"
+          next: "check_joint_type"
+        - condition: "control_percentage != 50"
+          next: "check_significant_influence"
+
+    # Node 5: Determine joint arrangement type (IFRS 11)
+    check_joint_type:
+      type: "decision"
+      question: "What type of joint arrangement? (IFRS 11)"
+      evaluation: "is_joint_operation vs is_joint_venture"
+      guidance: |
+        Joint Venture (IFRS 11.16):
+        - Rights to NET ASSETS of the arrangement
+        - Separate vehicle with legal substance
+
+        Joint Operation (IFRS 11.15):
+        - Rights to ASSETS and obligations for LIABILITIES
+        - No separate vehicle OR vehicle without legal substance
+      branches:
+        - condition: "is_joint_operation == true"
+          result: "PROPORTIONAL_JO"
+        - condition: "is_joint_venture == true"
+          next: "check_proportional_config"
+        - condition: "default"
+          next: "check_proportional_config"  # Default to JV treatment
+
+    # Node 6: Check if proportional method is disabled
+    check_proportional_config:
+      type: "decision"
+      question: "Is proportional method disabled in configuration?"
+      evaluation: "no_proportional_config == true"
+      source: "T_CONFIG.CONSO_NO_PROPORTIONAL"
+      branches:
+        - condition: "no_proportional_config == true"
+          result: "EQUITY_JV"  # IFRS 11 requires equity for JVs
+        - condition: "no_proportional_config == false"
+          result: "PROPORTIONAL_JV"
+
+    # Node 7: Check significant influence (20-50%)
+    check_significant_influence:
+      type: "decision"
+      question: "Is control percentage >= 20% (presumed significant influence)?"
+      evaluation: "control_percentage >= 20"
+      branches:
+        - condition: "control_percentage >= 20"
+          next: "confirm_significant_influence"
+        - condition: "control_percentage < 20"
+          next: "check_exceptional_influence"
+
+    # Node 8: Confirm significant influence (IAS 28)
+    confirm_significant_influence:
+      type: "decision"
+      question: "Is there rebuttable evidence AGAINST significant influence?"
+      evaluation: "has_significant_influence == false"
+      guidance: |
+        Significant influence indicators (IAS 28.6):
+        - Representation on board of directors
+        - Participation in policy-making
+        - Material transactions with investee
+        - Interchange of managerial personnel
+        - Provision of essential technical information
+
+        Influence may be rebutted if:
+        - Other investor has control
+        - Severe restrictions on ability to exercise influence
+      branches:
+        - condition: "has_significant_influence == false"
+          result: "NOT_CONSOLIDATED_REBUTTED"
+        - condition: "has_significant_influence != false"
+          result: "EQUITY_ASSOCIATE"
+
+    # Node 9: Check for exceptional significant influence (< 20%)
+    check_exceptional_influence:
+      type: "decision"
+      question: "Despite < 20%, does significant influence exist?"
+      evaluation: "has_significant_influence == true"
+      guidance: |
+        Significant influence CAN exist below 20% if demonstrated by:
+        - Board representation
+        - Policy-making participation
+        - Material intercompany transactions
+        - Management interchange
+        - Technical information dependency
+      branches:
+        - condition: "has_significant_influence == true"
+          result: "EQUITY_EXCEPTIONAL"
+        - condition: "has_significant_influence != true"
+          result: "NOT_CONSOLIDATED"
+
+  # Result definitions
+  results:
+    GLOBAL_PARENT:
+      method: "G"
+      code: "G"
+      name: "Global Integration (Parent)"
+      description: "Parent company is always globally integrated"
+      ifrs_standard: "IFRS 10"
+      procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+      eliminations:
+        - "S087"  # Equity capital elimination
+        - "S089"  # Participation elimination
+        - "S085"  # Minority interest
+      documentation: "../02-consolidation-methods/global-integration.md"
+
+    GLOBAL_CONTROL:
+      method: "G"
+      code: "G"
+      name: "Global Integration (Control)"
+      description: "Subsidiary with >50% voting control"
+      ifrs_standard: "IFRS 10"
+      rationale: "Control percentage exceeds 50% threshold"
+      procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+      eliminations:
+        - "S087"  # Equity capital elimination
+        - "S089"  # Participation elimination
+        - "S085"  # Minority interest
+        - "S020"  # Dividend elimination
+        - "S050"  # Intercompany transaction elimination
+        - "S051"  # Intercompany balance elimination
+      documentation: "../02-consolidation-methods/global-integration.md"
+
+    GLOBAL_DE_FACTO:
+      method: "G"
+      code: "G"
+      name: "Global Integration (De Facto Control)"
+      description: "Control without majority ownership per IFRS 10.B41-B46"
+      ifrs_standard: "IFRS 10"
+      rationale: "De facto control established through qualitative assessment"
+      manual_override: true
+      warning: "Requires manual assessment and documentation of control indicators"
+      procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+      eliminations:
+        - "S087"
+        - "S089"
+        - "S085"
+        - "S020"
+        - "S050"
+        - "S051"
+      documentation: "../02-consolidation-methods/global-integration.md"
+
+    PROPORTIONAL_JV:
+      method: "P"
+      code: "P"
+      name: "Proportional Integration (Joint Venture)"
+      description: "Joint venture with shared control at 50%"
+      ifrs_standard: "IFRS 11 (legacy IAS 31)"
+      rationale: "Equal shared control with joint venture characteristics"
+      warning: "IFRS 11 generally requires equity method for JVs; proportional allowed only for joint operations"
+      procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+      eliminations:
+        - "S087"  # At proportional percentage
+        - "S089"  # At proportional percentage
+        - "S050"  # Intercompany elimination
+      documentation: "../02-consolidation-methods/proportional-method.md"
+
+    PROPORTIONAL_JO:
+      method: "P"
+      code: "P"
+      name: "Proportional Integration (Joint Operation)"
+      description: "Joint operation with rights to assets/obligations"
+      ifrs_standard: "IFRS 11"
+      rationale: "Joint operator accounts for share of assets, liabilities, revenues, expenses"
+      procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+      documentation: "../02-consolidation-methods/proportional-method.md"
+
+    EQUITY_JV:
+      method: "E"
+      code: "E"
+      name: "Equity Method (Joint Venture)"
+      description: "Joint venture accounted using equity method per IFRS 11"
+      ifrs_standard: "IFRS 11, IAS 28"
+      rationale: "IFRS 11 requires equity method for joint ventures"
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+      eliminations:
+        - "S080"  # Equity method pickup
+      documentation: "../02-consolidation-methods/equity-method.md"
+
+    EQUITY_ASSOCIATE:
+      method: "E"
+      code: "E"
+      name: "Equity Method (Associate)"
+      description: "Associate with significant influence (20-50%)"
+      ifrs_standard: "IAS 28"
+      rationale: "Control percentage 20-50% creates presumption of significant influence"
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+      eliminations:
+        - "S080"  # Equity method pickup
+        - "S020"  # Dividend elimination (DivReceivedEquity)
+      documentation: "../02-consolidation-methods/equity-method.md"
+
+    EQUITY_EXCEPTIONAL:
+      method: "E"
+      code: "E"
+      name: "Equity Method (Exceptional)"
+      description: "Significant influence demonstrated despite < 20% ownership"
+      ifrs_standard: "IAS 28"
+      rationale: "Significant influence indicators present despite low ownership"
+      manual_override: true
+      warning: "Requires documentation of influence indicators"
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+      documentation: "../02-consolidation-methods/equity-method.md"
+
+    NOT_CONSOLIDATED:
+      method: "N"
+      code: "N"
+      name: "Not Consolidated"
+      description: "Investment with no control or significant influence"
+      ifrs_standard: "IFRS 9"
+      rationale: "Control percentage below 20% with no influence indicators"
+      accounting: "Investment at cost or fair value per IFRS 9"
+      eliminations: []  # No consolidation eliminations
+      documentation: null
+
+    NOT_CONSOLIDATED_REBUTTED:
+      method: "N"
+      code: "N"
+      name: "Not Consolidated (Rebutted Influence)"
+      description: "20-50% but significant influence rebutted"
+      ifrs_standard: "IAS 28, IFRS 9"
+      rationale: "Presumption of significant influence rebutted by evidence"
+      manual_override: true
+      warning: "Requires documentation of why influence is rebutted"
+      accounting: "Investment at cost or fair value per IFRS 9"
+      documentation: null
+
+  # SQL implementation mapping
+  sql_implementation:
+    automatic_determination: |
+      -- From P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES.sql
+      Update #Companies
+        Set ConsoMethod =
+          Case
+            When CompanyID = @ParentID then 'G'
+            When GroupCtrlPerc > @ConsoMethP then 'G'
+            When GroupCtrlPerc = @ConsoMethP AND CompanyID <> @ParentID then 'P'
+            When GroupCtrlPerc >= @ConsoMethN AND GroupCtrlPerc < @ConsoMethP then 'E'
+            When GroupCtrlPerc < @ConsoMethN then 'N'
+            Else 'N'
+          End
+
+    manual_override: |
+      -- To set de facto control or rebut influence
+      UPDATE TS014C0
+      SET ConsoMethod = 'G'  -- or 'E' or 'N'
+      WHERE ConsoID = @ConsoID
+        AND CompanyID = @CompanyID
+
+  # Validation rules
+  validation:
+    - rule: "control_percentage must be 0-100"
+      check: "control_percentage >= 0 AND control_percentage <= 100"
+    - rule: "method must be valid code"
+      check: "ConsoMethod IN ('G', 'E', 'P', 'N', 'S', 'T', 'X')"
+    - rule: "parent must always be G"
+      check: "IF CompanyID = @ParentID THEN ConsoMethod = 'G'"
+
+  # Related documentation
+  references:
+    theory:
+      - chunk: "0044"
+        topic: "Control percentage determination"
+      - chunk: "0055"
+        topic: "Consolidation method options"
+      - chunk: "0076"
+        topic: "Joint control assessment"
+      - chunk: "0082"
+        topic: "Significant influence"
+      - chunk: "0094"
+        topic: "Method thresholds"
+    implementation:
+      - document: "../02-consolidation-methods/consolidation-method-determination.md"
+      - document: "../06-ownership-structure/control-vs-ownership.md"
+      - document: "../06-ownership-structure/voting-rights-analysis.md"

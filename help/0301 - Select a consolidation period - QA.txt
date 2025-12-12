@@ -1,0 +1,560 @@
+Topics:
+User Settings, Workflow Management, Status Board, File Repository
+
+Keywords:
+Profile, Consolidation Period, Task Management, Gantt Chart, Pie Chart, Status Board, Validation, Document Storage, File Upload, User Access
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on user settings, workflow management, the status board, and the file repository. The User Settings section covers profile customization, period selection, and language settings. Workflow Management explains how to manage tasks, view Gantt and Pie charts, and export data. The Status Board section details the monitoring and validation of company data during consolidation. The File Repository section outlines document storage and access controls, emphasizing user roles and permissions.
+
+Contents:
+
+Question: What tasks are displayed on the Workflow page?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status.
+
+Question: How can you access the Workflow page?
+Answer: Click Workflows > Workflow to access the Workflow page.
+
+Question: What does the Gantt chart display on the Workflow page?
+Answer: The Gantt chart displays tasks in a selected list, including the Description, Owner, Start and End dates, and Status.
+
+Question: How can you set preferences for the Workflow page?
+Answer: You can set preferences to control how information is displayed on the Workflow page, such as showing or hiding the Gantt chart, Pie chart, or Companies list.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to show or hide the Gantt chart.
+
+Question: How do you show or hide the Pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart. Click to hide the pie chart.
+
+Question: How do you show or hide the list of companies?
+Answer: Select the Show/Hide the companies icon to show or hide the list of companies.
+
+Question: How do you export tasks to Excel?
+Answer: Click the Export to Excel icon on the Workflow page, select the list you want to export, and click to export the list to an Excel file.
+
+Question: How do you start work on a task?
+Answer: Select the company you want to work on from the table of companies, select a task from the Task list field, change the status to In progress, and click to navigate to the task page or start an automated task.
+
+Question: How do you complete a task?
+Answer: Update your progress by selecting the company and task, changing the status to Completed in the Task details panel, optionally adding comments, and clicking to confirm.
+
+Question: How do you reject a task?
+Answer: Select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: How do you view the history of a task?
+Answer: Select the company and task, go to the History tab, and use filters to narrow the results.
+
+Question: How can you update a company task status?
+Answer: Depending on your role, use buttons below the Companies table to confirm, approve, audit, or reject tasks.
+
+Question: What does the Status Board provide?
+Answer: The Status Board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How can authorized users use the Status Board?
+Answer: Authorized users can generate status reports, run validation rules, review error details, and update data entry status using the Status Board.
+
+Question: What information does the Status Board include?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Question: How do you run validation rules?
+Answer: Select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: How can you review error details?
+Answer: Click to review specifics of balance errors or data loaded for better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, and in the Change status panel, select the new status. Click to change the status.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area accessible to all authorized users for organizing and managing documents.
+
+Question: How do you access the Documents Repository?
+Answer: Click Reports > Document Repository to access the Documents Repository.
+
+Question: What does the folder tree in the Documents Repository allow?
+Answer: The folder tree allows navigation through the structure created by the Administrator/Consolidator.
+
+Question: What actions can users perform in the Documents Repository?
+Answer: Depending on their permissions, users can view, download, refresh, delete, and upload files in the Documents Repository.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: Select a folder, click to upload, enter a description, and click to confirm.
+
+Question: How can administrators manage user access and permissions?
+Answer: Administrators can specify user access and permissions to folders in the Documents Repository.
+
+Question: How can you change a consolidation period?
+Answer: Click the Select Period icon beside the consolidation period you want to change, then click on the desired period to set it as both the current and reference period, the current period, or the reference period.
+
+Question: How can you filter the list of consolidation periods?
+Answer: Use filters to narrow down the list of consolidation periods with wildcards like ? and *. This helps in viewing all periods of one year, or all periods with the same nature or sequence.
+
+Question: What is the Define Period Locking page used for?
+Answer: The Define Period Locking page allows you to set dates after which the import or input of specific types of data will be disabled.
+
+Question: What happens when you lock a period?
+Answer: When you lock a period, it restricts any modifications to the selected data type for that period across all companies within the group.
+
+Question: How do you lock data in a period?
+Answer: Access the Define Period Locking page, specify a date in the Data Locking Date field, select a data type, and click to confirm.
+
+Question: How can you access the User Settings page?
+Answer: You can access the User Settings page by clicking the Profile icon or the Current or Reference consolidation period on the top of any page.
+
+Question: What does the User Settings page allow you to do?
+Answer: The User Settings page allows you to view your profile and edit settings such as your language and working consolidation period to match your preferences or needs.
+
+Question: How can you access the User Settings page through the Profile icon?
+Answer: Click the Profile icon and then select the User Profile option to display both your user profile and consolidation period selection areas.
+
+Question: How can you access the User Settings page through a consolidation period?
+Answer: Click either the Current or Reference consolidation period on top of the page to display only the period selection area.
+
+Question: How do you select a different consolidation period?
+Answer: Access the User Settings page by clicking the consolidation period you want to change, then click on the desired period to set it as current or reference.
+
+Question: What do the red and black locks indicate in consolidation periods?
+Answer: A red lock indicates a locked period, and a black lock indicates an open period.
+
+Question: How can you change the application or data language?
+Answer: Access the User Settings page through your Profile icon, select another language from the drop-down, and click to confirm.
+
+Question: How do you download generated PDF files?
+Answer: Select the Download generated PDF files option on the User Settings page accessed through the Profile icon, and click to confirm.
+
+Question: What tasks are displayed on the Workflow page?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status.
+
+Question: How can you access the Workflow page?
+Answer: Click Workflows > Workflow to access the Workflow page.
+
+Question: What does the Gantt chart display on the Workflow page?
+Answer: The Gantt chart displays tasks in a selected list, including the Description, Owner, Start and End dates, and Status.
+
+Question: How can you set preferences for the Workflow page?
+Answer: You can set preferences to control how information is displayed on the Workflow page, such as showing or hiding the Gantt chart, Pie chart, or Companies list.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to show or hide the Gantt chart.
+
+Question: How do you show or hide the Pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart. Click to hide the pie chart.
+
+Question: How do you show or hide the list of companies?
+Answer: Select the Show/Hide the companies icon to show or hide the list of companies.
+
+Question: How do you export tasks to Excel?
+Answer: Click the Export to Excel icon on the Workflow page, select the list you want to export, and click to export the list to an Excel file.
+
+Question: How do you start work on a task?
+Answer: Select the company you want to work on from the table of companies, select a task from the Task list field, change the status to In progress, and click to navigate to the task page or start an automated task.
+
+Question: How do you complete a task?
+Answer: Update your progress by selecting the company and task, changing the status to Completed in the Task details panel, optionally adding comments, and clicking to confirm.
+
+Question: How do you reject a task?
+Answer: Select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: How do you view the history of a task?
+Answer: Select the company and task, go to the History tab, and use filters to narrow the results.
+
+Question: How can you update a company task status?
+Answer: Depending on your role, use buttons below the Companies table to confirm, approve, audit, or reject tasks.
+
+Question: What does the Status Board provide?
+Answer: The Status Board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How can authorized users use the Status Board?
+Answer: Authorized users can generate status reports, run validation rules, review error details, and update data entry status using the Status Board.
+
+Question: What information does the Status Board include?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Question: How do you run validation rules?
+Answer: Select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: How can you review error details?
+Answer: Click to review specifics of balance errors or data loaded for better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, and in the Change status panel, select the new status. Click to change the status.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area accessible to all authorized users for organizing and managing documents.
+
+Question: How do you access the Documents Repository?
+Answer: Click Reports > Document Repository to access the Documents Repository.
+
+Question: What does the folder tree in the Documents Repository allow?
+Answer: The folder tree allows navigation through the structure created by the Administrator/Consolidator.
+
+Question: What actions can users perform in the Documents Repository?
+Answer: Depending on their permissions, users can view, download, refresh, delete, and upload files in the Documents Repository.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: Select a folder, click to upload, enter a description, and click to confirm.
+
+Question: How can administrators manage user access and permissions?
+Answer: Administrators can specify user access and permissions to folders in the Documents Repository.
+
+Question: How can you change a consolidation period?
+Answer: Click the Select Period icon beside the consolidation period you want to change, then click on the desired period to set it as both the current and reference period, the current period, or the reference period.
+
+Question: How can you filter the list of consolidation periods?
+Answer: Use filters to narrow down the list of consolidation periods with wildcards like ? and *. This helps in viewing all periods of one year, or all periods with the same nature or sequence.
+
+Question: What is the Define Period Locking page used for?
+Answer: The Define Period Locking page allows you to set dates after which the import or input of specific types of data will be disabled.
+
+Question: What happens when you lock a period?
+Answer: When you lock a period, it restricts any modifications to the selected data type for that period across all companies within the group.
+
+Question: How do you lock data in a period?
+Answer: Access the Define Period Locking page, specify a date in the Data Locking Date field, select a data type, and click to confirm.
+
+Question: How do you unlock data in a period?
+Answer: On the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: What information is shown in the Gantt chart on the Workflow page?
+Answer: The Gantt chart displays tasks with their Description, Owner, Start and End dates, and Status according to the set timeline and scale.
+
+Question: What information is displayed in the Status Board?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses.
+
+Question: How do you show tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses. Click to hide the pie chart.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Question: How do you change the application or data language?
+Answer: Access the User Settings page through your Profile icon, select another language from the drop-down, and click to confirm.
+
+Question: How do you update a company task status?
+Answer: Depending on your role, use buttons below the Companies table to confirm, approve, audit, or reject tasks.
+
+Question: How do you run validation rules?
+Answer: Select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: What actions can users perform in the Documents Repository?
+Answer: Depending on their permissions, users can view, download, refresh, delete, and upload files in the Documents Repository.
+
+Question: How do you complete a task?
+Answer: Update your progress by selecting the company and task, changing the status to Completed in the Task details panel, optionally adding comments, and clicking to confirm.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area accessible to all authorized users for organizing and managing documents.
+
+Question: What tasks are displayed on the Workflow page?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status.
+
+Question: How can you export tasks to Excel?
+Answer: Click the Export to Excel icon on the Workflow page, select the list you want to export, and click to export the list to an Excel file.
+
+Question: How do you view the history of a task?
+Answer: Select the company and task, go to the History tab, and use filters to narrow the results.
+
+Question: How do you select a different consolidation period?
+Answer: Access the User Settings page by clicking the consolidation period you want to change, then click on the desired period to set it as current or reference.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: Select a folder, click to upload, enter a description, and click to confirm.
+
+Question: How do you access the Workflow page?
+Answer: Click Workflows > Workflow to access the Workflow page.
+
+Question: What does the Status Board provide?
+Answer: The Status Board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How can you filter the list of consolidation periods?
+Answer: Use filters to narrow down the list of consolidation periods with wildcards like ? and *. This helps in viewing all periods of one year, or all periods with the same nature or sequence.
+
+Question: How do you hide the list of companies?
+Answer: Select the Show/Hide the companies icon to show or hide the list of companies.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to show or hide the Gantt chart.
+
+Question: How do you start work on a task?
+Answer: Select the company you want to work on from the table of companies, select a task from the Task list field, change the status to In progress, and click to navigate to the task page or start an automated task.
+
+Question: What is the Define Period Locking page used for?
+Answer: The Define Period Locking page allows you to set dates after which the import or input of specific types of data will be disabled.
+
+Question: How can administrators manage user access and permissions?
+Answer: Administrators can specify user access and permissions to folders in the Documents Repository.
+
+Question: What information does the Status Board include?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses.
+
+Question: How do you review error details?
+Answer: Click to review specifics of balance errors or data loaded for better insight into issues.
+
+Question: How do you confirm a consolidation period selection?
+Answer: After selecting a period, click to confirm the selection, and the period will be reflected in the Current Period and Reference Period fields.
+
+Question: How can you hide the list of companies in Workflow Management?
+Answer: Click the Show/Hide the companies icon to toggle the visibility of the companies list.
+
+Question: What steps are involved in exporting tasks to Excel?
+Answer: On the Workflow page, click the Export to Excel icon, choose the task list to export, and confirm the export to an Excel file.
+
+Question: How do you start work on a task in Workflow Management?
+Answer: Select the company and task from the Task list, change the status to In progress, and click to navigate to the task page or start an automated task.
+
+Question: What does the History tab in the task details panel show?
+Answer: The History tab shows the life cycle stages of a task, including status changes and added comments, filtered as needed.
+
+Question: How can you monitor task progress on the Dashboard?
+Answer: Use the Dashboard to monitor task progress, including updates on confirmed, approved, audited, and rejected tasks.
+
+Question: What does the Status Board include?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses.
+
+Question: How do you review balance errors on the Status Board?
+Answer: Click to review error details, providing specifics of balance errors or data loaded for better insight into issues.
+
+Question: How can you filter the list of consolidation periods?
+Answer: Use filters to narrow down the list of consolidation periods with wildcards like ? and *. This helps in viewing all periods of one year, or all periods with the same nature or sequence.
+
+Question: How do you organize documents in the Documents Repository?
+Answer: Administrators can create and maintain a folder structure to organize documents for easy access and management.
+
+Question: How can users perform actions in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files depending on their permissions in the Documents Repository.
+
+Question: What information is displayed on the Status Board?
+Answer: The Status Board displays Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, and more.
+
+Question: How do you sort the table on the Status Board?
+Answer: Click column headers to sort the table by criteria such as Company Name or Validation Status.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you export tasks to an Excel file?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: What happens when you confirm the completion of a task?
+Answer: An automatic email is sent to the approver/administrator to notify them that the task has been completed.
+
+Question: How do you reject a task in Workflow Management?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What does the Status Board's validation status indicate?
+Answer: The validation status indicates whether the data entry for a company has passed the set validation rules.
+
+Question: How do you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: What roles can change a company's data entry status?
+Answer: End-users can confirm data, Consolidators can accept or refuse data, Auditors can accept data, and Administrators have all options.
+
+Question: How do you organize documents in the Documents Repository?
+Answer: Administrators can create and maintain a folder structure to organize documents for easy access and management.
+
+Question: How can users perform actions in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files depending on their permissions in the Documents Repository.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear below.
+
+Question: How do you validate company data?
+Answer: In the Run the validation panel, select the companies, click Validate, and the validation status will be updated accordingly.
+
+Question: How can you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, choose the new status in the Change status panel, and click to update the status based on user roles.
+
+Question: What can be managed in the Documents Repository?
+Answer: Administrators can organize folders, manage documents, and specify user permissions in the Documents Repository.
+
+Question: What actions can be performed in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files based on their permissions in the Documents Repository.
+
+Question: How do you navigate through the folder structure in the Documents Repository?
+Answer: Use the folder tree on the left side of the Documents Repository page to navigate the structure created by the Administrator/Consolidator.
+
+Question: What information is displayed on the Status Board?
+Answer: The Status Board displays Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, and more.
+
+Question: How do you sort the table on the Status Board?
+Answer: Click column headers to sort the table by criteria such as Company Name or Validation Status.
+
+Question: How can you hide locked consolidation periods?
+Answer: Use filters on the User Settings page to hide locked consolidation periods from the list.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you export tasks to an Excel file?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: What happens when you confirm the completion of a task?
+Answer: An automatic email is sent to the approver/administrator to notify them that the task has been completed.
+
+Question: How do you reject a task in Workflow Management?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What does the Status Board's validation status indicate?
+Answer: The validation status indicates whether the data entry for a company has passed the set validation rules.
+
+Question: How do you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: What roles can change a company's data entry status?
+Answer: End-users can confirm data, Consolidators can accept or refuse data, Auditors can accept data, and Administrators have all options.
+
+Question: How do you organize documents in the Documents Repository?
+Answer: Administrators can create and maintain a folder structure to organize documents for easy access and management.
+
+Question: How can users perform actions in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files depending on their permissions in the Documents Repository.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear below.
+
+Question: How do you validate company data?
+Answer: In the Run the validation panel, select the companies, click Validate, and the validation status will be updated accordingly.
+
+Question: How can you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, choose the new status in the Change status panel, and click to update the status based on user roles.
+
+Question: What can be managed in the Documents Repository?
+Answer: Administrators can organize folders, manage documents, and specify user permissions in the Documents Repository.
+
+Question: What actions can be performed in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files based on their permissions in the Documents Repository.
+
+Question: How do you navigate through the folder structure in the Documents Repository?
+Answer: Use the folder tree on the left side of the Documents Repository page to navigate the structure created by the Administrator/Consolidator.
+
+Question: What information is displayed on the Status Board?
+Answer: The Status Board displays Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, and more.
+
+Question: How do you sort the table on the Status Board?
+Answer: Click column headers to sort the table by criteria such as Company Name or Validation Status.
+
+Question: How can you hide locked consolidation periods?
+Answer: Use filters on the User Settings page to hide locked consolidation periods from the list.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you export tasks to an Excel file?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: What happens when you confirm the completion of a task?
+Answer: An automatic email is sent to the approver/administrator to notify them that the task has been completed.
+
+Question: How do you reject a task in Workflow Management?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What does the Status Board's validation status indicate?
+Answer: The validation status indicates whether the data entry for a company has passed the set validation rules.
+
+Question: How do you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: What roles can change a company's data entry status?
+Answer: End-users can confirm data, Consolidators can accept or refuse data, Auditors can accept data, and Administrators have all options.
+
+Question: How do you organize documents in the Documents Repository?
+Answer: Administrators can create and maintain a folder structure to organize documents for easy access and management.
+
+Question: How can users perform actions in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files depending on their permissions in the Documents Repository.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear below.
+
+Question: How do you validate company data?
+Answer: In the Run the validation panel, select the companies, click Validate, and the validation status will be updated accordingly.
+
+Question: How can you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, choose the new status in the Change status panel, and click to update the status based on user roles.
+
+Question: What can be managed in the Documents Repository?
+Answer: Administrators can organize folders, manage documents, and specify user permissions in the Documents Repository.
+
+Question: What actions can be performed in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files based on their permissions in the Documents Repository.
+
+Question: How do you navigate through the folder structure in the Documents Repository?
+Answer: Use the folder tree on the left side of the Documents Repository page to navigate the structure created by the Administrator/Consolidator.
+
+Question: What information is displayed on the Status Board?
+Answer: The Status Board displays Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, and more.
+
+Question: How do you sort the table on the Status Board?
+Answer: Click column headers to sort the table by criteria such as Company Name or Validation Status.
+
+Question: How can you hide locked consolidation periods?
+Answer: Use filters on the User Settings page to hide locked consolidation periods from the list.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you export tasks to an Excel file?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: What happens when you confirm the completion of a task?
+Answer: An automatic email is sent to the approver/administrator to notify them that the task has been completed.
+
+Question: How do you reject a task in Workflow Management?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What does the Status Board's validation status indicate?
+Answer: The validation status indicates whether the data entry for a company has passed the set validation rules.
+
+Question: How do you review error details on the Status Board?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: What roles can change a company's data entry status?
+Answer: End-users can confirm data, Consolidators can accept or refuse data, Auditors can accept data, and Administrators have all options.
+
+Question: How do you organize documents in the Documents Repository?
+Answer: Administrators can create and maintain a folder structure to organize documents for easy access and management.
+
+Question: How can users perform actions in the Documents Repository?
+Answer: Users can view, download, refresh, delete, and upload files depending on their permissions in the Documents Repository.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+

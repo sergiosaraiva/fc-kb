@@ -1,0 +1,1418 @@
+# API Elimination Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of elimination rules and entries
+
+api_elimination_endpoints:
+  name: "Elimination API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing consolidation elimination rules and automatic entry generation.
+
+    Eliminations are automatic journal entries generated during consolidation:
+    - Equity eliminations for subsidiary investments
+    - Intercompany transaction eliminations
+    - Goodwill and minority interest calculations
+    - Dividend eliminations
+
+    Key concepts:
+    - Elimination Header: Rule definition with journal type, behavior, and method selection
+    - Elimination Details: Source/destination mappings for automatic entry generation
+    - Elimination Types: 'S' (System/Auto) - predefined, 'U' (User) - custom
+    - Intercompany Rules: Define account pairs for IC elimination matching
+    - IC Eliminations: CN/CP/RN/RP codes for intercompany booking sides
+
+    Services documented:
+    - ConsolidationEliminationsService: Elimination rule management (3 handlers)
+    - ConsolidationEliminationsDetailsService: Elimination detail lines (4 handlers)
+    - InterCompanyEliminationService: IC elimination account mapping (2 handlers)
+    - InterCompanyRulesService: IC matching rule management (7 handlers)
+    - ConsolidationSummaryEquityEliminationAccountsService: Equity elimination accounts (2 handlers)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    EliminationTypes:
+      description: "Types of elimination rules"
+      values:
+        - code: "S"
+          name: "System"
+          description: "System/automatic eliminations (predefined procedures)"
+        - code: "U"
+          name: "User"
+          description: "User-defined custom eliminations"
+
+    EliminationLevels:
+      description: "Level at which elimination applies"
+      values:
+        - value: 0
+          name: "All"
+          description: "Applies to all consolidation levels"
+        - value: 1
+          name: "SubGroup"
+          description: "Applies to sub-group consolidation only"
+        - value: 2
+          name: "Group"
+          description: "Applies to group consolidation only"
+
+    BehaviourTypes:
+      description: "Elimination carry-forward behavior"
+      values:
+        - value: 0
+          name: "NotToCopy"
+          description: "Do not copy to next period"
+        - value: 1
+          name: "Copy"
+          description: "Copy to next period"
+        - value: 2
+          name: "FwdRes"
+          description: "Forward and reset"
+        - value: 3
+          name: "FwdKeep"
+          description: "Forward and keep amounts"
+        - value: 4
+          name: "Reverse"
+          description: "Reverse in next period"
+
+    DataTypes:
+      description: "Source data types for elimination details"
+      values:
+        - value: 1
+          name: "Closing"
+          description: "Closing balance amounts"
+        - value: 2
+          name: "ClosingFlow"
+          description: "Closing flow amounts"
+        - value: 3
+          name: "ClosingDimension"
+          description: "Closing dimension amounts"
+        - value: 4
+          name: "Interco"
+          description: "Intercompany amounts"
+        - value: 5
+          name: "IntercoFlow"
+          description: "Intercompany flow amounts"
+        - value: 6
+          name: "IntercoDimension"
+          description: "Intercompany dimension amounts"
+
+    AccountTypes:
+      description: "Account selection types for elimination details"
+      values:
+        - value: 1
+          name: "Regular"
+          description: "Regular account code"
+        - value: 2
+          name: "Calculated"
+          description: "Calculated/summation account"
+        - value: 3
+          name: "Specific"
+          description: "Specific (consolidation) account"
+        - value: 4
+          name: "SameAsSource"
+          description: "Same account as source"
+
+    FlowTypes:
+      description: "Flow selection types for elimination details"
+      values:
+        - value: 1
+          name: "Regular"
+          description: "Regular flow code"
+        - value: 2
+          name: "Calculated"
+          description: "Calculated/summation flow"
+        - value: 3
+          name: "Specific"
+          description: "Specific (consolidation) flow"
+        - value: 4
+          name: "SameAsSource"
+          description: "Same flow as source"
+
+    IntercoEliminationCodes:
+      description: "Intercompany elimination position codes"
+      values:
+        - code: "CN"
+          name: "CreditNormal"
+          description: "Credit side, normal position"
+        - code: "CP"
+          name: "CreditPartner"
+          description: "Credit side, partner position"
+        - code: "RN"
+          name: "DebitNormal"
+          description: "Debit side (receivable), normal position"
+        - code: "RP"
+          name: "DebitPartner"
+          description: "Debit side (receivable), partner position"
+
+    PartnerMethods:
+      description: "Consolidation method filter for partner"
+      values:
+        - code: ""
+          name: "All"
+          description: "All consolidation methods"
+        - code: "P"
+          name: "Proportional"
+          description: "Proportional consolidation only"
+        - code: "N"
+          name: "NotConsolidated"
+          description: "Not consolidated"
+        - code: "E"
+          name: "Equity"
+          description: "Equity method only"
+        - code: "G"
+          name: "Global"
+          description: "Global (full) consolidation only"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    EliminationDTO:
+      description: "Elimination rule header"
+      source: "ConsolidationEliminationsService.cs"
+      fields:
+        - name: "EliminationHeaderID"
+          type: "integer"
+          nullable: true
+          description: "Unique elimination ID (null for system eliminations not yet configured)"
+        - name: "ElimCode"
+          type: "string"
+          description: "Elimination code (max 4 chars)"
+        - name: "ElimText"
+          type: "string"
+          description: "Elimination description"
+        - name: "ElimType"
+          type: "string"
+          description: "S=System, U=User"
+          enum_ref: "EliminationTypes"
+        - name: "Active"
+          type: "boolean"
+          description: "Whether elimination is active"
+        - name: "JournalSummationCode"
+          type: "string"
+          nullable: true
+          description: "Journal summation for grouping"
+        - name: "JournalTypeID"
+          type: "integer"
+          nullable: true
+        - name: "JournalTypeCode"
+          type: "string"
+          description: "Journal type+category combined"
+        - name: "JournalType"
+          type: "string"
+          description: "Journal type letter"
+        - name: "JournalCategory"
+          type: "string"
+          description: "Journal category"
+        - name: "JournalDescription"
+          type: "string"
+        - name: "AssociatedJournalTypeID"
+          type: "integer"
+          nullable: true
+        - name: "AssociatedJournalTypeCode"
+          type: "string"
+          nullable: true
+          description: "Reversal journal type"
+        - name: "JournalText"
+          type: "string"
+          description: "Journal entry description text"
+        - name: "ElimLevel"
+          type: "byte"
+          description: "Consolidation level (0=All, 1=SubGroup, 2=Group)"
+          enum_ref: "EliminationLevels"
+        - name: "ConsoMethodSelectionID"
+          type: "integer"
+          description: "Consolidation method selection ID"
+        - name: "ConsoMethodSelectionText"
+          type: "string"
+          description: "Method selection description"
+        - name: "Behaviour"
+          type: "byte"
+          description: "Carry-forward behavior (0-4)"
+          enum_ref: "BehaviourTypes"
+        - name: "MinorityFlag"
+          type: "boolean"
+          description: "false=Before minority, true=After minority"
+        - name: "NavigateUrl"
+          type: "string"
+          description: "URL to elimination details screen"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    EliminationDetailDTO:
+      description: "Elimination detail line (source to destination mapping)"
+      source: "ConsolidationEliminationsDetailsService.cs"
+      fields:
+        - name: "EliminationDetailID"
+          type: "integer"
+          nullable: true
+        - name: "LineNr"
+          type: "short"
+          description: "Line sequence number"
+        - name: "Percentage"
+          type: "byte"
+          description: "Percentage type (1-25)"
+        - name: "PercentageDescription"
+          type: "string"
+        - name: "FromType"
+          type: "byte"
+          description: "Source data type (1-6)"
+          enum_ref: "DataTypes"
+        - name: "FromPeriod"
+          type: "char"
+          description: "C=Current, R=Reference"
+        - name: "FromCheck"
+          type: "short"
+          nullable: true
+          description: "Sign check (-1=<0, 1=>=0)"
+        - name: "FromAccountCode"
+          type: "string"
+          nullable: true
+        - name: "FromAccountSummationCode"
+          type: "string"
+          nullable: true
+        - name: "FromConsolidationAccountCode"
+          type: "string"
+          nullable: true
+        - name: "FromPartnerCompanyCode"
+          type: "string"
+          nullable: true
+        - name: "FromPartnerMethod"
+          type: "char"
+          nullable: true
+        - name: "FromFlowCode"
+          type: "string"
+          nullable: true
+        - name: "FromFlowSummationCode"
+          type: "string"
+          nullable: true
+        - name: "FromConsolidationFlowCode"
+          type: "string"
+          nullable: true
+        - name: "FromDimensionGroupID"
+          type: "integer"
+          nullable: true
+        - name: "FromDim1DetailCode"
+          type: "string"
+          nullable: true
+        - name: "FromDim2DetailCode"
+          type: "string"
+          nullable: true
+        - name: "FromDim3DetailCode"
+          type: "string"
+          nullable: true
+        - name: "ToType"
+          type: "byte"
+          description: "Destination data type"
+        - name: "ToAccountCode"
+          type: "string"
+          nullable: true
+        - name: "ToConsolidationAccountCode"
+          type: "string"
+          nullable: true
+        - name: "ToPartnerCompanyCode"
+          type: "string"
+          nullable: true
+        - name: "ToPartnerCompanyType"
+          type: "char"
+          nullable: true
+          description: "P=Same as source, C=Specific"
+        - name: "ToFlowCode"
+          type: "string"
+          nullable: true
+        - name: "ToConsolidationFlowCode"
+          type: "string"
+          nullable: true
+        - name: "ToSign"
+          type: "short"
+          description: "+1 or -1"
+        - name: "ToDimensionGroupID"
+          type: "integer"
+          nullable: true
+        - name: "ToDim1DetailCode"
+          type: "string"
+          nullable: true
+        - name: "ToDim2DetailCode"
+          type: "string"
+          nullable: true
+        - name: "ToDim3DetailCode"
+          type: "string"
+          nullable: true
+
+    InterCompanyRuleDTO:
+      description: "Intercompany matching rule"
+      source: "InterCompanyRulesService.cs"
+      fields:
+        - name: "IntercoRuleID"
+          type: "integer"
+          description: "Unique rule ID"
+        - name: "IntercoRuleNr"
+          type: "integer"
+          description: "Rule number"
+        - name: "IntercoRuleDescription"
+          type: "string"
+          description: "Rule description"
+        - name: "LinkAccountCreditID"
+          type: "integer"
+          nullable: true
+        - name: "LinkAccountCreditCode"
+          type: "string"
+          description: "Credit side link account"
+        - name: "LinkAccountCreditDescription"
+          type: "string"
+        - name: "LinkAccountDebitID"
+          type: "integer"
+          nullable: true
+        - name: "LinkAccountDebitCode"
+          type: "string"
+          description: "Debit side link account"
+        - name: "LinkAccountDebitDescription"
+          type: "string"
+        - name: "Threshold"
+          type: "decimal"
+          description: "Matching threshold amount"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    InterCompanyEliminationDTO:
+      description: "IC elimination account mapping"
+      source: "InterCompanyEliminationService.cs"
+      fields:
+        - name: "IntercoRuleEliminationID"
+          type: "integer"
+          nullable: true
+        - name: "ConsoID"
+          type: "integer"
+        - name: "IntercoRuleID"
+          type: "integer"
+        - name: "EliminationCode"
+          type: "string"
+          description: "CN, CP, RN, or RP"
+          enum_ref: "IntercoEliminationCodes"
+        - name: "EliminationCodeDescription"
+          type: "string"
+        - name: "DestinationAccountID"
+          type: "integer"
+          nullable: true
+        - name: "AccountCode"
+          type: "string"
+          nullable: true
+        - name: "AccountDescription"
+          type: "string"
+          nullable: true
+
+  # ============================================================================
+  # CONSOLIDATION ELIMINATIONS HANDLERS
+  # ============================================================================
+  consolidation_eliminations_handlers:
+    description: |
+      Endpoints for managing elimination rule headers.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsService.cs
+
+    handlers:
+      - name: "ConsolidationEliminations_GetEliminations"
+        description: |
+          Retrieves elimination rules with filtering and pagination.
+          Returns both system (predefined) and user-defined eliminations.
+          System eliminations without headers are included from SystemEliminations table.
+        access_right: "ConsolidationEliminations_GetEliminations"
+        async: true
+
+        request:
+          _t: "ConsolidationEliminations_GetEliminations"
+          parameters:
+            - name: "EliminationHeaderID"
+              type: "integer"
+              required: false
+              description: "Specific elimination ID"
+            - name: "ElimCode"
+              type: "string"
+              required: false
+              description: "Specific elimination code"
+            - name: "FilterElimCode"
+              type: "string"
+              required: false
+              description: "Filter by code pattern"
+            - name: "FilterElimText"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["ELIMCODE", "ELIMTEXT"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_GetEliminations",
+                "scf_order_by": "ELIMCODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_GetEliminations",
+                "ElimCode": "EQ01"
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<EliminationDTO>"
+            scf_methods:
+              type: "array<KeyValuePair<string,string>>"
+              description: "Consolidation method selections"
+            scf_behaviours:
+              type: "array<KeyValuePair<int,string>>"
+              description: "Behaviour options"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "EliminationDTO"
+              description: "Full elimination with EntityVersion"
+
+      - name: "ConsolidationEliminations_SaveElimination"
+        description: |
+          Creates or updates an elimination rule.
+          Validates journal type uniqueness among active eliminations.
+          For system eliminations, syncs Active status with SystemEliminations table.
+        access_right: "ConsolidationEliminations_ManageEliminations"
+        async: true
+
+        request:
+          _t: "ConsolidationEliminations_SaveElimination"
+          parameters:
+            - name: "EliminationDTO"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "EliminationHeaderID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new"
+                - name: "ElimCode"
+                  type: "string"
+                  required: true
+                  validation: "Max 4 characters"
+                - name: "ElimText"
+                  type: "string"
+                  required: true
+                - name: "ElimType"
+                  type: "string"
+                  required: true
+                  description: "S or U"
+                - name: "Active"
+                  type: "boolean"
+                  required: false
+                - name: "JournalSummationCode"
+                  type: "string"
+                  required: false
+                - name: "JournalTypeCode"
+                  type: "string"
+                  required: true
+                - name: "AssociatedJournalTypeCode"
+                  type: "string"
+                  required: false
+                - name: "JournalText"
+                  type: "string"
+                  required: true
+                - name: "ElimLevel"
+                  type: "byte"
+                  required: true
+                - name: "ConsoMethodSelectionID"
+                  type: "integer"
+                  required: false
+                - name: "Behaviour"
+                  type: "byte"
+                  required: true
+                - name: "MinorityFlag"
+                  type: "boolean"
+                  required: false
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "OriginalElimCode"
+              type: "string"
+              required: "if updating"
+              description: "Original code for updates"
+            - name: "IsDuplicateEliminations"
+              type: "boolean"
+              required: false
+              description: "Copy details from source"
+            - name: "DuplicateElimID"
+              type: "integer"
+              required: "if IsDuplicateEliminations=true"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_SaveElimination",
+                "EliminationDTO": {
+                  "EliminationHeaderID": null,
+                  "ElimCode": "EQ01",
+                  "ElimText": "Equity Elimination",
+                  "ElimType": "U",
+                  "Active": true,
+                  "JournalTypeCode": "E01",
+                  "JournalText": "Equity elimination entry",
+                  "ElimLevel": 0,
+                  "Behaviour": 2,
+                  "MinorityFlag": false
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "JournalTypeCodeCodeAlreadyInUse"
+              cause: "Journal type already used by another active elimination"
+            - pattern: "ElimCodeDuplicate"
+              cause: "Elimination code already exists"
+
+      - name: "ConsolidationEliminations_RemoveElimination"
+        description: |
+          Deletes an elimination rule and all its detail lines.
+          Cannot delete system eliminations (EliminationHeaderID < 0).
+        access_right: "ConsolidationEliminations_ManageEliminations"
+        async: true
+
+        request:
+          _t: "ConsolidationEliminations_RemoveElimination"
+          parameters:
+            - name: "EliminationHeaderID"
+              type: "integer"
+              required: true
+            - name: "ElimCode"
+              type: "string"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminations_RemoveElimination",
+                "EliminationHeaderID": 123,
+                "ElimCode": "EQ01",
+                "scf_entity_version": [{"Name": "Eliminations", "Key": "789_123", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+  # ============================================================================
+  # ELIMINATION DETAILS HANDLERS
+  # ============================================================================
+  elimination_details_handlers:
+    description: |
+      Endpoints for managing elimination detail lines (source/destination mappings).
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsDetailsService.cs
+
+    handlers:
+      - name: "ConsolidationEliminationsDetails_GetEliminationItem"
+        description: |
+          Retrieves elimination header with all dropdown options for detail editing.
+          Returns data types, account types, flow types, dimensions, percentages, etc.
+        access_right: "ConsolidationEliminations_GetEliminations"
+        async: false
+
+        request:
+          _t: "ConsolidationEliminationsDetails_GetEliminationItem"
+          parameters:
+            - name: "EliminationHeaderID"
+              type: "integer"
+              required: true
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminationsDetails_GetEliminationItem",
+                "EliminationHeaderID": 123
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "EliminationDetailDataDTO"
+              description: "Header with all dropdown options"
+              schema:
+                EliminationItem: "EliminationHeaderDTO"
+                DataTypes: "array<KeyValuePair<int,string>>"
+                AccountTypesFrom: "array<KeyValuePair<int,string>>"
+                AccountTypesTo: "array<KeyValuePair<int,string>>"
+                FlowTypesFrom: "array<KeyValuePair<int,string>>"
+                FlowTypesTo: "array<KeyValuePair<int,string>>"
+                SpecificAccounts: "array<KeyValuePair<string,string>>"
+                SpecificFlows: "array<KeyValuePair<string,string>>"
+                DimensionsGroupsFrom: "array<KeyValuePair<int,string>>"
+                DimensionsGroupsTo: "array<KeyValuePair<int,string>>"
+                DimensionsData: "array<DimensionsDTO>"
+                PeriodFrom: "array<KeyValuePair<string,string>>"
+                CheckFrom: "array<KeyValuePair<string,string>>"
+                SignTo: "array<KeyValuePair<string,string>>"
+                PercentagesTo: "array<KeyValuePair<int,string>>"
+                PartnerMethods: "array<KeyValuePair<string,string>>"
+                PartnerTypes: "array<KeyValuePair<string,string>>"
+
+      - name: "ConsolidationEliminationsDetails_GetEliminationDetails"
+        description: |
+          Retrieves elimination detail lines for a given header.
+          Returns source and destination mappings with all properties.
+        access_right: "ConsolidationEliminations_GetEliminations"
+        async: false
+
+        request:
+          _t: "ConsolidationEliminationsDetails_GetEliminationDetails"
+          parameters:
+            - name: "EliminationHeaderID"
+              type: "integer"
+              required: true
+            - name: "LineNr"
+              type: "short"
+              required: false
+              description: "Specific line number"
+            - name: "FilterLineNr"
+              type: "string"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["LINENR"]
+          example:
+            json: |
+              {
+                "_t": "ConsolidationEliminationsDetails_GetEliminationDetails",
+                "EliminationHeaderID": 123,
+                "scf_order_by": "LINENR ASC"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<EliminationDetailDTO>"
+
+      - name: "ConsolidationEliminationsDetails_SaveEliminationDetails"
+        description: |
+          Creates or updates an elimination detail line.
+          Validates account/flow/dimension requirements based on data types.
+        access_right: "ConsolidationEliminations_ManageEliminations"
+        async: false
+
+        request:
+          _t: "ConsolidationEliminationsDetails_SaveEliminationDetails"
+          parameters:
+            - name: "EliminationHeaderID"
+              type: "integer"
+              required: true
+            - name: "SelectedAccountTypeTo"
+              type: "byte"
+              required: false
+              description: "1=Regular, 3=Specific, 4=SameAsSource"
+            - name: "SelectedFlowTypeTo"
+              type: "byte"
+              required: false
+            - name: "EliminationDetailDTO"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "EliminationDetailID"
+                  type: "integer"
+                  required: false
+                - name: "LineNr"
+                  type: "short"
+                  required: true
+                - name: "FromType"
+                  type: "byte"
+                  required: true
+                - name: "FromAccountCode"
+                  type: "string"
+                  required: false
+                - name: "FromConsolidationAccountCode"
+                  type: "string"
+                  required: false
+                - name: "FromAccountSummationCode"
+                  type: "string"
+                  required: false
+                - name: "FromPeriod"
+                  type: "char"
+                  required: true
+                - name: "FromFlowCode"
+                  type: "string"
+                  required: false
+                - name: "FromConsolidationFlowCode"
+                  type: "string"
+                  required: false
+                - name: "FromFlowSummationCode"
+                  type: "string"
+                  required: false
+                - name: "FromPartnerCompanyCode"
+                  type: "string"
+                  required: false
+                - name: "FromPartnerMethod"
+                  type: "char"
+                  required: false
+                - name: "FromDimensionGroupID"
+                  type: "integer"
+                  required: false
+                - name: "FromCheck"
+                  type: "short"
+                  required: false
+                - name: "ToType"
+                  type: "byte"
+                  required: true
+                - name: "ToAccountCode"
+                  type: "string"
+                  required: false
+                - name: "ToConsolidationAccountCode"
+                  type: "string"
+                  required: false
+                - name: "ToSign"
+                  type: "short"
+                  required: true
+                - name: "ToFlowCode"
+                  type: "string"
+                  required: false
+                - name: "ToConsolidationFlowCode"
+                  type: "string"
+                  required: false
+                - name: "ToPartnerCompanyType"
+                  type: "char"
+                  required: false
+                - name: "ToPartnerCompanyCode"
+                  type: "string"
+                  required: false
+                - name: "ToDimensionGroupID"
+                  type: "integer"
+                  required: false
+                - name: "Percentage"
+                  type: "byte"
+                  required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "FromAccount.Required"
+              cause: "Source account not specified"
+            - pattern: "ToAccount.Required"
+              cause: "Destination account not specified"
+            - pattern: "FromDimGroup.Required"
+              cause: "Source dimension group required for dimension types"
+
+      - name: "ConsolidationEliminationsDetails_RemoveEliminationDetails"
+        description: |
+          Deletes an elimination detail line.
+        access_right: "ConsolidationEliminations_ManageEliminations"
+        async: false
+
+        request:
+          _t: "ConsolidationEliminationsDetails_RemoveEliminationDetails"
+          parameters:
+            - name: "EliminationHeaderID"
+              type: "integer"
+              required: true
+            - name: "EliminationDetailID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+  # ============================================================================
+  # INTERCOMPANY RULES HANDLERS
+  # ============================================================================
+  intercompany_rules_handlers:
+    description: |
+      Endpoints for managing intercompany matching rules.
+      Source: Sigma.Mona.WebApplication/Screens/InterCompany/InterCompanyRulesService.cs
+
+    handlers:
+      - name: "InterCompany_GetRules"
+        description: |
+          Retrieves intercompany matching rules with filtering and pagination.
+          Returns rule headers with link accounts and threshold.
+        access_right: "InterCompany_GetInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_GetRules"
+          parameters:
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              description: "Override working period"
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: false
+              description: "Specific rule ID"
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: false
+              description: "Specific rule number"
+            - name: "FilterIntercoRuleNr"
+              type: "string"
+              required: false
+            - name: "FilterIntercoRuleDescription"
+              type: "string"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["INTERCORULENR", "INTERCORULEDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_GetRules",
+                "scf_order_by": "INTERCORULENR ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array"
+              element_schema:
+                IntercoRuleID: "integer"
+                IntercoRuleNr: "integer"
+                IntercoRuleDescription: "string"
+          single:
+            scf_items:
+              type: "InterCompanyRuleDTO"
+              description: "Full rule with link accounts"
+
+      - name: "InterCompany_GetDebitCredit"
+        description: |
+          Retrieves debit or credit account details for an IC rule.
+          Returns accounts assigned to the specified side.
+        access_right: "InterCompany_GetInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_GetDebitCredit"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+            - name: "DebitCredit"
+              type: "char"
+              required: true
+              description: "D=Debit, C=Credit"
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_GetDebitCredit",
+                "IntercoRuleID": 123,
+                "DebitCredit": "D"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                IntercoRuleDetailID: "integer"
+                AccountCode: "string"
+                AccountDescription: "string"
+
+      - name: "InterCompany_SaveInterCompany"
+        description: |
+          Creates or updates an intercompany matching rule.
+          Validates link account codes exist.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_SaveInterCompany"
+          parameters:
+            - name: "InterCompany"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "IntercoRuleID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new"
+                - name: "IntercoRuleNr"
+                  type: "integer"
+                  required: true
+                - name: "IntercoRuleDescription"
+                  type: "string"
+                  required: true
+                - name: "Threshold"
+                  type: "decimal"
+                  required: false
+                - name: "LinkAccountDebitCode"
+                  type: "string"
+                  required: true
+                - name: "LinkAccountCreditCode"
+                  type: "string"
+                  required: true
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_SaveInterCompany",
+                "InterCompany": {
+                  "IntercoRuleID": null,
+                  "IntercoRuleNr": 1,
+                  "IntercoRuleDescription": "Trade Receivables/Payables",
+                  "Threshold": 100,
+                  "LinkAccountDebitCode": "1200",
+                  "LinkAccountCreditCode": "2100"
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "FK_TS013I0_TS010S0"
+              cause: "Invalid debit link account"
+            - pattern: "FK_TS013I0_TS010S01"
+              cause: "Invalid credit link account"
+
+      - name: "InterCompany_RemoveInterCompany"
+        description: |
+          Deletes an intercompany matching rule.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_RemoveInterCompany"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "InterCompany_AddInterCompanyDetails"
+        description: |
+          Adds an account to an intercompany rule's debit or credit side.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_AddInterCompanyDetails"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+            - name: "DebitCredit"
+              type: "char"
+              required: true
+              description: "D or C"
+            - name: "AccountCode"
+              type: "string"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "InterCompany_AddInterCompanyDetails",
+                "IntercoRuleID": 123,
+                "IntercoRuleNr": 1,
+                "DebitCredit": "D",
+                "AccountCode": "1210"
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "InterCompany_RemoveInterCompanyDetails"
+        description: |
+          Removes an account from an intercompany rule.
+        access_right: "InterCompany_ManageInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_RemoveInterCompanyDetails"
+          parameters:
+            - name: "IntercoRuleID"
+              type: "integer"
+              required: true
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+            - name: "IntercoRuleDetailID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "InterCompany_GetRulesCodeDescription"
+        description: |
+          Returns IC rule number/description pairs for autocomplete.
+        access_right: "InterCompany_GetInterCompanyRules"
+        async: false
+
+        request:
+          _t: "InterCompany_GetRulesCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<int,string>>"
+              description: "RuleNr -> 'RuleNr: Description' pairs"
+
+  # ============================================================================
+  # INTERCOMPANY ELIMINATION HANDLERS
+  # ============================================================================
+  intercompany_elimination_handlers:
+    description: |
+      Endpoints for managing IC elimination account mappings.
+      Source: Sigma.Mona.WebApplication/Screens/InterCompanyElimination/InterCompanyEliminationService.cs
+
+    handlers:
+      - name: "InterCompanyElimination_GetIntercos"
+        description: |
+          Retrieves IC elimination account mappings for a rule.
+          Returns CN/CP/RN/RP codes with destination accounts.
+        access_right: "InterCompanyElimination_GetIntercos"
+        async: true
+
+        request:
+          _t: "InterCompanyElimination_GetIntercos"
+          parameters:
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+            - name: "FilterEliminationCode"
+              type: "string"
+              required: false
+            - name: "FilterAccountCode"
+              type: "string"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["ELIMINATIONCODE", "ACCOUNTCODE", "ACCOUNTDESCRIPTION"]
+          example:
+            json: |
+              {
+                "_t": "InterCompanyElimination_GetIntercos",
+                "IntercoRuleNr": 1,
+                "scf_order_by": "ELIMINATIONCODE ASC"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<InterCompanyEliminationDTO>"
+
+      - name: "InterCompanyElimination_SaveIntercos"
+        description: |
+          Saves IC elimination account mappings for a rule.
+          Pass empty AccountCode to remove mapping.
+        access_right: "InterCompanyElimination_ManageIntercos"
+        async: true
+
+        request:
+          _t: "InterCompanyElimination_SaveIntercos"
+          parameters:
+            - name: "IntercoRuleNr"
+              type: "integer"
+              required: true
+            - name: "Items"
+              type: "object"
+              required: true
+              description: "Dictionary keyed by elimination code (CN/CP/RN/RP)"
+              example:
+                CN:
+                  AccountCode: "6100"
+                CP:
+                  AccountCode: "6100"
+                RN:
+                  AccountCode: "4100"
+                RP:
+                  AccountCode: "4100"
+          example:
+            json: |
+              {
+                "_t": "InterCompanyElimination_SaveIntercos",
+                "IntercoRuleNr": 1,
+                "Items": {
+                  "CN": {"AccountCode": "6100"},
+                  "CP": {"AccountCode": "6100"},
+                  "RN": {"AccountCode": "4100"},
+                  "RP": {"AccountCode": "4100"}
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "InvalidAccountCode"
+              cause: "Account code not found"
+
+  # ============================================================================
+  # EQUITY ELIMINATION ACCOUNTS HANDLERS
+  # ============================================================================
+  equity_elimination_handlers:
+    description: |
+      Endpoints for managing equity elimination account selection.
+      Source: Sigma.Mona.WebApplication/Screens/ConsolidationSummaryEquityEliminationAccounts/ConsolidationSummaryEquityEliminationAccountsService.cs
+
+    handlers:
+      - name: "ConsolidationSummaryEquityEliminationAccounts_GetDetails"
+        description: |
+          Retrieves accounts flagged for equity elimination with selection state.
+          Shows which accounts are included in consolidation difference report.
+        access_right: "ConsolidationSummaryEquityEliminationAccounts_GetConsolidationSummaryEquityEliminationAccounts"
+        async: true
+
+        request:
+          _t: "ConsolidationSummaryEquityEliminationAccounts_GetDetails"
+          parameters:
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["CODE", "DESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationSummaryEquityEliminationAccounts_GetDetails",
+                "scf_order_by": "CODE ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                ID: "integer"
+                Code: "string"
+                Description: "string"
+                isSelected: "boolean"
+            scf_total_row_count:
+              type: "integer"
+            EntityVersion:
+              type: "array<EntityVersion>"
+
+      - name: "ConsolidationSummaryEquityEliminationAccounts_SaveDetails"
+        description: |
+          Saves the selection of accounts for equity elimination reporting.
+          Replaces all existing selections with new list.
+        access_right: "ConsolidationSummaryEquityEliminationAccounts_ManageConsolidationSummaryEquityEliminationAccounts"
+        async: true
+
+        request:
+          _t: "ConsolidationSummaryEquityEliminationAccounts_SaveDetails"
+          parameters:
+            - name: "SelectedIDs"
+              type: "array<integer>"
+              required: true
+              description: "Account IDs to select"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ConsolidationSummaryEquityEliminationAccounts_SaveDetails",
+                "SelectedIDs": [101, 102, 103, 104],
+                "scf_entity_version": [{"Name": "ConsolidationSummaryEquityElimAcct", "Key": "789", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    elimination_setup_workflow:
+      name: "Elimination Rule Setup Workflow"
+      description: "Configure automatic elimination entries"
+      steps:
+        - step: 1
+          name: "Get Elimination List"
+          handler: "ConsolidationEliminations_GetEliminations"
+          purpose: "View existing eliminations"
+
+        - step: 2
+          name: "Create/Configure Elimination"
+          handler: "ConsolidationEliminations_SaveElimination"
+          parameters:
+            Active: true
+          purpose: "Define elimination rule"
+
+        - step: 3
+          name: "Get Detail Options"
+          handler: "ConsolidationEliminationsDetails_GetEliminationItem"
+          purpose: "Load dropdown options for detail editing"
+
+        - step: 4
+          name: "Add Detail Lines"
+          handler: "ConsolidationEliminationsDetails_SaveEliminationDetails"
+          purpose: "Define source/destination mappings"
+
+        - step: 5
+          name: "Verify Configuration"
+          handler: "ConsolidationEliminationsDetails_GetEliminationDetails"
+          purpose: "Review all detail lines"
+
+    intercompany_rule_setup_workflow:
+      name: "Intercompany Rule Setup Workflow"
+      description: "Configure IC matching and elimination rules"
+      steps:
+        - step: 1
+          name: "Create IC Rule"
+          handler: "InterCompany_SaveInterCompany"
+          purpose: "Define matching rule with link accounts"
+
+        - step: 2
+          name: "Add Debit Accounts"
+          handler: "InterCompany_AddInterCompanyDetails"
+          parameters:
+            DebitCredit: "D"
+          purpose: "Add accounts to debit side"
+
+        - step: 3
+          name: "Add Credit Accounts"
+          handler: "InterCompany_AddInterCompanyDetails"
+          parameters:
+            DebitCredit: "C"
+          purpose: "Add accounts to credit side"
+
+        - step: 4
+          name: "Configure Elimination Accounts"
+          handler: "InterCompanyElimination_SaveIntercos"
+          purpose: "Set CN/CP/RN/RP destination accounts"
+
+        - step: 5
+          name: "Verify Rule"
+          handler: "InterCompany_GetRules"
+          parameters:
+            IntercoRuleID: "{created_id}"
+          purpose: "Review complete rule configuration"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationEliminations/ConsolidationEliminationsDetailsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/InterCompanyElimination/InterCompanyEliminationService.cs"
+      - "Sigma.Mona.WebApplication/Screens/InterCompany/InterCompanyRulesService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ConsolidationSummaryEquityEliminationAccounts/ConsolidationSummaryEquityEliminationAccountsService.cs"
+    handler_count: 18
+    purpose: |
+      Enable AI agents to manage consolidation elimination rules including:
+      - Creating and configuring automatic elimination rules
+      - Defining source/destination account mappings
+      - Managing intercompany matching rules
+      - Configuring IC elimination accounts (CN/CP/RN/RP)
+      - Selecting accounts for equity elimination reporting
+
+      Eliminations are essential for:
+      - Eliminating intercompany transactions and balances
+      - Calculating goodwill and minority interest
+      - Removing subsidiary equity investments
+      - Generating proper consolidated financial statements

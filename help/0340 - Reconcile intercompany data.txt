@@ -1,0 +1,88 @@
+Topics:
+Intercompany Transactions, Data Validation, Matching and Elimination, Report Generation
+
+Keywords:
+Intercompany Matching, Intercompany Elimination, Validation Report, Matching Rules, Automatic Elimination, Threshold, Partner Companies, Transaction Reconciliation, Currency Impact, Fiscal Year Differences
+
+Summary:
+The provided documentation for the Financial Consolidation product covers detailed instructions on managing intercompany transactions, data validation, intercompany matching and elimination, and report generation. The Intercompany Transactions section explains how to match and reconcile transactions between group companies. The Data Validation section details generating validation reports to identify intercompany differences. The Matching and Elimination section provides steps for setting up automatic eliminations and correcting intercompany details. The Report Generation section explains how to create and download intercompany validation and matching reports.
+
+Contents:
+Intercompany matching
+Intercompany Matching page is used for "matching" transactions between the companies in a group for the purpose of elimination and reconciliation. Intercompany matching is necessary when there are differences in intercompany transactions. Reasons for intercompany differences include:
+
+Invoice booked by one company and the corresponding purchase not booked by the other company
+Companies ending their fiscal year at different dates
+Impact of currency rates on intercompany transactions
+Transaction with a turnover on one side and a purchase booked as an asset on the other side
+VAT not refundable
+
+To access the Intercompany Matching page, click Consolidation > Consolidation > Intercompany Matching.
+
+The left-side panel displays details on the intercompany matching/unmatching transactions as follows:
+Rule - the intercompany elimination rule used for displaying the detailed information.
+Company (above) - code, name, and the local currency of the company identified as the debit company for the debit transaction.
+Company (below) - code, name, and the local currency of the company identified as the credit company for the credit transaction.
+Under the company identification are all amounts that contribute to the reconciliation. This information is shown as a table with the following columns: Account - the account on which the amounts are booked, Journal - the journal code and category on which the amounts are booked, Entry - the journal entry number, Description - the journal description, Amount - the amount in group currency.
+
+The right-side panel is where you use certain criteria to filter the intercompany information you want to display on the left:
+Threshold - the amount under which any intercompany difference is ignored. Filter group box includes filters such as Unmatched Transactions, Matched Transactions, Exclude Equity Method and NC, Merge Debit and Credit amounts. Set Threshold allows you to limit the intercompany reconciliation to one specific Intercompany Elimination rule.
+
+Set threshold
+1. In the Threshold field, click.
+2. In the Threshold window set the amounts at which the differences will not be displayed. There is one line for each Intercompany Elimination rule, meaning you can define different thresholds for different rules.
+3. To save the modifications you make to the threshold, click.
+
+Correct intercompany details
+On this page, you can correct intercompany details. The Intercompany Rule, Company and Partner Company, including code, name, and local currency, are displayed. 
+
+1. Search for the account on which you want to make the correction. Only accounts defined as Intercompany Accounts will appear on the list.
+2. Enter the amount that you want to correct. You can choose to correct the difference in Group Currency or in the Local Currency of the company.
+3. Click to add the difference amount to the Bundle Amount of the selected account. These modifications impact the statutory bundle of the company mentioned in the Company field, on the account selected in the Account field, and with the partner identified in the Partner field. The amount to be added can be indicated either in the consolidation currency or in the local currency of the company. Conversion to the consolidation currency will be carried out automatically if you choose to correct the amount in the local currency.
+4. After modifying a statutory bundle to correct intercompany differences, carry out a new validation of the statutory bundle.
+
+Generate Group Adjustment
+1. There are three types of adjustments. Select one of them:
+    - Transfer Difference: used for transferring the difference amount from the group transactions towards the out-of-group, or vice versa.
+    - Reclassify Difference: used for reclassifying the difference found on an intercompany P&L account to a currency translation difference account.
+    - Book Difference: used for booking the difference found on an intercompany Balance Sheet account to a translation difference account. The difference will be booked in P&L for the current period, and the adjustment will be counter-passed during the next period.
+2. To set up these adjustments, click to redirect to the adjustment page. On this page, modify the “Posting journal” of the “IC-915-1”, “IC-915-2” and “IC-915-3” eliminations.
+3. Set up the adjustments and click.
+4. When finished, click to close this window and return to the main page.
+
+Print intercompany differences or matched transactions
+On the Intercompany Matching page, click to open the Report page and print the intercompany differences or the matched transactions identified during the last Intercompany Matching/Reconciliation process. 
+
+1. Select one or more companies. If you want to select all lines, click on the checkbox at the top of the list.
+2. Select the criteria to create the report. In the Filter section, you will see the conditions used to run the reconciliation — Unmatched Transactions, Matched Transactions, and Merge Debit/Credit.
+3. Next, for the selected companies, two options are possible:
+    - Within selected companies - to print out a report that will list all differences within only the selected companies and rules.
+    - Within any other company - to print out a report that will list all differences related to the selected companies, regardless of where these differences come from (selected/non-selected companies).
+4. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+5. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the file type selected.
+6. Click to close this window and return to the Intercompany Matching page.
+
+Link intercompany eliminations to rules
+On the Intercompany Elimination page, you can establish automated intercompany eliminations for variances that fall below the threshold you specify. This helps document intercompany conversion discrepancies and actual variances on designated accounts. Intercompany elimination removes transactions between subsidiary companies in a group.
+
+To set up automatic intercompany eliminations:
+1. In the Account Number field of the Elimination Code, click.
+2. From the Select an Account pop-up, select the account for which you want to set up the automatic elimination and click.
+3. Click.
+4. To return to the Define IC Rules page, click.
+
+Define IC Rules
+Define intercompany rules to manage how transactions between companies are processed and eliminated during consolidation. Access the Intercompany Elimination page to configure these rules.
+
+Intercompany validation report
+On the Intercompany Validation report page, generate a printed report that displays intercompany differences. The report focuses on the chosen company and showcases all intercompany transactions involving the selected partners, based on specified rules. The differences are presented in the currency of the selected company.
+
+To access the Intercompany Validation report page, click Data Entry > Validation Reports > Intercompany Validation.
+
+Generate an IC validation report:
+1. From the Companies field, select a company.
+2. From the Partner companies list, select the partner companies you want on the report.
+3. From the Intercompanies Rules list, select the rules you want to apply.
+4. In the Filter box, use options to narrow down the data on your report: Use Threshold, Merge Debit/Credit, Unmatched Transactions, Matched Transactions.
+5. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+6. Click to generate the report. After the report is generated, a download link appears below for you to click and view it in the selected file type.

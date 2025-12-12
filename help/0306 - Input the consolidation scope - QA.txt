@@ -1,0 +1,455 @@
+Topics:
+User Settings, Workflow Management, Currency Exchange Rates, Period Locking, Company Management
+
+Keywords:
+Profile, Consolidation Period, Task Management, Gantt Chart, Pie Chart, Status Board, Validation, Document Storage, File Upload, User Access, Exchange Rates, Period Locking, Company Addition, Group Structure, Additional Company Data
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on user settings, workflow management, currency exchange rates, period locking, and company management. The User Settings section covers profile customization, period selection, and language settings. Workflow Management explains how to manage tasks, view Gantt and Pie charts, and export data. The Currency Exchange Rates section details how to enter, import, and export exchange rates for different consolidation periods. The Period Locking section outlines how to set dates to disable the import or input of specific data types. The Company Management section provides steps to add and manage companies within the group structure, including additional company data and ownership details.
+
+Contents:
+
+Question: How do you access the User Settings page through the consolidation period?
+Answer: To access the User Settings page through the consolidation period, click either the Current or Reference consolidation period on top of the page.
+
+Question: What is indicated by a red lock on the User Settings page?
+Answer: A red lock on the User Settings page indicates a locked consolidation period.
+
+Question: How do you change the application language?
+Answer: To change the application language, access the User Settings page through your Profile icon, go to the Application Language field, select another language from the drop-down, and click to confirm.
+
+Question: How can you start a task from the Workflow page?
+Answer: To start a task from the Workflow page, select the company from the table, select the task in the Task list field, and click to navigate to the task page.
+
+Question: What happens when you reject a task on the Workflow page?
+Answer: When you reject a task on the Workflow page, an automatic email is sent to the approver/administrator.
+
+Question: How do you generate a status report?
+Answer: To generate a status report, go to the Status Report panel, select the output file type, and click to generate the report.
+
+Question: What is the purpose of the Status Board?
+Answer: The purpose of the Status Board is to provide an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How do you change a company's data entry status?
+Answer: To change a company's data entry status, select the company, and in the Change status panel, select the new status and click to change the status.
+
+Question: What information does the Documents Repository store?
+Answer: The Documents Repository stores collaborative documents accessible to all authorized users, where administrators can organize, maintain, and govern the stored documents.
+
+Question: How do you filter consolidation periods using wildcards?
+Answer: To filter consolidation periods using wildcards, use symbols like ? and * to narrow down the list of periods.
+
+Question: What does locking a period do?
+Answer: Locking a period restricts any modifications to the selected data type for that period across all companies within the group.
+
+Question: What are the available options for data types when locking a period?
+Answer: The available options for data types when locking a period are Closing Amounts, Intercompany, Flows, Intercompany Flows, Analytical Dimensions, and Adjustments.
+
+Question: How do you unlock data in a consolidation period?
+Answer: To unlock data in a consolidation period, go to the Define Period Locking page, click the data to unlock, clear the lock date, and click to confirm.
+
+Question: How do you access the Exchange Rates page?
+Answer: To access the Exchange Rates page, click Group > Exchange Rates.
+
+Question: How do you enter currency exchange rates for a consolidation period?
+Answer: To enter currency exchange rates for a consolidation period, select the consolidation period and currency, enter the Close, Average, and Month currency rates, and click to save changes.
+
+Question: What is the purpose of the Exchange Rates page?
+Answer: The purpose of the Exchange Rates page is to enter, import, or export currency exchange rates for a consolidation period.
+
+Question: What are the file formats for importing exchange rates?
+Answer: The file formats for importing exchange rates include CSV, Excel, ECB (SDMX European Central Bank), and NBS (SDMX National Bank of Slovakia).
+
+Question: How do you import exchange rates from an Excel file?
+Answer: To import exchange rates from an Excel file, specify the Sheet Name and Currency, upload the file, view it, and transfer the data into the database.
+
+Question: How do you export currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the period, choose the file format (XLS or CSV), specify parameters, and click to export the rates.
+
+Question: What information is displayed on the Companies page?
+Answer: The Companies page displays a list of available companies on the left-side panel and details of any selected company, including code, description, and country code, on the right-side panel.
+
+Question: How do you add a new company?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information, and save.
+
+Question: What is the purpose of the Companies Additional Info page?
+Answer: The purpose of the Companies Additional Info page is to enable users to add supplementary details for companies, which administrators can create and users can input corresponding values for their associated companies.
+
+Question: How do you access the Companies Additional Info page?
+Answer: To access the Companies Additional Info page, click Group > Companies and then click the add icon.
+
+Question: How do you create the group structure?
+Answer: To create the group structure, go to the Group Structure page, input and manage direct relationships among entities, determining the appropriate consolidation method.
+
+Question: What information is shown in the Shareholders tab on the Group Structure page?
+Answer: The Shareholders tab on the Group Structure page shows the number of shares held by other companies in the group.
+
+Question: What information is shown in the Participations tab on the Group Structure page?
+Answer: The Participations tab on the Group Structure page shows the number of shares held in other companies.
+
+Question: How do you update the consolidation method and percentages?
+Answer: To update the consolidation method and percentages, go to the Group Structure page, save changes, and proceed with caution as it can have significant consequences.
+
+Question: How do you select a different consolidation period?
+Answer: To select a different consolidation period, access the User Settings page by clicking the consolidation period you want to change, and choose the period from the list.
+
+Question: How do you change data entry status for a company?
+Answer: To change data entry status for a company, select the company, and in the Change status panel, select the new status and click to change the status.
+
+Question: How do you show or hide the list of companies on the Workflow page?
+Answer: To show or hide the list of companies on the Workflow page, select the Show/Hide the companies icon.
+
+Question: How do you access the User Settings page through the profile icon?
+Answer: To access the User Settings page through the profile icon, click the Profile icon and select the User Profile option.
+
+Question: What does the consolidation period selection area display?
+Answer: The consolidation period selection area displays consolidation periods with their codes, reference period codes, and names.
+
+Question: How do you filter the list of consolidation periods?
+Answer: To filter the list of consolidation periods, hide locked periods or use wildcards like ? and * to narrow down the list.
+
+Question: How do you change your application or data language?
+Answer: To change your application or data language, go to the User Settings page, select another language from the drop-down in the appropriate field, and click to confirm.
+
+Question: How do you download PDF files from the User Settings page?
+Answer: To download PDF files from the User Settings page, select the Download generated PDF files option and click to confirm.
+
+Question: How can you access the Workflow page?
+Answer: To access the Workflow page, click Workflows > Workflow.
+
+Question: What does the Task list field on the Workflow page contain?
+Answer: The Task list field on the Workflow page contains a list of tasks assigned to the task owner.
+
+Question: How do you hide the Gantt chart on the Workflow page?
+Answer: To hide the Gantt chart on the Workflow page, click to cancel the selection.
+
+Question: How do you show or hide the Pie chart on the Workflow page?
+Answer: To show or hide the Pie chart on the Workflow page, select the Show/Hide the Pie Chart icon.
+
+Question: How do you start work on a task?
+Answer: To start work on a task, select the company from the table, select the task in the Task list field, change the status to In progress, and click to navigate to the task page.
+
+Question: How do you update the status of a task to Completed?
+Answer: To update the status of a task to Completed, select the company and task, change the status to Completed in the Task details panel, optionally add comments, and click to confirm.
+
+Question: How do you reject a task on the Workflow page?
+Answer: To reject a task on the Workflow page, select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: What information does the status board provide?
+Answer: The status board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How do you generate a status report from the Status Board?
+Answer: To generate a status report from the Status Board, go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Question: How do you run validation rules from the Status Board?
+Answer: To run validation rules from the Status Board, select the companies for validation, go to the Run the validation panel, and click Validate.
+
+Question: How can you review error details on the Status Board?
+Answer: To review error details on the Status Board, click to review specifics of balance errors or data loaded for better insight into issues.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The purpose of the Documents Repository is to serve as a collaborative storage area accessible to all authorized users, where administrators can organize, maintain, and govern the documents stored.
+
+Question: How can administrators specify user access and permissions in the Document Repository?
+Answer: Administrators can specify user access and permissions by organizing and maintaining the documents and granting rights to specific roles to access folders.
+
+Question: How do you change the consolidation period in the Financial Consolidation application?
+Answer: To change the consolidation period in the Financial Consolidation application, click the Select Period icon beside the desired period, select the period on the User Settings page, and click to confirm.
+
+Question: What are wildcards used for in filtering consolidation periods?
+Answer: Wildcards like ? and * are used to filter consolidation periods. Examples include typing 20* to see all periods from the 21st century or ACT to see all periods with the nature ACT.
+
+Question: What happens when you lock a period?
+Answer: When you lock a period, it restricts any modifications to the selected data type for that period across all companies within the group.
+
+Question: What are the six data types available for locking?
+Answer: The six data types available for locking are Closing Amounts, Intercompany, Flows, Intercompany Flows, Analytical Dimensions, and Adjustments.
+
+Question: How do you specify a date for data locking?
+Answer: To specify a date for data locking, access the Define Period Locking page, click in the Data Locking Date field, select a date from the calendar, and click to confirm.
+
+Question: How do you unlock data for a consolidation period?
+Answer: To unlock data for a consolidation period, access the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: How do you access the Exchange Rates page?
+Answer: To access the Exchange Rates page, click Group > Exchange Rates.
+
+Question: How do you enter a currency exchange rate?
+Answer: To enter a currency exchange rate, select the consolidation period and currency on the Exchange Rates page, enter the Close, Average, and Month currency rates, and click to save changes.
+
+Question: How do you print a currency exchange rate report?
+Answer: To print a currency exchange rate report, select the report type, base currency, and output file type on the Currencies Reports tab, and click to generate the report.
+
+Question: What file formats can be used to import exchange rates?
+Answer: File formats that can be used to import exchange rates include CSV, Excel, ECB (SDMX European Central Bank), and NBS (SDMX National Bank of Slovakia).
+
+Question: What file formats can be used to export exchange rates?
+Answer: File formats that can be used to export exchange rates include XLS and CSV.
+
+Question: How do you specify parameters for importing exchange rates from a CSV file?
+Answer: To specify parameters for importing exchange rates from a CSV file, set the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter.
+
+Question: How do you select a consolidation period for exporting exchange rates?
+Answer: To select a consolidation period for exporting exchange rates, go to the Export Exchange Rates page, select the period in the Period field, and choose the file format.
+
+Question: How do you add a new company?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information, and save.
+
+Question: How do you access the Companies page?
+Answer: To access the Companies page, click Group > Companies.
+
+Question: What information is displayed on the Companies page?
+Answer: The Companies page displays a list of available companies on the left-side panel and details of any selected company, including code, description, and country code, on the right-side panel.
+
+Question: How do you add additional company data?
+Answer: To add additional company data, access the Companies Additional Info page, click the add icon, specify the line number, label, and description, then save.
+
+Question: What is the Group Structure page used for?
+Answer: The Group Structure page is used to input and manage direct relationships among entities, determining the appropriate consolidation method.
+
+Question: What details are shown for a selected company on the Group Structure page?
+Answer: The Group Structure page shows details for a selected company, including company code, name, financial rights, voting rights, group percentage, minority percentage, and group control percentage.
+
+Question: How do you enter shareholders information?
+Answer: To enter shareholders information, use the Shareholders tab on the Group Structure page to enter the number of shares held by other companies in the group.
+
+Question: How do you enter participations information?
+Answer: To enter participations information, use the Participations tab on the Group Structure page to enter the number of shares held in other companies.
+
+Question: How do you update the consolidation method and percentages?
+Answer: To update the consolidation method and percentages, save changes on the Group Structure page, and proceed with caution as it can have significant consequences.
+
+Question: How do you filter the list of consolidation periods?
+Answer: To filter the list of consolidation periods, use wildcards like ? and * to narrow down the periods.
+
+Question: How do you show or hide the list of companies on the Workflow page?
+Answer: To show or hide the list of companies on the Workflow page, select the Show/Hide the companies icon.
+
+Question: How do you change the status of a company task?
+Answer: To change the status of a company task, select the company and task, and in the Change status panel, select the new status and click to change the status.
+
+Question: How do you start work on a task from the Workflow page?
+Answer: To start work on a task from the Workflow page, select the company, select the task in the Task list field, change the status to In progress, and click to navigate to the task page.
+
+Question: How do you set your preferences on the Workflow page?
+Answer: To set your preferences on the Workflow page, you can control how information is displayed, such as showing/hiding the Gantt chart, Pie chart, or Companies list.
+
+Question: What does the Task list field contain on the Workflow page?
+Answer: The Task list field on the Workflow page contains a list of tasks assigned to the task owner.
+
+Question: How do you hide the Gantt chart on the Workflow page?
+Answer: To hide the Gantt chart on the Workflow page, click to cancel the selection.
+
+Question: How do you show the Pie chart on the Workflow page?
+Answer: To show the Pie chart on the Workflow page, select the Show/Hide the Pie Chart icon.
+
+Question: How do you update your progress on a task?
+Answer: To update your progress on a task, select the company and task, change the status to Completed in the Task details panel, optionally add comments, and click to confirm.
+
+Question: What happens when you reject a task on the Workflow page?
+Answer: When you reject a task on the Workflow page, an automatic email is sent to the approver/administrator.
+
+Question: How do you access the history of a task?
+Answer: To access the history of a task, select the company and task, and go to the History tab.
+
+Question: What information does the status board provide?
+Answer: The status board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How do you generate a status report from the Status Board?
+Answer: To generate a status report from the Status Board, go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Question: How do you run validation rules from the Status Board?
+Answer: To run validation rules from the Status Board, select the companies for validation, go to the Run the validation panel, and click Validate.
+
+Question: How do you review error details on the Status Board?
+Answer: To review error details on the Status Board, click to review specifics of balance errors or data loaded for better insight into issues.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The purpose of the Documents Repository is to serve as a collaborative storage area accessible to all authorized users, where administrators can organize, maintain, and govern the documents stored.
+
+Question: How do administrators specify user access and permissions in the Document Repository?
+Answer: Administrators can specify user access and permissions by organizing and maintaining the documents and granting rights to specific roles to access folders.
+
+Question: How do you change the consolidation period in the Financial Consolidation application?
+Answer: To change the consolidation period in the Financial Consolidation application, click the Select Period icon beside the desired period, select the period on the User Settings page, and click to confirm.
+
+Question: What are wildcards used for in filtering consolidation periods?
+Answer: Wildcards like ? and * are used to filter consolidation periods. Examples include typing 20* to see all periods from the 21st century or ACT to see all periods with the nature ACT.
+
+Question: What happens when you lock a period?
+Answer: When you lock a period, it restricts any modifications to the selected data type for that period across all companies within the group.
+
+Question: What are the six data types available for locking?
+Answer: The six data types available for locking are Closing Amounts, Intercompany, Flows, Intercompany Flows, Analytical Dimensions, and Adjustments.
+
+Question: How do you specify a date for data locking?
+Answer: To specify a date for data locking, access the Define Period Locking page, click in the Data Locking Date field, select a date from the calendar, and click to confirm.
+
+Question: How do you unlock data for a consolidation period?
+Answer: To unlock data for a consolidation period, access the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: How do you access the Exchange Rates page?
+Answer: To access the Exchange Rates page, click Group > Exchange Rates.
+
+Question: How do you enter a currency exchange rate?
+Answer: To enter a currency exchange rate, select the consolidation period and currency on the Exchange Rates page, enter the Close, Average, and Month currency rates, and click to save changes.
+
+Question: How do you print a currency exchange rate report?
+Answer: To print a currency exchange rate report, select the report type, base currency, and output file type on the Currencies Reports tab, and click to generate the report.
+
+Question: What file formats can be used to import exchange rates?
+Answer: File formats that can be used to import exchange rates include CSV, Excel, ECB (SDMX European Central Bank), and NBS (SDMX National Bank of Slovakia).
+
+Question: What file formats can be used to export exchange rates?
+Answer: File formats that can be used to export exchange rates include XLS and CSV.
+
+Question: How do you specify parameters for importing exchange rates from a CSV file?
+Answer: To specify parameters for importing exchange rates from a CSV file, set the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter.
+
+Question: How do you select a consolidation period for exporting exchange rates?
+Answer: To select a consolidation period for exporting exchange rates, go to the Export Exchange Rates page, select the period in the Period field, and choose the file format.
+
+Question: How do you add a new company?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information, and save.
+
+Question: How do you access the Companies page?
+Answer: To access the Companies page, click Group > Companies.
+
+Question: What information is displayed on the Companies page?
+Answer: The Companies page displays a list of available companies on the left-side panel and details of any selected company, including code, description, and country code, on the right-side panel.
+
+Question: How do you add additional company data?
+Answer: To add additional company data, access the Companies Additional Info page, click the add icon, specify the line number, label, and description, then save.
+
+Question: What is the Group Structure page used for?
+Answer: The Group Structure page is used to input and manage direct relationships among entities, determining the appropriate consolidation method.
+
+Question: What details are shown for a selected company on the Group Structure page?
+Answer: The Group Structure page shows details for a selected company, including company code, name, financial rights, voting rights, group percentage, minority percentage, and group control percentage.
+
+Question: How do you enter shareholders information?
+Answer: To enter shareholders information, use the Shareholders tab on the Group Structure page to enter the number of shares held by other companies in the group.
+
+Question: How do you enter participations information?
+Answer: To enter participations information, use the Participations tab on the Group Structure page to enter the number of shares held in other companies.
+
+Question: How do you update the consolidation method and percentages?
+Answer: To update the consolidation method and percentages, save changes on the Group Structure page, and proceed with caution as it can have significant consequences.
+
+Question: How do you filter the list of consolidation periods?
+Answer: To filter the list of consolidation periods, use wildcards like ? and * to narrow down the periods.
+
+Question: How do you show or hide the list of companies on the Workflow page?
+Answer: To show or hide the list of companies on the Workflow page, select the Show/Hide the companies icon.
+
+Question: How do you change the status of a company task?
+Answer: To change the status of a company task, select the company and task, and in the Change status panel, select the new status and click to change the status.
+
+Question: How do you start work on a task from the Workflow page?
+Answer: To start work on a task from the Workflow page, select the company, select the task in the Task list field, change the status to In progress, and click to navigate to the task page.
+
+Question: How do you set your preferences on the Workflow page?
+Answer: To set your preferences on the Workflow page, you can control how information is displayed, such as showing/hiding the Gantt chart, Pie chart, or Companies list.
+
+Question: What does the Task list field contain on the Workflow page?
+Answer: The Task list field on the Workflow page contains a list of tasks assigned to the task owner.
+
+Question: How do you hide the Gantt chart on the Workflow page?
+Answer: To hide the Gantt chart on the Workflow page, click to cancel the selection.
+
+Question: How do you show the Pie chart on the Workflow page?
+Answer: To show the Pie chart on the Workflow page, select the Show/Hide the Pie Chart icon.
+
+Question: How do you update your progress on a task?
+Answer: To update your progress on a task, select the company and task, change the status to Completed in the Task details panel, optionally add comments, and click to confirm.
+
+Question: What happens when you reject a task on the Workflow page?
+Answer: When you reject a task on the Workflow page, an automatic email is sent to the approver/administrator.
+
+Question: How do you access the history of a task?
+Answer: To access the history of a task, select the company and task, and go to the History tab.
+
+Question: What information does the status board provide?
+Answer: The status board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How do you generate a status report from the Status Board?
+Answer: To generate a status report from the Status Board, go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Question: How do you run validation rules from the Status Board?
+Answer: To run validation rules from the Status Board, select the companies for validation, go to the Run the validation panel, and click Validate.
+
+Question: How do you review error details on the Status Board?
+Answer: To review error details on the Status Board, click to review specifics of balance errors or data loaded for better insight into issues.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The purpose of the Documents Repository is to serve as a collaborative storage area accessible to all authorized users, where administrators can organize, maintain, and govern the documents stored.
+
+Question: How do administrators specify user access and permissions in the Document Repository?
+Answer: Administrators can specify user access and permissions by organizing and maintaining the documents and granting rights to specific roles to access folders.
+
+Question: How do you change the consolidation period in the Financial Consolidation application?
+Answer: To change the consolidation period in the Financial Consolidation application, click the Select Period icon beside the desired period, select the period on the User Settings page, and click to confirm.
+
+Question: What are wildcards used for in filtering consolidation periods?
+Answer: Wildcards like ? and * are used to filter consolidation periods. Examples include typing 20* to see all periods from the 21st century or ACT to see all periods with the nature ACT.
+
+Question: What happens when you lock a period?
+Answer: When you lock a period, it restricts any modifications to the selected data type for that period across all companies within the group.
+
+Question: What are the six data types available for locking?
+Answer: The six data types available for locking are Closing Amounts, Intercompany, Flows, Intercompany Flows, Analytical Dimensions, and Adjustments.
+
+Question: How do you specify a date for data locking?
+Answer: To specify a date for data locking, access the Define Period Locking page, click in the Data Locking Date field, select a date from the calendar, and click to confirm.
+
+Question: How do you unlock data for a consolidation period?
+Answer: To unlock data for a consolidation period, access the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: How do you access the Exchange Rates page?
+Answer: To access the Exchange Rates page, click Group > Exchange Rates.
+
+Question: How do you enter a currency exchange rate?
+Answer: To enter a currency exchange rate, select the consolidation period and currency on the Exchange Rates page, enter the Close, Average, and Month currency rates, and click to save changes.
+
+Question: How do you print a currency exchange rate report?
+Answer: To print a currency exchange rate report, select the report type, base currency, and output file type on the Currencies Reports tab, and click to generate the report.
+
+Question: What file formats can be used to import exchange rates?
+Answer: File formats that can be used to import exchange rates include CSV, Excel, ECB (SDMX European Central Bank), and NBS (SDMX National Bank of Slovakia).
+
+Question: What file formats can be used to export exchange rates?
+Answer: File formats that can be used to export exchange rates include XLS and CSV.
+
+Question: How do you specify parameters for importing exchange rates from a CSV file?
+Answer: To specify parameters for importing exchange rates from a CSV file, set the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter.
+
+Question: How do you select a consolidation period for exporting exchange rates?
+Answer: To select a consolidation period for exporting exchange rates, go to the Export Exchange Rates page, select the period in the Period field, and choose the file format.
+
+Question: How do you add a new company?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information, and save.
+
+Question: How do you access the Companies page?
+Answer: To access the Companies page, click Group > Companies.
+
+Question: What information is displayed on the Companies page?
+Answer: The Companies page displays a list of available companies on the left-side panel and details of any selected company, including code, description, and country code, on the right-side panel.
+
+Question: How do you add additional company data?
+Answer: To add additional company data, access the Companies Additional Info page, click the add icon, specify the line number, label, and description, then save.
+
+Question: What is the Group Structure page used for?
+Answer: The Group Structure page is used to input and manage direct relationships among entities, determining the appropriate consolidation method.
+
+Question: What details are shown for a selected company on the Group Structure page?
+Answer: The Group Structure page shows details for a selected company, including company code, name, financial rights, voting rights, group percentage, minority percentage, and group control percentage.
+
+Question: How do you enter shareholders information?
+Answer: To enter shareholders information, use the Shareholders tab on the Group Structure page to enter the number of shares held by other companies in the group.
+
+Question: How do you enter participations information?
+Answer: To enter participations information, use the Participations tab on the Group Structure page to enter the number of shares held in other companies.
+
+Question: How do you update the consolidation method and percentages?
+Answer: To update the consolidation method and percentages, save changes on the Group Structure page, and proceed with caution as it can have significant consequences.
+

@@ -1,0 +1,148 @@
+Topics:
+Financial Consolidation Data Entry, Intercompany Management, Local Amounts Management, Report Generation
+
+Keywords:
+Financial Consolidation, Intercompany Management, Local Amounts, Bundle Reports, Data Entry, Adjustments
+
+Summary:
+The documents provide detailed guidance on managing various aspects of Financial Consolidation, including entering and verifying data for local amounts, intercompany transactions, and generating bundle reports. They cover accessing specific pages, selecting input forms, entering data, reviewing adjusted amounts, and generating reports. Terminology has been standardized, and detailed instructions from images have been incorporated into the text.
+
+Contents:
+Local Amounts - Input Form Selection
+This Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). The local amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page displayed after selecting the parameters on this page.
+
+To access the Local Amounts entry page, click Data Entry > Manual Data Entry > Local Amounts.
+
+Company - drop-down list of companies available to work on.
+
+InputForm - drop-down list of available forms for data entry.
+
+Note: The input form selected determines the options displayed in the Option field.
+
+To enter local amounts, select one of the following:
+Balance Sheet Input
+Balance Sheet
+Profit and Loss
+
+Option - drop-down list of layout options for data entry in the Bundle Data Entry - Standard page. Available after clicking Select.
+
+Note: The options available in this field are determined by the input form selected.
+
+These options include:
+Local Amounts - allows entering the local amounts including the Reference and the Current amounts, and the difference between both.
+
+Note: This is the only option that allows data entry. The other options present data for view only.
+
+Local Adjustments - shows the impact of the Local Adjustments including the Reference and the Current amounts, and the difference between both.
+
+Adjusted Bundles - shows the local amounts, corrected with the local adjustments including the Reference and the Current amounts, and the difference between both.
+
+Local + Adjustments N - shows the local amounts, the local adjustments, and the local adjusted amounts. Only the Current amount is displayed.
+
+Local + Adjustments N-1 - shows the local amounts, the local adjustments, and the local adjusted amounts. Only the Reference amount is displayed.
+
+Select - does the following:
+if the Option selected is one of Local Amounts, Bundles, or Adjustments, opens the Bundle Data Entry - Standard page to enter the local amounts.
+if the Option selected is Advanced input form, opens the BundleSpread page.
+
+Start Data Entry in Local Amounts:
+1. In the InputForm field, select an input form.
+2. Select a company.
+3. In the Option field, select Local Amounts.
+4. Click Select. The Bundle Data Entry - Standard page is displayed for entering the local amount details.
+
+Review Adjusted Amounts:
+1. Select an input form.
+2. Select a company.
+3. Select Adjusted Bundles from the Option field.
+4. Click Select. The adjusted amounts for both the current and reference periods are displayed for review.
+
+View the impact of the local adjustments on the bundle amounts for the current consolidation:
+1. Select an input form.
+2. Select a company.
+3. Select Adjusted Bundles from the Option field.
+4. Click Select. The Bundle Data Entry - Standard page is displayed to view the impact.
+
+Local Amounts - Manual Data Entry
+The Bundle Data Entry - Standard page is used for entering local amounts in the input form selected on the Local Amounts page. It displays the list of accounts added to the Standard form for the selected company and available in the database. The page can show data if it was already filled in or imported, or it can show zeroes if there is no data available for the selected company and included accounts.
+
+The input form pages typically display the reference period in read-only mode (presenting data from the opening period, typically the last month of the previous accounting year), and data for the selected working or current period in read/write mode (if the period is not locked), and the difference between both columns.
+
+The top part of the page displays the following parameters selected on the Local Amounts page:
+Company - information about the company. It shows the code, the name, and the local currency of the company.
+Option - layout option selected for the form.
+Currency - code for the currency in use.
+InputForm - code and the name of the input form.
+
+Below are the following:
+See all lines - a drop-down list of filter options to display data in different ways.
+Zero - replaces all selected values with zero. This button works only in combination with the checkboxes in the first column. It allows setting to zero one or more (or all) accounts within the form.
+Copy - works only in combination with the checkboxes in the first column. It copies the selected amounts of the reference consolidation period into the current consolidation period. It allows copying one or more (or all) accounts within the form.
+
+Note: While there is NO warning after clicking this button, it is necessary to confirm the modification by clicking the Update button.
+
+Balance - opens a pop-up window showing the total debit and credit for the Balance Sheet, the Profit and Loss, and the Contingencies accounts, as well as the result of the year in the Balance Sheet and the Profit and Loss.
+Print - allows printing the information on the page.
+Grid - a toggle that adds Excel-like grid lines to the displayed data on the page when selected.
+
+The data area contains the accounts available on the Input Form:
+The first column contains checkboxes that allow selecting a row and later performing an action on it. To select all rows, select the checkbox in the header of the data area.
+
+Code - account code.
+Description - account description.
+Reference - amount from the reference period.
+Current - amount from the current period.
+Difference - calculated difference between the reference amount displayed and the current amount entered.
+
+Click any of the following icons to perform the associated actions:
+Intercompany - opens a page to enter intercompany transactions, where applicable.
+Import - shows imported data details.
+Financial Flow - opens a page to enter the Financial Flow data. The flow button only appears for accounts defined to work with flows.
+Participation - opens a page to enter participation information.
+Partner - opens a page for entering partner information. This button appears only for accounts defined to work with partner information.
+Dimension - opens a page to enter dimension information. This button appears only for accounts defined to work with dimension information.
+
+Note: For any of the above, where there are differences to justify, the icon is highlighted with a yellow background. For example, this means there are outstanding differences waiting to be justified in the dimension.
+
+Save - saves the modifications made to the amounts. When changing the contents of a field, this button will become red, and all affected totals will get borders around them.
+
+Note: There is NO warning after clicking this button, but it is necessary to confirm the operation by clicking the Update button.
+
+Reverse - reverses all modifications since the last save. A message will ask to confirm the cancellation of the modifications.
+
+Use Filters to Display Data:
+When first accessing this page, the default option is to See all lines. However, several options can filter and display data on this page.
+
+In the filter box right above the table on the left side of the page, the following options are available:
+Select one of the options to display data accordingly.
+
+Change an Amount:
+Note: Amounts can only be changed when the form is accessed with the Local Amounts option selected.
+1. Place the cursor on the amount to be changed.
+2. Change the amount. A border appears around all the subtotal and total amounts impacted by the change.
+3. Click Save to save the changes.
+
+Enter Partner Detail:
+The Partner button appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts. Click Partner to open the page and enter the partner company details.
+
+Enter Financial Flow Data:
+The Financial Flow button is available on the page if the account whose data is to be entered is defined to have flows (i.e., Balance Sheet accounts). Click Financial Flow to open the page and enter the flow data. Flow data can be Cash (C) and Non-Cash (NC).
+
+Copy Data from the Reference Consolidation Period:
+1. Do one of the following:
+To copy all the lines, select the checkbox at the top left of the data area. All lines from the report will be selected.
+To copy a line or a few lines, select only one or a few lines.
+2. Click Copy to transfer the amounts from the reference to the current period. All totals and subtotals of the selected lines will get borders around them.
+3. Click Update to confirm the update of the amounts.
+
+Bundle Last Modified Report
+The Bundle Last Modified page allows creating a report of recently modified bundles.
+
+To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Generate a Bundle Last Modified Report:
+Note: By default, the Current and Reference Consolidation Periods are assigned by the application. However, either can be changed by clicking to look for the desired period.
+1. In the Period field, click to search for and select the current consolidation period.
+2. In the Ref Period field, click to search for and select a reference consolidation period.
+3. In the File type field, select the output file type. Options include PDF, XLS, and XLSX.
+4. Click Generate Report to generate the report. After the report is generated, a download link appears below for viewing it in the selected file type.

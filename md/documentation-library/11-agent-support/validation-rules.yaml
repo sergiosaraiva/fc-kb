@@ -1,0 +1,720 @@
+# Validation Rules for Financial Consolidation
+# Purpose: Machine-parseable business rules for data validation
+# Version: 1.1
+# Updated: 2025-12-04 - Added cross-references (Phase 5)
+#
+# RELATED FILES:
+#   - api-validation-rules-catalog.yaml: System validation rules, reports, and API handlers
+#   - api-error-catalog.yaml: Error codes returned by validation failures
+#   - api-debugging-patterns.yaml: Debug patterns for troubleshooting validation issues
+
+validation_rules:
+  name: "Financial Consolidation Validation Rules"
+  version: "1.0"
+  description: "Business rules encoded for agent validation of consolidation data"
+
+  # Global settings
+  settings:
+    default_tolerance: 0.01
+    currency_decimal_places: 2
+    percentage_decimal_places: 6
+
+  # ============================================================
+  # CATEGORY 1: OWNERSHIP VALIDATION RULES
+  # ============================================================
+  ownership_rules:
+    category: "Ownership Validation"
+    description: "Rules for validating ownership percentages and relationships"
+
+    rules:
+      # Rule OWN-001: Percentage range validation
+      - id: "OWN-001"
+        name: "Percentage Range Validation"
+        severity: "ERROR"
+        description: "All ownership percentages must be between 0 and 100"
+
+        applies_to:
+          tables: ["TS014C0", "TS015S0"]
+          columns: ["GroupPerc", "MinorPerc", "GroupCtrlPerc", "FinPercentage", "CtrlPercentage"]
+
+        validation:
+          type: "range"
+          min: 0
+          max: 100
+          inclusive: true
+
+        check_sql: |
+          -- Find invalid percentages in TS014C0
+          SELECT CompanyCode, 'GroupPerc' AS Column, GroupPerc AS Value
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND (GroupPerc < 0 OR GroupPerc > 100)
+          UNION ALL
+          SELECT CompanyCode, 'MinorPerc', MinorPerc
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND (MinorPerc < 0 OR MinorPerc > 100)
+          UNION ALL
+          SELECT CompanyCode, 'GroupCtrlPerc', GroupCtrlPerc
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND (GroupCtrlPerc < 0 OR GroupCtrlPerc > 100)
+
+        error_message: "Percentage {column} for company {company_code} is {value}%, must be 0-100%"
+        resolution: "Correct the ownership percentage in TS014C0 or TS015S0"
+
+      # Rule OWN-002: Parent company method
+      - id: "OWN-002"
+        name: "Parent Company Method"
+        severity: "ERROR"
+        description: "Parent company must always have ConsoMethod = 'G' (Global)"
+
+        applies_to:
+          table: "TS014C0"
+          condition: "FlagParent = 1 OR CompanyID = @ParentID"
+
+        validation:
+          type: "equality"
+          field: "ConsoMethod"
+          expected: "G"
+
+        check_sql: |
+          SELECT c.CompanyCode, c.ConsoMethod
+          FROM TS014C0 c
+          INNER JOIN TS096S0 s ON s.ConsoID = c.ConsoID
+          WHERE c.ConsoID = @ConsoID
+            AND (c.FlagParent = 1 OR c.CompanyID = s.ParentCompanyID)
+            AND c.ConsoMethod <> 'G'
+
+        error_message: "Parent company {company_code} has ConsoMethod '{method}', must be 'G'"
+        resolution: "Set ConsoMethod = 'G' for the parent company"
+
+      # Rule OWN-003: Group + Minor = 100% for Global entities
+      - id: "OWN-003"
+        name: "Group Plus Minor Equals 100%"
+        severity: "WARNING"
+        description: "For Global (G) entities, GroupPerc + MinorPerc should equal 100%"
+
+        applies_to:
+          table: "TS014C0"
+          condition: "ConsoMethod = 'G' AND ConsolidatedCompany = 1"
+
+        validation:
+          type: "sum_equals"
+          fields: ["GroupPerc", "MinorPerc"]
+          expected: 100
+          tolerance: 0.01
+
+        check_sql: |
+          SELECT CompanyCode, GroupPerc, MinorPerc,
+                 (GroupPerc + MinorPerc) AS Total,
+                 ABS(100 - (GroupPerc + MinorPerc)) AS Difference
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsoMethod = 'G'
+            AND ConsolidatedCompany = 1
+            AND ABS(100 - (GroupPerc + MinorPerc)) > 0.01
+
+        error_message: "Company {company_code}: GroupPerc ({group}%) + MinorPerc ({minor}%) = {total}%, expected 100%"
+        resolution: "Recalculate ownership percentages using P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+
+      # Rule OWN-004: Method matches control percentage
+      - id: "OWN-004"
+        name: "Method Matches Control Percentage"
+        severity: "WARNING"
+        description: "ConsoMethod should align with GroupCtrlPerc thresholds"
+
+        applies_to:
+          table: "TS014C0"
+          condition: "ConsolidatedCompany = 1 AND FlagParent = 0"
+
+        validation:
+          type: "threshold_match"
+          field: "GroupCtrlPerc"
+          thresholds:
+            - condition: "> 50"
+              expected_method: "G"
+            - condition: "= 50"
+              expected_method: "P"
+            - condition: ">= 20 AND < 50"
+              expected_method: "E"
+            - condition: "< 20"
+              expected_method: "N"
+
+        check_sql: |
+          SELECT CompanyCode, GroupCtrlPerc, ConsoMethod,
+                 CASE
+                     WHEN GroupCtrlPerc > 50 THEN 'G'
+                     WHEN GroupCtrlPerc = 50 THEN 'P'
+                     WHEN GroupCtrlPerc >= 20 AND GroupCtrlPerc < 50 THEN 'E'
+                     ELSE 'N'
+                 END AS ExpectedMethod
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsolidatedCompany = 1
+            AND FlagParent = 0
+            AND ConsoMethod <> CASE
+                WHEN GroupCtrlPerc > 50 THEN 'G'
+                WHEN GroupCtrlPerc = 50 THEN 'P'
+                WHEN GroupCtrlPerc >= 20 AND GroupCtrlPerc < 50 THEN 'E'
+                ELSE 'N'
+            END
+
+        error_message: "Company {company_code} has {ctrl}% control with method '{method}', expected '{expected}'"
+        resolution: "If method is intentional (de facto control), document justification. Otherwise, run P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES with @UpdateConsoMethod = 1"
+
+      # Rule OWN-005: No orphan companies
+      - id: "OWN-005"
+        name: "No Orphan Companies"
+        severity: "ERROR"
+        description: "Every consolidated company (except parent) must have at least one shareholder"
+
+        applies_to:
+          table: "TS014C0"
+          condition: "ConsolidatedCompany = 1 AND FlagParent = 0"
+
+        check_sql: |
+          SELECT c.CompanyCode, c.CompanyName
+          FROM TS014C0 c
+          LEFT JOIN TS015S0 o ON o.ConsoID = c.ConsoID AND o.CompanyOwnedID = c.CompanyID
+          WHERE c.ConsoID = @ConsoID
+            AND c.ConsolidatedCompany = 1
+            AND c.FlagParent = 0
+            AND o.CompanyOwnedID IS NULL
+
+        error_message: "Company {company_code} has no shareholders defined"
+        resolution: "Add ownership link in TS015S0 or set ConsolidatedCompany = 0"
+
+      # Rule OWN-006: No self-ownership
+      - id: "OWN-006"
+        name: "No Self-Ownership"
+        severity: "ERROR"
+        description: "A company cannot own shares in itself directly"
+
+        applies_to:
+          table: "TS015S0"
+
+        check_sql: |
+          SELECT c1.CompanyCode AS Owner, c2.CompanyCode AS Owned
+          FROM TS015S0 o
+          INNER JOIN TS014C0 c1 ON c1.ConsoID = o.ConsoID AND c1.CompanyID = o.CompanyID
+          INNER JOIN TS014C0 c2 ON c2.ConsoID = o.ConsoID AND c2.CompanyID = o.CompanyOwnedID
+          WHERE o.ConsoID = @ConsoID
+            AND o.CompanyID = o.CompanyOwnedID
+
+        error_message: "Company {company_code} owns shares in itself"
+        resolution: "Remove self-ownership record from TS015S0"
+
+      # Rule OWN-007: Circular ownership detection
+      - id: "OWN-007"
+        name: "Circular Ownership Detection"
+        severity: "WARNING"
+        description: "Detect circular ownership structures that may need Gauss elimination"
+
+        applies_to:
+          table: "TS015S0"
+
+        check_sql: |
+          -- Simple circular check (A owns B, B owns A)
+          SELECT
+              c1.CompanyCode AS Company1,
+              c2.CompanyCode AS Company2,
+              o1.FinPercentage AS Ownership1to2,
+              o2.FinPercentage AS Ownership2to1
+          FROM TS015S0 o1
+          INNER JOIN TS015S0 o2 ON o2.ConsoID = o1.ConsoID
+              AND o2.CompanyID = o1.CompanyOwnedID
+              AND o2.CompanyOwnedID = o1.CompanyID
+          INNER JOIN TS014C0 c1 ON c1.ConsoID = o1.ConsoID AND c1.CompanyID = o1.CompanyID
+          INNER JOIN TS014C0 c2 ON c2.ConsoID = o1.ConsoID AND c2.CompanyID = o1.CompanyOwnedID
+          WHERE o1.ConsoID = @ConsoID
+            AND o1.CompanyID < o1.CompanyOwnedID  -- Avoid duplicates
+
+        error_message: "Circular ownership detected: {company1} owns {pct1}% of {company2}, {company2} owns {pct2}% of {company1}"
+        resolution: "Circular ownership is handled by Gauss elimination in P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+        info_only: true
+
+  # ============================================================
+  # CATEGORY 2: BALANCE SHEET VALIDATION RULES
+  # ============================================================
+  balance_sheet_rules:
+    category: "Balance Sheet Validation"
+    description: "Rules for validating balance sheet integrity"
+
+    rules:
+      # Rule BS-001: Assets = Liabilities + Equity
+      - id: "BS-001"
+        name: "Balance Sheet Equation"
+        severity: "ERROR"
+        description: "Total Assets must equal Total Liabilities plus Total Equity"
+
+        validation:
+          type: "equation"
+          equation: "Assets = Liabilities + Equity"
+          tolerance: 0.01
+
+        check_sql: |
+          WITH Totals AS (
+              SELECT
+                  c.CompanyCode,
+                  SUM(CASE WHEN a.BalanceType = 'D' AND a.AccountType = 'B' THEN d.AmountGroup ELSE 0 END) AS Assets,
+                  SUM(CASE WHEN a.BalanceType = 'C' AND a.AccountType = 'B' THEN ABS(d.AmountGroup) ELSE 0 END) AS LiabilitiesEquity
+              FROM TD035C2 d
+              INNER JOIN TS014C0 c ON c.ConsoID = d.ConsoID AND c.CompanyID = d.CompanyID
+              INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+              INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+              WHERE d.ConsoID = @ConsoID
+                AND f.FlowCode = 'CLOSE'  -- Closing balance
+              GROUP BY c.CompanyCode
+          )
+          SELECT CompanyCode, Assets, LiabilitiesEquity,
+                 Assets - LiabilitiesEquity AS Difference
+          FROM Totals
+          WHERE ABS(Assets - LiabilitiesEquity) > 0.01
+
+        error_message: "Company {company_code}: Assets ({assets}) <> Liabilities+Equity ({liab_eq}), difference: {diff}"
+        resolution: "Check for missing accounts, incorrect account classification, or data entry errors"
+
+      # Rule BS-002: Elimination journals must balance
+      - id: "BS-002"
+        name: "Elimination Journal Balance"
+        severity: "ERROR"
+        description: "All elimination journals must have debits equal credits"
+
+        applies_to:
+          table: "TD045C2"
+
+        validation:
+          type: "journal_balance"
+          tolerance: 0.01
+
+        check_sql: |
+          SELECT
+              j.JournalTypeCode,
+              c.CompanyCode,
+              SUM(CASE WHEN d.Amount > 0 THEN d.Amount ELSE 0 END) AS Debits,
+              SUM(CASE WHEN d.Amount < 0 THEN ABS(d.Amount) ELSE 0 END) AS Credits,
+              SUM(d.Amount) AS Balance
+          FROM TD045C2 d
+          INNER JOIN TS020S0 j ON j.ConsoID = d.ConsoID AND j.JournalTypeID = d.JournalTypeID
+          INNER JOIN TS014C0 c ON c.ConsoID = d.ConsoID AND c.CompanyID = d.CompanyID
+          WHERE d.ConsoID = @ConsoID
+          GROUP BY j.JournalTypeCode, c.CompanyCode
+          HAVING ABS(SUM(d.Amount)) > 0.01
+
+        error_message: "Unbalanced elimination journal {journal} for {company_code}: Debits={debits}, Credits={credits}, Balance={balance}"
+        resolution: "Review elimination configuration in TS070S0/TS071S0 or check procedure logic"
+
+      # Rule BS-003: Consolidated total must balance
+      - id: "BS-003"
+        name: "Consolidated Balance Sheet Balance"
+        severity: "ERROR"
+        description: "Consolidated balance sheet must balance after all eliminations"
+
+        check_sql: |
+          SELECT
+              'CONSOLIDATED' AS Entity,
+              SUM(CASE WHEN a.BalanceType = 'D' AND a.AccountType = 'B' THEN d.AmountGroup ELSE 0 END) AS Assets,
+              SUM(CASE WHEN a.BalanceType = 'C' AND a.AccountType = 'B' THEN ABS(d.AmountGroup) ELSE 0 END) AS LiabilitiesEquity,
+              SUM(CASE WHEN a.BalanceType = 'D' AND a.AccountType = 'B' THEN d.AmountGroup ELSE 0 END) -
+              SUM(CASE WHEN a.BalanceType = 'C' AND a.AccountType = 'B' THEN ABS(d.AmountGroup) ELSE 0 END) AS Difference
+          FROM TD035C2 d
+          INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+          INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+          WHERE d.ConsoID = @ConsoID
+            AND f.FlowCode = 'CLOSE'
+          HAVING ABS(
+              SUM(CASE WHEN a.BalanceType = 'D' AND a.AccountType = 'B' THEN d.AmountGroup ELSE 0 END) -
+              SUM(CASE WHEN a.BalanceType = 'C' AND a.AccountType = 'B' THEN ABS(d.AmountGroup) ELSE 0 END)
+          ) > 0.01
+
+        error_message: "Consolidated balance sheet out of balance by {difference}"
+        resolution: "Check elimination journals (BS-002), currency translation differences, or data completeness"
+
+      # Rule BS-004: Flow reconciliation
+      - id: "BS-004"
+        name: "Flow Reconciliation"
+        severity: "WARNING"
+        description: "Opening + Movements should equal Closing"
+
+        check_sql: |
+          SELECT
+              c.CompanyCode,
+              a.Account,
+              open_bal.Amount AS Opening,
+              mvt.Amount AS Movements,
+              close_bal.Amount AS Closing,
+              (ISNULL(open_bal.Amount, 0) + ISNULL(mvt.Amount, 0)) - ISNULL(close_bal.Amount, 0) AS Unexplained
+          FROM TS014C0 c
+          CROSS APPLY (
+              SELECT AccountID, SUM(AmountGroup) AS Amount
+              FROM TD035C2 d
+              INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+              WHERE d.ConsoID = @ConsoID AND d.CompanyID = c.CompanyID AND f.FlowCode = 'OPEN'
+              GROUP BY AccountID
+          ) open_bal
+          CROSS APPLY (
+              SELECT AccountID, SUM(AmountGroup) AS Amount
+              FROM TD035C2 d
+              INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+              WHERE d.ConsoID = @ConsoID AND d.CompanyID = c.CompanyID AND f.FlowType = 'M'
+              GROUP BY AccountID
+          ) mvt
+          CROSS APPLY (
+              SELECT AccountID, SUM(AmountGroup) AS Amount
+              FROM TD035C2 d
+              INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+              WHERE d.ConsoID = @ConsoID AND d.CompanyID = c.CompanyID AND f.FlowCode = 'CLOSE'
+              GROUP BY AccountID
+          ) close_bal
+          INNER JOIN TS010S0 a ON a.ConsoID = c.ConsoID AND a.AccountID = open_bal.AccountID
+          WHERE c.ConsoID = @ConsoID
+            AND ABS((ISNULL(open_bal.Amount, 0) + ISNULL(mvt.Amount, 0)) - ISNULL(close_bal.Amount, 0)) > 0.01
+
+        error_message: "Flow reconciliation failed for {company_code}/{account}: Opening {open} + Movements {mvt} <> Closing {close}"
+        resolution: "Review UNEXPVAR flow for unexplained variances"
+
+  # ============================================================
+  # CATEGORY 3: INTERCOMPANY RECONCILIATION RULES
+  # ============================================================
+  intercompany_rules:
+    category: "Intercompany Reconciliation"
+    description: "Rules for validating intercompany balances and eliminations"
+
+    rules:
+      # Rule IC-001: IC pairs must net to zero
+      - id: "IC-001"
+        name: "IC Partner Balances Net to Zero"
+        severity: "ERROR"
+        description: "Intercompany balances between partner pairs should net to zero"
+
+        applies_to:
+          table: "TD040B2"
+
+        validation:
+          type: "partner_netting"
+          tolerance: 1.00  # Allow small FX differences
+
+        check_sql: |
+          SELECT
+              c1.CompanyCode AS Company,
+              c2.CompanyCode AS Partner,
+              a.Account,
+              SUM(d1.AmountLocal) AS CompanyBalance,
+              ISNULL((
+                  SELECT SUM(d2.AmountLocal) * -1
+                  FROM TD040B2 d2
+                  INNER JOIN TS010S0 a2 ON a2.ConsoID = d2.ConsoID AND a2.AccountID = d2.AccountID
+                  WHERE d2.ConsoID = @ConsoID
+                    AND d2.CompanyID = c2.CompanyID
+                    AND d2.PartnerCompanyID = c1.CompanyID
+                    AND a2.MirrorAccountID = a.AccountID
+              ), 0) AS PartnerBalance,
+              SUM(d1.AmountLocal) + ISNULL((
+                  SELECT SUM(d2.AmountLocal) * -1
+                  FROM TD040B2 d2
+                  INNER JOIN TS010S0 a2 ON a2.ConsoID = d2.ConsoID AND a2.AccountID = d2.AccountID
+                  WHERE d2.ConsoID = @ConsoID
+                    AND d2.CompanyID = c2.CompanyID
+                    AND d2.PartnerCompanyID = c1.CompanyID
+                    AND a2.MirrorAccountID = a.AccountID
+              ), 0) AS Difference
+          FROM TD040B2 d1
+          INNER JOIN TS014C0 c1 ON c1.ConsoID = d1.ConsoID AND c1.CompanyID = d1.CompanyID
+          INNER JOIN TS014C0 c2 ON c2.ConsoID = d1.ConsoID AND c2.CompanyID = d1.PartnerCompanyID
+          INNER JOIN TS010S0 a ON a.ConsoID = d1.ConsoID AND a.AccountID = d1.AccountID
+          WHERE d1.ConsoID = @ConsoID
+            AND a.FlagInterCompany = 1
+          GROUP BY c1.CompanyCode, c2.CompanyCode, a.Account, a.AccountID
+          HAVING ABS(SUM(d1.AmountLocal) + ISNULL((
+              SELECT SUM(d2.AmountLocal) * -1
+              FROM TD040B2 d2
+              INNER JOIN TS010S0 a2 ON a2.ConsoID = d2.ConsoID AND a2.AccountID = d2.AccountID
+              WHERE d2.ConsoID = @ConsoID
+                AND d2.CompanyID = c2.CompanyID
+                AND d2.PartnerCompanyID = c1.CompanyID
+                AND a2.MirrorAccountID = a.AccountID
+          ), 0)) > 1
+
+        error_message: "IC difference: {company} vs {partner} on {account}: Company={comp_bal}, Partner={part_bal}, Diff={diff}"
+        resolution: "Reconcile IC data between entities or create IC adjustment elimination"
+
+      # Rule IC-002: Missing partner identification
+      - id: "IC-002"
+        name: "Missing Partner Identification"
+        severity: "ERROR"
+        description: "IC account data must have PartnerCompanyID specified"
+
+        applies_to:
+          table: "TD040B2"
+
+        check_sql: |
+          SELECT
+              c.CompanyCode,
+              a.Account,
+              a.AccountName,
+              COUNT(*) AS RecordsWithoutPartner,
+              SUM(d.AmountLocal) AS TotalAmount
+          FROM TD040B2 d
+          INNER JOIN TS014C0 c ON c.ConsoID = d.ConsoID AND c.CompanyID = d.CompanyID
+          INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+          WHERE d.ConsoID = @ConsoID
+            AND a.FlagInterCompany = 1
+            AND d.PartnerCompanyID IS NULL
+          GROUP BY c.CompanyCode, a.Account, a.AccountName
+
+        error_message: "Missing PartnerCompanyID for IC account {account} in company {company_code}: {count} records, {amount} total"
+        resolution: "Update TD040B2 records with correct PartnerCompanyID"
+
+      # Rule IC-003: IC eliminated after consolidation
+      - id: "IC-003"
+        name: "IC Balances Eliminated"
+        severity: "WARNING"
+        description: "After consolidation, IC balances should be eliminated"
+
+        check_sql: |
+          SELECT
+              a.Account,
+              a.AccountName,
+              SUM(d.AmountGroup) AS RemainingICBalance
+          FROM TD035C2 d
+          INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+          INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+          WHERE d.ConsoID = @ConsoID
+            AND a.FlagInterCompany = 1
+            AND f.FlowCode = 'CLOSE'
+          GROUP BY a.Account, a.AccountName
+          HAVING ABS(SUM(d.AmountGroup)) > 1
+
+        error_message: "IC account {account} has remaining consolidated balance: {balance}"
+        resolution: "Check IC elimination configuration or investigate uneliminated differences"
+
+      # Rule IC-004: Partner company exists
+      - id: "IC-004"
+        name: "Partner Company Exists"
+        severity: "ERROR"
+        description: "PartnerCompanyID must reference a valid company"
+
+        check_sql: |
+          SELECT DISTINCT
+              c.CompanyCode,
+              d.PartnerCompanyID AS InvalidPartnerID
+          FROM TD040B2 d
+          INNER JOIN TS014C0 c ON c.ConsoID = d.ConsoID AND c.CompanyID = d.CompanyID
+          LEFT JOIN TS014C0 p ON p.ConsoID = d.ConsoID AND p.CompanyID = d.PartnerCompanyID
+          WHERE d.ConsoID = @ConsoID
+            AND d.PartnerCompanyID IS NOT NULL
+            AND p.CompanyID IS NULL
+
+        error_message: "Company {company_code} references invalid PartnerCompanyID: {partner_id}"
+        resolution: "Correct PartnerCompanyID to reference a valid company in TS014C0"
+
+  # ============================================================
+  # CATEGORY 4: PERIOD CLOSE PREREQUISITES
+  # ============================================================
+  period_close_rules:
+    category: "Period Close Prerequisites"
+    description: "Rules that must pass before closing a consolidation period"
+
+    rules:
+      # Rule PC-001: All companies consolidated
+      - id: "PC-001"
+        name: "All Companies Consolidated"
+        severity: "ERROR"
+        description: "All companies in scope must have Status_Bundles = 0 (completed)"
+
+        check_sql: |
+          SELECT
+              CompanyCode,
+              CompanyName,
+              Status_Bundles,
+              CASE Status_Bundles
+                  WHEN 0 THEN 'Completed'
+                  WHEN 1 THEN 'Pending'
+                  ELSE 'Error'
+              END AS StatusDescription
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsolidatedCompany = 1
+            AND Status_Bundles <> 0
+
+        error_message: "Company {company_code} bundle integration not completed (Status_Bundles = {status})"
+        resolution: "Run P_CONSO_CALCULATE_BUNDLE_INTEGRATION for pending companies"
+
+      # Rule PC-002: Exchange rates exist
+      - id: "PC-002"
+        name: "Exchange Rates Complete"
+        severity: "ERROR"
+        description: "Exchange rates must exist for all currencies used by consolidated companies"
+
+        check_sql: |
+          SELECT DISTINCT
+              c.CurrCode,
+              c.CompanyCode,
+              'CC' AS MissingRateType
+          FROM TS014C0 c
+          LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID AND r.CurrCode = c.CurrCode AND r.RateType = 'CC'
+          INNER JOIN TS096S0 s ON s.ConsoID = c.ConsoID
+          WHERE c.ConsoID = @ConsoID
+            AND c.ConsolidatedCompany = 1
+            AND c.CurrCode <> s.CurrCode
+            AND r.CurrCode IS NULL
+          UNION
+          SELECT DISTINCT
+              c.CurrCode,
+              c.CompanyCode,
+              'AC' AS MissingRateType
+          FROM TS014C0 c
+          LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID AND r.CurrCode = c.CurrCode AND r.RateType = 'AC'
+          INNER JOIN TS096S0 s ON s.ConsoID = c.ConsoID
+          WHERE c.ConsoID = @ConsoID
+            AND c.ConsolidatedCompany = 1
+            AND c.CurrCode <> s.CurrCode
+            AND r.CurrCode IS NULL
+
+        error_message: "Missing {rate_type} exchange rate for currency {currency} (company {company_code})"
+        resolution: "Load exchange rate in TS017R0 for the missing currency/rate type"
+
+      # Rule PC-003: No circular ownership errors
+      - id: "PC-003"
+        name: "No Circular Ownership Errors"
+        severity: "WARNING"
+        description: "Circular ownership should be resolved by ownership calculation"
+
+        check_sql: |
+          -- Check if ownership calculation completed successfully
+          SELECT
+              CompanyCode,
+              GroupPerc,
+              MinorPerc,
+              GroupCtrlPerc
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsolidatedCompany = 1
+            AND (GroupPerc IS NULL OR GroupPerc = 0)
+            AND FlagParent = 0
+
+        error_message: "Company {company_code} has NULL or zero group percentage - possible ownership calculation error"
+        resolution: "Re-run P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES and check for errors"
+
+      # Rule PC-004: Eliminations completed
+      - id: "PC-004"
+        name: "Eliminations Completed"
+        severity: "ERROR"
+        description: "All active eliminations must have been executed"
+
+        check_sql: |
+          SELECT
+              e.ElimCode,
+              e.Description,
+              'Not Executed' AS Status
+          FROM TS070S0 e
+          LEFT JOIN (
+              SELECT DISTINCT JournalTypeID
+              FROM TD045C2
+              WHERE ConsoID = @ConsoID
+          ) j ON j.JournalTypeID = e.JournalTypeID
+          WHERE e.ConsoID = @ConsoID
+            AND e.Active = 1
+            AND e.ElimCode LIKE 'S%'  -- System eliminations
+            AND j.JournalTypeID IS NULL
+
+        error_message: "Active elimination {elim_code} ({description}) has not been executed"
+        resolution: "Run P_CONSO_ELIM to execute eliminations"
+
+      # Rule PC-005: Opening balances match prior closing
+      - id: "PC-005"
+        name: "Opening Balances Match Prior Closing"
+        severity: "WARNING"
+        description: "Opening balances should match prior period closing balances"
+
+        check_sql: |
+          SELECT
+              c.CompanyCode,
+              a.Account,
+              prior.Amount AS PriorClosing,
+              curr.Amount AS CurrentOpening,
+              prior.Amount - curr.Amount AS Difference
+          FROM TS014C0 c
+          INNER JOIN TS096S0 s ON s.ConsoID = c.ConsoID
+          CROSS APPLY (
+              SELECT AccountID, SUM(AmountGroup) AS Amount
+              FROM TD035C2 d
+              INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+              WHERE d.ConsoID = s.ReferenceConsoID AND d.CompanyID = c.CompanyID AND f.FlowCode = 'CLOSE'
+              GROUP BY AccountID
+          ) prior
+          CROSS APPLY (
+              SELECT AccountID, SUM(AmountGroup) AS Amount
+              FROM TD035C2 d
+              INNER JOIN TS011C0 f ON f.ConsoID = d.ConsoID AND f.FlowID = d.FlowID
+              WHERE d.ConsoID = c.ConsoID AND d.CompanyID = c.CompanyID AND f.FlowCode = 'OPEN'
+              GROUP BY AccountID
+          ) curr
+          INNER JOIN TS010S0 a ON a.ConsoID = c.ConsoID AND a.AccountID = prior.AccountID
+          WHERE c.ConsoID = @ConsoID
+            AND s.ReferenceConsoID IS NOT NULL
+            AND prior.AccountID = curr.AccountID
+            AND ABS(prior.Amount - curr.Amount) > 0.01
+
+        error_message: "Opening balance mismatch for {company_code}/{account}: Prior closing {prior}, Current opening {curr}, Diff {diff}"
+        resolution: "Run P_CONSO_CARRY_FORWARD or investigate prior period adjustments"
+
+      # Rule PC-006: Consolidation not locked
+      - id: "PC-006"
+        name: "Consolidation Not Locked"
+        severity: "INFO"
+        description: "Check if consolidation period is already locked/closed"
+
+        check_sql: |
+          SELECT
+              ConsoID,
+              ConsoStatus,
+              CASE ConsoStatus
+                  WHEN 'O' THEN 'Open'
+                  WHEN 'C' THEN 'Closed'
+                  WHEN 'L' THEN 'Locked'
+                  ELSE ConsoStatus
+              END AS StatusDescription
+          FROM TS096S0
+          WHERE ConsoID = @ConsoID
+            AND ConsoStatus IN ('C', 'L')
+
+        error_message: "Consolidation period is already {status}"
+        resolution: "Unlock period if changes are required, or work in a new period"
+
+  # ============================================================
+  # VALIDATION EXECUTION
+  # ============================================================
+  execution:
+    description: "How to execute validation rules"
+
+    run_all_validations: |
+      -- Template to run all validations
+      DECLARE @ConsoID int = @YourConsoID
+      DECLARE @Results TABLE (
+          RuleID varchar(20),
+          Severity varchar(20),
+          Category varchar(50),
+          ErrorCount int,
+          Details nvarchar(max)
+      )
+
+      -- For each rule, execute check_sql and capture results
+      -- Aggregate into @Results table
+      -- Return summary with pass/fail status
+
+    severity_levels:
+      ERROR: "Must be fixed before proceeding"
+      WARNING: "Should be investigated, may be acceptable"
+      INFO: "Informational only"
+
+    recommended_sequence:
+      - category: "ownership_rules"
+        timing: "After ownership calculation"
+      - category: "balance_sheet_rules"
+        timing: "After bundle integration"
+      - category: "intercompany_rules"
+        timing: "Before eliminations"
+      - category: "period_close_rules"
+        timing: "Before closing period"

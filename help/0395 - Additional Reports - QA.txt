@@ -1,0 +1,374 @@
+Topics:
+Additional Reports, SQL Query Reports, Custom Reports, Dynamic Reports
+
+Keywords:
+Additional Reports, SQL Queries, Custom Reports, Dynamic Reports, User Input, Data Presentation, Analysis
+
+Summary:
+The documentation for the Financial Consolidation product includes detailed instructions on creating and managing additional reports. The Additional Reports section explains how to use SQL queries to generate custom reports based on user input and dynamic data. These reports can be tailored to present data or analysis that may change frequently, meeting specific user needs. The instructions ensure users can efficiently create, customize, and access various dynamic reports for comprehensive data analysis.
+
+Contents:
+
+Question: How do you access the Additional Reports page?
+Answer: To access the Additional Reports page, click Automation > Additional Reports.
+
+Question: What is the purpose of the Additional Reports page?
+Answer: The Additional Reports page is used for creating SQL queries in the application database to generate custom reports that are dynamic and can change based on user input.
+
+Question: What does the Available Reports panel display?
+Answer: The Available Reports panel displays a list of the custom reports available in the application.
+
+Question: How do you create an additional report?
+Answer: From the Available Reports panel, click on the report you want, enter or select the required information in the editable fields, and click to generate the report. Then, click the link below to download the report.
+
+Question: What are additional reports used for?
+Answer: Additional reports are used to present data or analysis that may change frequently or require customization based on specific user needs.
+
+Question: How can you customize an additional report?
+Answer: You can customize an additional report by entering or selecting the required information in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What information is needed to generate an additional report?
+Answer: You need to enter or select the required information in the editable fields displayed on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: How do you download an additional report?
+Answer: After generating the report by clicking , click the link below to download the report.
+
+Question: Can the list of additional reports change?
+Answer: Yes, the list of additional reports is independent of the application and may change from one installation to another.
+
+Question: What type of queries are used to create additional reports?
+Answer: SQL queries are used to create additional reports in the application database.
+
+Question: How do additional reports benefit users?
+Answer: Additional reports benefit users by allowing them to generate custom reports that can dynamically change based on user input and meet specific analysis needs.
+
+Question: What fields are available for customization in additional reports?
+Answer: The fields available for customization are displayed in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What should you do after selecting a report from the Available Reports panel?
+Answer: After selecting a report from the Available Reports panel, enter or select the required information in the editable fields and click to generate the report.
+
+Question: How can additional reports be tailored?
+Answer: Additional reports can be tailored by modifying the SQL queries and entering specific user inputs in the editable fields to meet specific analysis needs.
+
+Question: What is displayed on the right-side panel of the Additional Reports page?
+Answer: The right-side panel displays the list of custom variables for the selected report and editable fields for entering or selecting the required information.
+
+Question: What is the process to generate a report after selecting it from the Available Reports panel?
+Answer: Enter or select the required information in the editable fields on the right-side panel and click to generate the report.
+
+Question: What are SQL queries used for in the Additional Reports page?
+Answer: SQL queries are used to create custom reports by retrieving data from the application database based on user input and requirements.
+
+Question: How do you find custom variables for a report in the Additional Reports page?
+Answer: Click on the desired report in the Available Reports panel to display the list of custom variables on the right-side panel.
+
+Question: What happens after clicking on a report in the Available Reports panel?
+Answer: The list of custom variables for that report is displayed on the right-side panel, allowing you to enter or select the required information.
+
+Question: What do you need to do to customize a report in the Additional Reports page?
+Answer: Enter or select the required information in the editable fields displayed on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What should you do to generate a customized report?
+Answer: After selecting a report from the Available Reports panel, enter or select the required information in the editable fields, then click to generate the report.
+
+Question: How do you access the link to download a generated report?
+Answer: After generating the report by clicking , the link to download the report will appear below.
+
+Question: What type of reports can be created using the Additional Reports page?
+Answer: Custom SQL reports that can dynamically change based on user input and specific analysis needs can be created using the Additional Reports page.
+
+Question: What happens to the content of additional reports in different installations?
+Answer: The content of additional reports may change from one installation to another, making the list of reports independent of the application.
+
+Question: How are additional reports generated?
+Answer: Additional reports are generated by creating SQL queries in the application database based on user input in the editable fields.
+
+Question: What allows additional reports to be dynamic?
+Answer: User input and SQL queries allow additional reports to be dynamic, changing content or appearance based on specific needs.
+
+Question: How do you know what information to enter for an additional report?
+Answer: The required information is indicated in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What can you do if you need to customize a report's appearance?
+Answer: You can customize a report's appearance by entering or selecting the required information in the editable fields before generating the report.
+
+Question: What is the first step to create an additional report?
+Answer: The first step is to select the desired report from the Available Reports panel.
+
+Question: How do you find the required fields for a report?
+Answer: The required fields are displayed in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What must be done before generating an additional report?
+Answer: Enter or select the required information in the editable fields on the right-side panel before generating the report.
+
+Question: What does clicking on a report in the Available Reports panel do?
+Answer: It displays the list of custom variables and editable fields for that report on the right-side panel.
+
+Question: How do you access the Additional Reports page?
+Answer: To access the Additional Reports page, click Automation > Additional Reports.
+
+Question: What is the purpose of the Additional Reports page?
+Answer: The Additional Reports page is used for creating SQL queries in the application database to generate custom reports that are dynamic and can change based on user input.
+
+Question: What does the Available Reports panel display?
+Answer: The Available Reports panel displays a list of the custom reports available in the application.
+
+Question: How do you create an additional report?
+Answer: From the Available Reports panel, click on the report you want, enter or select the required information in the editable fields, and click to generate the report. Then, click the link below to download the report.
+
+Question: What are additional reports used for?
+Answer: Additional reports are used to present data or analysis that may change frequently or require customization based on specific user needs.
+
+Question: How can you customize an additional report?
+Answer: You can customize an additional report by entering or selecting the required information in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What information is needed to generate an additional report?
+Answer: You need to enter or select the required information in the editable fields displayed on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: How do you download an additional report?
+Answer: After generating the report by clicking , click the link below to download the report.
+
+Question: Can the list of additional reports change?
+Answer: Yes, the list of additional reports is independent of the application and may change from one installation to another.
+
+Question: What type of queries are used to create additional reports?
+Answer: SQL queries are used to create additional reports in the application database.
+
+Question: How do additional reports benefit users?
+Answer: Additional reports benefit users by allowing them to generate custom reports that can dynamically change based on user input and meet specific analysis needs.
+
+Question: What fields are available for customization in additional reports?
+Answer: The fields available for customization are displayed in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What should you do after selecting a report from the Available Reports panel?
+Answer: After selecting a report from the Available Reports panel, enter or select the required information in the editable fields and click to generate the report.
+
+Question: How can additional reports be tailored?
+Answer: Additional reports can be tailored by modifying the SQL queries and entering specific user inputs in the editable fields to meet specific analysis needs.
+
+Question: What is displayed on the right-side panel of the Additional Reports page?
+Answer: The right-side panel displays the list of custom variables for the selected report and editable fields for entering or selecting the required information.
+
+Question: What is the process to generate a report after selecting it from the Available Reports panel?
+Answer: Enter or select the required information in the editable fields on the right-side panel and click to generate the report.
+
+Question: What are SQL queries used for in the Additional Reports page?
+Answer: SQL queries are used to create custom reports by retrieving data from the application database based on user input and requirements.
+
+Question: How do you find custom variables for a report in the Additional Reports page?
+Answer: Click on the desired report in the Available Reports panel to display the list of custom variables on the right-side panel.
+
+Question: What happens after clicking on a report in the Available Reports panel?
+Answer: The list of custom variables for that report is displayed on the right-side panel, allowing you to enter or select the required information.
+
+Question: What do you need to do to customize a report in the Additional Reports page?
+Answer: Enter or select the required information in the editable fields displayed on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What should you do to generate a customized report?
+Answer: After selecting a report from the Available Reports panel, enter or select the required information in the editable fields, then click to generate the report.
+
+Question: How do you access the link to download a generated report?
+Answer: After generating the report by clicking , the link to download the report will appear below.
+
+Question: What type of reports can be created using the Additional Reports page?
+Answer: Custom SQL reports that can dynamically change based on user input and specific analysis needs can be created using the Additional Reports page.
+
+Question: What happens to the content of additional reports in different installations?
+Answer: The content of additional reports may change from one installation to another, making the list of reports independent of the application.
+
+Question: How are additional reports generated?
+Answer: Additional reports are generated by creating SQL queries in the application database based on user input in the editable fields.
+
+Question: What allows additional reports to be dynamic?
+Answer: User input and SQL queries allow additional reports to be dynamic, changing content or appearance based on specific needs.
+
+Question: How do you know what information to enter for an additional report?
+Answer: The required information is indicated in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What can you do if you need to customize a report's appearance?
+Answer: You can customize a report's appearance by entering or selecting the required information in the editable fields before generating the report.
+
+Question: What is the first step to create an additional report?
+Answer: The first step is to select the desired report from the Available Reports panel.
+
+Question: How do you find the required fields for a report?
+Answer: The required fields are displayed in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What must be done before generating an additional report?
+Answer: Enter or select the required information in the editable fields on the right-side panel before generating the report.
+
+Question: What does clicking on a report in the Available Reports panel do?
+Answer: It displays the list of custom variables and editable fields for that report on the right-side panel.
+
+Question: How do you tailor an additional report to specific needs?
+Answer: Enter or select the required information in the editable fields to tailor the report to specific needs before generating it.
+
+Question: What makes additional reports valuable for users?
+Answer: Their ability to dynamically change based on user input and customization to meet specific analysis needs makes additional reports valuable for users.
+
+Question: How do you modify the SQL query for a report?
+Answer: Enter or select the required information in the editable fields displayed on the right-side panel after selecting a report.
+
+Question: What ensures the customization of additional reports?
+Answer: The editable fields and user input ensure the customization of additional reports to meet specific requirements.
+
+Question: What is displayed on the right-side panel when a report is selected?
+Answer: The list of custom variables and editable fields for the selected report are displayed on the right-side panel.
+
+Question: How do you generate the final report after customization?
+Answer: Click to generate the report after entering or selecting the required information in the editable fields.
+
+Question: What is the function of the editable fields in the Additional Reports page?
+Answer: The editable fields allow you to enter or select the required information to customize and generate the report.
+
+Question: What should you do after entering the required information for a report?
+Answer: Click to generate the report.
+
+Question: How are additional reports different from standard reports?
+Answer: Additional reports are custom SQL reports that can change dynamically based on user input and specific analysis needs, unlike standard reports.
+
+Question: What allows additional reports to be dynamic?
+Answer: User input and SQL queries allow additional reports to be dynamic and tailored to specific needs.
+
+Question: How can additional reports be customized for different needs?
+Answer: By entering or selecting the required information in the editable fields, additional reports can be customized for different needs.
+
+Question: What is the purpose of the Available Reports panel?
+Answer: The Available Reports panel allows you to select the custom report you want to generate and customize.
+
+Question: How do you interact with the right-side panel of the Additional Reports page?
+Answer: Enter or select the required information in the editable fields to customize the selected report.
+
+Question: What happens after generating a report on the Additional Reports page?
+Answer: A link to download the generated report appears below.
+
+Question: What information is needed to create an additional report?
+Answer: Enter or select the required information in the editable fields after selecting a report from the Available Reports panel.
+
+Question: What makes additional reports flexible for analysis?
+Answer: Their ability to be customized based on user input and specific needs makes additional reports flexible for analysis.
+
+Question: How do you display the list of custom variables for a report?
+Answer: Click on the desired report in the Available Reports panel to display the list of custom variables on the right-side panel.
+
+Question: What is the role of SQL queries in additional reports?
+Answer: SQL queries retrieve data from the application database to create custom reports based on user input and requirements.
+
+Question: How do additional reports differ from one installation to another?
+Answer: The list of additional reports is independent of the application and may change from one installation to another.
+
+Question: What is displayed in the editable fields on the Additional Reports page?
+Answer: The editable fields display the required information needed to customize and generate the selected report.
+
+Question: How do you access the required fields for a selected report?
+Answer: The required fields are displayed in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What should you do before clicking to generate a report?
+Answer: Ensure you have entered or selected the required information in the editable fields.
+
+Question: How do you generate a report after customizing it?
+Answer: Click to generate the report after entering or selecting the required information.
+
+Question: What is the purpose of the right-side panel on the Additional Reports page?
+Answer: The right-side panel displays the list of custom variables and editable fields for the selected report, allowing for customization.
+
+Question: How do you know what information to enter in the editable fields?
+Answer: The editable fields indicate the required information needed to customize the report based on user input.
+
+Question: What should you do after clicking to generate a report?
+Answer: Click the link that appears below to download the generated report.
+
+Question: How do additional reports help in data presentation?
+Answer: Additional reports help in data presentation by allowing users to generate custom reports that can dynamically change based on specific needs.
+
+Question: How do you modify a custom report in the Additional Reports page?
+Answer: Enter or select the required information in the editable fields after selecting the report from the Available Reports panel.
+
+Question: What allows additional reports to meet specific user needs?
+Answer: The ability to customize SQL queries and enter specific user inputs allows additional reports to meet specific user needs.
+
+Question: How do you generate an additional report after entering the required information?
+Answer: Click to generate the report.
+
+Question: What is displayed after a report is generated?
+Answer: A link to download the report appears below.
+
+Question: What fields are shown for customization after selecting a report?
+Answer: The editable fields on the right-side panel show the required information needed for customization.
+
+Question: How can you customize an additional report?
+Answer: By entering or selecting the required information in the editable fields displayed on the right-side panel.
+
+Question: What should you do if the content of additional reports changes?
+Answer: Update the SQL queries and user inputs in the editable fields to match the new content requirements.
+
+Question: What ensures the customization of additional reports?
+Answer: The editable fields and user input ensure the customization of additional reports to meet specific requirements.
+
+Question: What makes additional reports dynamic?
+Answer: User input and customizable SQL queries make additional reports dynamic and adaptable to specific needs.
+
+Question: What should you do to generate a tailored report?
+Answer: Enter or select the required information in the editable fields and click to generate the report.
+
+Question: How do you generate a customized report?
+Answer: Select a report from the Available Reports panel, enter or select the required information in the editable fields, and click to generate the report.
+
+Question: What is the function of the editable fields in the Additional Reports page?
+Answer: The editable fields allow you to enter or select the required information to customize and generate the report.
+
+Question: How do you generate the final report after customization?
+Answer: Click to generate the report after entering or selecting the required information in the editable fields.
+
+Question: How do you interact with the right-side panel of the Additional Reports page?
+Answer: Enter or select the required information in the editable fields to customize the selected report.
+
+Question: What happens after clicking on a report in the Available Reports panel?
+Answer: The list of custom variables for that report is displayed on the right-side panel, allowing you to enter or select the required information.
+
+Question: What allows additional reports to be tailored?
+Answer: Additional reports can be tailored by modifying the SQL queries and entering specific user inputs in the editable fields to meet specific analysis needs.
+
+Question: How can additional reports be customized for different needs?
+Answer: By entering or selecting the required information in the editable fields, additional reports can be customized for different needs.
+
+Question: What type of reports can be created using the Additional Reports page?
+Answer: Custom SQL reports that can dynamically change based on user input and specific analysis needs can be created using the Additional Reports page.
+
+Question: What is the first step to create an additional report?
+Answer: The first step is to select the desired report from the Available Reports panel.
+
+Question: How do you tailor an additional report to specific needs?
+Answer: Enter or select the required information in the editable fields to tailor the report to specific needs before generating it.
+
+Question: What makes additional reports valuable for users?
+Answer: Their ability to dynamically change based on user input and customization to meet specific analysis needs makes additional reports valuable for users.
+
+Question: What is displayed on the right-side panel when a report is selected?
+Answer: The list of custom variables and editable fields for the selected report are displayed on the right-side panel.
+
+Question: How do you access the link to download a generated report?
+Answer: After generating the report by clicking , the link to download the report will appear below.
+
+Question: What should you do after selecting a report from the Available Reports panel?
+Answer: After selecting a report from the Available Reports panel, enter or select the required information in the editable fields and click to generate the report.
+
+Question: How do you know what information to enter for an additional report?
+Answer: The required information is indicated in the editable fields on the right-side panel after selecting a report from the Available Reports panel.
+
+Question: What happens to the content of additional reports in different installations?
+Answer: The content of additional reports may change from one installation to another, making the list of reports independent of the application.
+
+Question: What ensures the customization of additional reports?
+Answer: The editable fields and user input ensure the customization of additional reports to meet specific requirements.
+
+Question: How do you find custom variables for a report in the Additional Reports page?
+Answer: Click on the desired report in the Available Reports panel to display the list of custom variables on the right-side panel.
+
+Question: How do additional reports benefit users?
+Answer: Additional reports benefit users by allowing them to generate custom reports that can dynamically change based on user input and meet specific analysis needs.
+
+Question: What are SQL queries used for in the Additional Reports page?
+Answer: SQL queries are used to create custom reports by retrieving data from the application database based on user input and requirements.
+

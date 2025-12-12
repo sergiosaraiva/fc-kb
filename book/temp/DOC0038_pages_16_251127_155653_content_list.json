@@ -1,0 +1,1132 @@
+[
+    {
+        "type": "text",
+        "text": "accounts. However, there are still two accounts dealing with equity in company accounts: Minority Interests and the Group part in the translation adjustments.",
+        "bbox": [
+            112,
+            120,
+            875,
+            168
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This process has to be applied to each company, except the parent company. It clearly shows that the final consolidated accounts remain only with the parent company Equity (Capital, ...) and all financial investments are eliminated in the Assets.",
+        "bbox": [
+            112,
+            184,
+            875,
+            247
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            67,
+            364,
+            80
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "BART 3",
+        "text_level": 1,
+        "bbox": [
+            149,
+            266,
+            359,
+            301
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "EVOLUTION OF",
+        "text_level": 1,
+        "bbox": [
+            271,
+            309,
+            715,
+            344
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "CONSOLIDATED",
+        "text_level": 1,
+        "bbox": [
+            271,
+            353,
+            738,
+            388
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "ACCOUNTS",
+        "text_level": 2,
+        "bbox": [
+            271,
+            396,
+            591,
+            431
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/27bee658e49ab87bca9c88911a183056603c16dfcca08acc10c60457655b0a61.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            128,
+            521,
+            854,
+            749
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "page_number",
+        "text": "155",
+        "bbox": [
+            475,
+            921,
+            520,
+            938
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "1 EVOLUTION OF ASSETS AND LIABILITIES ACCOUNTS",
+        "text_level": 1,
+        "bbox": [
+            111,
+            139,
+            710,
+            185
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Justifying the evolution of consolidated financial statements between two periods can sometimes turn to a challenge.",
+        "bbox": [
+            107,
+            209,
+            871,
+            244
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In a classical accounting system, a period is closed and all balance sheet accounts are carried forward to the next period as opening amounts.",
+        "bbox": [
+            107,
+            257,
+            871,
+            292
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In a consolidation process, this is not so easy for the following reasons",
+        "bbox": [
+            107,
+            306,
+            795,
+            323
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Accounts received from a company for the last period are not always the final ones",
+            "- Currency rates used in consolidation are changing between two periods",
+            "- Some financial percentages may also change between two periods, implying at least some difficulties at the Equity level",
+            "- If the change in percentage becomes material for a certain company, its consolidation method may also change",
+            "- Historical adjustments booked in former consolidations still remain active in current consolidation. Not carrying forward one of these adjustments in current consolidation may give some trouble..."
+        ],
+        "bbox": [
+            154,
+            338,
+            867,
+            578
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "All these situations are at the origin of what is called a discontinuing problem in consolidation. We have to deal with it while the evolution of consolidated figures represents the most important part of the consolidated disclosures to provide.",
+        "bbox": [
+            107,
+            595,
+            871,
+            660
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "1.1 Flows on each balance sheet account",
+        "text_level": 2,
+        "bbox": [
+            109,
+            693,
+            765,
+            715
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "One important set of information asked to each company of the consolidation scope is an explanation on how each individual assets and liabilities account is changing between two consolidation periods.",
+        "bbox": [
+            107,
+            736,
+            869,
+            786
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Of course, the reasons of these changes will depend on the account. Evolution of tangible assets (acquisition value) will be explained by acquisitions, disposals, ... when evolution of tangible assets (depreciations) will be explained by depreciation of the period, depreciation on disposals,",
+        "bbox": [
+            107,
+            800,
+            871,
+            866
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            109,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "cancellations, ... Evolution of the capital account may be described with increase by cash, increase by non cash, ...",
+        "bbox": [
+            109,
+            118,
+            873,
+            150
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "For current assets and liabilities, we can limit the request to a net variation which, most of the time, is sufficient for the disclosures. It is indeed generally not significant to ask for increase and decrease of Payables.",
+        "bbox": [
+            109,
+            150,
+            867,
+            200
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "These reasons of changes are booked on what is called 'flows\" in consolidation. They must be seen as an independent dimension with regard to the chart of accounts.",
+        "bbox": [
+            109,
+            215,
+            871,
+            263
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Hereunder is a more complete example of flows generally asked to each company for an account that could be tangible assets (acquisition value).",
+        "bbox": [
+            109,
+            279,
+            820,
+            314
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/bd4d74e054260279942d955b0cf22b243703dcd20bd86834617a75a58df8b2bb.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Opening value</td><td>2,000</td></tr><tr><td>Acquisitions</td><td>…</td></tr><tr><td>Disposals</td><td>…</td></tr><tr><td>Transfer between accounts</td><td>…</td></tr><tr><td>Difference on opening</td><td>…</td></tr><tr><td>Translation adjustments</td><td>…</td></tr><tr><td>Entry in consolidation scope</td><td>…</td></tr><tr><td>Merge between companies</td><td>…</td></tr><tr><td>Changes in consolidation method</td><td>…</td></tr><tr><td>…</td><td>…</td></tr><tr><td>Closing value</td><td>2,500</td></tr></table>",
+        "bbox": [
+            265,
+            327,
+            725,
+            534
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Amounts of 2000 and 2500 are supposed to come from the balance sheet and are in local currency.",
+        "bbox": [
+            111,
+            551,
+            875,
+            585
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- \"Transfer between accounts\" flow supposes that the opposite amount is found on another account.",
+            "- \"Difference on opening\" flow is booked when the closing amount imported in previous consolidation was not the final one. This amount cannot be aggregated with \"Acquisitions\" or \"Disposals\" flows. From an economical point of view, it wouldn't be correct.",
+            "- \"Translation adjustments\" flow is booked for foreign companies as explained in Part 2, Chapter 6 Section 4.",
+            "- \"Entry in the consolidation scope\" flow is booked when a company is consolidated for the first time. Again, it wouldn't give a correct economical picture to aggregate such amount with the \"Acquisitions\" flow. What has been purchased are shares of that company, not individual assets and liabilities."
+        ],
+        "bbox": [
+            149,
+            600,
+            873,
+            857
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            358,
+            68,
+            864,
+            84
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- \"Merge between companies\" flow is used when two companies belonging to the consolidation scope are merging. This flow can be seen as a transfer flow between these two companies.",
+            "- \"Changes in consolidation method\" will be booked when consolidation method is different from one period to another"
+        ],
+        "bbox": [
+            146,
+            118,
+            875,
+            216
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "1.2 Flows and consolidation process",
+        "text_level": 2,
+        "bbox": [
+            110,
+            250,
+            694,
+            273
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Flows are submitted to the consolidation process in a similar way as are the balance accounts.",
+        "bbox": [
+            105,
+            292,
+            875,
+            325
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "That means",
+        "text_level": 3,
+        "bbox": [
+            108,
+            341,
+            230,
+            355
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Flows in local currency are translated into consolidation currency, most generally at average rate of the period",
+            "- Some flows will be intercompany because explaining intercompany accounts evolution",
+            "- Flows may be adjusted by consolidation adjustments",
+            "- Flows will then be processed during the eliminations in a similar way as accounts are."
+        ],
+        "bbox": [
+            146,
+            371,
+            868,
+            532
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Let's consider a few examples.",
+        "bbox": [
+            105,
+            549,
+            406,
+            566
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/cecbceb20d666a456af4428d4934efe02585e08c69ff2b9bf306c2155e2f10e9.jpg",
+        "table_caption": [
+            "Example 1 : Elimination process on flows"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td colspan=\"3\">Eliminations if</td></tr><tr><td>Tangible assets (Acq.Val.)</td><td>Statutory</td><td>Global 80%</td><td>Proportional 50%</td><td>Equity 30%</td></tr><tr><td>Year 1</td><td>1,000</td><td></td><td>(500)</td><td>(1,000)</td></tr><tr><td>Acquisitions</td><td>300</td><td></td><td>(150)</td><td>(300)</td></tr><tr><td>Disposals</td><td>(100)</td><td></td><td>50</td><td>100</td></tr><tr><td>Transfer</td><td>200</td><td></td><td>(100)</td><td>(200)</td></tr><tr><td>Year 2</td><td>1,400</td><td></td><td>(700)</td><td>(1,400)</td></tr></table>",
+        "bbox": [
+            110,
+            617,
+            875,
+            749
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This example shows the elimination process on flows depending on the consolidation method.",
+        "bbox": [
+            105,
+            781,
+            870,
+            812
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "For the global integration, we know that we keep  \\(100\\%\\)  of all balance sheet accounts and we do so for the flows.",
+        "bbox": [
+            105,
+            828,
+            870,
+            860
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            110,
+            64,
+            366,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "For a proportional integration  \\((50\\%)\\) , we eliminate  \\(50\\%\\)  of each flow as we do for the closing amounts.",
+        "bbox": [
+            110,
+            118,
+            875,
+            152
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "For an equity method company, we eliminate  \\(100\\%\\)  of the flow amounts as we do for the closing amounts.",
+        "bbox": [
+            110,
+            166,
+            875,
+            200
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "This example finally shows that the elimination process acting on closing flows is the same as the one acting on closing amounts.",
+        "bbox": [
+            110,
+            216,
+            875,
+            248
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/055f3b99d679a827ed64e9c5b0ed71ac3577162bb38a1438fba0fc3dd5c356f7.jpg",
+        "table_caption": [
+            "Example 2: Elimination process on flows when consolidation method is changing"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Tangible assets (Acq.Val.)</td><td>Statutory</td><td>Eliminations</td><td>Consolidated</td></tr><tr><td>Year 1,(Equity method 30%)</td><td>1,000</td><td>(1,000)</td><td>0</td></tr><tr><td>Acquisitions</td><td>300</td><td></td><td>300</td></tr><tr><td>Disposals</td><td>(100)</td><td></td><td>(100)</td></tr><tr><td>Transfers</td><td>200</td><td></td><td>200</td></tr><tr><td>Changes in conso. method</td><td></td><td>1,000</td><td>1,000</td></tr><tr><td>Year 2 (Global 80%)</td><td>1,400</td><td>0</td><td>1,400</td></tr></table>",
+        "bbox": [
+            150,
+            317,
+            824,
+            450
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In this example, the company is consolidated with the equity method in Year 1 and with the global integration method in Year 2, which is the consequence of shares acquisition giving the control on that company.",
+        "bbox": [
+            110,
+            464,
+            875,
+            513
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We first suppose the acquisition happened on the  \\(1^{\\text{st}}\\)  of January, Year 2 which means that the whole activity of the 12 months of Year 2 must be consolidated with the global integration method. Of course, the opening amount, consolidated at end of Year 1, was eliminated by the equity method. This situation implies that the only way to justify an evolution from 0 to 1400 is to book a flow called 'Changes in conso. method\" with an amount corresponding to the opening. Booking these 1000 on Acquisition flow would again not be economically correct. The group has acquired shares giving the control on that company, but it didn't' acquire these 1000 tangible assets.",
+        "bbox": [
+            110,
+            528,
+            875,
+            674
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "If the transaction would have been closed let say on the  \\(1^{\\text{st}}\\)  of May Year 2, theoretically, we would have to consolidate these flows with the equity method for the first four months preceding the closing and with the global integration method for the remaining eight months of the year. Such approach requires the knowledge of each flow split in two parts, before closing and after closing of the transaction. This could represent a real difficulty for a company not prepared to such specific reporting.",
+        "bbox": [
+            110,
+            688,
+            875,
+            803
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            360,
+            71,
+            866,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "1.3 Flows on intercompany accounts",
+        "text_level": 2,
+        "bbox": [
+            110,
+            120,
+            701,
+            143
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "When reporting the figures for consolidation, each company usually provides the first flows on each balance sheet accounts and if that account is defined as intercompany, it should also provide a more detailed information on flows attached to each intercompany amounts.",
+        "bbox": [
+            105,
+            162,
+            875,
+            227
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Let's put this through the following example.",
+        "bbox": [
+            108,
+            228,
+            544,
+            244
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/54dea45451c78ce2d9c6bd47ce1f8763cd227bde37fd9abed095c61fc58d06af.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>Company A</td><td>Receivables</td><td></td></tr><tr><td>Year 1</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Balance</td><td>1,000</td><td>400</td><td>1,400</td></tr><tr><td>Company B</td><td>200</td><td>100</td><td>300</td></tr><tr><td>3rd Parties</td><td>800</td><td>300</td><td>1,100</td></tr></table>",
+        "bbox": [
+            224,
+            260,
+            777,
+            347
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Here is the situation of the Receivables for company A showing first the balance evolution for 400 and then an intercompany position with company B for a variation of 100. The net variation of 300 concerns  \\(3^{\\text{rd}}\\)  Parties.",
+        "bbox": [
+            105,
+            370,
+            875,
+            420
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/b0bc2ca2e162e78f443dcbeb044ff7f9023346229c3cdb6608ab66d80953d3dd.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>Company B</td><td>Payables</td><td></td></tr><tr><td>Year 1</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Balance</td><td>1,300</td><td>(500)</td><td>800</td></tr><tr><td>Company A</td><td>200</td><td>100</td><td>300</td></tr><tr><td>3rd Parties</td><td>1,100</td><td>(600)</td><td>500</td></tr></table>",
+        "bbox": [
+            222,
+            445,
+            775,
+            533
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Company B shows its Payables account with the same presentation and, moreover, we can observe that both companies are correctly reconciled on intercompany level not only on opening and closing amounts but also on the net variation flow of 100.",
+        "bbox": [
+            105,
+            549,
+            872,
+            612
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Everything is perfect and both consolidations of closing amounts and of flows can go on without any problem.",
+        "bbox": [
+            105,
+            627,
+            872,
+            661
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The situation can become more difficult to manage if we suppose company B presents its figures in a certain local currency (CUR) as hereunder",
+        "bbox": [
+            105,
+            675,
+            872,
+            709
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/a432920103e696cecc7279ea5af8df5f824ce02ff78823f805a88c46c29fc34a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>Company B</td><td>Payables</td><td>(in CUR)</td></tr><tr><td>Year 1</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Balance</td><td>260</td><td>(110)</td><td>150</td></tr><tr><td>Company A</td><td>40</td><td>10</td><td>50</td></tr><tr><td>3rd Parties</td><td>220</td><td>(120)</td><td>100</td></tr></table>",
+        "bbox": [
+            222,
+            724,
+            756,
+            809
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            110,
+            64,
+            366,
+            80
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "These figures are first translated into the consolidation currency on the basis of 5 for closing rate Year 1, 6 for closing rate Year 2 and 7 for average rate Year 2 giving the following figures in EUR.",
+        "bbox": [
+            108,
+            118,
+            879,
+            168
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/ec6a7348e58cedc954834c31190a07b830ecd10839d2c5a4475671ffbc64bbc7.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>Company B</td><td>Payables</td><td>(in EUR)</td><td></td></tr><tr><td>Year 1</td><td>Net variation</td><td>Trans. adj.</td><td>Year 2</td></tr><tr><td>Balance</td><td>1,300</td><td>(770)</td><td>370</td><td>900</td></tr><tr><td>Company A</td><td>200</td><td>70</td><td>30</td><td>300</td></tr><tr><td>3rd Parties</td><td>1,100</td><td>(840)</td><td>340</td><td>600</td></tr></table>",
+        "bbox": [
+            167,
+            183,
+            845,
+            267
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We notice now that if intercompany opening and closing amounts between company A and company B are still reconciled (200 and 300), the intercompany flow corresponding to the net variation is 100 on Receivables side and 70 on Payables side.",
+        "bbox": [
+            108,
+            279,
+            879,
+            345
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This has to be considered as an intercompany difference on flows with some consequence on some consolidated disclosures.",
+        "bbox": [
+            108,
+            360,
+            877,
+            393
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The most important one impacted by this difference is the cash flow statement that will be studied later on in this Part 3. But, in the meantime, let's just consider that these intercompany flows of 100 and 70 will have to be eliminated, leaving a difference of 30. Speaking about a cash flow statement, the amounts of 100 and 70 are considered as cash amounts but not 30 which is non cash.",
+        "bbox": [
+            108,
+            408,
+            877,
+            505
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In order to avoid this kind of problem, it is necessary to book the following consolidation adjustment",
+        "bbox": [
+            108,
+            521,
+            875,
+            554
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/f965131509854008a7bb6aa7687a6ad92d904996821c1a2b0152403258262e87.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company B</td><td>(in EUR)</td><td>Debit</td><td>Credit</td></tr><tr><td>Payables/A</td><td>Translation adjustment</td><td>30</td><td></td></tr><tr><td>Payables/A</td><td>Net variation</td><td></td><td>30</td></tr></table>",
+        "bbox": [
+            228,
+            563,
+            771,
+            614
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "reclassifying 30 between \"Translation adjustment\" flow and \"Net variation\" flow, leaving unchanged the closing amount of 100 which is correct.",
+        "bbox": [
+            108,
+            633,
+            877,
+            667
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Are you ready to book this kind of adjustment considering the number of differences that may occur in a group? While purchasing a consolidation software, the possibility to benefit from an automatic process would certainly be an advantage.",
+        "bbox": [
+            108,
+            680,
+            877,
+            746
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "1.4 Flows related to asset disposal between companies",
+        "text_level": 2,
+        "bbox": [
+            112,
+            780,
+            817,
+            825
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Another situation requires a particular attention which is explained by the following example. Let's consider company A selling a tangible asset (land) to",
+        "bbox": [
+            108,
+            846,
+            877,
+            879
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            358,
+            70,
+            866,
+            84
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "company B. This transaction is supposed to be done without any group profit, both companies are consolidated by the global integration method and have their accounts in consolidation currency.",
+        "bbox": [
+            111,
+            118,
+            871,
+            166
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here is what we find in the bundle of each company and this looks \"locally\" correct.",
+        "bbox": [
+            111,
+            181,
+            871,
+            215
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/c16724e9981978a3db938d9367450cc2ace3ef33525a4df4fe7750ac05a25091.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Acquisitions</td><td>Disposals</td><td>Year 2</td></tr><tr><td>Company A</td><td>1,000</td><td>0</td><td>(1,000)</td><td>0</td></tr><tr><td>Company B</td><td>0</td><td>1,000</td><td>0</td><td>1,000</td></tr></table>",
+        "bbox": [
+            168,
+            231,
+            795,
+            282
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Once these figures are consolidated, their contribution gives this information.",
+        "bbox": [
+            111,
+            294,
+            854,
+            311
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/46a9b906dfc4503e2037aa78c5defdd78e0b4f4ee66abdec4c04896e3f004bc5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Acquisitions</td><td>Disposals</td><td>Year 2</td></tr><tr><td>Consolidated</td><td>1,000</td><td>1,000</td><td>(1,000)</td><td>1,000</td></tr></table>",
+        "bbox": [
+            168,
+            329,
+            795,
+            367
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "showing a group having concluded two transactions with the outside world: one acquisition for 1000 and one disposal for 1000. That's totally wrong. The group did only an internal transaction that cannot be seen in the consolidated disclosures.",
+        "bbox": [
+            111,
+            374,
+            871,
+            439
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "So what to do?",
+        "bbox": [
+            111,
+            453,
+            259,
+            469
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We recommend defining two 'Acquisitions\" flows, one for transactions with  \\(3^{\\text{rd}}\\)  Parties and one for transactions with other group companies and the same for the \"Disposals\" flow.",
+        "bbox": [
+            111,
+            486,
+            871,
+            535
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "These group transaction flows can then just be ignored in the consolidated disclosures but, of course, the amounts must be checked as equal.",
+        "bbox": [
+            111,
+            550,
+            871,
+            584
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let's now consider a similar situation with company B figures in a local currency (CUR). Both companies produce a bundle with the recommended group flows.",
+        "bbox": [
+            111,
+            598,
+            871,
+            648
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/43cce9a0e15d6778f3d76a7e511fa0c0cb016bab9f305a802daba0b0e972aaac.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Group\nacquisitions</td><td>Group\ndisposals</td><td>Translation\na.</td><td>Year 2</td></tr><tr><td>Company A</td><td>1,000</td><td>0</td><td>(1,000)</td><td></td><td>0</td></tr><tr><td>Company B (CUR)</td><td>0</td><td>210</td><td></td><td></td><td>210</td></tr><tr><td>Company B</td><td>0</td><td>1,260</td><td></td><td>(10)</td><td>1,050</td></tr></table>",
+        "bbox": [
+            111,
+            670,
+            873,
+            743
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "At acquisition time, the land is booked in company B accounts for an amount of 210 CUR, the local accountant using a day rate of 4.762.",
+        "bbox": [
+            111,
+            759,
+            871,
+            793
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "A problem arises at the end of Year 2 because closing rate and average rate used for consolidation are 5 and 6 respectively. The last line of this report is showing company B information after currency translation with a Translation adjustment flow of 10.",
+        "bbox": [
+            111,
+            806,
+            871,
+            872
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            64,
+            362,
+            79
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "If we just ignore this group transaction, we get a net value of  \\(260 = 1260 + (1000)\\)  that will be booked on an acquisition flow. This information has no economical background.",
+        "bbox": [
+            105,
+            118,
+            877,
+            170
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Again, we should reclassify 260 from the \"Group acquisitions\" flow to the \"Translation adjustments\" flow, in the same way we did in the previous example.",
+        "bbox": [
+            105,
+            184,
+            877,
+            234
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "2 EVOLUTION OF EQUITY ACCOUNTS",
+        "text_level": 1,
+        "bbox": [
+            108,
+            268,
+            824,
+            290
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "2.1 Content of equity accounts",
+        "text_level": 2,
+        "bbox": [
+            108,
+            309,
+            610,
+            332
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Before analyzing the consolidated equity evolution, it can be worth seeing which items are usually found in the consolidated equity. Here is a list of these items",
+        "bbox": [
+            105,
+            353,
+            877,
+            401
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Capital",
+            "Share premium",
+            "- Revaluation reserves",
+            "- Reserves",
+            "Translation adjustments",
+            "Badwill",
+            "Grants",
+            "Minority interests"
+        ],
+        "bbox": [
+            146,
+            417,
+            425,
+            546
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "although it strongly depends on the accounting rules, IFRS or Local Gaap, applied.",
+        "bbox": [
+            105,
+            561,
+            870,
+            595
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For each of these items, we are now going to explain with more details their content and the way they are processed in the consolidation.",
+        "bbox": [
+            105,
+            609,
+            877,
+            643
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Capital",
+        "text_level": 3,
+        "bbox": [
+            108,
+            658,
+            190,
+            675
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For a \"normal\" group with a unique parent company, the capital item shows only the parent company capital. As already explained, capital amounts from all other companies are just eliminated against the consolidated reserves.",
+        "bbox": [
+            105,
+            690,
+            875,
+            739
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This means that the evolution of this account, after consolidation, reflects only the changes at parent company level, mainly increase or reimbursement of capital and, possibly, transfer from Reserves to Capital.",
+        "bbox": [
+            105,
+            755,
+            875,
+            804
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For a group structured as a consortium, with two or more parent companies, the capital amount is the addition of the capital of each company in the consortium.",
+        "bbox": [
+            105,
+            819,
+            872,
+            868
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            358,
+            71,
+            864,
+            87
+        ],
+        "page_idx": 9
+    }
+]

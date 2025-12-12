@@ -1,0 +1,977 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/a7b1c798be6a8979c9ec892652c75245479e0b63a06a9793502c32761d22b719.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>GAMMA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>TOTAL</td></tr><tr><td>Result</td><td>(200)</td><td>200</td><td>(60)</td><td>(60)</td></tr><tr><td>Depreciations</td><td>500</td><td>(500)</td><td></td><td>0</td></tr><tr><td>Provisions</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain/disposals</td><td>(300)</td><td>300</td><td></td><td>0</td></tr><tr><td>Loss/disposals</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss from equity method cies</td><td></td><td></td><td>60</td><td>60</td></tr><tr><td>Cash Flow</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Net variation of receivables</td><td>(1,000)</td><td>1,000</td><td></td><td>0</td></tr><tr><td>Net variation of payables</td><td>1,200</td><td>(1,200)</td><td></td><td>0</td></tr><tr><td>Link flow</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash from operating activities</td><td>200</td><td>(200)</td><td>0</td><td>0</td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>(2,000)</td><td>2,000</td><td></td><td>0</td></tr><tr><td>Financial assets acquisitions</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets disposals</td><td>2,300</td><td>(2,300)</td><td></td><td>0</td></tr><tr><td>Financial assets disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash from investment activities</td><td>300</td><td>(300)</td><td>0</td><td>0</td></tr><tr><td>Capital increase</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Subscription by the group</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Dividends paid(M)</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Dividends paid(other cies)</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash from financial activities</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Net cash variation</td><td>500</td><td>(500)</td><td>0</td><td>0</td></tr></table>",
+        "bbox": [
+            115,
+            135,
+            713,
+            628
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            117,
+            66,
+            372,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "GAMMA = Contribution to consolidated cash flow statement",
+        "text_level": 1,
+        "bbox": [
+            105,
+            121,
+            751,
+            138
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Column (1)",
+        "text_level": 2,
+        "bbox": [
+            105,
+            154,
+            221,
+            171
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Statutory cash flow statement.",
+        "bbox": [
+            105,
+            187,
+            407,
+            204
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Column (2)",
+        "text_level": 2,
+        "bbox": [
+            105,
+            219,
+            221,
+            235
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The company being consolidated by the equity method, we eliminate all accounts and flows. Of course, by doing that, nothing remains about that company in the consolidated cash flow statement.",
+        "bbox": [
+            105,
+            251,
+            871,
+            299
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Starting with the result, we must book the  \\(30\\%\\)  owned in the result of the company. That's the reason of the loss of  \\((60) = 30 * (200)\\) .",
+        "bbox": [
+            105,
+            315,
+            871,
+            349
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "But we also know that the loss of an equity method company is not a cash item and that it must be reversed from the result. This explains the impact on the \"Loss from the equity method cies\" line.",
+        "bbox": [
+            105,
+            362,
+            871,
+            412
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Column TOTAL",
+        "text_level": 2,
+        "bbox": [
+            105,
+            426,
+            257,
+            444
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This column becomes the contribution of company BETA in the final consolidated cash flow statement.",
+        "bbox": [
+            105,
+            459,
+            871,
+            492
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            436,
+            74,
+            854,
+            90
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/a15091af7fe08988c5270240e4cfeac51d67beffcd67a98eceff9e7c78c49570.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>DELTA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>TOTAL</td></tr><tr><td>Result</td><td>600</td><td>125</td><td></td><td>725</td></tr><tr><td>Depreciations</td><td>480</td><td></td><td></td><td>480</td></tr><tr><td>Provisions</td><td>360</td><td></td><td></td><td>360</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td>(125)</td><td></td><td>(125)</td></tr><tr><td>Gain/disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Loss/disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Loss from equity method cies</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash Flow</td><td>1,440</td><td>0</td><td>0</td><td>1,440</td></tr><tr><td>Net variation of receivables</td><td>(3,600)</td><td></td><td></td><td>(3,600)</td></tr><tr><td>Net variation of payables</td><td>1,680</td><td></td><td>(1,000)</td><td>680</td></tr><tr><td>Link /Aow</td><td></td><td></td><td>1,000</td><td>1,000</td></tr><tr><td>Cash from operating activities</td><td>(480)</td><td>0</td><td>0</td><td>(480)</td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Financial assets acquisitions</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Financial assets disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash from investment activities</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Capital increase</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Subscription by the group</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Dividends paid (M)</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Ovidends paid (other aes)</td><td>(280)</td><td></td><td></td><td>(280)</td></tr><tr><td>Cash from financial activities</td><td>(280)</td><td>0</td><td>0</td><td>(280)</td></tr><tr><td>Net cash variation</td><td>(760)</td><td>0</td><td>0</td><td>(760)</td></tr></table>",
+        "bbox": [
+            113,
+            117,
+            698,
+            637
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            115,
+            64,
+            370,
+            79
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "DELTA = Contribution to consolidated cash flow statement",
+        "text_level": 1,
+        "bbox": [
+            107,
+            120,
+            736,
+            137
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (1)",
+        "text_level": 2,
+        "bbox": [
+            107,
+            152,
+            219,
+            169
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This column contains the statutory cash flow statement in consolidation currency.",
+        "bbox": [
+            107,
+            185,
+            867,
+            216
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (2)",
+        "text_level": 2,
+        "bbox": [
+            107,
+            232,
+            219,
+            248
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "When reconciling intercompany positions between ALPHA and DELTA, we noticed that Payables in DELTA where 125 too high in comparison with the Receivables in ALPHA accounts. An adjustment for 125 has been booked and considered as an unrealized exchange gain.",
+        "bbox": [
+            107,
+            265,
+            867,
+            330
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This P&L impact must now be booked in this cash flow.",
+        "bbox": [
+            107,
+            345,
+            635,
+            361
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (3)",
+        "text_level": 2,
+        "bbox": [
+            107,
+            377,
+            219,
+            393
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "After that adjustment, we still have the Payables that we ignored by starting from the statutory figures. We have now to eliminate the 1000 intercompany flow via a link flow.",
+        "bbox": [
+            107,
+            409,
+            867,
+            456
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column TOTAL",
+        "text_level": 2,
+        "bbox": [
+            107,
+            472,
+            253,
+            490
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This column becomes the contribution of company BETA in the final consolidated cash flow statement.",
+        "bbox": [
+            107,
+            505,
+            867,
+            537
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "MU = Contribution to consolidated cash flow statement",
+        "text_level": 1,
+        "bbox": [
+            107,
+            569,
+            700,
+            585
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The statutory cash flow statement we have considered previously shows the cash activity for the  \\(2^{\\text{nd}}\\)  half year only, the  \\(1^{\\text{st}}\\)  half year having been already booked on the \"Entering conso\" flow.",
+        "bbox": [
+            107,
+            601,
+            867,
+            651
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Moreover, there is no adjustment for this company. The statutory cash flow statement will then be the contribution to the consolidated cash flow statement.",
+        "bbox": [
+            107,
+            666,
+            867,
+            714
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            436,
+            73,
+            854,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/4aec5f91013b8f82352cb965b3d875e56b7bed9222f87a8d2cfdb63543c5877c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>ALPHA</td><td>BETA</td><td>GAMMA</td><td>DELTA</td><td>MU</td><td>TOTAL</td></tr><tr><td>Result</td><td>752</td><td>778</td><td>(60)</td><td>725</td><td>300</td><td>2,495</td></tr><tr><td>Depreciations</td><td>160</td><td>722</td><td>0</td><td>480</td><td>300</td><td>1,662</td></tr><tr><td>Provisions</td><td>200</td><td>100</td><td>0</td><td>360</td><td>0</td><td>660</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td>0</td><td>0</td><td>(125)</td><td>0</td><td>(125)</td></tr><tr><td>Gain/disposals</td><td>(380)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(380)</td></tr><tr><td>Loss/disposals</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Loss from equity method cies</td><td>0</td><td>0</td><td>60</td><td>0</td><td>0</td><td>60</td></tr><tr><td>Cash Flow</td><td>732</td><td>1,600</td><td>0</td><td>1,440</td><td>600</td><td>1,372</td></tr><tr><td>Net variation of receivables</td><td>(100)</td><td>(2,000)</td><td>0</td><td>(3,600)</td><td>(500)</td><td>(6,200)</td></tr><tr><td>Net variation of payables</td><td>1,300</td><td>3,700</td><td>0</td><td>680</td><td>700</td><td>6,380</td></tr><tr><td>Link flow</td><td>500</td><td>(1,500)</td><td>0</td><td>1,000</td><td>0</td><td>0</td></tr><tr><td>Cash from operating activities</td><td>2,432</td><td>1,800</td><td>0</td><td>(480)</td><td>800</td><td>4,552</td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>0</td><td>(1,800)</td><td>0</td><td>0</td><td>(3,500)</td><td>(5,300)</td></tr><tr><td>Financial assets acquisitions</td><td>0</td><td>(4,000)</td><td>0</td><td>0</td><td>0</td><td>(4,000)</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets disposals</td><td>0</td><td>800</td><td>0</td><td>0</td><td>1,500</td><td>2,300</td></tr><tr><td>Financial assets disposals</td><td>800</td><td>0</td><td>0</td><td>0</td><td>0</td><td>800</td></tr><tr><td>Cash from investment activities</td><td>800</td><td>(5,000)</td><td>0</td><td>0</td><td>(2,000)</td><td>(6,200)</td></tr><tr><td>Capital increase</td><td>0</td><td>3,000</td><td>0</td><td>0</td><td>0</td><td>3,000</td></tr><tr><td>Subscription by the group</td><td>(2,400)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(2,400)</td></tr><tr><td>Dividends paid (M)</td><td>(300)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(300)</td></tr><tr><td>Dividends paid (other cies)</td><td>168</td><td>0</td><td>0</td><td>(280)</td><td>0</td><td>(112)</td></tr><tr><td>Cash from financial activities</td><td>(2,532)</td><td>3,000</td><td>0</td><td>(280)</td><td>0</td><td>188</td></tr><tr><td>Net cash variation</td><td>700</td><td>(200)</td><td>0</td><td>(760)</td><td>(1,200)</td><td>(1,460)</td></tr></table>",
+        "bbox": [
+            114,
+            134,
+            862,
+            571
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            366,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The consolidated cash flow statement with its contribution view",
+        "text_level": 1,
+        "bbox": [
+            101,
+            120,
+            802,
+            137
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "When reaching this step we would recommend undertaking three validations before delivering the information to persons outside the consolidation office.",
+        "bbox": [
+            101,
+            153,
+            872,
+            186
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Cash validation",
+        "text_level": 2,
+        "bbox": [
+            103,
+            202,
+            258,
+            217
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "This cash flow statement shows a \"Net cash variation\" of  \\((1460) = 4552 + (6200) + 188\\) , the three main components of this report.",
+        "bbox": [
+            101,
+            233,
+            872,
+            268
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "This amount of (1460) should also be equal to the cash variation of the cash (and cash equivalent) account in the balance sheet.",
+        "bbox": [
+            101,
+            282,
+            872,
+            315
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "How can we check that?",
+        "bbox": [
+            103,
+            329,
+            347,
+            346
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/a55d3a60f7235bd1a896e2585b162b449300553bcb0c4ec6b633ea5b5ff5506e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Opening amount</td><td>7,600</td></tr><tr><td>Net variation</td><td>(1,460)</td></tr><tr><td>Translation adjustments</td><td>280</td></tr><tr><td>Entry in consolidation scope</td><td>3,200</td></tr><tr><td>Change in consolidation method</td><td>(800)</td></tr><tr><td>Closing amount</td><td>8,820</td></tr></table>",
+        "bbox": [
+            277,
+            356,
+            713,
+            457
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "First, we pick up the consolidated value of the Cash account, that is 7600 and 8820 respectively, in Year 1 and Year 2 balance sheets.",
+        "bbox": [
+            101,
+            475,
+            872,
+            508
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We then allocate the (1460) net variation coming from the consolidated cash flow statement.",
+        "bbox": [
+            101,
+            523,
+            872,
+            555
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The \"Translation adjustments\" variation for 280 is coming from the DELTA accounts with flows explanations. Fortunately, we have only one foreign company, otherwise we would need to sum up flows for all foreign companies.",
+        "bbox": [
+            101,
+            571,
+            872,
+            621
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The \"Entry in the consolidation scope\" amount is the cash of company MU at the date it enters the group.",
+        "bbox": [
+            101,
+            634,
+            872,
+            668
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The \"Change in consolidation method\" amount is the cash of GAMMA company in Year 1 consolidation which disappears because of changing from global integral consolidation method to equity method.",
+        "bbox": [
+            103,
+            684,
+            870,
+            734
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "P&L accounts validation",
+        "text_level": 2,
+        "bbox": [
+            103,
+            749,
+            338,
+            763
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "By calculating the cash flow, we use all P&L non cash accounts. Usually, these accounts can be seen distinctly in the P&L. In our case study, it is indeed the situation. And we confirm the validation is correct.",
+        "bbox": [
+            101,
+            781,
+            870,
+            829
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            434,
+            73,
+            855,
+            89
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consistency validation",
+        "text_level": 2,
+        "bbox": [
+            116,
+            121,
+            334,
+            137
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "It is somehow important to dedicate the task of researching inconsistencies in a cash flow statement, even if it looks technically correct to someone external to the process, but knowing all group transactions and figures.",
+        "bbox": [
+            116,
+            153,
+            879,
+            202
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The main areas to validate are",
+        "bbox": [
+            116,
+            218,
+            413,
+            233
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Net variation of current assets and liabilities (Receivables and Payables in our case study). Both amounts could be too high because elimination of some intercompany flows could have been forgotten.",
+            "Investments and disinvestments are much easier to validate because most of the time there are only a few transactions and they are well known. In our case study, we recognize easily in particular the acquisition of shares for 4000, the disposal price of 800 for the  \\(40\\%\\)  shares of GAMMA.",
+            "The net capital increase is also well identified.",
+            "Dividends paid by the parent company need no comment ...",
+            "- But special care should be brought to dividends paid to  \\(3^{\\text{rd}}\\)  Parties, certainly if the group structure is complex."
+        ],
+        "bbox": [
+            152,
+            250,
+            875,
+            507
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "CONCLUSION",
+        "text_level": 1,
+        "bbox": [
+            237,
+            542,
+            463,
+            564
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Even if this case study dealt with a rather small group of five companies, the number of transactions and events happening during Year 2 makes it a sufficiently realistic case anyway.",
+        "bbox": [
+            116,
+            585,
+            879,
+            634
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "In spite of the small size, we had the opportunity to pragmatically show how to practically organize a consolidation process which requires precision.",
+        "bbox": [
+            116,
+            649,
+            875,
+            683
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The probability to face unexpected mistakes is very high and the resources to find and solve these mistakes are time consuming.",
+        "bbox": [
+            116,
+            699,
+            875,
+            730
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This is one important reason why we have organized the process step by step in such a way that each step can be justified and with sufficient security not to break the \"building\".",
+        "bbox": [
+            116,
+            746,
+            875,
+            794
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Groups of larger size may not resist easily to such spreadsheet approach. Professional software becomes a major option for them.",
+        "bbox": [
+            116,
+            810,
+            875,
+            843
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            68,
+            370,
+            82
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "BART 7",
+        "text_level": 1,
+        "bbox": [
+            146,
+            257,
+            358,
+            292
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "CONSOLIDATION QUIZZ",
+        "text_level": 1,
+        "bbox": [
+            262,
+            297,
+            769,
+            383
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/09bf810e76f38075ac58ae9172704ca1e1c8154ad328d7274ea9e681a6403424.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            163,
+            456,
+            771,
+            676
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "page_number",
+        "text": "451",
+        "bbox": [
+            470,
+            922,
+            514,
+            935
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This Part 7 is dedicated to the reader wishing to test its acquisition of knowledge.",
+        "bbox": [
+            111,
+            122,
+            877,
+            156
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We propose three different sets of questions increasing in complexity  \\((+, + +, + + +)\\)  and presented as a quiz or multiple choice questions. For each question we give four different answers amongst which only one is correct.",
+        "bbox": [
+            113,
+            169,
+            877,
+            219
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here are some recommendations before starting one set of questions",
+        "bbox": [
+            113,
+            234,
+            786,
+            251
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "- You are required to solve a set of 10 questions in a maximum of",
+        "bbox": [
+            151,
+            267,
+            814,
+            284
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "60 minutes for Quiz 1",
+            "90 minutes for Quizz 2",
+            "120 minutes for Quiz 3"
+        ],
+        "bbox": [
+            229,
+            285,
+            502,
+            330
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Be sure to have enough time to solve a set of 10 questions at once and without being disturbed",
+            "Of course feel free to find help in this book",
+            "- Feel also free to use a spreadsheet or a pocket calculator, but not a professional consolidation software!",
+            "- When answering, select only one answer",
+            "- All amounts are supposed to be in EUR (consolidation currency). If not, it is explicitly specified.",
+            "- Currency rates are always given by 1 CUR = ... EUR",
+            "- Negative amounts are always written between brackets as (5) for minus 5."
+        ],
+        "bbox": [
+            158,
+            346,
+            873,
+            619
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "To evaluate your score you can have a look at the second part of this Part 7 where we give the correct answer to each question.",
+        "bbox": [
+            113,
+            635,
+            875,
+            669
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            68,
+            369,
+            84
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "1 QUIZZ 1 (+)",
+        "text_level": 1,
+        "bbox": [
+            102,
+            120,
+            432,
+            145
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Question 1.01",
+        "text_level": 2,
+        "bbox": [
+            408,
+            182,
+            567,
+            198
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The capital of a certain company A is represented by three different types of shares",
+        "bbox": [
+            98,
+            217,
+            877,
+            248
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Type 1: 1000 shares with one voting right each",
+            "- Type 2: 1000 shares with no voting rights",
+            "- Type 3: 1000 shares with two voting rights each"
+        ],
+        "bbox": [
+            139,
+            266,
+            663,
+            315
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The parent company owns directly the following number of shares",
+        "bbox": [
+            100,
+            331,
+            751,
+            349
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Type 1:800 shares",
+            "Type 2:200 shares",
+            "Type 3:500 shares"
+        ],
+        "bbox": [
+            139,
+            362,
+            379,
+            410
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "What is the control percentage owned by the parent company on company A and with which consolidation method will A be consolidated?",
+        "bbox": [
+            100,
+            428,
+            877,
+            475
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/5d0d7fc908ebd868844d48699aa5e7df82ec25f25b485bb61ffff131a24c0a7b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>50%</td><td>Proportional integration</td></tr><tr><td>b</td><td></td><td>75%</td><td>Global integration</td></tr><tr><td>c</td><td></td><td>60%</td><td>Global integration</td></tr><tr><td>d</td><td></td><td>50%</td><td>Global integration</td></tr></table>",
+        "bbox": [
+            104,
+            488,
+            524,
+            571
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Question 1.02",
+        "text_level": 2,
+        "bbox": [
+            411,
+            603,
+            567,
+            620
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In this group all percentages are financial and control percentages.",
+        "bbox": [
+            102,
+            639,
+            762,
+            656
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "What is the indirect financial percentage in company C and with which method will the company be consolidated?",
+        "bbox": [
+            104,
+            718,
+            768,
+            754
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/0711e9b6bd572cdfe685bf992416fa6fa77ee7cbbcfb04497e10a634864cf032.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>60%</td><td>Global integration</td></tr><tr><td>b</td><td></td><td>21.60%</td><td>Global integration</td></tr><tr><td>c</td><td></td><td>21.60%</td><td>Equity method</td></tr><tr><td>d</td><td></td><td>36%</td><td>Equity method</td></tr></table>",
+        "bbox": [
+            104,
+            793,
+            537,
+            861
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "image",
+        "img_path": "images/50146b17d13973fa9dd3690bac956b0fdcd3c27928b56d201ce26c9a22aac55a.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            779,
+            633,
+            875,
+            867
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 7 CONSOLIDATION QUIZZ",
+        "bbox": [
+            501,
+            70,
+            860,
+            86
+        ],
+        "page_idx": 9
+    }
+]

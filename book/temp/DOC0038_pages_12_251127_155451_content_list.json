@@ -1,0 +1,1571 @@
+[
+    {
+        "type": "text",
+        "text": "The adjustment - Year 2",
+        "text_level": 1,
+        "bbox": [
+            109,
+            120,
+            381,
+            137
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Here is the consolidation adjustment to book in P accounts of Year 2.",
+        "bbox": [
+            107,
+            150,
+            780,
+            169
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/82bd8a47da88fe5cc307348584cd1450d579fc491cca1e7a3c13275c4085b25c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Financial income (dividends)</td><td>8</td><td></td></tr><tr><td>Resewes</td><td></td><td>8</td></tr></table>",
+        "bbox": [
+            242,
+            183,
+            742,
+            235
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Taking advantage of this transaction concerning dividends, we would like to introduce a new tool to justify the consolidated reserves. But before entering into details, we need first to build consolidated balance sheets of both Year 1 and Year 2.",
+        "bbox": [
+            107,
+            248,
+            871,
+            313
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of Year 1",
+        "text_level": 1,
+        "bbox": [
+            107,
+            327,
+            364,
+            345
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Let's go back to the statutory accounts",
+        "bbox": [
+            107,
+            360,
+            489,
+            377
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/070b61fd33be06d65247bae4f9af237fc7fe3b0a9dce1abdd82899d60025c5f4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P (Year 1)</td></tr><tr><td rowspan=\"3\">Fin. Invest./A</td><td rowspan=\"3\">80</td><td>Capital 200</td></tr><tr><td>Reserves 100</td></tr><tr><td>Result 30</td></tr><tr><td>Other assets</td><td>420</td><td>Other liabilities 170</td></tr></table>",
+        "bbox": [
+            109,
+            390,
+            485,
+            467
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/d59dca648c415d7344568a0d0cdc2dbaf6ee9e6f1769a31d97c5621b6f7a8635.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">A (Year 1)</td></tr><tr><td></td><td>Capital 100\nReserves 50\nResult 20</td></tr><tr><td>Other assets 400</td><td>Other liabilities 230</td></tr></table>",
+        "bbox": [
+            491,
+            390,
+            864,
+            467
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "which do not include adjustments.",
+        "bbox": [
+            107,
+            481,
+            440,
+            499
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Based on the global integration method, here is the consolidated balance sheet",
+        "bbox": [
+            107,
+            544,
+            867,
+            578
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/68102fc6f98b20ba8649d47303468e7c6618efc09756545628c7a274dad4c6e9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">P + A (Year 1)</td></tr><tr><td></td><td>Capital 200</td></tr><tr><td></td><td>Reserves 100</td></tr><tr><td></td><td>Result 30</td></tr><tr><td></td><td>Conso. Reserves (A) 56</td></tr><tr><td></td><td>Minor. Interests (A) 34</td></tr><tr><td>Other assets</td><td>820</td></tr><tr><td>Other liabilities</td><td>400</td></tr></table>",
+        "bbox": [
+            223,
+            582,
+            748,
+            686
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "in which",
+        "bbox": [
+            107,
+            705,
+            191,
+            721
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves  \\(= 56 = 80\\%\\) \\(\\left[100 + 50 + 20\\right] - 80\\)",
+            "Minority interests  \\(= 34 = 20\\%\\)  [100 + 50 + 20]"
+        ],
+        "bbox": [
+            143,
+            734,
+            761,
+            787
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "other assets and other liabilities being just the addition of the corresponding A and P accounts.",
+        "bbox": [
+            105,
+            802,
+            869,
+            834
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            109,
+            65,
+            362,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of Year 2",
+        "text_level": 1,
+        "bbox": [
+            108,
+            118,
+            366,
+            134
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This time we consolidate adjusted accounts for P as follows",
+        "bbox": [
+            105,
+            150,
+            688,
+            168
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/ea60b97ddfa48b734b4a45dfdb7fc6b5a67a7e3bd733ca87392f2764e1a88735.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P (Year 2)</td></tr><tr><td rowspan=\"5\">Fin. Invest./A</td><td rowspan=\"5\">80</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>115</td></tr><tr><td>(a)</td><td>8</td></tr><tr><td>Result</td><td>45</td></tr><tr><td>(a)</td><td>(8)</td></tr><tr><td>Other assets</td><td>530</td><td>Other liabilities</td><td>250</td></tr></table>",
+        "bbox": [
+            110,
+            181,
+            489,
+            284
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/4d9e1a84ddbc72accf85aa4c7ef7bf49dad2abb4dfe4c9dacb1a680c9ced9de3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">A (Year 2)</td></tr><tr><td></td><td>Capital 100\nReserves 60\nResult 30</td></tr><tr><td>Other assets 540</td><td>Other liabilities 350</td></tr></table>",
+        "bbox": [
+            493,
+            181,
+            875,
+            285
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "which give, after global integration again, the following consolidated balance sheet",
+        "bbox": [
+            108,
+            301,
+            877,
+            333
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/6d2e16f8166f49f08a59daeced7f34d46fa5db7545f7e1d6cfb4eeb42eb5fa0c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A (Year 2)</td></tr><tr><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td>Reserves</td><td>123</td></tr><tr><td></td><td>Result</td><td>37</td></tr><tr><td></td><td>Conso. Reserves (A)</td><td>72</td></tr><tr><td></td><td>Minor. Interests (A)</td><td>38</td></tr><tr><td>Other assets</td><td>1,070</td><td>600</td></tr></table>",
+        "bbox": [
+            226,
+            341,
+            756,
+            443
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            110,
+            462,
+            177,
+            477
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Reserves of  \\(P = 123 = 115 + 8\\)",
+            "Result of  \\(\\mathsf{P} = 37 = 45 + (8)\\)",
+            "- Consolidated reserves = 72 = 80% * [100 + 60 + 30] - 80",
+            "Minority interests  \\(= 38 = 20\\% * [100 + 650 + 30]\\)"
+        ],
+        "bbox": [
+            146,
+            493,
+            769,
+            606
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Justification of consolidated reserves evolution",
+        "text_level": 2,
+        "bbox": [
+            110,
+            638,
+            629,
+            655
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "One difficult issue while processing a consolation is to validate that equity, and in particular group reserves, can be justified just like in a normal accounting approach: opening reserves  \\(+\\)  profit - dividends = closing reserves.",
+        "bbox": [
+            108,
+            670,
+            877,
+            736
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "That's what we are going to check by using the following appropriate report.",
+        "bbox": [
+            110,
+            749,
+            855,
+            768
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/4242db792e277a085ebb333c03d7f8af937ac41e967821fc4a9a6a9a15596711.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 Reserves</td><td>Year 2 Result</td><td>Divid. (-) paid</td><td>Divid. (+)</td><td>P Approp.</td><td>Year 2 Reserves</td></tr><tr><td>Company P</td><td>130</td><td>37</td><td></td><td>8</td><td>(15)</td><td>160</td></tr><tr><td>Company A</td><td>56</td><td>24</td><td>(8)</td><td></td><td></td><td>72</td></tr><tr><td></td><td>186</td><td>61</td><td>(8)</td><td>8</td><td>(15)</td><td>232</td></tr></table>",
+        "bbox": [
+            131,
+            778,
+            836,
+            856
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            302,
+            70,
+            855,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The number of lines of this report is the number of companies in the consolidation scope.",
+        "bbox": [
+            109,
+            119,
+            873,
+            154
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column (1) contains the contribution of each company in the Year 1 consolidated reserves.",
+        "bbox": [
+            109,
+            168,
+            873,
+            201
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column (2) shows the same for the individual result of each company, taking into account that the profit shown is the group profit  \\((24 = 80\\% * 30)\\) .",
+        "bbox": [
+            109,
+            216,
+            873,
+            250
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column (3) shows the group part of dividends paid by each company (A pays a group dividend of 8)",
+        "bbox": [
+            109,
+            264,
+            871,
+            298
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column (4) shows the part of dividends received from group companies (P receive a group dividends of 8)",
+        "bbox": [
+            109,
+            312,
+            871,
+            346
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column (5) shows the dividends paid by the parent company to its shareholders. Obviously there can be an amount only on the P line of this report.",
+        "bbox": [
+            109,
+            359,
+            873,
+            409
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column (6) is similar to Column (1), but for Year 2",
+        "bbox": [
+            109,
+            423,
+            607,
+            442
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "At this stage, we make the following checks:",
+        "bbox": [
+            109,
+            457,
+            546,
+            473
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- The total of dividends paid must be equal to the total of dividends received. We recommend to use two columns because one can easily see which company is paying a dividend and which companies are receiving dividends. A single column would be more ambiguous.",
+            "- The total line must show that opening reserves + result - P dividends = closing reserves",
+            "- And if that total line is correct, then we recommend to check that opening reserves + result - dividends paid + dividends received = closing reserves"
+        ],
+        "bbox": [
+            149,
+            488,
+            871,
+            665
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "When these three checks have been validated, there is a good probability that the consolidated equity is correct.",
+        "bbox": [
+            109,
+            681,
+            871,
+            714
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Justification of minority interests evolution",
+        "text_level": 2,
+        "bbox": [
+            109,
+            729,
+            580,
+            745
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The same question arises for the Minority interests evolution which is summarized in another report, different from the previous one, as follows",
+        "bbox": [
+            109,
+            761,
+            871,
+            793
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/58f7679ab7985606c1f1e1d069a98ec015e1f4c6c8ed07c53a3003f5df3d34af.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1Minor. Int.</td><td>Year 2Result</td><td>Divid. (-)paid</td><td>Divid. (+)</td><td>Year 2Minor. Int.</td></tr><tr><td>Company A</td><td>34</td><td>6</td><td>(2)</td><td></td><td>38</td></tr></table>",
+        "bbox": [
+            149,
+            124,
+            834,
+            178
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The principles are quite similar.",
+        "bbox": [
+            109,
+            207,
+            415,
+            225
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "On each line appear companies for which there are minority interests.",
+        "bbox": [
+            109,
+            239,
+            785,
+            258
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (1) contains the contribution of each company in the Year 1 Minority interests.",
+        "bbox": [
+            109,
+            271,
+            873,
+            305
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (2) shows the minority result of each company  \\((6 = 20\\% * 30)\\)",
+        "bbox": [
+            109,
+            318,
+            806,
+            339
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (3) shows the dividends paid by A to the  \\(3^{rd}\\)  Parties  \\((20\\% \\star 10)\\)",
+        "bbox": [
+            109,
+            350,
+            808,
+            371
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Column (4) is not used for our example, but it could be used for more complex groups structures where companies own other companies, each with minority interests and each company is supposed to pay dividends.",
+        "bbox": [
+            109,
+            385,
+            873,
+            434
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "For each individual line, the sum of all amounts of columns (1) to (4) must be equal to the Year 2 Minority interests.",
+        "bbox": [
+            109,
+            448,
+            873,
+            482
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We will come back later with a deeper approach about this methodology in a specific chapter.",
+        "bbox": [
+            109,
+            497,
+            873,
+            530
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "8.8 Elimination of dividends paid by a foreign company",
+        "text_level": 1,
+        "bbox": [
+            111,
+            562,
+            836,
+            612
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 2,
+        "bbox": [
+            111,
+            628,
+            260,
+            647
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The situation is similar to the previous one, except for company A whose accounts are in a certain foreign currency CUR. That company is owned by the parent company P with a financial percentage of  \\(80\\%\\)  over Year 1 and Year 2.",
+        "bbox": [
+            109,
+            660,
+            873,
+            711
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 1, company A pays a gross dividend of 100 EUR to the shareholders while P pays a gross dividend of 150 EUR.",
+        "bbox": [
+            109,
+            725,
+            873,
+            758
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Why is this situation different from the previous one with a classical dividend?",
+        "text_level": 3,
+        "bbox": [
+            109,
+            773,
+            873,
+            808
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The amount of 100 CUR was part of the economical profit of A in Year 1 consolidation and its value was 100 CUR at average rate of that period. After the annual general meeting of company A parent company P receives 80 CUR",
+        "bbox": [
+            109,
+            821,
+            871,
+            871
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            306,
+            71,
+            852,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "(80% * 100 CUR) and booked at a value depending of the rate that day. We will suppose P receives from the bank an amount of 110 EUR.",
+        "bbox": [
+            109,
+            120,
+            871,
+            153
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "There is clearly again a double impact in group profit : once in company A accounts for 80 CUR and once in parent company accounts for 110 EUR.",
+        "bbox": [
+            107,
+            168,
+            871,
+            202
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "With this situation, we have a nice opportunity to consolidate a foreign company with the global integration method. Let's go through the process again and give all explanations at the right moment.",
+        "bbox": [
+            107,
+            216,
+            871,
+            266
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We are going to setup first the Year 1 consolidated accounts after currency conversion of company A accounts.",
+        "bbox": [
+            107,
+            281,
+            871,
+            313
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Then we will book the correct adjustment for the elimination of the dividend.",
+        "bbox": [
+            107,
+            329,
+            852,
+            346
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We will produce the Year 2 consolidated figures and check the equity and the minority interests in the same way we did in the previous section.",
+        "bbox": [
+            107,
+            361,
+            871,
+            393
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Currency conversion of company A accounts - Year 1",
+        "text_level": 1,
+        "bbox": [
+            107,
+            409,
+            685,
+            426
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Let's proceed the way it has been explained in chapter 6 on the basis of the following currency rates",
+        "bbox": [
+            107,
+            440,
+            871,
+            474
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/135cac0456d0ffe2a2841583e4694ac20de28081a996e01387243f723ddb732f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Year 2</td></tr><tr><td>Closing rate</td><td>1.5</td><td>1.6</td></tr><tr><td>Average rate</td><td>1.3</td><td>1.4</td></tr><tr><td>Historical rate for Capital</td><td>1.2</td><td></td></tr><tr><td>Historical rate for Reserves</td><td>1.1</td><td></td></tr></table>",
+        "bbox": [
+            244,
+            486,
+            732,
+            571
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/462a2d9fd412a3d543f1a66e504c7292b1d8f8ff8bebff21b06972911a084eec.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">A (Year 1) in CUR</td></tr><tr><td></td><td>Capital     1,000</td></tr><tr><td></td><td>Reserves    500</td></tr><tr><td></td><td>Result      200</td></tr><tr><td>Other assets   4,000</td><td>Other liabilities   2,300</td></tr></table>",
+        "bbox": [
+            111,
+            592,
+            476,
+            672
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/21d4cc9a86d726a261a076ef6b7c71fbfdc17d0108bd8ba0f0d25d3c64493fe2.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A (Year 1) in EUR</td></tr><tr><td rowspan=\"10\"></td><td>Capital</td><td>1,500</td></tr><tr><td>(1)</td><td>(300)</td></tr><tr><td>Reserves</td><td>750</td></tr><tr><td>(2)</td><td>(200)</td></tr><tr><td>Result</td><td>300</td></tr><tr><td>(3)</td><td>(40)</td></tr><tr><td>Trans. Adj.</td><td></td></tr><tr><td>(1)</td><td>300</td></tr><tr><td>(2)</td><td>200</td></tr><tr><td>(3)</td><td>40</td></tr><tr><td>Other assets</td><td>6,000</td><td>Other liabilities</td></tr></table>",
+        "bbox": [
+            489,
+            592,
+            856,
+            743
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We translate all accounts of the balance sheet with the closing rate 1.5 and then adjust equity accounts with historical rate and average rate as follows.",
+        "bbox": [
+            107,
+            751,
+            871,
+            784
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (1) reclassifies 300 to translation adjustment because historical rate for this account is 1.2 instead of 1.5.",
+        "bbox": [
+            107,
+            799,
+            869,
+            831
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (2) reclassifies 200 to translation adjustment because historical rate for this account is 1.1 instead of 1.5.",
+        "bbox": [
+            107,
+            847,
+            869,
+            879
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (3) reclassifies 40 to translation adjustment because profit must be translated at average rate 1.3 instead of closing rate 1.5.",
+        "bbox": [
+            107,
+            119,
+            877,
+            154
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Currency conversion of company A accounts = Year 2",
+        "text_level": 1,
+        "bbox": [
+            109,
+            168,
+            689,
+            184
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/d175d8217c8276b4847c116847663d964072a4e0d076d5c6f636d38d12ed26a3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">A (Year 2)</td></tr><tr><td></td><td>Capital 1,000</td></tr><tr><td></td><td>Reserves 600</td></tr><tr><td></td><td>Result 300</td></tr><tr><td>Other assets 5,400</td><td>Other liabilities 3,500</td></tr></table>",
+        "bbox": [
+            111,
+            200,
+            478,
+            293
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/9cfced5d713115bb4db2a9a73c15faec9b6ee0003884be8894b44717d39f4440.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">A (Year 2) in EUR</td></tr><tr><td></td><td>Capital \n(4) 1,600 \n(400)</td></tr><tr><td></td><td>Reserves \n(5) 960 \n(280)</td></tr><tr><td></td><td>Result \n(6) 480 \n(60)</td></tr><tr><td></td><td>Trans. Adj. \n(4) 400 \n(5) 280 \n(6) 60</td></tr><tr><td>Other assets</td><td>8,640</td></tr><tr><td>Other liabilities</td><td>5,600</td></tr></table>",
+        "bbox": [
+            493,
+            200,
+            860,
+            353
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "After translation of the whole balance sheet at closing rate 1.6, we adjust equity accounts as follows",
+        "bbox": [
+            109,
+            371,
+            875,
+            404
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (4) reclassifies 400 to translation adjustment because historical rate for this account is 1.2 instead of 1.6.",
+        "bbox": [
+            109,
+            419,
+            875,
+            451
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (5) reclassifies 280 to translation adjustment because the amount of reserves of 600 CUR consists of 500 CUR at historical of 1.1 and 100 CUR transferred from the Year 1 profit, initially translated at average rate of 1.3, which gives a historical amount of  \\(500 * 1.1 + 100 * 1.3 = 680\\)  instead of 960.",
+        "bbox": [
+            109,
+            467,
+            875,
+            546
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (6) reclassifies 60 to translation adjustment because profit must be translated at average rate 1.4 instead of closing rate 1.6.",
+        "bbox": [
+            109,
+            546,
+            875,
+            580
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of Year 1",
+        "text_level": 2,
+        "bbox": [
+            109,
+            596,
+            369,
+            612
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Here are the parent statutory company accounts and the consolidated accounts",
+        "bbox": [
+            109,
+            628,
+            875,
+            660
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/2c0c3a95edbd36c74989d5b1fc95c70f8761d50cc79e919750ae0fd6e83ddf42.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P (Year 1)</td></tr><tr><td>Fin. Invest./A</td><td>800</td><td>Capital</td><td>2,000</td></tr><tr><td></td><td></td><td>Reserves</td><td>1,000</td></tr><tr><td></td><td></td><td>Result</td><td>300</td></tr><tr><td>Other assets</td><td>4,200</td><td>Other liabilities</td><td>1,700</td></tr></table>",
+        "bbox": [
+            265,
+            671,
+            738,
+            771
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            71,
+            854,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/5ba7efc54196c73c1c84e08f762cb4367500d5c0b933942ae6f2fdf83167ec66.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A (Year 1)</td></tr><tr><td></td><td>Capital</td><td>2,000</td></tr><tr><td></td><td>Reserves</td><td>1,000</td></tr><tr><td></td><td>Result</td><td>300</td></tr><tr><td></td><td>Conso. Reserves (A)</td><td>808</td></tr><tr><td></td><td>Minor. Interests (A)</td><td>510</td></tr><tr><td></td><td>Trans. Adj.</td><td>432</td></tr><tr><td>Other assets</td><td>10,200</td><td>Other liabilities</td></tr></table>",
+        "bbox": [
+            188,
+            117,
+            798,
+            248
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            110,
+            265,
+            173,
+            279
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated Reserves (A) = 808 = 80% * [1500 + (300) + 750 + (200) + 300 + (40)] - 800",
+            "Minority Interests (A)  \\(= 510 = 20\\%\\)  \\* [1500 + (300) + 750 + (200)  \\(+300 + (40) + 300 + 200 + 40]\\)",
+            "Translation Adj.  \\(= 432 = 80\\%\\)  \\* [300 + 200 + 40]"
+        ],
+        "bbox": [
+            146,
+            279,
+            875,
+            395
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "As explained in chapter 6, consolidated reserves never include translation adjustments amount in order to be able to justify the evolution of reserves in an accounting way without mixing up currency effects.",
+        "bbox": [
+            108,
+            408,
+            875,
+            459
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We keep a specific account which shows the group part in this amount.",
+        "bbox": [
+            108,
+            472,
+            796,
+            489
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of Year 2",
+        "text_level": 2,
+        "bbox": [
+            108,
+            505,
+            366,
+            522
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "With the same arguments as for the classical dividend seen in previous section, we have to eliminate in the parent company profit the part of that dividend that was included in the Year 1 profit of company A. We are speaking about  \\(80\\%\\)  * 100 CUR * 1.3 = 104 EUR.",
+        "bbox": [
+            108,
+            537,
+            875,
+            601
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "But P has received an amount of dividend of 110 EUR as mentioned initially. From a consolidation point of view, we consider two amounts: 104 corresponding to the dividend and 6 considered as an exchange gain. Theoretically speaking, P should have received exactly 104. If more it is indeed a gain, if less it is a loss.",
+        "bbox": [
+            108,
+            617,
+            872,
+            699
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Here is the adjustment eliminating that dividend",
+        "bbox": [
+            108,
+            713,
+            584,
+            730
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/3e7647af7dc95df35d7c6ed556f8fbd24f7ff9459f78af1f167cbdd7fb2191da.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Financial income (dividends)</td><td>110</td><td></td></tr><tr><td>Exchange gain</td><td></td><td>6</td></tr><tr><td>Reserves</td><td></td><td>104</td></tr></table>",
+        "bbox": [
+            262,
+            749,
+            764,
+            818
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "and we can see that we eliminate the 110 from the Financial income but we reclassify 6 on the Exchange gain, corresponding to a correct view for",
+        "bbox": [
+            108,
+            841,
+            872,
+            875
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            65,
+            366,
+            81
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "consolidation. Reserves are impacted only by the dividend amount valuated at average rate of Year 1.",
+        "bbox": [
+            100,
+            117,
+            880,
+            151
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The reason to proceed that way is, in particular, for audit purpose. It is indeed more easy to check that this specific account has been set to zero.",
+        "bbox": [
+            100,
+            166,
+            877,
+            201
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Let's now consider parent statutory accounts and the consolidated accounts, including that adjustment.",
+        "bbox": [
+            100,
+            215,
+            873,
+            248
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/0337eadd2374611dc7ab4c5c9ccdaebf919a1837f776bc5d67914c5f83d067ce.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P (Year 2)</td></tr><tr><td rowspan=\"5\">Fin. Invest./A</td><td rowspan=\"5\">800</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>1,150</td></tr><tr><td>(a)</td><td>104</td></tr><tr><td>Result</td><td>450</td></tr><tr><td>(a)</td><td>(104)</td></tr><tr><td>Other assets</td><td>5,300</td><td>Other liabilities</td><td>2,500</td></tr></table>",
+        "bbox": [
+            261,
+            275,
+            738,
+            391
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/f81a69740f86ab7db2d85bc77c8d35d5fcc5ecdd2e8a3fd7142a2a438616e864.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A (Year 2)</td></tr><tr><td></td><td>Capital</td><td>2,000</td></tr><tr><td></td><td>Reserves</td><td>1,254</td></tr><tr><td></td><td>Result</td><td>346</td></tr><tr><td></td><td>Conso. Reserves (A)</td><td>1,040</td></tr><tr><td></td><td>Minor. Interests (A)</td><td>608</td></tr><tr><td></td><td>Trans. Adj.</td><td>592</td></tr><tr><td>Other assets</td><td>13,940</td><td>Other liabilities</td></tr><tr><td></td><td></td><td>8,100</td></tr></table>",
+        "bbox": [
+            203,
+            419,
+            820,
+            553
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "text_level": 4,
+        "bbox": [
+            104,
+            571,
+            171,
+            586
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated Reserves (A) = 1040 = 80% * [1600 + (400) + 960 + (280) + 480 + (60)] - 800",
+            "Minority Interests (A) = 608 = 20% * [1600 + (400) + 960 + (280) + 480 + (60) + 400 + 280 + 60]",
+            "Translation Adj. = 592 = 80% [400 + 280 + 60]"
+        ],
+        "bbox": [
+            143,
+            600,
+            877,
+            715
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Justification of consolidated reserves evolution",
+        "text_level": 2,
+        "bbox": [
+            104,
+            731,
+            629,
+            749
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Let's check if consolidated reserves evolution can be justified in an accounting way by using the same report as for the classical dividend.",
+        "bbox": [
+            104,
+            764,
+            877,
+            798
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            299,
+            69,
+            858,
+            85
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/1b54f7a9fa67e48d65f4d409d0b9e3a7933dfe9e085d09d19136fed7187464ad.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 Reserves</td><td>Year 2 Result</td><td>Divid, (-)</td><td>Divid. (+)</td><td>P Approp.</td><td>Year 2 Reserves</td></tr><tr><td>Company P</td><td>1,300</td><td>346</td><td></td><td>104</td><td>(150)</td><td>1,600</td></tr><tr><td>Company A</td><td>808</td><td>336</td><td>(104)</td><td></td><td></td><td>1,040</td></tr><tr><td></td><td>2,108</td><td>682</td><td>(104)</td><td>104</td><td>(150)</td><td>2,640</td></tr></table>",
+        "bbox": [
+            130,
+            129,
+            873,
+            207
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (1) contains the contribution of each company in the Year 1 consolidated reserves",
+        "bbox": [
+            107,
+            238,
+            880,
+            270
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (2) shows the same for the individual result of each company, taking into account that the profit shown is the group profit  \\(336 = 80\\% * [480 + (60)]\\)",
+        "bbox": [
+            107,
+            287,
+            880,
+            337
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (3) shows the group part of dividends paid by each company (A pays a group dividend of 104)",
+        "bbox": [
+            107,
+            351,
+            880,
+            385
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (4) shows the part of dividends received from group companies (P receive a group dividends of 104)",
+        "bbox": [
+            107,
+            400,
+            880,
+            434
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (5) shows the dividends paid by the parent company to its shareholders",
+        "bbox": [
+            107,
+            447,
+            880,
+            481
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (6) is similar to Column (1), but for Year 2",
+        "bbox": [
+            107,
+            497,
+            610,
+            515
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "and reading the total line, we get \"Opening reserves  \\(+\\)  group profit - parent dividend = Closing reserves\".",
+        "bbox": [
+            107,
+            528,
+            880,
+            562
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Justification of minority interests evolution",
+        "text_level": 2,
+        "bbox": [
+            107,
+            578,
+            584,
+            594
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The same question arises for the Minority Interests evolution which is summarized in the following report",
+        "bbox": [
+            107,
+            609,
+            880,
+            643
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/631e1ecfc9413e2259f57a8d80f441cfc8f6ef3e9268f284437b77471f871f26.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1Minor. Int.</td><td>Year 2Result</td><td>Divid. (-)paid</td><td>Divid, (+)</td><td>Trans.Adj.</td><td>Year 2Minor. Int.</td></tr><tr><td>Company A</td><td>510</td><td>84</td><td>(26)</td><td></td><td>40</td><td>608</td></tr></table>",
+        "bbox": [
+            126,
+            668,
+            871,
+            718
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (1) contains the contribution of each company in the Year 1 minority interests",
+        "bbox": [
+            104,
+            746,
+            877,
+            780
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (2) shows the same for the individual minority result of each company  \\((84 = 20\\% * [480 + (60)])\\)",
+        "bbox": [
+            104,
+            795,
+            877,
+            830
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (3) shows the dividends paid by A to the  \\(3^{rd}\\)  Parties, that is  \\(26 = 20\\%\\)",
+        "bbox": [
+            107,
+            843,
+            877,
+            876
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            64,
+            366,
+            79
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Column (4) is not used for our example",
+        "bbox": [
+            109,
+            119,
+            500,
+            135
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Column (5) is the contribution in the translation adjustments variation between Year 1 and Year 2 for  \\(40 = 20\\%\\)  \\*  \\([400 + 280 + 60] - [300 + 200 + 40]\\) .",
+        "bbox": [
+            109,
+            150,
+            877,
+            201
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "8.9 Elimination of interim dividends",
+        "text_level": 1,
+        "bbox": [
+            109,
+            233,
+            691,
+            255
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The situation",
+        "text_level": 2,
+        "bbox": [
+            109,
+            277,
+            261,
+            293
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Interim dividend is a dividend decided during the current year instead of a classical dividend that is decided at the end of current year and paid after the general meeting, a few months after the closing.",
+        "bbox": [
+            109,
+            309,
+            875,
+            358
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The reason to pay an interim dividend is generally to transfer cash to the shareholder earlier than what would happen with a classical dividend. It is also a way to improve the current year statutory profit of the shareholder.",
+        "bbox": [
+            109,
+            374,
+            875,
+            423
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, we are faced to a similar problem of double impact on the consolidated profit, once in the company paying the interim dividend and once in the shareholders' accounts receiving it. And moreover, this double impact occurs during the same year.",
+        "bbox": [
+            109,
+            438,
+            875,
+            502
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We thus have to eliminate the financial income booked in the shareholders' accounts in a similar way we did it for the two previous situations.",
+        "bbox": [
+            109,
+            517,
+            873,
+            551
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "However, we will not develop again a complete case study but we will focus on how to book that interim dividend in both company A accounts and shareholders' accounts.",
+        "bbox": [
+            109,
+            565,
+            875,
+            615
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We suppose interim dividends are paid",
+        "text_level": 3,
+        "bbox": [
+            111,
+            631,
+            537,
+            647
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Here are the accounts of company A owned by parent company P with a financial percentage of  \\(80\\%\\) . We suppose that an interim dividend of 10 is decided and will be paid in very short term, before the end of the year.",
+        "bbox": [
+            109,
+            662,
+            875,
+            711
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            71,
+            856,
+            87
+        ],
+        "page_idx": 9
+    }
+]

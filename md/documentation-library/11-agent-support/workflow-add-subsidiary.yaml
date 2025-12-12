@@ -1,0 +1,469 @@
+# Workflow: Add New Subsidiary
+# Task: Add a new company to the consolidation scope
+# Complexity: Medium | Steps: 8 | Estimated Time: 15-30 minutes
+
+workflow:
+  name: "Add New Subsidiary"
+  version: "1.0"
+  description: "Step-by-step process to add a new subsidiary company to the consolidation"
+
+  # Metadata
+  category: "Configuration"
+  frequency: "As needed (acquisitions, new entities)"
+  skill_level: "Intermediate"
+
+  # Related decision trees
+  decision_trees:
+    - "consolidation-method-decision.yaml"
+    - "elimination-code-selection.yaml"
+    - "currency-translation-decision.yaml"
+
+  # Prerequisites - must be true before starting
+  prerequisites:
+    - id: "prereq_1"
+      description: "User has configuration permissions"
+      check: "User role includes 'Configuration' or 'Admin'"
+
+    - id: "prereq_2"
+      description: "Parent company exists in consolidation"
+      check: "SELECT COUNT(*) FROM TS014C0 WHERE ConsoID = @ConsoID AND CompanyCode = @ParentCode"
+
+    - id: "prereq_3"
+      description: "Consolidation period is open"
+      check: "SELECT ConsoStatus FROM TS096S0 WHERE ConsoID = @ConsoID -- Should not be 'Closed'"
+
+    - id: "prereq_4"
+      description: "Currency exists in system"
+      check: "SELECT COUNT(*) FROM TS016S0 WHERE ConsoID = @ConsoID AND CurrCode = @SubsidiaryCurrency"
+
+  # Required information to gather before starting
+  required_inputs:
+    - name: "subsidiary_code"
+      type: "string"
+      max_length: 12
+      description: "Unique company code (e.g., 'NEWSUB01')"
+      validation: "Must be unique within ConsoID; alphanumeric only"
+      example: "ACME_FR"
+
+    - name: "subsidiary_name"
+      type: "string"
+      max_length: 100
+      description: "Full legal name of the subsidiary"
+      example: "ACME France SAS"
+
+    - name: "parent_code"
+      type: "string"
+      description: "Code of the direct parent company"
+      example: "ACME_HQ"
+
+    - name: "local_currency"
+      type: "string"
+      length: 3
+      description: "ISO currency code (e.g., EUR, USD, GBP)"
+      example: "EUR"
+
+    - name: "financial_percentage"
+      type: "decimal"
+      range: "0.00 - 100.00"
+      description: "Financial ownership percentage (profit rights)"
+      example: 80.00
+
+    - name: "control_percentage"
+      type: "decimal"
+      range: "0.00 - 100.00"
+      description: "Voting/control percentage (may differ from financial)"
+      example: 80.00
+
+    - name: "consolidation_method"
+      type: "enum"
+      values: ["G", "E", "P", "N"]
+      description: "Consolidation method (use decision tree if unsure)"
+      decision_tree: "consolidation-method-decision.yaml"
+      example: "G"
+
+    - name: "acquisition_date"
+      type: "date"
+      description: "Date control was obtained"
+      example: "2024-01-15"
+
+  # Workflow steps
+  steps:
+    - step: 1
+      name: "Validate Currency Configuration"
+      description: "Ensure the subsidiary's local currency exists and has exchange rates"
+
+      actions:
+        - action: "check_currency_exists"
+          type: "query"
+          sql: |
+            SELECT CurrCode, CurrName
+            FROM TS016S0
+            WHERE ConsoID = @ConsoID
+              AND CurrCode = @LocalCurrency
+          expected: "One row returned"
+          on_failure: "Create currency first using Currency Setup screen"
+
+        - action: "check_exchange_rates"
+          type: "query"
+          sql: |
+            SELECT RateType, Rate
+            FROM TS017R0
+            WHERE ConsoID = @ConsoID
+              AND PeriodID = @PeriodID
+              AND CurrCode = @LocalCurrency
+          expected: "Rates for CC, AC exist"
+          on_failure: "Load exchange rates before proceeding"
+
+      validation:
+        success_criteria: "Currency and rates exist"
+        error_message: "Currency @LocalCurrency not configured or missing rates"
+
+      checkpoint: true
+      checkpoint_message: "Currency validated. Proceed to create company record?"
+
+    - step: 2
+      name: "Create Company Record"
+      description: "Insert the new subsidiary into the company master table"
+
+      actions:
+        - action: "get_next_company_id"
+          type: "query"
+          sql: |
+            SELECT ISNULL(MAX(CompanyID), 0) + 1 AS NextCompanyID
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID
+          output: "@NewCompanyID"
+
+        - action: "insert_company"
+          type: "execute"
+          sql: |
+            INSERT INTO TS014C0 (
+                ConsoID,
+                CompanyID,
+                CompanyCode,
+                CompanyName,
+                CurrCode,
+                ConsoMethod,
+                ConversionMethod,
+                ConsolidatedCompany,
+                FlagEnteringScope,
+                EnteringScopeDate,
+                GroupPerc,
+                MinorPerc,
+                GroupCtrlPerc,
+                Status_Bundles,
+                Status_Adjustments,
+                Status_Flows,
+                Status_ClosingAmounts
+            )
+            VALUES (
+                @ConsoID,
+                @NewCompanyID,
+                @SubsidiaryCode,
+                @SubsidiaryName,
+                @LocalCurrency,
+                @ConsolidationMethod,
+                1,                    -- ConversionMethod (1 = standard)
+                1,                    -- ConsolidatedCompany = Yes
+                1,                    -- FlagEnteringScope = Yes (new company)
+                @AcquisitionDate,
+                0,                    -- GroupPerc (will be calculated)
+                0,                    -- MinorPerc (will be calculated)
+                0,                    -- GroupCtrlPerc (will be calculated)
+                1,                    -- Status_Bundles = Needs calculation
+                1,                    -- Status_Adjustments = Needs calculation
+                1,                    -- Status_Flows = Needs calculation
+                1                     -- Status_ClosingAmounts = Needs calculation
+            )
+
+      validation:
+        success_criteria: "Company record created"
+        verify_sql: |
+          SELECT CompanyID, CompanyCode, ConsoMethod
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND CompanyCode = @SubsidiaryCode
+        expected: "One row with correct values"
+
+      rollback:
+        sql: |
+          DELETE FROM TS014C0
+          WHERE ConsoID = @ConsoID AND CompanyCode = @SubsidiaryCode
+
+      notes:
+        - "FlagEnteringScope = 1 marks this as a new company entering consolidation"
+        - "ConversionMethod = 1 uses RateType1 settings for currency translation"
+        - "Percentages are 0 until ownership calculation runs"
+
+    - step: 3
+      name: "Create Ownership Link"
+      description: "Define the ownership relationship between parent and subsidiary"
+
+      actions:
+        - action: "get_parent_company_id"
+          type: "query"
+          sql: |
+            SELECT CompanyID
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID AND CompanyCode = @ParentCode
+          output: "@ParentCompanyID"
+          on_failure: "Parent company not found. Verify parent code."
+
+        - action: "insert_ownership_link"
+          type: "execute"
+          sql: |
+            INSERT INTO TS015S0 (
+                ConsoID,
+                CompanyID,           -- Parent (the owner)
+                CompanyOwnedID,      -- Subsidiary (the owned)
+                FinPercentage,       -- Financial percentage
+                CtrlPercentage,      -- Control percentage
+                AcquisitionDate,
+                NbrFinRightsOwned,
+                NbrVotingRightsOwned
+            )
+            VALUES (
+                @ConsoID,
+                @ParentCompanyID,
+                @NewCompanyID,
+                @FinancialPercentage,
+                @ControlPercentage,
+                @AcquisitionDate,
+                @FinancialPercentage * 100,  -- Assuming 10,000 shares issued
+                @ControlPercentage * 100
+            )
+
+      validation:
+        success_criteria: "Ownership link created"
+        verify_sql: |
+          SELECT CompanyID, CompanyOwnedID, FinPercentage, CtrlPercentage
+          FROM TS015S0
+          WHERE ConsoID = @ConsoID
+            AND CompanyID = @ParentCompanyID
+            AND CompanyOwnedID = @NewCompanyID
+
+      rollback:
+        sql: |
+          DELETE FROM TS015S0
+          WHERE ConsoID = @ConsoID
+            AND CompanyID = @ParentCompanyID
+            AND CompanyOwnedID = @NewCompanyID
+
+      notes:
+        - "CompanyID = Parent (owner), CompanyOwnedID = Subsidiary (owned)"
+        - "FinPercentage affects profit allocation"
+        - "CtrlPercentage affects consolidation method determination"
+
+    - step: 4
+      name: "Calculate Ownership Percentages"
+      description: "Run the ownership calculation to compute group percentages"
+
+      actions:
+        - action: "calculate_direct_percentages"
+          type: "execute"
+          procedure: "P_CALC_OWNERSHIP_DIRECT_PERCENTAGES"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+
+        - action: "calculate_indirect_percentages"
+          type: "execute"
+          procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+            - "@UpdateConsoMethod = 1"  # Auto-update method based on thresholds
+
+      validation:
+        success_criteria: "Group percentages calculated"
+        verify_sql: |
+          SELECT CompanyCode, GroupPerc, MinorPerc, GroupCtrlPerc, ConsoMethod
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND CompanyCode = @SubsidiaryCode
+        expected: |
+          GroupPerc should equal FinancialPercentage for direct ownership
+          MinorPerc should equal 100 - GroupPerc
+          GroupCtrlPerc should equal ControlPercentage for direct ownership
+          ConsoMethod should match expected based on thresholds
+
+      notes:
+        - "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES handles multi-tier structures"
+        - "If @UpdateConsoMethod = 1, method is auto-determined from control %"
+        - "Check for circular ownership warnings in procedure output"
+
+    - step: 5
+      name: "Verify Consolidation Method"
+      description: "Confirm the assigned consolidation method is correct"
+
+      actions:
+        - action: "check_method"
+          type: "query"
+          sql: |
+            SELECT CompanyCode,
+                   ConsoMethod,
+                   GroupCtrlPerc,
+                   CASE
+                       WHEN GroupCtrlPerc > 50 THEN 'G'
+                       WHEN GroupCtrlPerc = 50 THEN 'P'
+                       WHEN GroupCtrlPerc >= 20 THEN 'E'
+                       ELSE 'N'
+                   END AS ExpectedMethod
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID AND CompanyCode = @SubsidiaryCode
+
+      decision_point:
+        question: "Is the consolidation method correct?"
+        if_yes: "Continue to Step 6"
+        if_no: "Override method manually if business justification exists (e.g., de facto control)"
+
+      manual_override:
+        when: "Method auto-assigned doesn't match business reality"
+        examples:
+          - "De facto control at 45% → Override to G"
+          - "Joint venture at 50% → Confirm P or change to E per IFRS 11"
+        sql: |
+          UPDATE TS014C0
+          SET ConsoMethod = @CorrectMethod
+          WHERE ConsoID = @ConsoID AND CompanyCode = @SubsidiaryCode
+
+    - step: 6
+      name: "Configure Account Mapping (Optional)"
+      description: "Map subsidiary's local accounts to group chart of accounts if needed"
+
+      conditional: "Only if subsidiary uses different chart of accounts"
+
+      actions:
+        - action: "check_account_mapping_needed"
+          type: "decision"
+          question: "Does subsidiary use same chart of accounts as group?"
+          if_yes: "Skip to Step 7"
+          if_no: "Create account mappings"
+
+        - action: "create_account_mappings"
+          type: "execute"
+          description: "Map local accounts to group accounts in TS010S2"
+          guidance: |
+            For each local account, create mapping:
+            INSERT INTO TS010S2 (ConsoID, CompanyID, LocalAccountID, GroupAccountID)
+            VALUES (@ConsoID, @NewCompanyID, @LocalAcctID, @GroupAcctID)
+
+      notes:
+        - "Account mapping enables consolidation across different charts"
+        - "Can be configured via UI or bulk import"
+
+    - step: 7
+      name: "Create Journal Entry Map"
+      description: "Initialize journal entry tracking for the new company"
+
+      actions:
+        - action: "create_journal_map"
+          type: "execute"
+          sql: |
+            -- Create journal entry map for the new company
+            INSERT INTO T_JOURNAL_ENTRY_MAP (
+                ConsoID,
+                CompanyID,
+                CompanyOwnedID,
+                JournalEntry
+            )
+            SELECT
+                @ConsoID,
+                @NewCompanyID,
+                NULL,
+                ISNULL(MAX(JournalEntry), 0) + 1
+            FROM T_JOURNAL_ENTRY_MAP
+            WHERE ConsoID = @ConsoID
+
+      validation:
+        verify_sql: |
+          SELECT CompanyID, JournalEntry
+          FROM T_JOURNAL_ENTRY_MAP
+          WHERE ConsoID = @ConsoID AND CompanyID = @NewCompanyID
+
+    - step: 8
+      name: "Verify and Document"
+      description: "Final verification and documentation of the new subsidiary"
+
+      actions:
+        - action: "final_verification"
+          type: "query"
+          sql: |
+            -- Complete subsidiary verification
+            SELECT
+                c.CompanyCode,
+                c.CompanyName,
+                c.CurrCode,
+                c.ConsoMethod,
+                c.GroupPerc,
+                c.MinorPerc,
+                c.GroupCtrlPerc,
+                c.FlagEnteringScope,
+                o.CompanyID AS ParentCompanyID,
+                p.CompanyCode AS ParentCode,
+                o.FinPercentage,
+                o.CtrlPercentage
+            FROM TS014C0 c
+            LEFT JOIN TS015S0 o ON o.ConsoID = c.ConsoID AND o.CompanyOwnedID = c.CompanyID
+            LEFT JOIN TS014C0 p ON p.ConsoID = o.ConsoID AND p.CompanyID = o.CompanyID
+            WHERE c.ConsoID = @ConsoID
+              AND c.CompanyCode = @SubsidiaryCode
+
+        - action: "view_ownership_hierarchy"
+          type: "procedure"
+          procedure: "P_VIEW_OWNERSHIP"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+            - "@CompanyID = @NewCompanyID"
+
+      checklist:
+        - "[ ] Company record created in TS014C0"
+        - "[ ] Ownership link created in TS015S0"
+        - "[ ] Group percentages calculated correctly"
+        - "[ ] Consolidation method appropriate"
+        - "[ ] Currency and exchange rates configured"
+        - "[ ] Journal entry map created"
+        - "[ ] Ready for data import"
+
+  # Post-workflow actions
+  post_workflow:
+    next_steps:
+      - description: "Import opening balances for the subsidiary"
+        procedure: "Data Entry → Bundle Import"
+
+      - description: "Record investment in subsidiary on parent's books"
+        workflow: "workflow-process-acquisition.yaml"
+        condition: "If this is a new acquisition requiring goodwill calculation"
+
+      - description: "Run consolidation to include new subsidiary"
+        procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+
+    notifications:
+      - "Notify accounting team of new subsidiary"
+      - "Update consolidation scope documentation"
+
+  # Troubleshooting
+  troubleshooting:
+    - issue: "Ownership percentages not calculating"
+      causes:
+        - "Missing ownership link in TS015S0"
+        - "Circular ownership without proper configuration"
+      solution: "Verify TS015S0 record exists; check for circular ownership"
+
+    - issue: "Wrong consolidation method assigned"
+      causes:
+        - "Control percentage thresholds not met"
+        - "De facto control not recognized by system"
+      solution: "Override manually if business justification exists"
+
+    - issue: "Currency translation errors"
+      causes:
+        - "Missing exchange rates in TS017R0"
+        - "Currency code mismatch"
+      solution: "Load exchange rates for all required rate types (CC, AC)"
+
+  # Related documentation
+  references:
+    - document: "../02-consolidation-methods/consolidation-method-determination.md"
+    - document: "../06-ownership-structure/direct-indirect-holdings.md"
+    - document: "../06-ownership-structure/ownership-percentages.md"
+    - document: "../07-database-implementation/data-tables-catalog.md"

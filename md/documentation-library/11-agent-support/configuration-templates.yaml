@@ -1,0 +1,920 @@
+# Configuration Templates for Financial Consolidation
+# Purpose: Machine-parseable configuration patterns for agent setup tasks
+# Version: 1.0
+
+configuration_templates:
+  name: "Financial Consolidation Configuration Templates"
+  version: "1.0"
+  description: "Standard configuration patterns for elimination setup, special accounts, exchange rates, and dimensions"
+
+  # ============================================================
+  # SECTION 1: ELIMINATION CONFIGURATION (TS070S0/TS071S0)
+  # ============================================================
+  elimination_configuration:
+    description: "Standard patterns for configuring system and user eliminations"
+
+    # ----- Header Table Structure (TS070S0) -----
+    header_table:
+      table: "TS070S0"
+      description: "Elimination header configuration"
+
+      columns:
+        - name: "EliminationHeaderID"
+          type: "INT IDENTITY"
+          description: "Primary key"
+
+        - name: "ConsoID"
+          type: "INT"
+          description: "Foreign key to TS096S0 (Consolidation)"
+
+        - name: "ElimCode"
+          type: "NVARCHAR(4)"
+          description: "Elimination code (S### for system, U### for user)"
+          examples: ["S001", "S020", "S085", "U001"]
+
+        - name: "ElimType"
+          type: "CHAR(1)"
+          values:
+            S: "System elimination (auto-calculated)"
+            U: "User elimination (template-based)"
+
+        - name: "Active"
+          type: "BIT"
+          description: "1 = Active, 0 = Inactive"
+
+        - name: "ElimLevel"
+          type: "TINYINT"
+          description: "Execution order (lower = earlier)"
+          typical_values:
+            10: "Intercompany eliminations"
+            20: "Dividend eliminations"
+            30: "Participation eliminations"
+            40: "Minority interest"
+            50: "Equity method"
+
+        - name: "JournalTypeID"
+          type: "INT"
+          description: "FK to TS020S0 (Journal Type)"
+
+        - name: "ConsoMethodSelectionID"
+          type: "INT"
+          description: "FK to TS014C2 (Method applicability)"
+          common_values:
+            1: "All methods"
+            2: "Global only"
+            3: "Equity only"
+            4: "Proportional only"
+
+        - name: "Behaviour"
+          type: "TINYINT"
+          values:
+            0: "Standard"
+            1: "Replace previous"
+            2: "Cumulative"
+            3: "Net to zero"
+            4: "Carry forward"
+
+        - name: "MinorityFlag"
+          type: "BIT"
+          description: "1 = Include in minority interest calculation"
+
+        - name: "ProcedureName"
+          type: "VARCHAR(50)"
+          description: "Custom stored procedure (NULL = use standard)"
+
+    # ----- Detail Table Structure (TS071S0) -----
+    detail_table:
+      table: "TS071S0"
+      description: "Elimination detail lines (From/To configuration)"
+
+      columns:
+        - name: "EliminationDetailID"
+          type: "INT IDENTITY"
+          description: "Primary key"
+
+        - name: "EliminationHeaderID"
+          type: "INT"
+          description: "FK to TS070S0"
+
+        - name: "LineNo"
+          type: "INT"
+          description: "Line sequence number"
+
+        - name: "FromType"
+          type: "TINYINT"
+          values:
+            1: "Closing balance (standard)"
+            2: "Closing balance by flow"
+            3: "Closing balance by dimension"
+            4: "Intercompany balance"
+            5: "Intercompany by flow"
+            6: "Intercompany by dimension"
+
+        - name: "FromAccountID"
+          type: "INT"
+          description: "Source account (FK to TS010S0)"
+
+        - name: "FromFlowID"
+          type: "INT"
+          description: "Source flow (FK to TS011C0)"
+
+        - name: "ToType"
+          type: "TINYINT"
+          values:
+            1: "Account"
+            2: "Account and flow"
+            3: "Account and dimension"
+
+        - name: "ToAccountID"
+          type: "INT"
+          description: "Target account"
+
+        - name: "ToFlowID"
+          type: "INT"
+          description: "Target flow"
+
+        - name: "ToSign"
+          type: "SMALLINT"
+          values:
+            1: "Same sign"
+            -1: "Reverse sign"
+
+        - name: "Percentage"
+          type: "TINYINT"
+          description: "Percentage type to apply"
+          values:
+            1: "100% (fixed)"
+            2: "0% (no amount)"
+            3: "Company GroupPerc"
+            4: "Company MinorPerc"
+            5: "Company GroupCtrlPerc"
+            6: "Company (GroupPerc + MinorPerc)"
+            7: "Company (100 - GroupPerc)"
+            8: "Company (100 - MinorPerc)"
+            9: "Partner GroupPerc"
+            10: "Partner MinorPerc"
+            11: "Partner GroupCtrlPerc"
+            12: "Partner (GroupPerc + MinorPerc)"
+            13: "Partner (100 - GroupPerc)"
+            14: "Partner (100 - MinorPerc)"
+
+    # ----- Standard Elimination Templates -----
+    standard_templates:
+
+      intercompany_basic:
+        name: "Basic Intercompany Elimination (S001)"
+        elim_code: "S001"
+        journal_type: "TC"
+        description: "Eliminates matching intercompany balances"
+
+        header_sql: |
+          INSERT INTO TS070S0 (
+              ConsoID, ElimCode, ElimType, Active, ElimLevel,
+              JournalTypeID, ConsoMethodSelectionID, Behaviour, MinorityFlag, ProcedureName
+          )
+          SELECT
+              @ConsoID,
+              'S001',           -- ElimCode
+              'S',              -- ElimType (System)
+              1,                -- Active
+              10,               -- ElimLevel (early)
+              jt.JournalTypeID, -- From TS020S0
+              1,                -- All methods
+              0,                -- Standard behaviour
+              0,                -- No minority flag
+              'P_CONSO_ELIM_INTERCOMPANY'  -- Standard procedure
+          FROM TS020S0 jt
+          WHERE jt.ConsoID = @ConsoID AND jt.JournalTypeCode = 'TC'
+
+        prerequisite_accounts: |
+          -- Intercompany accounts must have PartnerType = 1
+          SELECT Account, AccountName
+          FROM TS010S0
+          WHERE ConsoID = @ConsoID AND PartnerType = 1
+
+      dividend_elimination:
+        name: "Dividend Elimination (S020)"
+        elim_code: "S020"
+        journal_type: "TD"
+        description: "Eliminates intercompany dividends"
+
+        header_sql: |
+          INSERT INTO TS070S0 (
+              ConsoID, ElimCode, ElimType, Active, ElimLevel,
+              JournalTypeID, ConsoMethodSelectionID, Behaviour, MinorityFlag
+          )
+          SELECT
+              @ConsoID,
+              'S020',
+              'S',
+              1,
+              20,
+              jt.JournalTypeID,
+              1,                -- All methods
+              0,
+              0
+          FROM TS020S0 jt
+          WHERE jt.ConsoID = @ConsoID AND jt.JournalTypeCode = 'TD'
+
+        required_special_accounts:
+          - code: "DivReceived"
+            description: "Dividend income account"
+          - code: "DivPaid"
+            description: "Dividend expense account"
+          - code: "DivReceivedEquity"
+            description: "Dividend from equity method investees"
+
+      minority_interest:
+        name: "Minority Interest Calculation (S085)"
+        elim_code: "S085"
+        journal_type: "TI"
+        description: "Calculates non-controlling interest"
+
+        header_sql: |
+          INSERT INTO TS070S0 (
+              ConsoID, ElimCode, ElimType, Active, ElimLevel,
+              JournalTypeID, ConsoMethodSelectionID, Behaviour, MinorityFlag
+          )
+          SELECT
+              @ConsoID,
+              'S085',
+              'S',
+              1,
+              40,
+              jt.JournalTypeID,
+              2,                -- Global method only
+              0,
+              1                 -- This IS minority calculation
+          FROM TS020S0 jt
+          WHERE jt.ConsoID = @ConsoID AND jt.JournalTypeCode = 'TI'
+
+        required_special_accounts:
+          - code: "MinorInterests"
+            description: "Minority interest - Balance Sheet"
+          - code: "MinorBSProfitLoss"
+            description: "Minority interest - P&L"
+
+      user_elimination_template:
+        name: "User Elimination Template"
+        elim_code: "U001"
+        description: "Template for creating user-defined eliminations"
+
+        header_sql: |
+          -- Step 1: Create journal type
+          INSERT INTO TS020S0 (ConsoID, JournalTypeCode, Description, Active)
+          VALUES (@ConsoID, 'U001', 'User Elimination - Fair Value Adjustment', 1)
+
+          DECLARE @JournalTypeID INT = SCOPE_IDENTITY()
+
+          -- Step 2: Create elimination header
+          INSERT INTO TS070S0 (
+              ConsoID, ElimCode, ElimType, Active, ElimLevel,
+              JournalTypeID, ConsoMethodSelectionID, Behaviour, MinorityFlag
+          )
+          VALUES (
+              @ConsoID,
+              'U001',
+              'U',              -- User type
+              1,
+              35,               -- After participations
+              @JournalTypeID,
+              2,                -- Global only
+              0,
+              1                 -- Include in minority
+          )
+
+        detail_sql: |
+          -- Step 3: Create elimination detail lines
+          DECLARE @HeaderID INT = (SELECT EliminationHeaderID FROM TS070S0
+                                   WHERE ConsoID = @ConsoID AND ElimCode = 'U001')
+
+          -- Line 1: Debit FV Adjustment
+          INSERT INTO TS071S0 (
+              EliminationHeaderID, LineNo, FromType, FromAccountID, FromFlowID,
+              ToType, ToAccountID, ToFlowID, ToSign, Percentage
+          )
+          VALUES (
+              @HeaderID,
+              1,
+              1,                -- Closing balance
+              @FVAdjAccountID,  -- From account
+              NULL,
+              1,                -- To account
+              @FVAdjAccountID,  -- To same account
+              NULL,
+              1,                -- Same sign
+              3                 -- GroupPerc
+          )
+
+          -- Line 2: Credit Consolidated Reserves
+          INSERT INTO TS071S0 (...)
+          VALUES (
+              @HeaderID,
+              2,
+              1,
+              @ConsoResAccountID,
+              NULL,
+              1,
+              @ConsoResAccountID,
+              NULL,
+              -1,               -- Reverse sign (credit)
+              3                 -- GroupPerc
+          )
+
+  # ============================================================
+  # SECTION 2: SPECIAL ACCOUNT CONFIGURATION
+  # ============================================================
+  special_account_configuration:
+    description: "Mapping accounts to special codes for consolidation processing"
+
+    # ----- Table Structure -----
+    tables:
+      master_list:
+        table: "TS010C1"
+        description: "Master list of special account codes"
+        columns:
+          - "SpecAccountID (PK)"
+          - "Sequence (display order)"
+          - "SpecAccountCode (unique code)"
+          - "SpecAccountDescription"
+
+      account_mapping:
+        table: "TS010C0"
+        description: "Maps special codes to actual accounts per consolidation"
+        columns:
+          - "ConsolidationAccountID (PK)"
+          - "ConsoID (FK)"
+          - "AccountID (FK to TS010S0)"
+          - "SpecAccountCode (FK to TS010C1)"
+
+    # ----- Special Account Catalog -----
+    account_catalog:
+
+      balance_sheet_accounts:
+        - code: "PLBAL"
+          description: "P&L Balance (Result for the year)"
+          usage: "Currency translation, carry forward, appropriation"
+          required_for: ["Currency translation", "Period close"]
+
+        - code: "RetainedEarnings"
+          description: "Retained Earnings"
+          usage: "Profit appropriation, opening balance"
+          required_for: ["Period carryforward"]
+
+        - code: "TDBS"
+          description: "Translation Difference - Balance Sheet"
+          usage: "Currency translation adjustments (OCI)"
+          required_for: ["Currency translation"]
+
+        - code: "ConsoRes"
+          description: "Consolidated Reserves"
+          usage: "Accumulated consolidation adjustments"
+          required_for: ["Participation eliminations"]
+
+        - code: "ConsoDiff"
+          description: "Consolidation Difference"
+          usage: "Offset account for equity eliminations"
+          required_for: ["Equity capital elimination"]
+
+        - code: "NotBalBS"
+          description: "Not Balanced - Balance Sheet"
+          usage: "Rounding/balancing differences"
+          required_for: ["Balance verification"]
+
+        - code: "RoundedBS"
+          description: "Rounding - Balance Sheet"
+          usage: "Rounding adjustments"
+          required_for: ["Period close"]
+
+      investment_accounts:
+        - code: "EquityVal"
+          description: "Equity Value (Investment carrying amount)"
+          usage: "Equity method pickup, investment elimination"
+          required_for: ["Equity method", "Participation elimination"]
+
+        - code: "LinkPartElim"
+          description: "Link Account for Participation Elimination"
+          usage: "Offset for investment elimination"
+          required_for: ["Participation elimination"]
+
+        - code: "GOODWILL"
+          description: "Goodwill"
+          usage: "Acquisition accounting"
+          required_for: ["Participation elimination"]
+
+        - code: "NEGGOODWILL"
+          description: "Negative Goodwill (Bargain Purchase)"
+          usage: "Bargain purchase gain recognition"
+          required_for: ["Participation elimination"]
+
+      minority_accounts:
+        - code: "MinorInterests"
+          description: "Minority Interests - Balance Sheet"
+          usage: "NCI equity allocation"
+          required_for: ["Minority interest calculation"]
+
+        - code: "MinorBSProfitLoss"
+          description: "Minority Interests - P&L"
+          usage: "NCI profit/loss allocation"
+          required_for: ["Minority interest calculation"]
+
+      dividend_accounts:
+        - code: "DivReceived"
+          description: "Dividends Received"
+          usage: "Dividend income (parent)"
+          required_for: ["Dividend elimination"]
+
+        - code: "DivPaid"
+          description: "Dividends Paid"
+          usage: "Dividend expense (subsidiary)"
+          required_for: ["Dividend elimination"]
+
+        - code: "DivReceivedEquity"
+          description: "Dividends Received - Equity Method"
+          usage: "Dividend income from associates"
+          required_for: ["Equity method dividend"]
+
+        - code: "INTERIMDIVIDENDS"
+          description: "Interim Dividends"
+          usage: "Mid-year dividend tracking"
+          required_for: ["Interim dividend elimination"]
+
+      equity_method_accounts:
+        - code: "EquityProfit"
+          description: "Share of Profit from Associates"
+          usage: "Equity pickup - profit"
+          required_for: ["Equity method"]
+
+        - code: "EquityLoss"
+          description: "Share of Loss from Associates"
+          usage: "Equity pickup - loss"
+          required_for: ["Equity method"]
+
+      translation_accounts:
+        - code: "TDPLCredit"
+          description: "Translation Difference P&L - Credit"
+          usage: "P&L translation gain"
+          required_for: ["Currency translation"]
+          note: "Must have DebitCredit = 'C'"
+
+        - code: "TDPLDebit"
+          description: "Translation Difference P&L - Debit"
+          usage: "P&L translation loss"
+          required_for: ["Currency translation"]
+          note: "Must have DebitCredit = 'D'"
+
+        - code: "TransReserves"
+          description: "Translation Reserves"
+          usage: "Accumulated CTA"
+          required_for: ["Currency translation"]
+
+      pl_balancing:
+        - code: "NotBalPL"
+          description: "Not Balanced - P&L"
+          usage: "P&L balancing differences"
+          required_for: ["P&L verification"]
+
+    # ----- Configuration Templates -----
+    setup_templates:
+
+      map_special_account:
+        description: "Map an existing account to a special code"
+        sql: |
+          -- First verify account exists and is appropriate
+          SELECT AccountID, Account, AccountName, AccountType, DebitCredit
+          FROM TS010S0
+          WHERE ConsoID = @ConsoID AND Account = @AccountCode
+
+          -- Then create mapping
+          INSERT INTO TS010C0 (ConsoID, AccountID, SpecAccountCode)
+          SELECT @ConsoID, AccountID, @SpecAccountCode
+          FROM TS010S0
+          WHERE ConsoID = @ConsoID AND Account = @AccountCode
+
+        validation: |
+          -- Verify mapping was created
+          SELECT a.Account, a.AccountName, c.SpecAccountCode
+          FROM TS010C0 c
+          INNER JOIN TS010S0 a ON a.ConsoID = c.ConsoID AND a.AccountID = c.AccountID
+          WHERE c.ConsoID = @ConsoID AND c.SpecAccountCode = @SpecAccountCode
+
+      verify_all_special_accounts:
+        description: "Check all required special accounts are mapped"
+        sql: |
+          SELECT
+              c1.SpecAccountCode,
+              c1.SpecAccountDescription,
+              CASE WHEN c0.AccountID IS NOT NULL THEN a.Account ELSE 'NOT MAPPED' END AS MappedAccount,
+              CASE WHEN c0.AccountID IS NOT NULL THEN 'OK' ELSE 'MISSING' END AS Status
+          FROM TS010C1 c1
+          LEFT JOIN TS010C0 c0 ON c0.SpecAccountCode = c1.SpecAccountCode AND c0.ConsoID = @ConsoID
+          LEFT JOIN TS010S0 a ON a.ConsoID = c0.ConsoID AND a.AccountID = c0.AccountID
+          ORDER BY c1.Sequence
+
+      minimum_required_accounts:
+        description: "Minimum special accounts for basic consolidation"
+        accounts:
+          - "PLBAL"
+          - "TDBS"
+          - "ConsoRes"
+          - "MinorInterests"
+          - "MinorBSProfitLoss"
+          - "EquityVal"
+          - "DivReceived"
+
+  # ============================================================
+  # SECTION 3: EXCHANGE RATE CONFIGURATION
+  # ============================================================
+  exchange_rate_configuration:
+    description: "Configuration patterns for currency translation rates"
+
+    # ----- Table Structure -----
+    table:
+      name: "TS017R0"
+      description: "Exchange rates by consolidation period"
+
+      columns:
+        - name: "CurrencyRateID"
+          type: "INT IDENTITY"
+          description: "Primary key"
+
+        - name: "ConsoID"
+          type: "INT"
+          description: "FK to consolidation period"
+
+        - name: "CurrCode"
+          type: "NVARCHAR(3)"
+          description: "Source currency code (e.g., USD, EUR)"
+
+        - name: "ReferenceCurrCode"
+          type: "NVARCHAR(3)"
+          description: "Target currency (usually consolidation currency)"
+
+        - name: "ClosingRate"
+          type: "DECIMAL(28,12)"
+          description: "Period-end spot rate"
+
+        - name: "AverageRate"
+          type: "DECIMAL(28,12)"
+          description: "Period average rate"
+
+        - name: "AverageMonth"
+          type: "DECIMAL(28,12)"
+          description: "Monthly average rate"
+
+    # ----- Rate Types in Account Configuration -----
+    rate_types:
+      description: "Rate types used in TS010S0.RateType1/RateType2"
+
+      types:
+        - code: "CC"
+          name: "Closing Rate - Closing"
+          description: "Period-end rate for closing balance"
+          usage: "Most balance sheet items"
+          formula: "ClosingRate from TS017R0"
+
+        - code: "AC"
+          name: "Average Rate - Closing"
+          description: "Average rate for closing balance"
+          usage: "P&L items, some equity"
+          formula: "AverageRate from TS017R0"
+
+        - code: "MC"
+          name: "Monthly Average Rate - Closing"
+          description: "Monthly average for closing"
+          usage: "Monthly P&L items"
+          formula: "AverageMonth from TS017R0"
+
+        - code: "CR"
+          name: "Closing Rate - Reference"
+          description: "Prior period closing rate"
+          usage: "Opening balance translation"
+          formula: "ClosingRate from reference period"
+
+        - code: "AR"
+          name: "Average Rate - Reference"
+          description: "Prior period average rate"
+          usage: "Prior period P&L comparison"
+          formula: "AverageRate from reference period"
+
+        - code: "MR"
+          name: "Monthly Average Rate - Reference"
+          description: "Prior period monthly average"
+          usage: "Prior period monthly comparison"
+          formula: "AverageMonth from reference period"
+
+        - code: "NR"
+          name: "No Rate"
+          description: "No translation (1:1)"
+          usage: "Same currency, statistical accounts"
+          formula: "1.0000"
+
+    # ----- Configuration Templates -----
+    setup_templates:
+
+      load_exchange_rates:
+        description: "Load exchange rates for a period"
+        sql: |
+          -- Insert rates for each currency used by subsidiaries
+          INSERT INTO TS017R0 (
+              ConsoID, CurrCode, ReferenceCurrCode,
+              ClosingRate, AverageRate, AverageMonth
+          )
+          VALUES
+              -- USD to EUR (consolidation currency = EUR)
+              (@ConsoID, 'USD', 'EUR', 0.92, 0.91, 0.915),
+              -- GBP to EUR
+              (@ConsoID, 'GBP', 'EUR', 1.16, 1.15, 1.155),
+              -- CHF to EUR
+              (@ConsoID, 'CHF', 'EUR', 1.08, 1.07, 1.075)
+
+        notes:
+          - "Rates express how many EUR per 1 unit of foreign currency"
+          - "Closing rate = period-end spot rate"
+          - "Average rate = simple or weighted average for period"
+          - "Monthly rate = for monthly closing, often same as average"
+
+      verify_rate_completeness:
+        description: "Check all subsidiary currencies have rates"
+        sql: |
+          -- Find missing exchange rates
+          SELECT DISTINCT
+              c.CompanyCode,
+              c.CompanyName,
+              c.CurrCode AS CompanyCurrency,
+              s.CurrCode AS ConsoCurrency,
+              CASE WHEN r.CurrCode IS NULL THEN 'MISSING' ELSE 'OK' END AS RateStatus
+          FROM TS014C0 c
+          INNER JOIN TS096S0 s ON s.ConsoID = c.ConsoID
+          LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID AND r.CurrCode = c.CurrCode
+          WHERE c.ConsoID = @ConsoID
+            AND c.ConsolidatedCompany = 1
+            AND c.CurrCode <> s.CurrCode
+            AND r.CurrCode IS NULL
+
+      account_rate_type_configuration:
+        description: "Configure translation rate type for accounts"
+        sql: |
+          -- Set rate type for balance sheet accounts (typically CC)
+          UPDATE TS010S0
+          SET RateType1 = 'CC',
+              FlagHistoricalRate1 = 0
+          WHERE ConsoID = @ConsoID
+            AND AccountType = 'B'
+
+          -- Set rate type for P&L accounts (typically AC)
+          UPDATE TS010S0
+          SET RateType1 = 'AC',
+              FlagHistoricalRate1 = 0
+          WHERE ConsoID = @ConsoID
+            AND AccountType = 'P'
+
+          -- Set historical rate for equity accounts
+          UPDATE TS010S0
+          SET FlagHistoricalRate1 = 1
+          WHERE ConsoID = @ConsoID
+            AND AccountClass IN ('EQUITY', 'CAPITAL', 'RESERVES')
+
+      standard_rate_patterns:
+        current_rate_method:
+          name: "Current Rate Method (IAS 21 Standard)"
+          description: "Standard translation for foreign operations"
+          rules:
+            - account_type: "Balance Sheet - Assets"
+              rate_type: "CC"
+              historical: false
+            - account_type: "Balance Sheet - Liabilities"
+              rate_type: "CC"
+              historical: false
+            - account_type: "Balance Sheet - Equity (except result)"
+              rate_type: "CC"
+              historical: true
+            - account_type: "P&L - All"
+              rate_type: "AC"
+              historical: false
+
+        temporal_method:
+          name: "Temporal Method (Hyperinflation)"
+          description: "For hyperinflationary economies"
+          rules:
+            - account_type: "Monetary items"
+              rate_type: "CC"
+              historical: false
+            - account_type: "Non-monetary items"
+              rate_type: "Historical"
+              historical: true
+            - account_type: "P&L"
+              rate_type: "Transaction date rate"
+              historical: true
+
+  # ============================================================
+  # SECTION 4: POV DIMENSION CONFIGURATION
+  # ============================================================
+  pov_dimension_configuration:
+    description: "Point of View dimension configuration for consolidation reporting"
+
+    # ----- Table Structure -----
+    tables:
+      dimension_definition:
+        table: "TS050G0"
+        description: "Dimension definitions"
+        columns:
+          - "DimensionID (PK)"
+          - "ConsoID (FK)"
+          - "DimensionCode"
+          - "DimensionDescriptionID (FK to TS050G1)"
+
+      dimension_details:
+        table: "TS050G2"
+        description: "Dimension detail values"
+        columns:
+          - "DimensionDetailID (PK)"
+          - "ConsoID"
+          - "DimensionID (FK)"
+          - "DimensionDetailCode"
+          - "DimensionDetailDescriptionID"
+          - "ParentDimensionDetailID (for hierarchy)"
+          - "OrderNbr"
+          - "Level"
+          - "Type (U=Unexplained, T=Technical, N=Normal)"
+
+    # ----- Standard POV Dimensions -----
+    standard_dimensions:
+
+      company:
+        description: "Entity/Company dimension"
+        source: "TS014C0 (Company table)"
+        usage: "All consolidation data"
+        notes: "Automatically derived from company setup"
+
+      account:
+        description: "Chart of Accounts dimension"
+        source: "TS010S0 (Account table)"
+        usage: "Financial data classification"
+        hierarchy: "AccountClass for grouping"
+
+      flow:
+        description: "Movement/Flow dimension"
+        source: "TS011C0 (Flow table)"
+        usage: "Movement analysis"
+        special_flows:
+          - code: "OPEN"
+            description: "Opening balance"
+          - code: "CLOSE"
+            description: "Closing balance"
+          - code: "TRANSAdj"
+            description: "Translation adjustment"
+          - code: "UNEXPVar"
+            description: "Unexplained variance"
+          - code: "NETVar"
+            description: "Net variance"
+          - code: "DIVIDENDS"
+            description: "Dividend flow"
+          - code: "TRANSFER"
+            description: "Transfer flow"
+          - code: "Appropriation"
+            description: "Profit appropriation"
+
+      partner:
+        description: "Intercompany partner dimension"
+        source: "TS014C0 with PartnerType"
+        usage: "IC balances and eliminations"
+
+      currency:
+        description: "Currency dimension"
+        source: "TS001S0 (Currency table)"
+        usage: "Multi-currency reporting"
+
+      period:
+        description: "Time period dimension"
+        source: "TS096S0 (Consolidation periods)"
+        usage: "Period-over-period analysis"
+
+    # ----- Custom Dimension Setup -----
+    custom_dimension_templates:
+
+      create_dimension:
+        description: "Create a new custom dimension"
+        sql: |
+          -- Step 1: Create dimension description
+          INSERT INTO TS050G1 (ConsoID, DimensionDescription)
+          VALUES (@ConsoID, @DimensionDescription)
+
+          DECLARE @DescID INT = SCOPE_IDENTITY()
+
+          -- Step 2: Create dimension
+          INSERT INTO TS050G0 (ConsoID, DimensionCode, DimensionDescriptionID)
+          VALUES (@ConsoID, @DimensionCode, @DescID)
+
+          DECLARE @DimID INT = SCOPE_IDENTITY()
+
+          -- Step 3: Create required special details
+          -- Technical detail
+          INSERT INTO TS050G2 (
+              ConsoID, DimensionID, DimensionDetailCode,
+              DimensionDetailDescriptionID, OrderNbr, Level, Type
+          )
+          VALUES (
+              @ConsoID, @DimID, 'TECHNICAL',
+              @TechDescID, 1, 0, 'T'
+          )
+
+          -- Unexplained detail
+          INSERT INTO TS050G2 (...)
+          VALUES (
+              @ConsoID, @DimID, 'UNEXPLAINED',
+              @UnexpDescID, 2, 0, 'U'
+          )
+
+      add_dimension_detail:
+        description: "Add a detail value to a dimension"
+        sql: |
+          -- Get parent order info for hierarchy positioning
+          DECLARE @ParentOrder INT, @ParentLevel INT
+          SELECT @ParentOrder = OrderNbr, @ParentLevel = Level
+          FROM TS050G2
+          WHERE ConsoID = @ConsoID
+            AND DimensionDetailID = @ParentDimensionDetailID
+
+          -- Create detail description
+          INSERT INTO TS050G3 (ConsoID, DimensionDetailDescription)
+          VALUES (@ConsoID, @DetailDescription)
+
+          DECLARE @DescID INT = SCOPE_IDENTITY()
+
+          -- Insert detail
+          INSERT INTO TS050G2 (
+              ConsoID, DimensionID, DimensionDetailCode,
+              DimensionDetailDescriptionID, ParentDimensionDetailID,
+              OrderNbr, ChildOrderRangeUntil, Level, Type
+          )
+          VALUES (
+              @ConsoID, @DimensionID, @DetailCode,
+              @DescID, @ParentDimensionDetailID,
+              @ParentOrder + 1, @ParentOrder + 1, @ParentLevel + 1, 'N'
+          )
+
+      dimension_types:
+        T:
+          name: "Technical"
+          description: "System-generated, used for technical postings"
+          required: true
+        U:
+          name: "Unexplained"
+          description: "For unexplained variances"
+          required: true
+        N:
+          name: "Normal"
+          description: "User-defined dimension values"
+          required: false
+
+  # ============================================================
+  # QUICK REFERENCE
+  # ============================================================
+  quick_reference:
+
+    elimination_execution_order:
+      - level: 10
+        code: "S001-S005"
+        name: "Intercompany eliminations"
+      - level: 20
+        code: "S020"
+        name: "Dividend eliminations"
+      - level: 30
+        code: "S050-S094"
+        name: "Participation eliminations"
+      - level: 40
+        code: "S085"
+        name: "Minority interest"
+      - level: 50
+        code: "S080"
+        name: "Equity method"
+      - level: 60
+        code: "S072"
+        name: "Method changes"
+
+    common_configuration_issues:
+      - issue: "Missing special account"
+        diagnosis: "Run verify_all_special_accounts query"
+        resolution: "Map account using TS010C0 INSERT"
+
+      - issue: "Missing exchange rate"
+        diagnosis: "Run verify_rate_completeness query"
+        resolution: "Load rate in TS017R0"
+
+      - issue: "Elimination not running"
+        diagnosis: "Check Active = 1 in TS070S0"
+        resolution: "UPDATE TS070S0 SET Active = 1"
+
+      - issue: "Wrong elimination sequence"
+        diagnosis: "Check ElimLevel in TS070S0"
+        resolution: "Adjust ElimLevel values"
+
+    configuration_checklist:
+      - "[ ] Special accounts mapped (TS010C0)"
+      - "[ ] Exchange rates loaded (TS017R0)"
+      - "[ ] Eliminations configured (TS070S0)"
+      - "[ ] Account rate types set (TS010S0.RateType1)"
+      - "[ ] POV dimensions created (TS050G0)"
+      - "[ ] Required dimension details (TECHNICAL, UNEXPLAINED)"
+      - "[ ] Journal types created (TS020S0)"

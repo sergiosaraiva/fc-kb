@@ -1,0 +1,1430 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.065,
+                0.364,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.119,
+                0.62,
+                0.188
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A (Year 3)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital 200</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves  (22)</td></tr><tr><td>Cash</td><td>210</td><td>Result 32</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.215,
+                0.871,
+                0.233
+            ],
+            "angle": 0,
+            "content": "How to book professional consolidation adjustments during these three years?"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.248,
+                0.392,
+                0.264
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.28,
+                0.541,
+                0.297
+            ],
+            "angle": 0,
+            "content": "At the end of Year 1, we proceed as follows:"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.309,
+                0.877,
+                0.457
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Asset (Acq. Val.)</td><td>110(b)</td><td>Capital</td><td>200</td></tr><tr><td>Asset (Deprec.)</td><td>(11)(a)</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>(10)c)</td><td>Result</td><td>(11)(a)</td></tr><tr><td></td><td></td><td></td><td>(11)(b)</td></tr><tr><td></td><td></td><td></td><td>(10)(c)</td></tr><tr><td></td><td></td><td></td><td>(10)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.472,
+                0.875,
+                0.505
+            ],
+            "angle": 0,
+            "content": "Adjustment (c): Book an adjustment depreciation of 10 based on the correct value of 100 for that asset"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.521,
+                0.391,
+                0.537
+            ],
+            "angle": 0,
+            "content": "The adjustments = Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.552,
+                0.871,
+                0.57
+            ],
+            "angle": 0,
+            "content": "At the end of Year 2, we are in an on going process and we proceed as follows"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.111,
+                0.599,
+                0.872,
+                0.745
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"4\">A (Year 2)</td><td rowspan=\"8\">Adjustment (a): Reverse the statutory depreciations of 22, one impacting the P&amp;L for 11 and the other one impacting the Reserves for 11</td></tr><tr><td rowspan=\"2\">Asset (Acq. Val.)</td><td rowspan=\"2\">(b)</td><td>110</td><td>Capital</td><td>200</td></tr><tr><td>(10)</td><td></td><td></td></tr><tr><td rowspan=\"5\">Asset (Deprec.)</td><td rowspan=\"2\">(a)</td><td>22</td><td>Reserves</td><td>(11)</td></tr><tr><td>(22)</td><td></td><td></td></tr><tr><td rowspan=\"3\">(c)</td><td rowspan=\"3\">(20)</td><td rowspan=\"3\">Result</td><td>(a) 11</td></tr><tr><td>(b) (10)</td></tr><tr><td>(c) (10)</td></tr><tr><td rowspan=\"3\">Cash</td><td rowspan=\"3\" colspan=\"2\">90</td><td rowspan=\"3\">Result</td><td>(11)</td><td rowspan=\"3\">Adjustment (b): Eliminate the secondary costs of 10 and book them in Reserves</td></tr><tr><td>(a) 11</td></tr><tr><td>(c) (10)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.761,
+                0.87,
+                0.794
+            ],
+            "angle": 0,
+            "content": "Adjustment (c): Book depreciations of 20, 10 impacting the P&L and the other 10 impacting the Reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.809,
+                0.872,
+                0.859
+            ],
+            "angle": 0,
+            "content": "To say it in other words, we carry forward in Year 2 to Reserves all adjustments impacting the P&L in Year 1. We usually speak about carry forward of historical adjustments."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.307,
+                0.07,
+                0.855,
+                0.087
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.118,
+                0.393,
+                0.135
+            ],
+            "angle": 0,
+            "content": "The adjustments = Year 3"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.15,
+                0.878,
+                0.217
+            ],
+            "angle": 0,
+            "content": "At the end of Year 3, that asset is not in company A accounts any more. The problem is that the sale has been done based on a statutory value of 88 which is different from the value in consolidation of 80. For a given price of 120, the statutory profit is 32 and the consolidation profit is 40."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.232,
+                0.368,
+                0.248
+            ],
+            "angle": 0,
+            "content": "Here are the adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.258,
+                0.876,
+                0.445
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"4\">A (Year 3)</td><td>Adjustment (z): Reverse the</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>200</td><td></td><td>sale which has been done on</td></tr><tr><td>(z)</td><td>110</td><td></td><td></td><td></td><td>the basis of values not</td></tr><tr><td>(b)</td><td>(10)</td><td></td><td></td><td></td><td>acceptable from a</td></tr><tr><td>(d)</td><td>(100)</td><td></td><td></td><td></td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>(22)</td><td></td><td>consolidation point of view</td></tr><tr><td>(z)</td><td>(22)</td><td></td><td>(a)</td><td>22</td><td></td></tr><tr><td>(a)</td><td>22</td><td></td><td>(b)</td><td>(10)</td><td></td></tr><tr><td>(c)</td><td>(20)</td><td></td><td>(c)</td><td>(20)</td><td>Adjustment (a): Carry</td></tr><tr><td>(d)</td><td>20</td><td></td><td></td><td></td><td>forward the historical</td></tr><tr><td>Cash</td><td>210</td><td>Result</td><td>32</td><td></td><td>adjustment (a) of Year 2</td></tr><tr><td>(z)</td><td>(120)</td><td></td><td>(z)</td><td>(32)</td><td>related to the reverse of the</td></tr><tr><td>(d)</td><td>120</td><td></td><td>(d)</td><td>40</td><td>depreciation of 22</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.456,
+                0.876,
+                0.489
+            ],
+            "angle": 0,
+            "content": "Adjustment (b): Carry forward the historical adjustment (b) of Year 2 related to the reverse of the secondary costs of 10"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.504,
+                0.875,
+                0.537
+            ],
+            "angle": 0,
+            "content": "Adjustment (c): Carry forwards the historical adjustment (c) of Year 2 related to the consolidation depreciation of 20"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.553,
+                0.876,
+                0.586
+            ],
+            "angle": 0,
+            "content": "Adjustment (d): Make the sale in consolidation, based on a price of 120 and a net value of 80, giving a profit of 40."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.601,
+                0.855,
+                0.634
+            ],
+            "angle": 0,
+            "content": "Finally, we can see that assets and cash accounts are impacted for zero, the P&L for a profit of 8 and the Reserves for a debit of 8."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.649,
+                0.533,
+                0.665
+            ],
+            "angle": 0,
+            "content": "The final adjustments could just have been"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.343,
+                0.679,
+                0.661,
+                0.732
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>8</td><td></td></tr><tr><td>Result</td><td></td><td>8</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.745,
+                0.77,
+                0.762
+            ],
+            "angle": 0,
+            "content": "but a little bit more difficult to understand for inexperienced people."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.777,
+                0.876,
+                0.827
+            ],
+            "angle": 0,
+            "content": "Now, it can be interesting to compare the impact from a statutory point of view, supposing we adjust nothing, or from a consolidation point of view. Here is the summary."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.064,
+                0.367,
+                0.079
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.208,
+                0.116,
+                0.773,
+                0.169
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year1</td><td>Year2</td><td>Year3</td><td>Total</td></tr><tr><td>Statutory</td><td>(11)</td><td>(11)</td><td>32</td><td>10</td></tr><tr><td>Consolidation</td><td>(20)</td><td>(10)</td><td>40</td><td>10</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.183,
+                0.875,
+                0.247
+            ],
+            "angle": 0,
+            "content": "Over these three years, the net impact on P&L is 10 and the net impact after consolidation adjustments in also 10. Was it worth to adjust that situation? No considering the total impact, but yes if we look at individual years where the profit is quite different."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.247,
+                0.876,
+                0.312
+            ],
+            "angle": 0,
+            "content": "Did we have the choice to adjust or not. No if group's rules are clear and a materiality level is defined. This example indeed shows that it is quite a lot of work to adjust such situation. That's the reason why we recommend defining, in accordance with Auditors, realistic thresholds."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.327,
+                0.874,
+                0.378
+            ],
+            "angle": 0,
+            "content": "Over that difficulty, one should keep in mind that as soon as an asset has been adjusted by means of a consolidation adjustment, it is important to verify each year if the concerned asset is still in the accounts of the company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.39,
+                0.874,
+                0.44
+            ],
+            "angle": 0,
+            "content": "In our example, if the reporting system doesn't ask such question, the risk is to continue to book consolidation adjustments for an asset that is no longer in the accounts!"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.474,
+                0.715,
+                0.521
+            ],
+            "angle": 0,
+            "content": "8.3 Disposal of an asset between two companies, with a group profit"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.54,
+                0.26,
+                0.558
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.572,
+                0.874,
+                0.67
+            ],
+            "angle": 0,
+            "content": "Three years ago, company A acquired a tangible asset for a price of 300 depreciated by 30 over a period of 10 years. This year (let's call it Year 1), this asset whose net value is now \\(210 = 300 - 3^*30\\) is sold to group company B for a price of 280, giving a gain of 70 for company A. Company B decides to depreciate the asset over the remaining economical period of 7 years with an annual depreciation of \\(40 = 280 / 7\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.684,
+                0.873,
+                0.716
+            ],
+            "angle": 0,
+            "content": "During Year 2, that asset remains in company B and its net value is \\(200 = 280 - 2 * 40\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.731,
+                0.873,
+                0.766
+            ],
+            "angle": 0,
+            "content": "Beginning of Year 3, company B decides to sell that asset to \\(3^{\\text{rd}}\\) Parties for a price of 260, making a gain of 60."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.78,
+                0.818,
+                0.797
+            ],
+            "angle": 0,
+            "content": "What will be the impact of this transaction on the consolidated accounts?"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.812,
+                0.525,
+                0.83
+            ],
+            "angle": 0,
+            "content": "Some questions about the transaction"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.844,
+                0.873,
+                0.879
+            ],
+            "angle": 0,
+            "content": "Company A is making a profit of 70 with company B. Supposing that within the same year, B is selling the same asset to a third company C of the same"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.073,
+                0.855,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.121,
+                0.876,
+                0.17
+            ],
+            "angle": 0,
+            "content": "group, again with a gain, we would conclude this kind of transactions is a marvellous tool to generate profits. Obviously, this cannot be acceptable and consequently must be eliminated. But how?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.185,
+                0.809,
+                0.202
+            ],
+            "angle": 0,
+            "content": "We can define three approaches to eliminate such group profit (or loss)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.217,
+                0.876,
+                0.41
+            ],
+            "angle": 0,
+            "content": "The first approach consists in noticing that the transaction is made in the conditions of the market and then it is acceptable not to eliminate the group profit. However we would like to add a comment to this approach. Let's suppose a company having a land acquired a long time ago. This land remained in the accounts at acquisition value. Meanwhile, that land is now close to a highway access and located in a new and well-equipped activity area. The value of that land has been multiplied by three and the disposal to another group company would have two impacts: a huge gain in P&L and a corresponding revaluation of the land. But the transaction being made at market conditions, we eliminate nothing. We think the correct approach would be to eliminate the group profit and, possibly book a revaluation of the land to reflect a correct fair value with an impact in equity, not in the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.426,
+                0.876,
+                0.635
+            ],
+            "angle": 0,
+            "content": "The second approach consists in eliminating the profit in company A accounts and eliminating the same amount from the acquisition price in company B accounts. Of course, the statutory depreciation amount must also be adjusted to make it compliant with the adjusted acquisition value. In this approach, we would eliminate the profit in A accounts by booking a \"Deferred income\" account and, in company B accounts, the elimination of the profit in the asset would be done against a \"Deferred expense\" account. Both deferred accounts would be defined as intercompany accounts in order no to appear in the financial consolidated statement. Indeed, this is an internal group transaction that cannot appear in the accounts. Speaking about deferred accounts implies that these accounts must be closed sooner or later. Most of the time, the event will be the disposal of that asset finally to \\(3^{rd}\\) Parties. If this event cannot be predictable, the third approach should be used."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.65,
+                0.876,
+                0.715
+            ],
+            "angle": 0,
+            "content": "The third approach is quite similar to the previous one, but instead of using deferred accounts, we use Reserves accounts. In such case, a particular attention must be drawn because a technical difficulty could arise if companies are not owned at the same financial percentage."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.731,
+                0.876,
+                0.764
+            ],
+            "angle": 0,
+            "content": "The situation described below will be adjusted, based on the second approach."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.067,
+                0.368,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.121,
+                0.396,
+                0.138
+            ],
+            "angle": 0,
+            "content": "The adjustments = Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.153,
+                0.877,
+                0.187
+            ],
+            "angle": 0,
+            "content": "At the end of Year 1, companies A and B present the following statutory accounts after having booked the necessary consolidation adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.202,
+                0.875,
+                0.311
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td><td></td><td colspan=\"4\">B (Year 1)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>1,000</td><td>Asset (Acq. Val.)</td><td>280</td><td>Capital</td><td>500</td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>0</td><td>(b)</td><td>(70)</td><td>Reserves</td><td>0</td><td></td></tr><tr><td></td><td></td><td>Result</td><td>70</td><td>(a)</td><td>(40)</td><td></td><td></td><td></td></tr><tr><td></td><td></td><td>(a)</td><td>(70)</td><td>(c)</td><td>(30)</td><td></td><td></td><td></td></tr><tr><td>Cash</td><td>1,070</td><td>Def. Income/B</td><td>70</td><td>Cash</td><td>220</td><td>Result</td><td>(40)</td><td></td></tr><tr><td></td><td></td><td>(a)</td><td></td><td>Def. Expense/A</td><td>(a)</td><td></td><td>40</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>(b)</td><td>(c)</td><td></td><td>(30)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.326,
+                0.876,
+                0.36
+            ],
+            "angle": 0,
+            "content": "Company A adjustment (a): We eliminate the group profit of 70 and transfer it to the Deferred income account, which is intercompany with company B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.374,
+                0.877,
+                0.424
+            ],
+            "angle": 0,
+            "content": "Company B adjustment (a): We reverse the statutory depreciation of 40 which is calculated on an amount not acceptable from a consolidation point of view."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.438,
+                0.875,
+                0.488
+            ],
+            "angle": 0,
+            "content": "Company B adjustment (b): The 70 profit which is included in the acquisition value is reversed against the Deferred Expense account, which is also intercompany with A."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.503,
+                0.811,
+                0.52
+            ],
+            "angle": 0,
+            "content": "Company B adjustment (c): And finally, we depreciate the asset for 30."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.535,
+                0.876,
+                0.584
+            ],
+            "angle": 0,
+            "content": "If we look at these final adjusted accounts, we find a net value of the asset for 180 and a depreciation in the P&L for 30, just as if this transaction would not have taken place."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.599,
+                0.393,
+                0.615
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.632,
+                0.876,
+                0.697
+            ],
+            "angle": 0,
+            "content": "At the end of Year 2, no new transaction happens and the asset is still in company B accounts, but at consolidation level, adjustments of Year 1 must be carried forward into the Year 2 consolidation (historical adjustments carry forward principle)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.722,
+                0.872,
+                0.832
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 2)</td><td></td><td colspan=\"4\">B (Year 2)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>1,000</td><td>Asset (Acq. Val.)</td><td>280</td><td>Capital</td><td>500</td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>70</td><td>(b)</td><td>(70)</td><td>Reserves</td><td>(40)</td><td></td></tr><tr><td></td><td></td><td>(a)</td><td>(70)</td><td>Asset (Deprec.)</td><td>(80)</td><td>(a)</td><td>40</td><td></td></tr><tr><td></td><td></td><td>Result</td><td>0</td><td>(a)</td><td>80</td><td>(c)</td><td>(30)</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>(c)</td><td>(60)</td><td></td><td></td><td></td></tr><tr><td>Cash</td><td>1,070</td><td>Def. Income/B</td><td>70</td><td>Cash</td><td>220</td><td>Result</td><td>(40)</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>Def. Expense/A</td><td>(a)</td><td>40</td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>(b)</td><td>70</td><td>(c)</td><td>(30)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.847,
+                0.872,
+                0.88
+            ],
+            "angle": 0,
+            "content": "Company A adjustment (a): This adjustment is the same as the one booked in Year 1, with the P&L impact carried forward to Reserves"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.477,
+                0.924,
+                0.508,
+                0.938
+            ],
+            "angle": 0,
+            "content": "98"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.072,
+                0.856,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.12,
+                0.877,
+                0.157
+            ],
+            "angle": 0,
+            "content": "Com~anB adjustment (a): We have to reverse now two depreciations, one impacting the P&L and the other one of Year 1 impacting the Reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.169,
+                0.878,
+                0.203
+            ],
+            "angle": 0,
+            "content": "Com~anB adjustment (b): This adjustment is the same as the one booked in Year 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.218,
+                0.878,
+                0.267
+            ],
+            "angle": 0,
+            "content": "Company B adjustment (c): We have to depreciate twice the asset on the basis of the consolidation value, one impact of (30) is for the P&L of this year and the other impact of (30) is on the Reserves account."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.282,
+                0.742,
+                0.3
+            ],
+            "angle": 0,
+            "content": "Behind these adjustments, there are two methodology principles"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.314,
+                0.874,
+                0.347
+            ],
+            "angle": 0,
+            "content": "Each time an adjustment is booked on the P&L, we have to find the same booking on the Reserves next year"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.153,
+                0.362,
+                0.875,
+                0.396
+            ],
+            "angle": 0,
+            "content": "Each time an adjustment is booked on the Reserves, we have to find the same booking on the Reserves next year"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.153,
+                0.314,
+                0.875,
+                0.396
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.41,
+                0.72,
+                0.428
+            ],
+            "angle": 0,
+            "content": "otherwise we would get some unjustified variation of reserves."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.442,
+                0.392,
+                0.459
+            ],
+            "angle": 0,
+            "content": "The adjustments = Year 3"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.474,
+                0.878,
+                0.541
+            ],
+            "angle": 0,
+            "content": "At the end of Year 3, the asset is disposed to \\(3^{\\text{rd}}\\) Parties. The first idea would be to say that there is nothing else to do. The problem is that the disposal has been done with the statutory net value of the asset but in consolidation we consider another value. So, let's be careful and let's proceed step by step."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.112,
+                0.553,
+                0.491,
+                0.674
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 3)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>1,000</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>70(a) (70)</td></tr><tr><td></td><td></td><td>Result(b)</td><td>0</td></tr><tr><td>Cash</td><td>1,070</td><td>Def. Income/B(a)(b)</td><td>70(a) (70)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.506,
+                0.554,
+                0.876,
+                0.603
+            ],
+            "angle": 0,
+            "content": "Company A adjustment (a): This adjustment is again the same as the one booked in Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.506,
+                0.619,
+                0.877,
+                0.684
+            ],
+            "angle": 0,
+            "content": "Com~anvA adjustment (b): Now that the asset has left the group, we can reverse the Deferred income and book it to the P&L. We give the profit"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.684,
+                0.212,
+                0.699
+            ],
+            "angle": 0,
+            "content": "back to A."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.715,
+                0.481,
+                0.845
+            ],
+            "angle": 0,
+            "content": "Com~anB adjustment (z): We first reverse the selling transaction because made with statutory amounts. So we find back in the accounts the acquisition value, the cumulated depreciations, the reverse of the cash received and the reverse of the gain on disposal"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.495,
+                0.699,
+                0.875,
+                0.89
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">B (Year 3)</td></tr><tr><td>Asset (Acq. Val.)</td><td>0</td><td>Capital</td><td>500</td></tr><tr><td>(z)</td><td>280</td><td></td><td></td></tr><tr><td>(b)</td><td>(70)</td><td></td><td></td></tr><tr><td>(d)</td><td>(210)</td><td></td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>(80)</td></tr><tr><td>(z)</td><td>(80)</td><td>(a)</td><td>80</td></tr><tr><td>(a)</td><td>80</td><td>(c)</td><td>(60)</td></tr><tr><td>(c)</td><td>(60)</td><td></td><td></td></tr><tr><td>(d)</td><td>60</td><td></td><td></td></tr><tr><td>Cash</td><td>480</td><td>Result</td><td>60</td></tr><tr><td>(z)</td><td>(260)</td><td>(z)</td><td>(60)</td></tr><tr><td>(d)</td><td>260</td><td>(d)</td><td>110</td></tr><tr><td>Def. Expense/A</td><td>(b)</td><td>70</td><td>(e)</td></tr><tr><td>(e)</td><td>(70)</td><td></td><td></td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.11,
+                0.065,
+                0.367,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.12,
+                0.882,
+                0.153
+            ],
+            "angle": 0,
+            "content": "Company B adjustments (a,b,c): These adjustments are just the carried forward of Year 2 adjustments with Reserves impact"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.17,
+                0.882,
+                0.203
+            ],
+            "angle": 0,
+            "content": "Company B adjustment (d): Then we make the sale with consolidation amounts, giving a gain of 110"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.22,
+                0.882,
+                0.253
+            ],
+            "angle": 0,
+            "content": "Company B adjustment (e): And finally, we have to reverse to P&L the Deferred expense of 70 which is still open in the accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.27,
+                0.882,
+                0.287
+            ],
+            "angle": 0,
+            "content": "To summarize, we could just book one adjustment in A accounts and another"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.11,
+                0.3,
+                0.455,
+                0.352
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company A</td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>70</td><td></td></tr><tr><td>Result</td><td></td><td>70</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.352,
+                0.395,
+                0.367
+            ],
+            "angle": 0,
+            "content": "one in B accounts, as follows"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.515,
+                0.3,
+                0.858,
+                0.352
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company B</td><td>Debit</td><td>Credit</td></tr><tr><td>Result</td><td>20</td><td></td></tr><tr><td>Reserves</td><td></td><td>20</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.384,
+                0.882,
+                0.417
+            ],
+            "angle": 0,
+            "content": "but again we would do it with a loss of clarity, excepted if we keep an additional explanation in notes to the accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.434,
+                0.882,
+                0.484
+            ],
+            "angle": 0,
+            "content": "To close this example, it can be interesting to compare the P&L impact in case we would have booked no adjustments (approach 1) with the approach 2 developed above. The amounts are summarized hereunder"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.225,
+                0.499,
+                0.795,
+                0.568
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Approach 1</td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Total</td></tr><tr><td>Company A</td><td>70</td><td>0</td><td>0</td><td>70</td></tr><tr><td>Company B</td><td>(40)</td><td>(40)</td><td>60</td><td>(20)</td></tr><tr><td>Total</td><td>30</td><td>(40)</td><td>60</td><td>50</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.225,
+                0.592,
+                0.793,
+                0.66
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Approach 2</td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Total</td></tr><tr><td>Company A</td><td>0</td><td>0</td><td>70</td><td>70</td></tr><tr><td>Company B</td><td>(30)</td><td>(30)</td><td>40</td><td>(20)</td></tr><tr><td>Total</td><td>(30)</td><td>(30)</td><td>110</td><td>50</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.676,
+                0.88,
+                0.757
+            ],
+            "angle": 0,
+            "content": "The total contribution of each company in the P&L over these three years is the same in both approaches: 70 for A and (20) for B. But the contribution for each year is quite different. In fact, in approach 2, profit is taken in P&L only when the asset leaves the group. Before that, the principle of prudence is applied."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.773,
+                0.88,
+                0.823
+            ],
+            "angle": 0,
+            "content": "Of course, considering these figures and practices, it is important for the company A manager to be aware of these approaches and to specify in his contract on which profit his bonus will be calculated ..."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.306,
+                0.074,
+                0.854,
+                0.091
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.123,
+                0.655,
+                0.147
+            ],
+            "angle": 0,
+            "content": "8.4 Elimination of stocks margins"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.165,
+                0.262,
+                0.183
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.198,
+                0.875,
+                0.326
+            ],
+            "angle": 0,
+            "content": "In most of the industrial groups, some companies are dedicated to supply on the market and make products and some other companies are dedicated to sell these products. In such situation, the normal practice for the industrial companies is to sell the products to the commercial companies, including a benefit called stocks margin. From that point of view, these transactions imply a group profit and, as was explained in the previous section, it should be eliminated. However, we will see that the set of consolidation adjustments differs from the previous one because of the stocks accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.327,
+                0.874,
+                0.392
+            ],
+            "angle": 0,
+            "content": "For the explanation, let's consider a company A manufacturing some products and selling them to a commercial company B which, in turn, sells these products on the market. We will also suppose that each stock stays in the companies accounts for less than a year."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.406,
+                0.873,
+                0.456
+            ],
+            "angle": 0,
+            "content": "In Year 1, the group decides for the first time to eliminate stocks margins. Company A sells to company B some stocks for a price of 350 and initially booked for 300, making a stock margin of 50."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.47,
+                0.875,
+                0.537
+            ],
+            "angle": 0,
+            "content": "In Year 2, company A sells again some stocks to company B for a price of 460 and initially booked for 400, making a stocks margin of 60. The Year 1 stocks bought by company B are no longer in its accounts because sold to the market."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.55,
+                0.545,
+                0.568
+            ],
+            "angle": 0,
+            "content": "How do we eliminate these stocks margins?"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.582,
+                0.394,
+                0.598
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.614,
+                0.482,
+                0.76
+            ],
+            "angle": 0,
+            "content": "We first consider the statutory journal entry (1) booked in company A for the sale of the products to company B. The stocks of 300 are sold for a cash value of 350 generating a stocks margin of 50. Notice that the sales to B for 350 in the P&L are declared as intercompany."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.494,
+                0.595,
+                0.88,
+                0.757
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Stocks</td><td>300</td><td>Capital</td><td>500</td></tr><tr><td></td><td>(1) (300)</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>200</td><td>Result</td><td>0</td></tr><tr><td></td><td>(1) 350</td><td>(1)</td><td>50</td></tr><tr><td>Purchases</td><td>300</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td></td><td>(1)</td><td>350</td></tr><tr><td>Stocks var.</td><td>(300)</td><td>Stocks var.</td><td>0</td></tr><tr><td>Result</td><td>0</td><td>(1)</td><td>(300)</td></tr><tr><td></td><td>(1) 50</td><td></td><td></td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.116,
+                0.067,
+                0.371,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.121,
+                0.738,
+                0.139
+            ],
+            "angle": 0,
+            "content": "In company B accounts, we see a booking (2) of stocks for 350."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.166,
+                0.526,
+                0.33
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">B (Year 1)</td></tr><tr><td>Stocks</td><td>0</td><td>Capital</td><td>800</td></tr><tr><td></td><td>(2) 350</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>800</td><td>Result</td><td>0</td></tr><tr><td></td><td>(2) (350)</td><td></td><td></td></tr><tr><td>Purchases/A</td><td>0</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td>(2) 350</td><td></td><td></td></tr><tr><td>Stocks var.</td><td>0</td><td>Stocks var.</td><td>0</td></tr><tr><td></td><td>(2) (350)</td><td></td><td></td></tr><tr><td>Result</td><td>0</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.345,
+                0.658,
+                0.362
+            ],
+            "angle": 0,
+            "content": "Notice that the Purchases account is also intercompany."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.377,
+                0.878,
+                0.41
+            ],
+            "angle": 0,
+            "content": "Everything is consistent except the fact that there is a group profit of 50 that has to be eliminated."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.426,
+                0.503,
+                0.443
+            ],
+            "angle": 0,
+            "content": "Here are the consolidation adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.455,
+                0.501,
+                0.634
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Stocks</td><td>0</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td></td><td>(a)</td><td>50</td></tr><tr><td>Cash</td><td>550</td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>(a)</td><td>(50)</td></tr><tr><td>Purchases</td><td>300</td><td>Sales/B</td><td>350</td></tr><tr><td></td><td></td><td>(a)</td><td>(50)</td></tr><tr><td>Stocks var.</td><td>(300)</td><td>Stocks var.</td><td>(300)</td></tr><tr><td>Result</td><td>50</td><td></td><td></td></tr><tr><td>(a)</td><td>(50)</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.513,
+                0.457,
+                0.875,
+                0.57
+            ],
+            "angle": 0,
+            "content": "The 50 profit is eliminated by reducing the sales because we consider that the group value of the stocks is 300 instead of 350. Of course, at this moment, we introduce a difference between the two intercompany positions."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.512,
+                0.587,
+                0.875,
+                0.634
+            ],
+            "angle": 0,
+            "content": "The other peculiarity to be indicated is the use of the reserves account. In the previous case we have used"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.635,
+                0.874,
+                0.669
+            ],
+            "angle": 0,
+            "content": "deferred accounts which were corresponding to what we called the \"Approach 2\". In this section we use 'Approach 3' in order to give a complete overview."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.698,
+                0.443,
+                0.78
+            ],
+            "angle": 0,
+            "content": "In B accounts, we also consider the group value of the stocks and this is the reason of the credit 50 with a counterpart on the Reserves account again."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.794,
+                0.443,
+                0.876
+            ],
+            "angle": 0,
+            "content": "Notice that both Reserves accounts are impacted together for a net value of zero if each company A and B is owned at the same financial percentage."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.457,
+                0.695,
+                0.865,
+                0.876
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">B (Year 1)</td></tr><tr><td>Stocks</td><td>350</td><td>Capital</td><td>800</td></tr><tr><td></td><td>(b)(50)</td><td>Reserves</td><td>0</td></tr><tr><td></td><td></td><td>(b)(50)</td><td></td></tr><tr><td>Cash</td><td>450</td><td>Result</td><td>0</td></tr><tr><td>Purchases/A</td><td>350</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td>(b)(50)</td><td></td><td></td></tr><tr><td>Stocks var.</td><td>(350)</td><td>Stocks var.</td><td>0</td></tr><tr><td></td><td>(b)</td><td>50</td><td></td></tr><tr><td>Result</td><td>0</td><td></td><td></td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.301,
+                0.071,
+                0.853,
+                0.087
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.118,
+                0.875,
+                0.169
+            ],
+            "angle": 0,
+            "content": "As the stocks purchased have a value of 300, we have to correct the values in the P&L to be consistent. That's a good point because now intercompany positions are again in line."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.184,
+                0.391,
+                0.202
+            ],
+            "angle": 0,
+            "content": "The adjustments = Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.216,
+                0.874,
+                0.248
+            ],
+            "angle": 0,
+            "content": "Again, we first consider the statutory journal entry (3) in company A accounts which is similar to the one seen in Year 2."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.109,
+                0.265,
+                0.455,
+                0.41
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td>Stocks</td><td>400</td><td>Capital</td><td>500</td></tr><tr><td>(3)</td><td>(400)</td><td>Reserves</td><td>50</td></tr><tr><td>Cash</td><td>150</td><td>Result</td><td>0</td></tr><tr><td>(3)</td><td>460</td><td>(3)</td><td>60</td></tr><tr><td>Purchases</td><td>400</td><td>Sales/B</td><td>0</td></tr><tr><td></td><td></td><td>(3)</td><td>460</td></tr><tr><td>Stocks var.</td><td>(400)</td><td>Stocks var.</td><td>0</td></tr><tr><td>Result</td><td>0</td><td>(3)</td><td>(400)</td></tr><tr><td>(3)</td><td>60</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.511,
+                0.265,
+                0.875,
+                0.41
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">B (Year 2)</td></tr><tr><td>Stocks</td><td>0</td><td>Capital     800</td></tr><tr><td></td><td>(4) 460</td><td>Reserves     0</td></tr><tr><td>Cash</td><td>950</td><td>Result    150</td></tr><tr><td></td><td>(4)  (460)</td><td></td></tr><tr><td>Purchases/A</td><td>0</td><td>Sales/B   500</td></tr><tr><td></td><td>(4) 460</td><td></td></tr><tr><td>Stocks var.</td><td>0</td><td>Stocks var. (350)</td></tr><tr><td></td><td>(4)  (460)</td><td></td></tr><tr><td>Result</td><td>150</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.411,
+                0.498,
+                0.426
+            ],
+            "angle": 0,
+            "content": "In B accounts, the statutory journal"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.426,
+                0.874,
+                0.475
+            ],
+            "angle": 0,
+            "content": "entry (4) is also similar to the one in Year 1. Of course, in the meantime, the stocks bought last year have been completely sold to \\(3^{rd}\\) Parties. As we isolate the situation, we can suppose these stocks have generated a profit of 150."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.489,
+                0.56,
+                0.507
+            ],
+            "angle": 0,
+            "content": "Let's book now the consolidation adjustments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.522,
+                0.875,
+                0.556
+            ],
+            "angle": 0,
+            "content": "No surprise for company A. We find the same consolidation adjustment as the one booked in Year 1, except the stocks margin which is now 60."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.11,
+                0.567,
+                0.455,
+                0.727
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td rowspan=\"3\">Stocks</td><td rowspan=\"3\">0</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>50</td></tr><tr><td>(c)</td><td>60</td></tr><tr><td rowspan=\"2\">Cash</td><td rowspan=\"2\">610</td><td>Result</td><td>60</td></tr><tr><td>(c)</td><td>(60)</td></tr><tr><td rowspan=\"2\">Purchases</td><td rowspan=\"2\">400</td><td>Sales/B</td><td>460</td></tr><tr><td>(c)</td><td>(60)</td></tr><tr><td>Stocks var.</td><td>(400)</td><td>Stocks var.</td><td>(400)</td></tr><tr><td>Result</td><td>60</td><td></td><td></td></tr><tr><td>(c)</td><td>(60)</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.513,
+                0.568,
+                0.875,
+                0.756
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">B (Year 2)</td></tr><tr><td>Stocks</td><td>460</td><td>Capital</td><td>800</td></tr><tr><td></td><td>(b)(d)(e)</td><td>(50)Reserves</td><td>0</td></tr><tr><td></td><td></td><td>(b)(e)</td><td>(50)</td></tr><tr><td>Cash</td><td>490</td><td>Result</td><td>150</td></tr><tr><td></td><td></td><td>(d)</td><td>50</td></tr><tr><td>Purchases/A</td><td>460</td><td>Sales/B</td><td>500</td></tr><tr><td></td><td>(e)</td><td>(60)</td><td></td></tr><tr><td>Stocks var.</td><td>(460)</td><td>Stocks var.</td><td>(350)</td></tr><tr><td></td><td>(e)</td><td>60</td><td>(d)</td></tr><tr><td>Result</td><td>150</td><td></td><td></td></tr><tr><td></td><td>(d)</td><td>50</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.774,
+                0.876,
+                0.857
+            ],
+            "angle": 0,
+            "content": "For company B it is a little bit more complicated. First, we have to carry forward the \"historical\" adjustment (b) of Year 1 because it has an impact on the Reserves with another account. But this credit on Stocks account cannot be kept because these stocks have been sold in the meantime. So, we reverse that adjustment by the journal entry (d). You can notice that we improve the"
+        }
+    ]
+]

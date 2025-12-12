@@ -1,0 +1,939 @@
+# API Validation Rule Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of data validation rules
+
+api_validation_rule_endpoints:
+  name: "Validation Rule API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing data validation rules in the consolidation system.
+
+    Validation rules ensure data quality and integrity before consolidation:
+    - Define validation expressions comparing left and right operands
+    - Configure thresholds for acceptable variances
+    - Group rules by error type (Error vs Warning)
+    - Support account, flow, and dimension-level validation
+    - Apply rules based on consolidation method selection
+
+    Key concepts:
+    - Validation Rule Header: Rule definition with operator, thresholds, and configuration
+    - Validation Rule Details: Left/right operand specifications (accounts, flows, dimensions)
+    - Error Types: 'E' (Error - blocks consolidation), 'W' (Warning - allows continuation)
+    - Operators: =, <>, <, <=, >, >= for comparing operands
+    - Factors: Multipliers applied to detail line values
+    - System vs User Rules: System rules (ErrorCode <= 100) are predefined
+
+    Services documented:
+    - ValidationReportRuleService: Validation rule management (6 handlers)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    ErrorTypes:
+      description: "Severity levels for validation failures"
+      values:
+        - char: "E"
+          name: "Error"
+          description: "Blocks consolidation until resolved"
+        - char: "W"
+          name: "Warning"
+          description: "Allows consolidation but flags issue"
+
+    AccountTypes:
+      description: "Account specification types for rule details"
+      values:
+        - char: "A"
+          name: "Account"
+          description: "Regular account code"
+        - char: "S"
+          name: "CalculatedAccount"
+          description: "Account summation (calculated account)"
+
+    FlowTypes:
+      description: "Flow specification types for rule details"
+      values:
+        - char: "F"
+          name: "Flow"
+          description: "Regular flow code"
+        - char: "S"
+          name: "CalculatedFlow"
+          description: "Flow summation (calculated flow)"
+
+    PeriodTypes:
+      description: "Period reference for validation"
+      values:
+        - char: "C"
+          name: "Current"
+          description: "Current consolidation period"
+        - char: "R"
+          name: "Reference"
+          description: "Reference/prior period"
+
+    LeftRightOperand:
+      description: "Operand side in validation expression"
+      values:
+        - char: "L"
+          name: "Left"
+          description: "Left side of validation expression"
+        - char: "R"
+          name: "Right"
+          description: "Right side of validation expression"
+
+    Operators:
+      description: "Comparison operators for validation"
+      values:
+        - symbol: "="
+          name: "Equal"
+          description: "Left equals Right (within threshold)"
+        - symbol: "<>"
+          name: "NotEqual"
+          description: "Left not equal to Right"
+        - symbol: "<"
+          name: "LessThan"
+          description: "Left less than Right"
+        - symbol: "<="
+          name: "LessThanOrEqual"
+          description: "Left less than or equal to Right"
+        - symbol: ">"
+          name: "GreaterThan"
+          description: "Left greater than Right"
+        - symbol: ">="
+          name: "GreaterThanOrEqual"
+          description: "Left greater than or equal to Right"
+
+    RuleTypes:
+      description: "Types of validation rules"
+      values:
+        - char: "S"
+          name: "System"
+          description: "System-defined rules (ErrorCode <= 100)"
+        - char: "U"
+          name: "User"
+          description: "User-defined custom rules (ErrorCode > 100)"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    ValidationReportRuleDTO:
+      description: "Validation rule header definition"
+      source: "ValidationReportRuleService.cs"
+      fields:
+        - name: "RuleID"
+          type: "integer"
+          nullable: true
+          description: "Unique rule identifier"
+        - name: "RuleCode"
+          type: "string"
+          description: "Rule code"
+        - name: "RuleDescription"
+          type: "string"
+          description: "Rule description (localized)"
+        - name: "ConsoID"
+          type: "integer"
+          description: "Consolidation period ID"
+        - name: "ErrorType"
+          type: "string"
+          description: "E=Error, W=Warning"
+          enum_ref: "ErrorTypes"
+        - name: "ErrorCode"
+          type: "integer"
+          description: "Error code number (System rules <= 100, User rules > 100)"
+        - name: "GroupID"
+          type: "integer"
+          description: "Validation rule group ID"
+        - name: "SequenceInGroup"
+          type: "integer"
+          description: "Order within group"
+        - name: "ValidationThreshold"
+          type: "decimal"
+          nullable: true
+          description: "Acceptable variance threshold"
+        - name: "ValidationLeftTitle"
+          type: "string"
+          nullable: true
+          description: "Display title for left operand"
+        - name: "ValidationRightTitle"
+          type: "string"
+          nullable: true
+          description: "Display title for right operand"
+        - name: "ValidationExplanation"
+          type: "string"
+          nullable: true
+          description: "Explanation of validation rule"
+        - name: "IsSystem"
+          type: "boolean"
+          description: "Whether rule is system-defined"
+        - name: "Active"
+          type: "boolean"
+          description: "Whether rule is active"
+        - name: "ConsoMethodSelectionID"
+          type: "integer"
+          nullable: true
+          description: "Consolidation method selection filter"
+        - name: "Operator"
+          type: "string"
+          description: "Comparison operator (=, <>, <, <=, >, >=)"
+          enum_ref: "Operators"
+        - name: "LeftHasFlowOrSummation"
+          type: "boolean"
+          description: "Left operand includes flow/summation"
+        - name: "LeftHasDim"
+          type: "boolean"
+          description: "Left operand includes dimension"
+        - name: "LeftHasInterCompany"
+          type: "boolean"
+          description: "Left operand is intercompany"
+        - name: "RightHasFlowOrSummation"
+          type: "boolean"
+          description: "Right operand includes flow/summation"
+        - name: "RightHasDim"
+          type: "boolean"
+          description: "Right operand includes dimension"
+        - name: "RightHasInterCompany"
+          type: "boolean"
+          description: "Right operand is intercompany"
+        - name: "RightHasAmount"
+          type: "boolean"
+          description: "Right operand is fixed amount (not detail lines)"
+        - name: "RightAmount"
+          type: "decimal"
+          nullable: true
+          description: "Fixed amount for right operand (if RightHasAmount=true)"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    ValidationReportRuleDetailDTO:
+      description: "Validation rule detail line (operand specification)"
+      source: "ValidationReportRuleService.cs"
+      fields:
+        - name: "RuleDetailID"
+          type: "integer"
+          nullable: true
+          description: "Unique detail identifier"
+        - name: "RuleID"
+          type: "integer"
+          nullable: true
+          description: "Parent rule ID"
+        - name: "ConsoID"
+          type: "integer"
+          description: "Consolidation period ID"
+        - name: "LeftRightOperand"
+          type: "string"
+          description: "L=Left operand, R=Right operand"
+          enum_ref: "LeftRightOperand"
+        - name: "AccountType"
+          type: "string"
+          description: "A=Account, S=AccountSummation"
+          enum_ref: "AccountTypes"
+        - name: "Account"
+          type: "string"
+          nullable: true
+          description: "Account code (if AccountType=A)"
+        - name: "AccountDescription"
+          type: "string"
+          nullable: true
+          description: "Account description"
+        - name: "AccountSummationCode"
+          type: "string"
+          nullable: true
+          description: "Account summation code (if AccountType=S)"
+        - name: "AccountSummationDescription"
+          type: "string"
+          nullable: true
+          description: "Account summation description"
+        - name: "FlowType"
+          type: "string"
+          description: "F=Flow, S=FlowSummation"
+          enum_ref: "FlowTypes"
+        - name: "Flow"
+          type: "string"
+          nullable: true
+          description: "Flow code (if FlowType=F)"
+        - name: "FlowDescription"
+          type: "string"
+          nullable: true
+          description: "Flow description"
+        - name: "FlowSummationCode"
+          type: "string"
+          nullable: true
+          description: "Flow summation code (if FlowType=S)"
+        - name: "FlowSummationDescription"
+          type: "string"
+          nullable: true
+          description: "Flow summation description"
+        - name: "Period"
+          type: "string"
+          nullable: true
+          description: "C=Current, R=Reference"
+          enum_ref: "PeriodTypes"
+        - name: "DimensionGroupID"
+          type: "integer"
+          nullable: true
+          description: "Dimension group ID"
+        - name: "DimensionGroupCode"
+          type: "string"
+          nullable: true
+          description: "Dimension group code"
+        - name: "Dim1DetailCode"
+          type: "string"
+          nullable: true
+          description: "Dimension 1 detail code"
+        - name: "Dim2DetailCode"
+          type: "string"
+          nullable: true
+          description: "Dimension 2 detail code"
+        - name: "Dim3DetailCode"
+          type: "string"
+          nullable: true
+          description: "Dimension 3 detail code"
+        - name: "Factor"
+          type: "decimal"
+          description: "Multiplier factor applied to value"
+
+  # ============================================================================
+  # VALIDATION RULE HANDLERS
+  # ============================================================================
+  validation_rule_handlers:
+    description: |
+      Endpoints for managing validation rules and their detail lines.
+      Source: Sigma.Mona.WebApplication/Screens/ValidationReportRule/ValidationReportRuleService.cs
+
+    handlers:
+      - name: "ValidationReportRule_GetValidationReportRules"
+        description: |
+          Retrieves validation rules with filtering and pagination.
+          Returns rule headers with configuration and operand flags.
+          Single record includes EntityVersion for optimistic locking.
+        access_right: "ValidationReportRule_GetValidationReportRules"
+        async: true
+
+        request:
+          _t: "ValidationReportRule_GetValidationReportRules"
+          parameters:
+            - name: "RuleID"
+              type: "integer"
+              required: false
+              description: "Specific rule ID"
+            - name: "RuleCode"
+              type: "string"
+              required: false
+              description: "Specific rule code"
+            - name: "FilterRuleCode"
+              type: "string"
+              required: false
+              description: "Filter by code pattern"
+            - name: "FilterRuleDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["RULECODE", "RULEDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "ValidationReportRule_GetValidationReportRules",
+                "scf_order_by": "RULECODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "ValidationReportRule_GetValidationReportRules",
+                "RuleID": 123,
+                "scf_include_entities": true
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<ValidationReportRuleDTO>"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "ValidationReportRuleDTO"
+              description: "Full rule with EntityVersion"
+
+      - name: "ValidationReportRule_SaveValidationReportRule"
+        description: |
+          Creates or updates a validation rule.
+          Validates ErrorCode constraints (System rules <= 100).
+          Supports duplicating rules with existing details.
+          Auto-adjusts operand flags based on existing details.
+        access_right: "ValidationReportRule_ManageValidationReportRules"
+        async: true
+
+        request:
+          _t: "ValidationReportRule_SaveValidationReportRule"
+          parameters:
+            - name: "ValidationReportRule"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "RuleID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new rule"
+                - name: "RuleCode"
+                  type: "string"
+                  required: true
+                - name: "RuleDescription"
+                  type: "string"
+                  required: true
+                - name: "ErrorType"
+                  type: "string"
+                  required: true
+                  description: "E=Error, W=Warning"
+                - name: "ErrorCode"
+                  type: "integer"
+                  required: true
+                  description: "Must be > 100 for user rules"
+                - name: "GroupID"
+                  type: "integer"
+                  required: true
+                - name: "SequenceInGroup"
+                  type: "integer"
+                  required: true
+                - name: "ValidationThreshold"
+                  type: "decimal"
+                  required: false
+                - name: "ValidationLeftTitle"
+                  type: "string"
+                  required: false
+                - name: "ValidationRightTitle"
+                  type: "string"
+                  required: false
+                - name: "ValidationExplanation"
+                  type: "string"
+                  required: false
+                - name: "IsSystem"
+                  type: "boolean"
+                  required: false
+                  default: false
+                - name: "Active"
+                  type: "boolean"
+                  required: false
+                  default: false
+                - name: "ConsoMethodSelectionID"
+                  type: "integer"
+                  required: true
+                - name: "Operator"
+                  type: "string"
+                  required: true
+                  description: "=, <>, <, <=, >, >="
+                - name: "LeftHasFlowOrSummation"
+                  type: "boolean"
+                  required: false
+                - name: "LeftHasDim"
+                  type: "boolean"
+                  required: false
+                - name: "LeftHasInterCompany"
+                  type: "boolean"
+                  required: false
+                - name: "RightHasFlowOrSummation"
+                  type: "boolean"
+                  required: false
+                - name: "RightHasDim"
+                  type: "boolean"
+                  required: false
+                - name: "RightHasInterCompany"
+                  type: "boolean"
+                  required: false
+                - name: "RightHasAmount"
+                  type: "boolean"
+                  required: false
+                - name: "RightAmount"
+                  type: "decimal"
+                  required: "if RightHasAmount=true"
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: "if updating"
+            - name: "DuplicateRuleID"
+              type: "integer"
+              required: false
+              description: "Copy details from existing rule"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example_new:
+            json: |
+              {
+                "_t": "ValidationReportRule_SaveValidationReportRule",
+                "ValidationReportRule": {
+                  "RuleID": null,
+                  "RuleCode": "BAL001",
+                  "RuleDescription": "Balance Sheet Check",
+                  "ErrorType": "E",
+                  "ErrorCode": 101,
+                  "GroupID": 1,
+                  "SequenceInGroup": 1,
+                  "ValidationThreshold": 0.01,
+                  "Active": true,
+                  "ConsoMethodSelectionID": 1,
+                  "Operator": "=",
+                  "LeftHasFlowOrSummation": false,
+                  "LeftHasDim": false,
+                  "RightHasFlowOrSummation": false,
+                  "RightHasAmount": false
+                }
+              }
+          example_with_fixed_amount:
+            json: |
+              {
+                "_t": "ValidationReportRule_SaveValidationReportRule",
+                "ValidationReportRule": {
+                  "RuleID": null,
+                  "RuleCode": "ZERO001",
+                  "RuleDescription": "Check Account Equals Zero",
+                  "ErrorType": "W",
+                  "ErrorCode": 102,
+                  "GroupID": 2,
+                  "SequenceInGroup": 1,
+                  "Active": true,
+                  "ConsoMethodSelectionID": 1,
+                  "Operator": "=",
+                  "RightHasAmount": true,
+                  "RightAmount": 0
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "TooSmallErrorCode"
+              cause: "User rules must have ErrorCode > 100"
+            - pattern: "IX_TS019S3"
+              cause: "RuleCode already exists"
+            - pattern: "P_UPDATE_VALIDATION_REPORT_RULE_AMOUNT_REQUIRED"
+              cause: "RightAmount required when RightHasAmount is true"
+
+      - name: "ValidationReportRule_RemoveValidationReportRule"
+        description: |
+          Deletes a validation rule and all its detail lines.
+          Validates rule is not used by active validation reports.
+          Cleans up associated error description records.
+        access_right: "ValidationReportRule_ManageValidationReportRules"
+        async: true
+
+        request:
+          _t: "ValidationReportRule_RemoveValidationReportRule"
+          parameters:
+            - name: "RuleID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ValidationReportRule_RemoveValidationReportRule",
+                "RuleID": 123,
+                "scf_entity_version": [{"Name": "ValidationReportRule", "Key": "789_123", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "NOT_FOUND"
+              cause: "Rule not found"
+            - pattern: "FK_TMP_VALIDATION_REPORT_RULE_DETAIL_TS019S5"
+              cause: "Rule is used by active validation report"
+
+      - name: "ValidationReportRule_GetValidationReportRulesDetails"
+        description: |
+          Retrieves detail lines for a validation rule.
+          Returns left or right operand specifications.
+          Supports filtering and pagination.
+        access_right: "ValidationReportRule_GetValidationReportRules"
+        async: true
+
+        request:
+          _t: "ValidationReportRule_GetValidationReportRulesDetails"
+          parameters:
+            - name: "RuleID"
+              type: "integer"
+              required: true
+              description: "Parent rule ID"
+            - name: "LeftRightOperand"
+              type: "string"
+              required: true
+              description: "L=Left, R=Right"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["ACCOUNT", "FLOW", "PERIOD", "DIMENSIONGROUPCODE", "DIM1DETAILCODE", "DIM2DETAILCODE", "DIM3DETAILCODE", "FACTOR"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ValidationReportRule_GetValidationReportRulesDetails",
+                "RuleID": 123,
+                "LeftRightOperand": "L",
+                "scf_order_by": "ACCOUNT ASC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<ValidationReportRuleDetailDTO>"
+            scf_total_row_count:
+              type: "integer"
+
+      - name: "ValidationReportRule_SaveValidationReportRuleDetails"
+        description: |
+          Creates or updates a validation rule detail line.
+          Validates account/accountSummation is provided.
+          Resolves codes to IDs for accounts, flows, and dimensions.
+          Cannot add right-side details if RightHasAmount is true.
+        access_right: "ValidationReportRule_ManageValidationReportRules"
+        async: true
+
+        request:
+          _t: "ValidationReportRule_SaveValidationReportRuleDetails"
+          parameters:
+            - name: "ValidationReportRuleDetails"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "RuleDetailID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new detail"
+                - name: "RuleID"
+                  type: "integer"
+                  required: true
+                - name: "LeftRightOperand"
+                  type: "string"
+                  required: true
+                  description: "L=Left, R=Right"
+                - name: "AccountType"
+                  type: "string"
+                  required: false
+                  default: "A"
+                  description: "A=Account, S=AccountSummation"
+                - name: "Account"
+                  type: "string"
+                  required: "if AccountType=A"
+                - name: "AccountSummationCode"
+                  type: "string"
+                  required: "if AccountType=S"
+                - name: "FlowType"
+                  type: "string"
+                  required: false
+                  default: "F"
+                  description: "F=Flow, S=FlowSummation"
+                - name: "Flow"
+                  type: "string"
+                  required: false
+                - name: "FlowSummationCode"
+                  type: "string"
+                  required: false
+                - name: "Period"
+                  type: "string"
+                  required: false
+                  description: "C=Current, R=Reference"
+                - name: "DimensionGroupCode"
+                  type: "string"
+                  required: false
+                - name: "Dim1DetailCode"
+                  type: "string"
+                  required: "if DimensionGroupCode provided"
+                - name: "Dim2DetailCode"
+                  type: "string"
+                  required: "if dimension group has Dim2"
+                - name: "Dim3DetailCode"
+                  type: "string"
+                  required: "if dimension group has Dim3"
+                - name: "Factor"
+                  type: "decimal"
+                  required: true
+                  description: "Multiplier (typically 1 or -1)"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example_account:
+            json: |
+              {
+                "_t": "ValidationReportRule_SaveValidationReportRuleDetails",
+                "ValidationReportRuleDetails": {
+                  "RuleDetailID": null,
+                  "RuleID": 123,
+                  "LeftRightOperand": "L",
+                  "AccountType": "A",
+                  "Account": "1000",
+                  "Factor": 1
+                }
+              }
+          example_summation_with_flow:
+            json: |
+              {
+                "_t": "ValidationReportRule_SaveValidationReportRuleDetails",
+                "ValidationReportRuleDetails": {
+                  "RuleDetailID": null,
+                  "RuleID": 123,
+                  "LeftRightOperand": "L",
+                  "AccountType": "S",
+                  "AccountSummationCode": "ASSETS",
+                  "FlowType": "F",
+                  "Flow": "OB",
+                  "Period": "C",
+                  "Factor": 1
+                }
+              }
+          example_with_dimension:
+            json: |
+              {
+                "_t": "ValidationReportRule_SaveValidationReportRuleDetails",
+                "ValidationReportRuleDetails": {
+                  "RuleDetailID": null,
+                  "RuleID": 123,
+                  "LeftRightOperand": "R",
+                  "AccountType": "A",
+                  "Account": "6000",
+                  "DimensionGroupCode": "PRODREGION",
+                  "Dim1DetailCode": "ELECTRONICS",
+                  "Dim2DetailCode": "NORTH",
+                  "Factor": -1
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+            - pattern: "VALIDATION_REPORT_RULE_DETAIL_ACCOUNT_OR_SUMMATION_NEEDED"
+              cause: "Account or AccountSummationCode required"
+            - pattern: "VALIDATION_REPORT_RULE_DETAIL_NO_RIGHT"
+              cause: "Cannot add right details when RightHasAmount is true"
+            - pattern: "VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM1DETAILCODE"
+              cause: "Invalid Dim1DetailCode for dimension group"
+            - pattern: "VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM2DETAILCODE"
+              cause: "Invalid Dim2DetailCode for dimension group"
+            - pattern: "VALIDATION_REPORT_RULE_DETAIL_INVALID_DIM3DETAILCODE"
+              cause: "Invalid Dim3DetailCode for dimension group"
+
+      - name: "ValidationReportRule_RemoveValidationReportRuleDetails"
+        description: |
+          Deletes a validation rule detail line.
+        access_right: "ValidationReportRule_ManageValidationReportRules"
+        async: true
+
+        request:
+          _t: "ValidationReportRule_RemoveValidationReportRuleDetails"
+          parameters:
+            - name: "RuleID"
+              type: "integer"
+              required: true
+            - name: "RuleDetailID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "ValidationReportRule_RemoveValidationReportRuleDetails",
+                "RuleID": 123,
+                "RuleDetailID": 456,
+                "scf_entity_version": [{"Name": "ValidationReportRule", "Key": "789_123", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "NOT_FOUND"
+              cause: "Rule detail not found"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    validation_rule_setup_workflow:
+      name: "Validation Rule Setup Workflow"
+      description: "Create and configure data validation rules"
+      steps:
+        - step: 1
+          name: "Create Validation Rule"
+          handler: "ValidationReportRule_SaveValidationReportRule"
+          purpose: "Define rule header with operator and thresholds"
+
+        - step: 2
+          name: "Add Left Operand Details"
+          handler: "ValidationReportRule_SaveValidationReportRuleDetails"
+          parameters:
+            LeftRightOperand: "L"
+          purpose: "Define left side of validation expression"
+          repeat: true
+
+        - step: 3
+          name: "Add Right Operand Details"
+          handler: "ValidationReportRule_SaveValidationReportRuleDetails"
+          parameters:
+            LeftRightOperand: "R"
+          purpose: "Define right side of validation expression (unless RightHasAmount)"
+          repeat: true
+          skip_if: "RightHasAmount=true"
+
+        - step: 4
+          name: "Verify Rule Configuration"
+          handler: "ValidationReportRule_GetValidationReportRules"
+          parameters:
+            scf_include_entities: true
+          purpose: "Review complete rule configuration"
+
+        - step: 5
+          name: "Verify Left Details"
+          handler: "ValidationReportRule_GetValidationReportRulesDetails"
+          parameters:
+            LeftRightOperand: "L"
+          purpose: "Review left operand details"
+
+        - step: 6
+          name: "Verify Right Details"
+          handler: "ValidationReportRule_GetValidationReportRulesDetails"
+          parameters:
+            LeftRightOperand: "R"
+          purpose: "Review right operand details"
+
+    validation_rule_duplicate_workflow:
+      name: "Duplicate Validation Rule Workflow"
+      description: "Create new rule by copying existing rule"
+      steps:
+        - step: 1
+          name: "Get Source Rule"
+          handler: "ValidationReportRule_GetValidationReportRules"
+          purpose: "Retrieve source rule to copy"
+
+        - step: 2
+          name: "Create Copy"
+          handler: "ValidationReportRule_SaveValidationReportRule"
+          parameters:
+            DuplicateRuleID: "{source_rule_id}"
+          purpose: "Create new rule with copied details"
+
+    pre_consolidation_validation_workflow:
+      name: "Pre-Consolidation Validation Workflow"
+      description: "Validate data before running consolidation"
+      notes: "Validation execution is part of consolidation process"
+      steps:
+        - step: 1
+          name: "Get Active Rules"
+          handler: "ValidationReportRule_GetValidationReportRules"
+          purpose: "List active validation rules"
+
+        - step: 2
+          name: "Review Rule Coverage"
+          description: "Ensure rules cover key validation areas"
+          client_side: true
+
+        - step: 3
+          name: "Run Consolidation with Validation"
+          handler: "Consolidation_Execute"
+          source: "api-consolidation-endpoints.yaml"
+          purpose: "Execute consolidation (includes validation step)"
+
+  # ============================================================================
+  # RELATED ENTITIES
+  # ============================================================================
+  related_entities:
+    ValidationReportRuleDetail:
+      description: "Validation rule header entity"
+      table: "ValidationReportRuleDetails"
+      key_fields:
+        - RuleID
+        - ConsoID
+
+    ValidationRuleDetail:
+      description: "Validation rule detail line entity"
+      table: "ValidationRuleDetails"
+      key_fields:
+        - RuleDetailID
+        - RuleID
+        - ConsoID
+
+    ValidationReportRuleErrorDescription:
+      description: "Multilingual error description for rule"
+      table: "ValidationReportRuleErrorDescriptions"
+      key_fields:
+        - ErrorDescriptionID
+        - ConsoID
+
+    ValidationReportRuleGroup:
+      description: "Grouping of validation rules"
+      table: "ValidationReportRuleGroups"
+      key_fields:
+        - GroupID
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/ValidationReportRule/ValidationReportRuleService.cs"
+    handler_count: 6
+    purpose: |
+      Enable AI agents to manage data validation rules including:
+      - Creating validation rules with comparison operators
+      - Defining left and right operand specifications
+      - Configuring thresholds and error types
+      - Managing rule details with accounts, flows, and dimensions
+      - Duplicating rules for similar validations
+
+      Validation rules are essential for:
+      - Ensuring data quality before consolidation
+      - Balance sheet and P&L reconciliation checks
+      - Cross-period consistency validation
+      - Dimension-level amount verification
+      - Intercompany balance matching
+      - Custom business rule enforcement

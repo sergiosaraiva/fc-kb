@@ -1,0 +1,45 @@
+# =============================================================================
+# DEPRECATED FILE - ARCHIVED 2025-12-04
+# =============================================================================
+#
+# This file has been archived as part of Phase 5 - Redundancy Elimination.
+#
+# REASON: Content has been consolidated into:
+#   - api-error-catalog.yaml (error codes and definitions)
+#   - api-debugging-patterns.yaml (debug patterns, failure scenarios, recovery)
+#
+# DO NOT USE THIS FILE - Use the consolidated files above instead.
+#
+# See: quality-reports/REDUNDANCY_ANALYSIS.md for consolidation details
+# See: quality-reports/CONSOLIDATION_LOG.md for change history
+#
+# =============================================================================
+
+# ORIGINAL FILE CONTENT PRESERVED BELOW FOR REFERENCE ONLY
+# =============================================================================
+
+# Error Handling Patterns for Financial Consolidation
+# Purpose: Machine-parseable error catalog, failure scenarios, and debug patterns
+# Version: 1.0
+# Status: DEPRECATED - See api-error-catalog.yaml and api-debugging-patterns.yaml
+
+error_handling:
+  name: "Financial Consolidation Error Handling Patterns"
+  version: "1.0"
+  deprecated: true
+  deprecated_date: "2025-12-04"
+  replaced_by:
+    - "api-error-catalog.yaml"
+    - "api-debugging-patterns.yaml"
+  description: |
+    THIS FILE IS DEPRECATED.
+
+    Content has been split into:
+    - api-error-catalog.yaml: All error codes and definitions
+    - api-debugging-patterns.yaml: Debug patterns, failure scenarios, recovery procedures
+
+    The original content is preserved below for historical reference only.
+
+# -----------------------------------------------------------------------------
+# ORIGINAL CONTENT TRUNCATED - Refer to consolidated files for current content
+# -----------------------------------------------------------------------------

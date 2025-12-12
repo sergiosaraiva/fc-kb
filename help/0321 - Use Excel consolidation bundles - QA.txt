@@ -1,0 +1,743 @@
+Topics:
+User Settings, Workflow Management, Currency Exchange Rates, Period LockingUser Settings, Workflow Management, Currency Exchange Rates, Period Locking
+
+Keywords:
+Profile, Consolidation Period, Task Management, Gantt Chart, Pie Chart, Status Board, Validation, Document Storage, File Upload, User Access, Exchange Rates, Period Locking, Company Addition, Group Structure, Additional Company Data, Local Adjustments, Manual Input, Journal Entries, Flow Management, Analytical Dimensions, Intercompany Transactions, Consolidation Bundles, Bundle Upload, Bundle Download
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on user settings, workflow management, currency exchange rates, period locking, company management, local adjustments, flow management, analytical dimensions, intercompany transactions, and consolidation bundles. The User Settings section covers profile customization, period selection, and language settings. Workflow Management explains how to manage tasks, view Gantt and Pie charts, and export data. The Currency Exchange Rates section details how to enter, import, and export exchange rates for different consolidation periods. The Period Locking section outlines how to set dates to disable the import or input of specific data types. The Company Management section provides steps to add and manage companies within the group structure, including additional company data and ownership details. The Local Adjustments section explains how to manually input, view, and modify local adjustments. The Flow Management section covers managing and recalculating flows within financial records. The Analytical Dimensions section describes how to enter and manage detailed financial transactions. The Intercompany Transactions section provides guidance on recording transactions between companies within the group. The Consolidation Bundles section details the processes for downloading and uploading consolidation bundles for efficient data consolidation.
+
+Contents:
+
+Question: What is the purpose of the Status Board in Financial Consolidation?
+Answer: The Status Board provides a comprehensive overview of all companies in the consolidation, showing the status of data entry, including company code, name, modified date, number of warnings and errors, and validation status.
+
+Question: How do I access the User Settings page?
+Answer: You can access the User Settings page by clicking the Profile icon or a Current or Reference consolidation period on top of any page. This allows you to view and edit your profile and consolidation period settings.
+
+Question: What steps are required to change the consolidation period?
+Answer: To change the consolidation period, access the User Settings page, click the desired period, and set it as either the current period or reference period. Confirm the selection to reflect it in the Current and Reference Period fields.
+
+Question: How can I change the application language in Financial Consolidation?
+Answer: To change the application language, go to the User Settings page via the Profile icon, select a different language from the Application Language drop-down menu, and click to confirm the change.
+
+Question: What information does the Workflow page display?
+Answer: The Workflow page displays tasks assigned to you, including descriptions, owners, start and end dates, and statuses. You can manage these tasks, view them in Gantt and Pie charts, and export data to Excel.
+
+Question: How do I export tasks to Excel from the Workflow page?
+Answer: To export tasks to Excel, click the Export to Excel icon on the Workflow page, select the task list you want to export, and click to download the Excel file.
+
+Question: What options are available for managing flows in a company?
+Answer: In Flow Management, you can recalculate or adjust specific flows, update historical exchange rates, reconcile discrepancies, and reset flow values based on specific requirements, such as setting all flows to zero or merging company data.
+
+Question: How can I enter and save analytical dimensions?
+Answer: To enter and save analytical dimensions, select the company and account code, choose the applicable Dimensions Group, enter values for the dimensions, ensure the total values match the adjusted amount, and click to save.
+
+Question: How do I import exchange rates from a CSV file?
+Answer: To import exchange rates from a CSV file, go to the Import Exchange Rates page, specify the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter, upload the file, view it, and transfer the data into the database.
+
+Question: What are the steps to create a new company?
+Answer: To create a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: How do I confirm changes to a consolidation period?
+Answer: To confirm changes to a consolidation period, select the period from the list, choose to set it as either the current period or reference period, and click to confirm. The selected periods will be reflected in the Current and Reference Period fields.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area for authorized users. Administrators can organize, maintain, and govern documents, while users can view, download, and upload files based on their permissions.
+
+Question: How do I reject a task in the Workflow page?
+Answer: To reject a task, select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm. An automatic email will be sent to the approver/administrator.
+
+Question: What details are displayed in the Status Board?
+Answer: The Status Board displays details such as Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, and Confirmation, Approval, and Audit statuses for each company.
+
+Question: How can I change a company's data entry status?
+Answer: To change a company's data entry status, select the company on the Status Board, choose the new status in the Change status panel, and click to confirm. Different roles have different status change options.
+
+Question: How do I enter intercompany transactions in Financial Consolidation?
+Answer: To enter intercompany transactions, select the company, choose the applicable account, select the intercompany partner, enter the transaction amount in local and transaction currencies, and save the details.
+
+Question: How do I update historical rates in Flow Management?
+Answer: To update historical rates, select the option to update historical exchange rates, choose the relevant flow code, and provide the prevailing rate at the specific point in time. This ensures financial calculations use accurate rates.
+
+Question: How can I enter a currency exchange rate manually?
+Answer: To enter a currency exchange rate manually, go to the Exchange Rates page, select the consolidation period and currency, enter the Close, Average, and Month rates, and click to save the changes.
+
+Question: What are the steps to export currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the consolidation period, choose the file format (XLS or CSV), specify any necessary parameters, and click to export. A download link will appear.
+
+Question: How can I hide or show the Gantt chart in the Workflow page?
+Answer: You can hide or show the Gantt chart by selecting or deselecting the Show/Hide Gantt chart option. This adjusts the visibility of tasks according to the set timeline and scale.
+
+Question: What steps are involved in unlocking data for a specific period?
+Answer: On the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm. This will allow modifications to the previously locked data type.
+
+Question: What steps are required to view the history of a task?
+Answer: To view the history of a task, select the company and task, go to the History tab, and use filters to narrow the results and see the life cycle stages of the task.
+
+Question: How can I enter a new local adjustment?
+Answer: To enter a new local adjustment, access the Manual Input page, fill in the company, journal, and account details, and save the adjustment. You can also use multiply/divide functions for efficient reporting.
+
+Question: What steps are involved in importing exchange rates from an Excel file?
+Answer: To import exchange rates from an Excel file, go to the Import Exchange Rates page, specify the Sheet Name and Currency, upload the file, view it, and transfer the data into the database.
+
+Question: How can I add a new company in Financial Consolidation?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: How do I update the status of a task to 'In progress'?
+Answer: Select the company and task from the table, then change the status from 'Not started' to 'In progress' in the Status field. Click to navigate to the task page or start an automated task.
+
+Question: What information can be found in the Group Structure page?
+Answer: The Group Structure page displays the interconnected relationships between companies within the group, showing details such as company code, name, financial and voting rights, group percentage, minority percentage, and group control percentage.
+
+Question: How can I manually input local adjustments?
+Answer: To manually input local adjustments, go to the Local Adjustments Manual Input page, enter general adjustment-related information such as company, journal, and account details, then save the adjustment.
+
+Question: How do I filter consolidation periods using wildcards?
+Answer: To filter consolidation periods, use wildcards like ? and *. For example, type 20* to see all periods from the 21st century or ACT to see all periods with the nature ACT.
+
+Question: What information does the Status Board include?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses. Click column headers to sort the table.
+
+Question: How do I modify a local adjustment?
+Answer: To modify a local adjustment, select the adjustment from the list, click to open the Manual Input page, make the necessary changes, and save the updated adjustment.
+
+Question: What steps are involved in creating a local adjustment?
+Answer: To create a local adjustment, go to the Local Adjustments Manual Input page, enter the required information including company, journal, and account details, then save the adjustment.
+
+Question: What actions can administrators perform in the Documents Repository?
+Answer: Administrators can organize, maintain, and govern documents stored in the Documents Repository. They can also specify user access and permissions, allowing users to view, download, and upload files based on their roles.
+
+Question: What is the purpose of the Status Board in Financial Consolidation?
+Answer: The Status Board provides a comprehensive overview of all companies in the consolidation, showing the status of data entry, including company code, name, modified date, number of warnings and errors, and validation status.
+
+Question: How do I access the User Settings page?
+Answer: You can access the User Settings page by clicking the Profile icon or a Current or Reference consolidation period on top of any page. This allows you to view and edit your profile and consolidation period settings.
+
+Question: What steps are required to change the consolidation period?
+Answer: To change the consolidation period, access the User Settings page, click the desired period, and set it as either the current period or reference period. Confirm the selection to reflect it in the Current and Reference Period fields.
+
+Question: How can I change the application language in Financial Consolidation?
+Answer: To change the application language, go to the User Settings page via the Profile icon, select a different language from the Application Language drop-down menu, and click to confirm the change.
+
+Question: What information does the Workflow page display?
+Answer: The Workflow page displays tasks assigned to you, including descriptions, owners, start and end dates, and statuses. You can manage these tasks, view them in Gantt and Pie charts, and export data to Excel.
+
+Question: How do I export tasks to Excel from the Workflow page?
+Answer: To export tasks to Excel, click the Export to Excel icon on the Workflow page, select the task list you want to export, and click to download the Excel file.
+
+Question: What options are available for managing flows in a company?
+Answer: In Flow Management, you can recalculate or adjust specific flows, update historical exchange rates, reconcile discrepancies, and reset flow values based on specific requirements, such as setting all flows to zero or merging company data.
+
+Question: How can I enter and save analytical dimensions?
+Answer: To enter and save analytical dimensions, select the company and account code, choose the applicable Dimensions Group, enter values for the dimensions, ensure the total values match the adjusted amount, and click to save.
+
+Question: How do I import exchange rates from a CSV file?
+Answer: To import exchange rates from a CSV file, go to the Import Exchange Rates page, specify the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter, upload the file, view it, and transfer the data into the database.
+
+Question: What are the steps to create a new company?
+Answer: To create a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: How do I confirm changes to a consolidation period?
+Answer: To confirm changes to a consolidation period, select the period from the list, choose to set it as either the current period or reference period, and click to confirm. The selected periods will be reflected in the Current and Reference Period fields.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area for authorized users. Administrators can organize, maintain, and govern documents, while users can view, download, and upload files based on their permissions.
+
+Question: How do I reject a task in the Workflow page?
+Answer: To reject a task, select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm. An automatic email will be sent to the approver/administrator.
+
+Question: What details are displayed in the Status Board?
+Answer: The Status Board displays details such as Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, and Confirmation, Approval, and Audit statuses for each company.
+
+Question: How can I change a company's data entry status?
+Answer: To change a company's data entry status, select the company on the Status Board, choose the new status in the Change status panel, and click to confirm. Different roles have different status change options.
+
+Question: How do I enter intercompany transactions in Financial Consolidation?
+Answer: To enter intercompany transactions, select the company, choose the applicable account, select the intercompany partner, enter the transaction amount in local and transaction currencies, and save the details.
+
+Question: How do I update historical rates in Flow Management?
+Answer: To update historical rates, select the option to update historical exchange rates, choose the relevant flow code, and provide the prevailing rate at the specific point in time. This ensures financial calculations use accurate rates.
+
+Question: How can I enter a currency exchange rate manually?
+Answer: To enter a currency exchange rate manually, go to the Exchange Rates page, select the consolidation period and currency, enter the Close, Average, and Month rates, and click to save the changes.
+
+Question: What are the steps to export currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the consolidation period, choose the file format (XLS or CSV), specify any necessary parameters, and click to export. A download link will appear.
+
+Question: How can I hide or show the Gantt chart in the Workflow page?
+Answer: You can hide or show the Gantt chart by selecting or deselecting the Show/Hide Gantt chart option. This adjusts the visibility of tasks according to the set timeline and scale.
+
+Question: What steps are involved in unlocking data for a specific period?
+Answer: On the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm. This will allow modifications to the previously locked data type.
+
+Question: What steps are required to view the history of a task?
+Answer: To view the history of a task, select the company and task, go to the History tab, and use filters to narrow the results and see the life cycle stages of the task.
+
+Question: How can I enter a new local adjustment?
+Answer: To enter a new local adjustment, access the Manual Input page, fill in the company, journal, and account details, and save the adjustment. You can also use multiply/divide functions for efficient reporting.
+
+Question: What steps are involved in importing exchange rates from an Excel file?
+Answer: To import exchange rates from an Excel file, go to the Import Exchange Rates page, specify the Sheet Name and Currency, upload the file, view it, and transfer the data into the database.
+
+Question: How can I add a new company in Financial Consolidation?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: How do I update the status of a task to 'In progress'?
+Answer: Select the company and task from the table, then change the status from 'Not started' to 'In progress' in the Status field. Click to navigate to the task page or start an automated task.
+
+Question: What information can be found in the Group Structure page?
+Answer: The Group Structure page displays the interconnected relationships between companies within the group, showing details such as company code, name, financial and voting rights, group percentage, minority percentage, and group control percentage.
+
+Question: How can I manually input local adjustments?
+Answer: To manually input local adjustments, go to the Local Adjustments Manual Input page, enter general adjustment-related information such as company, journal, and account details, then save the adjustment.
+
+Question: How do I filter consolidation periods using wildcards?
+Answer: To filter consolidation periods, use wildcards like ? and *. For example, type 20* to see all periods from the 21st century or ACT to see all periods with the nature ACT.
+
+Question: What information does the Status Board include?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses. Click column headers to sort the table.
+
+Question: How do I modify a local adjustment?
+Answer: To modify a local adjustment, select the adjustment from the list, click to open the Manual Input page, make the necessary changes, and save the updated adjustment.
+
+Question: What steps are involved in creating a local adjustment?
+Answer: To create a local adjustment, go to the Local Adjustments Manual Input page, enter the required information including company, journal, and account details, then save the adjustment.
+
+Question: What actions can administrators perform in the Documents Repository?
+Answer: Administrators can organize, maintain, and govern documents stored in the Documents Repository. They can also specify user access and permissions, allowing users to view, download, and upload files based on their roles.
+
+Question: How can I access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or a Current or Reference consolidation period on top of any page.
+
+Question: How do you change the application or data language in Financial Consolidation?
+Answer: To change your Application or Data Language, go to the appropriate field in the User Settings page and select another language from the drop-down. Click to confirm.
+
+Question: What are the steps to select a different consolidation period?
+Answer: To select a different consolidation period, click the desired period in the User Settings page, then set it as both the current and reference period, as the current period, or as the reference period. Click to confirm.
+
+Question: How do you download generated PDF files?
+Answer: To download generated PDF files, select the Download generated PDF files option in the User Settings page accessed through the Profile icon. Click to confirm.
+
+Question: What does the Workflow page display?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status.
+
+Question: How can you hide or show the Gantt chart?
+Answer: To hide or show the Gantt chart, select or deselect the Show/Hide Gantt chart option. This adjusts the visibility of tasks according to the set timeline and scale.
+
+Question: How do you export tasks to Excel from the Workflow page?
+Answer: To export tasks to Excel, click the Export to Excel icon on the Workflow page, select the list you want to export, and click to export the list to an Excel file.
+
+Question: What is the process to start work on a task?
+Answer: To start work on a task, select the company from the table, choose a task, change its status to In progress in the Status field, and click to navigate to the task page or start an automated task.
+
+Question: How do you complete a task in Financial Consolidation?
+Answer: After completing a task, select the company and task, change the status to Completed in the Task details panel, optionally add comments, and click to confirm.
+
+Question: What are the steps to reject a task?
+Answer: To reject a task, select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: How do you view the history of a task?
+Answer: To view the history of a task, select the company and task, then go to the History tab. Use filters to narrow the results.
+
+Question: What information does the Status Board provide?
+Answer: The Status Board provides an overview of all companies in the consolidation, showing the status of data entry, including company code, name, modified date and time, number of warnings and errors, and validation status.
+
+Question: How do you generate a status report?
+Answer: To generate a status report, go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear.
+
+Question: What are the steps to run validation rules?
+Answer: To run validation rules, select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: How do you review error details?
+Answer: To review error details, click beside the validation status to see specifics of balance errors or data loaded for better insight into issues.
+
+Question: How can you change a company's data entry status?
+Answer: To change a company's data entry status, select the company on the Status Board, choose the new status in the Change status panel, and click to confirm.
+
+Question: What is the function of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area for authorized users. Administrators can organize, maintain, and govern documents, while users can view, download, and upload files based on their permissions.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: To upload a file, select a folder in the Documents Repository, click to upload, enter a description, and click to confirm.
+
+Question: How can you select a different consolidation period?
+Answer: To select a different consolidation period, click the desired period in the User Settings page, then set it as both the current and reference period, as the current period, or as the reference period. Click to confirm.
+
+Question: What steps are required to filter the list of consolidation periods?
+Answer: To filter the list of consolidation periods, use wildcards like ? and *. For example, typing 20* shows all periods from the 21st century.
+
+Question: What is period locking in Financial Consolidation?
+Answer: Period locking restricts any modifications to selected data types for a period across all companies within the group. This is done by setting dates after which import or input of specific types of data will be disabled.
+
+Question: How do you lock data for a specific period?
+Answer: To lock data, access the Define Period Locking page, specify a date in the Data Locking Date field, select a data type, and click to confirm. On the set date, import or input of the locked data types will be disabled.
+
+Question: How can you unlock data for a specific period?
+Answer: To unlock data, access the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: What is the purpose of the Exchange Rates page?
+Answer: The Exchange Rates page is used for entering, importing, or exporting currency exchange rates for a consolidation period.
+
+Question: How do you manually enter currency exchange rates?
+Answer: To manually enter currency exchange rates, go to the Exchange Rates page, select the consolidation period and currency, and enter the Close, Average, and Month currency rates. Click to save changes.
+
+Question: What are the steps to print a currency exchange rate report?
+Answer: To print a currency exchange rate report, go to the Currencies Reports tab, select the report type, base currency, and output file type, then click to generate and download the report.
+
+Question: How do you import exchange rates from a CSV file?
+Answer: To import exchange rates from a CSV file, go to the Import Exchange Rates page, specify the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter, upload the file, view it, and transfer the data into the database.
+
+Question: What steps are involved in exporting currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the consolidation period, choose the file format (XLS or CSV), specify parameters, and click to export. A download link will appear.
+
+Question: How do you add a new company in Financial Consolidation?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: What information can be added in the Companies Additional Info page?
+Answer: In the Companies Additional Info page, users can add supplementary details for companies, such as VAT numbers. Administrators can create various fields for users to input corresponding values for their associated companies.
+
+Question: How do you create the group structure?
+Answer: To create the group structure, go to the Group Structure page, input and manage direct relationships among entities, and determine the appropriate consolidation method. Save changes to update the consolidation method and percentages.
+
+Question: What steps are involved in viewing local adjustments?
+Answer: To view local adjustments, go to the Local Adjustments View page. The top panel displays the list of local adjustments, and the lower panel shows details of selected adjustments.
+
+Question: How do you create a new local adjustment?
+Answer: To create a new local adjustment, go to the Manual Input page, enter the required information including company, journal, and account details, then save the adjustment.
+
+Question: What are the steps to modify a local adjustment?
+Answer: To modify a local adjustment, select the adjustment from the list, click to open the Manual Input page, make the necessary changes, and save the updated adjustment.
+
+Question: How can you manually input local adjustments?
+Answer: To manually input local adjustments, go to the Local Adjustments Manual Input page, enter general adjustment-related information such as company, journal, and account details, then save the adjustment.
+
+Question: What does the Flow Management page allow you to do?
+Answer: The Flow Management page allows you to manage flows for a selected company, including recalculating or adjusting specific flows, updating historical exchange rates, and reconciling discrepancies.
+
+Question: What options are available in Flow Management?
+Answer: In Flow Management, you can book all remaining differences on flow, set flow values to zero, merge company data, recalculate specific flows, and update historical rates.
+
+Question: How do you enter analytical dimensions?
+Answer: To enter analytical dimensions, select the company and account code, choose the applicable Dimensions Group, and enter values for the dimensions. Ensure the total values match the adjusted amount, and click to save.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page is where you record transactions conducted with other companies within the group, entering transaction details for each account and partner involved.
+
+Question: How do you enter intercompany transactions?
+Answer: To enter intercompany transactions, select the company and applicable account, choose the intercompany partner, enter the transaction amount in local and transaction currencies, and click to save.
+
+Question: What is the Define Mapping Tables page used for?
+Answer: The Define Mapping Tables page is used to define mapping tables for different structures during an import, such as Accounts, Companies, Dimension Groups, Dimension Detail Codes, and Flows.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click to add a new table, enter the Code and Name, select a structure, and map items by entering source codes and descriptions. Save the table to confirm.
+
+Question: What are the steps to create an import file structure?
+Answer: To create an import file structure, specify general file properties, type of data, import options, parameters, and mapping tables. Enter the file ID, select the type of amount, file type, and additional options. Save the structure to confirm.
+
+Question: How do you create an export file structure?
+Answer: To create an export file structure, specify general export file properties, type of data, export options, parameters, and export rules. Enter the file ID, select the type of amount, file type, and additional options. Save the structure to confirm.
+
+Question: What steps are involved in importing data?
+Answer: To import data, go to the Import Data page, select a structure, upload the file, expand the Details section, fill in the required parameters, and specify the type of data to overwrite during import. Click to save.
+
+Question: How do you import adjustments?
+Answer: To import adjustments, go to the Import Adjustments page, select the file type, specify parameters, upload the file, and click to start the import.
+
+Question: What steps are involved in exporting adjustments?
+Answer: To export adjustments, go to the Export Adjustments page, select the consolidation period, file type, and parameters, then click to export the adjustments and download the data.
+
+Question: How do you export data?
+Answer: To export data, go to the Export Data page, select the consolidation period, file structure, and parameters, then select the data to export and click to download it.
+
+Question: What is the Import Data Report page used for?
+Answer: The Import Data Report page is used to generate reports of data imported into the Financial Consolidation application, detailing ledger accounts and other relevant information.
+
+Question: What does the Bundle Validation page display?
+Answer: The Bundle Validation page displays the contents of a chosen validation report, showcasing identified issues within the data and providing a platform to investigate and resolve these issues.
+
+Question: How do you view a bundle validation report?
+Answer: To view a bundle validation report, select a company and validation report, click View report. Use the All, Errors, and Warnings buttons to sort the records, then click on an issue to investigate further.
+
+Question: What steps are required to download a bundle validation report?
+Answer: To download a bundle validation report, select a company and report, click the download icon, specify the output file type and included options, and click to generate the report.
+
+Question: How can you access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or a Current or Reference consolidation period on top of any page.
+
+Question: How do you change the consolidation period?
+Answer: To change the consolidation period, click the desired period in the User Settings page, then set it as both the current and reference period, as the current period, or as the reference period. Click to confirm.
+
+Question: What steps are involved in setting preferences in Workflow Management?
+Answer: To set preferences, go to the Workflow page, and control how information is displayed, such as showing/hiding the Gantt chart, Pie chart, or Companies list.
+
+Question: How do you view tasks in a pie chart?
+Answer: To view tasks in a pie chart, select the Show/Hide the Pie Chart icon. Hover over the color to see the status and count of tasks. To hide the pie chart, click to cancel the selection.
+
+Question: What is the function of the Status Board?
+Answer: The Status Board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How do you update a company's data entry status?
+Answer: To update a company's data entry status, select the company, and in the Change status panel, select the new status. Click to confirm.
+
+Question: What are the steps to run validation rules?
+Answer: To run validation rules, select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: How do you review error details?
+Answer: To review error details, click beside the validation status to see specifics of balance errors or data loaded for better insight into issues.
+
+Question: How can you change a company's data entry status?
+Answer: To change a company's data entry status, select the company on the Status Board, choose the new status in the Change status panel, and click to confirm.
+
+Question: What is the function of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area for authorized users. Administrators can organize, maintain, and govern documents, while users can view, download, and upload files based on their permissions.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: To upload a file, select a folder in the Documents Repository, click to upload, enter a description, and click to confirm.
+
+Question: How can you select a different consolidation period?
+Answer: To select a different consolidation period, click the desired period in the User Settings page, then set it as both the current and reference period, as the current period, or as the reference period. Click to confirm.
+
+Question: What steps are required to filter the list of consolidation periods?
+Answer: To filter the list of consolidation periods, use wildcards like ? and *. For example, typing 20* shows all periods from the 21st century.
+
+Question: What is period locking in Financial Consolidation?
+Answer: Period locking restricts any modifications to selected data types for a period across all companies within the group. This is done by setting dates after which import or input of specific types of data will be disabled.
+
+Question: How do you lock data for a specific period?
+Answer: To lock data, access the Define Period Locking page, specify a date in the Data Locking Date field, select a data type, and click to confirm. On the set date, import or input of the locked data types will be disabled.
+
+Question: How can you unlock data for a specific period?
+Answer: To unlock data, access the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: What is the purpose of the Exchange Rates page?
+Answer: The Exchange Rates page is used for entering, importing, or exporting currency exchange rates for a consolidation period.
+
+Question: How do you manually enter currency exchange rates?
+Answer: To manually enter currency exchange rates, go to the Exchange Rates page, select the consolidation period and currency, and enter the Close, Average, and Month currency rates. Click to save changes.
+
+Question: What are the steps to print a currency exchange rate report?
+Answer: To print a currency exchange rate report, go to the Currencies Reports tab, select the report type, base currency, and output file type, then click to generate and download the report.
+
+Question: How do you import exchange rates from a CSV file?
+Answer: To import exchange rates from a CSV file, go to the Import Exchange Rates page, specify the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter, upload the file, view it, and transfer the data into the database.
+
+Question: What steps are involved in exporting currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the consolidation period, choose the file format (XLS or CSV), specify parameters, and click to export. A download link will appear.
+
+Question: How do you add a new company in Financial Consolidation?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: What information can be added in the Companies Additional Info page?
+Answer: In the Companies Additional Info page, users can add supplementary details for companies, such as VAT numbers. Administrators can create various fields for users to input corresponding values for their associated companies.
+
+Question: How do you create the group structure?
+Answer: To create the group structure, go to the Group Structure page, input and manage direct relationships among entities, and determine the appropriate consolidation method. Save changes to update the consolidation method and percentages.
+
+Question: What steps are involved in viewing local adjustments?
+Answer: To view local adjustments, go to the Local Adjustments View page. The top panel displays the list of local adjustments, and the lower panel shows details of selected adjustments.
+
+Question: How do you create a new local adjustment?
+Answer: To create a new local adjustment, go to the Manual Input page, enter the required information including company, journal, and account details, then save the adjustment.
+
+Question: What are the steps to modify a local adjustment?
+Answer: To modify a local adjustment, select the adjustment from the list, click to open the Manual Input page, make the necessary changes, and save the updated adjustment.
+
+Question: How can you manually input local adjustments?
+Answer: To manually input local adjustments, go to the Local Adjustments Manual Input page, enter general adjustment-related information such as company, journal, and account details, then save the adjustment.
+
+Question: What does the Flow Management page allow you to do?
+Answer: The Flow Management page allows you to manage flows for a selected company, including recalculating or adjusting specific flows, updating historical exchange rates, and reconciling discrepancies.
+
+Question: What options are available in Flow Management?
+Answer: In Flow Management, you can book all remaining differences on flow, set flow values to zero, merge company data, recalculate specific flows, and update historical rates.
+
+Question: How do you enter analytical dimensions?
+Answer: To enter analytical dimensions, select the company and account code, choose the applicable Dimensions Group, and enter values for the dimensions. Ensure the total values match the adjusted amount, and click to save.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page is where you record transactions conducted with other companies within the group, entering transaction details for each account and partner involved.
+
+Question: How do you enter intercompany transactions?
+Answer: To enter intercompany transactions, select the company and applicable account, choose the intercompany partner, enter the transaction amount in local and transaction currencies, and click to save.
+
+Question: What is the Define Mapping Tables page used for?
+Answer: The Define Mapping Tables page is used to define mapping tables for different structures during an import, such as Accounts, Companies, Dimension Groups, Dimension Detail Codes, and Flows.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click to add a new table, enter the Code and Name, select a structure, and map items by entering source codes and descriptions. Save the table to confirm.
+
+Question: What are the steps to create an import file structure?
+Answer: To create an import file structure, specify general file properties, type of data, import options, parameters, and mapping tables. Enter the file ID, select the type of amount, file type, and additional options. Save the structure to confirm.
+
+Question: How do you create an export file structure?
+Answer: To create an export file structure, specify general export file properties, type of data, export options, parameters, and export rules. Enter the file ID, select the type of amount, file type, and additional options. Save the structure to confirm.
+
+Question: What steps are involved in importing data?
+Answer: To import data, go to the Import Data page, select a structure, upload the file, expand the Details section, fill in the required parameters, and specify the type of data to overwrite during import. Click to save.
+
+Question: How do you import adjustments?
+Answer: To import adjustments, go to the Import Adjustments page, select the file type, specify parameters, upload the file, and click to start the import.
+
+Question: What steps are involved in exporting adjustments?
+Answer: To export adjustments, go to the Export Adjustments page, select the consolidation period, file type, and parameters, then click to export the adjustments and download the data.
+
+Question: How do you export data?
+Answer: To export data, go to the Export Data page, select the consolidation period, file structure, and parameters, then select the data to export and click to download it.
+
+Question: What is the Import Data Report page used for?
+Answer: The Import Data Report page is used to generate reports of data imported into the Financial Consolidation application, detailing ledger accounts and other relevant information.
+
+Question: What does the Bundle Validation page display?
+Answer: The Bundle Validation page displays the contents of a chosen validation report, showcasing identified issues within the data and providing a platform to investigate and resolve these issues.
+
+Question: How do you view a bundle validation report?
+Answer: To view a bundle validation report, select a company and validation report, click View report. Use the All, Errors, and Warnings buttons to sort the records, then click on an issue to investigate further.
+
+Question: What steps are required to download a bundle validation report?
+Answer: To download a bundle validation report, select a company and report, click the download icon, specify the output file type and included options, and click to generate the report.
+
+Question: How can I access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or a Current or Reference consolidation period on top of any page.
+
+Question: How do you change the application or data language in Financial Consolidation?
+Answer: To change your Application or Data Language, go to the appropriate field in the User Settings page and select another language from the drop-down. Click to confirm.
+
+Question: What are the steps to select a different consolidation period?
+Answer: To select a different consolidation period, click the desired period in the User Settings page, then set it as both the current and reference period, as the current period, or as the reference period. Click to confirm.
+
+Question: How do you download generated PDF files?
+Answer: To download generated PDF files, select the Download generated PDF files option in the User Settings page accessed through the Profile icon. Click to confirm.
+
+Question: What does the Workflow page display?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status.
+
+Question: How can you hide or show the Gantt chart?
+Answer: To hide or show the Gantt chart, select or deselect the Show/Hide Gantt chart option. This adjusts the visibility of tasks according to the set timeline and scale.
+
+Question: How do you export tasks to Excel from the Workflow page?
+Answer: To export tasks to Excel, click the Export to Excel icon on the Workflow page, select the list you want to export, and click to export the list to an Excel file.
+
+Question: What is the process to start work on a task?
+Answer: To start work on a task, select the company from the table, choose a task, change its status to In progress in the Status field, and click to navigate to the task page or start an automated task.
+
+Question: How do you complete a task in Financial Consolidation?
+Answer: After completing a task, select the company and task, change the status to Completed in the Task details panel, optionally add comments, and click to confirm.
+
+Question: What are the steps to reject a task?
+Answer: To reject a task, select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: How do you view the history of a task?
+Answer: To view the history of a task, select the company and task, then go to the History tab. Use filters to narrow the results.
+
+Question: What information does the Status Board provide?
+Answer: The Status Board provides an overview of all companies in the consolidation, showing the status of data entry, including company code, name, modified date and time, number of warnings and errors, and validation status.
+
+Question: How do you generate a status report?
+Answer: To generate a status report, go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear.
+
+Question: What are the steps to run validation rules?
+Answer: To run validation rules, select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: How do you review error details?
+Answer: To review error details, click beside the validation status to see specifics of balance errors or data loaded for better insight into issues.
+
+Question: How can you change a company's data entry status?
+Answer: To change a company's data entry status, select the company on the Status Board, choose the new status in the Change status panel, and click to confirm.
+
+Question: What is the function of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area for authorized users. Administrators can organize, maintain, and govern documents, while users can view, download, and upload files based on their permissions.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: To upload a file, select a folder in the Documents Repository, click to upload, enter a description, and click to confirm.
+
+Question: How can you select a different consolidation period?
+Answer: To select a different consolidation period, click the desired period in the User Settings page, then set it as both the current and reference period, as the current period, or as the reference period. Click to confirm.
+
+Question: What steps are required to filter the list of consolidation periods?
+Answer: To filter the list of consolidation periods, use wildcards like ? and *. For example, typing 20* shows all periods from the 21st century.
+
+Question: What is period locking in Financial Consolidation?
+Answer: Period locking restricts any modifications to selected data types for a period across all companies within the group. This is done by setting dates after which import or input of specific types of data will be disabled.
+
+Question: How do you lock data for a specific period?
+Answer: To lock data, access the Define Period Locking page, specify a date in the Data Locking Date field, select a data type, and click to confirm. On the set date, import or input of the locked data types will be disabled.
+
+Question: How can you unlock data for a specific period?
+Answer: To unlock data, access the Define Period Locking page, click the data you want to unlock, clear the lock date in the Data Locking Date field, and click to confirm.
+
+Question: What is the purpose of the Exchange Rates page?
+Answer: The Exchange Rates page is used for entering, importing, or exporting currency exchange rates for a consolidation period.
+
+Question: How do you manually enter currency exchange rates?
+Answer: To manually enter currency exchange rates, go to the Exchange Rates page, select the consolidation period and currency, and enter the Close, Average, and Month currency rates. Click to save changes.
+
+Question: What are the steps to print a currency exchange rate report?
+Answer: To print a currency exchange rate report, go to the Currencies Reports tab, select the report type, base currency, and output file type, then click to generate and download the report.
+
+Question: How do you import exchange rates from a CSV file?
+Answer: To import exchange rates from a CSV file, go to the Import Exchange Rates page, specify the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter, upload the file, view it, and transfer the data into the database.
+
+Question: What steps are involved in exporting currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the consolidation period, choose the file format (XLS or CSV), specify parameters, and click to export. A download link will appear.
+
+Question: How do you add a new company in Financial Consolidation?
+Answer: To add a new company, go to the Companies page, click the add icon, enter the required information such as currency code, consolidation method, and group percentage, then save the details.
+
+Question: What information can be added in the Companies Additional Info page?
+Answer: In the Companies Additional Info page, users can add supplementary details for companies, such as VAT numbers. Administrators can create various fields for users to input corresponding values for their associated companies.
+
+Question: How do you create the group structure?
+Answer: To create the group structure, go to the Group Structure page, input and manage direct relationships among entities, and determine the appropriate consolidation method. Save changes to update the consolidation method and percentages.
+
+Question: What steps are involved in viewing local adjustments?
+Answer: To view local adjustments, go to the Local Adjustments View page. The top panel displays the list of local adjustments, and the lower panel shows details of selected adjustments.
+
+Question: How do you create a new local adjustment?
+Answer: To create a new local adjustment, go to the Manual Input page, enter the required information including company, journal, and account details, then save the adjustment.
+
+Question: What are the steps to modify a local adjustment?
+Answer: To modify a local adjustment, select the adjustment from the list, click to open the Manual Input page, make the necessary changes, and save the updated adjustment.
+
+Question: How can you manually input local adjustments?
+Answer: To manually input local adjustments, go to the Local Adjustments Manual Input page, enter general adjustment-related information such as company, journal, and account details, then save the adjustment.
+
+Question: What does the Flow Management page allow you to do?
+Answer: The Flow Management page allows you to manage flows for a selected company, including recalculating or adjusting specific flows, updating historical exchange rates, and reconciling discrepancies.
+
+Question: What options are available in Flow Management?
+Answer: In Flow Management, you can book all remaining differences on flow, set flow values to zero, merge company data, recalculate specific flows, and update historical rates.
+
+Question: How do you enter analytical dimensions?
+Answer: To enter analytical dimensions, select the company and account code, choose the applicable Dimensions Group, and enter values for the dimensions. Ensure the total values match the adjusted amount, and click to save.
+
+Question: What is the purpose of the Intercompanies page?
+Answer: The Intercompanies page is where you record transactions conducted with other companies within the group, entering transaction details for each account and partner involved.
+
+Question: How do you enter intercompany transactions?
+Answer: To enter intercompany transactions, select the company and applicable account, choose the intercompany partner, enter the transaction amount in local and transaction currencies, and click to save.
+
+Question: What is the Define Mapping Tables page used for?
+Answer: The Define Mapping Tables page is used to define mapping tables for different structures during an import, such as Accounts, Companies, Dimension Groups, Dimension Detail Codes, and Flows.
+
+Question: How do you define a mapping table?
+Answer: To define a mapping table, click to add a new table, enter the Code and Name, select a structure, and map items by entering source codes and descriptions. Save the table to confirm.
+
+Question: What are the steps to create an import file structure?
+Answer: To create an import file structure, specify general file properties, type of data, import options, parameters, and mapping tables. Enter the file ID, select the type of amount, file type, and additional options. Save the structure to confirm.
+
+Question: How do you create an export file structure?
+Answer: To create an export file structure, specify general export file properties, type of data, export options, parameters, and export rules. Enter the file ID, select the type of amount, file type, and additional options. Save the structure to confirm.
+
+Question: What steps are involved in importing data?
+Answer: To import data, go to the Import Data page, select a structure, upload the file, expand the Details section, fill in the required parameters, and specify the type of data to overwrite during import. Click to save.
+
+Question: How do you import adjustments?
+Answer: To import adjustments, go to the Import Adjustments page, select the file type, specify parameters, upload the file, and click to start the import.
+
+Question: What steps are involved in exporting adjustments?
+Answer: To export adjustments, go to the Export Adjustments page, select the consolidation period, file type, and parameters, then click to export the adjustments and download the data.
+
+Question: How do you export data?
+Answer: To export data, go to the Export Data page, select the consolidation period, file structure, and parameters, then select the data to export and click to download it.
+
+Question: What is the Import Data Report page used for?
+Answer: The Import Data Report page is used to generate reports of data imported into the Financial Consolidation application, detailing ledger accounts and other relevant information.
+
+Question: What does the Bundle Validation page display?
+Answer: The Bundle Validation page displays the contents of a chosen validation report, showcasing identified issues within the data and providing a platform to investigate and resolve these issues.
+
+Question: How do you view a bundle validation report?
+Answer: To view a bundle validation report, select a company and validation report, click View report. Use the All, Errors, and Warnings buttons to sort the records, then click on an issue to investigate further.
+
+Question: What steps are required to download a bundle validation report?
+Answer: To download a bundle validation report, select a company and report, click the download icon, specify the output file type and included options, and click to generate the report.
+
+Question: How do you export currency exchange rates?
+Answer: To export currency exchange rates, go to the Export Exchange Rates page, select the consolidation period, choose the file format (XLS or CSV), specify parameters, and click to export. A download link will appear.
+
+Question: What is the function of the Status Board in Financial Consolidation?
+Answer: The Status Board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company.
+
+Question: How do you change a company's data entry status?
+Answer: To change a company's data entry status, select the company, and in the Change status panel, select the new status. Click to confirm.
+
+Question: How do you run validation rules?
+Answer: To run validation rules, select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company.
+
+Question: What details can be reviewed in the Status Board?
+Answer: The Status Board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses.
+
+Question: What are the steps to manage user access in the Documents Repository?
+Answer: Administrators can specify user access and permissions in the Documents Repository, allowing users to view, download, and upload files based on their roles.
+
+Question: How do you modify local adjustments?
+Answer: To modify a local adjustment, select the adjustment and open the Manual Input page, make necessary changes, and save.
+
+Question: How can you set a consolidation period as the reference period?
+Answer: Access the User Settings page, click the desired period, and set it as the reference period. Confirm the selection.
+
+Question: What are the steps to create a mapping table?
+Answer: Click to add a new table, enter the Code and Name, select a structure, map items by entering source codes and descriptions, and save the table.
+
+Question: How do you reset flow values in Flow Management?
+Answer: In Flow Management, you can reset flow values to zero by selecting the option to set flow values to zero based on specific requirements.
+
+Question: How do you update historical rates?
+Answer: In Flow Management, select the option to update historical exchange rates, choose the relevant flow code, and provide the prevailing rate at a specific point in time.
+
+Question: How do you generate an Import Data Report?
+Answer: Go to the Import Data Report page, select the accounts and companies, enter a Calc Account code, select the sort order, data type, and output file type, then click to generate the report.
+
+Question: What are the steps to export adjustments?
+Answer: To export adjustments, go to the Export Adjustments page, select the consolidation period, file type, and parameters, click to export, and download the data.
+
+Question: How do you enter a new local adjustment?
+Answer: Go to the Local Adjustments Manual Input page, enter general adjustment information such as company, journal, and account details, then save the adjustment.
+
+Question: How do you recalculate specific flows?
+Answer: In Flow Management, select the option to recalculate specific flows, provide required information, and update historical rates or reconcile discrepancies.
+
+Question: What does the Workflow page show?
+Answer: The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status. You can manage these tasks, view them in Gantt and Pie charts, and export data to Excel.
+
+Question: How do you complete a task?
+Answer: Select the company and task, change the status to Completed in the Task details panel, add comments if necessary, and click to confirm.
+
+Question: What is the purpose of the Documents Repository?
+Answer: The Documents Repository serves as a collaborative storage area for authorized users. Administrators can organize, maintain, and govern documents, while users can view, download, and upload files based on their permissions.
+
+Question: What are the steps to reject a task?
+Answer: To reject a task, select the company and task, change the status to Rejected in the Task details panel, add comments, and click to confirm.
+
+Question: How do you confirm changes to a consolidation period?
+Answer: Select the period from the list, set it as either the current period or reference period, and click to confirm. The selected periods will be reflected in the Current and Reference Period fields.
+
+Question: How do you hide or show the Pie chart in the Workflow page?
+Answer: To hide or show the Pie chart, select or deselect the Show/Hide Pie Chart icon. This adjusts the visibility of tasks in the pie chart.
+
+Question: What is the function of the Bundle Validation page?
+Answer: The Bundle Validation page displays the contents of a chosen validation report, showcasing identified issues within the data and providing a platform to investigate and resolve these issues.
+
+Question: How do you view a bundle validation report?
+Answer: To view a bundle validation report, select a company and validation report, click View report, sort the records, and click on an issue to investigate further.
+
+Question: How do you download a bundle validation report?
+Answer: Select a company and report, click the download icon, specify the output file type and included options, and click to generate the report.
+
+Question: What information does the Status Board provide?
+Answer: The Status Board provides an overview of all companies in the consolidation, showing the status of data entry, including company code, name, modified date and time, number of warnings and errors, and validation status.
+
+Question: How do you update a company's data entry status?
+Answer: To update a company's data entry status, select the company, and in the Change status panel, select the new status. Click to confirm.
+
+Question: What steps are involved in filtering consolidation periods?
+Answer: To filter the list of consolidation periods, use wildcards like ? and *. For example, typing 20* shows all periods from the 21st century.
+
+Question: What is the purpose of period locking?
+Answer: Period locking restricts any modifications to selected data types for a period across all companies within the group. This is done by setting dates after which import or input of specific types of data will be disabled.
+
+Question: What options are available in Flow Management?
+Answer: In Flow Management, you can book all remaining differences on flow, set flow values to zero, merge company data, recalculate specific flows, and update historical rates.
+

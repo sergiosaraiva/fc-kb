@@ -1,0 +1,1380 @@
+[
+    {
+        "type": "text",
+        "text": "Reserves Goodwill",
+        "bbox": [
+            125,
+            143,
+            220,
+            174
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Debit Credit",
+        "bbox": [
+            322,
+            127,
+            463,
+            143
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "And we do the same for the corresponding impairments.",
+        "bbox": [
+            480,
+            121,
+            885,
+            153
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/faff04b8503ac13cbff0de6617d33b712d346217dc72974992e984bcbfe7e05d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Equity value</td><td>1,026</td><td></td></tr><tr><td>Fin. Invest./A</td><td></td><td>400</td></tr><tr><td>Trans. Adjust. Reserves</td><td>78</td><td>704</td></tr></table>",
+        "bbox": [
+            120,
+            203,
+            466,
+            288
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We now reach a critical step. We say that what we sell is the equity value of these  \\(20\\%\\)  of shares and not the statutory value. Going back to the definition, the equity value of a foreign company is equal to its equity translated",
+        "bbox": [
+            478,
+            200,
+            885,
+            297
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "at closing rate. An equivalent way to say it is to consider the historical rate equity plus the translation adjustments amount, giving  \\(1026 = 20\\% * [2000 + 2000 + 1000 + (200) + 800 + (80) + (300) + (100) + 10]\\) .",
+        "bbox": [
+            120,
+            297,
+            885,
+            347
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This equity value replaces the statutory financial investment adjusted by the badwill, so  \\(400 = 500 + (100)\\) .",
+        "bbox": [
+            118,
+            360,
+            883,
+            392
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "By already explaining that approach in Part 2 for the disposal of a consolidation currency company, we know the counterpart is the Reserves account. But, in this situation, reserves do not include these translation adjustments and this is the reason why we have to book them individually as shown in this adjustment with  \\((78) = 20\\%\\)  \\*  \\([(300) + (100) + 10]\\) .",
+        "bbox": [
+            118,
+            394,
+            883,
+            475
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/81f541419999498ff0ebb4a1c5eebd331b522feb51bd908d6db507415226fa5a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Cash</td><td>900</td><td></td></tr><tr><td>Equity value</td><td></td><td>1,026</td></tr><tr><td>Trans. Adjust.</td><td></td><td>78</td></tr><tr><td>Loss on disposal</td><td>204</td><td></td></tr></table>",
+        "bbox": [
+            120,
+            502,
+            466,
+            587
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We now conclude the transaction at consolidation level, of course for the same price of 900 but we are selling the equity value. The translation adjustments attached to the shares disposed cannot remain in the",
+        "bbox": [
+            478,
+            507,
+            883,
+            602
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "consolidated accounts any more and that's the reason why we eliminate them through the P&L. We finally find a loss of disposal for 204 as in the previous method.",
+        "bbox": [
+            118,
+            602,
+            881,
+            649
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/ada81cba0050670883ac81b94c2fbc877b0c36ced26fff9d7a87ac8965d61ed2.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Impairment</td><td>50</td><td></td></tr><tr><td>Goodwill</td><td></td><td>50</td></tr></table>",
+        "bbox": [
+            120,
+            668,
+            466,
+            721
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The net goodwill of 50 is also eliminated through the P&L.",
+        "bbox": [
+            478,
+            667,
+            881,
+            700
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/3de17c1969ca40a051b6fc2eacc88eb6cb6c829ff8b6491b77b2448db3ac758e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>400</td><td></td></tr><tr><td>Loss on disposal</td><td>204</td><td></td></tr><tr><td>Impairment</td><td>50</td><td></td></tr><tr><td>Reserves</td><td></td><td>654</td></tr></table>",
+        "bbox": [
+            120,
+            758,
+            466,
+            841
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "To reach the conclusion, we would propose to aggregate all these six adjustments above to get the single one here on the left. It is the same adjustment as in the previous method.",
+        "bbox": [
+            478,
+            747,
+            881,
+            828
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            122,
+            65,
+            377,
+            80
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The \"expert\" method",
+        "text_level": 1,
+        "bbox": [
+            101,
+            122,
+            308,
+            137
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "It is not recommended to use this method alone without verifying the result with one of two other methods.",
+        "bbox": [
+            99,
+            154,
+            864,
+            185
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "It says that when disposing shares of a consolidated company to  \\(3^{\\text{rd}}\\)  Parties, all amounts related to these shares and having impacted the group result have to be reversed by impacting the result again.",
+        "bbox": [
+            97,
+            201,
+            867,
+            252
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In our case study, a quarter  \\((20\\% / 80\\%)\\)  of the consolidated reserves of company A are aggregated results and so we have to reverse  \\(704 = 2816\\)  ( \\(20\\% / 80\\%\\) ) which has to be considered as a debit in the P&L. But we also have a quarter of the impairments that have been booked in the P&L during the life time of the company in the consolidation scope. We speak about the amount of  \\(50 = 200\\)  ( \\(20\\% / 80\\%\\) ) which will become a credit in the P&L.",
+        "bbox": [
+            99,
+            267,
+            867,
+            365
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The net amount in the P&L should then be  \\((654) = (704) + 50\\) .",
+        "bbox": [
+            99,
+            378,
+            717,
+            397
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This method doesn't indicate clearly which accounts have to be booked in P&L but the net amount is correct.",
+        "bbox": [
+            99,
+            410,
+            867,
+            444
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consolidation = Year 2",
+        "text_level": 2,
+        "bbox": [
+            101,
+            459,
+            352,
+            475
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here are the statutory accounts of Year 2",
+        "bbox": [
+            101,
+            492,
+            508,
+            508
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/eaefdcd39b107a18f754a3fdfc34add8c0bf0d2d5d49dce846b4f6409926a532.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td colspan=\"2\">p</td></tr><tr><td rowspan=\"3\" colspan=\"2\">Goodwill</td><td>Capital</td><td>5,000</td></tr><tr><td>Reserves</td><td>4,000</td></tr><tr><td>(b)(e)</td><td>(150)654</td></tr><tr><td rowspan=\"2\" colspan=\"2\">Fin. Inv./A</td><td>Result</td><td>600</td></tr><tr><td>(e)</td><td>(654)</td></tr><tr><td colspan=\"2\">Other assets</td><td>Other liabilities</td><td>3,400</td></tr><tr><td colspan=\"4\">A (C)UR</td></tr><tr><td rowspan=\"3\" colspan=\"2\">Tangible assets</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td>(c)(d)</td><td>100(30)</td></tr><tr><td rowspan=\"2\" colspan=\"2\">Other assets</td><td>Result(d)</td><td>200(10)</td></tr><tr><td>Other liabilities</td><td>800</td></tr></table>",
+        "bbox": [
+            234,
+            521,
+            755,
+            799
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "where we see that the financial investment on A in P accounts is now 1500 instead of 2000, reflecting the transaction we just analyzed.",
+        "bbox": [
+            97,
+            828,
+            864,
+            862
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            434,
+            74,
+            850,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): Initial goodwill of 400 reduced by one quarter, so 300.",
+        "bbox": [
+            120,
+            122,
+            815,
+            140
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): Total impairments also reduced by one quarter",
+        "bbox": [
+            120,
+            153,
+            745,
+            171
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Gross amount of goodwill allocation for 100 CUR on fixed tangible assets. This amount reflects an economical value and it wouldn't make any sense to reduce it also by one quarter. An economical value cannot depend on a percentage of participation.",
+        "bbox": [
+            118,
+            185,
+            887,
+            251
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): Depreciation of that goodwill allocation, so  \\(4*10\\%\\)  of 100 CUR corresponding to the periods Year -1 to Year 2. An amount of (30) CUR is booked on the Reserves and (10) CUR on the P&L.",
+        "bbox": [
+            118,
+            266,
+            887,
+            317
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (e): This is the adjustment resulting from our analysis of the transaction.",
+        "bbox": [
+            118,
+            330,
+            885,
+            361
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Currency translation of company A accounts",
+        "text_level": 2,
+        "bbox": [
+            120,
+            377,
+            605,
+            395
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "For this period, we consider the following rates. The historical rates defined for Year 1, of course, remain unchanged for Year 2.",
+        "bbox": [
+            118,
+            411,
+            612,
+            459
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/0029cc296bf1874cda5ae4607327217f1ba742351a2bbc24e89f6b7bb4ccf391.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Closing rate</td><td>12</td></tr><tr><td>Average rate</td><td>11</td></tr></table>",
+        "bbox": [
+            629,
+            417,
+            889,
+            453
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We then get the translated accounts for company A by applying the same rules as for Year 1.",
+        "bbox": [
+            118,
+            474,
+            885,
+            506
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/7438c0d562b20481b0a479f4046c86f953fd7fa2119ff98b95d9d820365d4dfa.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (EUR)</td></tr><tr><td>Tangible assets</td><td>6,000</td><td>Capital</td><td>2,000</td></tr><tr><td>(c)(d)</td><td>1,200</td><td>Reserves</td><td>2,800</td></tr><tr><td></td><td>(480)</td><td></td><td>(c)(d)</td></tr><tr><td></td><td></td><td>Result</td><td>2,200</td></tr><tr><td></td><td></td><td>(d)</td><td>(110)</td></tr><tr><td></td><td></td><td>Trans. Adjust.</td><td>1,400</td></tr><tr><td></td><td></td><td>(c)(d)</td><td>200</td></tr><tr><td></td><td></td><td></td><td>(90)</td></tr><tr><td>Other assets</td><td>12,000</td><td>Other liabilities</td><td>9,600</td></tr></table>",
+        "bbox": [
+            254,
+            521,
+            777,
+            701
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of companies P and A",
+        "text_level": 2,
+        "bbox": [
+            118,
+            715,
+            510,
+            732
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We now apply the global integration method with  \\(60\\%\\)  for the whole Year 2.",
+        "bbox": [
+            118,
+            746,
+            858,
+            764
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/3f8722abaf37d2761b043ffa308e91e0d55a04e5ee68081254b236e9a58ce69c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>A</td><td></td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">150</td><td>Capital</td><td>5,000</td></tr><tr><td>Reserves</td><td>4,504</td></tr><tr><td rowspan=\"4\">Tangible assets</td><td rowspan=\"4\">6,720</td><td>Result</td><td>(54)</td></tr><tr><td>Conso. Res.(A)</td><td>3,366</td></tr><tr><td>Trans. Adjust.</td><td>906</td></tr><tr><td>Minority int.(A)</td><td>3,648</td></tr><tr><td>Other assets</td><td>23,500</td><td>Other liabilities</td><td>13,000</td></tr></table>",
+        "bbox": [
+            254,
+            765,
+            771,
+            897
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            122,
+            67,
+            377,
+            83
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            95,
+            121,
+            163,
+            136
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 3366 = 60% * [2000 + 2800 + 1000 + (280) + 2200 + (110)] - [1500 + (300)]",
+            "Minority interests (A) = 3648 = 40% * [2000 + 2800 + 1000 + (280) + 2200 + (110) + 1400 + 200 + (90)]",
+            "Translation adjustments  \\(= 906 = 60\\%\\)  \\* [1400 + 200 + (90)]"
+        ],
+        "bbox": [
+            133,
+            150,
+            864,
+            267
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves evolution",
+        "text_level": 2,
+        "bbox": [
+            95,
+            282,
+            451,
+            298
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/a7b0298c67a8899d8fcb15d3816804c2e75c1bb8fe2ccd2054763403b0b2e6ab.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends</td><td>Dividends +</td><td>Transfers</td><td>Dividends P</td><td>Year 2 reserves</td></tr><tr><td>P</td><td>3,800</td><td>(54)</td><td></td><td></td><td>704</td><td></td><td>4,450</td></tr><tr><td>A</td><td>2,816</td><td>1,254</td><td></td><td></td><td>(704)</td><td></td><td>3,366</td></tr><tr><td></td><td>6,616</td><td>1,200</td><td>0</td><td>0</td><td>0</td><td>0</td><td>7,816</td></tr></table>",
+        "bbox": [
+            97,
+            320,
+            843,
+            396
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Each amount comes from Year 1 and Year 2 consolidated balance sheets. The transfer of 704 from company A to company P corresponds to a quarter of the consolidated reserves  \\(704 = 2816 \\times (20\\% / 80\\%)\\)",
+        "bbox": [
+            95,
+            412,
+            866,
+            462
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Minority interests evolution",
+        "text_level": 2,
+        "bbox": [
+            97,
+            477,
+            406,
+            494
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/d6fb37c91e92bb6750a78b4520312b0ac2e52b49daae2bdb2f6e5de1b32e9a4f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year1 reserves</td><td>Year2 result</td><td>% var 1</td><td>% var 2</td><td>Year2 reserves</td></tr><tr><td>A</td><td>1,026</td><td>836</td><td>760</td><td>1,026</td><td>3,648</td></tr><tr><td></td><td>1,026</td><td>836</td><td>760</td><td>1,026</td><td>3,648</td></tr></table>",
+        "bbox": [
+            154,
+            515,
+            792,
+            584
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The evolution of the minority interests can be justified with the three following columns.",
+        "bbox": [
+            95,
+            604,
+            864,
+            638
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Year 2 result  \\(= 836 = 40\\%\\)  [2200 + (110)]",
+        "bbox": [
+            95,
+            650,
+            544,
+            670
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "\\(\\%\\)  var  \\(1 = 760 = 40\\% * [1510 - (390)]\\)  corresponding to the part of  \\(3^{\\text{rd}}\\)  Parties in the variation of the translation adjustments which are changing from (390) in Year 1 to 1510 in Year 2",
+        "bbox": [
+            95,
+            683,
+            866,
+            736
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "\\(\\% \\text{var} 2 = 1026 = 20\\%\\) \\(5130\\)  corresponding to the impact of the  \\(20\\%\\)  variation on the opening equity, including the translation adjustments.",
+        "bbox": [
+            95,
+            748,
+            864,
+            784
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            427,
+            71,
+            849,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Translation adjustments evolution",
+        "text_level": 2,
+        "bbox": [
+            123,
+            122,
+            497,
+            138
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/293f51ff32150f55fab4f6a028d6177b1fcbf66f0af7cc66ec6f36a8737fa8c5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1\nCTA</td><td>(1)</td><td>(2)</td><td>Year 2\nCTA</td></tr><tr><td>A</td><td>(312)</td><td>1,140</td><td>78</td><td>906</td></tr><tr><td></td><td>(312)</td><td>1,140</td><td>78</td><td>906</td></tr></table>",
+        "bbox": [
+            218,
+            157,
+            743,
+            225
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Column (1) = 1140 = 60% * [1510 - (390)] corresponding to the Year 2 percentage in the variation of the same period",
+        "bbox": [
+            121,
+            250,
+            882,
+            283
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Column (2) = 78 = (20)% \\* (390) corresponding to the loss of  \\(20\\%\\)  in the opening translation adjustment of (390).",
+        "bbox": [
+            123,
+            296,
+            882,
+            333
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "And finally, do we book translation adjustments in P&L?",
+        "text_level": 3,
+        "bbox": [
+            123,
+            362,
+            731,
+            378
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "When we calculate the net amount impacting P&L and Reserves, two of the three methods explained above do not take into account the translation adjustments. The third method will it comes down to a debit and credit on the same account.",
+        "bbox": [
+            123,
+            394,
+            882,
+            459
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "It seems obvious that on the statutory side of the transaction, the negotiation normally takes into account the equity at the date of the transaction, hence includes the translation adjustments. The rationale is not based on the historical value. This also means that the statutory gain on disposal has a component dealing with the translation amounts.",
+        "bbox": [
+            123,
+            473,
+            882,
+            555
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "And to get everyone to agree, we would recommend to book the adjustment as we did by booking at least two P&L accounts, one correcting the statutory gain and another one booking an exchange gain or loss.",
+        "bbox": [
+            123,
+            571,
+            882,
+            621
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In all cases, the net impact remains the one we calculated with the help of our three methods.",
+        "bbox": [
+            123,
+            634,
+            882,
+            668
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.4 Change of consolidation method during the year",
+        "text_level": 1,
+        "bbox": [
+            123,
+            701,
+            871,
+            747
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The objective of this case study is to see how to handle the balance sheet and the P&L of a group when one company is changing its consolidation method somewhere during the year. The reasons of a change in a consolidation method are rather diversified, but we can identify mainly",
+        "bbox": [
+            123,
+            767,
+            882,
+            833
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Additional acquisition of shares giving the control to the shareholder",
+        "bbox": [
+            165,
+            847,
+            863,
+            864
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            123,
+            68,
+            376,
+            84
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Disposal of shares with a loss of control",
+            "- No transaction on shares, but an agreement between shareholders giving the control to one shareholder independently of the number of shares owned."
+        ],
+        "bbox": [
+            139,
+            121,
+            862,
+            202
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In the case we are presenting hereunder, we will focus on the impact of the consolidation method changes in the balance sheet, the P&L and the evolution of some specific accounts as consolidated reserves, minority interests and equity value.",
+        "bbox": [
+            92,
+            218,
+            860,
+            285
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Description of the situation",
+        "text_level": 2,
+        "bbox": [
+            94,
+            298,
+            396,
+            317
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "During Year 1, company P owns  \\(80\\%\\)  of company A which is consolidated with the global integration method. Company A has been founded by P a few years ago and there is no goodwill.",
+        "bbox": [
+            94,
+            330,
+            860,
+            380
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "This situation remains unchanged until June 30, Year 2. At this date, the group still produces a global consolidation of company A.",
+        "bbox": [
+            94,
+            393,
+            860,
+            428
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "On July  \\(1^{\\text{st}}\\) , Year 2, company P sells  \\(40\\%\\)  of its participation to  \\(3^{\\text{rd}}\\)  Parties and, remaining with  \\(40\\%\\)  in A, looses its control. Since this date and, for the first time on December 31, Year 2, company A will be consolidated with the equity method.",
+        "bbox": [
+            94,
+            440,
+            860,
+            508
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "image",
+        "img_path": "images/f5cdb9baeeefe9193cddd68d1c33824c824ee2949e77f5ee898b1deda3a14445.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            213,
+            531,
+            719,
+            688
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Such a situation implies the following remarks",
+        "bbox": [
+            97,
+            699,
+            552,
+            718
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- At the end of Year 2, by consolidating 12 months, we will have to show the P&L of company A with all accounts (expense and income) for the first six months because during this period the group was controlling company A. On the contrary, we cannot show the accounts related to the last six months because the group lost the control.",
+            "- As a consequence, we need a complete detailed P&L of company A corresponding to June 30, Year 2"
+        ],
+        "bbox": [
+            135,
+            730,
+            864,
+            863
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            428,
+            71,
+            845,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidating the first six months by the global integration method, we will have minority interests in the result of the period",
+            "Consolidating the last six months by the equity method, we will have a \"Profit from equity company\" account",
+            "In the balance sheet, which shows a closing situation as at December 31, Year 2, we should show no Minority interests but an Equity value will appear in the consolidated assets",
+            "- The percentage changing during the consolidation period, we will be careful when calculating the group result because it has  \\(80\\%\\)  of the first six months result and only  \\(40\\%\\)  of the last six months result.",
+            "- And, finally, we want to inform the reader that most of the consolidation software don't handle such situations correctly because on December 31 Year 2, it will consolidate the whole year with the equity method at  \\(40\\%\\) , which is completely wrong. Manual adjustments may be required to correct the situation. We will present our case study that way in order to show how to book these adjustments."
+        ],
+        "bbox": [
+            158,
+            122,
+            887,
+            459
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Consolidation = Year 1",
+        "text_level": 2,
+        "bbox": [
+            122,
+            475,
+            372,
+            493
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We start with a Year 1 consolidation without any special event and no adjustments. Company A is consolidated by the global integration method with a percentage of  \\(80\\%\\) .",
+        "bbox": [
+            120,
+            508,
+            889,
+            556
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/d9833ab654c95e92b8a9dc3b4ef7dd7d2f37b6105761f1bc389c5a70cf2aa7fd.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">400</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>800</td></tr><tr><td>Result</td><td>200</td></tr><tr><td>Other assets</td><td>3,600</td><td>Other liabilities</td><td>2,000</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"4\">Other assets</td><td rowspan=\"4\">3,000</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>400</td></tr><tr><td>Result</td><td>100</td></tr><tr><td>Other liabilities</td><td>2,000</td></tr></table>",
+        "bbox": [
+            237,
+            565,
+            756,
+            756
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            125,
+            68,
+            377,
+            84
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Consolidated accounts are the following",
+        "bbox": [
+            92,
+            121,
+            483,
+            139
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/222b7e7bfc63dafeff35b9ac74d397fed7c07987ca6d6f201e9b8d2e8fb4c353.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A</td></tr><tr><td></td><td>Capital</td><td>1,000</td></tr><tr><td></td><td>Reserves</td><td>800</td></tr><tr><td></td><td>Result</td><td>200</td></tr><tr><td></td><td>Conso. Res.(A)</td><td>400</td></tr><tr><td></td><td>Minority int.(A)</td><td>200</td></tr><tr><td>Other assets</td><td>6,600</td><td>Other liabilities</td></tr></table>",
+        "bbox": [
+            210,
+            150,
+            729,
+            269
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            94,
+            284,
+            160,
+            298
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 400 = 80% * [500 + 400 + 100] - 400",
+            "Minority interests (A)  \\(= 200 = 20\\%\\)  \\* [500 + 400 + 100]"
+        ],
+        "bbox": [
+            132,
+            313,
+            835,
+            364
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Consolidation - Year 2",
+        "text_level": 2,
+        "bbox": [
+            94,
+            379,
+            343,
+            395
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We propose to take knowledge of Year 2 statutory accounts, which includes only one consolidation adjustment related to the disposal of  \\(40\\%\\)  of shares of company A.",
+        "bbox": [
+            92,
+            411,
+            858,
+            459
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This time, we will also consolidate the P&L",
+        "bbox": [
+            94,
+            474,
+            510,
+            491
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/a599ac6f910a8a86d4fb72fabceec5f2c475399966c46b0a579181df33cc724b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"5\">Fin. Inv./A</td><td rowspan=\"5\">200</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>1,000</td></tr><tr><td>(a)</td><td>224</td></tr><tr><td>Result</td><td>300</td></tr><tr><td>(a)</td><td>(224)</td></tr><tr><td>Other assets</td><td>4,800</td><td>Other liabilities</td><td>2,700</td></tr><tr><td colspan=\"4\">P</td></tr><tr><td>Cost of sales</td><td>4,700</td><td>Sales</td><td>4,300</td></tr><tr><td>Result</td><td>300</td><td>Gain on disposal</td><td>700</td></tr><tr><td></td><td>(a)</td><td>(a)</td><td>(224)</td></tr></table>",
+        "bbox": [
+            172,
+            506,
+            772,
+            711
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In its statutory accounts, company P sells the  \\(40 \\%\\) shares of company A for a price of 900 and for a book value of 200, making a gain of 700 as we can see in the P&L above.",
+        "bbox": [
+            92,
+            730,
+            858,
+            780
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, we know we have to compare the 900 with  \\(40\\%\\)  of the equity on July  \\(1^{st}\\)  Year 2. At that date, company A makes a profit of 60 so we get  \\(424 = 40\\% * [500 + 400 + 100 + 60]\\)  and a gain on disposal equal to  \\(476 = 900 - 424\\) .",
+        "bbox": [
+            92,
+            795,
+            858,
+            860
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            428,
+            73,
+            843,
+            89
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The statutory gain has to be reduced by 224 to make it equal to the consolidation gain of 476. That's the role of adjustment (a).",
+        "bbox": [
+            124,
+            122,
+            888,
+            157
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We are now going to consolidate company A with the equity method without booking any adjustment in the following statutory accounts.",
+        "bbox": [
+            124,
+            171,
+            888,
+            204
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/42079ac3e3825e93e4863f1787eb84a9956d908199f8a858676af0b4a5a480b8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>500</td></tr><tr><td></td><td>Result</td><td>100</td></tr><tr><td>Other assets</td><td>4,000</td><td>Other liabilities</td></tr><tr><td></td><td></td><td>2,900</td></tr></table>",
+        "bbox": [
+            202,
+            216,
+            803,
+            299
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/209c274942847c0d760753f029120f4658b2bd3b861919541bfa1e7e85eee7ef.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A (December 31 Year 2)</td></tr><tr><td>Cost of sales</td><td>8,900</td><td>Sales</td></tr><tr><td>Result (Group)</td><td>100</td><td></td></tr></table>",
+        "bbox": [
+            202,
+            318,
+            799,
+            374
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here are the consolidated balance sheet and P&L",
+        "bbox": [
+            126,
+            394,
+            603,
+            410
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/dc6ea6ed8bc6f7a36730c58f1f2ab8b3829f529b9796e99c665aa9735adb66c3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">P + A</td></tr><tr><td rowspan=\"4\">Equity value (A)</td><td rowspan=\"4\">440</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>1,224</td></tr><tr><td>Result</td><td>76</td></tr><tr><td>Conso. Res.(A)</td><td>240</td></tr><tr><td>Other assets</td><td>4,800</td><td>Other liabilities</td><td>2,700</td></tr></table>",
+        "bbox": [
+            202,
+            426,
+            799,
+            530
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/01815adb049d162ccae993aaee06993abec36750a9577168e4035231b92ced99.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\">Cost of sales</td><td rowspan=\"2\">4,700</td><td>Sales</td><td>4,300</td></tr><tr><td>Gain on disposal</td><td>476</td></tr><tr><td>Result</td><td>116</td><td>Profit EM</td><td>40</td></tr></table>",
+        "bbox": [
+            202,
+            549,
+            799,
+            616
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "With",
+        "bbox": [
+            126,
+            635,
+            177,
+            650
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "- Consolidated reserves (A)  \\(= 240 = 40\\% * [500 + 500 + 100] - 200\\)  Equity value (A)  \\(= 440 = 40\\% * [500 + 500 + 100]\\)",
+        "bbox": [
+            164,
+            666,
+            864,
+            716
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            126,
+            68,
+            379,
+            84
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "But this consolidated P&L contains three errors that should be corrected by adjustments",
+        "text_level": 2,
+        "bbox": [
+            92,
+            119,
+            860,
+            156
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Here is the adjusted consolidated P&L with the necessary comments",
+        "bbox": [
+            92,
+            169,
+            761,
+            185
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/f8e50ae950366755407f69480e115553849152bab63971a1ff0c86ed7bf35d76.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + A</td></tr><tr><td>Cost of sales</td><td>4,700</td><td>Sales</td><td>4.300</td></tr><tr><td>(b)</td><td>4,940</td><td>(b)</td><td>5,000</td></tr><tr><td></td><td></td><td>Gain on disposal</td><td>476</td></tr><tr><td>Result</td><td>116</td><td>Profit EM</td><td>40</td></tr><tr><td>(b)</td><td>60</td><td>(d)</td><td>(24)</td></tr><tr><td>(c)</td><td>(12)</td><td></td><td></td></tr><tr><td>(d)</td><td>(24)</td><td></td><td></td></tr><tr><td>Result (3rd Parties)</td><td></td><td></td><td></td></tr><tr><td>(c)</td><td>12</td><td></td><td></td></tr></table>",
+        "bbox": [
+            189,
+            197,
+            789,
+            364
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b)",
+        "text_level": 3,
+        "bbox": [
+            94,
+            378,
+            248,
+            394
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We (or your consolidation software) have consolidated company A at  \\(40\\%\\)  by the equity method over the 12 months of Year 2 and we know that for the first six months we should have consolidated the company with the global integration method.",
+        "bbox": [
+            92,
+            410,
+            860,
+            475
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This means that P&L accounts of company A for the first half-year are missing and must be added in the final consolidated P&L, on the basis of June 30 Year 2 P&L.",
+        "bbox": [
+            92,
+            475,
+            860,
+            523
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/f9ada75a810f4560e4aacfc45cd07501a1e3a0e34f7501116498064305f167c4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">A (June 30 Year 2)</td></tr><tr><td>Cost of sales</td><td>4,940</td><td>Sales</td><td>5,000</td></tr><tr><td>Result</td><td>60</td><td></td><td></td></tr></table>",
+        "bbox": [
+            189,
+            538,
+            789,
+            590
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c)",
+        "text_level": 3,
+        "bbox": [
+            94,
+            603,
+            246,
+            619
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For this first half-year, company A makes a statutory profit of 60 and, being consolidated at  \\(80\\%\\)  by the global integration method,  \\(12 = 20\\% * 60\\)  is a part of the profit that belongs to  \\(3^{\\text{rd}}\\)  Parties.",
+        "bbox": [
+            92,
+            635,
+            860,
+            685
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d)",
+        "text_level": 3,
+        "bbox": [
+            94,
+            698,
+            248,
+            717
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We also notice that company A making a 12 months profit of 100 and a first half-year profit of 60, the second half-year profit is 40 which has to be evaluated at  \\(40\\%\\)  as \"Profit EM\" account, so  \\(16 = 40\\% * 40\\) .",
+        "bbox": [
+            92,
+            730,
+            860,
+            780
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The amount of 40 initially calculated must be reduced by 24.",
+        "bbox": [
+            92,
+            795,
+            683,
+            812
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "These three adjustments are just reclassifications between P&L accounts. The balance sheet needs no adjustments.",
+        "bbox": [
+            92,
+            827,
+            858,
+            861
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            426,
+            71,
+            845,
+            87
+        ],
+        "page_idx": 9
+    }
+]

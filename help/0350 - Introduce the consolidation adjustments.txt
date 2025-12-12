@@ -1,0 +1,95 @@
+Topics:
+Group Adjustments, Local Adjustments, Journal Entries, Adjustment Management
+
+Keywords:
+Group Adjustments, Local Adjustments, Journal Entries, Manual Input, Adjustment Management, Consolidation Period, Company Code, Currency, Adjustment Category, Audit Trail
+
+Summary:
+The provided documentation for the Financial Consolidation product includes comprehensive instructions on managing group and local adjustments. It covers how to access, create, and modify adjustments, along with detailed procedures for handling journal entries. The Group Adjustments section explains managing journal entries during the consolidation period, including updating multiple adjustments and aggregating entries. The Local Adjustments section details manual input and viewing options for local adjustments. It includes procedures for entering general adjustment-related information, working with journal entries, and utilizing additional functions like multiply/divide. The documentation provides users with thorough guidance on adjustment management, ensuring accurate financial data consolidation and reporting.
+
+Contents:
+Manage group adjustments
+The Manage Adjustments page allows you to make necessary adjustments to group journal entries during a consolidation period. To access the Manage Adjustments page, click Adjustments > Manage Adjustments.
+
+The top left-side panel displays a list of the journals used in the consolidation period. You can select to display adjustments from either the Current or Reference consolidation period. The top right-side panel contains parameters for updating multiple adjustments at once, including options for journal type, adjustment category, and starting adjustment numbers.
+
+The lower part of the page is the data area where all the adjustments in the selected journal are displayed. The columns include:
+- Entry: Adjustment number
+- Code: Company code
+- Company: Company name
+- Description: Adjustment description
+- Type: Journal type
+- Cat: Journal category
+
+At the bottom of the page is the For selected adjustments section, containing actions you can take when managing group adjustments. Options include removing adjustments, moving adjustments from one journal to another, aggregating several adjustments into one, and converting adjustments from local currency to consolidation currency.
+
+Make an adjustment:
+1. Select the journal with which you want to work.
+2. Select an adjustment from the list.
+3. Choose a journal type and adjustment category.
+4. Click to update the selected entries with the new type and category.
+5. Enter a new adjustment number if needed.
+6. Click to apply the changes.
+7. Choose an action from the For selected adjustments section.
+
+Move a group adjustment from one journal to another:
+1. Select the journal with which you want to work.
+2. Select the adjustments you want to move.
+3. Choose a journal type and adjustment category for the new journal.
+4. Click to move the adjustments.
+5. Enter a new adjustment number if needed.
+6. Click to apply the changes.
+
+Aggregate adjustments:
+1. Select the journal with which you want to work.
+2. Select the adjustments to aggregate.
+3. Click to combine the entries into a single journal entry.
+
+Translate adjustments:
+1. Select the journal with which you want to work.
+2. Select the adjustments to translate.
+3. Click to convert the journal entry from local currency to group currency.
+
+View group adjustments
+The Adjustments View page provides the ability to access and review the details of adjustments that were manually entered into the application. To access the View page, click Adjustments > View.
+
+The table at the top lists local adjustments already available in the consolidation with columns for Type, Entry, Company code/Name, Text, Modification Date, Approved, and Available.
+
+Next to each adjustment are buttons for viewing or deleting the adjustment:
+- View button: Opens the page where you can view and manage all details of the selected local adjustment.
+- Delete button: Removes the selected local adjustment, depending on security settings.
+
+Display details of a line of adjustment:
+1. Click on a group adjustment line to highlight it.
+2. The details of the selected adjustment, including amounts, currency, and behavior, are displayed below.
+
+View full details of an adjustment:
+1. Select the adjustment from the list.
+2. Click to view the full details on the displayed page.
+
+Add a new adjustment:
+1. Click to add a new local adjustment.
+2. The page is displayed for you to enter the new adjustment.
+
+Local adjustments - manual input
+The Local Adjustments Manual Input page allows you to enter adjustments manually. To access the Local Adjustment Manual Input page, click Data Entry > Manual Data Entry > Local Adjustments > Manual Input.
+
+The top part of the page is where you enter general adjustment-related information, including Company code and name, Journal code and name, Associated Journal, Journal Entry, Behavior, and Attachment. The data area below is where you enter different lines for the adjustment, including Line number, Account code and description, Debit and Credit amounts, and any necessary actions like Repeat, Difference, and Delete.
+
+Enter a local adjustment:
+1. Enter a company code or click to search for a company.
+2. Enter a journal code or click to search for a journal.
+3. Enter an account number or click to search for an account.
+4. Enter the adjustment amount in the Debit or Credit field.
+5. Click to calculate the Sum Debit, Sum Credit, and Difference amounts.
+6. Click to save the adjustment.
+
+Multiply/Divide an adjustment:
+1. Select adjustment lines.
+2. Click . The Multiply/Divide pop-up appears.
+3. Enter the fraction by which you want to multiply or divide.
+4. Click to recalculate the amounts.
+
+View Local Adjustments:
+1. Access the Local Adjustments Manual Input page.
+2. Use additional functions like Sort, Tax, and other data entry options as needed.

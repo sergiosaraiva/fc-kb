@@ -1,0 +1,494 @@
+# Workflow: Process Acquisition (Initial Consolidation)
+# Task: Record business combination and calculate goodwill/bargain purchase
+# Complexity: High | Steps: 10 | Estimated Time: 1-2 hours
+# IFRS Reference: IFRS 3 - Business Combinations
+
+workflow:
+  name: "Process Acquisition"
+  version: "1.0"
+  description: "Step-by-step process to record initial consolidation of an acquired subsidiary including goodwill calculation"
+
+  # Metadata
+  category: "Business Combination"
+  frequency: "Per acquisition event"
+  skill_level: "Advanced"
+  ifrs_standard: "IFRS 3 - Business Combinations"
+
+  # Related decision trees
+  decision_trees:
+    - "consolidation-method-decision.yaml"
+    - "elimination-code-selection.yaml"
+
+  # Prerequisites
+  prerequisites:
+    - id: "prereq_1"
+      description: "Subsidiary company exists in consolidation"
+      check: "Run workflow-add-subsidiary.yaml first if needed"
+
+    - id: "prereq_2"
+      description: "Acquisition date is determined"
+      check: "Date when control was obtained (IFRS 3.8-9)"
+
+    - id: "prereq_3"
+      description: "Purchase price allocation (PPA) is complete"
+      check: "Fair values of identifiable assets/liabilities determined"
+
+    - id: "prereq_4"
+      description: "Opening balance sheet of subsidiary at acquisition date available"
+      check: "Subsidiary's B/S at fair value at acquisition date"
+
+  # Required information
+  required_inputs:
+    - name: "subsidiary_code"
+      type: "string"
+      description: "Company code of the acquired subsidiary"
+
+    - name: "acquisition_date"
+      type: "date"
+      description: "Date control was obtained"
+
+    - name: "consideration_transferred"
+      type: "decimal"
+      description: "Total purchase price (cash + shares + contingent consideration)"
+      components:
+        - "Cash paid"
+        - "Fair value of equity instruments issued"
+        - "Fair value of contingent consideration"
+        - "Fair value of previously held equity interest (for step acquisitions)"
+
+    - name: "fair_value_net_assets"
+      type: "decimal"
+      description: "Fair value of identifiable net assets acquired"
+      calculation: "FV Assets - FV Liabilities (excluding goodwill)"
+
+    - name: "nci_measurement_method"
+      type: "enum"
+      values: ["proportionate", "full_goodwill"]
+      description: "NCI measurement election per IFRS 3.19"
+      guidance: |
+        Proportionate: NCI = NCI% × Fair value of identifiable net assets
+        Full Goodwill: NCI = Fair value of NCI (requires valuation)
+
+    - name: "nci_percentage"
+      type: "decimal"
+      description: "Non-controlling interest percentage"
+      calculation: "100% - Acquisition percentage"
+
+    - name: "nci_fair_value"
+      type: "decimal"
+      description: "Fair value of NCI (only for full goodwill method)"
+      required_if: "nci_measurement_method == 'full_goodwill'"
+
+    - name: "fair_value_adjustments"
+      type: "array"
+      description: "List of fair value adjustments to subsidiary's book values"
+      item_structure:
+        account: "Account code"
+        book_value: "Original book value"
+        fair_value: "Fair value at acquisition"
+        adjustment: "Fair value - Book value"
+
+  # Workflow steps
+  steps:
+    - step: 1
+      name: "Verify Subsidiary Setup"
+      description: "Confirm subsidiary is properly configured in the consolidation"
+
+      actions:
+        - action: "verify_subsidiary"
+          type: "query"
+          sql: |
+            SELECT
+                c.CompanyCode,
+                c.CompanyName,
+                c.ConsoMethod,
+                c.GroupPerc,
+                c.MinorPerc,
+                c.FlagEnteringScope,
+                c.EnteringScopeDate
+            FROM TS014C0 c
+            WHERE c.ConsoID = @ConsoID
+              AND c.CompanyCode = @SubsidiaryCode
+
+      validation:
+        checks:
+          - "ConsoMethod should be 'G' (Global) for full consolidation"
+          - "FlagEnteringScope should be 1 for new acquisition"
+          - "GroupPerc should match acquisition percentage"
+
+    - step: 2
+      name: "Document Purchase Price Allocation"
+      description: "Record the fair value adjustments from PPA"
+
+      actions:
+        - action: "create_ppa_documentation"
+          type: "documentation"
+          template: |
+            ## Purchase Price Allocation - @SubsidiaryName
+            Acquisition Date: @AcquisitionDate
+
+            ### Consideration Transferred
+            | Component | Amount |
+            |-----------|--------|
+            | Cash | @CashPaid |
+            | Equity instruments | @EquityIssued |
+            | Contingent consideration | @ContingentConsideration |
+            | **Total Consideration** | **@ConsiderationTransferred** |
+
+            ### Fair Value of Identifiable Net Assets
+            | Asset/Liability | Book Value | Fair Value | Adjustment |
+            |-----------------|------------|------------|------------|
+            @FairValueAdjustments
+
+            | **Total Net Assets** | @BookValueTotal | **@FairValueNetAssets** | @TotalAdjustment |
+
+      notes:
+        - "Keep PPA documentation for audit trail"
+        - "Fair value adjustments may require deferred tax consideration"
+
+    - step: 3
+      name: "Calculate Goodwill or Bargain Purchase"
+      description: "Determine goodwill or gain from bargain purchase"
+
+      actions:
+        - action: "calculate_goodwill_proportionate"
+          type: "calculation"
+          method: "Proportionate NCI"
+          formula: |
+            Goodwill = Consideration Transferred
+                     - (Acquisition % × Fair Value of Net Assets)
+
+            Example:
+            Consideration = 120
+            Acquisition % = 80%
+            FV Net Assets = 100
+            Goodwill = 120 - (80% × 100) = 120 - 80 = 40
+
+        - action: "calculate_goodwill_full"
+          type: "calculation"
+          method: "Full Goodwill"
+          formula: |
+            Goodwill = (Consideration Transferred + NCI at Fair Value)
+                     - Fair Value of Net Assets
+
+            Example:
+            Consideration = 120
+            NCI Fair Value = 28
+            FV Net Assets = 100
+            Goodwill = (120 + 28) - 100 = 48
+
+      decision_point:
+        question: "Is result positive (goodwill) or negative (bargain purchase)?"
+        if_positive:
+          result: "GOODWILL"
+          action: "Record as intangible asset"
+          ifrs_reference: "IFRS 3.32"
+        if_negative:
+          result: "BARGAIN_PURCHASE"
+          action: "Review calculations, then recognize gain in P&L"
+          ifrs_reference: "IFRS 3.34-36"
+          warning: "IFRS 3.36 requires reassessment before recognizing bargain"
+
+    - step: 4
+      name: "Record Investment in Parent's Books"
+      description: "Ensure parent has recorded the investment at cost"
+
+      actions:
+        - action: "verify_investment_recorded"
+          type: "query"
+          sql: |
+            -- Check investment account in parent's data
+            SELECT
+                d.AccountID,
+                a.Account,
+                a.AccountName,
+                d.AmountLocal,
+                d.AmountGroup
+            FROM TD030B2 d
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            INNER JOIN TS014C0 c ON c.ConsoID = d.ConsoID AND c.CompanyID = d.CompanyID
+            WHERE d.ConsoID = @ConsoID
+              AND c.CompanyCode = @ParentCode
+              AND a.PartnerType = 2  -- Participation account
+              AND d.PartnerCompanyID = @SubsidiaryCompanyID
+
+        - action: "record_investment_if_missing"
+          type: "data_entry"
+          guidance: |
+            If investment not recorded, enter via Data Entry:
+            - Company: Parent
+            - Account: Investment in Subsidiary (PartnerType = 2)
+            - Partner: Subsidiary company
+            - Amount: Consideration transferred
+            - Flow: ACQUISITION or appropriate flow
+
+      validation:
+        success_criteria: "Investment recorded at consideration transferred amount"
+
+    - step: 5
+      name: "Record Fair Value Adjustments"
+      description: "Create user elimination to adjust subsidiary's assets/liabilities to fair value"
+
+      actions:
+        - action: "create_fv_elimination_header"
+          type: "execute"
+          sql: |
+            -- Create user elimination for fair value adjustments
+            INSERT INTO TS070S0 (
+                ConsoID,
+                ElimCode,
+                Description,
+                ElimType,
+                FlagActive
+            )
+            VALUES (
+                @ConsoID,
+                'U_FVA_' + @SubsidiaryCode,
+                'Fair Value Adjustment - ' + @SubsidiaryName + ' Acquisition',
+                'U',  -- User elimination
+                1     -- Active
+            )
+
+        - action: "create_fv_elimination_details"
+          type: "execute"
+          description: "For each fair value adjustment, create elimination lines"
+          sql_template: |
+            -- For each fair value adjustment:
+            INSERT INTO TS071S0 (
+                ConsoID,
+                ElimCode,
+                LineNo,
+                CompanyID,
+                AccountID,
+                FlowID,
+                Amount,
+                Sign
+            )
+            VALUES
+            -- Debit: Increase asset fair value (or decrease liability)
+            (@ConsoID, 'U_FVA_@SubCode', 1, @SubCompanyID, @AssetAccountID, @FlowID, @AdjustmentAmount, 1),
+            -- Credit: Fair Value Reserve (or Consolidated Reserves)
+            (@ConsoID, 'U_FVA_@SubCode', 2, @SubCompanyID, @FVReserveAccountID, @FlowID, @AdjustmentAmount, -1)
+
+      notes:
+        - "Fair value adjustments are typically booked as user eliminations"
+        - "Consider deferred tax impact of fair value adjustments"
+        - "These adjustments recur each period until asset is sold/depreciated"
+
+    - step: 6
+      name: "Record Goodwill Entry"
+      description: "Create user elimination to record goodwill on consolidation"
+
+      actions:
+        - action: "create_goodwill_elimination"
+          type: "execute"
+          condition: "If goodwill is positive"
+          sql: |
+            -- Goodwill user elimination
+            INSERT INTO TS071S0 (
+                ConsoID,
+                ElimCode,
+                LineNo,
+                CompanyID,
+                AccountID,
+                FlowID,
+                Amount,
+                Sign
+            )
+            VALUES
+            -- Debit: Goodwill account
+            (@ConsoID, 'U_GW_@SubCode', 1, @SubCompanyID, @GoodwillAccountID, @AcqFlowID, @GoodwillAmount, 1),
+            -- Credit: Consolidated Reserves (balancing entry)
+            (@ConsoID, 'U_GW_@SubCode', 2, @SubCompanyID, @ConsoResAccountID, @AcqFlowID, @GoodwillAmount, -1)
+
+        - action: "create_bargain_elimination"
+          type: "execute"
+          condition: "If goodwill is negative (bargain purchase)"
+          sql: |
+            -- Bargain purchase gain - goes to P&L
+            INSERT INTO TS071S0 (...)
+            VALUES
+            -- Debit: Consolidated Reserves
+            (@ConsoID, 'U_BARG_@SubCode', 1, @SubCompanyID, @ConsoResAccountID, @AcqFlowID, @BargainAmount, 1),
+            -- Credit: Gain on Bargain Purchase (P&L)
+            (@ConsoID, 'U_BARG_@SubCode', 2, @SubCompanyID, @GainAccountID, @AcqFlowID, @BargainAmount, -1)
+
+      ifrs_guidance:
+        goodwill: "IFRS 3.32 - Recognize goodwill as an asset"
+        bargain: "IFRS 3.34 - Recognize gain in P&L at acquisition date"
+
+    - step: 7
+      name: "Configure Minority Interest"
+      description: "Set up NCI calculation based on measurement method"
+
+      actions:
+        - action: "verify_nci_accounts"
+          type: "query"
+          sql: |
+            -- Check NCI special accounts are configured
+            SELECT
+                dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'MINORITYINTEREST') AS MI_BS,
+                dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'MINORITYINTERESTPL') AS MI_PL
+
+        - action: "configure_nci_measurement"
+          type: "configuration"
+          guidance: |
+            For Proportionate NCI method:
+            - System default - NCI = MinorPerc% × Subsidiary Equity
+            - No additional configuration needed
+
+            For Full Goodwill method:
+            - NCI includes share of goodwill
+            - Create additional user elimination:
+              DR: Goodwill (NCI portion)
+              CR: Minority Interest
+
+      notes:
+        - "S085 elimination handles automatic NCI calculation"
+        - "Full goodwill method requires manual NCI goodwill adjustment"
+
+    - step: 8
+      name: "Run Initial Consolidation"
+      description: "Execute consolidation to process the acquisition"
+
+      actions:
+        - action: "run_bundle_integration"
+          type: "execute"
+          procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+            - "@SessionID = @SessionID"
+
+        - action: "run_eliminations"
+          type: "execute"
+          procedure: "P_CONSO_ELIM"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@UserID = @UserID"
+
+      validation:
+        checks:
+          - "No unbalanced journal entries"
+          - "Goodwill appears in consolidated B/S"
+          - "NCI calculated correctly"
+          - "Investment eliminated against equity"
+
+    - step: 9
+      name: "Verify Elimination Results"
+      description: "Confirm participation elimination processed correctly"
+
+      actions:
+        - action: "check_participation_elimination"
+          type: "query"
+          sql: |
+            -- Verify S089/S090/S093/S094 eliminations
+            SELECT
+                jt.JournalTypeCode,
+                jt.Description,
+                SUM(CASE WHEN d.Amount > 0 THEN d.Amount ELSE 0 END) AS Debits,
+                SUM(CASE WHEN d.Amount < 0 THEN d.Amount ELSE 0 END) AS Credits,
+                SUM(d.Amount) AS Balance
+            FROM TD045C2 d
+            INNER JOIN TS020S0 jt ON jt.ConsoID = d.ConsoID AND jt.JournalTypeID = d.JournalTypeID
+            WHERE d.ConsoID = @ConsoID
+              AND d.CompanyID = @SubsidiaryCompanyID
+              AND jt.JournalTypeCode IN ('S089', 'S090', 'S093', 'S094', 'S087')
+            GROUP BY jt.JournalTypeCode, jt.Description
+
+        - action: "verify_goodwill_report"
+          type: "procedure"
+          procedure: "P_REPORT_GOODWILL"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@PeriodID = @PeriodID"
+            - "@CompanyID = @SubsidiaryCompanyID"
+
+      validation:
+        checks:
+          - "All elimination journals balance (Sum = 0)"
+          - "Goodwill report shows expected amount"
+          - "Consolidated reserves calculated correctly"
+
+    - step: 10
+      name: "Document and Review"
+      description: "Final documentation and review of the acquisition"
+
+      actions:
+        - action: "generate_acquisition_report"
+          type: "report"
+          content: |
+            ## Acquisition Summary: @SubsidiaryName
+
+            ### Key Figures
+            | Item | Amount |
+            |------|--------|
+            | Acquisition Date | @AcquisitionDate |
+            | Acquisition Percentage | @AcquisitionPercentage% |
+            | Consideration Transferred | @ConsiderationTransferred |
+            | Fair Value of Net Assets | @FairValueNetAssets |
+            | Goodwill / (Bargain) | @GoodwillAmount |
+            | Non-Controlling Interest | @NCIAmount |
+
+            ### Eliminations Created
+            - S089: Investment elimination
+            - S087: Equity capital elimination
+            - S093: Consolidated reserves
+            - S094: Goodwill/bargain
+            - U_FVA_@SubCode: Fair value adjustments
+            - U_GW_@SubCode: Goodwill entry
+
+      checklist:
+        - "[ ] Subsidiary configured correctly"
+        - "[ ] Investment recorded in parent"
+        - "[ ] Fair value adjustments recorded"
+        - "[ ] Goodwill/bargain calculated per IFRS 3"
+        - "[ ] NCI measurement method applied"
+        - "[ ] Consolidation run successfully"
+        - "[ ] Elimination journals balance"
+        - "[ ] Documentation complete for audit"
+
+  # Post-workflow
+  post_workflow:
+    recurring_tasks:
+      - description: "Annual goodwill impairment testing"
+        reference: "IAS 36"
+        workflow: "Not yet documented"
+
+      - description: "Amortization of fair value adjustments"
+        reference: "As assets depreciate/amortize"
+
+    next_period:
+      - "FlagEnteringScope should be reset to 0 after first consolidation"
+      - "Fair value adjustment eliminations recur each period"
+      - "Goodwill elimination recurs each period"
+
+  # Troubleshooting
+  troubleshooting:
+    - issue: "Goodwill doesn't match manual calculation"
+      causes:
+        - "Exchange rate differences if subsidiary in foreign currency"
+        - "Fair value adjustments not all recorded"
+        - "NCI measurement method inconsistency"
+      solution: "Reconcile step-by-step using P_REPORT_GOODWILL output"
+
+    - issue: "Investment not eliminating against equity"
+      causes:
+        - "Investment not coded with PartnerType = 2"
+        - "Missing PartnerCompanyID on investment account"
+      solution: "Verify account configuration in TS010S0"
+
+    - issue: "Consolidated reserves incorrect"
+      causes:
+        - "Period mismatch between investment and equity"
+        - "Pre-acquisition reserves not identified"
+      solution: "Check reference period alignment"
+
+  # References
+  references:
+    - document: "../03-core-calculations/goodwill-calculation.md"
+    - document: "../03-core-calculations/minority-interest.md"
+    - document: "../04-elimination-entries/participation-eliminations.md"
+    - document: "../03-core-calculations/step-acquisition.md"
+    - standard: "IFRS 3 - Business Combinations"
+    - standard: "IAS 36 - Impairment of Assets"

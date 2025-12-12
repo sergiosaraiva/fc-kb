@@ -1,0 +1,67 @@
+Topics:
+Account Analysis, Group Analysis, Bundle Analysis, Audit Trail
+
+Keywords:
+Account Reports, Group Reports, Bundle Reports, Audit Trail, Financial Analysis, Pivot Table, Consolidation, Data Insights, Report Generation
+
+Summary:
+The documentation for the Financial Consolidation product provides detailed instructions on generating various analysis reports. The Account Analysis section explains how to generate reports focused on consolidated data for individual accounts. The Group Analysis section details the process of creating reports revolving around the group structure, offering insights into group-level data. The Bundle Analysis section covers generating reports that focus on bundle data, facilitating in-depth analysis of the bundled information. The Audit Trail section provides steps for creating reports designed for auditing consolidated data, ensuring thorough examination and analysis of financial information.
+
+Contents:
+Account analysis reports
+On the Analysis Reports Accounts page, you have the ability to generate multiple analysis reports or Pivot Table Reports specifically focused on the consolidated data per account. These reports provide valuable insights and allow for in-depth analysis of the financial information pertaining to individual accounts.
+
+To access the Analysis Reports Accounts page, click Reports > Analysis Reports > Accounts.
+
+Generate an account analysis report:
+1. In the Journal Summation field, select a journal view to use for generating the report.
+2. Optionally, to include companies that are not consolidated in the report, click Include Not Consolidated Companies.
+3. From the list of Reports, select the report you want to generate.
+4. To see a sample of the report you selected, click the sample icon for that report. The sample is only a representation and does not reflect the data in your database.
+5. Click Generate to generate the selected report.
+
+Group analysis reports
+On the Analysis Reports Group page, you have the capability to generate multiple analysis reports or Pivot Table Reports that revolve around the group structure. These reports offer valuable insights and facilitate in-depth analysis of the data within the context of the group.
+
+To access the Analysis Reports Group page, click Reports > Analysis Reports > Group.
+
+Generate a group analysis report:
+1. In the Journal Summation field, select a journal view to use for generating the report.
+2. To include companies that are not consolidated in the report, click Include Not Consolidated Companies.
+3. From the list of Reports, select the report you want to generate.
+4. To see a sample of the report you selected, click the sample icon for that report. The sample is only a representation and does not reflect the data in your database.
+5. Click Generate to generate the selected report.
+
+Bundle analysis reports
+On the Analysis Bundles Reports page, you have the capability to generate multiple analysis reports or Pivot Table Reports that focus on the bundle data. These reports provide valuable insights and facilitate in-depth analysis of the bundled information.
+
+To access the Analysis Bundles Reports page, click Reports > Analysis Reports > Bundles.
+
+Generate a bundle analysis report:
+1. In the Journal Summation field, select a journal view to use for generating the report.
+2. From the list of Reports, select the report you want to generate.
+3. To see a sample of the report you selected, click the sample icon for that report. The sample is only a representation and does not reflect the data in your database.
+4. Click Generate to generate the selected report.
+
+Audit trail analysis reports
+On the Analysis Reports Audit Trail page, you have the capability to generate multiple analysis reports or Pivot Table Reports specifically designed for auditing the consolidated data. These reports provide valuable insights and facilitate thorough examination and analysis of the financial information.
+
+To access the Analysis Reports Audit Trail page, click Reports > Analysis Reports > Audit Trail.
+
+Generate an audit trail report:
+1. In the Journal Summation field, select a journal view to use for generating the report.
+2. From the list of Reports, select the report you want to generate.
+3. To see a sample of the report you selected, click the sample icon for that report. The sample is only a representation and does not reflect the data in your database.
+4. Click Generate to generate the selected report.
+
+Report analysis reports
+On the Analysis Report Reports page, you can generate several Analysis Reports or Pivot Table Reports of the consolidated data, using a user report layout.
+
+To access the Analysis Report Reports page, click Reports > Analysis Reports > Reports.
+
+Generate an analysis report:
+1. In the Journal Summation field, select a journal view to use for generating the report.
+2. In the Custom Report field, select the user reports to use as the layout of the analysis report.
+3. From the list of Reports, select the report you want to generate.
+4. To see a sample of the report you selected, click the sample icon for that report. The sample is only a representation and does not reflect the data in your database.
+5. Click Generate to generate the selected report.

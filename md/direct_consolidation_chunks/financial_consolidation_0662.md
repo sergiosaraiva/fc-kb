@@ -1,0 +1,13 @@
+# Chunk 662: IN/OUT CONSOLIDATION SCOPE
+
+## Context
+
+This section covers IN/OUT CONSOLIDATION SCOPE.
+
+## Content
+
+# IN/OUT CONSOLIDATION SCOPE
+
+
+---
+*Chunk 662 | IN/OUT CONSOLIDATION SCOPE*

@@ -1,0 +1,1217 @@
+# API Account and Chart of Accounts Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of accounts and chart of accounts
+
+api_account_endpoints:
+  name: "Account and Chart of Accounts API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing the chart of accounts in the consolidation system.
+
+    The chart of accounts is fundamental to consolidation:
+    - Defines all GL accounts used in financial reporting
+    - Controls account behavior (debit/credit, type, partners, flows)
+    - Enables account summations for report grouping
+    - Links accounts to flows for movement analysis
+
+    Key concepts:
+    - Account Types: Balance Sheet (B), Income (P), Closing (C), Other (O, Q)
+    - Debit/Credit: Controls normal balance and sign convention
+    - Partner Type: Defines intercompany capability (0=None, 1=Interco, 2=Partners, 3=Participations)
+    - Flow Type: Defines movement analysis capability (0=None, 1=Flows, 2=Full)
+    - Account Summations: Hierarchical groupings for reporting
+
+    Services documented:
+    - AccountService: Account master data (7 handlers)
+    - AccountSummationService: Account groupings (8 handlers)
+    - AccountFlowService: Account-flow linkage (5 handlers)
+
+  # ============================================================================
+  # ACCOUNT ENUMS
+  # ============================================================================
+  enums:
+    AccountTypes:
+      description: "Types of accounts in the chart of accounts"
+      values:
+        - code: "B"
+          name: "Balance Sheet"
+          description: "Assets, liabilities, equity accounts"
+        - code: "P"
+          name: "Profit and Loss"
+          description: "Income statement accounts (revenue, expenses)"
+        - code: "C"
+          name: "Closing"
+          description: "Year-end closing accounts"
+        - code: "O"
+          name: "Off-Balance"
+          description: "Off-balance sheet items"
+        - code: "Q"
+          name: "Statistical"
+          description: "Statistical/quantity accounts"
+
+    DebitCreditTypes:
+      description: "Normal balance direction"
+      values:
+        - code: "D"
+          name: "Debit"
+          description: "Normal debit balance (assets, expenses)"
+        - code: "C"
+          name: "Credit"
+          description: "Normal credit balance (liabilities, revenue, equity)"
+        - code: "O"
+          name: "Other"
+          description: "No specific normal balance"
+
+    PartnerTypes:
+      description: "Intercompany partner capability"
+      values:
+        - value: 0
+          name: "None"
+          description: "No intercompany capability"
+        - value: 1
+          name: "Intercompany"
+          description: "Standard intercompany account"
+        - value: 2
+          name: "Partners"
+          description: "Partner company account"
+        - value: 3
+          name: "Participations"
+          description: "Participation (subsidiary) account"
+
+    FlowTypes:
+      description: "Movement/flow analysis capability"
+      values:
+        - value: 0
+          name: "None"
+          description: "No flow analysis"
+        - value: 1
+          name: "Flows"
+          description: "Basic flow analysis enabled"
+        - value: 2
+          name: "Full"
+          description: "Full movement analysis"
+
+    InputSignTypes:
+      description: "Data entry sign convention"
+      values:
+        - value: 0
+          name: "Natural"
+          description: "Sign based on debit/credit"
+        - value: 1
+          name: "Positive"
+          description: "Always positive input"
+        - value: -1
+          name: "Negative"
+          description: "Always negative input"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    AccountDTO:
+      description: "Complete account data structure"
+      source: "AccountService.cs"
+      fields:
+        - name: "AccountID"
+          type: "integer"
+          description: "Unique account identifier"
+        - name: "AccountCode"
+          type: "string"
+          description: "Account code (alphanumeric)"
+        - name: "AccountDescription"
+          type: "string"
+          description: "Account display name (localized)"
+        - name: "AccountDebitCredit"
+          type: "char"
+          description: "D=Debit, C=Credit, O=Other"
+          enum_ref: "DebitCreditTypes"
+        - name: "AccountType"
+          type: "char"
+          description: "B=Balance, P=P&L, C=Closing, O=Off-balance, Q=Statistical"
+          enum_ref: "AccountTypes"
+        - name: "AccountClass"
+          type: "string"
+          nullable: true
+          description: "Account class/category code"
+        - name: "AccountSign"
+          type: "string"
+          description: "Input sign convention"
+        - name: "AccountDefaultSign"
+          type: "string"
+          description: "Default sign for calculations"
+        - name: "AccountPartners"
+          type: "byte"
+          description: "Partner type (0-3)"
+          enum_ref: "PartnerTypes"
+        - name: "AccountWithFlows"
+          type: "byte"
+          description: "Flow type (0-2)"
+          enum_ref: "FlowTypes"
+        - name: "AccountHistoricalRate1"
+          type: "boolean"
+          description: "Use historical rate for conversion method 1"
+        - name: "RateType1"
+          type: "string"
+          description: "Rate type for conversion 1"
+        - name: "AccountHistoricalRate2"
+          type: "boolean"
+          description: "Use historical rate for conversion method 2"
+        - name: "RateType2"
+          type: "string"
+          description: "Rate type for conversion 2"
+        - name: "AccountFlagDimensions"
+          type: "boolean"
+          description: "Account supports dimensions/segments"
+        - name: "AccountFlagConso"
+          type: "boolean"
+          description: "Include in consolidation"
+        - name: "AccountFlagCash"
+          type: "boolean"
+          description: "Cash flow statement account"
+        - name: "AccountSplit"
+          type: "boolean"
+          description: "Split for minority elimination"
+        - name: "AccountCalcConsoDiff"
+          type: "boolean"
+          description: "Calculate consolidation difference"
+        - name: "AccountFlagEquity"
+          type: "boolean"
+          description: "Equity account flag"
+        - name: "FlagNoCarryForward"
+          type: "boolean"
+          description: "Do not carry forward to next period"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    AccountSummationDTO:
+      description: "Account summation (grouping) data"
+      source: "AccountSummationService.cs"
+      fields:
+        - name: "AccountSummationID"
+          type: "integer"
+          description: "Unique summation identifier"
+        - name: "AccountSummationCode"
+          type: "string"
+          description: "Summation code"
+        - name: "AccountSummationDescription"
+          type: "string"
+          description: "Summation display name"
+        - name: "AccountSummationDetails"
+          type: "array<AccountSummationDetailDTO>"
+          nullable: true
+          description: "Child accounts and summations"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    AccountSummationDetailDTO:
+      description: "Detail line in an account summation"
+      fields:
+        - name: "ID"
+          type: "integer"
+          description: "Detail record ID"
+        - name: "SelectedID"
+          type: "integer"
+          description: "ID of account or child summation"
+        - name: "Type"
+          type: "char"
+          description: "A=Account, S=Summation"
+        - name: "Code"
+          type: "string"
+          description: "Account or summation code"
+        - name: "Description"
+          type: "string"
+          description: "Account or summation description"
+        - name: "Sign"
+          type: "char"
+          description: "+, -, or 0 (include sign)"
+
+    AccountSummationNode:
+      description: "Tree node for hierarchical summation display"
+      fields:
+        - name: "ID"
+          type: "integer"
+        - name: "AccountSummationID"
+          type: "integer"
+          nullable: true
+        - name: "Code"
+          type: "string"
+        - name: "Type"
+          type: "char"
+          description: "A=Account, S=Summation"
+        - name: "Description"
+          type: "string"
+        - name: "HasChildren"
+          type: "boolean"
+        - name: "IsExpanded"
+          type: "boolean"
+        - name: "DepthLevel"
+          type: "integer"
+
+  # ============================================================================
+  # ACCOUNT HANDLERS
+  # ============================================================================
+  account_handlers:
+    description: |
+      Endpoints for managing GL account master data.
+      Source: Sigma.Mona.WebApplication/Screens/Account/AccountService.cs
+
+    handlers:
+      - name: "Account_GetAccountsScreen"
+        description: |
+          Primary endpoint for retrieving account data.
+          Supports single account lookup or filtered list with pagination.
+          Returns full account details including conversion settings.
+        access_right: "Account_GetAccounts"
+        async: true
+
+        request:
+          _t: "Account_GetAccountsScreen"
+          parameters:
+            - name: "AccountID"
+              type: "integer"
+              required: false
+              validation: "ValidateID"
+              description: "Specific account ID to retrieve"
+            - name: "AccountCode"
+              type: "string"
+              required: false
+              description: "Specific account code"
+            - name: "FilterAccountCode"
+              type: "string"
+              required: false
+              description: "Filter by account code pattern"
+            - name: "FilterAccountDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "FilterAccountType"
+              type: "string"
+              required: false
+              description: "Filter by account type (B,P,C,O,Q)"
+            - name: "FilterDebitCredit"
+              type: "string"
+              required: false
+              description: "Filter by debit/credit (D,C,O)"
+            - name: "SetDeleteAccErrors"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Return accounts that failed to delete"
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["ACCOUNTCODE", "ACCOUNTDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "Account_GetAccountsScreen",
+                "FilterAccountType": "B",
+                "scf_order_by": "ACCOUNTCODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "Account_GetAccountsScreen",
+                "AccountID": 123,
+                "scf_include_entities": true
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array"
+              element_schema:
+                AccountID: "integer"
+                AccountCode: "string"
+                AccountType: "char"
+                DebitCredit: "char"
+                AccountDescription: "string"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "AccountDTO"
+              description: "Full account details"
+            EntityVersion:
+              type: "array<EntityVersion>"
+
+      - name: "Account_SaveAccountScreen"
+        description: |
+          Creates or updates an account record.
+          Validates account code uniqueness and consolidation constraints.
+        access_right: "Account_ManageAccounts"
+        async: true
+
+        request:
+          _t: "Account_SaveAccountScreen"
+          parameters:
+            - name: "Account"
+              type: "object"
+              required: true
+              description: "Account data to save"
+              nested_parameters:
+                - name: "AccountID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new, value for update"
+                - name: "AccountCode"
+                  type: "string"
+                  required: true
+                  validation: "ValidateCode"
+                - name: "AccountDescription"
+                  type: "string"
+                  required: true
+                - name: "AccountDebitCredit"
+                  type: "char"
+                  required: true
+                  description: "D, C, or O"
+                - name: "AccountType"
+                  type: "char"
+                  required: true
+                  description: "B, P, C, O, or Q"
+                - name: "AccountClass"
+                  type: "string"
+                  required: false
+                - name: "AccountSign"
+                  type: "short"
+                  required: true
+                - name: "AccountDefaultSign"
+                  type: "short"
+                  required: true
+                - name: "AccountPartners"
+                  type: "byte"
+                  required: true
+                - name: "AccountWithFlows"
+                  type: "byte"
+                  required: true
+                - name: "AccountHistoricalRate1"
+                  type: "boolean"
+                  required: false
+                - name: "RateType1"
+                  type: "string"
+                  required: true
+                - name: "AccountHistoricalRate2"
+                  type: "boolean"
+                  required: false
+                - name: "RateType2"
+                  type: "string"
+                  required: true
+                - name: "AccountFlagDimensions"
+                  type: "boolean"
+                  required: false
+                - name: "AccountFlagConso"
+                  type: "boolean"
+                  required: false
+                - name: "AccountFlagCash"
+                  type: "boolean"
+                  required: false
+                - name: "AccountSplit"
+                  type: "boolean"
+                  required: false
+                - name: "AccountCalcConsoDiff"
+                  type: "boolean"
+                  required: false
+                - name: "AccountFlagEquity"
+                  type: "boolean"
+                  required: false
+                - name: "FlagNoCarryForward"
+                  type: "boolean"
+                  required: false
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Account_SaveAccountScreen",
+                "Account": {
+                  "AccountID": null,
+                  "AccountCode": "1000",
+                  "AccountDescription": "Cash and Equivalents",
+                  "AccountDebitCredit": "D",
+                  "AccountType": "B",
+                  "AccountSign": 1,
+                  "AccountDefaultSign": 1,
+                  "AccountPartners": 0,
+                  "AccountWithFlows": 1,
+                  "RateType1": "C",
+                  "RateType2": "C",
+                  "AccountFlagConso": true,
+                  "AccountFlagCash": true
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "P_VALIDATE_ACCOUNT"
+              cause: "Account validation failed"
+            - pattern: "P_CONSO_CHECK_LOCKED"
+              cause: "Period is locked"
+
+      - name: "Account_RemoveAccountsScreen"
+        description: |
+          Removes one or more accounts from the chart of accounts.
+          Accounts with existing bundle data cannot be deleted.
+        access_right: "Account_ManageAccounts"
+        async: true
+
+        request:
+          _t: "Account_RemoveAccountsScreen"
+          parameters:
+            - name: "AccountIDList"
+              type: "array<integer>"
+              required: true
+              description: "List of account IDs to delete"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Account_RemoveAccountsScreen",
+                "AccountIDList": [123, 124, 125]
+              }
+
+        response:
+          success:
+            resErrors:
+              type: "string"
+              nullable: true
+              description: "Comma-separated list of accounts that failed to delete"
+          errors:
+            - pattern: "Account_Delete_BundleDataStillExist"
+              cause: "Account has associated bundle data"
+
+      - name: "Account_DuplicateAccountScreen"
+        description: |
+          Duplicates an existing account with a new code.
+          Optionally copies summations, dimensions, and flows.
+        access_right: "Account_ManageAccounts"
+        async: true
+
+        request:
+          _t: "Account_DuplicateAccountScreen"
+          parameters:
+            - name: "AccountID"
+              type: "integer"
+              required: true
+              description: "Source account ID"
+            - name: "AccountDuplicateCode"
+              type: "string"
+              required: true
+              validation: "ValidateCode"
+              description: "New account code"
+            - name: "DuplicateSummations"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Copy summation memberships"
+            - name: "DuplicateDimensions"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Copy dimension group memberships"
+            - name: "DuplicateFlows"
+              type: "boolean"
+              required: false
+              default: false
+              description: "Copy flow linkages"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "Account_DuplicateAccountScreen",
+                "AccountID": 123,
+                "AccountDuplicateCode": "1001",
+                "DuplicateSummations": true,
+                "DuplicateFlows": true
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "Account_GetAccountsCodeDescription"
+        description: |
+          Returns account code/description pairs for autocomplete/search.
+          Supports context filters for specific use cases.
+        access_right: null
+        async: true
+
+        request:
+          _t: "Account_GetAccountsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+              description: "Account code pattern"
+            - name: "description"
+              type: "string"
+              required: false
+              description: "Description pattern"
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              description: "Consolidation period code"
+            - name: "context"
+              type: "string"
+              required: false
+              description: |
+                Context filters:
+                - IgnoreAccountCode: Exclude specific code
+                - DebitCredit: Filter by D/C/O
+                - AccountType: Filter by B/P/C/O/Q
+                - FlowType: Filter by flow type
+                - PartnerType: Filter by partner type
+                - FlagDimensions: Filter by dimension flag
+                - InterCompany: Filter for intercompany accounts
+                - IntercoRuleID: Filter by intercompany rule
+          example:
+            json: |
+              {
+                "_t": "Account_GetAccountsCodeDescription",
+                "code": "1%",
+                "maxRows": 20,
+                "context": "AccountType=B;DebitCredit=D"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+              description: "Code -> 'Code: Description' pairs"
+
+      - name: "Account_GetSpecificAccountsCodeDescription"
+        description: |
+          Returns specific (consolidation) accounts for autocomplete.
+          Used for special consolidation account selection.
+        access_right: "Account_GetAccounts"
+        async: true
+
+        request:
+          _t: "Account_GetSpecificAccountsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+
+      - name: "Account_GetAccountSigns"
+        description: |
+          Returns sign information for multiple account/company combinations.
+          Used for SpreadJS data entry validation.
+        access_right: "Account_GetAccounts"
+        async: true
+
+        request:
+          _t: "Account_GetAccountSigns"
+          parameters:
+            - name: "CellsSign"
+              type: "array"
+              required: false
+              description: "Array of account sign lookup requests"
+              element_schema:
+                Key:
+                  type: "string"
+                  description: "Cell identifier"
+                ConsoCode:
+                  type: "string"
+                  description: "Consolidation period"
+                CompanyCode:
+                  type: "string"
+                  description: "Company code"
+                AccountCode:
+                  type: "string"
+                  description: "Account code"
+
+        response:
+          success:
+            scf_items:
+              type: "object"
+              description: "Sign information keyed by cell key"
+
+  # ============================================================================
+  # ACCOUNT SUMMATION HANDLERS
+  # ============================================================================
+  account_summation_handlers:
+    description: |
+      Endpoints for managing account summations (groupings).
+      Summations enable hierarchical account grouping for reporting.
+      Source: Sigma.Mona.WebApplication/Screens/AccountSummation/AccountSummationService.cs
+
+    handlers:
+      - name: "AccountSummation_GetAccountSummations"
+        description: |
+          Retrieves account summations with optional details.
+          Returns hierarchical grouping information.
+        access_right: "AccountSummation_GetAccountSummations"
+        async: true
+
+        request:
+          _t: "AccountSummation_GetAccountSummations"
+          parameters:
+            - name: "AccountSummationID"
+              type: "integer"
+              required: false
+              description: "Specific summation ID"
+            - name: "AccountSummationCode"
+              type: "string"
+              required: false
+              description: "Specific summation code"
+            - name: "FilterAccountSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by code pattern"
+            - name: "FilterAccountSummationDescription"
+              type: "string"
+              required: false
+              description: "Filter by description pattern"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+              valid_values: ["ACCOUNTSUMMATIONCODE", "ACCOUNTSUMMATIONDESCRIPTION"]
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example_list:
+            json: |
+              {
+                "_t": "AccountSummation_GetAccountSummations",
+                "scf_order_by": "ACCOUNTSUMMATIONCODE ASC",
+                "scf_include_total_row_count": true
+              }
+          example_single:
+            json: |
+              {
+                "_t": "AccountSummation_GetAccountSummations",
+                "AccountSummationCode": "TOTAL_ASSETS"
+              }
+
+        response:
+          list:
+            scf_items:
+              type: "array<AccountSummationDTO>"
+            scf_total_row_count:
+              type: "integer"
+          single:
+            scf_items:
+              type: "AccountSummationDTO"
+              description: "Full summation with details"
+
+      - name: "AccountSummation_GetAccountSummationsTree"
+        description: |
+          Returns hierarchical tree view of account summations.
+          Used for visual navigation of summation structure.
+        access_right: "AccountSummation_GetAccountSummations"
+        async: false
+
+        request:
+          _t: "AccountSummation_GetAccountSummationsTree"
+          parameters:
+            - name: "ID"
+              type: "integer"
+              required: false
+              description: "Parent node ID (null for root)"
+            - name: "ConsoID"
+              type: "integer"
+              required: false
+            - name: "Type"
+              type: "char"
+              required: false
+              description: "A=Account, S=Summation"
+            - name: "FilterCode"
+              type: "string"
+              required: false
+            - name: "FilterDescription"
+              type: "string"
+              required: false
+            - name: "FilterType"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AccountSummation_GetAccountSummationsTree",
+                "ID": null
+              }
+
+        response:
+          root:
+            scf_items:
+              type: "array<AccountSummationNode>"
+          children:
+            Children:
+              type: "array<AccountSummationNode>"
+
+      - name: "AccountSummation_SaveAccountSummation"
+        description: |
+          Creates or updates an account summation.
+          Can also update detail sign assignments.
+        access_right: "AccountSummation_ManageAccountSummation"
+        async: true
+
+        request:
+          _t: "AccountSummation_SaveAccountSummation"
+          parameters:
+            - name: "AccountSummation"
+              type: "object"
+              required: true
+              nested_parameters:
+                - name: "AccountSummationID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new"
+                - name: "AccountSummationCode"
+                  type: "string"
+                  required: true
+                - name: "AccountSummationDescription"
+                  type: "string"
+                  required: true
+                - name: "AccountSummationDetails"
+                  type: "array"
+                  required: false
+                  description: "Details with sign updates"
+                - name: "EntityVersion"
+                  type: "array<EntityVersion>"
+                  required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AccountSummation_SaveAccountSummation",
+                "AccountSummation": {
+                  "AccountSummationID": null,
+                  "AccountSummationCode": "CURRENT_ASSETS",
+                  "AccountSummationDescription": "Total Current Assets"
+                }
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "AccountSummation_RemoveAccountSummation"
+        description: |
+          Deletes an account summation.
+          Cleans up related event details, eliminations, and reports.
+        access_right: "AccountSummation_ManageAccountSummation"
+        async: true
+
+        request:
+          _t: "AccountSummation_RemoveAccountSummation"
+          parameters:
+            - name: "AccountSummationID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "FK_TS010G3_TS010G01"
+              cause: "Summation is used by other summations"
+
+      - name: "AccountSummation_AddAccountSummationDetail"
+        description: |
+          Adds accounts or child summations to a summation.
+        access_right: "AccountSummation_ManageAccountSummation"
+        async: true
+
+        request:
+          _t: "AccountSummation_AddAccountSummationDetail"
+          parameters:
+            - name: "AccountSummationID"
+              type: "integer"
+              required: true
+            - name: "AccountSummationCode"
+              type: "string"
+              required: true
+            - name: "SelectedSign"
+              type: "char"
+              required: true
+              description: "+, -, or 0"
+            - name: "AccountSummationDetails"
+              type: "array"
+              required: true
+              element_schema:
+                SelectedID:
+                  type: "integer"
+                Type:
+                  type: "char"
+                  description: "A=Account, S=Summation"
+                Code:
+                  type: "string"
+                Description:
+                  type: "string"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AccountSummation_AddAccountSummationDetail",
+                "AccountSummationID": 100,
+                "AccountSummationCode": "TOTAL_ASSETS",
+                "SelectedSign": "+",
+                "AccountSummationDetails": [
+                  {"SelectedID": 1, "Type": "A", "Code": "1000", "Description": "Cash"},
+                  {"SelectedID": 2, "Type": "A", "Code": "1100", "Description": "Receivables"}
+                ],
+                "scf_entity_version": [{"Name": "AccountSummation", "Key": "456_100", "Version": 1}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "InvalidAccountCode"
+              cause: "Account code not found"
+            - pattern: "InvalidSummationCode"
+              cause: "Summation code not found"
+            - pattern: "CK_TS010G3_CHECK_SUMMATION"
+              cause: "Cannot add summation to itself"
+            - pattern: "AccountSummationAlreadyReferenced"
+              cause: "Circular reference detected"
+
+      - name: "AccountSummation_RemoveAccountSummationDetail"
+        description: |
+          Removes accounts or child summations from a summation.
+        access_right: "AccountSummation_ManageAccountSummation"
+        async: true
+
+        request:
+          _t: "AccountSummation_RemoveAccountSummationDetail"
+          parameters:
+            - name: "AccountSummationID"
+              type: "integer"
+              required: true
+            - name: "AccountSummationCode"
+              type: "string"
+              required: true
+            - name: "AccountSummationDetails"
+              type: "array"
+              required: true
+              element_schema:
+                ID:
+                  type: "integer"
+                Type:
+                  type: "char"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "AccountSummation_GetDetails"
+        description: |
+          Returns available accounts or summations for adding to a summation.
+          Can filter to show only unused items.
+        access_right: "AccountSummation_GetAccountSummations"
+        async: false
+
+        request:
+          _t: "AccountSummation_GetDetails"
+          parameters:
+            - name: "Type"
+              type: "char"
+              required: true
+              description: "A=Accounts, S=Summations"
+            - name: "OnlyNotUsed"
+              type: "boolean"
+              required: true
+              description: "Only show items not already in any summation"
+
+        response:
+          success:
+            scf_items:
+              type: "array<AccountSummationDetailDTO>"
+
+      - name: "AccountSummation_GetAccountSummationCodeDescription"
+        description: |
+          Returns summation code/description pairs for autocomplete.
+        access_right: null
+        async: false
+
+        request:
+          _t: "AccountSummation_GetAccountSummationCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+            - name: "context"
+              type: "string"
+              required: false
+              description: "IgnoreAccountSummationCode=X to exclude"
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<string,string>>"
+
+  # ============================================================================
+  # ACCOUNT FLOW HANDLERS
+  # ============================================================================
+  account_flow_handlers:
+    description: |
+      Endpoints for managing account-flow linkages.
+      Links accounts to flows for movement/cash flow analysis.
+      Source: Sigma.Mona.WebApplication/Screens/Flow/AccountFlowService.cs
+
+    handlers:
+      - name: "AccountFlow_GetAccountsClasses"
+        description: |
+          Returns account classes for filtering.
+        access_right: "AccountFlow_GetAccountFlows"
+        async: true
+
+        request:
+          _t: "AccountFlow_GetAccountsClasses"
+          parameters: []
+
+        response:
+          success:
+            scf_items:
+              type: "array<string>"
+              description: "Distinct account classes"
+
+      - name: "AccountFlow_GetAccountsByClass"
+        description: |
+          Returns accounts filtered by class with flow linkage info.
+        access_right: "AccountFlow_GetAccountFlows"
+        async: true
+
+        request:
+          _t: "AccountFlow_GetAccountsByClass"
+          parameters:
+            - name: "AccountClass"
+              type: "string"
+              required: false
+              description: "Filter by account class"
+            - name: "FlowID"
+              type: "integer"
+              required: false
+              description: "Filter by flow ID"
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                AccountID: "integer"
+                AccountCode: "string"
+                AccountDescription: "string"
+                HasFlow: "boolean"
+
+      - name: "AccountFlow_GetAccountFlowsByAccount"
+        description: |
+          Returns flows linked to a specific account.
+        access_right: "AccountFlow_GetAccountFlows"
+        async: true
+
+        request:
+          _t: "AccountFlow_GetAccountFlowsByAccount"
+          parameters:
+            - name: "AccountID"
+              type: "integer"
+              required: true
+
+        response:
+          success:
+            scf_items:
+              type: "array"
+              element_schema:
+                FlowID: "integer"
+                FlowCode: "string"
+                FlowDescription: "string"
+
+      - name: "AccountFlow_AddAccountFlow"
+        description: |
+          Links an account to a flow.
+        access_right: "AccountFlow_ManageAccountFlows"
+        async: true
+
+        request:
+          _t: "AccountFlow_AddAccountFlow"
+          parameters:
+            - name: "AccountID"
+              type: "integer"
+              required: true
+            - name: "FlowID"
+              type: "integer"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "AccountFlow_RemoveAccountFlow"
+        description: |
+          Removes flow linkage from an account.
+        access_right: "AccountFlow_ManageAccountFlows"
+        async: true
+
+        request:
+          _t: "AccountFlow_RemoveAccountFlow"
+          parameters:
+            - name: "AccountID"
+              type: "integer"
+              required: true
+            - name: "FlowID"
+              type: "integer"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    chart_of_accounts_setup_workflow:
+      name: "Chart of Accounts Setup Workflow"
+      description: "Complete workflow for setting up accounts"
+      steps:
+        - step: 1
+          name: "Create Account"
+          handler: "Account_SaveAccountScreen"
+          parameters:
+            AccountID: null
+          purpose: "Create new GL account"
+
+        - step: 2
+          name: "Link to Flows"
+          handler: "AccountFlow_AddAccountFlow"
+          condition: "If account has flows enabled"
+          purpose: "Link account to movement flows"
+
+        - step: 3
+          name: "Add to Summations"
+          handler: "AccountSummation_AddAccountSummationDetail"
+          purpose: "Include in report groupings"
+
+        - step: 4
+          name: "Verify Setup"
+          handler: "Account_GetAccountsScreen"
+          purpose: "Confirm account created correctly"
+
+    account_summation_workflow:
+      name: "Account Summation Setup Workflow"
+      description: "Create hierarchical account groupings"
+      steps:
+        - step: 1
+          name: "Create Summation"
+          handler: "AccountSummation_SaveAccountSummation"
+          purpose: "Create parent summation"
+
+        - step: 2
+          name: "Get Available Details"
+          handler: "AccountSummation_GetDetails"
+          parameters:
+            Type: "A"
+            OnlyNotUsed: false
+          purpose: "Find accounts to add"
+
+        - step: 3
+          name: "Add Details"
+          handler: "AccountSummation_AddAccountSummationDetail"
+          purpose: "Add accounts to summation"
+
+        - step: 4
+          name: "Verify Structure"
+          handler: "AccountSummation_GetAccountSummationsTree"
+          purpose: "Confirm hierarchy is correct"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Account/AccountService.cs"
+      - "Sigma.Mona.WebApplication/Screens/AccountSummation/AccountSummationService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Flow/AccountFlowService.cs"
+    handler_count: 20
+    purpose: |
+      Enable AI agents to manage the chart of accounts including:
+      - Creating and maintaining GL accounts
+      - Defining account properties (type, debit/credit, partners, flows)
+      - Building account summation hierarchies for reporting
+      - Linking accounts to flows for movement analysis
+      - Duplicating accounts with related configurations
+
+      The chart of accounts is the foundation for all financial data
+      in the consolidation system.

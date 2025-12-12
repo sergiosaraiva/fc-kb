@@ -1,0 +1,130 @@
+Topics:
+User Settings, Workflow Management, Currency Exchange Rates, Period LockingUser Settings, Workflow Management, Currency Exchange Rates, Period Locking
+
+Keywords:
+Profile, Consolidation Period, Task Management, Gantt Chart, Pie Chart, Status Board, Validation, Document Storage, File Upload, User Access, Exchange Rates, Period Locking, Company Addition, Group Structure, Additional Company Data, Local Adjustments, Manual Input, Journal Entries, Flow Management, Analytical Dimensions, Intercompany Transactions, Consolidation Bundles, Bundle Upload, Bundle Download
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on user settings, workflow management, currency exchange rates, period locking, company management, local adjustments, flow management, analytical dimensions, intercompany transactions, and consolidation bundles. The User Settings section covers profile customization, period selection, and language settings. Workflow Management explains how to manage tasks, view Gantt and Pie charts, and export data. The Currency Exchange Rates section details how to enter, import, and export exchange rates for different consolidation periods. The Period Locking section outlines how to set dates to disable the import or input of specific data types. The Company Management section provides steps to add and manage companies within the group structure, including additional company data and ownership details. The Local Adjustments section explains how to manually input, view, and modify local adjustments. The Flow Management section covers managing and recalculating flows within financial records. The Analytical Dimensions section describes how to enter and manage detailed financial transactions. The Intercompany Transactions section provides guidance on recording transactions between companies within the group. The Consolidation Bundles section details the processes for downloading and uploading consolidation bundles for efficient data consolidation.
+
+Contents:
+User settings
+The User Settings page allows you to view your profile and edit settings such as your language and working consolidation period to match your preferences or needs. Access the user settings page by clicking the Profile icon or a Current or Reference consolidation period on top of any page.
+
+Access through profile icon: Click and then select the User Profile option. This displays both your user profile and consolidation period selection areas.
+
+Access through a consolidation period: Click either the Current or Reference consolidation period on top of the page. This hides the user profile area and displays only the period selection area.
+
+Select a different consolidation period: Access the User Settings page by clicking the consolidation period you want to change. The User Settings page displays the consolidation periods including their codes, reference period codes, and names. A red lock indicates a locked period, and a black lock indicates an open period. To limit the number of consolidation periods in view, you can hide locked periods or filter the list. From this list, click on the period you want to use. In the Select Period column, click to set the period as both the current and reference period, to set the period as the current period, or to set the period as the reference period. The selected periods are reflected in the Current Period and Reference Period fields. Click to confirm.
+
+Change application or data languages: Access the User Settings page through your Profile icon. To change your Application or Data Language, go to the appropriate field and select another language from the drop-down. Click to confirm.
+
+Download PDF files: To download generated PDF files on your local hard drive, select the Download generated PDF files option. This option is available on the User Settings page accessed through the Profile icon. Click to confirm.
+
+Workflow Management
+The Workflow page displays tasks assigned to you, each with a description, owner, start and end date, and status. To access the Workflow page, click Workflows > Workflow. The Task list field contains a list of tasks assigned to the task owner. Select a task to see the individual tasks in the chart below. The Gantt chart displays tasks in a selected list, including the Description, Owner, Start and End dates, and Status.
+
+Set your preferences: You can set preferences to control how information is displayed on the Workflow page, such as showing/hiding the Gantt chart, Pie chart, or Companies list.
+
+Show/Hide Gantt chart: The Gantt chart displays tasks according to the set timeline and scale. You can change this by using the Gantt timeline and Gantt scale drop-down fields. To hide the Gantt chart, click to cancel the selection.
+
+Show/Hide Pie chart: To display tasks in a pie chart, select the Show/Hide the Pie Chart icon. Hover over the color to see the status and count of tasks. To hide the pie chart, click to cancel the selection.
+
+Show/Hide the companies: To show or hide the list of companies, select the Show/Hide the companies icon. To hide the companies, click to cancel the selection.
+
+Export tasks: To work with your task list in Excel, click the Export to Excel icon on the Workflow page. Select the list you want to export and click to export the list to an Excel file.
+
+Start work on a task: Select the company you want to work on from the table of companies. In the Task list field, select a task. The tasks are displayed in the chart below. Click on a task to see the details. In the Status field, change from Not started to In progress. Click to navigate to the task page or to start an automated task. Use the Comment text box to add additional information and click to save.
+
+Complete a task: After completing a task, update your progress by selecting the company, task, and changing the status to Completed in the Task details panel. Optionally, add comments and click to confirm. An automatic email is sent to the approver/administrator.
+
+Reject a task: To reject a task, select the company, task, and change the status to Rejected in the Task details panel. Add comments and click to confirm. An automatic email is sent to the approver/administrator.
+
+View task history: The history of a task shows its life cycle stages. To view the history, select the company, task, and go to the History tab. Use filters to narrow results.
+
+Update company task status: Depending on your role, you can use buttons below the Companies table to confirm, approve, audit, or reject tasks. Confirming triggers an email to the auditor/administrator, who verifies the work. Approved work notifies the end user, while rejected work requires corrections. Monitor work progress on the Dashboard.
+
+Status Board
+The status board provides an at-a-glance view of all companies in the consolidation, including the status of the data entry process for each company. Authorized users can generate status reports, run validation rules, review error details, and update data entry status. The board includes columns for Company Code, Company Name, Modified date and time, Number of Warnings and Errors, Validation Status, Confirmed, Approved, and Audited statuses. Click column headers to sort the table.
+
+Generate status report: Go to the Status Report panel, select the output file type, and click to generate the report. A download link appears below for viewing.
+
+Run validation rules: Select the companies for validation, go to the Run the validation panel, and click Validate. The validation status is reflected in the column for each company. Click beside the status to see details.
+
+Review error details: Click to review specifics of balance errors or data loaded for better insight into issues.
+
+Change a company's data entry status: Select the company, and in the Change status panel, select the new status. End-users can select Confirmation status, Consolidators can Accept or Refuse data, Auditors can Accept data, and Administrators have all options. Click to change the status.
+
+File Repository
+The Documents Repository serves as a collaborative storage area accessible to all authorized users. Administrators can organize, maintain, and govern the documents stored. To access the repository, click Reports > Document Repository. The page is divided into a folder tree on the left and a file section on the right. The folder tree allows navigation through the structure created by the Administrator/Consolidator. The application administrator can grant rights to specific roles to access folders.
+
+Depending on your rights, you can view files, download single or multiple files, refresh folder content, delete files, and upload files. To upload a file, select a folder and click to upload. Enter a description and click to confirm. Administrators can specify user access and permissions.
+
+Select a consolidation period
+In the Financial Consolidation application, the Current and Reference Consolidation Periods are displayed on top of every page. If the consolidation default period is not what you want, you can change to a different consolidation period.
+
+Change a consolidation period: Click the Select Period icon beside the consolidation period you want to change. The User Settings page displays the consolidation periods with their codes, reference period codes, and names. A red lock indicates a locked period, and a black lock indicates an open period. To limit the number of consolidation periods in view, hide locked periods or filter the list. From this list, click on the desired period. In the Select Period column, click to set the period as both the current and reference period, to set the period as the current period, or to set the period as the reference period. The selected periods are reflected in the Current Period and Reference Period fields. Click to confirm.
+
+Filter the list of consolidation periods: Use filters to narrow down the list of consolidation periods with wildcards like ? and *. This is useful for viewing all periods of one year, or all periods with the same nature or sequence. Examples include typing 20* to see all periods from the 21st century, ACT to see all periods with the nature ACT, or 20 12ACT to see all periods from the 12th month of the 21st century with the nature ACT.
+
+Period locking
+The Define Period Locking page allows you to set dates after which the import or input of specific types of data will be disabled. When you lock a period, it restricts any modifications to the selected data type for that period across all companies within the group. Administrators and Consolidators can modify locked data types after the
+
+ period lock date has commenced. Six data types are available for locking: Closing Amounts, Intercompany, Flows, Intercompany Flows, Analytical Dimensions, and Adjustments.
+
+Lock data: When data is locked, it is locked for all companies in the group and prevents changes to the selected data type for that period. Locking data type is different from when an administrator locks a period, which locks all data types for that period for all companies. Access the Define Period Locking page, click in the Data Locking Date field to specify a date, and select a date from the calendar. The default time of 12:00 AM appears in the time field, which can be changed. Optionally, select another data type and enter a lock date. Click to confirm. On the set date, import or input of the locked data types is disabled in that period.
+
+Unlock data: On the Define Period Locking page, click the data you want to unlock. In the Data Locking Date field, click to clear the lock date. Click to confirm.
+
+Currency Exchange Rates
+In the Financial Consolidation application, every account is set up to use a specific rate individually on an account-by-account basis. During the consolidation process, the application examines each account's configuration and selects the appropriate currency rate based on the company's currency and the period's currency. To access the Exchange Rates page, click Group > Exchange Rates. On this page, you can enter, import, or export currency exchange rates.
+
+Enter a currency exchange rate: The Exchange Rates page is used for manually entering currency exchange rates for a consolidation period. These rates convert values from one currency to another in a selected period. The Exchange Rates tab presents the page divided into two panels: the Period Code panel on the left, showing a list of all consolidation periods, and the details panel on the right, showing details of available currencies for a selected period. The Currency table includes columns for CurrCode, Close, Average, and Month rates for both the Current and Reference Consolidation Periods, along with Modified By and Modified date and time.
+
+To add a currency exchange rate: Select the consolidation period and currency. Optionally, display all currencies with or without amounts. Enter the Close, Average, and Month currency rates. Ensure the correct decimal symbol is used according to local or regional settings. Click to save changes. Errors will display a notification with details.
+
+Print currency exchange rate report: The Currencies Reports tab contains the exchange rates of active currencies for the given period. Report types include Standard, Reporting, Statutory, and Current Period reports. To generate a report, select the type, base currency, and output file type. Click to generate the report and download the file.
+
+Import exchange rates: To access the Import Exchange Rates page, click Transfers > Exchange Rates > Import Exchange Rates. You can import exchange rates from CSV, Excel, ECB (SDMX European Central Bank), and NBS (SDMX National Bank of Slovakia). The file format determines the parameters needed for the import. For CSV, specify the CSV Separator, Decimal Separator, Thousand Separator, and Text delimiter. Upload the file, view it, and transfer the data into the database. For Excel, specify the Sheet Name and Currency, upload the file, view it, and transfer the data into the database. For ECB/NBS, select the data source, currency pairs, period year, and month, then validate and import the rates. Ensure the import file meets the specified format.
+
+Export currency exchange rates: To access the Export Exchange Rates page, click Transfers > Exchange Rates > Export Exchange Rates. In the Period field, select the consolidation period. In the File Type field, select the file format (XLS or CSV). Specify parameters based on the file type, such as Sheet Name for XLS or separators for CSV. Click to export the currency exchange rates for the selected period. A download link will appear for viewing the data.
+
+Company Management
+Add companies: The Companies page is used for adding, reviewing, or editing companies. This is where you add and maintain all the various subsidiaries and divisions of the parent company. To access the Companies page, click Group > Companies. The default settings for a new company include currency code, number of decimals, consolidation method, group percentage, minority percentage, group control percentage, and number of financial and voting rights. The left-side panel lists all available companies, and the right-side panel displays the details of any selected company, including code, description, and country code. To add a company, click , enter the required information, and save.
+
+Additional company data: The Companies Additional Info page enables users to add supplementary details for companies. Administrators can create various fields, and users can then input corresponding values for their associated companies. For example, an administrator can establish a field to collect VAT numbers for subsidiaries. To access this page, click Group > Companies and then click . To add an additional parameter, specify the line number, label, and description, then save.
+
+Create the group structure: The Group Structure page defines the interconnected relationships between all companies within the group. This page is used to input and manage direct relationships among entities, determining the appropriate consolidation method. The left-side panel displays existing companies with their codes and names. The right-side panel shows details for any selected company, including company code, name, financial rights, voting rights, group percentage, minority percentage, and group control percentage. The Shareholders tab is used to enter the number of shares held by other companies in the group, while the Participations tab is used to enter the number of shares held in other companies. To update the consolidation method and percentages, save changes and proceed with caution as it can have significant consequences.
+
+Local Adjustments
+View local adjustments: To access the Local Adjustments View page, click Data Entry > Manual Data Entry > Local Adjustments > View. The top panel displays the list of local adjustments available in the consolidation by type, entry number, company code/name, description, and modification date. You can preview, create, modify, or delete adjustments. Details of selected adjustments are displayed in the lower panel.
+
+Create a new adjustment: Click to add a new local adjustment. Enter the required information on the Manual Input page, including company, journal, and account details, then save.
+
+Modify an adjustment: Select an adjustment and click to open the Manual Input page for modifications.
+
+Local adjustments - manual input: To access the Local Adjustments Manual Input page, click Data Entry > Manual Data Entry > Local Adjustments > Manual Input. Enter general adjustment-related information such as company, journal, behavior, and attachment. In the data area, enter account codes, debit/credit amounts, and other details. Save the adjustment, and use additional functions such as multiply/divide for efficient reporting.
+
+Flow Management
+The Flow Management page allows you to manage flows for a selected company. You can recalculate or adjust specific flows within the company’s financial records, update historical exchange rates or other rates used in financial calculations based on the flow of money or the prevailing rate at a specific point in time; and reconcile and account for any discrepancies or differences in flows. In addition, you can reset flow values based on specific requirements.
+
+Manage Flows: Select the options you want to use and provide all the information required for the selected options. Book all remaining differences on flow allows you to account and record any unresolved discrepancies in the flow, using one of the options below. Set to zero allows you reset flow values to zero based on one of these options: All flows - sets all flows within the company to zero, essentially resetting the flow values to eliminate any existing values or transactions. Only flows - sets the value of selected flows to zero, while leaving other flows unaffected. All flows except - sets all flows to zero except for a specified subset of flows. Merge company allows you to combine the financial data of a selected company. Recalculate specific flows allows you to recalculate or adjust specific flows within the company’s financial records. Update historical rates allows you to update historical exchange rates or other rates used in financial calculations based on a selected flow code and the prevailing rate at a specific point in time.
+
+Analytical Dimensions
+The Analytical Dimensions page lets you capture financial transactions in more detail than just using account numbers in the Chart of Accounts. With analytical dimensions, you can enter data that breaks down the values of any account associated with dimensions across different groups.
+
+Enter analytical dimensions: In the Company field, enter the company code or click to select it in the selection pop-up window. In the Account field, enter the account code or click to select it in the selection pop-up window. In the Dimensions Group field, if the group is not automatically selected, select an applicable group. Click to display data based on the selections (valid combination of company/account/dimension group) you made in the fields above. How the data is displayed is dependent on the number of dimensions linked to the account. By default, dimensions are displayed as follows: dimension 1 is displayed in rows, dimension 2 (if any) is displayed in columns, dimension 3 (if any) is displayed as a combo list. Optionally, use any one of these options to filter the data displayed: See all lines (default), See only lines with amounts, See only lines without amounts. In the table, enter the values for the dimensions. The sum of the values you enter in each row and column is displayed at the end of the corresponding dimension. The following amounts are displayed (as applicable) in their respective fields below: Adjusted amount - amount from local books including local adjustments done in Financial Consolidation. This amount should be justified by dimension, so it should be equal to the total of all values from the detail area. Local amount - amount from local books excluding local adjustments done in Financial Consolidation. This amount comes from the ERP, so it can be controlled by the end user with the local books. The difference between Adjusted amount and Local amount comes from the local journals. Justified amount - the total of all values filled in for the combination of company /account /dimension group,
+
+ including values that are not directly visible (when there is a dimension 3 for instance or a long list of codes not directly displayed in rows /columns). Difference to justify - the difference between the Justified amount and the Adjusted amount. Click to save.
+
+Intercompany Transactions
+Intercompany data entry: The Intercompanies page is where you record the transactions conducted with other companies within the group. Here, you enter transaction details for each account and partner involved.
+
+Enter intercompany transactions: Select the company for which you want to enter intercompany transactions from the drop-down list on top of the left-side panel. For the selected company, all its intercompany accounts that are used for reporting intercompany transactions are displayed in the panel below. From the list of accounts, select the account that is applicable to the transaction. From the intercompany partners displayed on the right, select the one with which the transaction was done. In the Current Local Amount field, enter the intercompany transaction amount in the local currency of the parent. In the Current Transaction Amount field, enter the current transaction amount. You can click to access the Intercompany viewer to see the existing intercompany transactions entered on a specific account by the company on the left, and on the right, the corresponding transactions entered by the counterpart. If you need to enter Flow or Dimension information, the applicable buttons are activated. Click on the activated button to provide the required Flow or Dimension information and return to the main page. Click to save.
+
+Consolidation Bundles
+Download consolidation bundles: On the Download Bundles page, you can use pre-existing bundle templates to generate consolidation bundles for companies. These bundle templates facilitate the consolidation process by grouping the necessary financial data from multiple companies for reporting or analysis. To access the Download Bundles page, click Data Entry > Bundle Transfers > Download Bundles. The left-side panel displays a list of available consolidation bundle templates and their codes. The right-side panel displays the details of the selected template, including the type of information used to generate a new bundle. Select the bundle template, the companies whose bundles you want to generate, and the types of information to include. Click to generate the bundles. After the bundles are created, a hyperlink for each company appears. Click the hyperlink to open and save the bundles.
+
+Upload consolidation bundles: On the Upload Bundles page, you can upload consolidation bundles into the application. These bundles contain aggregated financial data from different sources, providing a comprehensive view of the consolidated data. To access the Upload Bundles page, click Data Entry > Bundle Transfers > Upload Bundles. Select the file to upload and the types of data to include. Click to upload the file. After uploading, validate the data and check for errors. Once validated, the data is processed into the consolidation period.
+
+Uploaded bundles history: The Uploaded Bundles History page allows you to view previously uploaded bundles per consolidation period. To access the Uploaded Bundles History page, click Data Entry > Bundle Transfers > Uploaded Bundles History. Select the consolidation period to view the uploaded files. Click a file name to view its content or save it to your computer.

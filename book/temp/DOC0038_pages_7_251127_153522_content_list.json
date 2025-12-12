@@ -1,0 +1,1465 @@
+[
+    {
+        "type": "text",
+        "text": "5.1 The technique of stage consolidation",
+        "text_level": 1,
+        "bbox": [
+            110,
+            121,
+            769,
+            144
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This technique consists in consolidating each company by the company that owns the company directly and thus consolidate up step by step, from bottom to top.",
+        "bbox": [
+            110,
+            166,
+            877,
+            213
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Example",
+        "text_level": 2,
+        "bbox": [
+            110,
+            229,
+            209,
+            245
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/89db75c198adf4dabc9ac19fc207b9dbfbc9053287a8d238373a99bf36eae2db.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            264,
+            232,
+            703,
+            273
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In this structure we first consider A and B as a group where A is playing the role of the parent company. We already know how to consolidate these two companies. Let's call \"A+B\" the consolidated figures of this subgroup. We then consolidate P and A+B to achieve the complete consolidation.",
+        "bbox": [
+            110,
+            281,
+            877,
+            346
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Here are the statutory balance sheets of these companies",
+        "bbox": [
+            110,
+            361,
+            677,
+            377
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/8624db6a4dac8e376f8d386c2d957eccc362aa21db8474e9d386e50965591502.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Investments A</td><td rowspan=\"3\">160</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td></td></tr><tr><td>Result</td><td></td></tr><tr><td>Assets</td><td>640</td><td>Liabilities</td><td>120</td></tr><tr><td>Total</td><td>800</td><td>Total</td><td>800</td></tr></table>",
+        "bbox": [
+            207,
+            387,
+            769,
+            489
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/87c801cd29fb6556d8e64e98cd1b731e89cd9cec90322a8d0ed6d62c7fe36e97.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Investments B</td><td>100</td><td>Capital \nReserves \nResult</td><td rowspan=\"2\">120</td></tr><tr><td>Assets</td><td>400</td><td>Liabilities</td></tr><tr><td>Total</td><td>500</td><td>Total</td><td>500</td></tr></table>",
+        "bbox": [
+            207,
+            506,
+            769,
+            610
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/3daa38269946da787f2acb32e406f5208d880487730f00b44b47ca92fc4c0a97.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">B</td></tr><tr><td></td><td></td><td>Capital 100</td></tr><tr><td>Assets</td><td>360</td><td>Reserves Result Liabilities 200</td></tr><tr><td>Total</td><td>360</td><td>Total 360</td></tr></table>",
+        "bbox": [
+            207,
+            625,
+            769,
+            727
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Explanations",
+        "text_level": 2,
+        "bbox": [
+            110,
+            752,
+            256,
+            768
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In step 1, we consolidate B with the global integration method in A and with a percentage of  \\(70\\%\\) :",
+        "bbox": [
+            110,
+            783,
+            875,
+            816
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Capital, the Reserves and the Result come from company A",
+            "- Consolidated reserves on B = 12 = 70% * [100 + 50 + 10] - 100"
+        ],
+        "bbox": [
+            148,
+            831,
+            828,
+            879
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            65,
+            366,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Minority interests on B = 48 = 30% * [100+50+10]",
+            "- **Assets and Liabilities accounts come from the addition of A and B for 100%**."
+        ],
+        "bbox": [
+            145,
+            134,
+            869,
+            200
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here is the consolidated balance sheet of A+B",
+        "bbox": [
+            107,
+            214,
+            556,
+            230
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/24e8ba9d8ff2ffc571ef8bfc1a99904f53ef8c4a298ee8b024741ef2851c9e2a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A + B</td></tr><tr><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td>Reserves</td><td>150</td></tr><tr><td></td><td>Result</td><td>30</td></tr><tr><td></td><td>Conso. Res. (B)</td><td>12</td></tr><tr><td></td><td>Minor. Inter. (B)</td><td>48</td></tr><tr><td>Assets</td><td>760</td><td>Liabilities</td></tr><tr><td>Total</td><td>760</td><td>Total</td></tr></table>",
+        "bbox": [
+            206,
+            250,
+            767,
+            381
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In step 2, we consolidate, by global integration, the  \\(A + B\\)  level in company P:",
+        "bbox": [
+            105,
+            407,
+            854,
+            426
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Capital, the Reserves and the Result come from company P",
+            "- Consolidated reserves of A+B = 153.6 = 80% * [200+150+30+12] - 160",
+            "Minority interests on A+B = 126.4 = 20%  \\(\\star\\)  [200+150+30+12] + 48",
+            "- Assets and Liabilities accounts come from the addition of P and A+B at  \\(100\\%\\) ."
+        ],
+        "bbox": [
+            145,
+            440,
+            869,
+            584
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here is the final consolidated balance sheet for this group.",
+        "bbox": [
+            107,
+            603,
+            672,
+            619
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/5a5597a2bdf5de1b8f8538be3aecc60eda6f926e40561f9278ed5e05283b67e1.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + (A + B)</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>150</td></tr><tr><td></td><td>Result</td><td>30</td></tr><tr><td></td><td>Conso. Res (A+B)</td><td>153.6</td></tr><tr><td></td><td>Minor. Inter. (A+B)</td><td>126.4</td></tr><tr><td>Assets</td><td>Liabilities</td><td>440</td></tr><tr><td>Total</td><td>1,400</td><td>1,400</td></tr></table>",
+        "bbox": [
+            206,
+            631,
+            765,
+            763
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We notice that the consolidated reserves calculated for B at the first level are considered as an equity account on which we apply the  \\(80\\%\\) .",
+        "bbox": [
+            105,
+            779,
+            869,
+            812
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "On the Minority interests side, the 48 calculated on the first level have to be added at  \\(100\\%\\)  to the calculation of Minority interests in the next level.",
+        "bbox": [
+            105,
+            827,
+            869,
+            861
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            303,
+            71,
+            854,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Moreover, the  \\(20\\%\\)  Minority interests at the final level also applies on the equity of  \\(\\mathsf{A} + \\mathsf{B}\\) , including the 12 consolidated reserves of B.",
+        "bbox": [
+            110,
+            118,
+            877,
+            152
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Is this consolidation technique efficient in any group structure?",
+        "bbox": [
+            110,
+            167,
+            726,
+            184
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "If we suppose a larger group with a simple tree structure, the answer would be yes because we could consolidate the whole group starting at the bottom and consider two companies at a time. We would finally reach the top parent company after making a certain number of consolidations of two companies each time.",
+        "bbox": [
+            110,
+            199,
+            877,
+            278
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Nevertheless, some problems could arise if, for instance, the group structure is the following.",
+        "bbox": [
+            110,
+            294,
+            875,
+            329
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "image",
+        "img_path": "images/271127030439ba2bc8c74c70d70f61150edfa12c1fe1fdbc743a0385b13d9eba.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            110,
+            338,
+            281,
+            511
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Applying the step by step approach, we would first consolidate  \\(A + B\\)  and then  \\(P + (A + B)\\) , giving a consolidated balance sheet in which we would still have a \"Financial investment in  \\(B\\) \" account for a certain amount.",
+        "bbox": [
+            296,
+            343,
+            877,
+            407
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This amount must be eliminated against  \\(10\\%\\)  of the equity of B. And this situation could become serious if, for instance, A is supposed to be a company located on another continent, A making its own consolidation, with its own adjustments.",
+        "bbox": [
+            296,
+            423,
+            877,
+            505
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "A+B would become a kind of a black box and we would bet that the final consolidated accounts would be achieved with great difficulties and loss of time because of the additional information needed.",
+        "bbox": [
+            110,
+            520,
+            877,
+            568
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "And for those who still believe that the stage consolidation is a helpful technique, let consider this final example.",
+        "bbox": [
+            110,
+            585,
+            877,
+            617
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We see that company B owns shares of company A which makes quite impossible to determine a stage in such structure.",
+        "bbox": [
+            110,
+            652,
+            633,
+            700
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The stage consolidation technique becomes inefficient in such structure.",
+        "bbox": [
+            110,
+            715,
+            633,
+            749
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "image",
+        "img_path": "images/149911319f3d25c6e3db5852c6f6a9523e58aca2f7c6de52d273b11b1ea0b086.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            644,
+            618,
+            851,
+            791
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            64,
+            366,
+            80
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "5.2 The direct consolidation technique",
+        "text_level": 1,
+        "bbox": [
+            109,
+            119,
+            727,
+            141
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This technique is used to reduce the complexity of the group structure, to the so-called simple \"rake\" structure, where each company is directly consolidated by the parent company based on the indirect financial percentage held by the group in the company.",
+        "bbox": [
+            107,
+            165,
+            873,
+            230
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "With this technique, consolidation is done in one step because all companies, regardless of their position in the group structure, are consolidated at once.",
+        "bbox": [
+            107,
+            245,
+            869,
+            279
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The last structure considered in the previous section, with crossed participations, would be consolidated without problems.",
+        "bbox": [
+            107,
+            293,
+            875,
+            326
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let's explain how to use the direct consolidation technique on the basis of the same example",
+        "bbox": [
+            107,
+            342,
+            873,
+            375
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We remind here the group structure",
+        "bbox": [
+            109,
+            390,
+            462,
+            406
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/1b28fee95cebc78c6a73291142eea3506ca7ad4489b33e48297f290fc022335f.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            282,
+            423,
+            719,
+            461
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "which is transformed into a kind of a \"rake\" structure just as if each company would be owned directly by the parent company.",
+        "bbox": [
+            109,
+            486,
+            873,
+            519
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/eb8fc9ea80aab271940eb6f0a411c6bbd8aef3d87a035322cc3f2a8f38c67482.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            341,
+            538,
+            639,
+            659
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Of course, this transformation brings a new difficulty: the calculation of indirect financial percentages sometimes in quite complex structures, which could include crossed participations. We will come back to that subject at the end of this chapter.",
+        "bbox": [
+            109,
+            692,
+            873,
+            758
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "For the moment, we just associate to each company its indirect financial percentage which is  \\(80\\%\\)  for A and  \\(56\\% = 80\\% * 70\\%\\)  for B.",
+        "bbox": [
+            109,
+            773,
+            873,
+            805
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We consider the same balance sheets as above but this time we produce the final consolidated balance sheet of our example in a single process.",
+        "bbox": [
+            109,
+            824,
+            871,
+            858
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            303,
+            71,
+            854,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/18cc2976df2b2866fc2cae817d26e4d33d23c2b83aa5a1f30727e980fd35446c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A + B</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>150</td></tr><tr><td></td><td>Result</td><td>30</td></tr><tr><td></td><td>Conso. Res. (A)</td><td>144</td></tr><tr><td></td><td>Conso. Res. (B)</td><td>9.6</td></tr><tr><td></td><td>Minor. Inter. (A)</td><td>56</td></tr><tr><td></td><td>Minor. Inter. (B)</td><td>70.4</td></tr><tr><td>Assets</td><td>Liabilities</td><td>440</td></tr><tr><td>Total</td><td>1,400</td><td>1,400</td></tr></table>",
+        "bbox": [
+            229,
+            116,
+            786,
+            280
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Explanations",
+        "text_level": 2,
+        "bbox": [
+            113,
+            296,
+            257,
+            312
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "From this consolidation technique there is only one step: both A and B are consolidated by global integration directly with P:",
+        "bbox": [
+            111,
+            328,
+            875,
+            361
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Capital, the Reserves and the Result come from company P",
+            "The Consolidated reserves of  \\(A = 144 = 80\\%\\)  [200 + 150 + 30] - 160.",
+            "The Consolidated reserves of B = 9.6 = 56% * [100 + 50 + 10] - 80% * 100 where 56% = 80% * 70% = indirect financial percentage in B",
+            "Minority interests of A = 56 = 20% * [200 + 150 + 30 - 100]",
+            "Minority interests of B = 70.4 = 44% [100 + 50 + 10]",
+            "- Assets and Liabilities of P, A and B are added together at  \\(100\\%\\) ."
+        ],
+        "bbox": [
+            156,
+            375,
+            869,
+            600
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Two additional explanations are necessary.",
+        "bbox": [
+            111,
+            616,
+            529,
+            633
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Firstly we have to extend our definition of the consolidated reserves, which becomes \"the indirect financial percentage in equity minus the indirect percentage of the shareholder in the investment owned\". That's the reason why we apply  \\(80\\%\\)  on the value of 100.",
+        "bbox": [
+            111,
+            647,
+            875,
+            714
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Secondly, we also have to extend the definition of the Minority interests calculation, which becomes \"the Minority interests percentage in equity minus the same percentage in investments the concerned company has booked in its assets\". This value is called the 'net equity value'. This is the reason why we find the term -20% * 100.",
+        "bbox": [
+            111,
+            728,
+            873,
+            809
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We would summarize the approach by confirming that the direct technique is fully efficient with regard to any complex group structure if we take into account the three following issues",
+        "bbox": [
+            111,
+            824,
+            871,
+            875
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Be able to calculate the indirect financial percentage",
+            "- Don't forget to take into account the indirect percentage of the shareholder when eliminating the investment in the consolidated reserves calculation",
+            "- Don't forget to calculate Minority interests in the net equity value as being equal to the equity minus the investments"
+        ],
+        "bbox": [
+            144,
+            120,
+            875,
+            248
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "5.3 Why applying a percentage on the investments when eliminating them?",
+        "text_level": 1,
+        "bbox": [
+            108,
+            282,
+            769,
+            330
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We can start the explanation by going back to the stage technique and consider the calculation of the consolidated reserves of company B, company A being temporarily the parent company.",
+        "bbox": [
+            108,
+            349,
+            875,
+            399
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The consolidated reserves of B were calculated as",
+        "bbox": [
+            108,
+            412,
+            595,
+            428
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n70 \\% * [ 100 + 50 + 10 ] - 100 = 12\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            315,
+            445,
+            667,
+            462
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "One stage higher, we calculated the consolidated reserves of A+B as",
+        "bbox": [
+            108,
+            477,
+            779,
+            494
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n80 \\% * [ 200 + 150 + 30 + 12 ] - 160 = 153.6\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            264,
+            509,
+            716,
+            525
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Let's now replace the amount of 12 by the previous formula to get",
+        "bbox": [
+            108,
+            541,
+            760,
+            559
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n80 \\% * [ 380 + [ 70 \\% * 160 - 100 ] ] - 160 = 153.6\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            243,
+            573,
+            739,
+            591
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "in which we have added together the statutory equity of each company to keep the formula more readable.",
+        "bbox": [
+            108,
+            606,
+            875,
+            639
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We now make the following arrangement based on simple algebra rules",
+        "bbox": [
+            108,
+            654,
+            809,
+            670
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n\\begin{array}{l} 80 \\% * [ 380 + [ 70 \\% * 160 - 100 ]] - 160 = 153.6 \\\\ = [ 80 \\% * 380 - 160 ] + [ 80 \\% * 70 \\% * 160 - 80 \\% * 100 ] = 153.6 \\\\ = [ 80 \\% * 380 - 160 ] + [ 56 \\% * 160 - 80 \\% * 100 ] = 153.6 \\\\ \\end{array}\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            171,
+            686,
+            813,
+            765
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The two terms between [] can be identified as the consolidated reserves of A calculated by the direct technique and the second term is the consolidated reserves of B.",
+        "bbox": [
+            108,
+            783,
+            875,
+            831
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "This proves the equivalence of the two approaches and we can state that  \\(\\mathsf{CR}(\\mathsf{A} + \\mathsf{B}) = \\mathsf{CR}(\\mathsf{A}) + \\mathsf{CR}(\\mathsf{B})\\)  where CR means Consolidated Reserves.",
+        "bbox": [
+            108,
+            847,
+            875,
+            879
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            302,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Moreover, the left hand side of the equality is based on the stage consolidation while the right hand side is based on the direct technique.",
+        "bbox": [
+            113,
+            119,
+            873,
+            153
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "A similar approach can be developed for the Minority interests.",
+        "bbox": [
+            113,
+            168,
+            717,
+            185
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Again, let's start with the Minority interests calculated by the stage technique which were  \\(20\\%\\)  of A+B equity",
+        "bbox": [
+            113,
+            200,
+            873,
+            233
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n20 \\% * [ 200 + 150 + 30 + 12 ] = 20 \\% * [ 380 + 12 ]\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            240,
+            247,
+            746,
+            266
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "where 12 is the consolidated reserves of B calculated as  \\(70\\%\\)  [100+50+10] - 100 = 70% * 160 - 100.",
+        "bbox": [
+            113,
+            279,
+            873,
+            312
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Let's replace again the 12 in the previous formula, giving",
+        "bbox": [
+            113,
+            328,
+            666,
+            346
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n\\begin{array}{l} 20 \\% * [ 380 + 12 ] = 20 \\% * [ 380 + [ 70 \\% * 160 - 100 ] ] \\\\ = 20 \\% * 380 + 14 \\% * 160 - 20 \\% * 100 \\\\ = 20 \\% * [ 380 - 100 ] + 14 \\% * 160 \\\\ \\end{array}\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            225,
+            362,
+            759,
+            440
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "and so we find the term  \\(20 \\%\\)  * 100 which is the part of Minority interests in the investment owned by A. Moreover the  \\(14 \\%\\)  are called the indirect Minority interests in company B.",
+        "bbox": [
+            113,
+            454,
+            873,
+            505
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "THE CURRENCY TRANSLATION",
+        "text_level": 1,
+        "bbox": [
+            234,
+            539,
+            742,
+            562
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "6 . Currency translation principles",
+        "text_level": 1,
+        "bbox": [
+            113,
+            581,
+            670,
+            605
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Groups often have subsidiaries in foreign countries, meaning that the individual accounts of these subsidiaries are then booked in foreign currency. It may happen that a parent company is located in a geographical area completely different than the majority of subsidiaries. Then it seems normal that the consolidated financial statement is expressed in the currency of the majority of the subsidiaries.",
+        "bbox": [
+            113,
+            624,
+            873,
+            722
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "More often however, it is the currency of the parent company that is used as consolidating currency.",
+        "bbox": [
+            113,
+            736,
+            873,
+            770
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Following IFRS rules, the currency defined for each subsidiary is the functional currency, which is the main currency, used for business transactions. That functional currency can be different from the legal currency used for the statutory accounts.",
+        "bbox": [
+            113,
+            783,
+            873,
+            850
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            67,
+            364,
+            81
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The statutory accounts of subsidiaries must then be translated into the currency of the parent company which is also called the consolidation currency.",
+        "bbox": [
+            111,
+            118,
+            873,
+            169
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The information we receive from subsidiaries can be summarized mainly in several categories",
+        "bbox": [
+            111,
+            184,
+            873,
+            216
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The balance sheet accounts",
+            "The P&L accounts",
+            "- Notes to the accounts, including what we call flows, which are amounts explaining the evolution between opening and closing accounts. Flows can be seen as acquisitions, disposals, depreciations, transfers between accounts, ..."
+        ],
+        "bbox": [
+            149,
+            232,
+            871,
+            360
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For these subsidiaries whose accounts are booked in foreign currency, we highly recommend to receive foreign currency information instead of information already translated into consolidation currency. The explanations developed in this chapter will show that this process of currency translation must be managed by the consolidation department.",
+        "bbox": [
+            111,
+            379,
+            873,
+            459
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "How do we translate these three main categories of information?",
+        "bbox": [
+            111,
+            475,
+            742,
+            491
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The balance sheet accounts",
+        "text_level": 2,
+        "bbox": [
+            111,
+            506,
+            413,
+            524
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "A balance sheet is a picture taken at the end of the consolidation period. It seems normal to use the currency rate corresponding to that date to translate all amounts.",
+        "bbox": [
+            111,
+            538,
+            873,
+            587
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Obviously, the translated balance sheet is of course in balance. Nevertheless we will explain on a basis of an example that, from an accounting point of view, this translation brings some problems. We will explain why and how we need to introduce historical rates for equity and financial investments.",
+        "bbox": [
+            111,
+            603,
+            873,
+            667
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The P&L accounts",
+        "text_level": 2,
+        "bbox": [
+            111,
+            683,
+            308,
+            699
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The P&L is not a picture. It is a movie. To give a correct economical picture of it, one should translate all income and expenses of January 1 at the rate of that date, and all income and expenses of January 2 at the rate of that second date, and so on until the end of the period. Very difficult to apply!",
+        "bbox": [
+            111,
+            715,
+            873,
+            780
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "A much more realistic approach consists in using an average rate over the twelve months of the year. Usually, this average rate is the arithmetic mean of the twelve monthly closing rates of the period.",
+        "bbox": [
+            111,
+            796,
+            873,
+            844
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            305,
+            71,
+            854,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The notes to the accounts",
+        "text_level": 2,
+        "bbox": [
+            105,
+            120,
+            394,
+            137
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Speaking about the flows, they are also a kind of movie showing different pictures during the consolidation period. Happening during the year, it seems reasonable to also use the same average rate as the one used for the P&L.",
+        "bbox": [
+            105,
+            152,
+            875,
+            202
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Moreover, we should keep in mind that some validations are usually made when receiving the subsidiaries information. For instance, in local currency, the flow corresponding to a new provision booked in the Liabilities should be found as equal to a provision booked in the P&L. Of course, after currency translation, these two amounts should remain equal. This is only possible if we use the same average rate.",
+        "bbox": [
+            105,
+            215,
+            875,
+            315
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "6.2 Currency translation of a balance sheet and a P&L",
+        "text_level": 2,
+        "bbox": [
+            105,
+            347,
+            870,
+            392
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In this section, we will explain how to translate into consolidation currency a balance sheet and a P&L of a company presenting its statutory accounts in a certain local currency CUR for Year 1 and Year 2.",
+        "bbox": [
+            105,
+            413,
+            875,
+            464
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "But before starting this process, let us make some remarks.",
+        "bbox": [
+            105,
+            476,
+            690,
+            495
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We will notice these accounts are presented before appropriation. The profit of Year 1 of 300 in P&L is found on a profit account in equity. We keep the same presentation for the profit of 400 in Year 2.",
+        "bbox": [
+            105,
+            508,
+            875,
+            558
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/c6e3a68c229775d5de924e3b4b96ea315507afd5d8b5f7419d367143beac5527.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td colspan=\"2\">(CUR)</td></tr><tr><td>Year 1</td><td>Year 2</td></tr><tr><td>Assets</td><td>5,000</td><td>5,700</td></tr><tr><td></td><td>5,000</td><td>5,700</td></tr></table>",
+        "bbox": [
+            105,
+            583,
+            461,
+            652
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "It is also important to see that the capital of 3.500 remains unchanged from Year 1 to Year 2.",
+        "bbox": [
+            466,
+            590,
+            870,
+            639
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/2121187bb9f10c103a89e10197439d10987315a8b932779a01f3f7bdd66b9f75.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Capital \nReserves</td><td></td><td></td></tr><tr><td>Liabilities</td><td>1200</td><td>1500</td></tr><tr><td></td><td>5,000</td><td>5,700</td></tr></table>",
+        "bbox": [
+            108,
+            659,
+            455,
+            747
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Moreover, this company doesn't pay any dividends on the basis of the profit of 300 because we can find back this amount in the reserves next year.",
+        "bbox": [
+            466,
+            655,
+            870,
+            719
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/a2096b445924d70a0406e24239cdb5ca3f0077851c8f253d676398a811e99808.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Income</td><td>2,500</td><td>3,000</td></tr><tr><td>Expenses</td><td>2,200</td><td>2,600</td></tr><tr><td>Profit</td><td>300</td><td>400</td></tr></table>",
+        "bbox": [
+            108,
+            756,
+            455,
+            810
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Finally, we are aware that the number of accounts is quite reduced, but it is sufficient to explain fully the translation process.",
+        "bbox": [
+            466,
+            734,
+            870,
+            800
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We will first start to translate Year 1 accounts by applying the principle of the closing rate (1 CUR = 2 EUR) for each balance sheet account and the average rate (1 CUR = 2.1 EUR) for the P&L. This translation appears in column (1).",
+        "bbox": [
+            105,
+            829,
+            870,
+            881
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            108,
+            65,
+            366,
+            80
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/7a09459271c9e3395be13743aaaa08a05b91dea82b189cfc3442931865d41d4a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>(CUR)</td><td>(EUR)</td><td>(EUR)</td><td>(EUR)</td></tr><tr><td>Year 1</td><td>(1)</td><td>(2)</td><td>(3)</td></tr><tr><td>Assets</td><td>5,000</td><td>10,000</td><td></td><td>10,000</td></tr><tr><td></td><td>5,000</td><td>10,000</td><td>0</td><td>10,000</td></tr></table>",
+        "bbox": [
+            147,
+            128,
+            820,
+            198
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/2c8c32148899184688b7eaba8c8e0f237c2b0e52194caddaf69e5a80f7ef4a8c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Capital</td><td>3,500</td><td>7,000</td><td></td><td>7,000</td></tr><tr><td>Reserves</td><td>0</td><td>0</td><td></td><td>0</td></tr><tr><td>Profit</td><td>300</td><td>600</td><td>30</td><td>630</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td>(30)</td><td>(30)</td></tr><tr><td>Liabilities</td><td>1,200</td><td>2,400</td><td></td><td>2,400</td></tr><tr><td></td><td>5,000</td><td>10,000</td><td>0</td><td>10,000</td></tr></table>",
+        "bbox": [
+            147,
+            207,
+            820,
+            309
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/af865529140d29e232e15106c0f10162118db08bca57fd58ad15e3e38da8b87f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Income</td><td>2,500</td><td>5,250</td><td></td><td>5,250</td></tr><tr><td>Expenses</td><td>2,200</td><td>4,620</td><td></td><td>4,620</td></tr><tr><td>Profit</td><td>300</td><td>630</td><td>0</td><td>630</td></tr></table>",
+        "bbox": [
+            147,
+            318,
+            820,
+            371
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "By considering this column, we have to admit that a problem appears in the accounts because the profit in the P&L (630) is no longer the same as the profit in the equity (600). The correct value is the one corresponding to a translation at the average rate. That's the reason why we have to book in column (2) a consolidation adjustment transferring 30 (debit) from an account names \"Translation adjustments\" to the profit (credit).",
+        "bbox": [
+            107,
+            387,
+            873,
+            486
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Column (3), which is just the addition of columns (1) and (2) gives the correct translated accounts of that company for Year 1.",
+        "bbox": [
+            107,
+            500,
+            873,
+            533
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Now, one year later, we receive again the local currency accounts of that company. Let's process the translation on the basis of a closing rate 1 CUR = 2.2 EUR and an average rate 1 CUR = 2.5 EUR.",
+        "bbox": [
+            107,
+            546,
+            873,
+            597
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Here is what we get.",
+        "bbox": [
+            107,
+            612,
+            312,
+            630
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/0a353b5ebbc9b19a65b09ff99da84c20019a893ebb0dde36adaa8eb30557ca50.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td>(CUR)</td><td>(EUR)</td><td>(EUR)</td><td>(EUR)</td><td>(EUR)</td><td>(EUR)</td><td>(EUR)</td></tr><tr><td>Year 2</td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr><tr><td>Assets</td><td>5,700</td><td>12,540</td><td></td><td></td><td></td><td></td><td>12,540</td></tr><tr><td></td><td>5,700</td><td>12,540</td><td>0</td><td>0</td><td>0</td><td>0</td><td>12,540</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Capital</td><td>3,500</td><td>7,700</td><td></td><td></td><td></td><td>(700)</td><td>7,000</td></tr><tr><td>Reserves</td><td>300</td><td>660</td><td>30</td><td></td><td>(60)</td><td></td><td>630</td></tr><tr><td>Profit</td><td>400</td><td>880</td><td></td><td>120</td><td>60</td><td>700</td><td>1,000</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td>(30)</td><td>(120)</td><td></td><td></td><td>610</td></tr><tr><td>Liabilities</td><td>1,500</td><td>3,300</td><td></td><td></td><td></td><td></td><td>3,300</td></tr><tr><td></td><td>5,700</td><td>12,540</td><td>0</td><td>0</td><td>0</td><td>0</td><td>12,540</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Income</td><td>3,000</td><td>7,500</td><td></td><td></td><td></td><td></td><td>7,500</td></tr><tr><td>Expenses</td><td>2,600</td><td>6,500</td><td></td><td></td><td></td><td></td><td>6,500</td></tr><tr><td>Profit</td><td>400</td><td>1,000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1,000</td></tr></table>",
+        "bbox": [
+            107,
+            635,
+            860,
+            820
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In column (1), we see the local amounts all translated at closing rate 2.2 for the balance sheet and the P&L translated at the average rate of 2.5.",
+        "bbox": [
+            105,
+            836,
+            869,
+            869
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            303,
+            71,
+            852,
+            87
+        ],
+        "page_idx": 9
+    }
+]

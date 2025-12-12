@@ -1,0 +1,1318 @@
+[
+    {
+        "type": "text",
+        "text": "In consolidation, there is an important principle to consider. When we book an adjustment impacting the result one year, we must find this adjustment impacting the reserves next year. Moreover, if a consolidation adjustment impacts the reserves one year, we must find the same amount on the same reserves account next year. That's just a normal accounting principle.",
+        "bbox": [
+            114,
+            120,
+            875,
+            200
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "That also means that the consolidation adjustment (1) booked in Year 1 must now appear in Year 2 with an impact on the reserves account. That is the role of column (2) to carry forward what we call \"historical adjustments\".",
+        "bbox": [
+            114,
+            216,
+            875,
+            263
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In column (3), we have the same problem as the one we had in Year 1. After translation, profit in P&L is 1.000 and profit in equity is only 880. So we need to book a debit of 120 on the \"Translation adjustments account\" and a credit of 120 on the profit account.",
+        "bbox": [
+            114,
+            279,
+            875,
+            344
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "But another problem arises for the reserves account this year. Year 1 profit of 300 EUR (630 EUR) is carried forward to the reserves but we find 690 EUR instead of 630 EUR. That's the reason of the adjustment in column (4). Such an adjustment will be necessary each year from now on.",
+        "bbox": [
+            114,
+            360,
+            875,
+            424
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "And we have a final problem with the capital because, in local currency we have no increase of capital, but after translation we find an increase of 700 EUR. This amount cannot remain on the capital account. That is the role of column (5) to debit the capital for 700 and to credit the translation adjustments for 700.",
+        "bbox": [
+            114,
+            440,
+            875,
+            521
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Column (6) shows the correct translated amounts.",
+        "bbox": [
+            114,
+            537,
+            599,
+            553
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "All these adjustments pursue the same objective: find the same accounting relations on the equity after translation than the one we found in local currency.",
+        "bbox": [
+            114,
+            569,
+            875,
+            617
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "And behind all that, we could also formulate another important consolidation principle: reserves can only evolve with the consolidated result of the group and the dividends paid by the parent company, just like (in most cases) in statutory accounts.",
+        "bbox": [
+            114,
+            633,
+            875,
+            696
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "All other elements appearing as a variation of the reserves may not remain in that account but must be reclassified on another account, depending on its nature.",
+        "bbox": [
+            114,
+            713,
+            875,
+            761
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "6.3 How do we consolidate foreign companies?",
+        "text_level": 1,
+        "bbox": [
+            114,
+            796,
+            866,
+            819
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "To explain how to consolidate a foreign company, we will make the following assumptions",
+        "bbox": [
+            114,
+            838,
+            875,
+            871
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            67,
+            366,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- We will consider the figures processed in the previous section for the foreign company named A",
+            "We will suppose company A is owned at  \\(80\\%\\)  by a parent company P",
+            "- Consequently, we will apply the global consolidation method, but all the principles would remain unchanged for the two other methods",
+            "The consolidation will be done for Year 1 and Year 2",
+            "- Only balance sheets will be consolidated."
+        ],
+        "bbox": [
+            150,
+            118,
+            875,
+            295
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of Year 1",
+        "text_level": 2,
+        "bbox": [
+            105,
+            311,
+            364,
+            329
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here is the balance sheet of P with a minimal number of accounts.",
+        "bbox": [
+            105,
+            344,
+            754,
+            361
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/094e869b8161b58a2b10ce62e34f8ae70c6326adb429d181c2de22b9f00040ce.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Investments S</td><td>4,000</td><td>Capital</td><td>5,000</td></tr><tr><td>Assets</td><td>3,000</td><td>Liabilities</td><td>2,000</td></tr><tr><td>Total</td><td>7,000</td><td>Total</td><td>7,000</td></tr></table>",
+        "bbox": [
+            148,
+            382,
+            838,
+            450
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Balance sheet of A is presented after currency translation and the figures are the one we calculated in previous section.",
+        "bbox": [
+            105,
+            465,
+            875,
+            500
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/17fd22d9da7b67ab7a978242bc2f52f319f5b67eab657cac881b957ba13adb48.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A after currency translation (80%)</td></tr><tr><td></td><td>Capital</td><td>7,000</td></tr><tr><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td>Result</td><td>630</td></tr><tr><td></td><td>Trans. Adjust.</td><td>(30)</td></tr><tr><td>Assets</td><td>10,000</td><td>2,400</td></tr><tr><td>Total</td><td>10,000</td><td>10,000</td></tr></table>",
+        "bbox": [
+            148,
+            524,
+            838,
+            642
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The consolidated balance sheet hereunder implies the following comments",
+        "bbox": [
+            105,
+            655,
+            834,
+            673
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/803cc3cd4b4ccf8695543fda0fec1528f411a328180b670a50b7f7da20340d0d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A</td></tr><tr><td></td><td>Capital</td><td>5,000</td></tr><tr><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td>Result</td><td>0</td></tr><tr><td></td><td>Conso. reserves (A)</td><td>2,104</td></tr><tr><td></td><td>Translation adjustments</td><td>(24)</td></tr><tr><td></td><td>Minority interests</td><td>1,520</td></tr><tr><td>Assets</td><td>13,000</td><td>Liabilities</td></tr><tr><td>Total</td><td>13,000</td><td>Total</td></tr></table>",
+        "bbox": [
+            148,
+            693,
+            838,
+            841
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            302,
+            71,
+            853,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The consolidated reserves of A are  \\(6104 = 80\\% * [7000 + 0 + 630] - 4000\\)  and you can notice that the translation adjustments of (30) are not included in the formula. Indeed, we have made a special effort to \"clean\" the reserves with the undesirable effect of currency rates. Including that amount in the formula would make consolidated reserves unexplainable from the classical accounting point of view.",
+        "bbox": [
+            107,
+            117,
+            882,
+            213
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "So, the rule is that consolidated reserves of a foreign company do not include the translation adjustments.",
+        "bbox": [
+            107,
+            229,
+            880,
+            263
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This means that the group part of the translation adjustments,  \\(80\\%\\) \\(* (30) = (24)\\)  remains on a separate line in the consolidated equity.",
+        "bbox": [
+            107,
+            276,
+            880,
+            312
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "On the contrary, the calculation of minority interests will include these translation adjustments. No specific line is required and so they are  \\(1520 = 20\\% * [7000 + 0 + 630 + (30)]\\) .",
+        "bbox": [
+            107,
+            326,
+            880,
+            375
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "These rules may be seen as exceptions, but for the rest of the process we are back to a classical global integration.",
+        "bbox": [
+            107,
+            391,
+            880,
+            425
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of Year 2",
+        "text_level": 2,
+        "bbox": [
+            107,
+            438,
+            366,
+            456
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "For  \\(P\\) , we suppose the balance sheet remains unchanged.",
+        "bbox": [
+            107,
+            472,
+            668,
+            488
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/122501983da4daece552cc7e6865f8539e9cb6093d34aaeb9684b49ffb40e3ed.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P</td></tr><tr><td>Investments S</td><td>4,000</td><td>Capital   5,000</td></tr><tr><td>Assets</td><td>3,000</td><td>Liabilities   2,000</td></tr><tr><td>Total</td><td>7,000</td><td>Total     7,000</td></tr></table>",
+        "bbox": [
+            147,
+            502,
+            841,
+            571
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Here is the Year 2 balance sheet of company A as calculated in previous section.",
+        "bbox": [
+            107,
+            602,
+            877,
+            633
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/9867923b57ab12e7102de7628f805bd28b48795f79e98ca448ac9211e6a03cfd.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A after currency translation (80%)</td></tr><tr><td></td><td>Capital</td><td>7,000</td></tr><tr><td></td><td>Reserves</td><td>630</td></tr><tr><td></td><td>Result</td><td>1,000</td></tr><tr><td></td><td>Trans. Adjust.</td><td>610</td></tr><tr><td>Assets</td><td>Liabilities</td><td>3,300</td></tr><tr><td>Total</td><td>12,540</td><td>12,540</td></tr></table>",
+        "bbox": [
+            147,
+            653,
+            841,
+            771
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The consolidated balance sheet account is obtained with the same remarks, as summarized hereunder",
+        "bbox": [
+            107,
+            786,
+            873,
+            818
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            63,
+            366,
+            78
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/b3bb4373c4b0f69bd8a97fdfddaf5139a292f174ab997c2af1b3f1846e525cfa.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A</td></tr><tr><td></td><td>Capital</td><td>5,000</td></tr><tr><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td>Result</td><td>0</td></tr><tr><td></td><td>Conso. reserves (A)</td><td>2,904</td></tr><tr><td></td><td>Translation adjustments</td><td>488</td></tr><tr><td></td><td>Minority interests</td><td>1,848</td></tr><tr><td>Assets</td><td>Liabilities</td><td>5,300</td></tr><tr><td>Total</td><td>15,540</td><td>15,540</td></tr></table>",
+        "bbox": [
+            166,
+            116,
+            854,
+            266
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves of A = 2904 = 80% * [7000 + 630 + 1000] - 4000",
+            "- Translation adjustments  \\(= 488 = 80\\%\\)  * 610",
+            "Minority interests  \\(= 1848 = 20^{*}\\)  [7000 + 630 + 1000 + 610]."
+        ],
+        "bbox": [
+            145,
+            279,
+            869,
+            378
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The final significant remark comes from the comparison of the consolidated reserves  \\(\\times\\)  between Year 1 and Year 2, whose difference is  \\(800 = 2904 - 2104 = 80\\% \\times 1000\\) . This amount is just the group part in the Year 2 profit of A which brings us back to the basic definition: the accumulation of group profit year after year.",
+        "bbox": [
+            107,
+            393,
+            873,
+            475
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "6.4 Currency translation of flows?",
+        "text_level": 1,
+        "bbox": [
+            107,
+            508,
+            660,
+            532
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We have seen part of the consolidation reporting consists in notes to the accounts, most of them explaining the evolution between opening and closing value of accounts.",
+        "bbox": [
+            107,
+            551,
+            871,
+            599
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/af34801884000c48bf359f7be531e9fbbc4c58914a7046722a12543c41695aee.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Opening value</td><td>2,000</td></tr><tr><td>Acquisitions</td><td>800</td></tr><tr><td>Disposals</td><td>(300)</td></tr><tr><td>Closing value</td><td>2,500</td></tr></table>",
+        "bbox": [
+            111,
+            616,
+            478,
+            685
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "and disposals for (300) CUR.",
+        "bbox": [
+            109,
+            695,
+            392,
+            711
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let's consider the following example of a 'Building account' in local foreign currency CUR. The evolution between the opening and closing values consists in acquisitions for 800 CUR",
+        "bbox": [
+            487,
+            614,
+            871,
+            695
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The closing rate of Year 1 is 1 CUR = 2 EUR and the closing rate of Year 2 is 1 CUR = 2.2 EUR.",
+        "bbox": [
+            107,
+            726,
+            869,
+            760
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "As such transactions of acquisitions and disposals may happen several times during the consolidation period, it is the average rate of 1 CUR = 2.5 EUR that will apply.",
+        "bbox": [
+            107,
+            774,
+            871,
+            826
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            303,
+            71,
+            850,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "After currency translation, here is what we get. We are placed in a situation of \"discontinuity\" in the consolidation process because of the existence of different rates.",
+        "bbox": [
+            112,
+            120,
+            881,
+            169
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/e50c42ed3dda06a2551fc9e3e219e6b08656570b185e2a49ad500748281e7ebc.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Opening value</td><td>4,000</td></tr><tr><td>Acquisitions</td><td>2,000</td></tr><tr><td>Disposals</td><td>(750)</td></tr><tr><td>Translation adjustments</td><td>250</td></tr><tr><td>Closing value</td><td>5,500</td></tr></table>",
+        "bbox": [
+            114,
+            184,
+            480,
+            267
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Indeed, the opening value is  \\(4000 = 2000 \\times 2\\)  when the closing value is  \\(5500 = 2500 \\times 2.2\\) . These 2500 still includes a part of the 2000 included in the opening value. This common part is once translated at 2 and next year",
+        "bbox": [
+            493,
+            184,
+            879,
+            282
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "translated at 2.2.",
+        "bbox": [
+            112,
+            281,
+            283,
+            297
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Moreover, the flows are translated at average rate of 2.5, always different of these closing rates. Again, we are faced to a situation which is correct in foreign currency but wrong after translation currency. The only way to put all things back in balance is to introduce a special flow named \"Translation adjustments\" for an amount of 250.",
+        "bbox": [
+            110,
+            311,
+            879,
+            393
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This flow has nothing to see with the translation adjustments account previously seen.",
+        "bbox": [
+            110,
+            409,
+            879,
+            443
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The difficult point is that for the need of the different notes to the accounts, the translation of flows must be done for at least non current accounts in the balance sheet. Moreover, if a cash flow statement is also required, then the translation of flows must apply to all the accounts.",
+        "bbox": [
+            110,
+            456,
+            879,
+            525
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "6.5 How to manage historical rates on the equity accounts?",
+        "text_level": 2,
+        "bbox": [
+            112,
+            554,
+            790,
+            603
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "When translating the balance sheet, we have seen that the equity has to be translated at historical rate in order to avoid some problems in justifying evolution of consolidated reserves.",
+        "bbox": [
+            110,
+            620,
+            877,
+            672
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Year after year, this situation is becoming more and more difficult to manage all these currency rates and the purpose of this section consists in explaining one best practice.",
+        "bbox": [
+            110,
+            686,
+            877,
+            736
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We will consider a capital account of a foreign company from Year 1 to Year 4, with the following assumptions",
+        "bbox": [
+            110,
+            749,
+            870,
+            784
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- In Year 1, Year 2 and Year 3, the capital amount remains unchanged, except the closing rate of each year which changes",
+            "In Year 4, we suppose a capital increase happening during the year."
+        ],
+        "bbox": [
+            156,
+            797,
+            870,
+            862
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            366,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "What follows explains how to manage the translation adjustments in order to keep things auditable for every one.",
+        "bbox": [
+            100,
+            117,
+            880,
+            154
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We consider a capital of 100 CUR from Year 1 to Year 3.",
+        "bbox": [
+            102,
+            167,
+            657,
+            184
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/62b56933c0d13021f93c894ff5a35c092a573cced5875696828581c8c3cf37b0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Year 4</td></tr><tr><td>Capital in local currency</td><td>100</td><td>100</td><td>100</td><td>120</td></tr><tr><td>Historical rate</td><td>1.6</td><td></td><td></td><td></td></tr><tr><td>Closing rate</td><td>1.5</td><td>1.7</td><td>1.8</td><td>1.4</td></tr><tr><td>Capital at historical rate</td><td>160</td><td>160</td><td>160</td><td>191</td></tr><tr><td>Capital at closing rate</td><td>150</td><td>170</td><td>180</td><td>168</td></tr></table>",
+        "bbox": [
+            141,
+            207,
+            832,
+            312
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The historical rate for this capital is 1.6. Of course, closing rate is changing as shown here above.",
+        "bbox": [
+            100,
+            341,
+            877,
+            377
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "A certain day of Year 4, there is a capital increase of 20 CUR and the currency rate that day is 1.55 giving a valuation of that capital increase for  \\(31 = 20 \\times 1.55\\) .",
+        "bbox": [
+            102,
+            390,
+            877,
+            440
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The main idea for historical rate is to keep track of translations adjustments instead of historical currency rates, as explained hereunder",
+        "bbox": [
+            102,
+            456,
+            877,
+            491
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/a08ead1d73b01ed6ff5df5b47739bf9f3213daac573224b490220cc19588f158.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Adjustment of capital</td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Year 4</td></tr><tr><td>Year 1</td><td>10</td><td>10</td><td>10</td><td>10</td></tr><tr><td>Year 2</td><td></td><td>(20)</td><td>(20)</td><td>(20)</td></tr><tr><td>Year 3</td><td></td><td></td><td>(10)</td><td>(10)</td></tr><tr><td>Year 4</td><td></td><td></td><td></td><td>40</td></tr><tr><td>Year 4</td><td></td><td></td><td></td><td>3</td></tr><tr><td>Capital after adjustments</td><td>160</td><td>160</td><td>160</td><td>191</td></tr></table>",
+        "bbox": [
+            143,
+            503,
+            832,
+            622
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/9b9f746507f11b336a24bc7de1e8cd6a4963117eb5fa4c7c7a19c62e43d5b157.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Translation adjustments</td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Year 4</td></tr><tr><td>Year 1</td><td>(10)</td><td>(10)</td><td>(10)</td><td>(10)</td></tr><tr><td>Year 2</td><td></td><td>20</td><td>20</td><td>20</td></tr><tr><td>Year 3</td><td></td><td></td><td>10</td><td>10</td></tr><tr><td>Year 4</td><td></td><td></td><td></td><td>(40)</td></tr><tr><td>Year 4</td><td></td><td></td><td></td><td>(3)</td></tr><tr><td></td><td>(10)</td><td>10</td><td>20</td><td>(23)</td></tr></table>",
+        "bbox": [
+            145,
+            650,
+            832,
+            768
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "- In Year 1, closing rate value of capital is  \\(150 = 100^{*}1.5\\)  instead of historical rate  \\(160 = 100^{*}1.6\\) . So we have to increase by 10 the translated amount of the capital. That means a credit of 10 on Capital account and a debit of 10 on the Translation currency account.",
+        "bbox": [
+            143,
+            796,
+            882,
+            868
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            297,
+            69,
+            858,
+            88
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- In Year 2, the process is made in two steps. First, we carry forward the Year 1 historical adjustment of 10 and secondly we compare the closing value of capital in Year 2 with the corresponding value in Year 1, which is  \\(20 = 170 - 150\\) . That amount becomes the adjustment of Year 2 as shown above: debit capital for 20 and credit Translation adjustments for 20.",
+            "- In Year 3, we apply the same two processes. First, carry forward of both Year 1 and Year 2 translation adjustments and then compare closing value of capital between Year 3 and Year 2,  \\(10 = 180 - 170\\) , which gives a debit capital for 10 and a credit Translation adjustments or 10.",
+            "- Year 4 is a little bit complicated because of the capital increase. First, let's carry forward the historical adjustments related to Year 1, Year 2 and Year 3. Then, the capital amount of 120 CUR must be split into 100 CUR and 20 CUR. For the 100 CUR, we apply the same rule: closing rate value of Year 4 - closing rate value of Year 3 = (40) = 140 - 180 which becomes a debit translation adjustment for 40 and a credit capital for 40. Finally, the capital increase for 20 has been translated at closing rate 1.4 instead of transaction rate 1.55, giving a difference of  \\(3 = 20^{*}\\)  [1.55 - 1.41. So we have to debit the Translation adjustments for 3 and credit the capital for 3."
+        ],
+        "bbox": [
+            149,
+            120,
+            873,
+            490
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "In most consolidation software, this kind of process is automatically provided, based on what has been explained in this section. None keeps tracks of individual rates. All of them are using adjustments.",
+        "bbox": [
+            109,
+            506,
+            873,
+            554
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We can easily understand that after a certain number of years, the number of translation adjustments increase. After audit, it is recommended to aggregate them in order to keep their number reasonable.",
+        "bbox": [
+            109,
+            569,
+            873,
+            619
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "6.6 Consolidation adjustments in local currency",
+        "text_level": 1,
+        "bbox": [
+            109,
+            651,
+            871,
+            674
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The subject of consolidation adjustments will be largely covered in chapter 8. However, within the scope of currency translation, we would like to explain how to translate a foreign currency adjustment.",
+        "bbox": [
+            109,
+            695,
+            871,
+            743
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "A consolidation adjustment can be seen as a journal entry that cannot be booked in the legal accounting of a company for some reasons which may be legal, fiscal or inconsistent with Local Gaap. In such situation, these journal entries are booked at consolidation level. When the company accounting is in foreign currency, the consolidation adjustment must also be booked in local currency and translated into consolidation currency following specific rules.",
+        "bbox": [
+            109,
+            759,
+            873,
+            856
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            65,
+            367,
+            81
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "These will be explained on the basis of an example hereunder.",
+        "bbox": [
+            103,
+            118,
+            713,
+            137
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In Year 1, let's suppose we have to book the following adjustment in the consolidation",
+        "bbox": [
+            103,
+            151,
+            875,
+            186
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/5cf086820e0a23ce573c088a33855d86fe5de4607fcfc965d074f46de3191460.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Year 1 (CUR)</td><td>Debit</td><td>Credit</td></tr><tr><td>Depreciations in P&amp;L</td><td>100</td><td></td></tr><tr><td>Tangible assets (depreciations)</td><td></td><td>100</td></tr></table>",
+        "bbox": [
+            105,
+            200,
+            639,
+            253
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Just to fix our mind, we can imagine a fixed asset which is depreciated over 10",
+        "bbox": [
+            650,
+            200,
+            875,
+            265
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "years in statutory accounts but, referring to consolidation rules, this period of depreciation must be only 5 years. So we suppose we have to book an additional depreciation of 100 CUR over that period.",
+        "bbox": [
+            103,
+            265,
+            875,
+            313
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In Year 2, this consolidation adjustment becomes",
+        "bbox": [
+            103,
+            329,
+            591,
+            346
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/566c683154336fe5eae7eb957bd8e6e2fbf9877b2b9152ec3676ef13b2c4be2f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Year 2 (CUR)</td><td>Debit</td><td>Credit</td></tr><tr><td>Depreciations in P&amp;L</td><td>100</td><td></td></tr><tr><td>Reserves</td><td>100</td><td></td></tr><tr><td>Tangible assets (depreciations)</td><td></td><td>200</td></tr></table>",
+        "bbox": [
+            105,
+            359,
+            639,
+            426
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Of course, these adjustments are impacting the consolidation finally in EUR after currency translation. Let's suppose the rates are the following.",
+        "bbox": [
+            103,
+            457,
+            872,
+            492
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/560066e2d27aff0fbf2c6d416269d0ececcfd5761e313fae2636762e1b5fcc3e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Year 2</td></tr><tr><td>Closing rate</td><td>1.5</td><td>1.2</td></tr><tr><td>Average rate</td><td>1.4</td><td>1.3</td></tr></table>",
+        "bbox": [
+            300,
+            504,
+            652,
+            558
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The Year 1 adjustment is translated just like a balance sheet and a P&L would be. Balance sheet accounts are translated at closing rate, P&L accounts at average rate and we must take care of the profit/reserve effect that is translated at historical rate.",
+        "bbox": [
+            103,
+            570,
+            875,
+            636
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Here are the translated adjustments of Year 1 with",
+        "bbox": [
+            105,
+            649,
+            605,
+            667
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Tangible assets (depreciations)  \\(= 100\\mathrm{CUR}^{*}1.5 = 150\\)",
+            "- Depreciations in P&L = 100 CUR * 1.4 = 140",
+            "Translation adjustments (equity account) for a difference of 10"
+        ],
+        "bbox": [
+            144,
+            695,
+            796,
+            780
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/6e86a3799f4bb85e4304ef651489606ea25ccb55cde9ef458a25e1aeb6ba9f78.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Year 1 (EUR)</td><td>Debit</td><td>Credit</td></tr><tr><td>Depreciations in P&amp;L</td><td>140</td><td></td></tr><tr><td>Translation adjustments</td><td>10</td><td></td></tr><tr><td>Tangible assets (depreciations)</td><td></td><td>150</td></tr></table>",
+        "bbox": [
+            203,
+            793,
+            735,
+            860
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            300,
+            70,
+            855,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The Year 2 adjustment, after translation, becomes",
+        "bbox": [
+            107,
+            117,
+            610,
+            136
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/b165ab800f94ba0432f146c5a427bccba5bb97d5448e6b67d74795bdbd406aab.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Year 2 EUR</td><td>Debit</td><td>Credit</td></tr><tr><td>Depreciations in P&amp;L</td><td></td><td></td></tr><tr><td>Reserves</td><td></td><td></td></tr><tr><td>Translation adjustments</td><td></td><td></td></tr><tr><td>Tan ible assets de reciations,</td><td></td><td>240</td></tr></table>",
+        "bbox": [
+            207,
+            154,
+            747,
+            238
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "text_level": 2,
+        "bbox": [
+            109,
+            260,
+            179,
+            275
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Tangible assets (depreciations) = 200 CUR * 1.2 = 240",
+            "- Depreciation in P&L = 100 CUR * 1.3 = 130",
+            "- Reserves is the value of the P&L impact of Year 1 = 140",
+            "- Translation adjustments (equity account) for a difference of 30."
+        ],
+        "bbox": [
+            147,
+            288,
+            809,
+            406
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Through this example, we see that as soon as a consolidation adjustment has been booked in local currency, we have to keep track of historical impacts on P&L, which are carried forward to reserves. Ignoring this mechanism leads to technical problems in the consolidation.",
+        "bbox": [
+            107,
+            421,
+            884,
+            487
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This example shows also the difficulty to explain the content of the translation adjustments account in the equity.",
+        "bbox": [
+            107,
+            500,
+            882,
+            536
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "7 INTERCOMPANY MATCHING ANALYSIS",
+        "text_level": 1,
+        "bbox": [
+            109,
+            569,
+            710,
+            620
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "7.1 Some important principles about intercompany matching",
+        "text_level": 2,
+        "bbox": [
+            109,
+            637,
+            710,
+            686
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Why an intercompany matching analysis?",
+        "text_level": 2,
+        "bbox": [
+            109,
+            703,
+            569,
+            721
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let's repeat again one of the main objectives of the consolidated financial statements: to produce an economical picture of a set of companies acting with the outside world, just as if they would behave as a single company.",
+        "bbox": [
+            107,
+            736,
+            880,
+            787
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "It becomes then normal that all transactions between companies of a group, whenever they impact the balance sheet or the P&L, should not appear in the final consolidated financial statements.",
+        "bbox": [
+            107,
+            801,
+            880,
+            849
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            109,
+            64,
+            372,
+            79
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "From an accounting point of view, this means that we have to eliminate receivables in one company with corresponding payables booked in the partner accounts, same for turnover and purchases. In fact, the general rule is that any balance sheet or P&L amount related to another company of the group must be eliminated.",
+        "bbox": [
+            110,
+            118,
+            875,
+            200
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "But before eliminating intercompany amounts between two companies, we must first check that both amounts are the same. This is the reason why we need to proceed to that intercompany matching.",
+        "bbox": [
+            110,
+            215,
+            875,
+            265
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Which companies are concerned with intercompany positions?",
+        "text_level": 3,
+        "bbox": [
+            110,
+            279,
+            794,
+            297
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We have seen that companies in a group can be consolidated with the global integration method, the proportional integration method or the equity method.",
+        "bbox": [
+            110,
+            311,
+            875,
+            358
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For the two first methods, all accounts are integrated in the consolidated financial statements at  \\(100\\%\\)  or at the proportional percentage, which means we need to have knowledge of all intercompany positions for these two kinds of companies. But for the equity method companies, we do not integrate their individual accounts.",
+        "bbox": [
+            110,
+            376,
+            875,
+            456
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Consequently, it makes no sense to ask the intercompany positions for equity method companies nor to ask the same information for the two first consolidation method companies when the transactions are done with equity method companies.",
+        "bbox": [
+            110,
+            472,
+            875,
+            538
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Let's summarise this hereunder",
+        "bbox": [
+            110,
+            551,
+            419,
+            569
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/5e02b7ec208f2701c1593b80703c878c6e751915a917c7cc3de6ec9c8b297070.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Global integration</td><td>Yes</td><td>Yes</td><td>No</td></tr><tr><td>Proportional integration</td><td>Yes</td><td>Yes</td><td>No</td></tr><tr><td>Equity method</td><td>No</td><td>No</td><td>No</td></tr></table>",
+        "bbox": [
+            207,
+            595,
+            750,
+            762
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Main reasons to find disaaregement between intercompany positions?",
+        "text_level": 3,
+        "bbox": [
+            110,
+            793,
+            860,
+            811
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The experience shows that it is rather difficult for companies in a group to produce matched intercompany positions and for a certain number of reasons that we can explain",
+        "bbox": [
+            110,
+            825,
+            875,
+            875
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            302,
+            70,
+            855,
+            87
+        ],
+        "page_idx": 9
+    }
+]

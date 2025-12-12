@@ -1,0 +1,1141 @@
+# Knowledge Graph Visualization for Financial Consolidation Agent
+# Purpose: Document relationships between all 15 knowledge artifacts
+# Version: 1.0
+
+knowledge_graph:
+  name: "Financial Consolidation Knowledge Graph"
+  version: "1.0"
+  description: "Visual relationship maps documenting connections between knowledge artifacts"
+  total_files: 15
+
+  # ============================================================
+  # SECTION 1: FILE DEPENDENCY GRAPH
+  # ============================================================
+  file_dependency_graph:
+    description: "Which knowledge files reference which other files"
+
+    # Complete file inventory with IDs
+    file_inventory:
+      decision_trees:
+        - id: "DT-METHOD"
+          file: "consolidation-method-decision.yaml"
+          purpose: "Determine consolidation method (G/E/P/N)"
+
+        - id: "DT-ELIM"
+          file: "elimination-code-selection.yaml"
+          purpose: "Route to correct elimination code"
+
+        - id: "DT-CURRENCY"
+          file: "currency-translation-decision.yaml"
+          purpose: "Select translation rate type"
+
+      workflows:
+        - id: "WF-ADDSUB"
+          file: "workflow-add-subsidiary.yaml"
+          purpose: "Add new company to consolidation"
+
+        - id: "WF-ACQUIRE"
+          file: "workflow-process-acquisition.yaml"
+          purpose: "Record business combination"
+
+        - id: "WF-ICELIM"
+          file: "workflow-configure-ic-eliminations.yaml"
+          purpose: "Set up IC elimination rules"
+
+        - id: "WF-YEAREND"
+          file: "workflow-year-end-close.yaml"
+          purpose: "Complete annual consolidation"
+
+      references:
+        - id: "REF-CONSO"
+          file: "parameter-reference-consolidation.yaml"
+          purpose: "Core consolidation procedure parameters"
+
+        - id: "REF-ELIM"
+          file: "parameter-reference-eliminations.yaml"
+          purpose: "Elimination procedure parameters"
+
+      rules:
+        - id: "RULES-VAL"
+          file: "validation-rules.yaml"
+          purpose: "Data validation and prerequisites"
+
+        - id: "RULES-ERROR"
+          file: "error-handling-patterns.yaml"
+          purpose: "Error catalog and recovery"
+
+      templates:
+        - id: "TMPL-CONFIG"
+          file: "configuration-templates.yaml"
+          purpose: "Standard configuration patterns"
+
+      playbooks:
+        - id: "PB-SCENARIOS"
+          file: "business-scenario-playbooks.yaml"
+          purpose: "End-to-end business scenarios"
+
+      testing:
+        - id: "TEST-FRAMEWORK"
+          file: "agent-testing-framework.yaml"
+          purpose: "Validate agent outputs"
+
+      integration:
+        - id: "INTEGRATION"
+          file: "agent-integration-patterns.yaml"
+          purpose: "Orchestrate knowledge files"
+
+    # Dependency relationships
+    dependencies:
+      # Decision Trees - Foundation Layer (no internal dependencies)
+      DT-METHOD:
+        references: []
+        referenced_by: ["WF-ADDSUB", "WF-ACQUIRE", "PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "02-consolidation-methods/consolidation-method-determination.md"
+          - "02-consolidation-methods/global-integration.md"
+          - "02-consolidation-methods/equity-method.md"
+          - "02-consolidation-methods/proportional-method.md"
+
+      DT-ELIM:
+        references: []
+        referenced_by: ["WF-ICELIM", "REF-ELIM", "PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "04-elimination-entries/participation-eliminations.md"
+          - "04-elimination-entries/dividend-eliminations.md"
+          - "04-elimination-entries/intercompany-transactions.md"
+
+      DT-CURRENCY:
+        references: []
+        referenced_by: ["WF-YEAREND", "PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "05-currency-translation/exchange-rate-types.md"
+          - "05-currency-translation/translation-methods.md"
+
+      # Workflows - Process Layer (reference decision trees and templates)
+      WF-ADDSUB:
+        references: ["DT-METHOD", "TMPL-CONFIG", "RULES-VAL"]
+        referenced_by: ["PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "06-ownership-structure/direct-indirect-holdings.md"
+          - "07-database-implementation/data-tables-catalog.md"
+
+      WF-ACQUIRE:
+        references: ["DT-METHOD", "TMPL-CONFIG", "RULES-VAL", "REF-ELIM"]
+        referenced_by: ["PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "03-core-calculations/goodwill-calculation.md"
+          - "04-elimination-entries/participation-eliminations.md"
+
+      WF-ICELIM:
+        references: ["DT-ELIM", "TMPL-CONFIG", "RULES-VAL", "REF-ELIM"]
+        referenced_by: ["PB-SCENARIOS", "INTEGRATION"]
+        documentation_links:
+          - "04-elimination-entries/intercompany-transactions.md"
+          - "04-elimination-entries/elimination-templates.md"
+
+      WF-YEAREND:
+        references: ["DT-CURRENCY", "RULES-VAL", "REF-CONSO", "REF-ELIM"]
+        referenced_by: ["PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "03-core-calculations/consolidation-workflow.md"
+          - "08-application-layer/job-management.md"
+
+      # References - Parameter Layer (foundational, no YAML dependencies)
+      REF-CONSO:
+        references: []
+        referenced_by: ["WF-YEAREND", "PB-SCENARIOS", "INTEGRATION"]
+        documentation_links:
+          - "07-database-implementation/stored-procedures-catalog.md"
+          - "08-application-layer/consolidation-services.md"
+
+      REF-ELIM:
+        references: []
+        referenced_by: ["WF-ACQUIRE", "WF-ICELIM", "WF-YEAREND", "PB-SCENARIOS", "INTEGRATION"]
+        documentation_links:
+          - "08-application-layer/elimination-execution-engine.md"
+          - "07-database-implementation/stored-procedures-catalog.md"
+
+      # Rules - Validation Layer
+      RULES-VAL:
+        references: []
+        referenced_by: ["WF-ADDSUB", "WF-ACQUIRE", "WF-ICELIM", "WF-YEAREND", "PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "17-troubleshooting/common-issues.md"
+          - "06-ownership-structure/ownership-percentages.md"
+
+      RULES-ERROR:
+        references: ["RULES-VAL"]
+        referenced_by: ["PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "17-troubleshooting/common-issues.md"
+          - "08-application-layer/elimination-execution-engine.md"
+
+      # Templates - Configuration Layer
+      TMPL-CONFIG:
+        references: []
+        referenced_by: ["WF-ADDSUB", "WF-ACQUIRE", "WF-ICELIM", "PB-SCENARIOS", "INTEGRATION"]
+        documentation_links:
+          - "04-elimination-entries/elimination-templates.md"
+          - "07-database-implementation/data-tables-catalog.md"
+
+      # Playbooks - Orchestration Layer (references many files)
+      PB-SCENARIOS:
+        references: ["DT-METHOD", "DT-ELIM", "DT-CURRENCY", "WF-ADDSUB", "WF-ACQUIRE", "WF-ICELIM", "WF-YEAREND", "TMPL-CONFIG", "REF-CONSO", "REF-ELIM", "RULES-VAL", "RULES-ERROR"]
+        referenced_by: ["TEST-FRAMEWORK", "INTEGRATION"]
+        documentation_links:
+          - "03-core-calculations/consolidation-workflow.md"
+          - "03-core-calculations/goodwill-calculation.md"
+          - "03-core-calculations/deconsolidation.md"
+
+      # Testing - Quality Layer
+      TEST-FRAMEWORK:
+        references: ["DT-METHOD", "DT-ELIM", "DT-CURRENCY", "WF-ADDSUB", "WF-ACQUIRE", "WF-YEAREND", "PB-SCENARIOS", "RULES-VAL", "RULES-ERROR"]
+        referenced_by: ["INTEGRATION"]
+        documentation_links:
+          - "All documentation files for verification"
+
+      # Integration - Meta Layer (references all files)
+      INTEGRATION:
+        references: ["DT-METHOD", "DT-ELIM", "DT-CURRENCY", "WF-ADDSUB", "WF-ACQUIRE", "WF-ICELIM", "WF-YEAREND", "REF-CONSO", "REF-ELIM", "RULES-VAL", "RULES-ERROR", "TMPL-CONFIG", "PB-SCENARIOS", "TEST-FRAMEWORK"]
+        referenced_by: []
+        documentation_links:
+          - "00-index/_index-00-index.md"
+          - "00-index/CROSS_REFERENCE_INDEX.md"
+
+    # Visual ASCII dependency graph
+    dependency_graph_ascii: |
+      FINANCIAL CONSOLIDATION KNOWLEDGE GRAPH - FILE DEPENDENCIES
+      ===========================================================
+
+                                    ┌─────────────────┐
+                                    │   INTEGRATION   │  Meta Layer
+                                    │  (orchestrates) │
+                                    └────────┬────────┘
+                                             │
+               ┌─────────────────────────────┼─────────────────────────────┐
+               │                             │                             │
+               ▼                             ▼                             ▼
+      ┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
+      │ TEST-FRAMEWORK  │         │   PB-SCENARIOS  │         │   RULES-ERROR   │
+      │  (validates)    │         │  (orchestrates) │         │  (diagnoses)    │
+      └────────┬────────┘         └────────┬────────┘         └────────┬────────┘
+               │                           │                           │
+               │    ┌──────────────────────┼──────────────────────┐    │
+               │    │                      │                      │    │
+               ▼    ▼                      ▼                      ▼    ▼
+      ┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
+      │   RULES-VAL     │         │   TMPL-CONFIG   │         │  REF-CONSO/ELIM │
+      │  (validates)    │         │  (configures)   │         │  (parameters)   │
+      └────────┬────────┘         └────────┬────────┘         └────────┬────────┘
+               │                           │                           │
+               └───────────────┬───────────┴───────────┬───────────────┘
+                               │                       │
+                               ▼                       ▼
+                    ┌─────────────────────────────────────────────┐
+                    │              WORKFLOWS                       │
+                    │  WF-ADDSUB | WF-ACQUIRE | WF-ICELIM | WF-YE │
+                    └─────────────────────┬───────────────────────┘
+                                          │
+                    ┌─────────────────────┼─────────────────────┐
+                    │                     │                     │
+                    ▼                     ▼                     ▼
+           ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+           │   DT-METHOD     │  │    DT-ELIM      │  │   DT-CURRENCY   │
+           │ (method choice) │  │ (elim routing)  │  │ (rate selection)│
+           └─────────────────┘  └─────────────────┘  └─────────────────┘
+
+      Layer Legend:
+      ─────────────
+      Foundation:  Decision Trees (DT-*)       - No dependencies
+      Process:     Workflows (WF-*)            - Depend on DTs + Templates
+      Parameters:  References (REF-*)          - Procedure documentation
+      Validation:  Rules (RULES-*)             - Data integrity checks
+      Templates:   Configuration (TMPL-*)      - Setup patterns
+      Orchestration: Playbooks (PB-*)          - Combine all layers
+      Quality:     Testing (TEST-*)            - Validate all outputs
+      Meta:        Integration (INTEGRATION)   - How it all works together
+
+    # Dependency matrix (adjacency matrix format)
+    dependency_matrix:
+      description: "1 = row file references column file"
+      files: ["DT-METHOD", "DT-ELIM", "DT-CURRENCY", "WF-ADDSUB", "WF-ACQUIRE", "WF-ICELIM", "WF-YEAREND", "REF-CONSO", "REF-ELIM", "RULES-VAL", "RULES-ERROR", "TMPL-CONFIG", "PB-SCENARIOS", "TEST-FRAMEWORK", "INTEGRATION"]
+      matrix: |
+        From \ To      | DT-M | DT-E | DT-C | WF-A | WF-Q | WF-I | WF-Y | RF-C | RF-E | RL-V | RL-E | TM-C | PB-S | TS-F | INTG |
+        --------------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+        DT-METHOD     |  -   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |
+        DT-ELIM       |  0   |  -   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |
+        DT-CURRENCY   |  0   |  0   |  -   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |
+        WF-ADDSUB     |  1   |  0   |  0   |  -   |  0   |  0   |  0   |  0   |  0   |  1   |  0   |  1   |  0   |  0   |  0   |
+        WF-ACQUIRE    |  1   |  0   |  0   |  0   |  -   |  0   |  0   |  0   |  1   |  1   |  0   |  1   |  0   |  0   |  0   |
+        WF-ICELIM     |  0   |  1   |  0   |  0   |  0   |  -   |  0   |  0   |  1   |  1   |  0   |  1   |  0   |  0   |  0   |
+        WF-YEAREND    |  0   |  0   |  1   |  0   |  0   |  0   |  -   |  1   |  1   |  1   |  0   |  0   |  0   |  0   |  0   |
+        REF-CONSO     |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  -   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |
+        REF-ELIM      |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  -   |  0   |  0   |  0   |  0   |  0   |  0   |
+        RULES-VAL     |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  -   |  0   |  0   |  0   |  0   |  0   |
+        RULES-ERROR   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  1   |  -   |  0   |  0   |  0   |  0   |
+        TMPL-CONFIG   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  0   |  -   |  0   |  0   |  0   |
+        PB-SCENARIOS  |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  -   |  0   |  0   |
+        TEST-FRAMEWORK|  1   |  1   |  1   |  1   |  1   |  0   |  1   |  0   |  0   |  1   |  1   |  0   |  1   |  -   |  0   |
+        INTEGRATION   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  1   |  -   |
+
+  # ============================================================
+  # SECTION 2: CONCEPT RELATIONSHIP MAP
+  # ============================================================
+  concept_relationship_map:
+    description: "How consolidation concepts connect across documents"
+
+    core_concepts:
+      # Ownership & Control cluster
+      ownership_cluster:
+        central_concept: "Ownership Percentage"
+        related_concepts:
+          - concept: "Control Assessment"
+            relationship: "determines"
+            files: ["DT-METHOD", "RULES-VAL#OWN-004"]
+            documentation: ["ownership-percentages.md", "control-vs-ownership.md"]
+
+          - concept: "Consolidation Method"
+            relationship: "determines"
+            files: ["DT-METHOD"]
+            documentation: ["consolidation-method-determination.md"]
+
+          - concept: "Minority Interest"
+            relationship: "calculates"
+            files: ["REF-ELIM#S085", "DT-ELIM"]
+            documentation: ["minority-interest.md"]
+
+          - concept: "Indirect Holdings"
+            relationship: "impacts"
+            files: ["WF-ADDSUB", "RULES-VAL#OWN-007"]
+            documentation: ["direct-indirect-holdings.md", "multi-tier-holdings.md"]
+
+        concept_graph: |
+          ┌───────────────────────────────────────────────────────────────┐
+          │                    OWNERSHIP CLUSTER                          │
+          └───────────────────────────────────────────────────────────────┘
+
+                              ┌─────────────────┐
+                              │   Ownership %   │
+                              │  (FinPercentage │
+                              │  CtrlPercentage)│
+                              └────────┬────────┘
+                                       │
+                    ┌──────────────────┼──────────────────┐
+                    │                  │                  │
+                    ▼                  ▼                  ▼
+           ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+           │   Control   │    │   Conso     │    │   Minority  │
+           │  Assessment │    │   Method    │    │  Interest   │
+           │ (de facto,  │    │ (G/E/P/N)   │    │ (NCI calc)  │
+           │  voting)    │    │             │    │             │
+           └──────┬──────┘    └──────┬──────┘    └──────┬──────┘
+                  │                  │                  │
+                  │                  │                  │
+                  ▼                  ▼                  ▼
+           ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+           │  Indirect   │    │ Elimination │    │  S085 Elim  │
+           │  Holdings   │    │  Selection  │    │  Execution  │
+           │ (G = D+G×D) │    │ (DT-ELIM)   │    │             │
+           └─────────────┘    └─────────────┘    └─────────────┘
+
+      # Elimination cluster
+      elimination_cluster:
+        central_concept: "Elimination"
+        related_concepts:
+          - concept: "Intercompany"
+            relationship: "type_of"
+            codes: ["S001", "S005", "S030"]
+            files: ["DT-ELIM", "REF-ELIM", "TMPL-CONFIG"]
+            documentation: ["intercompany-transactions.md"]
+
+          - concept: "Participation"
+            relationship: "type_of"
+            codes: ["S050", "S051", "S052", "S053", "S054", "S087", "S088", "S089", "S090", "S091", "S092", "S093", "S094"]
+            files: ["DT-ELIM", "REF-ELIM"]
+            documentation: ["participation-eliminations.md"]
+
+          - concept: "Dividend"
+            relationship: "type_of"
+            codes: ["S020"]
+            files: ["DT-ELIM", "REF-ELIM", "TMPL-CONFIG"]
+            documentation: ["dividend-eliminations.md", "dividend-calculation-logic.md"]
+
+          - concept: "Minority Interest"
+            relationship: "type_of"
+            codes: ["S085"]
+            files: ["DT-ELIM", "REF-ELIM"]
+            documentation: ["minority-interest.md"]
+
+          - concept: "Equity Method"
+            relationship: "type_of"
+            codes: ["S080"]
+            files: ["DT-ELIM", "REF-ELIM"]
+            documentation: ["equity-method.md"]
+
+          - concept: "User Elimination"
+            relationship: "type_of"
+            codes: ["U###"]
+            files: ["DT-ELIM", "TMPL-CONFIG"]
+            documentation: ["user-eliminations.md"]
+
+        concept_graph: |
+          ┌───────────────────────────────────────────────────────────────┐
+          │                    ELIMINATION CLUSTER                        │
+          └───────────────────────────────────────────────────────────────┘
+
+                                 ┌─────────────────┐
+                                 │   ELIMINATION   │
+                                 │  (P_CONSO_ELIM) │
+                                 └────────┬────────┘
+                                          │
+            ┌───────────┬────────┬────────┼────────┬────────┬───────────┐
+            │           │        │        │        │        │           │
+            ▼           ▼        ▼        ▼        ▼        ▼           ▼
+       ┌─────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+       │   IC    │ │Particip│ │Dividend│ │   MI   │ │ Equity │ │  User  │
+       │S001/S005│ │S050-S94│ │  S020  │ │  S085  │ │  S080  │ │  U###  │
+       └────┬────┘ └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘
+            │          │          │          │          │          │
+            ▼          ▼          ▼          ▼          ▼          ▼
+       ┌─────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+       │ Netting │ │Goodwill│ │DivRecvd│ │MinorInt│ │EquityPL│ │ Manual │
+       │ Pairs   │ │ Calc   │ │DivPaid │ │ Account│ │ Pickup │ │Adjustmt│
+       └─────────┘ └────────┘ └────────┘ └────────┘ └────────┘ └────────┘
+
+      # Currency Translation cluster
+      currency_cluster:
+        central_concept: "Currency Translation"
+        related_concepts:
+          - concept: "Exchange Rate Types"
+            relationship: "uses"
+            codes: ["CC", "AC", "MC", "CR", "AR", "MR", "NR"]
+            files: ["DT-CURRENCY", "TMPL-CONFIG"]
+            documentation: ["exchange-rate-types.md"]
+
+          - concept: "Translation Method"
+            relationship: "applies"
+            methods: ["Current Rate", "Temporal"]
+            files: ["DT-CURRENCY"]
+            documentation: ["translation-methods.md"]
+
+          - concept: "CTA (Translation Adjustment)"
+            relationship: "produces"
+            accounts: ["TDPLCredit", "TDPLDebit"]
+            files: ["REF-CONSO"]
+            documentation: ["translation-adjustments.md"]
+
+          - concept: "Hyperinflation"
+            relationship: "special_case"
+            standard: "IAS 29"
+            files: ["DT-CURRENCY"]
+            documentation: ["hyperinflation-accounting.md"]
+
+        concept_graph: |
+          ┌───────────────────────────────────────────────────────────────┐
+          │                  CURRENCY TRANSLATION CLUSTER                 │
+          └───────────────────────────────────────────────────────────────┘
+
+                             ┌─────────────────────┐
+                             │ Currency Translation │
+                             │  (Bundle Integration)│
+                             └──────────┬──────────┘
+                                        │
+                   ┌────────────────────┼────────────────────┐
+                   │                    │                    │
+                   ▼                    ▼                    ▼
+          ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+          │  Rate Types     │  │ Translation     │  │    CTA          │
+          │ CC/AC/MC/CR/AR  │  │ Method          │  │ TDPLCredit/Debit│
+          │ MR/NR           │  │ Current/Temporal│  │                 │
+          └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+                   │                    │                    │
+                   │                    │                    │
+                   ▼                    ▼                    ▼
+          ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+          │  Account Config │  │ IAS 29 Special  │  │  Recycling on   │
+          │  RateType1/2    │  │ Hyperinflation  │  │  Disposal       │
+          └─────────────────┘  └─────────────────┘  └─────────────────┘
+
+      # Acquisition & Goodwill cluster
+      acquisition_cluster:
+        central_concept: "Business Combination"
+        related_concepts:
+          - concept: "Goodwill"
+            relationship: "calculates"
+            formula: "Purchase Price - (FV Net Assets × Ownership%)"
+            files: ["WF-ACQUIRE", "PB-SCENARIOS"]
+            documentation: ["goodwill-calculation.md"]
+
+          - concept: "NCI Measurement"
+            relationship: "determines"
+            methods: ["Proportionate", "Full Goodwill"]
+            files: ["WF-ACQUIRE", "PB-SCENARIOS"]
+            documentation: ["minority-interest.md", "goodwill-calculation.md"]
+
+          - concept: "Fair Value Adjustments"
+            relationship: "requires"
+            files: ["WF-ACQUIRE", "TMPL-CONFIG"]
+            documentation: ["goodwill-calculation.md"]
+
+          - concept: "Step Acquisition"
+            relationship: "special_case"
+            files: ["PB-SCENARIOS#ownership_change"]
+            documentation: ["step-acquisition.md"]
+
+        concept_graph: |
+          ┌───────────────────────────────────────────────────────────────┐
+          │                  ACQUISITION CLUSTER                          │
+          └───────────────────────────────────────────────────────────────┘
+
+                             ┌─────────────────────┐
+                             │ Business Combination│
+                             │     (IFRS 3)        │
+                             └──────────┬──────────┘
+                                        │
+                   ┌────────────────────┼────────────────────┐
+                   │                    │                    │
+                   ▼                    ▼                    ▼
+          ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+          │    Goodwill     │  │ NCI Measurement │  │  Fair Value     │
+          │ PP - FV × Own%  │  │ Prop vs Full GW │  │  Adjustments    │
+          └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+                   │                    │                    │
+                   ▼                    ▼                    ▼
+          ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+          │  Impairment     │  │  S085 Minority  │  │  User Elim for  │
+          │  Testing        │  │  Calculation    │  │  FV Adjustments │
+          └─────────────────┘  └─────────────────┘  └─────────────────┘
+
+    # Cross-cluster relationships
+    cross_cluster_relationships:
+      - from_cluster: "ownership"
+        to_cluster: "elimination"
+        relationship: "Ownership % determines elimination applicability and amounts"
+        example: "80% ownership → 20% minority interest in S085"
+
+      - from_cluster: "ownership"
+        to_cluster: "currency"
+        relationship: "Method determines CTA treatment (Global vs Equity)"
+        example: "Global Integration includes 100% CTA; Equity Method includes share"
+
+      - from_cluster: "elimination"
+        to_cluster: "acquisition"
+        relationship: "Acquisition creates participation eliminations"
+        example: "Investment acquisition → S050-S054 participation elimination"
+
+      - from_cluster: "currency"
+        to_cluster: "elimination"
+        relationship: "Translation creates differences that may need elimination"
+        example: "IC balances must match before translation; differences after"
+
+      - from_cluster: "acquisition"
+        to_cluster: "elimination"
+        relationship: "Goodwill captured via user elimination for tracking"
+        example: "Goodwill = U### user elimination with GOODWILL special account"
+
+  # ============================================================
+  # SECTION 3: PROCEDURE CALL GRAPH
+  # ============================================================
+  procedure_call_graph:
+    description: "Stored procedure dependencies and call chains"
+
+    # Core consolidation procedure hierarchy
+    consolidation_hierarchy:
+      root_procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+      description: "Master orchestration procedure for consolidation"
+
+      call_tree: |
+        P_CONSO_CALCULATE_BUNDLE_INTEGRATION (Master Orchestrator)
+        │
+        ├─► Phase 1: Data Preparation
+        │   ├─► P_CONSO_HELPER_FILL_EXCHANGERATE
+        │   └─► P_CONSO_BUNDLE_INTEGRATION_PREPARATORY_COPY
+        │
+        ├─► Phase 2: Currency Translation
+        │   ├─► P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_CLOSING
+        │   ├─► P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_FLOWS
+        │   └─► P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_HISTORICAL
+        │
+        ├─► Phase 3: Ownership Calculation
+        │   └─► P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+        │       └─► Matrix algebra (Gauss elimination) for G = D + G × D
+        │
+        ├─► Phase 4: Eliminations
+        │   └─► P_CONSO_ELIM (Elimination Router)
+        │       ├─► P_CONSO_ELIM_INTERCOMPANY (S001)
+        │       ├─► P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL (S005)
+        │       ├─► P_CONSO_ELIM_DIVIDEND (S020)
+        │       ├─► P_CONSO_ELIM_PARTICIPATIONS0 (S050)
+        │       ├─► P_CONSO_ELIM_PARTICIPATIONS1 (S051)
+        │       ├─► P_CONSO_ELIM_PARTICIPATIONS2 (S052)
+        │       ├─► P_CONSO_ELIM_PARTICIPATIONS3 (S053)
+        │       ├─► P_CONSO_ELIM_PARTICIPATIONS4 (S054)
+        │       ├─► P_CONSO_ELIM_PROPORTIONAL (S060)
+        │       ├─► P_CONSO_ELIM_CHANGE_METHOD (S072)
+        │       ├─► P_CONSO_ELIM_EQUITYMETHOD (S080)
+        │       ├─► P_CONSO_ELIM_MINORITYINTEREST (S085)
+        │       ├─► P_CONSO_ELIM_EQUITYCAPITAL (S087)
+        │       └─► P_CONSO_ELIM_USER (U###)
+        │
+        └─► Phase 5: Finalization
+            └─► P_CONSO_BUNDLE_INTEGRATION_FINALIZE
+
+    # Elimination procedure details
+    elimination_procedures:
+      router: "P_CONSO_ELIM"
+      description: "Routes elimination execution based on ElimCode in TS070S0"
+
+      procedures:
+        - code: "S001"
+          procedure: "P_CONSO_ELIM_INTERCOMPANY"
+          purpose: "Intercompany balance elimination"
+          calls: []
+          referenced_in: ["DT-ELIM", "REF-ELIM", "TMPL-CONFIG"]
+
+        - code: "S005"
+          procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL"
+          purpose: "Full netting with unmatched balance handling"
+          calls: ["P_CONSO_ELIM_INTERCOMPANY"]
+          referenced_in: ["DT-ELIM", "REF-ELIM"]
+
+        - code: "S020"
+          procedure: "P_CONSO_ELIM_DIVIDEND"
+          purpose: "Intercompany dividend elimination"
+          calls: []
+          special_accounts: ["DivReceived", "DivPaid", "RetainedEarnings"]
+          referenced_in: ["DT-ELIM", "REF-ELIM", "TMPL-CONFIG"]
+
+        - code: "S050-S054"
+          procedure: "P_CONSO_ELIM_PARTICIPATIONS[0-4]"
+          purpose: "Participation elimination (5 journal types)"
+          calls: []
+          special_accounts: ["EquityVal", "GOODWILL", "RetainedEarnings"]
+          referenced_in: ["DT-ELIM", "REF-ELIM"]
+
+        - code: "S060"
+          procedure: "P_CONSO_ELIM_PROPORTIONAL"
+          purpose: "Proportional method 50% elimination"
+          calls: []
+          referenced_in: ["DT-ELIM", "REF-ELIM"]
+
+        - code: "S072"
+          procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+          purpose: "Method change flow reclassification"
+          calls: []
+          special_flows: ["VarConsoMeth_*"]
+          referenced_in: ["DT-ELIM", "REF-ELIM", "PB-SCENARIOS"]
+
+        - code: "S080"
+          procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+          purpose: "Equity method P&L pickup"
+          calls: []
+          special_accounts: ["EquityProfit", "EquityLoss", "DivReceivedEquity"]
+          referenced_in: ["DT-ELIM", "REF-ELIM"]
+
+        - code: "S085"
+          procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+          purpose: "Minority interest calculation"
+          calls: []
+          special_accounts: ["MinorInterests", "MinorBSProfitLoss", "MinorPLEquity", "MinorPLNetIncome"]
+          referenced_in: ["DT-ELIM", "REF-ELIM", "RULES-VAL"]
+
+        - code: "S087-S094"
+          procedure: "P_CONSO_ELIM_EQUITYCAPITAL"
+          purpose: "Equity capital elimination"
+          calls: []
+          referenced_in: ["DT-ELIM", "REF-ELIM"]
+
+        - code: "U###"
+          procedure: "P_CONSO_ELIM_USER"
+          purpose: "User-defined elimination execution"
+          calls: ["P_CONSO_ELIM_USER_PROCESS"]
+          referenced_in: ["DT-ELIM", "TMPL-CONFIG", "WF-ACQUIRE"]
+
+    # Ownership calculation procedure
+    ownership_procedures:
+      main_procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+      description: "Calculates effective ownership using matrix algebra"
+
+      algorithm: |
+        G = D + G × D (solved via Gauss elimination)
+
+        Where:
+        - G = Group matrix (effective ownership)
+        - D = Direct matrix (direct holdings)
+        - Solution finds G such that G = D(I - D)^(-1)
+
+      calls:
+        - "No external procedure calls"
+        - "Uses @MatricesG temp table for matrix operations"
+
+      referenced_in: ["REF-CONSO", "RULES-VAL#OWN-007"]
+
+    # Procedure-to-YAML mapping
+    procedure_file_mapping:
+      P_CONSO_CALCULATE_BUNDLE_INTEGRATION:
+        referenced_in: ["REF-CONSO", "WF-YEAREND", "PB-SCENARIOS"]
+        documentation: ["consolidation-workflow.md"]
+
+      P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES:
+        referenced_in: ["REF-CONSO", "RULES-VAL"]
+        documentation: ["circular-ownership.md", "multi-tier-holdings.md"]
+
+      P_CONSO_ELIM:
+        referenced_in: ["REF-ELIM", "DT-ELIM"]
+        documentation: ["elimination-execution-engine.md"]
+
+      P_CONSO_ELIM_DIVIDEND:
+        referenced_in: ["REF-ELIM", "DT-ELIM", "TMPL-CONFIG"]
+        documentation: ["dividend-eliminations.md", "dividend-calculation-logic.md"]
+
+      P_CONSO_ELIM_MINORITYINTEREST:
+        referenced_in: ["REF-ELIM", "DT-ELIM", "RULES-VAL"]
+        documentation: ["minority-interest.md"]
+
+      P_CONSO_ELIM_USER:
+        referenced_in: ["REF-ELIM", "TMPL-CONFIG", "WF-ACQUIRE"]
+        documentation: ["user-eliminations.md"]
+
+  # ============================================================
+  # SECTION 4: IFRS STANDARD MAPPING
+  # ============================================================
+  ifrs_standard_mapping:
+    description: "Which documents cover which accounting standards"
+
+    standards:
+      IFRS_3:
+        name: "Business Combinations"
+        key_topics:
+          - "Goodwill calculation"
+          - "Fair value measurement at acquisition"
+          - "NCI measurement options"
+          - "Bargain purchase (negative goodwill)"
+        knowledge_files:
+          - file: "WF-ACQUIRE"
+            coverage: "Acquisition workflow with goodwill calculation"
+          - file: "PB-SCENARIOS#acquisition"
+            coverage: "Complete M&A playbook"
+          - file: "DT-ELIM"
+            coverage: "Participation elimination routing"
+        documentation:
+          - "goodwill-calculation.md"
+          - "participation-eliminations.md"
+          - "step-acquisition.md"
+
+      IFRS_5:
+        name: "Non-current Assets Held for Sale and Discontinued Operations"
+        key_topics:
+          - "Disposal groups"
+          - "Discontinued operations presentation"
+        knowledge_files:
+          - file: "PB-SCENARIOS#disposal"
+            coverage: "Disposal playbook references"
+        documentation:
+          - "deconsolidation.md"
+
+      IFRS_9:
+        name: "Financial Instruments"
+        key_topics:
+          - "Fair value through P&L classification"
+          - "Investments outside consolidation scope"
+        knowledge_files:
+          - file: "DT-METHOD"
+            coverage: "Non-consolidated investments (method N)"
+        documentation:
+          - "consolidation-method-determination.md"
+
+      IFRS_10:
+        name: "Consolidated Financial Statements"
+        key_topics:
+          - "Control assessment"
+          - "De facto control"
+          - "Consolidation requirements"
+          - "Loss of control accounting"
+        knowledge_files:
+          - file: "DT-METHOD"
+            coverage: "Control-based method determination"
+          - file: "PB-SCENARIOS#disposal"
+            coverage: "Deconsolidation on loss of control"
+          - file: "PB-SCENARIOS#ownership_change"
+            coverage: "Partial disposal without loss of control"
+        documentation:
+          - "global-integration.md"
+          - "control-vs-ownership.md"
+          - "consolidation-method-determination.md"
+          - "deconsolidation.md"
+
+      IFRS_11:
+        name: "Joint Arrangements"
+        key_topics:
+          - "Joint operations vs joint ventures"
+          - "Proportional consolidation (legacy)"
+        knowledge_files:
+          - file: "DT-METHOD"
+            coverage: "Joint arrangement type determination"
+          - file: "DT-ELIM"
+            coverage: "S060 proportional elimination"
+        documentation:
+          - "proportional-method.md"
+
+      IAS_12:
+        name: "Income Taxes"
+        key_topics:
+          - "Deferred tax on eliminations"
+          - "Tax effect of consolidation adjustments"
+        knowledge_files:
+          - file: "TMPL-CONFIG"
+            coverage: "DefTaxAccount special accounts"
+        documentation:
+          - "deferred-tax.md"
+
+      IAS_21:
+        name: "The Effects of Changes in Foreign Exchange Rates"
+        key_topics:
+          - "Currency translation methods"
+          - "CTA (Cumulative Translation Adjustment)"
+          - "Rate selection for different items"
+        knowledge_files:
+          - file: "DT-CURRENCY"
+            coverage: "Rate type selection decision tree"
+          - file: "TMPL-CONFIG"
+            coverage: "Exchange rate configuration"
+          - file: "PB-SCENARIOS#disposal"
+            coverage: "CTA recycling on disposal"
+        documentation:
+          - "translation-methods.md"
+          - "exchange-rate-types.md"
+          - "translation-adjustments.md"
+
+      IAS_28:
+        name: "Investments in Associates and Joint Ventures"
+        key_topics:
+          - "Equity method accounting"
+          - "Significant influence assessment"
+          - "Share of profit/loss"
+        knowledge_files:
+          - file: "DT-METHOD"
+            coverage: "Significant influence threshold (20-50%)"
+          - file: "DT-ELIM"
+            coverage: "S080 equity method elimination"
+          - file: "REF-ELIM"
+            coverage: "Equity method procedure parameters"
+        documentation:
+          - "equity-method.md"
+
+      IAS_29:
+        name: "Financial Reporting in Hyperinflationary Economies"
+        key_topics:
+          - "Hyperinflation identification"
+          - "Restatement requirements"
+          - "Temporal method for hyperinflationary"
+        knowledge_files:
+          - file: "DT-CURRENCY"
+            coverage: "Temporal method selection for hyperinflation"
+        documentation:
+          - "hyperinflation-accounting.md"
+
+      IAS_36:
+        name: "Impairment of Assets"
+        key_topics:
+          - "Goodwill impairment testing"
+          - "CGU identification"
+          - "Recoverable amount"
+        knowledge_files:
+          - file: "WF-ACQUIRE"
+            coverage: "Post-acquisition impairment note"
+          - file: "PB-SCENARIOS#year_end_close"
+            coverage: "Annual impairment testing checkpoint"
+        documentation:
+          - "impairment-testing.md"
+          - "goodwill-calculation.md"
+
+    # IFRS coverage matrix
+    ifrs_coverage_matrix: |
+      IFRS/IAS Standard Coverage by Knowledge File
+      ============================================
+
+      Standard  | DT-M | DT-E | DT-C | WF-* | REF-* | RULES | TMPL | PB-S |
+      ----------|------|------|------|------|-------|-------|------|------|
+      IFRS 3    |  ●   |  ●   |      |  ●   |   ●   |   ○   |  ●   |  ●   |
+      IFRS 5    |      |      |      |      |       |       |      |  ○   |
+      IFRS 9    |  ○   |      |      |      |       |       |      |      |
+      IFRS 10   |  ●   |      |      |  ○   |       |   ○   |      |  ●   |
+      IFRS 11   |  ●   |  ●   |      |      |   ○   |       |      |      |
+      IAS 12    |      |      |      |      |       |       |  ●   |      |
+      IAS 21    |      |      |  ●   |  ○   |   ●   |       |  ●   |  ○   |
+      IAS 28    |  ●   |  ●   |      |      |   ●   |       |      |      |
+      IAS 29    |      |      |  ●   |      |       |       |      |      |
+      IAS 36    |      |      |      |  ○   |       |       |      |  ○   |
+
+      Legend: ● = Primary coverage, ○ = Secondary/reference coverage
+
+  # ============================================================
+  # SECTION 5: TABLE USAGE MATRIX
+  # ============================================================
+  table_usage_matrix:
+    description: "Which database tables are used by which procedures/workflows"
+
+    # Core consolidation tables
+    core_tables:
+      TS014C0:
+        name: "Company Master"
+        purpose: "Company definition and consolidation method"
+        key_columns: ["CompanyID", "CompanyCode", "ConsoMethod", "CurrencyCode"]
+        used_by:
+          procedures:
+            - "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+            - "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+            - "All P_CONSO_ELIM_* procedures"
+          workflows:
+            - "WF-ADDSUB (step 2: create company)"
+            - "WF-ACQUIRE (step 2: verify entity)"
+          knowledge_files:
+            - "TMPL-CONFIG"
+            - "RULES-VAL#OWN-002"
+            - "TEST-FRAMEWORK"
+        documentation: ["data-tables-catalog.md"]
+
+      TS015S0:
+        name: "Ownership Links"
+        purpose: "Direct ownership percentages between companies"
+        key_columns: ["CompanyID", "CompanyOwnedID", "FinPercentage", "CtrlPercentage"]
+        used_by:
+          procedures:
+            - "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+            - "P_CONSO_ELIM_PARTICIPATIONS*"
+            - "P_CONSO_ELIM_MINORITYINTEREST"
+          workflows:
+            - "WF-ADDSUB (step 3: create ownership)"
+            - "PB-SCENARIOS#acquisition (phase 2)"
+          knowledge_files:
+            - "TMPL-CONFIG"
+            - "RULES-VAL#OWN-001, OWN-003, OWN-005"
+            - "TEST-FRAMEWORK"
+        documentation: ["ownership-percentages.md", "data-tables-catalog.md"]
+
+      TS017R0:
+        name: "Exchange Rates"
+        purpose: "Currency exchange rates by type and period"
+        key_columns: ["CurrencyFrom", "CurrencyTo", "RateType", "ExchangeRate"]
+        used_by:
+          procedures:
+            - "P_CONSO_HELPER_FILL_EXCHANGERATE"
+            - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_*"
+          workflows:
+            - "WF-YEAREND (step: verify rates)"
+          knowledge_files:
+            - "DT-CURRENCY"
+            - "TMPL-CONFIG"
+            - "RULES-VAL#PC-002"
+        documentation: ["exchange-rate-types.md", "data-tables-catalog.md"]
+
+      TS070S0:
+        name: "Elimination Header"
+        purpose: "Elimination configuration and execution control"
+        key_columns: ["ElimID", "ElimCode", "ElimLevel", "JournalType"]
+        used_by:
+          procedures:
+            - "P_CONSO_ELIM"
+            - "All P_CONSO_ELIM_* procedures"
+          workflows:
+            - "WF-ICELIM (step: configure elimination)"
+          knowledge_files:
+            - "DT-ELIM"
+            - "TMPL-CONFIG"
+            - "REF-ELIM"
+        documentation: ["elimination-templates.md", "data-tables-catalog.md"]
+
+      TS071S0:
+        name: "Elimination Detail"
+        purpose: "Elimination line items and account mappings"
+        key_columns: ["ElimID", "ElimDetailID", "AccountCode", "DebitCredit"]
+        used_by:
+          procedures:
+            - "P_CONSO_ELIM_USER"
+            - "P_CONSO_ELIM_USER_PROCESS"
+          workflows:
+            - "WF-ICELIM (step: define accounts)"
+            - "WF-ACQUIRE (step: fair value adjustments)"
+          knowledge_files:
+            - "TMPL-CONFIG"
+            - "REF-ELIM"
+        documentation: ["user-eliminations.md", "data-tables-catalog.md"]
+
+      TS010C0:
+        name: "Special Account Mapping Header"
+        purpose: "Map special account codes to actual accounts"
+        key_columns: ["SpecialAccountCode", "AccountID"]
+        used_by:
+          procedures:
+            - "All P_CONSO_ELIM_* procedures"
+          workflows:
+            - "WF-ADDSUB (step: verify special accounts)"
+          knowledge_files:
+            - "TMPL-CONFIG"
+            - "RULES-ERROR"
+        documentation: ["data-tables-catalog.md"]
+
+      TD021S0:
+        name: "Consolidation Data"
+        purpose: "Consolidated financial data by POV"
+        key_columns: ["ConsoID", "CompanyID", "AccountID", "FlowID", "Amount"]
+        used_by:
+          procedures:
+            - "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+            - "All P_CONSO_ELIM_* procedures"
+          workflows:
+            - "WF-YEAREND (validation)"
+          knowledge_files:
+            - "RULES-VAL#BS-001, BS-003"
+            - "TEST-FRAMEWORK"
+        documentation: ["data-tables-catalog.md"]
+
+      TD022S0:
+        name: "Elimination Journals"
+        purpose: "Generated elimination journal entries"
+        key_columns: ["JournalID", "ElimCode", "JournalType", "DebitAmount", "CreditAmount"]
+        used_by:
+          procedures:
+            - "All P_CONSO_ELIM_* procedures"
+          workflows:
+            - "WF-YEAREND (review)"
+          knowledge_files:
+            - "RULES-VAL#BS-002"
+            - "TEST-FRAMEWORK"
+        documentation: ["journal-types.md", "data-tables-catalog.md"]
+
+    # Table usage matrix (visual)
+    usage_matrix_ascii: |
+      TABLE USAGE BY KNOWLEDGE FILE
+      ============================
+
+      Table    | DT-M | DT-E | DT-C | WF-A | WF-Q | WF-I | WF-Y | REF-C | REF-E | RULES | TMPL | PB-S | TEST |
+      ---------|------|------|------|------|------|------|------|-------|-------|-------|------|------|------|
+      TS014C0  |  R   |      |      |  W   |  R   |      |  R   |   R   |   R   |   R   |  W   |  RW  |  R   |
+      TS015S0  |  R   |      |      |  W   |  W   |      |  R   |   R   |   R   |   R   |  W   |  RW  |  R   |
+      TS017R0  |      |      |  R   |      |      |      |  R   |   R   |       |   R   |  W   |  R   |  R   |
+      TS070S0  |      |  R   |      |      |      |  W   |  R   |       |   R   |       |  W   |  RW  |  R   |
+      TS071S0  |      |  R   |      |      |  W   |  W   |      |       |   R   |       |  W   |  RW  |      |
+      TS010C0  |      |      |      |  R   |  R   |  R   |  R   |       |   R   |   R   |  W   |  R   |  R   |
+      TD021S0  |      |      |      |      |      |      |  R   |   R   |   R   |   R   |      |  R   |  R   |
+      TD022S0  |      |      |      |      |      |      |  R   |       |   R   |   R   |      |  R   |  R   |
+
+      Legend: R = Read, W = Write, RW = Read/Write
+
+    # Table relationship diagram
+    table_relationships: |
+      DATABASE TABLE RELATIONSHIPS
+      ===========================
+
+      ┌─────────────────────────────────────────────────────────────────────────┐
+      │                         CONFIGURATION TABLES                            │
+      └─────────────────────────────────────────────────────────────────────────┘
+
+          ┌─────────────┐     owns      ┌─────────────┐
+          │  TS014C0    │──────────────►│  TS015S0    │
+          │  (Company)  │               │ (Ownership) │
+          └──────┬──────┘               └──────┬──────┘
+                 │                             │
+                 │ has                         │ uses
+                 ▼                             │
+          ┌─────────────┐                      │
+          │  TS010C0    │◄─────────────────────┘
+          │ (Sp.Account)│
+          └─────────────┘
+
+          ┌─────────────┐               ┌─────────────┐
+          │  TS070S0    │───────────────│  TS071S0    │
+          │ (Elim Hdr)  │   contains    │ (Elim Dtl)  │
+          └─────────────┘               └─────────────┘
+
+          ┌─────────────┐
+          │  TS017R0    │
+          │ (Ex. Rates) │
+          └─────────────┘
+
+      ┌─────────────────────────────────────────────────────────────────────────┐
+      │                          DATA TABLES                                    │
+      └─────────────────────────────────────────────────────────────────────────┘
+
+          ┌─────────────┐     creates    ┌─────────────┐
+          │  TD021S0    │───────────────►│  TD022S0    │
+          │(Conso Data) │  eliminations  │ (Journals)  │
+          └─────────────┘                └─────────────┘
+
+  # ============================================================
+  # QUICK REFERENCE
+  # ============================================================
+  quick_reference:
+
+    file_layer_summary: |
+      KNOWLEDGE FILE LAYERS
+      =====================
+
+      Layer 1 - Foundation (No dependencies):
+        DT-METHOD, DT-ELIM, DT-CURRENCY, REF-CONSO, REF-ELIM, RULES-VAL, TMPL-CONFIG
+
+      Layer 2 - Process (Depends on Layer 1):
+        WF-ADDSUB, WF-ACQUIRE, WF-ICELIM, WF-YEAREND, RULES-ERROR
+
+      Layer 3 - Orchestration (Depends on Layers 1-2):
+        PB-SCENARIOS
+
+      Layer 4 - Quality (Tests all layers):
+        TEST-FRAMEWORK
+
+      Layer 5 - Meta (Documents all layers):
+        INTEGRATION, KNOWLEDGE-GRAPH (this file)
+
+    concept_to_file_lookup:
+      # Quick lookup: concept → primary file
+      "ownership percentage": "DT-METHOD, RULES-VAL"
+      "consolidation method": "DT-METHOD"
+      "control assessment": "DT-METHOD"
+      "elimination code": "DT-ELIM"
+      "exchange rate": "DT-CURRENCY"
+      "add subsidiary": "WF-ADDSUB"
+      "acquisition": "WF-ACQUIRE, PB-SCENARIOS"
+      "goodwill": "WF-ACQUIRE, PB-SCENARIOS"
+      "intercompany": "WF-ICELIM, DT-ELIM"
+      "year-end close": "WF-YEAREND, PB-SCENARIOS"
+      "procedure parameters": "REF-CONSO, REF-ELIM"
+      "validation": "RULES-VAL"
+      "error handling": "RULES-ERROR"
+      "configuration": "TMPL-CONFIG"
+      "testing": "TEST-FRAMEWORK"
+      "integration": "INTEGRATION"
+
+    procedure_to_elim_code:
+      P_CONSO_ELIM_INTERCOMPANY: "S001"
+      P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL: "S005"
+      P_CONSO_ELIM_DIVIDEND: "S020"
+      P_CONSO_ELIM_PARTICIPATIONS0: "S050"
+      P_CONSO_ELIM_PARTICIPATIONS1: "S051"
+      P_CONSO_ELIM_PARTICIPATIONS2: "S052"
+      P_CONSO_ELIM_PARTICIPATIONS3: "S053"
+      P_CONSO_ELIM_PARTICIPATIONS4: "S054"
+      P_CONSO_ELIM_PROPORTIONAL: "S060"
+      P_CONSO_ELIM_CHANGE_METHOD: "S072"
+      P_CONSO_ELIM_EQUITYMETHOD: "S080"
+      P_CONSO_ELIM_MINORITYINTEREST: "S085"
+      P_CONSO_ELIM_EQUITYCAPITAL: "S087-S094"
+      P_CONSO_ELIM_USER: "U###"
+
+    ifrs_to_concept:
+      "IFRS 3": ["goodwill", "acquisition", "NCI", "fair value"]
+      "IFRS 10": ["control", "consolidation", "deconsolidation"]
+      "IFRS 11": ["joint arrangements", "proportional"]
+      "IAS 21": ["currency", "translation", "CTA", "exchange rate"]
+      "IAS 28": ["equity method", "significant influence", "associate"]
+      "IAS 29": ["hyperinflation", "temporal method"]
+      "IAS 36": ["impairment", "CGU", "recoverable amount"]
+
+    table_to_purpose:
+      TS014C0: "Company definition"
+      TS015S0: "Ownership links"
+      TS017R0: "Exchange rates"
+      TS070S0: "Elimination headers"
+      TS071S0: "Elimination details"
+      TS010C0: "Special account mappings"
+      TD021S0: "Consolidation data"
+      TD022S0: "Elimination journals"

@@ -1,0 +1,1683 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.067,
+                0.364,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATON"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.12,
+                0.843,
+                0.136
+            ],
+            "angle": 0,
+            "content": "Second category: \"Elimination of internal transactions\" adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.153,
+                0.581,
+                0.169
+            ],
+            "angle": 0,
+            "content": "Third category: \"Technical\" adjustments."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.147,
+                0.12,
+                0.843,
+                0.169
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.185,
+                0.654,
+                0.202
+            ],
+            "angle": 0,
+            "content": "Let's give an example of each of these three categories."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.216,
+                0.871,
+                0.233
+            ],
+            "angle": 0,
+            "content": "First caleoiv example: \"Compliance to evaluation rules\" adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.25,
+                0.875,
+                0.283
+            ],
+            "angle": 0,
+            "content": "For some fiscal reasons, a company A depreciates a fixed asset over 5 years but the group rules specify to depreciate this asset over 10 years."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.297,
+                0.502,
+                0.314
+            ],
+            "angle": 0,
+            "content": "What is the impact in the consolidation?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.329,
+                0.868,
+                0.345
+            ],
+            "angle": 0,
+            "content": "- First we have to reverse the statutory depreciation based over 5 years"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.361,
+                0.63,
+                0.377
+            ],
+            "angle": 0,
+            "content": "Book a new depreciation based over 10 years"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.393,
+                0.599,
+                0.41
+            ],
+            "angle": 0,
+            "content": "Calculate deferred taxes (certainly if IFRS)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.148,
+                0.329,
+                0.868,
+                0.41
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.425,
+                0.874,
+                0.459
+            ],
+            "angle": 0,
+            "content": "and don't forget to check at each consolidation that the asset being adjusted is still in the account of the company!"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.473,
+                0.873,
+                0.507
+            ],
+            "angle": 0,
+            "content": "Second caleaory example: \"Elimination of internal transactions\" adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.522,
+                0.873,
+                0.587
+            ],
+            "angle": 0,
+            "content": "A company A sells to company B an asset, for a price of 120. This asset is booked in company A accounts for a value of 100. Consequently, A shows a group profit of 20 and the asset is suddenly revaluated by 20 in the group accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.602,
+                0.871,
+                0.636
+            ],
+            "angle": 0,
+            "content": "This transaction leads to a non economical conclusion. Indeed, because of a group transaction, an asset is revaluated and the group profit is increased."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.65,
+                0.871,
+                0.684
+            ],
+            "angle": 0,
+            "content": "This is a kind of situation that a consolidation office has to detect and to adjust consequently. A good consolidation bundle is necessary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.698,
+                0.501,
+                0.714
+            ],
+            "angle": 0,
+            "content": "What is the impact in the consolidation?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.73,
+                0.871,
+                0.763
+            ],
+            "angle": 0,
+            "content": "In company A accounts, eliminate the group profit that has not been realized with the outside world."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.778,
+                0.871,
+                0.843
+            ],
+            "angle": 0,
+            "content": "In company B accounts, reverse the statutory depreciation based on an unaccepted value in consolidation, eliminate the profit booked in the acquired asset and depreciate the new value of that asset (same economical life time?)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.071,
+                0.856,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.119,
+                0.658,
+                0.137
+            ],
+            "angle": 0,
+            "content": "Third category example: 'Technical' adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.152,
+                0.876,
+                0.202
+            ],
+            "angle": 0,
+            "content": "This category of adjustments is easy to define. If, for a certain event, an adjustment is not booked, there will be for sure a technical mistake in the consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.216,
+                0.876,
+                0.25
+            ],
+            "angle": 0,
+            "content": "Amongst the events, we can state all group structure changes like acquisitions, disposals, increase in capital, ..."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.264,
+                0.502,
+                0.281
+            ],
+            "angle": 0,
+            "content": "What is the impact in the consolidation?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.297,
+                0.876,
+                0.33
+            ],
+            "angle": 0,
+            "content": "We consider the parent company acquiring \\(100\\%\\) of a new company for a price of 100. Equity of the acquired company is 80."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.345,
+                0.874,
+                0.379
+            ],
+            "angle": 0,
+            "content": "There will be a goodwill of 20, which is the difference between the acquisition price of 100 and \\(100\\%\\) of the equity of 80."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.393,
+                0.876,
+                0.445
+            ],
+            "angle": 0,
+            "content": "In parent company, we have to book a goodwill of 20 and, depending on the evaluation rules, to depreciate this goodwill or to book an impairment on this goodwill."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.457,
+                0.876,
+                0.49
+            ],
+            "angle": 0,
+            "content": "Of course, before calculating the goodwill, we have to adjust the accounts of the acquired company to make them compliant with the group rules."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.505,
+                0.876,
+                0.573
+            ],
+            "angle": 0,
+            "content": "Most of the time, consolidation adjustments remain in the consolidation accounting for a long period of time. That means these adjustments need to be well documented because one should check if the corresponding statutory amount still corresponds to the effect of the adjustment."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.604,
+                0.848,
+                0.651
+            ],
+            "angle": 0,
+            "content": "2.6 Step 6: Process all necessary eliminations to get a consolidated set of information"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.672,
+                0.876,
+                0.722
+            ],
+            "angle": 0,
+            "content": "The consolidation can be considered as an extension of each individual statutory accounting. All consolidation adjustments are in fact journal entries that cannot be booked in statutory accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.736,
+                0.876,
+                0.786
+            ],
+            "angle": 0,
+            "content": "Once all consolidation adjustments have been booked, we still have a balance sheet, a P&L, flows, notes to the accounts, ... but some of the amounts have been adjusted."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.801,
+                0.876,
+                0.851
+            ],
+            "angle": 0,
+            "content": "If the consolidation adjustments require a human brain, eliminations can be processed automatically by all consolidation software. Here are the different steps."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.066,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.12,
+                0.875,
+                0.169
+            ],
+            "angle": 0,
+            "content": "- For each global integration company, we calculate the minority interests in the equity and reclassify the amount on the Minority interests account"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.183,
+                0.877,
+                0.234
+            ],
+            "angle": 0,
+            "content": "- For each equity method company, we eliminate \\(100\\%\\) of all assets and liabilities accounts, excepted equity which is eliminated for the percentage which doesn't belong to the group"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.248,
+                0.875,
+                0.297
+            ],
+            "angle": 0,
+            "content": "- For each proportional integration company, all balance sheet and P&L accounts are eliminated for \\(50\\%\\), which is the normal percentage used"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.312,
+                0.875,
+                0.346
+            ],
+            "angle": 0,
+            "content": "- For all companies we eliminate intercompany positions, which have been eventually adjusted at step 3"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.36,
+                0.875,
+                0.394
+            ],
+            "angle": 0,
+            "content": "- Finally, we eliminate group part of equity and financial investment in order to calculate the consolidated reserves of each company."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.12,
+                0.877,
+                0.394
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.409,
+                0.735,
+                0.426
+            ],
+            "angle": 0,
+            "content": "All these concepts will be largely explained in the next chapters."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.114,
+                0.459,
+                0.833,
+                0.504
+            ],
+            "angle": 0,
+            "content": "2.7 Step 7: Report consolidated figures to all addressees"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.527,
+                0.877,
+                0.561
+            ],
+            "angle": 0,
+            "content": "There are different sets of reports when consolidation process is reaching the end, mainly four sets."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.575,
+                0.875,
+                0.625
+            ],
+            "angle": 0,
+            "content": "- First set consists in reports that are used internally by the consolidation office. These reports, quite technical, are necessary to validate the whole consistency of the consolidated set of information."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.639,
+                0.875,
+                0.688
+            ],
+            "angle": 0,
+            "content": "- A second set of reports consists in providing summarized consolidated data to the management and the Board. The presentation will be much more pleasant than technical."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.703,
+                0.875,
+                0.801
+            ],
+            "angle": 0,
+            "content": "- A third set of reports needs to bring answers to Auditors questions. We recommend to ask Auditors not only which content they need but also on which support: paper, spreadsheet, direct access in a \"read only\" mode to the consolidation software. Keep in mind that auditing a consolidation can be as complicated as producing the consolidated figures."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.816,
+                0.875,
+                0.881
+            ],
+            "angle": 0,
+            "content": "- Finally, there are a number of addressees that also need a summarized information. Amongst them, there will be financial analysts, Bankers, financial newspapers for public companies, unions, important customers or suppliers, ..."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.575,
+                0.875,
+                0.881
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.481,
+                0.921,
+                0.511,
+                0.936
+            ],
+            "angle": 0,
+            "content": "36"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.072,
+                0.858,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.119,
+                0.878,
+                0.203
+            ],
+            "angle": 0,
+            "content": "We know, by developing this step by step approach, we give the feeling that the consolidation process is something quite linear by starting with step 1 and finishing with step 7. That is partly true, but when reaching the technical set of reports, we can find an important number of mistakes making mandatory to revisit the whole process in order to improve the consistency of the figures."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.216,
+                0.633,
+                0.234
+            ],
+            "angle": 0,
+            "content": "This is what we mentioned earlier as a \"spiral effect\"."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.268,
+                0.681,
+                0.317
+            ],
+            "angle": 0,
+            "content": "3 CONTROL AND FINANCIAL PERCENTAGES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.339,
+                0.878,
+                0.406
+            ],
+            "angle": 0,
+            "content": "Within the consolidation process, two percentages are used. We first need to know the control percentage owned by the group in each individual company, which is the basic information to determine the consolidation method that will be associated to each of these companies."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.42,
+                0.878,
+                0.503
+            ],
+            "angle": 0,
+            "content": "On the other hand, we also need to know the financial percentage owned directly and indirectly in each company of the consolidation scope, which is used to calculate group part in equity and in the profit. This financial percentage can be compared to the part of dividends that a group finally can expect to receive from these companies."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.535,
+                0.553,
+                0.559
+            ],
+            "angle": 0,
+            "content": "3.1 The control percentage"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.578,
+                0.878,
+                0.645
+            ],
+            "angle": 0,
+            "content": "Control could be defined as follows: \"control of a company means the power by law or by fact to influence the description of the appointment of the directors or managers or to influence the company's management orientation\"."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.659,
+                0.854,
+                0.677
+            ],
+            "angle": 0,
+            "content": "Therefore, two types of controls exist: legal control and the de facto control."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.693,
+                0.878,
+                0.759
+            ],
+            "angle": 0,
+            "content": "The legal control exists when one company owns more than \\(50\\%\\) of the voting rights attached to the shares representing the capital of another company. This also means that it holds a majority on the Board of Directors. The presumption of legal control is irrefutable."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.342,
+                0.779,
+                0.645,
+                0.819
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.067,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.121,
+                0.878,
+                0.17
+            ],
+            "angle": 0,
+            "content": "Control de facto exists when, because of the shareholding structure or agreements between shareholders, a company with less than \\(50\\%\\) of the voting rights may still exercise control over the subsidiary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.184,
+                0.878,
+                0.314
+            ],
+            "angle": 0,
+            "content": "For example: Company A owns \\(40\\%\\) of a listed company B and \\(25\\%\\) of the capital is owned by public shareholders. We assume that they are never present at general meetings. The rest of the shares \\((35\\%)\\) are owned by a company C. When voting, there will only be \\(75\\%\\) of the capital represented. In this case, the percentage of voting rights owned by company A in company B is \\(53\\%\\) \\((40\\% / 75\\%)\\), and therefore company A will be able to appoint the majority of the directors of the subsidiary. The control presumption is refutable."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.303,
+                0.334,
+                0.721,
+                0.476
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.51,
+                0.875,
+                0.542
+            ],
+            "angle": 0,
+            "content": "When determining the power of control, one should take into account two elements:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.557,
+                0.657,
+                0.574
+            ],
+            "angle": 0,
+            "content": "- Shares directly held by the parent company and"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.59,
+                0.868,
+                0.623
+            ],
+            "angle": 0,
+            "content": "- Shares indirectly held by the parent, i.e. via subsidiaries. In this case, the percentage of control of the subsidiary adds to that of the parent."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.557,
+                0.868,
+                0.623
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.637,
+                0.876,
+                0.703
+            ],
+            "angle": 0,
+            "content": "The word 'control' is very important because there are multiple levels of control, and the level of control will determine how to consolidate. There are three different situations of controls that will induce the related consolidation method."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.72,
+                0.345,
+                0.736
+            ],
+            "angle": 0,
+            "content": "The exclusive control"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.752,
+                0.876,
+                0.817
+            ],
+            "angle": 0,
+            "content": "Exclusive control is the control exercised by a company either on its own (direct control), either with one or more of its subsidiaries (indirect control). A company is considered to be a subsidiary when the parent owns more than \\(50\\%\\) of shares of the owned company."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.304,
+                0.071,
+                0.856,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.121,
+                0.878,
+                0.155
+            ],
+            "angle": 0,
+            "content": "An example of direct and exclusive control: Company A owns \\(80\\%\\) in company B."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.339,
+                0.161,
+                0.642,
+                0.201
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.224,
+                0.876,
+                0.272
+            ],
+            "angle": 0,
+            "content": "An example of indirect control: Company A owns \\(75\\%\\) in company B which owns \\(90\\%\\) in company C. In this case, company A has also exclusive control over C via B."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.282,
+                0.279,
+                0.722,
+                0.32
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.337,
+                0.876,
+                0.369
+            ],
+            "angle": 0,
+            "content": "It may happen that a parent company has directly and indirectly control at the same time. We then add the percentages."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.369,
+                0.874,
+                0.402
+            ],
+            "angle": 0,
+            "content": "In the case of sole control, consolidation is, in principle, done via the global integration method."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.417,
+                0.296,
+                0.433
+            ],
+            "angle": 0,
+            "content": "The joint control"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.449,
+                0.876,
+                0.53
+            ],
+            "angle": 0,
+            "content": "Under joint control should be understood the supervision to which a limited number of partners carry out together, when they agreed that the orientation management decisions could be taken by their mutual agreement control. Joint subsidiary, means the company in respect of which this joint control exists."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.546,
+                0.876,
+                0.579
+            ],
+            "angle": 0,
+            "content": "Joint control means that there is control between different companies, who made a convention about sharing business rules in common."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.593,
+                0.876,
+                0.627
+            ],
+            "angle": 0,
+            "content": "Example: Three airlines companies (A, B and C) which decide to create a common catering service in a HUB (D):"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.302,
+                0.644,
+                0.721,
+                0.786
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.803,
+                0.876,
+                0.837
+            ],
+            "angle": 0,
+            "content": "In the case of joint control, consolidation is, in principle, done via the proportional method."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.068,
+                0.367,
+                0.083
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.121,
+                0.341,
+                0.138
+            ],
+            "angle": 0,
+            "content": "Sianificant influence"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.153,
+                0.875,
+                0.237
+            ],
+            "angle": 0,
+            "content": "We speak of significant influence when a parent company, directly and/or indirectly, holds investments in the capital of another company, forming together a percentage of detention between a commonly accepted range of \\(20\\%\\) and \\(50\\%\\). In this case, it is common to refer to the company as an associated company instead of a subsidiary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.25,
+                0.559,
+                0.348
+            ],
+            "angle": 0,
+            "content": "Example: Company A owns \\(80\\%\\) in company B and \\(8\\%\\) in company C, company B owns \\(15\\%\\) in company C. Company A has sole control in company B and A has significant influence on company C because it holds a control percentage of \\(23\\%\\)."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.57,
+                0.241,
+                0.88,
+                0.348
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.363,
+                0.876,
+                0.398
+            ],
+            "angle": 0,
+            "content": "When there is a significant influence, the consolidation method to be used is the equity method."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.414,
+                0.293,
+                0.431
+            ],
+            "angle": 0,
+            "content": "Treasury shares"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.446,
+                0.875,
+                0.496
+            ],
+            "angle": 0,
+            "content": "A corporation, or its affiliates, could hold its own shares (known as Treasury shares). To determine the percentage of control, these shares must be subtracted from the total of shares of the company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.51,
+                0.538,
+                0.59
+            ],
+            "angle": 0,
+            "content": "Example: Company A owns \\(60 \\%\\)of the capital company B which owns \\(5 \\%\\)of its own shares. To calculate powers of control, one must first subtract \\(5 \\%\\)own shares of the total available voting rights: \\(100 \\%\\) -"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.549,
+                0.526,
+                0.875,
+                0.59
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.59,
+                0.875,
+                0.64
+            ],
+            "angle": 0,
+            "content": "\\(5\\% = 95\\%\\), and then calculate the relationship between what company A owns in company B and the recalculated percentage \\((60\\% / 95\\% = 63\\%)\\). The effective control power is \\(63\\%\\)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.673,
+                0.578,
+                0.698
+            ],
+            "angle": 0,
+            "content": "3.2 The financial percentage"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.717,
+                0.876,
+                0.785
+            ],
+            "angle": 0,
+            "content": "In the most general case, when the parent company owns directly \\(80\\%\\) of shares in a subsidiary, each share being supposed to give a right to a dividend, we speak about a financial percentage. Of course, most of the time, that financial percentage is equal to the direct control percentage."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.322,
+                0.802,
+                0.681,
+                0.845
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.073,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.12,
+                0.877,
+                0.155
+            ],
+            "angle": 0,
+            "content": "In more general group structures, subsidiaries can have participations in other subsidiaries, as in the following example"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.3,
+                0.169,
+                0.697,
+                0.212
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.232,
+                0.876,
+                0.285
+            ],
+            "angle": 0,
+            "content": "where the indirect financial percentage in company B is \\(48\\% = 80\\%\\). \\(60\\%\\) but the indirect control percentage in company B still remains at \\(60\\%\\) because company A is controlled by the parent company P at \\(80\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.297,
+                0.874,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Confusion must be avoided between an indirect percentage of \\(48\\%\\), which is less than \\(50\\%\\), and a control percentage of \\(60\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.346,
+                0.876,
+                0.398
+            ],
+            "angle": 0,
+            "content": "Moreover, we can define the indirect percentage as the multiplication of direct percentages along the path starting at parent company and going to the considered subsidiary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.41,
+                0.874,
+                0.445
+            ],
+            "angle": 0,
+            "content": "Some group structures may bring some difficulties like the following one because there can exist several paths from parent company to a subsidiary."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.351,
+                0.469,
+                0.652,
+                0.695
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.721,
+                0.878,
+                0.755
+            ],
+            "angle": 0,
+            "content": "Indeed, the indirect financial percentage in company C4 is calculated as follows"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.766,
+                0.629,
+                0.786
+            ],
+            "angle": 0,
+            "content": "- Path 1: P -> C1 -> C4: 80% * 30% = 24%"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.801,
+                0.629,
+                0.818
+            ],
+            "angle": 0,
+            "content": "- Path 2 : P -> C2 -> C4 : 60% * 20% = 12%"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.833,
+                0.618,
+                0.851
+            ],
+            "angle": 0,
+            "content": "- Path 3 : P -> C3 -> C4 : 40% * 20% = 8%"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.866,
+                0.421,
+                0.882
+            ],
+            "angle": 0,
+            "content": "- Path 4 : P -> C4 : 10%"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.148,
+                0.766,
+                0.629,
+                0.882
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.112,
+                0.067,
+                0.364,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.12,
+                0.876,
+                0.155
+            ],
+            "angle": 0,
+            "content": "giving a total indirect financial percentage of \\(24\\% + 12\\% + 8\\% + 10\\% = 54\\%\\)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.187,
+                0.833,
+                0.236
+            ],
+            "angle": 0,
+            "content": "3.3 When different types of shares represent the capital of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.255,
+                0.876,
+                0.289
+            ],
+            "angle": 0,
+            "content": "We strongly advise for each individual company of the consolidation scope to get the following information:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.303,
+                0.754,
+                0.319
+            ],
+            "angle": 0,
+            "content": "The types and number of shares representing the capital ;"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.335,
+                0.87,
+                0.366
+            ],
+            "angle": 0,
+            "content": "- For each individual shareholders, the types and number of shares owned."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.303,
+                0.87,
+                0.366
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.383,
+                0.651,
+                0.402
+            ],
+            "angle": 0,
+            "content": "Let's explain this on the basis of the following example."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.416,
+                0.69,
+                0.433
+            ],
+            "angle": 0,
+            "content": "We consider a company C whose capital is represented by:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.447,
+                0.87,
+                0.479
+            ],
+            "angle": 0,
+            "content": "1000 shares of type 1 conferring, for each share, one voting right and a right to dividends"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.496,
+                0.87,
+                0.528
+            ],
+            "angle": 0,
+            "content": "- 1000 shares of type 2 conferring, for each share, a double voting right, but no right to dividends"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.149,
+                0.544,
+                0.838,
+                0.56
+            ],
+            "angle": 0,
+            "content": "1000 shares of type 3 with non-voting rights and right to dividends"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.149,
+                0.447,
+                0.87,
+                0.56
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.576,
+                0.373,
+                0.594
+            ],
+            "angle": 0,
+            "content": "giving 3000 shares issued."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.608,
+                0.872,
+                0.64
+            ],
+            "angle": 0,
+            "content": "Let's suppose there is a single shareholder, namely the parent company P that owns:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.656,
+                0.404,
+                0.672
+            ],
+            "angle": 0,
+            "content": "1000 shares of type 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.688,
+                0.393,
+                0.704
+            ],
+            "angle": 0,
+            "content": "400 shares of type 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.15,
+                0.72,
+                0.393,
+                0.736
+            ],
+            "angle": 0,
+            "content": "700 shares of type 3"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.15,
+                0.656,
+                0.404,
+                0.736
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.752,
+                0.375,
+                0.77
+            ],
+            "angle": 0,
+            "content": "giving 2100 shares owned."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.786,
+                0.842,
+                0.803
+            ],
+            "angle": 0,
+            "content": "The control percentage of company P in company C is calculated as follows:"
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.227,
+                0.818,
+                0.753,
+                0.851
+            ],
+            "angle": 0,
+            "content": "\\[\n\\frac {1 0 0 0 * 1 + 4 0 0 * 2 + 7 0 0 * 0}{1 0 0 0 * 1 + 1 0 0 0 * 2 + 1 0 0 0 * 0} = \\frac {1 8 0 0}{3 0 0 0} = 6 0\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.866,
+                0.807,
+                0.884
+            ],
+            "angle": 0,
+            "content": "which is the ratio between owned voting rights and issued voting rights."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.071,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.12,
+                0.878,
+                0.155
+            ],
+            "angle": 0,
+            "content": "In practice, it is recommended not to limit to these arithmetical considerations."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.169,
+                0.481,
+                0.187
+            ],
+            "angle": 0,
+            "content": "One should also consider in particular"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.198,
+                0.878,
+                0.299
+            ],
+            "angle": 0,
+            "content": "- The existence of a shareholder's agreement by which a majority shareholder abandons his voting rights for the minority shareholder. It will be for example the case when the majority shareholder plays a strictly financial role. In such situation, the choice is to maintain the control in the hands of the founding shareholder who, in most cases, is the person knowing about the technical products."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.313,
+                0.878,
+                0.381
+            ],
+            "angle": 0,
+            "content": "- The existence of a de facto control as far as the minority shareholder is almost alone in front of absent shareholders during general annual meetings. Such situations take then the priority with regard to the arithmetical calculation explained above."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.109,
+                0.198,
+                0.878,
+                0.381
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.393,
+                0.719,
+                0.412
+            ],
+            "angle": 0,
+            "content": "The direct financial percentages is given by the following ratio"
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.205,
+                0.43,
+                0.739,
+                0.463
+            ],
+            "angle": 0,
+            "content": "\\[\n\\frac {1 0 0 0 * 1 + 4 0 0 * 0 + 7 0 0 * 1}{1 0 0 0 * 1 + 1 0 0 0 * 0 + 1 0 0 0 * 1} = \\frac {1 7 0 0}{2 0 0 0} = 85 \\%\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.474,
+                0.878,
+                0.507
+            ],
+            "angle": 0,
+            "content": "In such situation of various types of shares, direct financial percentage and direct control percentage may not be equal."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.541,
+                0.875,
+                0.566
+            ],
+            "angle": 0,
+            "content": "3.4 Some groups with more complex structures"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.585,
+                0.787,
+                0.603
+            ],
+            "angle": 0,
+            "content": "By complex structures, we basically think of following both situations"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.617,
+                0.878,
+                0.651
+            ],
+            "angle": 0,
+            "content": "- Company A owns shares of company B and company B owns shares of company A. We than speak about 'crossed participations\""
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.666,
+                0.624,
+                0.683
+            ],
+            "angle": 0,
+            "content": "- Company A owns shares of the parent company."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.109,
+                0.617,
+                0.878,
+                0.683
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.698,
+                0.798,
+                0.715
+            ],
+            "angle": 0,
+            "content": "Let's consider each of these two situations on the basis of an example."
+        }
+    ]
+]

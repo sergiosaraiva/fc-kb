@@ -1,0 +1,811 @@
+# API Consolidation Period Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of consolidation periods
+
+api_conso_period_endpoints:
+  name: "Consolidation Period API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing consolidation periods (Conso) - the fundamental containers
+    for all consolidation data in the system.
+
+    A consolidation period represents:
+    - A specific time period (Year.Month.Category.Sequence)
+    - A set of companies with their ownership and financial data
+    - Consolidation settings and parameters
+    - Reference to a prior period for comparatives
+
+    Key relationships:
+    - Conso -> Customer (multi-tenant)
+    - Conso -> Reference Period (for copy/comparison)
+    - Conso -> Parent Company (group parent)
+    - Conso -> Companies (via ConsoID)
+    - Conso -> Category (defines period type)
+
+    ConsoCode format: YYYY.MM.CAT.SEQ (e.g., "2024.12.A.01")
+
+    Source: Sigma.Mona.WebApplication/Screens/Conso/ConsoService.cs
+
+  # ============================================================================
+  # CONSO CODE FORMAT
+  # ============================================================================
+  conso_code_format:
+    description: "Consolidation period code structure"
+    format: "YYYY.MM.CAT.SEQ"
+    components:
+      - name: "Year"
+        type: "short"
+        format: "YYYY"
+        example: "2024"
+        description: "4-digit year"
+      - name: "Month"
+        type: "byte"
+        format: "MM"
+        range: "01-12"
+        example: "12"
+        description: "2-digit month"
+      - name: "Category"
+        type: "string"
+        format: "CAT"
+        example: "A"
+        description: "Category code (defines period type)"
+      - name: "Sequence"
+        type: "short"
+        format: "SEQ"
+        example: "01"
+        description: "Sequence number within month/category"
+    examples:
+      - code: "2024.12.A.01"
+        description: "December 2024, Category A, Sequence 1"
+      - code: "2024.06.B.02"
+        description: "June 2024, Category B, Sequence 2"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    ConsoDTO:
+      description: "Complete consolidation period data"
+      fields:
+        - name: "ConsoID"
+          type: "integer"
+          description: "Unique period identifier"
+        - name: "ConsoCode"
+          type: "string"
+          description: "Period code (YYYY.MM.CAT.SEQ)"
+        - name: "ConsoName"
+          type: "string"
+          description: "Period description"
+        - name: "ConsoYear"
+          type: "short"
+          description: "Year component"
+        - name: "ConsoMonth"
+          type: "byte"
+          description: "Month component (1-12)"
+        - name: "ConsoCategoryID"
+          type: "integer"
+          description: "Category ID"
+        - name: "ConsoCategory"
+          type: "string"
+          description: "Category code"
+        - name: "ConsoSequence"
+          type: "short"
+          description: "Sequence number"
+        - name: "CustomerID"
+          type: "integer"
+          description: "Tenant ID"
+        - name: "ConsoDate"
+          type: "datetime"
+          nullable: true
+          description: "Period end date"
+        - name: "ClosingDateTime"
+          type: "datetime"
+          nullable: true
+          description: "Period closing timestamp"
+        - name: "CurrCode"
+          type: "string"
+          description: "Reporting currency code"
+        - name: "NbrDec"
+          type: "byte"
+          description: "Decimal places for amounts"
+        - name: "FirstJournalEntry"
+          type: "long"
+          description: "Starting journal entry number"
+        - name: "ReferenceConsoID"
+          type: "integer"
+          nullable: true
+          description: "Reference/prior period ID"
+        - name: "RefConsoCode"
+          type: "string"
+          nullable: true
+          description: "Reference period code"
+        - name: "SecondLevelReferenceConsoID"
+          type: "integer"
+          nullable: true
+          description: "Second level reference (for 2-year comparatives)"
+        - name: "ParentCompanyID"
+          type: "integer"
+          nullable: true
+          description: "Ultimate parent company ID"
+        - name: "ParentCompanyCode"
+          type: "string"
+          nullable: true
+          description: "Parent company code"
+        - name: "Active"
+          type: "boolean"
+          description: "Period is active and visible"
+        - name: "Locked"
+          type: "boolean"
+          description: "Period is locked for editing"
+        - name: "IsClosing"
+          type: "boolean"
+          description: "Period is a year-end closing period"
+        - name: "LockedByLogin"
+          type: "string"
+          nullable: true
+          description: "User who locked the period"
+        - name: "LockedReasonType"
+          type: "integer"
+          nullable: true
+          description: "Lock reason type code"
+        - name: "LockedReasonDetail"
+          type: "string"
+          nullable: true
+          description: "Lock reason description"
+        - name: "LockedDate"
+          type: "datetime"
+          nullable: true
+          description: "When period was locked"
+        - name: "IsInInterweb"
+          type: "boolean"
+          description: "Linked to Interweb data collection"
+        - name: "InterwebPeriodCode"
+          type: "string"
+          nullable: true
+          description: "Interweb period identifier"
+        - name: "LocalBundleOperation"
+          type: "char"
+          description: "Local bundle operation mode (O=Open, F=From reference)"
+        - name: "LocalAdjustmentOperation"
+          type: "char"
+          description: "Local adjustment operation mode"
+        - name: "ConsolidatedAdjustmentsOperation"
+          type: "char"
+          description: "Consolidated adjustments operation mode"
+        - name: "TransferOfReservesOnCopy"
+          type: "boolean"
+          description: "Transfer reserves when copying period"
+        - name: "IsByPOV"
+          type: "boolean"
+          description: "Uses Point of View structure"
+        - name: "PointOfViewCode"
+          type: "string"
+          nullable: true
+          description: "Point of View code if IsByPOV=true"
+        - name: "TasksToProcess"
+          type: "integer"
+          nullable: true
+          description: "Pending workflow tasks"
+
+    ConsoListDTO:
+      description: "Simplified period for list views"
+      fields:
+        - name: "ConsoID"
+          type: "integer"
+        - name: "ConsoCode"
+          type: "string"
+        - name: "ConsoName"
+          type: "string"
+        - name: "IsClosing"
+          type: "boolean"
+        - name: "Active"
+          type: "boolean"
+        - name: "Locked"
+          type: "boolean"
+        - name: "RefConsoCode"
+          type: "string"
+        - name: "CurrCode"
+          type: "string"
+        - name: "ParentCompanyCode"
+          type: "string"
+
+  # ============================================================================
+  # HANDLERS
+  # ============================================================================
+  handlers:
+    - name: "Conso_GetConsos"
+      description: |
+        Primary endpoint for retrieving consolidation periods.
+        Supports single period lookup or filtered list with pagination.
+        Returns comprehensive period details including lock status.
+      access_right: "Conso_GetConsos"
+      async: false
+
+      request:
+        _t: "Conso_GetConsos"
+        parameters:
+          - name: "ConsoID"
+            type: "integer"
+            required: false
+            validation: "ValidateID"
+            description: "Specific period ID to retrieve"
+          - name: "ConsoCode"
+            type: "string"
+            required: false
+            validation: "ValidateConsoCode"
+            description: "Specific period code (YYYY.MM.CAT.SEQ)"
+          - name: "ConsoCodes"
+            type: "string[]"
+            required: false
+            description: "Filter to specific period codes"
+          - name: "ExcludeConsoID"
+            type: "integer"
+            required: false
+            description: "Exclude specific period from results"
+          - name: "HideLockedPeriods"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Filter out locked periods"
+          - name: "FilterConsoCode"
+            type: "string"
+            required: false
+            description: "Filter by period code pattern (LIKE)"
+          - name: "FilterRefConsoCode"
+            type: "string"
+            required: false
+            description: "Filter by reference period code pattern"
+          - name: "FilterConsoName"
+            type: "string"
+            required: false
+            description: "Filter by period name pattern"
+          - name: "FilterIsClosing"
+            type: "boolean"
+            required: false
+            description: "Filter to closing periods only"
+          - name: "FilterActive"
+            type: "boolean"
+            required: false
+            description: "Filter by active status"
+          - name: "FilterCustomerID"
+            type: "integer"
+            required: false
+            description: "Filter by customer (admin only)"
+          - name: "scf_include_entities"
+            type: "boolean"
+            required: false
+            default: false
+          - name: "scf_from_row"
+            type: "integer"
+            required: false
+          - name: "scf_row_count"
+            type: "integer"
+            required: false
+          - name: "scf_order_by"
+            type: "string"
+            required: false
+            valid_values: ["CONSOCODE", "CONSONAME", "REFCONSOCODE"]
+          - name: "scf_include_total_row_count"
+            type: "boolean"
+            required: false
+        example_single:
+          json: |
+            {
+              "_t": "Conso_GetConsos",
+              "ConsoID": 123,
+              "scf_include_entities": true
+            }
+        example_list:
+          json: |
+            {
+              "_t": "Conso_GetConsos",
+              "FilterActive": true,
+              "HideLockedPeriods": false,
+              "scf_order_by": "CONSOCODE DESC",
+              "scf_from_row": 0,
+              "scf_row_count": 50
+            }
+
+      response:
+        single_period:
+          scf_items:
+            type: "array<ConsoDTO>"
+            description: "Single period with full details"
+          IsInterwebEnabled:
+            type: "boolean"
+            description: "Whether Interweb integration is configured"
+          EntityVersion:
+            type: "array<EntityVersion>"
+        period_list:
+          scf_items:
+            type: "array<ConsoListDTO>"
+          scf_total_row_count:
+            type: "integer"
+
+    - name: "Conso_SaveConso"
+      description: |
+        Creates or updates a consolidation period.
+
+        For NEW periods with a ReferenceConsoID:
+        - Automatically creates a CopyConsoJob to copy data from reference
+        - Returns JobID to monitor the copy progress
+
+        Validates:
+        - ConsoCode uniqueness
+        - Category existence
+        - Reference period validity
+        - Required specific accounts/flows for certain operations
+      access_right: "Conso_ManageConso"
+      async: false
+      background_job: "CopyConsoJob (for new periods with reference)"
+
+      request:
+        _t: "Conso_SaveConso"
+        parameters:
+          - name: "Conso"
+            type: "object"
+            required: true
+            description: "Period data to save"
+            nested_parameters:
+              - name: "ConsoID"
+                type: "integer"
+                required: false
+                description: "Null for new, value for update"
+              - name: "ConsoYear"
+                type: "short"
+                required: true
+              - name: "ConsoMonth"
+                type: "byte"
+                required: true
+              - name: "ConsoCategory"
+                type: "string"
+                required: true
+                description: "Category code"
+              - name: "ConsoSequence"
+                type: "short"
+                required: true
+              - name: "ConsoName"
+                type: "string"
+                required: true
+              - name: "ConsoDate"
+                type: "datetime"
+                required: true
+              - name: "CurrCode"
+                type: "string"
+                required: true
+              - name: "NbrDec"
+                type: "byte"
+                required: true
+              - name: "FirstJournalEntry"
+                type: "long"
+                required: true
+              - name: "ReferenceConsoID"
+                type: "integer"
+                required: false
+                description: "Reference period to copy from"
+              - name: "ParentCompanyID"
+                type: "integer"
+                required: false
+              - name: "ClosingDateTime"
+                type: "datetime"
+                required: false
+              - name: "Active"
+                type: "boolean"
+                required: false
+                default: false
+              - name: "Locked"
+                type: "boolean"
+                required: false
+                default: false
+              - name: "LockedReasonDetail"
+                type: "string"
+                required: false
+              - name: "IsClosing"
+                type: "boolean"
+                required: false
+                default: false
+              - name: "IsInInterweb"
+                type: "boolean"
+                required: false
+              - name: "InterwebPeriodCode"
+                type: "string"
+                required: false
+              - name: "LocalBundleOperation"
+                type: "char"
+                required: false
+                default: "O"
+              - name: "LocalAdjustmentOperation"
+                type: "char"
+                required: false
+                default: "O"
+              - name: "ConsolidatedAdjustmentsOperation"
+                type: "char"
+                required: false
+                default: "O"
+              - name: "TransferOfReservesOnCopy"
+                type: "boolean"
+                required: false
+              - name: "IsByPOV"
+                type: "boolean"
+                required: false
+              - name: "PointOfViewCode"
+                type: "string"
+                required: false
+              - name: "EntityVersion"
+                type: "array<EntityVersion>"
+                required: false
+        example_new:
+          json: |
+            {
+              "_t": "Conso_SaveConso",
+              "Conso": {
+                "ConsoID": null,
+                "ConsoYear": 2024,
+                "ConsoMonth": 12,
+                "ConsoCategory": "A",
+                "ConsoSequence": 1,
+                "ConsoName": "December 2024 Consolidation",
+                "ConsoDate": "2024-12-31T00:00:00",
+                "CurrCode": "USD",
+                "NbrDec": 2,
+                "FirstJournalEntry": 1,
+                "ReferenceConsoID": 122,
+                "Active": true,
+                "Locked": false,
+                "IsClosing": true
+              }
+            }
+
+      response:
+        success:
+          JobID:
+            type: "integer"
+            nullable: true
+            description: "CopyConsoJob ID (only for new periods with reference)"
+        notes:
+          - "When JobID returned, use Job_GetJobStatusPolling to monitor copy progress"
+          - "Period is created immediately, but data copy runs as background job"
+
+    - name: "Conso_RemoveConso"
+      description: |
+        Deletes a consolidation period.
+
+        Optionally creates a backup before deletion.
+        Runs as background job (DeleteConsoJob).
+      access_right: "Conso_ManageConso"
+      async: false
+      background_job: "DeleteConsoJob"
+
+      request:
+        _t: "Conso_RemoveConso"
+        parameters:
+          - name: "ConsoID"
+            type: "integer"
+            required: true
+            validation: "ValidateID"
+            description: "Period ID to delete"
+          - name: "BackupFirst"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Create backup before deletion"
+        example:
+          json: |
+            {
+              "_t": "Conso_RemoveConso",
+              "ConsoID": 123,
+              "BackupFirst": true
+            }
+
+      response:
+        success:
+          JobID:
+            type: "integer"
+            description: "DeleteConsoJob ID for monitoring"
+          warnings:
+            - "P_DELETE_CONSO_ASYNC: Deletion runs asynchronously"
+        notes:
+          - "If BackupFirst=true, backup job runs first, then delete job"
+          - "Monitor both jobs for completion"
+
+    - name: "Conso_GetConsosFull"
+      description: |
+        Returns simple code/name pairs for all active periods.
+        Used for dropdown population.
+      access_right: "Conso_GetConsos"
+      async: false
+
+      request:
+        _t: "Conso_GetConsosFull"
+        parameters: []
+        example:
+          json: |
+            {
+              "_t": "Conso_GetConsosFull"
+            }
+
+      response:
+        success:
+          scf_items:
+            type: "array"
+            element_schema:
+              ConsoCode: "string"
+              ConsoName: "string"
+
+    - name: "Conso_GetConsosCodeDescription"
+      description: |
+        Returns period code/description pairs for autocomplete/search.
+        Respects user's period access permissions.
+      access_right: "Conso_GetConsos"
+      async: false
+
+      request:
+        _t: "Conso_GetConsosCodeDescription"
+        parameters:
+          - name: "code"
+            type: "string"
+            required: false
+            description: "Period code pattern"
+          - name: "description"
+            type: "string"
+            required: false
+            description: "Period name pattern"
+          - name: "maxRows"
+            type: "integer"
+            required: false
+          - name: "context"
+            type: "string"
+            required: false
+            description: "Context filters (e.g., 'CustomerID=123')"
+
+      response:
+        success:
+          scf_items:
+            type: "array<KeyValuePair<string,string>>"
+            description: "ConsoCode -> 'ConsoCode: ConsoName' pairs"
+
+    - name: "Conso_GetConsosByCustomerIDCodeDescription"
+      description: |
+        Returns periods for a specific customer.
+        Used in multi-customer administration contexts.
+      access_right: null
+      async: false
+
+      request:
+        _t: "Conso_GetConsosByCustomerIDCodeDescription"
+        parameters:
+          - name: "context"
+            type: "string"
+            required: false
+            description: "Must include 'CustomerID=123'"
+          - name: "code"
+            type: "string"
+            required: false
+          - name: "description"
+            type: "string"
+            required: false
+          - name: "maxRows"
+            type: "integer"
+            required: false
+
+    - name: "Conso_GetParentCompanies"
+      description: |
+        Returns available parent companies for a period.
+        Used when setting up period's ultimate parent.
+      access_right: "Conso_GetConsos"
+      async: false
+
+      request:
+        _t: "Conso_GetParentCompanies"
+        parameters:
+          - name: "ConsoID"
+            type: "integer"
+            required: false
+            description: "Period ID to get parent companies for"
+        example:
+          json: |
+            {
+              "_t": "Conso_GetParentCompanies",
+              "ConsoID": 123
+            }
+
+      response:
+        success:
+          AvailableParentCompanies:
+            type: "array<KeyValuePair<int?,CompanySelectionDTO>>"
+            description: "Available parent company options"
+          SelectedParentID:
+            type: "integer"
+            nullable: true
+            description: "Currently selected parent company ID"
+
+  # ============================================================================
+  # PERIOD LIFECYCLE
+  # ============================================================================
+  lifecycle:
+    description: "Consolidation period lifecycle management"
+
+    states:
+      - state: "New"
+        active: false
+        locked: false
+        description: "Period created but not yet activated"
+      - state: "Active"
+        active: true
+        locked: false
+        description: "Period open for data entry and consolidation"
+      - state: "Locked"
+        active: true
+        locked: true
+        description: "Period locked, no modifications allowed"
+      - state: "Closed"
+        active: true
+        locked: true
+        is_closing: true
+        description: "Year-end period, closed for reporting"
+      - state: "Inactive"
+        active: false
+        locked: true
+        description: "Period archived/hidden from regular use"
+
+    operations:
+      create_period:
+        handler: "Conso_SaveConso"
+        parameters:
+          ConsoID: null
+        with_reference: |
+          When ReferenceConsoID is provided:
+          1. Period record created immediately
+          2. CopyConsoJob launched to copy:
+             - Companies and ownership
+             - Chart of accounts
+             - Exchange rates
+             - Consolidation settings
+          3. JobID returned for monitoring
+        without_reference: |
+          Period created as empty shell:
+          - No companies
+          - No data
+          - Manual setup required
+
+      copy_period:
+        description: "Copy data from one period to another"
+        method: |
+          1. Create new period with ReferenceConsoID set to source
+          2. Monitor CopyConsoJob completion
+          3. Verify data copied correctly
+        job: "CopyConsoJob"
+
+      lock_period:
+        handler: "Conso_SaveConso"
+        parameters:
+          Locked: true
+          LockedReasonDetail: "string"
+        effect: "Prevents all modifications to period data"
+
+      unlock_period:
+        handler: "Conso_SaveConso"
+        parameters:
+          Locked: false
+        effect: "Allows modifications again"
+
+      delete_period:
+        handler: "Conso_RemoveConso"
+        parameters:
+          BackupFirst: true
+        effect: |
+          1. Optional backup created (BackupJob)
+          2. Period data deleted asynchronously (DeleteConsoJob)
+          3. Period removed from system
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    new_period_workflow:
+      name: "Create New Consolidation Period"
+      description: "Complete workflow for creating a period from reference"
+      steps:
+        - step: 1
+          name: "Get Reference Period"
+          handler: "Conso_GetConsos"
+          parameters:
+            FilterActive: true
+          purpose: "Select source period for copy"
+
+        - step: 2
+          name: "Get Parent Companies"
+          handler: "Conso_GetParentCompanies"
+          purpose: "Select ultimate parent company"
+
+        - step: 3
+          name: "Create Period"
+          handler: "Conso_SaveConso"
+          parameters:
+            ReferenceConsoID: "from step 1"
+            ParentCompanyID: "from step 2"
+          output: "JobID (if reference provided)"
+
+        - step: 4
+          name: "Monitor Copy"
+          handler: "Job_GetJobStatusPolling"
+          condition: "if JobID returned"
+          purpose: "Wait for data copy to complete"
+
+        - step: 5
+          name: "Verify Period"
+          handler: "Conso_GetConsos"
+          purpose: "Confirm period created correctly"
+
+    period_close_workflow:
+      name: "Close Consolidation Period"
+      description: "Workflow for closing a period after consolidation"
+      steps:
+        - step: 1
+          name: "Run Final Consolidation"
+          handler: "ConsolidationIntegration_RunConsolidationIntegration"
+          parameters:
+            IntegrationType: 1
+          purpose: "Ensure all consolidation complete"
+
+        - step: 2
+          name: "Review Results"
+          handlers:
+            - "ConsolidationEliminations_GetEliminations"
+            - "Company_GetCompanies"
+          purpose: "Verify consolidation results"
+
+        - step: 3
+          name: "Lock Period"
+          handler: "Conso_SaveConso"
+          parameters:
+            Locked: true
+            LockedReasonDetail: "Year-end close"
+          purpose: "Prevent further modifications"
+
+  # ============================================================================
+  # BACKGROUND JOBS
+  # ============================================================================
+  background_jobs:
+    CopyConsoJob:
+      class: "Jobs.Database.CopyConsoJob"
+      description: "Copies data from reference period to new period"
+      triggered_by: "Conso_SaveConso (new period with reference)"
+      copies:
+        - "Companies and ownership structure"
+        - "Chart of accounts and mappings"
+        - "Exchange rates"
+        - "Consolidation settings"
+        - "Point of view structures"
+        - "Financial data (optional based on settings)"
+
+    DeleteConsoJob:
+      class: "Jobs.Database.DeleteConsoJob"
+      description: "Deletes all period data asynchronously"
+      triggered_by: "Conso_RemoveConso"
+      parameters:
+        ConsoIDs: "Comma-separated period IDs"
+        CheckJobID: "Optional backup job to wait for"
+
+    BackupJob:
+      class: "Jobs.Database.BackupJob"
+      description: "Creates backup of period data"
+      triggered_by: "Conso_RemoveConso (when BackupFirst=true)"
+      output: "Downloadable backup file"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Conso/ConsoService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Conso/ConsoServiceConstants.cs"
+    handler_count: 7
+    purpose: |
+      Enable AI agents to manage consolidation periods including:
+      - Creating new periods from reference
+      - Managing period lifecycle (active, locked, closed)
+      - Understanding period relationships
+      - Monitoring period copy/delete operations

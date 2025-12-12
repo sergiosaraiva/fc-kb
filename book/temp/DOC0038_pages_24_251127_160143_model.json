@@ -1,0 +1,1287 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.065,
+                0.367,
+                0.08
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.118,
+                0.877,
+                0.184
+            ],
+            "angle": 0,
+            "content": "When company B pays its dividends, \\(40 = 40\\%\\) * 100 goes (definitely) to the bank account of the direct \\(3^{\\text{rd}}\\) Parties and \\(60 = 60\\%\\) * 100 goes to the bank account of company A. This company being consolidated with the global method, these 60 are integrated at 100% in the final consolidated accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.199,
+                0.877,
+                0.232
+            ],
+            "angle": 0,
+            "content": "The conclusion is that the cash flow statement should show a payment to \\(3^{\\text{rd}}\\) Parties for only 40 and not 52."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.248,
+                0.877,
+                0.281
+            ],
+            "angle": 0,
+            "content": "Our recommendation here should be to check how this event has been parameterized in your consolidation software. Not sure it is correctly done..."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.114,
+                0.295,
+                0.877,
+                0.329
+            ],
+            "angle": 0,
+            "content": "Dividends paid to indirect \\(3^{rd}\\) Parties through an equity method company"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.112,
+                0.35,
+                0.201,
+                0.52
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.217,
+                0.344,
+                0.877,
+                0.393
+            ],
+            "angle": 0,
+            "content": "We consider a similar group structure as the previous one, but this time company B is consolidated by A (and by the group) with the equity method."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.217,
+                0.407,
+                0.875,
+                0.441
+            ],
+            "angle": 0,
+            "content": "Direct \\(3^{\\text{rd}}\\) Parties of A with their \\(20\\%\\), have some indirect interests in company B for an additional \\(6\\% = 20\\% \\star 30\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.217,
+                0.456,
+                0.825,
+                0.473
+            ],
+            "angle": 0,
+            "content": "This means we have to calculate minority interests in B equity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.217,
+                0.489,
+                0.6,
+                0.506
+            ],
+            "angle": 0,
+            "content": "B is supposed to pay dividends for 100."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.537,
+                0.634,
+                0.554
+            ],
+            "angle": 0,
+            "content": "Here is its equity evolution limited to these dividends."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.265,
+                0.564,
+                0.728,
+                0.632
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1</td><td>Divid.</td><td>Year 2</td></tr><tr><td>Equity</td><td>1,000</td><td>(100)</td><td>900</td></tr><tr><td>Minority interests</td><td>60</td><td>(6)</td><td>54</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.649,
+                0.877,
+                0.682
+            ],
+            "angle": 0,
+            "content": "Again, one of the notes to the accounts requires justifying the minority interests evolution and here above is the company B contribution to this note."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.697,
+                0.877,
+                0.747
+            ],
+            "angle": 0,
+            "content": "But we must closely check that the amount of (6) is not imported also in the cash flow statement as well as dividends paid to \\( 3^{\\text{rd}} \\) Parties, which would be wrong."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.762,
+                0.877,
+                0.81
+            ],
+            "angle": 0,
+            "content": "Thinking cash again, company B pays a dividend of 100, 30 being transferred to the bank account of A fully consolidated, and \\(70\\%\\) being paid to the other shareholders of B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.825,
+                0.875,
+                0.858
+            ],
+            "angle": 0,
+            "content": "The amount of 6 has no economical signification and should not appear in the cash flow statement. The amount of 30 is not cash because B is consolidated"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.354,
+                0.072,
+                0.863,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.121,
+                0.872,
+                0.152
+            ],
+            "angle": 0,
+            "content": "by the equity method, but 30 will appear as cash in paid by an equity method in the consolidated accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.154,
+                0.872,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Finally, this 30 amount will be the only impact of company B in the cash flow statement."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.202,
+                0.461,
+                0.219
+            ],
+            "angle": 0,
+            "content": "Differences on opening reserves"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.234,
+                0.873,
+                0.283
+            ],
+            "angle": 0,
+            "content": "The reasons of this situation and the way to adjust it have been explained in Part 2 - Chapter 8.11. But there is a little trap behind when we try to build a cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.298,
+                0.873,
+                0.334
+            ],
+            "angle": 0,
+            "content": "Here are the accounts of a company in the situation of a difference on opening reserves."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.205,
+                0.347,
+                0.794,
+                0.464
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company A</td><td>Year 1</td><td>Diff. on opening</td><td>Transfer</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Cash</td><td>160</td><td></td><td></td><td>70</td><td>230</td></tr><tr><td>Reserves</td><td>80</td><td>(10)</td><td>30</td><td></td><td>100</td></tr><tr><td>Result</td><td>30</td><td></td><td>(30)</td><td></td><td>0</td></tr><tr><td>Payables</td><td>50</td><td>10</td><td></td><td>70</td><td>130</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.474,
+                0.875,
+                0.542
+            ],
+            "angle": 0,
+            "content": "When receiving the Year 2 figures, we expect Reserves to be \\(110 = 80 + 30\\), and we find only 100. The reason is that after reporting Year 1 figures to the consolidation office, company A had to book a purchase invoice for 10 corresponding to costs of sales."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.555,
+                0.875,
+                0.59
+            ],
+            "angle": 0,
+            "content": "The bundle received for Year 2 is correct, showing a difference on opening not only on the Reserves account but also on the Payables account."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.604,
+                0.384,
+                0.667
+            ],
+            "angle": 0,
+            "content": "Of course, we have to book a consolidation adjustment impacting this Year 2 result for a debit of 10 on Cost of"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.397,
+                0.61,
+                0.868,
+                0.662
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Flow</td><td>Debit</td><td>Credit</td></tr><tr><td>Cost of sales</td><td rowspan=\"2\">Diff. on opening</td><td rowspan=\"2\">10</td><td rowspan=\"2\">10</td></tr><tr><td>Reserves</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.669,
+                0.875,
+                0.735
+            ],
+            "angle": 0,
+            "content": "sales account and a credit on the Reserves account. In most consolidation software, the booking of adjustments requires to book also some flows for balance sheet accounts. In this example, we book the \"Difference on opening\" flow of the Reserves account."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.749,
+                0.84,
+                0.767
+            ],
+            "angle": 0,
+            "content": "Here is the impact of this adjustment limited to the balance sheet accounts"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.117,
+                0.068,
+                0.367,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.155,
+                0.127,
+                0.835,
+                0.277
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company A</td><td>Year1</td><td>Diff. on opening</td><td>Transfer</td><td>Year2 result</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Cash</td><td>160</td><td></td><td></td><td></td><td>70</td><td>230</td></tr><tr><td rowspan=\"2\">Reserves</td><td rowspan=\"2\">80</td><td>(10)</td><td>30</td><td></td><td></td><td>100</td></tr><tr><td>10</td><td></td><td></td><td></td><td>10</td></tr><tr><td rowspan=\"2\">Result</td><td rowspan=\"2\">30</td><td></td><td>(30)</td><td></td><td></td><td>0</td></tr><tr><td></td><td></td><td>(10)</td><td></td><td>(10)</td></tr><tr><td>Payables</td><td>50</td><td>10</td><td></td><td></td><td>70</td><td>130</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.29,
+                0.88,
+                0.322
+            ],
+            "angle": 0,
+            "content": "and, starting from this information, we show what would be the effect in the cash flow statement."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.117,
+                0.336,
+                0.543,
+                0.535
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>(1)</td></tr><tr><td>Result</td><td>(10)</td></tr><tr><td>…</td><td></td></tr><tr><td>Cash flow</td><td>(10)</td></tr><tr><td>Variation of Receivables</td><td></td></tr><tr><td>Variation of Payables</td><td>70</td></tr><tr><td>Working capital</td><td>70</td></tr><tr><td>Operating cash</td><td>60</td></tr><tr><td>…</td><td></td></tr><tr><td>Net cash variation</td><td>60</td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Cash variation in balance sheet</td><td>70</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.555,
+                0.354,
+                0.88,
+                0.435
+            ],
+            "angle": 0,
+            "content": "A difference of 10 between the net cash variation of 60 deduced from the cash flow statement and the cash variation in balance sheet of 70."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.555,
+                0.451,
+                0.879,
+                0.482
+            ],
+            "angle": 0,
+            "content": "This indicates there is an error somewhere."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.563,
+                0.409,
+                0.643
+            ],
+            "angle": 0,
+            "content": "Indeed, our adjustment should be completed as follows with a reclassification of flows on the Payables account."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.42,
+                0.555,
+                0.891,
+                0.64
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Flow</td><td>Debit</td><td>Credit</td></tr><tr><td>Cost of sales</td><td>10</td><td></td><td></td></tr><tr><td>Reserves</td><td>Diff. on opening</td><td></td><td>10</td></tr><tr><td>Payables</td><td>Diff. on opening</td><td>10</td><td></td></tr><tr><td>Payables</td><td>Net variation</td><td></td><td>10</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.173,
+                0.674,
+                0.851,
+                0.837
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Company A</td><td>Year 1</td><td>Diff. on opening</td><td>Transfer</td><td>Year 2 result</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Cash</td><td>160</td><td></td><td></td><td></td><td>70</td><td>230</td></tr><tr><td rowspan=\"2\">Reserves</td><td rowspan=\"2\">80</td><td>(10)</td><td>30</td><td></td><td></td><td>100</td></tr><tr><td>10</td><td></td><td></td><td></td><td>10</td></tr><tr><td rowspan=\"2\">Result</td><td rowspan=\"2\">30</td><td rowspan=\"2\">(10)</td><td rowspan=\"2\">(30)</td><td></td><td></td><td>0</td></tr><tr><td></td><td></td><td>(10)</td></tr><tr><td rowspan=\"2\">Payables</td><td rowspan=\"2\">50</td><td>10</td><td></td><td></td><td>70</td><td>130</td></tr><tr><td>(10)</td><td></td><td></td><td>10</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.474,
+                0.924,
+                0.519,
+                0.939
+            ],
+            "angle": 0,
+            "content": "236"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.354,
+                0.073,
+                0.864,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.121,
+                0.872,
+                0.154
+            ],
+            "angle": 0,
+            "content": "By booking like this we get the following accounts with the corresponding correct cash flow statement."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.24,
+                0.167,
+                0.775,
+                0.364
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>(1)</td><td>(2)</td></tr><tr><td>Result</td><td>(10)</td><td>(10)</td></tr><tr><td>Cash flow</td><td>(10)</td><td>(10)</td></tr><tr><td>Variation of Receivables</td><td></td><td></td></tr><tr><td>Variation of Payables</td><td>70</td><td>80</td></tr><tr><td>Working capital</td><td>70</td><td>80</td></tr><tr><td>Operating cash</td><td>60</td><td>70</td></tr><tr><td>…</td><td></td><td></td></tr><tr><td>Net cash variation</td><td>60</td><td>70</td></tr><tr><td colspan=\"3\"></td></tr><tr><td>Cash variation in balance sheet</td><td>70</td><td>70</td></tr></table>"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.379,
+                0.761,
+                0.397
+            ],
+            "angle": 0,
+            "content": "Increase in capital depending on the consolidation methods"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.411,
+                0.875,
+                0.445
+            ],
+            "angle": 0,
+            "content": "In Year 1, the parent company P consolidates a company A at \\(40\\%\\) by the equity method."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.201,
+                0.462,
+                0.753,
+                0.616
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.636,
+                0.872,
+                0.719
+            ],
+            "angle": 0,
+            "content": "On January \\(1^{st}\\), Year 2, company A increases its capital by 50 for which P subscribes 40 and the \\(3^{rd}\\) Parties 10. By subscribing in a proportion different from the existing percentages, the participation of P is increasing by \\(10\\%\\). We should normally study this increase of capital based on the number of shares but for the scope of this case, it brings nothing additional."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.733,
+                0.871,
+                0.766
+            ],
+            "angle": 0,
+            "content": "When we look at a consolidation software, we usually find two flows impacting the cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.781,
+                0.871,
+                0.814
+            ],
+            "angle": 0,
+            "content": "The amount of capital the group subscribes, that is \\(40 = 100\\%\\) * 40 which represents a cash out for P"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.142,
+                0.826,
+                0.869,
+                0.861
+            ],
+            "angle": 0,
+            "content": "The amount of capital maintained in the group as being \\(25 = 50\\%\\) 50"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.142,
+                0.781,
+                0.871,
+                0.861
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.066,
+                0.372,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.12,
+                0.512,
+                0.139
+            ],
+            "angle": 0,
+            "content": "giving a net impact of (15) = (40) + 25."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.152,
+                0.886,
+                0.187
+            ],
+            "angle": 0,
+            "content": "This amount is either correct or not depending on the consolidation method defined for Year 2 as shown hereunder"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.114,
+                0.204,
+                0.836,
+                0.29
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Subscription</td><td>(40)</td><td>(40)</td><td>(40)</td></tr><tr><td>Capital increase</td><td>50 = 100% * 50</td><td>25 = 50%*50</td><td>0 = 0% * 50</td></tr><tr><td></td><td>10</td><td>(15)</td><td>(40)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.32,
+                0.405,
+                0.336
+            ],
+            "angle": 0,
+            "content": "Again, we have to think cash."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.351,
+                0.886,
+                0.402
+            ],
+            "angle": 0,
+            "content": "For the global interaration method, the bank account of A is integrated at \\(100\\%\\) of its value in the consolidated figures and the net impact of the capital increase is the cash of 10 brought by the \\(3^{\\text{rd}}\\) Parties."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.416,
+                0.884,
+                0.482
+            ],
+            "angle": 0,
+            "content": "For the proportional integration method, the bank account of A is integrated at \\(50\\%\\) of its value in the consolidated figures and the net impact of the capital increase is now (15), a negative amount. The group gives 40 but receives only 25 in return."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.497,
+                0.884,
+                0.547
+            ],
+            "angle": 0,
+            "content": "For the equity method, the bank account of A is not integrated in the consolidated figures and the net impact of the capital increase is zero. The group gives 40 and receives nothing in return."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.561,
+                0.658,
+                0.579
+            ],
+            "angle": 0,
+            "content": "Acaulisition of shares through stae consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.594,
+                0.49,
+                0.689
+            ],
+            "angle": 0,
+            "content": "Parent company P consolidates its group on the basis of the consolidated figures A + B and the only transaction in Year 2 is the acquisition of the remaining \\(20\\%\\) of shares of company B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.706,
+                0.504,
+                0.806
+            ],
+            "angle": 0,
+            "content": "Supposing company P is not informed of that acquisition and supposing also that the subgroup A + B does not provide a cash flow statement, then we would only see the following two changes"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.517,
+                0.594,
+                0.687,
+                0.844
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.706,
+                0.594,
+                0.878,
+                0.844
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.351,
+                0.071,
+                0.866,
+                0.087
+            ],
+            "angle": 0,
+            "content": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.256,
+                0.117,
+                0.747,
+                0.187
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"6\">A + B</td></tr><tr><td>Goodwill</td><td>0</td><td>10</td><td>Capital</td><td>200</td><td>200</td></tr><tr><td></td><td></td><td></td><td>RC(B)</td><td>0</td><td>0</td></tr><tr><td>Cash</td><td>220</td><td>190</td><td>MI(B)</td><td>20</td><td>0</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.207,
+                0.388,
+                0.223
+            ],
+            "angle": 0,
+            "content": "- A new goodwill of 10"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.238,
+                0.615,
+                0.257
+            ],
+            "angle": 0,
+            "content": "Minority interests disappearing from 20 to 0"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.14,
+                0.207,
+                0.615,
+                0.257
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.271,
+                0.878,
+                0.32
+            ],
+            "angle": 0,
+            "content": "Of course, with such simple accounts, one can also observe a cash variation of (30), but this would be impossible to detect for a larger group with many transactions."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.336,
+                0.789,
+                0.352
+            ],
+            "angle": 0,
+            "content": "Building a cash flow statement in this situation would not be possible."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.352,
+                0.875,
+                0.385
+            ],
+            "angle": 0,
+            "content": "We definitely need a cash flow statement for the stage A+B showing the price paid for this \\(20\\%\\) shares acquisition."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.401,
+                0.878,
+                0.451
+            ],
+            "angle": 0,
+            "content": "Going back to our simple example, we can say that by knowing the goodwill of 10 and the minority interests variation of (20), we could \"guess\" the acquisition price by subtracting one by the other \\(30 = 10 - (20)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.466,
+                0.677,
+                0.483
+            ],
+            "angle": 0,
+            "content": "If not convinced, then let's go back to some fundamentals"
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.228,
+                0.494,
+                0.756,
+                0.548
+            ],
+            "angle": 0,
+            "content": "\\[\n\\begin{array}{l} \\text{Additional goodwill} = \\text{Price} - (1 - \\text{Group}\\%)^{\\star} \\text{Equity} \\\\ Minority interests variation = - (1 - \\text {Group} \\%)^{*} \\text {Equity} \\\\ \\end{array}\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.563,
+                0.591,
+                0.58
+            ],
+            "angle": 0,
+            "content": "and subtracting the second from the first, we get"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.215,
+                0.594,
+                0.765,
+                0.612
+            ],
+            "angle": 0,
+            "content": "Additional goodwill - Minority interests variation = Price"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.629,
+                0.878,
+                0.679
+            ],
+            "angle": 0,
+            "content": "This approach is really not recommended because it includes a high level of risk to be wrong. The only issue is to receive a cash flow statement from that stage."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.117,
+                0.065,
+                0.373,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.475,
+                0.926,
+                0.522,
+                0.941
+            ],
+            "angle": 0,
+            "content": "240"
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "bbox": [
+                0.143,
+                0.268,
+                0.354,
+                0.302
+            ],
+            "angle": 0,
+            "content": "BART 4"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.264,
+                0.31,
+                0.518,
+                0.345
+            ],
+            "angle": 0,
+            "content": "SPECIAL"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.264,
+                0.353,
+                0.766,
+                0.389
+            ],
+            "angle": 0,
+            "content": "CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.264,
+                0.397,
+                0.489,
+                0.431
+            ],
+            "angle": 0,
+            "content": "TOPICS"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.25,
+                0.48,
+                0.74,
+                0.751
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.116,
+                0.067,
+                0.371,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.121,
+                0.877,
+                0.169
+            ],
+            "angle": 0,
+            "content": "This Part 4 analyzes situations that don't occur each year in the consolidation of a group. However, from time to time, they really happen and then they are sometimes rather difficult to solve."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.185,
+                0.877,
+                0.218
+            ],
+            "angle": 0,
+            "content": "Moreover, the situation is sometimes getting more complex by the fact that several events are combined together."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.233,
+                0.876,
+                0.265
+            ],
+            "angle": 0,
+            "content": "The situations we analyze in this Part 4 are kept separate in order to give a complete and clear solution for each one."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.281,
+                0.876,
+                0.314
+            ],
+            "angle": 0,
+            "content": "If more than one event happens during the same consolidation period, we recommend solving them sequentially."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.329,
+                0.877,
+                0.473
+            ],
+            "angle": 0,
+            "content": "For each individual situation, it is sometimes worth extracting the case from the reality of the group and transforming it into a \"school-case\" with easier figures, simple percentages (without decimals) and a limited number of accounts. Most of the time, solving the case within one consolidation period will not guarantee the solution. The experience shows that it is much more useful to first consolidate a situation before the particular transaction and then to consolidate just after the transaction by justifying both the Equity and the Minority interests evolutions. A cash flow statement can also be useful in some situations."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.489,
+                0.876,
+                0.521
+            ],
+            "angle": 0,
+            "content": "That's the methodology we will adopt for most of the cases analyzed in this Part 4."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.238,
+                0.557,
+                0.76,
+                0.58
+            ],
+            "angle": 0,
+            "content": "UNUSUAL GROUP STRUCTURES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.6,
+                0.735,
+                0.623
+            ],
+            "angle": 0,
+            "content": "1.1 Chain of equity method companies"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.66,
+                0.768,
+                0.694
+            ],
+            "angle": 0,
+            "content": "In this group companies A and B are consolidated by the equity method because none of them is controlled by the group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.709,
+                0.768,
+                0.758
+            ],
+            "angle": 0,
+            "content": "As in the previous section, we will process the consolidation by using first the stage technique and then the direct technique in order to identify possible traps."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.781,
+                0.642,
+                0.875,
+                0.81
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.44,
+                0.073,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.122,
+                0.439,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Staae consolidation techniaue"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.153,
+                0.872,
+                0.189
+            ],
+            "angle": 0,
+            "content": "Here are the accounts of companies A and B, A being considered temporarily as the consolidating company."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.108,
+                0.198,
+                0.468,
+                0.273
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A</td></tr><tr><td rowspan=\"3\">Fin. Inv./B</td><td rowspan=\"3\">50</td><td>Capital 200</td></tr><tr><td>Reserves 100</td></tr><tr><td>Result 30</td></tr><tr><td>Other assets</td><td>550</td><td>Other liabilities 270</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.509,
+                0.199,
+                0.868,
+                0.273
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B</td></tr><tr><td colspan=\"2\">Reserves</td></tr><tr><td>Result</td><td>20</td></tr><tr><td>Other assets</td><td>500, Other liabilities</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.317,
+                0.291,
+                0.677,
+                0.392
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A+B</td></tr><tr><td>Equity value</td><td>60</td><td>Capital 200 \nReserves 100 \nResult 30 \nConso. Res. 10 \nMinority int. 0</td></tr><tr><td>Other assets</td><td>550</td><td>Other liabilities 270</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.4,
+                0.174,
+                0.416
+            ],
+            "angle": 0,
+            "content": "where"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.43,
+                0.765,
+                0.451
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves = 10 = 30% * [100 + 80 + 20] - 50"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.462,
+                0.618,
+                0.482
+            ],
+            "angle": 0,
+            "content": "Equity value \\(= 60 = 30\\%\\) \\* [100 + 80 +20]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.497,
+                0.871,
+                0.53
+            ],
+            "angle": 0,
+            "content": "- Other assets and liabilities are those of A because of the equity method applied to B"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.144,
+                0.43,
+                0.871,
+                0.53
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.545,
+                0.862,
+                0.562
+            ],
+            "angle": 0,
+            "content": "Now we consolidate \\( A + B \\) in \\( P \\) by the equity method with a percentage of \\( 40\\% \\)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.262,
+                0.569,
+                0.741,
+                0.643
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv.A</td><td rowspan=\"3\">100</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>Other assets</td><td>1,400</td><td>Other liabilities</td><td>650</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.262,
+                0.661,
+                0.741,
+                0.749
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">P + [A + B]</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>300</td></tr><tr><td>Equity value(A+B)</td><td>Result</td><td>50</td></tr><tr><td></td><td>Conso. Res.</td><td>36</td></tr><tr><td>Other assets</td><td>1,400</td><td>Other liabilities</td></tr><tr><td></td><td></td><td>650</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.755,
+                0.174,
+                0.77
+            ],
+            "angle": 0,
+            "content": "where"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.781,
+                0.842,
+                0.802
+            ],
+            "angle": 0,
+            "content": "- Consolidated reserves \\( = {36} = {40}\\% {}^{ * }\\left\\lbrack  {{200} + {100} + {30} + {10}}\\right\\rbrack   - {100} \\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.814,
+                0.765,
+                0.835
+            ],
+            "angle": 0,
+            "content": "Equity value \\((A + B) = 136 = 40\\%\\) [200 + 100 + 30 + 10]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.849,
+                0.868,
+                0.883
+            ],
+            "angle": 0,
+            "content": "- Other assets and liabilities are those from P only because of the equity method applied to A and B"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.144,
+                0.781,
+                0.868,
+                0.883
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ]
+]

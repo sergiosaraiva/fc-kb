@@ -1,0 +1,81 @@
+Topics:
+Navigating Interface, Data Entry and Management, Reporting and Analysis, System Configuration
+
+Keywords:
+Financial Consolidation, Interface Navigation, Data Entry, Report Generation, Workflow, Configuration, Login, Logout, Password Reset, Data Integration, Wildcards, Filters
+
+Summary:
+The document outlines the basic steps and functionalities required to get started with the Financial Consolidation application. It includes detailed instructions on logging in and out, resetting passwords, and navigating the interface. The guide explains how to use various features such as data entry, report generation, workflow management, and system configuration. It also highlights the use of common buttons, filters, and wildcards for efficient data handling and report launching.
+
+Contents:
+In this article, you will find information on navigating the Financial Consolidation interface. You will gain insights into the functions of frequently used buttons, explore the power of wildcards for filtering information, and learn how to effortlessly launch reports. Aside from our help files, we offer courses designed to enhance your understanding of the fundamental functions, analysis, and reporting procedures involved in Financial Consolidation. You have the option to enroll in our self-paced course, which aims to provide a comprehensive introduction to the following topics: Navigating the application interface and basic system functionality, explaining the consolidation workflow process, performing data entry both manually and by import/export, accessing reports for data validation and reconciliation.
+
+Log in: 
+1. Access the Login page.
+2. Do one of the following: 
+   - Log in with your Username and Password. Enter your username and password in their respective fields.
+   - If your account is configured for Single Sign On (SSO), click your company ID to use your company credentials to log in to Financial Consolidation.
+
+Log out: 
+1. On the top right of the page, click.
+2. Click Logout.
+
+Reset your password: 
+If you have forgotten your password, you may be able to reset it using the following steps:
+1. Access the Login page.
+2. Click the link.
+3. On the Forgot password? page, enter your Username or Email address.
+4. Click. Instructions to reset your password will be sent to the email address provided, or associated with the username provided.
+5. Click to return to the Login page.
+6. Check your email for the instructions and follow them to reset your password. If you do not receive an email to reset your password, contact your administrator.
+
+The top bar: The top bar of every page provides you with access to key functions in Financial Consolidation. From left to right on the top bar are the following icons and their functions:
+- Prophix logo: Opens the navigation panel fully and closes it.
+- Apps: Displays links to the Portal and other Prophix applications.
+- Consolidation field: Contains a drop-down list of all consolidation folders in the application.
+- Help: Selecting this option on any page opens up the context-sensitive help file of that page, giving you the relevant information to go through the page.
+- Consolidation Periods: Current and Reference Consolidation periods. You can select a different consolidation period by clicking on any of the periods.
+- Notifications: Displays the notifications and reminders that were set up on the page.
+
+Workflow Definition: Launches Data Integration where you can define data integration services with Financial Consolidation. 
+
+Profile: Selecting this icon displays a page where you can customize your profile and obtain the license details of your application. It also gives you the Logout option that you can use to log out of the application.
+
+Side Navigation Menu: The side navigation menu is the vertical panel on the left side of every page. It contains the icons and menus you can use to navigate and perform tasks in the application.
+- Home: Takes users to their home page.
+- Workflow: The workflow menu used for task setup and follow up.
+- Data Entry: For entering statutory data and local adjustments.
+- Group: For defining parameters of consolidation periods including currency rates, period, and scope.
+- Automation: For process management, computing estimates, and running jobs.
+- Adjustments: For recording corrections or business transactions that have not yet been included in the accounting records as of a specific date.
+- Consolidation: This is the core of the consolidation process. It includes adjustments, events, intercompany data, and running consolidations.
+- Reports: Includes standard reports, user-defined reports, and analysis reports in pivot table format.
+- Transfers: For import/export of data, structures, and translations.
+- Configuration: Includes system structures, periods, and group management.
+- Administration: System and security administration and control panel management.
+
+Common buttons and their functions: 
+- Search: Looks up relevant results for typed-in text. Search for entities, dimensions, adjustments, etc., and then, use filters to narrow your search results to just what you need.
+- New: Clears the right-side panel of the page, allowing you to create a new record (entity, flow, adjustment, report) etc.
+- Remove: Takes the selected item or record away from where it was. When a record is removed, it can be restored.
+- Delete: Erases or eliminates selected item or record.
+- Save: Commits a new record into the database, or saves the modifications you make to an existing record. It is important to save your input before leaving a page. If you do not and navigate away from a page without clicking the Save button, your input will not be saved.
+- Cancel: Cancels all modifications that were made since the last save.
+- Next: Moves to the next record available.
+- Previous: Goes back to a previous record.
+- Generate Report: Clicking this option generates a report in a format selected by the user and stores it in a temporary drive on the user's desktop. To save the report, user must open and then, save it to a specific location.
+
+Terms and usage: 
+- Period: Consolidation period—a set period of time to manage (record and report) all financial transactions related to the companies in a group, usually written in this format: 202012ACT001. Version is a combination of the Category (ACT = Actual, BUD = Budget) and Version Number. When a consolidation period is initially created, the version number assigned to it is 000. If a consolidation period is duplicated, the version number increases to the next (incremental) e.g., 001. Typically, periods are set to begin and end based on calendar months of the year (12 months, yearly). They can however, be set to any length of time: 3 months, quarterly; 6 months, semi-annually, etc. There are two periods used in the application: Current and Reference. The Current and Reference consolidation periods appear on top of every page.
+- Flows: Flows refer to transactional activities that impact the balance sheet and must be recorded for accurate cash flow calculation. Flows can be Cash (C) and Non-Cash (NC).
+- Dimensions: Dimensions are optional hierarchical structures that are used to capture transactions and organize them in a way that allows an organization to gain additional insight into its financial data.
+- Bundle: Bundle is used to describe the local data (accounting entries) of an entity or subsidiary.
+- Conso: Consolidation.
+- IC: Intercompany.
+
+Filtering: 
+- You can filter lists by using in conjunction with the Search button. Wildcards are special characters that can stand in for unknown characters when querying values from a list. There are two wildcards used in the application:
+  - * Matches any number of characters. You can use the asterisk (*) anywhere in a character string. Example: 123* finds 1234, 1237, 123456
+  - ? Matches a single letter in a specific location. Example: 123? finds 1234, 1237, but not 123456. This wildcard or filter allows only 4-digit length.
+
+Launching reports: All reports that are available in Financial Consolidation can be launched as PDF or Excel files, allowing you to print or save them for later use. When you click the View report button on a page, the report is generated and a hyperlink to the report is displayed. This hyperlink remains visible until you navigate away from the page.

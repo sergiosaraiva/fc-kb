@@ -1,0 +1,641 @@
+# API Authentication Guide - Financial Consolidation AI Agent
+# Purpose: Complete authentication documentation for AI agent API access
+# Version: 1.0
+# Created: 2024-12-04
+# Source: Extracted from Sigma.Mona.WebApplication/Startup.cs and related authentication code
+
+api_authentication_guide:
+  name: "Prophix.Conso API Authentication Guide"
+  version: "1.0"
+  description: |
+    Complete authentication documentation for the Financial Consolidation AI Agent.
+    Covers OpenID Connect (Keycloak), session management, and multi-tenant context injection.
+
+  # ============================================================================
+  # SECTION 1: AUTHENTICATION OVERVIEW
+  # ============================================================================
+  overview:
+    authentication_type: "OpenID Connect (OIDC)"
+    identity_provider: "Keycloak"
+    supported_flows:
+      - name: "Authorization Code + PKCE"
+        use_case: "Web browser interactive login"
+        recommended: true
+      - name: "Client Credentials"
+        use_case: "Service-to-service / API agent"
+        recommended: true
+      - name: "Bearer Token"
+        use_case: "WebAPI and OData endpoints"
+        recommended: true
+
+    communication_protocol:
+      primary: "Long Polling"
+      endpoint: "/HttpHandlers/LongPolling.ashx"
+      alternative: "WebSocket (disabled)"
+      note: "All API calls go through the message broker using long polling"
+
+  # ============================================================================
+  # SECTION 2: DISCOVERY ENDPOINT
+  # ============================================================================
+  discovery:
+    well_known_endpoint:
+      url: "/.well-known/application-info"
+      method: "GET"
+      authentication: "None (public endpoint)"
+      description: "Returns application configuration for client initialization"
+
+    response_fields:
+      authorization_endpoint:
+        description: "URL to Keycloak authorization endpoint"
+        example: "https://keycloak.prophix-devops.com/realms/{realm}/protocol/openid-connect/auth"
+      blank_page_path:
+        description: "Redirect target after successful authentication"
+        example: "/blank.ashx"
+      longpolling_path:
+        description: "Message broker long polling endpoint"
+        example: "/HttpHandlers/LongPolling.ashx"
+      websocket_path:
+        description: "WebSocket endpoint (not used)"
+        example: "/undefined"
+      websocket_enabled:
+        description: "Whether WebSocket is enabled"
+        example: false
+      database_version:
+        description: "Current database schema version"
+        example: "3050029"
+      application_version:
+        description: "Application version"
+        example: "2026.1.0"
+      brand:
+        description: "Branding identifier"
+        example: "Prophix"
+
+    example_request: |
+      GET https://mona-server/.well-known/application-info HTTP/1.1
+      Accept: application/json
+
+    example_response: |
+      {
+        "authorization_endpoint": "https://keycloak.prophix-devops.com/realms/DemoConsolidation/protocol/openid-connect/auth",
+        "blank_page_path": "/blank.ashx",
+        "longpolling_path": "/HttpHandlers/LongPolling.ashx",
+        "websocket_path": "/undefined",
+        "websocket_enabled": false,
+        "database_version": "3050029",
+        "application_version": "2026.1.0",
+        "brand": "Prophix"
+      }
+
+  # ============================================================================
+  # SECTION 3: KEYCLOAK OPENID CONNECT CONFIGURATION
+  # ============================================================================
+  keycloak_configuration:
+    description: "OpenID Connect configuration for Keycloak identity provider"
+
+    configuration_keys:
+      IdentityServerURL:
+        description: "Base URL of the Keycloak server"
+        example: "https://keycloak.prophix-devops.com/"
+        database_key: "IdentityServerURL"
+
+      ManagementConsoleAuthorityPath:
+        description: "Realm path appended to IdentityServerURL"
+        example: "realms/DemoConsolidation"
+        note: "Forms complete authority URL when combined with IdentityServerURL"
+
+      ManagementConsoleOpenIdClientId:
+        description: "OAuth2 client ID registered in Keycloak"
+        example: "demo-consolidation"
+        database_key: "ManagementConsoleOpenIdClientId"
+
+      ManagementConsoleOpenIdSecret:
+        description: "OAuth2 client secret (confidential)"
+        database_key: "ManagementConsoleOpenIdSecret"
+        security: "NEVER log or expose"
+
+      ManagementConsoleOpenIdScopes:
+        description: "OAuth2 scopes to request"
+        default: "openid profile offline_access"
+        prophix_portal: "openid profile offline_access"
+        standalone: "openid profile offline_access sigmamcApi sigmacrApi SigmaScope IdentityServerApi"
+
+      ManagementConsoleOpenIdResponseMode:
+        description: "OAuth2 response mode"
+        default: "query"
+
+      ManagementConsoleOpenIdResponseType:
+        description: "OAuth2 response type"
+        default: "code"
+        note: "Authorization code flow"
+
+    full_authority_url:
+      pattern: "{IdentityServerURL}{ManagementConsoleAuthorityPath}"
+      example: "https://keycloak.prophix-devops.com/realms/DemoConsolidation"
+
+    keycloak_endpoints:
+      authorization: "{authority}/protocol/openid-connect/auth"
+      token: "{authority}/protocol/openid-connect/token"
+      userinfo: "{authority}/protocol/openid-connect/userinfo"
+      logout: "{authority}/protocol/openid-connect/logout"
+      jwks: "{authority}/protocol/openid-connect/certs"
+
+  # ============================================================================
+  # SECTION 4: AUTHENTICATION FLOWS
+  # ============================================================================
+  authentication_flows:
+
+    # Flow 1: Authorization Code + PKCE (Interactive)
+    authorization_code_pkce:
+      name: "Authorization Code + PKCE"
+      use_case: "Web browser interactive login"
+      description: "Standard OpenID Connect flow with PKCE for web clients"
+
+      sequence:
+        - step: 1
+          action: "Client calls /.well-known/application-info"
+          result: "Gets authorization_endpoint and longpolling_path"
+
+        - step: 2
+          action: "Client redirects to authorization_endpoint"
+          parameters:
+            response_type: "code"
+            client_id: "{ManagementConsoleOpenIdClientId}"
+            redirect_uri: "{application_url}"
+            scope: "openid profile offline_access"
+            code_challenge: "{PKCE_code_challenge}"
+            code_challenge_method: "S256"
+            state: "{random_state}"
+            nonce: "{random_nonce}"
+          result: "User sees Keycloak login page"
+
+        - step: 3
+          action: "User authenticates with Keycloak"
+          result: "Keycloak redirects to redirect_uri with authorization code"
+
+        - step: 4
+          action: "Backend exchanges code for tokens"
+          endpoint: "{authority}/protocol/openid-connect/token"
+          method: "POST"
+          parameters:
+            grant_type: "authorization_code"
+            code: "{authorization_code}"
+            redirect_uri: "{redirect_uri}"
+            client_id: "{client_id}"
+            client_secret: "{client_secret}"
+            code_verifier: "{PKCE_code_verifier}"
+          result: "Receives id_token, access_token, refresh_token"
+
+        - step: 5
+          action: "Backend creates SessionObject"
+          result: "Maps user claims to CustomerID, UserCustomerID, etc."
+
+        - step: 6
+          action: "Client receives authentication cookie"
+          cookie_name: "Configurable (default: ASP.NET auth cookie)"
+          result: "Client can now call message broker"
+
+    # Flow 2: Client Credentials (Service Account)
+    client_credentials:
+      name: "Client Credentials"
+      use_case: "Service-to-service / AI Agent"
+      description: "Machine-to-machine authentication without user interaction"
+
+      sequence:
+        - step: 1
+          action: "Request access token from Keycloak"
+          endpoint: "{authority}/protocol/openid-connect/token"
+          method: "POST"
+          content_type: "application/x-www-form-urlencoded"
+          parameters:
+            grant_type: "client_credentials"
+            client_id: "{service_client_id}"
+            client_secret: "{service_client_secret}"
+            scope: "sigmacrApi"
+
+        - step: 2
+          action: "Receive access token"
+          response: |
+            {
+              "access_token": "eyJhbGciOiJS...",
+              "expires_in": 300,
+              "token_type": "Bearer",
+              "scope": "sigmacrApi"
+            }
+
+        - step: 3
+          action: "Call API with Bearer token"
+          header: "Authorization: Bearer {access_token}"
+
+      example_curl: |
+        # Step 1: Get access token
+        curl -X POST \
+          https://keycloak.prophix-devops.com/realms/DemoConsolidation/protocol/openid-connect/token \
+          -H "Content-Type: application/x-www-form-urlencoded" \
+          -d "grant_type=client_credentials" \
+          -d "client_id=consolidation-agent" \
+          -d "client_secret=YOUR_SECRET" \
+          -d "scope=sigmacrApi"
+
+        # Step 2: Call API
+        curl -X POST \
+          https://mona-server/HttpHandlers/LongPolling.ashx \
+          -H "Authorization: Bearer eyJhbGciOiJS..." \
+          -H "Content-Type: application/json" \
+          -d '{"type":"init"}'
+
+    # Flow 3: Bearer Token (WebAPI)
+    bearer_token:
+      name: "Bearer Token"
+      use_case: "WebAPI and OData endpoints"
+      description: "Using access token for WebAPI calls"
+
+      configuration:
+        validation_mode: "ValidationEndpoint"
+        authority: "{IdentityServerURL}{ManagementConsoleAuthorityPath}"
+        required_scopes: ["sigmacrApi"]
+
+      usage:
+        header: "Authorization: Bearer {access_token}"
+        token_source: "From client_credentials or authorization_code flow"
+
+  # ============================================================================
+  # SECTION 5: SESSION MANAGEMENT
+  # ============================================================================
+  session_management:
+    description: "How sessions are created and maintained after authentication"
+
+    session_object:
+      description: "Server-side session state for authenticated user"
+      location: "Stored in IStorage (in-memory or distributed cache)"
+      key: "ExternalUserID from Keycloak claims"
+
+      properties:
+        CustomerID:
+          type: "int"
+          description: "Multi-tenant customer/organization ID"
+          source: "Derived from UserCustomer -> Customer relationship"
+
+        UserCustomerID:
+          type: "int"
+          description: "User's membership in a customer organization"
+          source: "T_USER_CUSTOMER.UserCustomerID"
+
+        UserID:
+          type: "int"
+          description: "Global user ID across all customers"
+          source: "T_USER.UserID"
+
+        RoleID:
+          type: "int"
+          description: "User's role within the customer"
+          source: "T_USER_CUSTOMER.RoleID"
+
+        Login:
+          type: "string"
+          description: "Username/login"
+          source: "T_USER.Login or Keycloak 'preferred_username'"
+
+        LanguageID:
+          type: "int"
+          description: "User's language preference"
+          source: "T_USER_CUSTOMER.LanguageID"
+
+        WorkingConsoID:
+          type: "int?"
+          description: "Currently selected consolidation period"
+          source: "T_USER_CUSTOMER.WorkingConsoID"
+          note: "Nullable - user may not have selected a period"
+
+        RefWorkingConsoID:
+          type: "int?"
+          description: "Reference consolidation period for comparisons"
+          source: "T_USER_CUSTOMER.RefWorkingConsoID"
+          note: "Nullable - optional reference period"
+
+    session_lifecycle:
+      creation:
+        trigger: "First authenticated request"
+        process:
+          - "Extract ExternalUserID from Keycloak claims"
+          - "Look up or create SessionObject"
+          - "Store in IStorage keyed by ExternalUserID"
+
+      usage:
+        description: "Each message to the broker includes MessageContext with SessionObject"
+        injection: "Automatic via HttpConnection.ValidateInboundMessages()"
+
+      expiration:
+        cookie_expiry: "Configurable via IdentityServerCookieExpire (default: 360 minutes)"
+        storage_cleanup: "Automatic when connection not seen for extended period"
+
+    connection_management:
+      init_message:
+        description: "First message from client to establish connection"
+        type: "init"
+        response: "connectionID assigned by server"
+
+      connection_tracking:
+        description: "Each client gets a unique connectionID"
+        storage: "Stored in IStorage linked to ExternalUserID"
+        validation: "Each request validates connectionID belongs to authenticated user"
+
+  # ============================================================================
+  # SECTION 6: MULTI-TENANT CONTEXT INJECTION
+  # ============================================================================
+  multi_tenant_context:
+    description: "How CustomerID is injected into API calls for multi-tenant isolation"
+
+    context_flow:
+      - step: 1
+        location: "HttpConnection.ValidateInboundMessages()"
+        action: "Create MessageContext from SessionObject"
+
+      - step: 2
+        location: "Message broker"
+        action: "Attach MessageContext to each inbound message"
+
+      - step: 3
+        location: "Message handler"
+        action: "Extract SessionController from MessageContext"
+
+      - step: 4
+        location: "Service layer"
+        action: "Use helper.CustomerID for all database queries"
+
+    message_context:
+      key: "MessageContext"
+      content:
+        SessionObject: "Complete session state"
+        System: "bool - whether message is system-generated"
+
+    handler_signature:
+      description: "Standard message handler receives SessionController"
+      example: |
+        internal static async Task Handler_Method(
+            SessionController helper,          // Contains CustomerID, UserID, etc.
+            EF.MonaDbContext db,               // Database context
+            MessageValidationHelper validation, // Request validation
+            IDictionary<string,object> response, // Response to build
+            bool debug)
+        {
+            // Access customer context
+            int customerID = helper.CustomerID;
+            int userID = helper.UserID;
+            int? consoID = helper.WorkingConsoID;
+
+            // Query with multi-tenant filter
+            var data = await db.Companies
+                .Where(c => c.CustomerID == customerID)
+                .ToListAsync();
+        }
+
+    critical_security_rules:
+      - rule: "ALWAYS filter queries by CustomerID"
+        enforcement: "All database queries must include CustomerID in WHERE clause"
+
+      - rule: "NEVER trust client-supplied CustomerID"
+        enforcement: "CustomerID comes only from server-side SessionObject"
+
+      - rule: "Validate ConsoID belongs to CustomerID"
+        enforcement: "Check TS096S0.CustomerID = SessionObject.CustomerID"
+
+  # ============================================================================
+  # SECTION 7: MESSAGE BROKER COMMUNICATION
+  # ============================================================================
+  message_broker:
+    description: "How to communicate with the API after authentication"
+
+    endpoint:
+      url: "/HttpHandlers/LongPolling.ashx"
+      method: "POST"
+      content_type: "application/json"
+
+    message_structure:
+      root_message:
+        description: "Container for one or more messages"
+        format: |
+          {
+            "messages": [
+              { "type": "init" },                    // First message
+              { "type": "Consolidation_GetStatus" } // Subsequent messages
+            ]
+          }
+
+      single_message:
+        required_fields:
+          type: "Message type / handler name"
+        optional_fields:
+          receiver: "Target handler ID (default: MessageHandler)"
+          sender: "Connection ID (set by server)"
+
+    init_sequence:
+      description: "Required initialization before sending API messages"
+
+      step_1_init:
+        request: |
+          POST /HttpHandlers/LongPolling.ashx
+          Content-Type: application/json
+          Cookie: {auth_cookie}
+
+          {"type":"init"}
+        response: |
+          {
+            "connectionID": "abc123-def456-...",
+            "serverTime": "2024-12-04T10:30:00Z"
+          }
+
+      step_2_api_call:
+        request: |
+          POST /HttpHandlers/LongPolling.ashx
+          Content-Type: application/json
+          Cookie: {auth_cookie}
+
+          {
+            "connectionID": "abc123-def456-...",
+            "messages": [
+              {
+                "type": "Consolidation_GetStatus",
+                "ConsoID": 123
+              }
+            ]
+          }
+        response: |
+          {
+            "messages": [
+              {
+                "type": "Consolidation_GetStatus",
+                "Status": "Ready",
+                "ConsoCode": "2024-Q4",
+                ...
+              }
+            ]
+          }
+
+  # ============================================================================
+  # SECTION 8: TOKEN REFRESH
+  # ============================================================================
+  token_refresh:
+    description: "How to handle token expiration"
+
+    access_token_lifetime:
+      default: "300 seconds (5 minutes)"
+      configurable: "Yes, in Keycloak client settings"
+
+    refresh_token_lifetime:
+      default: "1800 seconds (30 minutes)"
+      offline_access: "Much longer with offline_access scope"
+
+    refresh_flow:
+      trigger: "Before access_token expires or on 401 response"
+      endpoint: "{authority}/protocol/openid-connect/token"
+      method: "POST"
+      parameters:
+        grant_type: "refresh_token"
+        refresh_token: "{refresh_token}"
+        client_id: "{client_id}"
+        client_secret: "{client_secret}"
+
+    example_refresh: |
+      curl -X POST \
+        https://keycloak.prophix-devops.com/realms/DemoConsolidation/protocol/openid-connect/token \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -d "grant_type=refresh_token" \
+        -d "refresh_token=eyJhbGciOiJS..." \
+        -d "client_id=demo-consolidation" \
+        -d "client_secret=YOUR_SECRET"
+
+    proactive_refresh:
+      recommendation: "Refresh when (expires_at - current_time) < 60 seconds"
+      storage: "Store expires_at claim from token response"
+
+  # ============================================================================
+  # SECTION 9: ERROR HANDLING
+  # ============================================================================
+  authentication_errors:
+    http_401_unauthorized:
+      causes:
+        - "No authentication cookie/token"
+        - "Expired access token"
+        - "Invalid access token"
+        - "Session expired"
+      resolution:
+        - "Re-authenticate using appropriate flow"
+        - "Refresh token if available"
+
+    http_403_forbidden:
+      causes:
+        - "User lacks required role"
+        - "User lacks access to requested customer"
+        - "ConsoID belongs to different customer"
+      resolution:
+        - "Check user's role assignment"
+        - "Verify resource belongs to user's customer"
+
+    invalid_session_object:
+      causes:
+        - "User deleted from system"
+        - "Customer disabled"
+        - "Session storage cleared"
+      resolution:
+        - "Force re-authentication"
+        - "Clear cookies and start fresh"
+
+    keycloak_errors:
+      invalid_grant:
+        cause: "Refresh token expired or revoked"
+        resolution: "Full re-authentication required"
+
+      invalid_client:
+        cause: "Wrong client_id or client_secret"
+        resolution: "Verify client configuration"
+
+      unauthorized_client:
+        cause: "Client not authorized for requested grant type"
+        resolution: "Check Keycloak client settings"
+
+  # ============================================================================
+  # SECTION 10: RATE LIMITING
+  # ============================================================================
+  rate_limiting:
+    description: "API rate limits and throttling guidance"
+
+    long_polling_limits:
+      max_messages_per_request: 100
+      polling_interval_minimum: "500ms"
+      recommended_interval: "1000ms"
+      max_concurrent_connections_per_user: 5
+
+    best_practices:
+      - "Batch multiple API calls into single request when possible"
+      - "Use exponential backoff on errors"
+      - "Don't poll faster than 1 second intervals"
+      - "Close unused connections"
+
+    throttling_indicators:
+      http_429: "Too many requests - back off"
+      slow_responses: "Server under load - reduce request rate"
+      connection_refused: "Too many connections - close unused"
+
+    exponential_backoff:
+      initial_delay: "1 second"
+      multiplier: 2
+      max_delay: "60 seconds"
+      jitter: "Add random 0-500ms"
+
+  # ============================================================================
+  # SECTION 11: AI AGENT RECOMMENDATIONS
+  # ============================================================================
+  agent_recommendations:
+    description: "Specific guidance for AI agent implementation"
+
+    recommended_flow: "Client Credentials"
+    reason: "No user interaction required, suitable for automation"
+
+    service_account_setup:
+      - "Create dedicated client in Keycloak for agent"
+      - "Enable 'Service accounts roles' in client settings"
+      - "Assign appropriate realm and client roles"
+      - "Note client_id and client_secret securely"
+
+    token_management:
+      - "Cache access token until near expiry"
+      - "Proactively refresh before expiry"
+      - "Handle refresh failures gracefully"
+      - "Never log or expose tokens"
+
+    connection_handling:
+      - "Establish single connection per agent instance"
+      - "Reuse connectionID for all requests"
+      - "Re-init on connection errors"
+      - "Implement heartbeat to keep connection alive"
+
+    multi_tenant_awareness:
+      - "Agent may operate across multiple customers"
+      - "Each customer requires separate authentication"
+      - "Never mix customer data across sessions"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-04"
+    version: "1.0"
+    author: "Claude Code - Documentation automation"
+
+    source_files:
+      - "Sigma.Mona.WebApplication/Startup.cs - OIDC configuration"
+      - "Sigma.Mona/Common/Config.cs - Configuration keys"
+      - "Sigma.Mona/Business/SecurityController.cs - Security claims"
+      - "Sigma.Mona/Business/SessionController.cs - SessionObject"
+      - "Sigma.Mona.WebApplication/MessagesBroker/HttpConnection.cs - Message handling"
+      - "Sigma.Mona/WebApplication/Client/LoginHelper.cs - Login flow"
+      - "Sigma.Mona/WebApplication/Constants.cs - Well-known endpoints"
+
+    related_files:
+      - "api-error-catalog.yaml - Authentication error codes"
+      - "api-agent-prompts.yaml - Agent prompts with auth context"
+      - "api-index.yaml - API endpoint catalog"
+
+    updates:
+      - date: "2024-12-04"
+        change: "Initial authentication guide created"

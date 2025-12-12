@@ -1,0 +1,1006 @@
+# API Common Types and Patterns
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable type definitions for AI agent orchestration
+
+api_common_types:
+  name: "Common API Types and Patterns"
+  version: "1.0"
+  description: |
+    Shared type definitions, validation rules, and communication patterns
+    for the Prophix.Conso Financial Consolidation API.
+
+    This document enables AI agents to correctly format requests and parse
+    responses when orchestrating consolidation operations.
+
+  # ============================================================================
+  # COMMUNICATION PROTOCOL
+  # ============================================================================
+  protocol:
+    transport: "HTTP Long Polling"
+    endpoint: "/HttpHandlers/LongPolling.ashx"
+    content_type: "application/json"
+    description: |
+      All API calls use a message broker architecture with long polling.
+      Requests are JSON objects with a message handler type key.
+      Responses are JSON objects with standardized structure.
+
+    message_structure:
+      request:
+        description: "Standard request message format"
+        required_fields:
+          - name: "MessageHandler"
+            key: "_t"
+            type: "string"
+            description: "Handler type identifier (e.g., 'Ownership_GetOwnership')"
+        optional_fields:
+          - name: "Debug"
+            type: "boolean"
+            default: false
+            description: "Enables verbose logging in response"
+        example:
+          json: |
+            {
+              "_t": "Ownership_GetOwnership",
+              "CompanyId": 123,
+              "Debug": false
+            }
+
+      response:
+        description: "Standard response message format"
+        success_fields:
+          - name: "scf_items"
+            key: "scf_items"
+            type: "array | object"
+            description: "Primary data payload (list or single item)"
+          - name: "total_row_count"
+            key: "total_row_count"
+            type: "integer"
+            description: "Total matching records (when pagination enabled)"
+          - name: "JobID"
+            type: "integer"
+            description: "Background job identifier for async operations"
+        error_fields:
+          - name: "errors"
+            key: "errors"
+            type: "string[]"
+            description: "Array of error messages (localized)"
+          - name: "warnings"
+            key: "warnings"
+            type: "string[]"
+            description: "Array of warning messages (localized)"
+          - name: "scf_error_fields"
+            key: "scf_error_fields"
+            type: "string[]"
+            description: "Field names that failed validation"
+          - name: "logs"
+            key: "logs"
+            type: "string[]"
+            description: "Debug log lines (when Debug=true)"
+
+  # ============================================================================
+  # VALIDATION TYPES
+  # ============================================================================
+  validation_types:
+    description: |
+      MessageValidationHelper provides strongly-typed validation for all API parameters.
+      Source: Sigma.Mona/Common/Utility/MessageValidationHelper.cs
+
+      Each validation method extracts and validates a parameter from the request message,
+      returning null on missing optional fields or adding errors for invalid values.
+
+    # --------------------------------------------------------------------------
+    # Numeric Validation Types
+    # --------------------------------------------------------------------------
+    numeric:
+      - name: "ValidateID"
+        method_signature: "int? ValidateID(string fieldName, bool required = true)"
+        json_type: "integer"
+        nullable: true
+        description: |
+          Validates database primary key identifiers.
+          Must be positive integer (> 0), cannot be zero.
+          Commonly used for: CompanyID, ConsoID, UserID, AccountID, etc.
+        parameters:
+          - name: "required"
+            type: "bool"
+            default: true
+            description: "Whether field must be present"
+          - name: "messageKeyRequired"
+            type: "string"
+            default: null
+            description: "Custom translation key for 'required' error"
+          - name: "messageKeyInvalid"
+            type: "string"
+            default: null
+            description: "Custom translation key for 'invalid' error"
+        constraints:
+          - "Must be > 0"
+          - "Cannot be null if required=true"
+        example:
+          request: { "CompanyID": 123, "ConsoID": 456 }
+          code: |
+            var companyID = validation.ValidateID("CompanyID", required: true);
+            var consoID = validation.ValidateID("ConsoID", required: true);
+
+      - name: "ValidateInt"
+        method_signature: "int? ValidateInt(string fieldName, bool required = false, bool mustBePositive = false, bool canBeZero = true)"
+        json_type: "integer"
+        nullable: true
+        description: |
+          Validates general integer values with configurable constraints.
+          Used for counts, indices, enum values, and other numeric data.
+        parameters:
+          - name: "required"
+            type: "bool"
+            default: false
+          - name: "mustBePositive"
+            type: "bool"
+            default: false
+            description: "Reject negative values"
+          - name: "canBeZero"
+            type: "bool"
+            default: true
+            description: "Allow zero value"
+        example:
+          request: { "IntegrationType": 1, "ScreenID": 100 }
+          code: |
+            var integrationType = validation.ValidateInt("IntegrationType", required: true);
+            var screenID = validation.ValidateInt("ScreenID", required: false);
+
+      - name: "ValidateShort"
+        method_signature: "short? ValidateShort(string fieldName, bool required = false, bool mustBePositive = false, bool canBeZero = true)"
+        json_type: "integer"
+        nullable: true
+        description: "Validates 16-bit integer values. Used for year, sequence numbers."
+        constraints:
+          - "Range: -32768 to 32767"
+        example:
+          request: { "Year": 2024, "Sequence": 1 }
+
+      - name: "ValidateByte"
+        method_signature: "byte? ValidateByte(string fieldName, bool required = false, bool canBeZero = true)"
+        json_type: "integer"
+        nullable: true
+        description: "Validates 8-bit unsigned integer. Used for month, flags."
+        constraints:
+          - "Range: 0 to 255"
+        example:
+          request: { "Month": 12 }
+
+      - name: "ValidateLong"
+        method_signature: "long? ValidateLong(string fieldName, bool required = false, bool mustBePositive = false, bool canBeZero = true)"
+        json_type: "integer"
+        nullable: true
+        description: "Validates 64-bit integer values. Used for financial amounts, large IDs."
+        example:
+          request: { "OwnershipFinancialRights": 1000000, "OwnershipVotingRights": 500000 }
+
+      - name: "ValidateDecimal"
+        method_signature: "decimal? ValidateDecimal(string fieldName, int length, int decimals, bool required = false, bool mustBePositive = false, bool canBeZero = true)"
+        json_type: "number"
+        nullable: true
+        description: |
+          Validates decimal numbers with precision constraints.
+          Used for percentages, rates, and precise numeric values.
+        parameters:
+          - name: "length"
+            type: "int"
+            description: "Total number of digits"
+          - name: "decimals"
+            type: "int"
+            description: "Digits after decimal point"
+        example:
+          request: { "GroupPerc": 75.5, "MinorPerc": 24.5 }
+
+      - name: "ValidateAmount"
+        method_signature: "decimal? ValidateAmount(SessionController sessionController, string fieldName, bool required = false, bool applyWorkPeriodRounding = false)"
+        json_type: "number"
+        nullable: true
+        description: |
+          Validates financial amounts with period-specific rounding.
+          Automatically applies rounding based on working period decimal settings.
+        parameters:
+          - name: "applyWorkPeriodRounding"
+            type: "bool"
+            default: false
+            description: "Apply decimal rounding from period settings"
+          - name: "roundingDecimals"
+            type: "int"
+            default: null
+            description: "Override decimal places for rounding"
+          - name: "unitsOf"
+            type: "int"
+            default: null
+            description: "Unit multiplier (thousands, millions)"
+        example:
+          request: { "Amount": 1234567.89 }
+
+    # --------------------------------------------------------------------------
+    # String Validation Types
+    # --------------------------------------------------------------------------
+    string:
+      - name: "ValidateString"
+        method_signature: "string ValidateString(string fieldName, bool required = false, bool emptyIfNull = false, bool nullIfEmpty = false, bool trim = true)"
+        json_type: "string"
+        nullable: true
+        description: |
+          Validates general string values with whitespace handling.
+          Default behavior trims whitespace and preserves null/empty distinction.
+        parameters:
+          - name: "required"
+            type: "bool"
+            default: false
+          - name: "emptyIfNull"
+            type: "bool"
+            default: false
+            description: "Return empty string instead of null"
+          - name: "nullIfEmpty"
+            type: "bool"
+            default: false
+            description: "Return null for empty strings"
+          - name: "trim"
+            type: "bool"
+            default: true
+            description: "Remove leading/trailing whitespace"
+        example:
+          request: { "CompanyName": "Acme Corp", "Description": "  Trimmed  " }
+
+      - name: "ValidateCode"
+        method_signature: "string ValidateCode(string fieldName, bool required = true, int? maxLength = null, int? mustHaveSize = null)"
+        json_type: "string"
+        nullable: true
+        description: |
+          Validates business code identifiers (alphanumeric only).
+          Used for CompanyCode, AccountCode, CategoryCode, etc.
+          Automatically validates against DataTypeValidation.ValidateCode() rules.
+        constraints:
+          - "Alphanumeric characters only"
+          - "No special characters"
+          - "Case-sensitive"
+        parameters:
+          - name: "maxLength"
+            type: "int"
+            default: null
+            description: "Maximum allowed length"
+          - name: "mustHaveSize"
+            type: "int"
+            default: null
+            description: "Exact required length"
+        example:
+          request: { "CompanyCode": "ACME01", "AccountCode": "1000" }
+
+      - name: "ValidateConsoCode"
+        method_signature: "string ValidateConsoCode(int customerID, string fieldName, bool required = true)"
+        json_type: "string"
+        nullable: true
+        description: |
+          Validates consolidation period codes (YYYY.MM.CAT.SEQ format).
+          Automatically parses and validates year, month, category, and sequence.
+        format: "YYYY.MM.CAT.SEQ"
+        example:
+          request: { "ConsoCode": "2024.12.A.01" }
+          parsed:
+            year: 2024
+            month: 12
+            category: "A"
+            sequence: 1
+
+      - name: "ValidateConsoCodeFields"
+        method_signature: "Tuple<short,byte,string,short> ValidateConsoCodeFields(int customerID, string yearFieldName, string monthFieldName, string categoryFieldName, string sequenceFieldName, bool required = true)"
+        json_type: "object"
+        nullable: true
+        description: |
+          Validates separate consolidation period fields.
+          All fields required if any field is provided.
+        fields:
+          - name: "Year"
+            type: "short"
+          - name: "Month"
+            type: "byte"
+          - name: "Category"
+            type: "string"
+          - name: "Sequence"
+            type: "short"
+        example:
+          request: { "ConsoYear": 2024, "ConsoMonth": 12, "Category": "A", "ConsoSequence": 1 }
+
+      - name: "ValidateEMail"
+        method_signature: "string ValidateEMail(string fieldName, bool required = false)"
+        json_type: "string"
+        nullable: true
+        description: "Validates email address format using DataTypeValidation.ValidateEMail()"
+        example:
+          request: { "Email": "user@example.com" }
+
+      - name: "ValidateFileName"
+        method_signature: "string ValidateFileName(string fieldName, bool required = false, bool validateExtension = true, string acceptedExtensions = null)"
+        json_type: "string"
+        nullable: true
+        description: "Validates file names for safe characters and optional extension restrictions."
+        parameters:
+          - name: "validateExtension"
+            type: "bool"
+            default: true
+          - name: "acceptedExtensions"
+            type: "string"
+            description: "Comma-separated list of allowed extensions"
+        example:
+          request: { "FileName": "report.xlsx" }
+
+      - name: "ValidateChar"
+        method_signature: "char? ValidateChar(string fieldName, bool required = false, bool allowSpace = false)"
+        json_type: "string"
+        nullable: true
+        description: "Validates single character values."
+        constraints:
+          - "Exactly 1 character"
+        example:
+          request: { "Type": "S" }
+
+    # --------------------------------------------------------------------------
+    # Boolean Validation
+    # --------------------------------------------------------------------------
+    boolean:
+      - name: "ValidateBool"
+        method_signature: "bool? ValidateBool(string fieldName, bool required = false)"
+        json_type: "boolean"
+        nullable: true
+        description: |
+          Validates boolean values with flexible input handling.
+          Accepts: true/false, "true"/"false", 0/1, any non-zero number as true.
+        accepted_values:
+          - "true / false (boolean)"
+          - "\"true\" / \"false\" (string)"
+          - "0 / 1 (number)"
+          - "Any non-zero number = true"
+        example:
+          request: { "Debug": false, "IncludeDimensions": true }
+          code: |
+            var debug = validation.ValidateBool("Debug", required: false) ?? false;
+            var includeDimensions = validation.ValidateBool("IncludeDimensions", required: false) ?? false;
+
+    # --------------------------------------------------------------------------
+    # DateTime Validation
+    # --------------------------------------------------------------------------
+    datetime:
+      - name: "ValidateDateTime"
+        method_signature: "DateTime? ValidateDateTime(string fieldName, bool required = false, bool isoFormat = true)"
+        json_type: "string"
+        format: "ISO 8601"
+        nullable: true
+        description: "Validates date/time values, preferring ISO 8601 format."
+        parameters:
+          - name: "isoFormat"
+            type: "bool"
+            default: true
+            description: "Expect ISO 8601 format (YYYY-MM-DDTHH:mm:ss)"
+        example:
+          request: { "StartDate": "2024-01-15T00:00:00", "EndDate": "2024-12-31" }
+
+    # --------------------------------------------------------------------------
+    # Enum Validation
+    # --------------------------------------------------------------------------
+    enum:
+      - name: "ValidateEnum<T>"
+        method_signature: "T? ValidateEnum<T>(string fieldName, bool required = false, bool rejectType0 = false, bool ignoreCase = true)"
+        json_type: "string | integer"
+        nullable: true
+        description: |
+          Validates enumeration values by name or numeric value.
+          Type parameter T must be an enum type.
+        parameters:
+          - name: "rejectType0"
+            type: "bool"
+            default: false
+            description: "Reject enum value 0 (often 'Undefined')"
+          - name: "ignoreCase"
+            type: "bool"
+            default: true
+            description: "Case-insensitive string matching"
+        example:
+          request: { "Status": "Active", "Type": 1 }
+          code: |
+            var status = validation.ValidateEnum<StatusType>("Status", required: true);
+            var type = validation.ValidateEnum<JournalType>("Type", required: false);
+
+    # --------------------------------------------------------------------------
+    # Collection Validation Types
+    # --------------------------------------------------------------------------
+    collection:
+      - name: "ValidateList<T>"
+        method_signature: "T[] ValidateList<T>(string fieldName, Func<object, T> castCallback = null, bool required = false, bool mustBeNonEmpty = false, int? mustHaveSize = null)"
+        json_type: "array"
+        nullable: true
+        description: |
+          Validates array/list values with optional element transformation.
+          Use castCallback to transform each element during validation.
+        parameters:
+          - name: "castCallback"
+            type: "Func<object, T>"
+            description: "Transform function for each element"
+          - name: "validateCallback"
+            type: "Func<T>"
+            description: "Validation function using current ValidationMessageItem"
+          - name: "mustBeNonEmpty"
+            type: "bool"
+            default: false
+            description: "Require at least one element"
+          - name: "mustHaveSize"
+            type: "int"
+            default: null
+            description: "Require exact element count"
+          - name: "nullIfEmpty"
+            type: "bool"
+            default: false
+          - name: "emptyIfNull"
+            type: "bool"
+            default: true
+        example:
+          request: { "CompanyIDs": [1, 2, 3, 4, 5] }
+          code: |
+            var companyIDs = validation.ValidateList("CompanyIDs",
+                required: true,
+                castCallback: (v) => Convert.ToInt32(v));
+
+      - name: "ValidateDictionary<T, V>"
+        method_signature: "Dictionary<T, V> ValidateDictionary<T, V>(string fieldName, Func<string, T> keyCastCallback, Func<object, V> valueCastCallback, bool required = false)"
+        json_type: "object"
+        nullable: true
+        description: |
+          Validates key-value pair objects with type transformation.
+          Keys are always strings in JSON, transformed via keyCastCallback.
+        example:
+          request: { "Settings": { "key1": "value1", "key2": "value2" } }
+          code: |
+            var settings = validation.ValidateDictionary<string, object>("Settings",
+                required: false,
+                keyCastCallback: (v) => v,
+                valueCastCallback: (v) => v);
+
+      - name: "ValidateMessage"
+        method_signature: "IDictionary<string, object> ValidateMessage(string fieldName, bool required = true, bool mustHaveType = true)"
+        json_type: "object"
+        nullable: true
+        description: |
+          Validates nested message objects (sub-requests).
+          Can enforce presence of message handler type.
+        parameters:
+          - name: "mustHaveType"
+            type: "bool"
+            default: true
+            description: "Require _t (MessageHandler) key"
+          - name: "stripRoutingKeys"
+            type: "bool"
+            default: false
+            description: "Remove routing keys for security"
+        example:
+          request:
+            NestedMessage:
+              _t: "SubHandler_Type"
+              Data: "value"
+
+    # --------------------------------------------------------------------------
+    # Entity Validation Types
+    # --------------------------------------------------------------------------
+    entity:
+      - name: "ValidateEntities"
+        method_signature: "EntityVersion[] ValidateEntities(string fieldName, bool required = false, bool mustBeNonEmpty = false, int? mustHaveSize = null)"
+        json_type: "array"
+        nullable: true
+        description: |
+          Validates entity version arrays for optimistic concurrency control.
+          Used to prevent concurrent modification conflicts.
+        element_structure:
+          Name: "string - Entity type name"
+          Key: "string - Entity key identifier"
+          Version: "integer - Current entity version"
+        example:
+          request:
+            EntityVersion:
+              - Name: "Company"
+                Key: "123_456"
+                Version: 5
+          code: |
+            var entities = validation.ValidateEntities(
+                MessageConstants.RqstMsgParmEntityVersion,
+                required: false,
+                mustHaveSize: 1);
+
+      - name: "ValidateEntity"
+        method_signature: "EntityVersion ValidateEntity(string fieldName, bool required = false)"
+        json_type: "object"
+        nullable: true
+        description: "Validates single entity version object."
+        structure:
+          Name: { type: "string", required: true }
+          Key: { type: "string", required: true }
+          Version: { type: "integer", required: true }
+
+    # --------------------------------------------------------------------------
+    # Specialized Validation Types
+    # --------------------------------------------------------------------------
+    specialized:
+      - name: "ValidateConsoCodeExisting"
+        method_signature: "async Task<int?> ValidateConsoCodeExisting(EF.MonaDbContext dataContext, SessionController sessionController, string fieldName, bool required = true)"
+        json_type: "string"
+        returns: "integer (ConsoID)"
+        nullable: true
+        description: |
+          Validates consolidation code AND verifies it exists in database.
+          Returns the ConsoID if valid and exists.
+        async: true
+        requires_database: true
+        example:
+          request: { "ConsoCode": "2024.12.A.01" }
+          returns: 123  # ConsoID
+
+      - name: "ValidateObject<T>"
+        method_signature: "T ValidateObject<T>(string fieldName, Func<MessageValidationHelper, T> castCallback, bool required = false)"
+        json_type: "object"
+        description: |
+          Validates complex nested objects with custom transformation.
+          Sets ValidationMessageItem to nested object during callback.
+        example:
+          code: |
+            var ownershipDetail = validation.ValidateObject<OwnerShipDetailDTO>(
+                "Shareholders",
+                (v) => ParseOwnershipDetail(v));
+
+      - name: "ValidateXLSColumn"
+        method_signature: "string ValidateXLSColumn(string fieldName, bool required = false)"
+        json_type: "string"
+        nullable: true
+        description: "Validates Excel column reference (A-Z, AA-ZZ format)."
+        constraints:
+          - "Maximum 2 characters"
+          - "Only letters A-Z (case-insensitive)"
+        example:
+          request: { "Column": "AB" }
+
+  # ============================================================================
+  # COMMON REQUEST PARAMETERS
+  # ============================================================================
+  common_parameters:
+    description: |
+      Standard parameters used across multiple API handlers.
+      These follow consistent naming conventions defined in MessageConstants.cs.
+
+    pagination:
+      description: |
+        Parameters for paginated list requests.
+        Supports both legacy (from_row) and SCF (scf_from_row) naming.
+      parameters:
+        - name: "FromRow / scf_from_row"
+          key_legacy: "from_row"
+          key_scf: "scf_from_row"
+          type: "integer"
+          default: 0
+          description: "Starting row index (0-based)"
+        - name: "RowCount / scf_row_count"
+          key_legacy: "row_count"
+          key_scf: "scf_row_count"
+          type: "integer"
+          default: null
+          description: "Maximum rows to return (null = all)"
+        - name: "OrderBy / scf_order_by"
+          key_legacy: "order_by"
+          key_scf: "scf_order_by"
+          type: "string"
+          description: "SQL-style ordering (e.g., 'CompanyCode ASC')"
+        - name: "IncludeTotalRowCount / scf_include_total_row_count"
+          key_legacy: "include_total_row_count"
+          key_scf: "scf_include_total_row_count"
+          type: "boolean"
+          default: false
+          description: "Include total matching row count in response"
+      validation_methods:
+        - "ValidateFromRow(scfKey, legacyKey)"
+        - "ValidateRowCount(scfKey, legacyKey)"
+        - "ValidateOrderBy(scfKey, legacyKey)"
+        - "ValidateIncludeTotalRowCount(scfKey, legacyKey)"
+      example:
+        request:
+          scf_from_row: 0
+          scf_row_count: 50
+          scf_order_by: "CompanyCode ASC"
+          scf_include_total_row_count: true
+        response:
+          scf_items: []
+          scf_total_row_count: 150
+
+    entity_locking:
+      description: |
+        Parameters for optimistic concurrency control.
+        Prevents concurrent modification of shared entities.
+      parameters:
+        - name: "IncludeEntities / scf_include_entities"
+          key: "scf_include_entities"
+          type: "boolean"
+          default: false
+          description: "Return entity version information for locking"
+        - name: "EntityVersion"
+          key: "EntityVersion"
+          type: "array<EntityVersion>"
+          description: "Entity versions to verify before update"
+      flow:
+        read: |
+          1. Request with scf_include_entities: true
+          2. Response includes EntityVersion array
+          3. Store versions for subsequent update
+        write: |
+          1. Include stored EntityVersion in update request
+          2. Server verifies versions match current state
+          3. If mismatch, returns MultiUserException error
+      example:
+        get_request:
+          _t: "Company_GetCompanies"
+          scf_include_entities: true
+        get_response:
+          scf_items:
+            - CompanyID: 123
+              CompanyCode: "ACME"
+          EntityVersion:
+            - Name: "Company"
+              Key: "123_456"
+              Version: 5
+        save_request:
+          _t: "Company_SaveCompany"
+          CompanyID: 123
+          CompanyCode: "ACME"
+          EntityVersion:
+            - Name: "Company"
+              Key: "123_456"
+              Version: 5
+
+    debug:
+      description: "Debug/diagnostic parameters"
+      parameters:
+        - name: "Debug"
+          type: "boolean"
+          default: false
+          description: "Enable verbose logging in response"
+      example:
+        request: { "Debug": true }
+        response:
+          logs:
+            - "10:30:01.00 00:00:00.00 00:00:00.00 log: Parsing parameters"
+            - "10:30:01.05 00:00:00.05 00:00:00.05 log: Querying database"
+
+    context:
+      description: "Session context parameters (automatically set from session)"
+      parameters:
+        - name: "ConsoID"
+          type: "integer"
+          source: "session"
+          description: "Current working consolidation period ID"
+        - name: "CustomerID"
+          type: "integer"
+          source: "session"
+          description: "Current customer/tenant ID"
+        - name: "UserID"
+          type: "integer"
+          source: "session"
+          description: "Current authenticated user ID"
+
+  # ============================================================================
+  # RESPONSE PATTERNS
+  # ============================================================================
+  response_patterns:
+    description: |
+      Standard response structures returned by API handlers.
+      Source: Sigma.Mona/Common/ResponseMessageHelper.cs
+
+    success:
+      list_response:
+        description: "Response containing multiple items"
+        keys:
+          items: "scf_items"
+          total_count: "scf_total_row_count"
+          entity_version: "EntityVersion"
+        example:
+          scf_items:
+            - CompanyID: 1
+              CompanyCode: "ACME"
+              CompanyName: "Acme Corporation"
+            - CompanyID: 2
+              CompanyCode: "BETA"
+              CompanyName: "Beta Industries"
+          scf_total_row_count: 150
+          EntityVersion:
+            - Name: "Company"
+              Key: "1_456"
+              Version: 3
+
+      single_item_response:
+        description: "Response containing single item"
+        keys:
+          item: "scf_items"
+          entity_version: "EntityVersion"
+        example:
+          scf_items:
+            CompanyID: 123
+            CompanyCode: "ACME"
+            CompanyName: "Acme Corporation"
+            IsParentCompany: true
+          EntityVersion:
+            - Name: "Company"
+              Key: "123_456"
+              Version: 5
+
+      job_response:
+        description: "Response for async/background job operations"
+        keys:
+          job_id: "JobID"
+          job_schedule_id: "JobScheduleID"
+        example:
+          JobID: 12345
+        polling:
+          description: |
+            Use Job_GetJobStatusPolling to monitor job completion.
+            Poll until Status indicates completion or failure.
+
+      save_response:
+        description: "Response after successful save operation"
+        keys:
+          entity_version: "EntityVersion"
+        note: "May include updated entity version for subsequent operations"
+
+    error:
+      description: |
+        Error responses follow consistent structure.
+        Source: LogHelper.cs, ResponseMessageHelper.cs
+      structure:
+        errors:
+          key: "errors"
+          type: "string[]"
+          description: "Array of localized error messages"
+        warnings:
+          key: "warnings"
+          type: "string[]"
+          description: "Array of localized warning messages"
+        error_fields:
+          key: "scf_error_fields"
+          type: "string[]"
+          description: "Field names that failed validation"
+        logs:
+          key: "logs"
+          type: "string[]"
+          description: "Debug log lines (when Debug=true)"
+        user_messages:
+          key: "user_messages"
+          type: "string[]"
+          description: "Informational messages for user"
+
+      error_detection:
+        description: "How to determine if response contains errors"
+        method: "Check presence and length of 'errors' array"
+        code: |
+          bool hasErrors = response.ContainsKey("errors")
+                        && ((string[])response["errors"]).Length > 0;
+
+      common_errors:
+        validation_required:
+          pattern: "{FieldName}Required"
+          example: "CompanyCodeRequired"
+          cause: "Required field missing or empty"
+        validation_invalid:
+          pattern: "{FieldName}Invalid"
+          example: "CompanyCodeInvalid"
+          cause: "Field value fails format/constraint validation"
+        access_denied:
+          pattern: "AccessDenied"
+          cause: "User lacks required permission for operation"
+        multi_user_exception:
+          pattern: "Entity has been modified by another user"
+          cause: "Optimistic concurrency conflict"
+        not_found:
+          pattern: "Entity not found"
+          cause: "Requested entity does not exist"
+
+      example:
+        json: |
+          {
+            "errors": [
+              "Company code is required",
+              "Invalid consolidation period"
+            ],
+            "scf_error_fields": ["CompanyCode", "ConsoCode"],
+            "warnings": [
+              "Period is locked for editing"
+            ],
+            "logs": [
+              "10:30:01.00 error: CompanyCodeRequired"
+            ]
+          }
+
+  # ============================================================================
+  # HANDLER SIGNATURES
+  # ============================================================================
+  handler_signatures:
+    description: |
+      Message handler method signatures used in the codebase.
+      Source: LongPolling.ashx.cs, various Service files
+
+    modern_ef:
+      description: "Modern Entity Framework async handler (Recipe 4)"
+      signature: |
+        internal static async Task HandlerName(
+            SessionController helper,
+            EF.MonaDbContext db,
+            MessageValidationHelper validation,
+            IDictionary<string, object> responseMessage,
+            bool debug)
+      parameters:
+        helper: "Session controller with user context, logging"
+        db: "Entity Framework database context"
+        validation: "Pre-configured validation helper with request message"
+        responseMessage: "Output dictionary for response data"
+        debug: "Debug mode flag from request"
+      example_services:
+        - "ConsolidationIntegrationService.cs"
+        - "Category.CategoryService.cs"
+
+    legacy_linq2sql:
+      description: "Legacy LINQ-to-SQL handler (being migrated)"
+      signature: |
+        internal static void HandlerName(
+            SessionController helper,
+            Message requestMessage,
+            Message responseMessage)
+      parameters:
+        helper: "Session controller"
+        requestMessage: "Input message dictionary"
+        responseMessage: "Output message dictionary"
+      note: "Being migrated to modern EF pattern per Recipe 0/0A"
+      example_services:
+        - "OwnershipService.cs"
+        - "CompanyService.cs"
+
+  # ============================================================================
+  # ERROR HANDLING PATTERNS
+  # ============================================================================
+  error_handling:
+    description: |
+      Standard error handling patterns used in service handlers.
+      Source: LogHelper.cs
+
+    validation_flow:
+      description: "Standard validation and early-exit pattern"
+      steps:
+        - "Parse and validate all parameters"
+        - "Check helper.LogHelper.HasErrors"
+        - "Return early if validation errors exist"
+        - "Proceed with business logic"
+      code: |
+        // Standard validation pattern
+        var companyID = validation.ValidateID("CompanyID", required: true);
+        var code = validation.ValidateCode("Code", required: true);
+
+        if (helper.LogHelper.HasErrors)
+            return;  // Early exit - errors already logged
+
+        // Proceed with business logic
+
+    exception_handling:
+      description: "Standard try/catch pattern for service handlers"
+      code: |
+        try
+        {
+            // Handler logic
+        }
+        catch (System.Exception ex)
+        {
+            bool errorMessageTranslated;
+            helper.LogHelper.AddExceptionToErrors(ex, out errorMessageTranslated);
+
+            if (!errorMessageTranslated)
+            {
+                // Unknown error - include logs
+                includeLogs = true;
+            }
+        }
+
+        scripts.MasterJS.FillResponseMessage(responseMessage, helper, includeLogs);
+
+    error_methods:
+      - name: "AddErrorMessage"
+        description: "Add non-translatable error message"
+        signature: "void AddErrorMessage(string message)"
+      - name: "AddErrorMessageTranslated"
+        description: "Add translatable error message by key"
+        signature: "void AddErrorMessageTranslated(string key, params string[] parameters)"
+      - name: "AddExceptionToErrors"
+        description: "Convert exception to error messages"
+        signature: "Exception AddExceptionToErrors(Exception exception, out bool errorMessageTranslated)"
+      - name: "AddErrorControl"
+        description: "Mark field as having error"
+        signature: "void AddErrorControl(string fieldName)"
+
+  # ============================================================================
+  # MESSAGE CONSTANTS
+  # ============================================================================
+  message_constants:
+    source: "Sigma.Mona.WebApplication/Utility/MessageConstants.cs"
+    description: "Standard key names for request/response fields"
+
+    request_keys:
+      scf_include_entities: "scf_include_entities"
+      entity_version: "EntityVersion"
+      include_total_row_count: "include_total_row_count"
+      scf_include_total_row_count: "scf_include_total_row_count"
+      from_row: "from_row"
+      scf_from_row: "scf_from_row"
+      row_count: "row_count"
+      scf_row_count: "scf_row_count"
+      order_by: "order_by"
+      scf_order_by: "scf_order_by"
+
+    response_keys:
+      scf_items: "scf_items"
+      total_row_count: "total_row_count"
+      scf_total_row_count: "scf_total_row_count"
+      entity_version: "EntityVersion"
+      errors: "errors"
+      warnings: "warnings"
+      error_fields: "scf_error_fields"
+      logs: "logs"
+      user_messages: "user_messages"
+
+  # ============================================================================
+  # TYPE MAPPINGS
+  # ============================================================================
+  type_mappings:
+    description: "Mapping between C#/.NET types and JSON types"
+    mappings:
+      - csharp: "int"
+        json: "integer"
+        nullable: true
+        range: "-2147483648 to 2147483647"
+      - csharp: "int?"
+        json: "integer | null"
+        nullable: true
+      - csharp: "long"
+        json: "integer"
+        range: "-9223372036854775808 to 9223372036854775807"
+      - csharp: "short"
+        json: "integer"
+        range: "-32768 to 32767"
+      - csharp: "byte"
+        json: "integer"
+        range: "0 to 255"
+      - csharp: "decimal"
+        json: "number"
+        precision: "28-29 significant digits"
+      - csharp: "bool"
+        json: "boolean"
+      - csharp: "string"
+        json: "string"
+      - csharp: "DateTime"
+        json: "string"
+        format: "ISO 8601"
+      - csharp: "T[]"
+        json: "array"
+      - csharp: "List<T>"
+        json: "array"
+      - csharp: "Dictionary<K,V>"
+        json: "object"
+      - csharp: "IDictionary<string,object>"
+        json: "object"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona/Common/Utility/MessageValidationHelper.cs"
+      - "Sigma.Mona/Common/Utility/LogHelper.cs"
+      - "Sigma.Mona/Common/ResponseMessageHelper.cs"
+      - "Sigma.Mona.WebApplication/Utility/MessageConstants.cs"
+      - "Sigma.Mona.WebApplication/HttpHandlers/LongPolling.ashx.cs"
+    handler_count: "537+"
+    validation_methods: "30+"
+    purpose: |
+      Enable AI agents to correctly format API requests and parse responses
+      when orchestrating financial consolidation operations.

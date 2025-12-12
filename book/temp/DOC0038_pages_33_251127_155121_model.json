@@ -1,0 +1,1463 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.127,
+                0.069,
+                0.38,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.126,
+                0.121,
+                0.482,
+                0.172
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td></td><td></td></tr><tr><td>Goodwill</td><td></td><td>500</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.498,
+                0.123,
+                0.87,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Complete depreciation of the goodwill."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.128,
+                0.201,
+                0.482,
+                0.253
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Provision</td><td>240</td><td></td></tr><tr><td>Reserves</td><td></td><td>240</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.498,
+                0.204,
+                0.834,
+                0.22
+            ],
+            "angle": 0,
+            "content": "Reverse of the statutory provision."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.128,
+                0.283,
+                0.482,
+                0.35
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Equity value Fin. Invest./A Reserves</td><td></td><td>1,500</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.495,
+                0.284,
+                0.89,
+                0.363
+            ],
+            "angle": 0,
+            "content": "We now replace the adjusted financial investment on company A by its equity value and we know since Part 2 that the difference is equal to the consolidated reserves."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.124,
+                0.377,
+                0.89,
+                0.427
+            ],
+            "angle": 0,
+            "content": "The equity value is \\(160 = 80\\%\\) \\* \\([1000 + (800) + 800 + (200) + (500) +\\) (100)] and the reserves of debit 1340 are the ones we find in the Year 2 consolidated accounts."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.126,
+                0.443,
+                0.48,
+                0.495
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Result</td><td>160</td><td></td></tr><tr><td>Equity value</td><td></td><td>160</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.493,
+                0.444,
+                0.889,
+                0.492
+            ],
+            "angle": 0,
+            "content": "At this time, we stay with an equity value as a financial asset that we write-off."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.123,
+                0.508,
+                0.889,
+                0.542
+            ],
+            "angle": 0,
+            "content": "Step 3: We process the liquidation at consolidation level by recognizing payables for 240."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.126,
+                0.546,
+                0.48,
+                0.597
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Result</td><td>240</td><td></td></tr><tr><td>Payables</td><td></td><td>240</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.122,
+                0.62,
+                0.888,
+                0.654
+            ],
+            "angle": 0,
+            "content": "All these adjustments from step 1 to step 3 can be aggregated in a single journal entry"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.125,
+                0.666,
+                0.48,
+                0.716
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Result</td><td rowspan=\"2\">400</td><td></td></tr><tr><td>Reserves</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.124,
+                0.732,
+                0.768,
+                0.749
+            ],
+            "angle": 0,
+            "content": "which is our final consolidation adjustment (g) as shown hereafter"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.24,
+                0.76,
+                0.757,
+                0.877
+            ],
+            "angle": 0,
+            "content": "<table><tr><td rowspan=\"5\" colspan=\"2\"></td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>(300)</td></tr><tr><td>(g)</td><td>400</td></tr><tr><td>Result</td><td>700</td></tr><tr><td>(g)</td><td>(400)</td></tr><tr><td>Other assets</td><td>4,900</td><td>Other liabilities</td><td>2,500</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.425,
+                0.073,
+                0.843,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.092,
+                0.122,
+                0.741,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Consolidated reserves evolution between Year 2 and Year 3"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.155,
+                0.677,
+                0.172
+            ],
+            "angle": 0,
+            "content": "Figures are extracted from the consolidated accounts above"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.093,
+                0.184,
+                0.835,
+                0.259
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 2 reserves</td><td>Year 3 result</td><td>Dividends</td><td>Dividends +</td><td>Transfers</td><td>Dividends P</td><td>Year 3 reserves</td></tr><tr><td>P</td><td>1,440</td><td>300</td><td></td><td></td><td>(1,340)</td><td></td><td>400</td></tr><tr><td>A</td><td>(1,340)</td><td>0</td><td></td><td></td><td>1,340</td><td></td><td>0</td></tr><tr><td></td><td>100</td><td>300</td><td>0</td><td>0</td><td>0</td><td>0</td><td>400,</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.274,
+                0.859,
+                0.307
+            ],
+            "angle": 0,
+            "content": "We see the transfer of consolidated reserves from A to P for 1340 as a normal disposal of shares to \\(3^{\\text{rd}}\\) Parties."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.093,
+                0.322,
+                0.388,
+                0.339
+            ],
+            "angle": 0,
+            "content": "And the final question is ..."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.354,
+                0.859,
+                0.403
+            ],
+            "angle": 0,
+            "content": "Your CFO would like to know what is finally the total cost of acquiring company A and keeping it in the consolidation scope for three years until liquidation in Year 3."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.418,
+                0.859,
+                0.452
+            ],
+            "angle": 0,
+            "content": "Most of the consolidators, with their technical mind, would proceed by analyzing the impact in P&L of company A during that period."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.466,
+                0.859,
+                0.547
+            ],
+            "angle": 0,
+            "content": "Company A has been acquired for a price of 2000 and a goodwill of 500. This means that \\(1500 = 2000 + (500) = 80\\%\\) of the equity at acquisition. This equity is equal to \\(1875 = 1500 / 80\\%\\). But that equity contains 800 of the goodwill allocation. The statutory equity at acquisition date is then \\(1075 = 1875 + (800)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.562,
+                0.859,
+                0.628
+            ],
+            "angle": 0,
+            "content": "As we can notice in the Year 2 statutory accounts, equity is (300), which means that between acquisition and liquidation dates, company A has generated a cumulated loss of \\((1375) = (300) - 1075\\), in which the group takes its part of \\((1100) = 80\\% * (1375)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.093,
+                0.643,
+                0.859,
+                0.676
+            ],
+            "angle": 0,
+            "content": "Moreover, the goodwill allocation for 800 has impacted the group P&L for \\((240) = 80\\% * (300)\\), thanks to the depreciations."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.691,
+                0.859,
+                0.725
+            ],
+            "angle": 0,
+            "content": "In company P accounts, the group had to support (500) charges corresponding to the goodwill depreciation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.094,
+                0.739,
+                0.617,
+                0.757
+            ],
+            "angle": 0,
+            "content": "And finally, the liquidation leads to a charge of (400)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.093,
+                0.77,
+                0.859,
+                0.805
+            ],
+            "angle": 0,
+            "content": "Adding all these P&L impacts gives a net amount of \\((2240) = (1100) + (240) + (500) + (400)\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.093,
+                0.819,
+                0.787,
+                0.837
+            ],
+            "angle": 0,
+            "content": "Not sure your CFO will listen you all along these technical explanations."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.092,
+                0.852,
+                0.859,
+                0.885
+            ],
+            "angle": 0,
+            "content": "Isn't it easier to just say that one day the group acquired a company for a price of 2000 and at the end of the story, it had to pay an added amount of"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.13,
+                0.069,
+                0.385,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.128,
+                0.123,
+                0.893,
+                0.157
+            ],
+            "angle": 0,
+            "content": "240 for some payables that company A couldn't face. And to conclude that \\((2000) + (240)\\) is also equal to \\((2240)!\\)"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.13,
+                0.19,
+                0.834,
+                0.237
+            ],
+            "angle": 0,
+            "content": "5 SOME PARTICULAR SITUATIONS THAT HAPPEN ONLY TO OTHERS..."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.127,
+                0.259,
+                0.893,
+                0.326
+            ],
+            "angle": 0,
+            "content": "In this Part 5, we will consider some situations that we met in real life, but not very often, we must admit. The problem is that when such situations occur, a consolidator will not find the solution in a book and in most cases the answer is expected urgently."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.127,
+                0.339,
+                0.892,
+                0.406
+            ],
+            "angle": 0,
+            "content": "The following cases will not be analyzed in deep details with figures as we did for the previous case studies. Moreover, we will not be able to give THE solution because these cases are interpretative and the solution is generally not unique."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.42,
+                0.473,
+                0.436
+            ],
+            "angle": 0,
+            "content": "Only some guidelines can be given."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.129,
+                0.47,
+                0.603,
+                0.496
+            ],
+            "angle": 0,
+            "content": "5.1 Segmented consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.127,
+                0.513,
+                0.89,
+                0.547
+            ],
+            "angle": 0,
+            "content": "The CFO is on a meeting and needs to know as soon as possible what is the contribution of the UK companies in the group?"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.161,
+                0.558,
+                0.825,
+                0.792
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.127,
+                0.806,
+                0.895,
+                0.858
+            ],
+            "angle": 0,
+            "content": "At a first glance, it seems obvious (for an external observer) that company A is a holding company for UK companies. But looking closer to this group's structure, company E is owned only at \\(1\\%\\) by company A and at \\(99\\%\\) by a US"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.429,
+                0.075,
+                0.844,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.123,
+                0.857,
+                0.155
+            ],
+            "angle": 0,
+            "content": "company. This fact complicates a little bit the normal approach of considering companies A, D and E as a subgroup to consolidate."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.171,
+                0.857,
+                0.204
+            ],
+            "angle": 0,
+            "content": "Moreover, company C is owned directly by parent company P, which is also a US company. What do we do with company C?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.219,
+                0.857,
+                0.251
+            ],
+            "angle": 0,
+            "content": "And finally, we also see that company F, owned by a UK company, is located in Singapore. What do we do with company F?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.267,
+                0.857,
+                0.314
+            ],
+            "angle": 0,
+            "content": "Is CFO's question relevant, with an easy answer? No, except if this CFO wants a segmented view of the consolidated figures, giving UK on one side and all the other companies on the other side."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.099,
+                0.331,
+                0.751,
+                0.348
+            ],
+            "angle": 0,
+            "content": "What are the basic principles of a seameded consolidation?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.363,
+                0.423,
+                0.379
+            ],
+            "angle": 0,
+            "content": "We identify three basic principles:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.396,
+                0.857,
+                0.46
+            ],
+            "angle": 0,
+            "content": "1. We suppose that each company belonging to the consolidation scope can be uniquely identified by a criterion. For instance, a company may belong to a country (our example), may be active in a unique activity, may belong to some geographical region or currency region (EUR, USD, ...), ..."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.476,
+                0.857,
+                0.524
+            ],
+            "angle": 0,
+            "content": "2. For each company, a net equity situation is calculated. This net equity is the difference between the normal equity and the financial investments in other companies, regardless of the criteria in which these companies are."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.54,
+                0.857,
+                0.572
+            ],
+            "angle": 0,
+            "content": "3. Intercompany amounts are eliminated only between companies belonging to the same segment criteria."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.106,
+                0.396,
+                0.857,
+                0.572
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.589,
+                0.857,
+                0.653
+            ],
+            "angle": 0,
+            "content": "If some companies belong to more than one criterion, this segment consolidation doesn't work except if we proceed to a break down of such company into two separate entities, each entity belonging entirely to a segment."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.669,
+                0.857,
+                0.749
+            ],
+            "angle": 0,
+            "content": "It is important to notice that the segment consolidation approach does not care about the group's structure because each holding company becomes a normal company, with regard of the fact that its financial investments are eliminated against its own equity. These companies are loosing their role of (sub)parent company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.765,
+                0.857,
+                0.845
+            ],
+            "angle": 0,
+            "content": "To reconcile the segment figures with the whole consolidated figures, we can just add corresponding figures together, except for intercompany accounts, because some amounts are not eliminated anymore when intercompany positions are declared between two companies belonging to two different segments."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.127,
+                0.068,
+                0.38,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.122,
+                0.888,
+                0.155
+            ],
+            "angle": 0,
+            "content": "Segmented consolidation may be applied to balance sheet, P&L, cash flow statement and notes to the accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.169,
+                0.888,
+                0.203
+            ],
+            "angle": 0,
+            "content": "But, in all cases, we must be careful by reading segment consolidated figures for some other reasons."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.218,
+                0.888,
+                0.267
+            ],
+            "angle": 0,
+            "content": "For instance, if company F (SG) is paying dividends to company A (UK), does it make sense to still eliminate the dividends which represent revenue coming from another segment?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.282,
+                0.888,
+                0.346
+            ],
+            "angle": 0,
+            "content": "Another disturbing example is the fact that, for instance, company A (UK) is making a group profit with company B (US), which is eliminated in the statutory consolidation. That profit shouldn't be eliminated in the segmented consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.362,
+                0.888,
+                0.411
+            ],
+            "angle": 0,
+            "content": "The conclusion is that producing consolidated figures is something easy, certainly with a specialized software, but a human analysis is always necessary."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.126,
+                0.445,
+                0.85,
+                0.469
+            ],
+            "angle": 0,
+            "content": "5.2 Break even price when selling a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.487,
+                0.888,
+                0.52
+            ],
+            "angle": 0,
+            "content": "At what price do we have to sell a certain company in order to get no impact in the consolidated P&L?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.535,
+                0.888,
+                0.584
+            ],
+            "angle": 0,
+            "content": "If this question is frequent and most of the time the answer more than urgent, our best recommendation would be to validate your logic more than once before giving your answer."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.127,
+                0.599,
+                0.186,
+                0.615
+            ],
+            "angle": 0,
+            "content": "Why?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.631,
+                0.888,
+                0.664
+            ],
+            "angle": 0,
+            "content": "Because there are possible gaps of misunderstanding between the question and the possible answers."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.126,
+                0.679,
+                0.527,
+                0.696
+            ],
+            "angle": 0,
+            "content": "Let's consider the following example"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.125,
+                0.712,
+                0.888,
+                0.743
+            ],
+            "angle": 0,
+            "content": "In this group, company A is to be sold for a price producing no impact in the P&L."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.127,
+                0.756,
+                0.398,
+                0.926
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.408,
+                0.759,
+                0.888,
+                0.84
+            ],
+            "angle": 0,
+            "content": "Is it clear that by selling company A the company B is also sold? Maybe it could be worth to ask a confirmation about company B. And if company was first sold to P or C before making the disposal transaction of A?"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.426,
+                0.074,
+                0.843,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.121,
+                0.856,
+                0.17
+            ],
+            "angle": 0,
+            "content": "Very often, a CEO is not fully aware of the consolidated figures and adjustments and a selling price is estimated starting from the book value of the company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.17,
+                0.856,
+                0.218
+            ],
+            "angle": 0,
+            "content": "In this example, we confirm there is a goodwill on company A and a goodwill in company A on company B. Both will be eliminated with a direct impact on the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.234,
+                0.856,
+                0.316
+            ],
+            "angle": 0,
+            "content": "There is also a history in consolidated figures. A few years ago, company C sold to company A some tangible fixed assets and made a gain. The gain has been eliminated in company A with depreciation adjustments which are still running today. These adjustments have of course an impact on company A equity."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.331,
+                0.856,
+                0.396
+            ],
+            "angle": 0,
+            "content": "Without considering too many figures, let's suppose the statutory book value of company A in parent company P accounts is 1000 and the consolidated equity of the subgroup \\( \\mathsf{A} + \\mathsf{B}_r \\), including all consolidation adjustments and already elimination of both goodwills, is 1200."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.411,
+                0.856,
+                0.445
+            ],
+            "angle": 0,
+            "content": "On the basis of these figures, we would like to clarify another issue related to the words \"... no impact in the P&L\" as stated in the initial question."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.459,
+                0.856,
+                0.524
+            ],
+            "angle": 0,
+            "content": "If we sell comoanv A for 1000, we make no profit in the statutory accounts and we make a loss of \\((200) = 1000 - 1200\\) in the consolidated accounts. This means, we have to book an adjustment for (200). So we have an impact in the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.54,
+                0.856,
+                0.589
+            ],
+            "angle": 0,
+            "content": "If we sell comoany A for 1200, statutory accounts shows a profit of 200 but we make a profit of zero in the consolidated accounts which implies an adjustment for (200). So we have an impact in the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.604,
+                0.856,
+                0.653
+            ],
+            "angle": 0,
+            "content": "If we sell comoany A for 1100, statutory accounts shows a profit of 100 but we make a loss of (100) in the consolidated accounts which implies an adjustment for (200). So we have an impact in the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.091,
+                0.667,
+                0.856,
+                0.702
+            ],
+            "angle": 0,
+            "content": "This short example shows there is always a P&L impact. Make sure this point is clear to the person asking the question."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.13,
+                0.069,
+                0.385,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.13,
+                0.124,
+                0.82,
+                0.168
+            ],
+            "angle": 0,
+            "content": "5.3 Family group consolidating for the first time"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.19,
+                0.71,
+                0.208
+            ],
+            "angle": 0,
+            "content": "Here is a family group with company A as the top company."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.339,
+                0.22,
+                0.71,
+                0.45
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.462,
+                0.887,
+                0.496
+            ],
+            "angle": 0,
+            "content": "Given the importance of the investments and the related loans involved, banks are currently asking for consolidated figures."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.129,
+                0.511,
+                0.89,
+                0.543
+            ],
+            "angle": 0,
+            "content": "But which company should become the consolidatina company in such structure?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.559,
+                0.892,
+                0.606
+            ],
+            "angle": 0,
+            "content": "It could be company A but shall we then consolidate the rest of the group, B and affiliates C, D and E with the equity method? This would be of weak interest for the banks."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.622,
+                0.89,
+                0.672
+            ],
+            "angle": 0,
+            "content": "We could ignore A and begin the consolidation with B as the parent company. This makes much more sense, but banks wouldn't be happy because it is mainly company A asking for loans."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.687,
+                0.892,
+                0.737
+            ],
+            "angle": 0,
+            "content": "By analyzing more deeply this group's structure, we can suppose that both companies A and B are controlled by the members of the same family and so both companies are placed under the same control."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.129,
+                0.75,
+                0.892,
+                0.848
+            ],
+            "angle": 0,
+            "content": "This means that we would recommend applying the global integration method for both companies A and B. We would then integrate all assets and liabilities, reaching certainly one of the banks objectives. Of course, the consolidated balance sheet would show Minority interests for \\(80\\%\\) not only on the equity of B, but also \\(80\\%\\) on the equity of all direct and indirect affiliates of B. The total amount would probably be really important."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.427,
+                0.073,
+                0.84,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.12,
+                0.856,
+                0.153
+            ],
+            "angle": 0,
+            "content": "By presenting such figures to the management of a group of this type, be ready to have the following conversation:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.168,
+                0.752,
+                0.185
+            ],
+            "angle": 0,
+            "content": "Question: 'What's this huge amount on the Minority interests line?\""
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.199,
+                0.573,
+                0.217
+            ],
+            "angle": 0,
+            "content": "Answer: \"It's an amount belonging to \\(3^{\\text{rd}}\\) Parties\""
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.232,
+                0.856,
+                0.265
+            ],
+            "angle": 0,
+            "content": "Question: \"That's not possible, because WE are the \\(3^{\\text{rd}}\\) Parties! Can you transfer the amount on the Reserves line?\""
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.281,
+                0.856,
+                0.329
+            ],
+            "angle": 0,
+            "content": "If you comply with such request, you will go into some trouble because the first time company B pays a dividend, only \\(20\\%\\) will arrive in company A and not \\(100\\%\\)."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.097,
+                0.345,
+                0.641,
+                0.362
+            ],
+            "angle": 0,
+            "content": "We could also consider this group as a consortium"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.377,
+                0.768,
+                0.394
+            ],
+            "angle": 0,
+            "content": "Indeed, let's look at this group's structure from another point of view."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.262,
+                0.407,
+                0.711,
+                0.567
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.586,
+                0.856,
+                0.618
+            ],
+            "angle": 0,
+            "content": "We consider companies A and B as being both parent companies in a consortium structure (Refer to Part 2 - Chapter 3 - Section 7)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.633,
+                0.856,
+                0.683
+            ],
+            "angle": 0,
+            "content": "On the one hand, this structure is not so simple because of the existence of the participation of \\(20\\%\\) from A into B. A fictitious consolidating company must also be defined on the top of this structure."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.697,
+                0.856,
+                0.73
+            ],
+            "angle": 0,
+            "content": "On the other hand, the minority interests disappears, resulting in much more understandable consolidated accounts for external observers."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.097,
+                0.745,
+                0.856,
+                0.795
+            ],
+            "angle": 0,
+            "content": "The two structures are acceptable and we recommend presenting these options to Bankers and Auditors before starting the first consolidation. Keep in mind that such a decision is to be applied in a long term."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.131,
+                0.068,
+                0.385,
+                0.083
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.132,
+                0.123,
+                0.723,
+                0.147
+            ],
+            "angle": 0,
+            "content": "5.4 What is the value of a company?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.165,
+                0.894,
+                0.199
+            ],
+            "angle": 0,
+            "content": "At the end of a consolidation, a question sometimes arises about the value of a company in the group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.213,
+                0.49,
+                0.23
+            ],
+            "angle": 0,
+            "content": "But what is the value of a company?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.245,
+                0.894,
+                0.295
+            ],
+            "angle": 0,
+            "content": "From a consolidation point of view, we cannot give more than what we have, this is the equity value or the financial percentage we own in the equity of a company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.309,
+                0.894,
+                0.39
+            ],
+            "angle": 0,
+            "content": "To put it in another way, we suppose we set all company consolidation methods to equity method and most of the main professional consolidation software will be able to produce an alternate version of the consolidation. The expected answer can be found in the contribution view of the consolidated equity value in the financial assets."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.405,
+                0.894,
+                0.439
+            ],
+            "angle": 0,
+            "content": "Of course, these figures should be carefully interpreted in view of the following comments."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.132,
+                0.453,
+                0.259,
+                0.47
+            ],
+            "angle": 0,
+            "content": "Comment 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.485,
+                0.894,
+                0.534
+            ],
+            "angle": 0,
+            "content": "We consider here the easiest situation of a company having a total equity of 1000 and owned at \\(80\\%\\) by the parent company. Its value calculated from consolidation figures will be \\(800 = 80\\% * 1000\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.55,
+                0.894,
+                0.599
+            ],
+            "angle": 0,
+            "content": "It is important to notice that the equity may include a certain number of adjustments for so many different and historical reasons that the amount of 1000 may be differ substantially from the statutory value."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.132,
+                0.614,
+                0.259,
+                0.631
+            ],
+            "angle": 0,
+            "content": "Comment 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.645,
+                0.894,
+                0.726
+            ],
+            "angle": 0,
+            "content": "Notice also that it is important to know which accounts are considered as part of the equity of the company. Some accounts like \"Currency translation adjustments\" (CTA), \"Investments grants\" (if not IFRS), \"Revaluation reserves\", ... should be included in the equity. The CTA, for instance, gives then a present value instead of an historical value."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.132,
+                0.742,
+                0.259,
+                0.759
+            ],
+            "angle": 0,
+            "content": "Comment 3"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.773,
+                0.894,
+                0.806
+            ],
+            "angle": 0,
+            "content": "Referring to the previous structure, we could also have a company B owned by company A at \\(60\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.132,
+                0.806,
+                0.894,
+                0.839
+            ],
+            "angle": 0,
+            "content": "Let's suppose company B equity is 3000 and the financial investment on B in company A accounts is 1200."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.425,
+                0.075,
+                0.843,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 4 SPECIAL CONSOLIDATION TOPICS"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.089,
+                0.121,
+                0.862,
+                0.175
+            ],
+            "angle": 0,
+            "content": "The value of company B would be \\(1440 = 80\\%\\) * \\(60\\%\\) * 3000 but this time company A would be valuated for \\((160) = 80\\%\\) [1000 - 1200], a negative value!"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.09,
+                0.188,
+                0.585,
+                0.205
+            ],
+            "angle": 0,
+            "content": "Which interpretation can we give to this situation?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.089,
+                0.22,
+                0.861,
+                0.268
+            ],
+            "angle": 0,
+            "content": "Company A is becoming a sub holding. Supposing such a company invests exactly the amount of its capital, its value would be zero and it makes sense because the value of A is completely dependant of the value of B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.089,
+                0.284,
+                0.862,
+                0.351
+            ],
+            "angle": 0,
+            "content": "Our message here is that the value of a company depends on its place in the group's structure. For any company not having financial investments in other consolidated companies, we refer to comment 1. For all the others, it is necessary to aggregate their own value with the value of their participations."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.091,
+                0.365,
+                0.222,
+                0.381
+            ],
+            "angle": 0,
+            "content": "Comment 4"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.09,
+                0.397,
+                0.862,
+                0.445
+            ],
+            "angle": 0,
+            "content": "On top of these comments, don't forget that the value of a company must be reduced with the net value of the remaining goodwill. This is generally not automatic in consolidation software."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.091,
+                0.479,
+                0.749,
+                0.527
+            ],
+            "angle": 0,
+            "content": "5.5 Disposal and acquisition of the same company within the year"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.09,
+                0.545,
+                0.859,
+                0.579
+            ],
+            "angle": 0,
+            "content": "This is a quite surprising and difficult situation as explained with the following structure."
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.091,
+                0.591,
+                0.861,
+                0.81
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.089,
+                0.84,
+                0.861,
+                0.875
+            ],
+            "angle": 0,
+            "content": "In December Year 1 parent company P owns \\(90\\%\\) of company A and in May Year 1, P acquires the remaining \\(10\\%\\) of shares of company A in order to sell"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.454,
+                0.924,
+                0.498,
+                0.939
+            ],
+            "angle": 0,
+            "content": "333"
+        }
+    ]
+]

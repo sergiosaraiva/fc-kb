@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "fc-knowledge-base": {
+      "command": "python",
+      "args": ["docs/DC/md/rag-mcp-server/server.py"],
+      "env": {}
+    }
+  }
+}

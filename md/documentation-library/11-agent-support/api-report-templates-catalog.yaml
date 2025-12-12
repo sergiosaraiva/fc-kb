@@ -1,0 +1,579 @@
+# Report Templates Catalog - Financial Consolidation AI Agent
+# Purpose: Catalog of reports with use case mappings for AI agent guidance
+# Version: 1.0
+# Created: 2024-12-04
+
+api_report_templates_catalog:
+  name: "Financial Consolidation Report Templates Catalog"
+  version: "1.0"
+  description: |
+    Complete catalog of report templates available in Prophix.Conso.
+    Maps reports to use cases so the AI agent can recommend appropriate reports.
+
+  # ============================================================================
+  # SECTION 1: REPORT CATEGORIES
+  # ============================================================================
+  report_categories:
+    validation:
+      description: "Data validation and error checking reports"
+      reports:
+        - VALIDATION_LIST
+        - SYSTEM_VALIDATION
+        - INTERCO_VALIDATION
+
+    consolidation:
+      description: "Consolidation process and results reports"
+      reports:
+        - CONSOLIDATION_SUMMARY
+        - CONSOLIDATION_DIFFERENCE_ANALYSIS
+        - CONSOLIDATED_FLOWS
+        - CONSOLIDATED_EQUITY
+        - CONSOLIDATED_SHAREHOLDERS
+
+    statutory:
+      description: "Statutory/local company reports"
+      reports:
+        - BUNDLES_LOCAL
+        - BUNDLES_GROUP
+        - STATUTORY_IN_LOCAL_CURRENCY
+        - BUNDLE_LASTMODIFIED
+
+    intercompany:
+      description: "Intercompany reconciliation and analysis"
+      reports:
+        - INTERCO_RECONCILIATION
+        - INTERCO_PILOT
+        - INTERCORULE
+
+    analysis:
+      description: "Analysis and drilldown reports"
+      reports:
+        - EQUITY_VALUE_ANALYSIS
+        - TRANSLATION_ADJUSTMENTS_ANALYSIS
+        - THIRD_PARTIES_ANALYSIS
+        - CONSOLIDATION_DIVIDENDS
+        - GOODWILL
+
+    structure:
+      description: "Group structure and ownership reports"
+      reports:
+        - SHAREHOLDING
+        - COMPANY
+        - PERIOD
+        - STATUS
+
+    configuration:
+      description: "Configuration and setup reports"
+      reports:
+        - ACCOUNT
+        - FLOW
+        - JOURNAL
+        - CURRENCY
+        - CALCULATED_ACCOUNTS
+
+    data_entry:
+      description: "Data entry and import reports"
+      reports:
+        - IMPORT_LEDGER
+        - IMPORTDATA_ERROR
+        - IMPORTBUNDLE_ERROR
+        - GENERAL_LEDGER
+
+    custom:
+      description: "User-defined custom reports"
+      types:
+        S: "Standard"
+        M: "Multi-column"
+        F: "Flow"
+        C: "Cashflow"
+        D: "Dimension"
+        A: "Analysis"
+
+  # ============================================================================
+  # SECTION 2: REPORT DETAILS
+  # ============================================================================
+  reports:
+
+    # --- VALIDATION REPORTS ---
+    VALIDATION_LIST:
+      name: "Validation Report"
+      category: "Validation"
+      stored_procedure: "P_REPORT_VALIDATION_LIST"
+      api_handler: "Report_ValidationList"
+      description: "Runs validation rules and shows errors/warnings"
+      use_cases:
+        - "Check data quality after import"
+        - "Validate before consolidation"
+        - "Identify balance sheet imbalances"
+        - "Find intercompany mismatches"
+      parameters:
+        - CompanyCode (required)
+        - ConsoID (required)
+        - ValidationReportID (required)
+
+    SYSTEM_VALIDATION:
+      name: "System Validation Report"
+      category: "Validation"
+      stored_procedure: "P_REPORT_SYSTEM_VALIDATION"
+      description: "System-level validation checks"
+      use_cases:
+        - "Check system configuration"
+        - "Validate setup completeness"
+
+    INTERCO_VALIDATION:
+      name: "Intercompany Validation Report"
+      category: "Validation"
+      stored_procedure: "P_REPORT_INTERCO_VALIDATION"
+      api_handler: "Report_IntercoValidation"
+      description: "Validates intercompany balances and transactions"
+      use_cases:
+        - "Check IC balances before elimination"
+        - "Identify IC mismatches"
+        - "Validate IC netting"
+      parameters:
+        - ConsoID
+        - CompanyCode
+
+    # --- CONSOLIDATION REPORTS ---
+    CONSOLIDATION_SUMMARY:
+      name: "Consolidation Summary"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_CONSOLIDATION_SUMMARY"
+      api_handler: "Report_ConsolidationSummary"
+      description: "Summary of consolidation results by company"
+      use_cases:
+        - "Review consolidation contributions"
+        - "Check minority interest allocations"
+        - "Verify elimination totals"
+        - "Audit consolidation process"
+      parameters:
+        - ConsoID
+        - AccountSummationID
+
+    CONSOLIDATION_DIFFERENCE_ANALYSIS:
+      name: "Consolidation Difference Analysis"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_CONSOLIDATION_DIFFERENCE_ANALYSIS"
+      description: "Analyzes differences in consolidation"
+      use_cases:
+        - "Investigate consolidation variances"
+        - "Compare periods"
+        - "Identify goodwill calculation issues"
+
+    CONSOLIDATED_FLOWS:
+      name: "Consolidated Flow Statement"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_CONSOLIDATED_FLOWS"
+      description: "Consolidated flow statement by account and flow"
+      use_cases:
+        - "Cash flow statement preparation"
+        - "Movement analysis"
+        - "Opening/closing reconciliation"
+
+    CONSOLIDATED_EQUITY:
+      name: "Consolidated Equity Statement"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_CONSOLIDATED_EQUITY"
+      description: "Consolidated statement of changes in equity"
+      use_cases:
+        - "Equity reconciliation"
+        - "Retained earnings analysis"
+        - "Minority interest reconciliation"
+
+    CONSOLIDATED_SHAREHOLDERS:
+      name: "Consolidated Shareholders Report"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_CONSOLIDATED_SHAREHOLDERS"
+      description: "Breakdown by shareholder type"
+      use_cases:
+        - "Group vs minority split"
+        - "Shareholder analysis"
+
+    # --- STATUTORY/BUNDLE REPORTS ---
+    BUNDLES_LOCAL:
+      name: "Bundles in Local Currency"
+      category: "Statutory"
+      stored_procedure: "P_REPORT_BUNDLES_LOCAL"
+      api_handler: "Report_BundlesLocal"
+      description: "Statutory data in local currency"
+      use_cases:
+        - "Review statutory trial balance"
+        - "Check imported data"
+        - "Compare local vs group currency"
+      parameters:
+        - ConsoID
+        - CompanyCode
+        - AccountSummationID
+
+    BUNDLES_GROUP:
+      name: "Bundles in Group Currency"
+      category: "Statutory"
+      stored_procedure: "P_REPORT_BUNDLES_GROUP"
+      api_handler: "Report_BundlesGroup"
+      description: "Statutory data translated to group currency"
+      use_cases:
+        - "Review translated amounts"
+        - "Check currency translation"
+        - "Compare companies in same currency"
+
+    STATUTORY_IN_LOCAL_CURRENCY:
+      name: "Statutory in Local Currency"
+      category: "Statutory"
+      stored_procedure: "P_REPORT_STATUTORY_IN_LOCAL_CURRENCY"
+      description: "Detailed statutory report in local currency"
+      use_cases:
+        - "Statutory reporting"
+        - "Local GAAP analysis"
+
+    # --- INTERCOMPANY REPORTS ---
+    INTERCO_RECONCILIATION:
+      name: "Intercompany Reconciliation"
+      category: "Intercompany"
+      stored_procedure: "P_REPORT_INTERCO_RECONCILIATION"
+      api_handler: "Report_IntercoReconciliation"
+      description: "IC transaction matching and differences"
+      use_cases:
+        - "Reconcile IC balances"
+        - "Find unmatched IC transactions"
+        - "Identify IC discrepancies"
+        - "Prepare IC elimination"
+      parameters:
+        - ConsoID
+        - CompanyCode
+        - PartnerCompanyCode
+
+    INTERCO_PILOT:
+      name: "Intercompany Pilot"
+      category: "Intercompany"
+      stored_procedure: "P_REPORT_INTERCO_PILOT"
+      description: "IC transaction overview for pilot analysis"
+      use_cases:
+        - "IC transaction summary"
+        - "IC analysis by partner"
+
+    # --- ANALYSIS REPORTS ---
+    EQUITY_VALUE_ANALYSIS:
+      name: "Equity Value Analysis"
+      category: "Analysis"
+      stored_procedure: "P_REPORT_EQUITY_VALUE_ANALYSIS"
+      description: "Equity method investment analysis"
+      use_cases:
+        - "Equity method calculation review"
+        - "Share of profit analysis"
+        - "Investment reconciliation"
+
+    TRANSLATION_ADJUSTMENTS_ANALYSIS:
+      name: "Translation Adjustments Analysis"
+      category: "Analysis"
+      stored_procedure: "P_REPORT_TRANSLATION_ADJUSTMENTS_ANALYSIS"
+      description: "Currency translation adjustments breakdown"
+      use_cases:
+        - "CTA analysis"
+        - "Translation difference explanation"
+        - "Currency impact analysis"
+
+    GOODWILL:
+      name: "Goodwill Report"
+      category: "Analysis"
+      stored_procedure: "P_REPORT_GOODWILL"
+      api_handler: "Report_Goodwill"
+      description: "Goodwill calculation and impairment"
+      use_cases:
+        - "Goodwill calculation review"
+        - "Acquisition analysis"
+        - "Impairment testing"
+        - "Fair value allocation review"
+      parameters:
+        - ConsoID
+        - CompanyCode
+
+    CONSOLIDATION_DIVIDENDS:
+      name: "Consolidation Dividends"
+      category: "Analysis"
+      stored_procedure: "P_REPORT_CONSOLIDATION_DIVIDENDS"
+      description: "Dividend elimination analysis"
+      use_cases:
+        - "Dividend elimination review"
+        - "IC dividend matching"
+
+    # --- STRUCTURE REPORTS ---
+    SHAREHOLDING:
+      name: "Shareholding Report"
+      category: "Structure"
+      stored_procedure: "P_REPORT_SHAREHOLDING"
+      description: "Ownership structure and percentages"
+      use_cases:
+        - "Ownership review"
+        - "Group structure documentation"
+        - "Control analysis"
+        - "Consolidation scope determination"
+
+    STATUS:
+      name: "Status Report"
+      category: "Structure"
+      stored_procedure: "P_REPORT_STATUS"
+      api_handler: "Report_Status"
+      description: "Company consolidation status"
+      use_cases:
+        - "Monitor consolidation progress"
+        - "Check which companies are integrated"
+        - "Identify pending companies"
+      parameters:
+        - ConsoID
+
+    # --- DATA ENTRY REPORTS ---
+    GENERAL_LEDGER:
+      name: "General Ledger Report"
+      category: "Data Entry"
+      stored_procedure: "P_REPORT_GENERAL_LEDGER"
+      api_handler: "Report_GeneralLedger"
+      description: "GL account details"
+      use_cases:
+        - "Trial balance review"
+        - "Account balance inquiry"
+        - "Journal entry verification"
+
+    IMPORT_LEDGER:
+      name: "Import Ledger Report"
+      category: "Data Entry"
+      stored_procedure: "P_REPORT_IMPORT_LEDGER"
+      description: "Import ledger details"
+      use_cases:
+        - "Review imported data"
+        - "Trace import source"
+
+    IMPORTDATA_ERROR:
+      name: "Import Data Errors"
+      category: "Data Entry"
+      stored_procedure: "P_REPORT_IMPORTDATA_ERROR"
+      description: "Errors from data import"
+      use_cases:
+        - "Diagnose import failures"
+        - "Find invalid data"
+        - "Review import validation"
+
+    # --- ELIMINATION REPORTS ---
+    ELIMINATIONS:
+      name: "Eliminations Report"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_ELIMINATIONS"
+      api_handler: "Report_Eliminations"
+      description: "Elimination journal entries"
+      use_cases:
+        - "Review elimination journals"
+        - "Audit elimination entries"
+        - "Verify IC elimination"
+      parameters:
+        - ConsoID
+        - EliminationCode
+
+    EVENTS:
+      name: "Events Report"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_EVENTS"
+      description: "User-defined events and eliminations"
+      use_cases:
+        - "Review custom eliminations"
+        - "Track event execution"
+
+    # --- ADJUSTMENT REPORTS ---
+    ADJUSTMENT:
+      name: "Adjustment Report"
+      category: "Consolidation"
+      stored_procedure: "P_REPORT_ADJUSTMENT"
+      api_handler: "Report_Adjustment"
+      description: "Adjustment journal entries"
+      use_cases:
+        - "Review group adjustments"
+        - "IFRS adjustment analysis"
+        - "Audit adjustment entries"
+
+  # ============================================================================
+  # SECTION 3: USE CASE MAPPINGS
+  # ============================================================================
+  use_case_mappings:
+    description: "Quick lookup from user question to appropriate report"
+
+    balance_sheet_issues:
+      question_patterns:
+        - "balance sheet doesn't balance"
+        - "assets don't equal liabilities"
+        - "BS imbalance"
+      recommended_reports:
+        - VALIDATION_LIST
+        - BUNDLES_LOCAL
+        - CONSOLIDATION_SUMMARY
+      diagnostic_sequence:
+        - "Run VALIDATION_LIST with BALBS rule"
+        - "Review BUNDLES_LOCAL for source company"
+        - "Check account classifications"
+
+    intercompany_differences:
+      question_patterns:
+        - "IC doesn't match"
+        - "intercompany difference"
+        - "IC reconciliation"
+        - "IC not balanced"
+      recommended_reports:
+        - INTERCO_RECONCILIATION
+        - INTERCO_VALIDATION
+        - INTERCO_PILOT
+      diagnostic_sequence:
+        - "Run INTERCO_RECONCILIATION"
+        - "Identify unmatched transactions"
+        - "Review IC matching screen"
+
+    goodwill_calculation:
+      question_patterns:
+        - "goodwill is wrong"
+        - "acquisition calculation"
+        - "purchase price allocation"
+      recommended_reports:
+        - GOODWILL
+        - CONSOLIDATION_DIFFERENCE_ANALYSIS
+        - SHAREHOLDING
+      diagnostic_sequence:
+        - "Run GOODWILL report for subsidiary"
+        - "Verify ownership percentages"
+        - "Check fair value adjustments"
+
+    minority_interest:
+      question_patterns:
+        - "minority interest wrong"
+        - "NCI calculation"
+        - "non-controlling interest"
+      recommended_reports:
+        - CONSOLIDATION_SUMMARY
+        - CONSOLIDATED_SHAREHOLDERS
+        - SHAREHOLDING
+      diagnostic_sequence:
+        - "Run CONSOLIDATION_SUMMARY"
+        - "Check ownership percentages"
+        - "Verify minority interest accounts"
+
+    translation_differences:
+      question_patterns:
+        - "translation difference"
+        - "CTA wrong"
+        - "currency translation"
+        - "FX impact"
+      recommended_reports:
+        - TRANSLATION_ADJUSTMENTS_ANALYSIS
+        - BUNDLES_LOCAL
+        - BUNDLES_GROUP
+      diagnostic_sequence:
+        - "Run TRANSLATION_ADJUSTMENTS_ANALYSIS"
+        - "Compare local vs group amounts"
+        - "Check exchange rates"
+
+    consolidation_progress:
+      question_patterns:
+        - "consolidation status"
+        - "which companies are done"
+        - "integration progress"
+      recommended_reports:
+        - STATUS
+      diagnostic_sequence:
+        - "Run STATUS report"
+        - "Identify pending companies"
+        - "Check integration flags"
+
+    flow_statement:
+      question_patterns:
+        - "cash flow"
+        - "flow statement"
+        - "opening balance"
+        - "movements"
+      recommended_reports:
+        - CONSOLIDATED_FLOWS
+        - VALIDATION_LIST
+      diagnostic_sequence:
+        - "Run CONSOLIDATED_FLOWS"
+        - "Validate with FLOWBAL rule"
+        - "Check opening balance import"
+
+    elimination_audit:
+      question_patterns:
+        - "what was eliminated"
+        - "elimination journals"
+        - "show eliminations"
+      recommended_reports:
+        - ELIMINATIONS
+        - EVENTS
+        - CONSOLIDATION_SUMMARY
+      diagnostic_sequence:
+        - "Run ELIMINATIONS for specific type"
+        - "Review journal entries"
+        - "Check elimination configuration"
+
+  # ============================================================================
+  # SECTION 4: CROSS-TAB REPORTS
+  # ============================================================================
+  cross_tab_reports:
+    description: "Multi-dimensional cross-tab reporting"
+    stored_procedures:
+      - P_REPORT_CROSS_REPORT_CONTRIBADJUSTED
+      - P_REPORT_CROSS_REPORT_CONSOLIDATEDACCOUNTS
+      - P_REPORT_CROSS_REPORT_ACCOUNTSFLOWS
+      - P_REPORT_CROSS_REPORT_CHANGE
+      - P_REPORT_CROSS_REPORT_JOURNALCATEGORIES
+      - P_REPORT_CROSS_GROUP_CURRENCIES
+
+    use_cases:
+      - "Multi-company comparison"
+      - "Period-over-period analysis"
+      - "Journal category breakdown"
+      - "Contribution analysis"
+
+  # ============================================================================
+  # SECTION 5: CUSTOM REPORT TYPES
+  # ============================================================================
+  custom_report_types:
+    S:
+      name: "Standard"
+      description: "Standard account/amount report"
+      table: "TS018S0 with Type = 'S'"
+
+    M:
+      name: "Multi-column"
+      description: "Multi-column comparative report"
+      table: "TS018S0 with Type = 'M'"
+
+    F:
+      name: "Flow"
+      description: "Flow-based report (movements)"
+      table: "TS018S0 with Type = 'F'"
+
+    C:
+      name: "Cashflow"
+      description: "Cash flow statement format"
+      table: "TS018S0 with Type = 'C'"
+
+    D:
+      name: "Dimension"
+      description: "Dimension breakdown report"
+      table: "TS018S0 with Type = 'D'"
+
+    A:
+      name: "Analysis"
+      description: "Analysis/drilldown report"
+      table: "TS018S0 with Type = 'A'"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-04"
+    version: "1.0"
+    author: "Claude Code - Documentation automation"
+
+    total_reports: 30
+    categories: 8
+
+    source_tables:
+      - "TS018S0 - Custom reports"
+      - "TS019S0 - Validation reports"
+
+    related_files:
+      - "api-validation-rules-catalog.yaml - Validation rules"
+      - "api-reports-endpoints.yaml - Report handlers"

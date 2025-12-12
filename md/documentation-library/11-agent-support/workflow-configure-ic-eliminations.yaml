@@ -1,0 +1,476 @@
+# Workflow: Configure Intercompany Eliminations
+# Task: Set up intercompany account configuration and elimination rules
+# Complexity: Medium | Steps: 7 | Estimated Time: 30-60 minutes
+
+workflow:
+  name: "Configure Intercompany Eliminations"
+  version: "1.0"
+  description: "Step-by-step process to configure intercompany accounts and elimination templates"
+
+  # Metadata
+  category: "Configuration"
+  frequency: "Initial setup + as new IC relationships arise"
+  skill_level: "Intermediate"
+
+  # Related decision trees
+  decision_trees:
+    - "elimination-code-selection.yaml"
+
+  # Prerequisites
+  prerequisites:
+    - id: "prereq_1"
+      description: "Companies exist in consolidation scope"
+      check: "Both IC partner companies must be in TS014C0"
+
+    - id: "prereq_2"
+      description: "Chart of accounts is configured"
+      check: "Accounts exist in TS010S0"
+
+    - id: "prereq_3"
+      description: "User has configuration permissions"
+      check: "Role includes Configuration access"
+
+  # Types of IC transactions
+  ic_transaction_types:
+    - type: "IC_RECEIVABLE_PAYABLE"
+      description: "Trade receivables/payables between group companies"
+      elimination: "Net to zero on consolidation"
+      accounts:
+        - "IC Receivables"
+        - "IC Payables"
+
+    - type: "IC_REVENUE_EXPENSE"
+      description: "Sales/purchases between group companies"
+      elimination: "Eliminate revenue against cost"
+      accounts:
+        - "IC Sales"
+        - "IC Purchases"
+        - "IC Services Income"
+        - "IC Services Expense"
+
+    - type: "IC_LOANS"
+      description: "Intercompany financing"
+      elimination: "Net loan asset against liability"
+      accounts:
+        - "IC Loan Receivable"
+        - "IC Loan Payable"
+        - "IC Interest Income"
+        - "IC Interest Expense"
+
+    - type: "IC_DIVIDENDS"
+      description: "Dividend payments between group companies"
+      elimination: "Eliminate against retained earnings"
+      accounts:
+        - "Dividend Income"
+        - "Dividend Expense/Declared"
+
+  # Required information
+  required_inputs:
+    - name: "ic_account_pairs"
+      type: "array"
+      description: "List of intercompany account pairs to configure"
+      item_structure:
+        receivable_account: "Account code for receivable side"
+        payable_account: "Account code for payable side"
+        account_type: "BALANCE | PL | DIVIDEND"
+
+    - name: "elimination_method"
+      type: "enum"
+      values: ["automatic", "manual", "template"]
+      description: "How eliminations should be processed"
+
+  # Workflow steps
+  steps:
+    - step: 1
+      name: "Identify Intercompany Account Pairs"
+      description: "Map all intercompany relationships and corresponding accounts"
+
+      actions:
+        - action: "document_ic_accounts"
+          type: "analysis"
+          template: |
+            ## Intercompany Account Mapping
+
+            ### Balance Sheet IC Accounts
+            | Type | DR Account | CR Account | Description |
+            |------|------------|------------|-------------|
+            | Trade | IC_AR | IC_AP | Trade receivables/payables |
+            | Loans | IC_LOAN_AR | IC_LOAN_AP | Intercompany financing |
+
+            ### P&L IC Accounts
+            | Type | Income Account | Expense Account | Description |
+            |------|----------------|-----------------|-------------|
+            | Sales | IC_SALES | IC_PURCHASES | Trade sales/COGS |
+            | Services | IC_SVC_INC | IC_SVC_EXP | Management fees, etc. |
+            | Interest | IC_INT_INC | IC_INT_EXP | Loan interest |
+
+        - action: "verify_existing_ic_accounts"
+          type: "query"
+          sql: |
+            -- Find accounts already marked as intercompany
+            SELECT
+                AccountID,
+                Account,
+                AccountName,
+                AccountType,
+                PartnerType,
+                FlagInterCompany,
+                MirrorAccountID
+            FROM TS010S0
+            WHERE ConsoID = @ConsoID
+              AND (FlagInterCompany = 1 OR PartnerType = 1)
+            ORDER BY Account
+
+      output: "List of IC account pairs to configure"
+
+    - step: 2
+      name: "Configure Account IC Flags"
+      description: "Set intercompany flags on relevant accounts"
+
+      actions:
+        - action: "update_ic_flags"
+          type: "execute"
+          sql: |
+            -- Mark accounts as intercompany
+            UPDATE TS010S0
+            SET FlagInterCompany = 1,
+                PartnerType = 1  -- 1 = Intercompany partner type
+            WHERE ConsoID = @ConsoID
+              AND Account IN (@ICAccountList)
+
+        - action: "configure_mirror_accounts"
+          type: "execute"
+          description: "Link receivable accounts to their payable counterparts"
+          sql: |
+            -- Example: Link IC_AR to IC_AP
+            UPDATE TS010S0
+            SET MirrorAccountID = (
+                SELECT AccountID
+                FROM TS010S0 b
+                WHERE b.ConsoID = @ConsoID AND b.Account = @PayableAccountCode
+            )
+            WHERE ConsoID = @ConsoID
+              AND Account = @ReceivableAccountCode
+
+      validation:
+        verify_sql: |
+          SELECT a.Account, a.AccountName, a.FlagInterCompany,
+                 b.Account AS MirrorAccount
+          FROM TS010S0 a
+          LEFT JOIN TS010S0 b ON b.ConsoID = a.ConsoID AND b.AccountID = a.MirrorAccountID
+          WHERE a.ConsoID = @ConsoID AND a.FlagInterCompany = 1
+
+      notes:
+        - "FlagInterCompany = 1 enables IC data entry with partner selection"
+        - "PartnerType = 1 identifies account as IC type"
+        - "MirrorAccountID links corresponding debit/credit accounts"
+
+    - step: 3
+      name: "Verify IC Data Entry Capability"
+      description: "Ensure IC transactions can be entered with partner identification"
+
+      actions:
+        - action: "check_data_entry_tables"
+          type: "query"
+          sql: |
+            -- Check TD040B2 structure for IC data
+            SELECT TOP 5
+                d.CompanyID,
+                c.CompanyCode,
+                d.AccountID,
+                a.Account,
+                d.PartnerCompanyID,
+                p.CompanyCode AS PartnerCode,
+                d.AmountLocal
+            FROM TD040B2 d
+            INNER JOIN TS014C0 c ON c.ConsoID = d.ConsoID AND c.CompanyID = d.CompanyID
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            LEFT JOIN TS014C0 p ON p.ConsoID = d.ConsoID AND p.CompanyID = d.PartnerCompanyID
+            WHERE d.ConsoID = @ConsoID
+
+        - action: "verify_partner_data_exists"
+          type: "validation"
+          guidance: |
+            For IC eliminations to work, IC data must include:
+            1. CompanyID - The reporting company
+            2. AccountID - The IC account
+            3. PartnerCompanyID - The IC partner company
+            4. Amount - The IC balance/transaction
+
+      checkpoint: true
+      checkpoint_message: "IC accounts configured. Verify IC data can be entered with partners."
+
+    - step: 4
+      name: "Select Elimination Method"
+      description: "Choose how IC eliminations will be processed"
+
+      decision_point:
+        question: "Which elimination method to use?"
+        options:
+          - option: "System Automatic (S001-S005)"
+            description: "Use built-in IC elimination procedures"
+            when: "Standard IC netting, balances should net to zero"
+            procedures:
+              - "P_CONSO_ELIM_INTERCOMPANY"
+              - "P_CONSO_ELIM_INTERCOMPANY_NETTING"
+
+          - option: "User Elimination Template"
+            description: "Create custom elimination rules"
+            when: "Complex IC scenarios, partial eliminations, special handling"
+            tables:
+              - "TS070S0 (header)"
+              - "TS071S0 (detail)"
+
+          - option: "Data-Driven User Elimination"
+            description: "Eliminations driven by IC data amounts"
+            when: "Eliminations should match IC data exactly"
+            procedure: "P_CONSO_ELIM_USER_FROM_DATA"
+
+      notes:
+        - "Most common: System automatic for standard IC netting"
+        - "User templates for recurring non-standard scenarios"
+        - "Data-driven for dynamic eliminations"
+
+    - step: 5
+      name: "Configure System Elimination (Option A)"
+      description: "Set up automatic IC elimination via system procedures"
+      conditional: "If using System Automatic method"
+
+      actions:
+        - action: "verify_elimination_procedure_config"
+          type: "query"
+          sql: |
+            -- Check which IC elimination is active
+            SELECT
+                js.JournalTypeCode,
+                js.Description,
+                js.ElimProcedure,
+                js.FlagActive
+            FROM TS020S1 js
+            WHERE js.ConsoID = @ConsoID
+              AND js.JournalTypeCode LIKE 'S00%'
+              AND js.ElimProcedure LIKE '%INTERCOMPANY%'
+
+        - action: "select_elimination_type"
+          type: "configuration"
+          options:
+            - code: "S001"
+              procedure: "P_CONSO_ELIM_INTERCOMPANY"
+              description: "Basic IC elimination"
+
+            - code: "S002"
+              procedure: "P_CONSO_ELIM_INTERCOMPANY_100PC"
+              description: "Eliminate IC to zero (100%)"
+
+            - code: "S004"
+              procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING"
+              description: "IC netting with partial match"
+
+            - code: "S005"
+              procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL"
+              description: "Full IC netting"
+
+      sql_configuration: |
+        -- Enable specific IC elimination journal type
+        UPDATE TS020S1
+        SET FlagActive = 1
+        WHERE ConsoID = @ConsoID
+          AND JournalTypeCode = @SelectedICElimCode
+
+    - step: 6
+      name: "Create User Elimination Template (Option B)"
+      description: "Define custom elimination rules for special IC scenarios"
+      conditional: "If using User Elimination Template method"
+
+      actions:
+        - action: "create_elimination_header"
+          type: "execute"
+          sql: |
+            -- Create user elimination header
+            INSERT INTO TS070S0 (
+                ConsoID,
+                ElimCode,
+                Description,
+                ElimType,
+                ElimSource,
+                FlagActive,
+                FlagAutoReverse
+            )
+            VALUES (
+                @ConsoID,
+                'U_IC_001',
+                'Intercompany Trade Elimination',
+                'U',      -- User type
+                'M',      -- Manual source
+                1,        -- Active
+                0         -- No auto-reverse
+            )
+
+        - action: "create_elimination_details"
+          type: "execute"
+          sql: |
+            -- Create elimination detail lines
+            -- Line 1: Eliminate IC Payable (Credit side)
+            INSERT INTO TS071S0 (
+                ConsoID, ElimCode, LineNo,
+                CompanyID, PartnerCompanyID,
+                AccountID, FlowID,
+                AmountType, Amount, Sign
+            )
+            VALUES (
+                @ConsoID, 'U_IC_001', 1,
+                NULL,     -- All companies (or specify)
+                NULL,     -- All partners (or specify)
+                @IC_PayableAccountID,
+                @NetFlowID,
+                'P',      -- Percentage based
+                100,      -- 100%
+                1         -- Debit (reduce payable)
+            )
+
+            -- Line 2: Eliminate IC Receivable (Debit side)
+            INSERT INTO TS071S0 (...)
+            VALUES (
+                @ConsoID, 'U_IC_001', 2,
+                NULL, NULL,
+                @IC_ReceivableAccountID,
+                @NetFlowID,
+                'P', 100,
+                -1        -- Credit (reduce receivable)
+            )
+
+      template_examples:
+        - name: "IC Trade B/S"
+          lines:
+            - "DR: IC Payables (reduce liability)"
+            - "CR: IC Receivables (reduce asset)"
+
+        - name: "IC Revenue/Expense"
+          lines:
+            - "DR: IC Revenue (reduce income)"
+            - "CR: IC Purchases (reduce expense)"
+
+        - name: "IC Loan + Interest"
+          lines:
+            - "DR: IC Loan Payable"
+            - "CR: IC Loan Receivable"
+            - "DR: IC Interest Income"
+            - "CR: IC Interest Expense"
+
+    - step: 7
+      name: "Test and Validate Eliminations"
+      description: "Run consolidation and verify IC eliminations work correctly"
+
+      actions:
+        - action: "run_test_consolidation"
+          type: "execute"
+          procedure: "P_CONSO_ELIM"
+          parameters:
+            - "@ConsoID = @ConsoID"
+            - "@UserID = @UserID"
+            - "@Debug = 1"
+
+        - action: "verify_ic_eliminated"
+          type: "query"
+          sql: |
+            -- Check IC balances after elimination
+            SELECT
+                a.Account,
+                a.AccountName,
+                SUM(d.AmountLocal) AS LocalTotal,
+                SUM(d.AmountGroup) AS GroupTotal,
+                CASE
+                    WHEN ABS(SUM(d.AmountGroup)) < 0.01 THEN 'ELIMINATED'
+                    ELSE 'REMAINING BALANCE'
+                END AS Status
+            FROM TD035C2 d
+            INNER JOIN TS010S0 a ON a.ConsoID = d.ConsoID AND a.AccountID = d.AccountID
+            WHERE d.ConsoID = @ConsoID
+              AND a.FlagInterCompany = 1
+            GROUP BY a.Account, a.AccountName
+            HAVING ABS(SUM(d.AmountGroup)) > 0.01
+
+        - action: "check_ic_reconciliation"
+          type: "query"
+          sql: |
+            -- IC reconciliation: Each partner pair should net to zero
+            SELECT
+                c1.CompanyCode AS Company,
+                c2.CompanyCode AS Partner,
+                SUM(CASE WHEN d.Amount > 0 THEN d.Amount ELSE 0 END) AS Debits,
+                SUM(CASE WHEN d.Amount < 0 THEN d.Amount ELSE 0 END) AS Credits,
+                SUM(d.Amount) AS NetBalance
+            FROM TD040B2 d
+            INNER JOIN TS014C0 c1 ON c1.ConsoID = d.ConsoID AND c1.CompanyID = d.CompanyID
+            INNER JOIN TS014C0 c2 ON c2.ConsoID = d.ConsoID AND c2.CompanyID = d.PartnerCompanyID
+            WHERE d.ConsoID = @ConsoID
+            GROUP BY c1.CompanyCode, c2.CompanyCode
+            HAVING ABS(SUM(d.Amount)) > 0.01
+
+      validation:
+        success_criteria:
+          - "IC Balance sheet accounts net to zero after consolidation"
+          - "IC P&L accounts eliminate revenue against expense"
+          - "No unexplained IC differences"
+
+      checklist:
+        - "[ ] IC accounts flagged correctly"
+        - "[ ] Mirror accounts linked"
+        - "[ ] Elimination method selected"
+        - "[ ] Test consolidation run"
+        - "[ ] IC balances eliminated"
+        - "[ ] No remaining IC differences"
+
+  # Post-workflow
+  post_workflow:
+    ongoing_tasks:
+      - description: "Monthly IC reconciliation"
+        action: "Run IC reconciliation report before each consolidation"
+
+      - description: "New IC relationships"
+        action: "Repeat workflow for new IC account pairs"
+
+    monitoring:
+      - "Monitor IC differences report each period"
+      - "Investigate any non-zero IC balances post-elimination"
+
+  # Troubleshooting
+  troubleshooting:
+    - issue: "IC balances not eliminating"
+      causes:
+        - "FlagInterCompany not set on accounts"
+        - "PartnerCompanyID missing from IC data"
+        - "Timing differences between partners"
+        - "Currency translation differences"
+      solution: |
+        1. Verify FlagInterCompany = 1 on accounts
+        2. Check TD040B2 has PartnerCompanyID populated
+        3. Reconcile IC data between partners
+        4. Check exchange rates applied consistently
+
+    - issue: "Partial IC elimination"
+      causes:
+        - "Data mismatch between partners"
+        - "Different reporting periods"
+        - "Manual adjustments on one side"
+      solution: |
+        1. Run IC reconciliation report
+        2. Identify differences
+        3. Adjust source data or create user elimination for difference
+
+    - issue: "Wrong elimination amount"
+      causes:
+        - "Account flagged incorrectly"
+        - "Multiple IC accounts combined"
+        - "Percentage calculation issue"
+      solution: |
+        1. Review account configuration
+        2. Check elimination template percentages
+        3. Verify group percentages for partial eliminations
+
+  # References
+  references:
+    - document: "../04-elimination-entries/intercompany-transactions.md"
+    - document: "../04-elimination-entries/user-eliminations.md"
+    - document: "../04-elimination-entries/elimination-templates.md"
+    - document: "../07-database-implementation/data-tables-catalog.md"

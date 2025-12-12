@@ -1,0 +1,551 @@
+# Workflow State Machine - Financial Consolidation AI Agent
+# Purpose: Document consolidation workflow states and prerequisites
+# Version: 1.1
+# Created: 2024-12-04
+# Updated: 2025-12-04 - Added cross-references (Phase 5)
+#
+# RELATED FILES:
+#   - api-workflow-diagrams.yaml: Visual Mermaid diagrams of workflows
+#   - api-error-catalog.yaml: Prerequisite error codes
+#   - api-consolidation-endpoints.yaml: Consolidation API handler details
+
+api_workflow_state_machine:
+  name: "Financial Consolidation Workflow State Machine"
+  version: "1.0"
+  description: |
+    Documents the consolidation workflow states, transitions, and prerequisites.
+    Used by the AI agent to guide users through the consolidation process and
+    prevent operations that violate workflow order.
+
+  # ============================================================================
+  # SECTION 1: COMPANY STATUS FLAGS
+  # ============================================================================
+  company_status_flags:
+    description: "Status flags on TS014C0 (Company table) that track integration progress"
+    table: "TS014C0"
+
+    flags:
+      Status_Validation:
+        column: "Status_Validation"
+        type: "TINYINT"
+        values:
+          0: "Not validated"
+          1: "Validated with errors"
+          2: "Validated successfully"
+        description: "Validation status for company data"
+
+      Status_Bundles:
+        column: "Status_Bundles"
+        type: "BIT"
+        values:
+          0: "Bundle integration done"
+          1: "Bundle integration pending"
+        description: "Whether statutory data is integrated"
+        reset_triggers:
+          - "ConsoMethod change"
+          - "CurrCode change"
+          - "GroupPerc change"
+          - "MinorPerc change"
+          - "ConsolidatedCompany change"
+
+      Status_Adjustments:
+        column: "Status_Adjustments"
+        type: "BIT"
+        values:
+          0: "Adjustment integration done"
+          1: "Adjustment integration pending"
+        description: "Whether adjustments are integrated"
+        reset_triggers:
+          - "Same as Status_Bundles"
+
+      Status_ClosingAmounts:
+        column: "Status_ClosingAmounts"
+        type: "BIT"
+        values:
+          0: "Closing amounts calculated"
+          1: "Closing amounts pending"
+        description: "Whether closing amounts are calculated"
+        reset_triggers:
+          - "Same as Status_Bundles"
+
+      Status_Flows:
+        column: "Status_Flows"
+        type: "BIT"
+        values:
+          0: "Flows calculated"
+          1: "Flows pending"
+        description: "Whether flow calculations are done"
+        reset_triggers:
+          - "Same as Status_Bundles"
+
+  # ============================================================================
+  # SECTION 2: CONSOLIDATION PERIOD STATUS
+  # ============================================================================
+  period_status:
+    description: "Consolidation period status on TS096S0"
+    table: "TS096S0"
+
+    columns:
+      Locked:
+        type: "BIT"
+        values:
+          0: "Unlocked - can be modified"
+          1: "Locked - read-only"
+        description: "Prevents modifications to consolidated data"
+
+      ConsoStatus:
+        type: "CHAR(1)"
+        values:
+          N: "New/Not started"
+          P: "Processing"
+          L: "Locked"
+          C: "Completed"
+        description: "Overall period status"
+
+      LockedByLogin:
+        type: "NVARCHAR"
+        description: "User who locked the period"
+
+      LockedDate:
+        type: "DATETIME"
+        description: "When period was locked"
+
+      LockedReason:
+        type: "NVARCHAR"
+        description: "Reason for locking"
+
+  # ============================================================================
+  # SECTION 3: CONSOLIDATION WORKFLOW STEPS
+  # ============================================================================
+  workflow_steps:
+    description: "Sequential consolidation workflow steps"
+
+    steps:
+      1_data_entry:
+        name: "Data Entry"
+        order: 1
+        description: "Import or manually enter statutory data"
+        prerequisites:
+          - "Period exists and is unlocked"
+          - "Companies configured"
+          - "Chart of accounts set up"
+        operations:
+          - "Import_ExecuteImport"
+          - "DataEntry_SaveData"
+          - "DataEntry_ImportFromLedger"
+        affects_status:
+          - "Sets Status_Bundles = 1 (pending)"
+        validation:
+          - "Run BUNDLE validation report"
+        api_handlers:
+          - "Import_ExecuteImport"
+          - "DataEntry_SaveBundleDetail"
+
+      2_bundle_integration:
+        name: "Bundle Integration"
+        order: 2
+        description: "Integrate statutory data into group currency"
+        prerequisites:
+          - "Data entry complete"
+          - "Exchange rates configured"
+          - "Currency translation method set"
+        operations:
+          - "Consolidation_Execute with StoredProcedures.Bundles"
+        stored_procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+        affects_status:
+          - "Sets Status_Bundles = 0 (done)"
+        bitmask: "0x2"
+        sub_steps:
+          - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_CLOSING"
+          - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_FLOWS"
+          - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_HISTORICAL"
+          - "P_CONSO_BUNDLE_INTEGRATION_UPDATE_COMPANY_STATUS"
+
+      3_adjustment_entry:
+        name: "Adjustment Entry"
+        order: 3
+        description: "Enter group adjustments (IFRS, reclass, etc.)"
+        prerequisites:
+          - "Bundle integration complete"
+        operations:
+          - "GroupAdjustment_SaveJournal"
+        affects_status:
+          - "Sets Status_Adjustments = 1 (pending)"
+        api_handlers:
+          - "GroupAdjustment_GetJournals"
+          - "GroupAdjustment_SaveJournal"
+
+      4_adjustment_integration:
+        name: "Adjustment Integration"
+        order: 4
+        description: "Integrate adjustments into consolidation"
+        prerequisites:
+          - "Bundle integration complete (Status_Bundles = 0)"
+        operations:
+          - "Consolidation_Execute with StoredProcedures.Adjustments"
+        stored_procedure: "P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION"
+        affects_status:
+          - "Sets Status_Adjustments = 0 (done)"
+        bitmask: "0x4"
+        warnings_if_skipped:
+          - "P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION_BUNDLE_INTEGRATION_FIRST"
+
+      5_intercompany_matching:
+        name: "Intercompany Matching"
+        order: 5
+        description: "Match and reconcile intercompany transactions"
+        prerequisites:
+          - "Bundle integration complete"
+          - "Adjustment integration complete"
+          - "Closing amounts calculated"
+          - "Flows calculated"
+        operations:
+          - "IntercoMatching_Execute"
+        stored_procedure: "P_CONSO_MATCHING_PREPARE"
+        prerequisite_checks:
+          - "P_CONSO_MATCHING_BUNDLE_INTEGRATION_FIRST"
+          - "P_CONSO_MATCHING_ADJ_INTEGRATION_FIRST"
+          - "P_CONSO_MATCHING_CLOSING_AMOUNTS_FIRST"
+          - "P_CONSO_MATCHING_FLOWS_FIRST"
+
+      6_eliminations:
+        name: "Eliminations"
+        order: 6
+        description: "Execute intercompany eliminations"
+        prerequisites:
+          - "Bundle integration complete"
+          - "Adjustment integration complete"
+          - "IC matching complete (recommended)"
+        operations:
+          - "Consolidation_Execute with StoredProcedures.Elims"
+        stored_procedure: "P_CONSO_ELIM"
+        affects_status:
+          - "Creates elimination journals"
+        bitmask: "0x8"
+        warnings_if_prerequisites_missing:
+          - "P_CONSO_ELIM_BUNDLE_INTEGRATION_FIRST"
+          - "P_CONSO_ELIM_ADJ_INTEGRATION_FIRST"
+
+      7_validation:
+        name: "Final Validation"
+        order: 7
+        description: "Validate consolidated results"
+        prerequisites:
+          - "All integration steps complete"
+          - "Eliminations complete"
+        operations:
+          - "ValidationReportRule_Execute"
+        validation_reports:
+          - "CONSO - Full consolidation validation"
+          - "INTERCO - IC elimination validation"
+
+      8_reporting:
+        name: "Reporting"
+        order: 8
+        description: "Generate consolidation reports"
+        prerequisites:
+          - "All prior steps complete"
+        operations:
+          - "Report_*"
+        no_status_change: true
+
+      9_lock_period:
+        name: "Lock Period"
+        order: 9
+        description: "Lock period to prevent modifications"
+        prerequisites:
+          - "Final validation passed"
+          - "Management approval"
+        operations:
+          - "Consolidation_Lock"
+        affects_status:
+          - "Sets Locked = 1"
+          - "Records LockedByLogin, LockedDate"
+
+  # ============================================================================
+  # SECTION 4: STORED PROCEDURE BITMASKS
+  # ============================================================================
+  stored_procedure_bitmasks:
+    description: "Bitmask values for StoredProceduresToExecute parameter"
+    enum_location: "Sigma.Mona.Jobs.Database.ConsolidationIntegrationJob.StoredProcedures"
+
+    values:
+      Undefined:
+        value: "0x0"
+        description: "Default/not set"
+
+      LinkedCategories:
+        value: "0x1"
+        description: "Link categories (rarely used separately)"
+
+      Bundles:
+        value: "0x2"
+        description: "Bundle/statutory integration"
+        stored_procedure: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION"
+
+      Adjustments:
+        value: "0x4"
+        description: "Adjustment integration"
+        stored_procedure: "P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION"
+
+      Elims:
+        value: "0x8"
+        description: "Eliminations"
+        stored_procedure: "P_CONSO_ELIM"
+
+      All:
+        value: "0xF"
+        description: "All procedures (Bundles + Adjustments + Elims)"
+        execution_order:
+          - "LinkedCategories"
+          - "Bundles"
+          - "Adjustments"
+          - "Elims"
+
+  # ============================================================================
+  # SECTION 5: PREREQUISITE ERROR CODES
+  # ============================================================================
+  prerequisite_errors:
+    description: "Errors when prerequisites are not met"
+
+    bundle_integration_required:
+      error_codes:
+        - "P_CONSO_MATCHING_BUNDLE_INTEGRATION_FIRST"
+        - "P_CONSO_ELIM_BUNDLE_INTEGRATION_FIRST"
+      condition: "Status_Bundles != 0"
+      message: "Bundle integration must be completed first"
+      resolution: "Run Consolidation_Execute with Bundles flag"
+
+    adjustment_integration_required:
+      error_codes:
+        - "P_CONSO_MATCHING_ADJ_INTEGRATION_FIRST"
+        - "P_CONSO_ELIM_ADJ_INTEGRATION_FIRST"
+      condition: "Status_Adjustments != 0"
+      message: "Adjustment integration must be completed first"
+      resolution: "Run Consolidation_Execute with Adjustments flag"
+
+    closing_amounts_required:
+      error_codes:
+        - "P_CONSO_MATCHING_CLOSING_AMOUNTS_FIRST"
+      condition: "Status_ClosingAmounts != 0"
+      message: "Closing amounts must be calculated first"
+      resolution: "Run closing amounts calculation"
+
+    flows_required:
+      error_codes:
+        - "P_CONSO_MATCHING_FLOWS_FIRST"
+      condition: "Status_Flows != 0"
+      message: "Flow calculation must be completed first"
+      resolution: "Run flow calculation"
+
+    period_locked:
+      error_codes:
+        - "ConsoLocked"
+        - "ConsosLocked"
+      condition: "Locked = 1 OR ConsoStatus = 'L'"
+      message: "Consolidation period is locked"
+      resolution: "Unlock period with Consolidation_Unlock"
+
+  # ============================================================================
+  # SECTION 6: WORKFLOW STATE TRANSITIONS
+  # ============================================================================
+  state_transitions:
+    description: "Valid state transitions in the workflow"
+
+    from_data_entry:
+      valid_transitions:
+        - "bundle_integration"
+        - "validation (bundle validation)"
+      api_triggers:
+        - "Consolidation_Execute(Bundles)"
+        - "ValidationReportRule_Execute(BUNDLE)"
+
+    from_bundle_integration:
+      valid_transitions:
+        - "adjustment_entry"
+        - "adjustment_integration"
+        - "intercompany_matching"
+      api_triggers:
+        - "GroupAdjustment_SaveJournal"
+        - "Consolidation_Execute(Adjustments)"
+
+    from_adjustment_integration:
+      valid_transitions:
+        - "intercompany_matching"
+        - "eliminations"
+      api_triggers:
+        - "IntercoMatching_Execute"
+        - "Consolidation_Execute(Elims)"
+
+    from_eliminations:
+      valid_transitions:
+        - "final_validation"
+        - "reporting"
+        - "lock_period"
+      api_triggers:
+        - "ValidationReportRule_Execute(CONSO)"
+        - "Consolidation_Lock"
+
+  # ============================================================================
+  # SECTION 7: STATUS RESET TRIGGERS
+  # ============================================================================
+  status_reset_triggers:
+    description: "Changes that reset integration status (via TR_TS014C0 trigger)"
+
+    company_changes:
+      trigger: "TR_TS014C0"
+      table: "TS014C0"
+      monitored_columns:
+        - "ConsoMethod"
+        - "CurrCode"
+        - "GroupPerc"
+        - "MinorPerc"
+        - "GroupCtrlPerc"
+        - "NbrFinRightsIssued"
+        - "NbrVotingRightsIssued"
+        - "ConsolidatingCompany"
+        - "AvailableForSale"
+        - "ConsolidatedCompany"
+        - "CalculateDeferredTax"
+        - "DeferredTaxRate"
+        - "ConversionMethod"
+      effect: |
+        Sets Status_Bundles = 1
+        Sets Status_Adjustments = 1
+        Sets Status_Flows = 1
+        Sets Status_ClosingAmounts = 1
+      bypass: "Create temp table #NO_CLEAR_CONSO_STATUS"
+
+    ownership_changes:
+      effect: "Invalidates ownership percentages and integration status"
+      requires_recalculation: true
+
+    exchange_rate_changes:
+      effect: "Requires re-running bundle integration for currency translation"
+
+  # ============================================================================
+  # SECTION 8: API WORKFLOW ORCHESTRATION
+  # ============================================================================
+  api_orchestration:
+    description: "API call sequence for complete consolidation"
+
+    full_consolidation_sequence:
+      - step: 1
+        name: "Check prerequisites"
+        api: "Consolidation_GetStatus"
+        purpose: "Get current status of all companies"
+
+      - step: 2
+        name: "Calculate ownership percentages"
+        api: "Ownership_CalculatePercentages"
+        prerequisite: "Ownership structure configured"
+
+      - step: 3
+        name: "Execute bundle integration"
+        api: "Consolidation_Execute"
+        parameters:
+          StoredProceduresToExecute: "0x2 (Bundles)"
+          ExecuteDimensions: true
+        wait_for: "Job completion"
+
+      - step: 4
+        name: "Execute adjustment integration"
+        api: "Consolidation_Execute"
+        parameters:
+          StoredProceduresToExecute: "0x4 (Adjustments)"
+        prerequisite: "Bundle integration complete"
+
+      - step: 5
+        name: "Execute IC matching (optional)"
+        api: "IntercoMatching_Execute"
+        prerequisite: "All integrations complete"
+
+      - step: 6
+        name: "Execute eliminations"
+        api: "Consolidation_Execute"
+        parameters:
+          StoredProceduresToExecute: "0x8 (Elims)"
+        prerequisite: "Bundle + Adjustment integration complete"
+
+      - step: 7
+        name: "Run final validation"
+        api: "ValidationReportRule_Execute"
+        parameters:
+          ValidationReportID: "CONSO report"
+
+      - step: 8
+        name: "Generate reports"
+        api: "Report_ConsolidationSummary"
+
+    quick_rerun_sequence:
+      description: "When only eliminations need to be re-run"
+      steps:
+        - api: "Consolidation_Execute"
+          parameters:
+            StoredProceduresToExecute: "0x8 (Elims)"
+        - api: "ValidationReportRule_Execute"
+
+  # ============================================================================
+  # SECTION 9: AGENT DECISION TREE
+  # ============================================================================
+  agent_decision_tree:
+    description: "Decision logic for AI agent workflow guidance"
+
+    when_user_wants_to_consolidate:
+      - check: "Is period locked?"
+        if_yes: "Suggest unlock or choose different period"
+        if_no: "Continue"
+
+      - check: "Are ownership percentages calculated?"
+        if_no: "Run Ownership_CalculatePercentages first"
+        if_yes: "Continue"
+
+      - check: "Is bundle integration pending for any company?"
+        query: "SELECT COUNT(*) FROM TS014C0 WHERE Status_Bundles = 1"
+        if_yes: "Run Bundles integration"
+        if_no: "Continue"
+
+      - check: "Is adjustment integration pending?"
+        query: "SELECT COUNT(*) FROM TS014C0 WHERE Status_Adjustments = 1"
+        if_yes: "Run Adjustments integration"
+        if_no: "Continue"
+
+      - check: "Are eliminations needed?"
+        if_yes: "Run Eliminations"
+        if_no: "Continue"
+
+      - action: "Run final validation"
+      - action: "Generate reports"
+
+    when_error_occurs:
+      prerequisite_error:
+        action: "Identify missing step from error code"
+        resolution: "Guide user to complete prerequisite"
+
+      locked_error:
+        action: "Identify who locked and when"
+        resolution: "Contact lock owner or request unlock"
+
+      validation_error:
+        action: "Identify failing rule"
+        resolution: "Guide to appropriate report/fix"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-04"
+    version: "1.0"
+    author: "Claude Code - Documentation automation"
+
+    source_files:
+      - "TS014C0.sql - Company status columns"
+      - "TS096S0.sql - Period status"
+      - "ConsolidationIntegrationJob.cs - StoredProcedures enum"
+      - "P_CONSO_CALCULATE_BUNDLE_INTEGRATION.sql"
+      - "P_CONSO_MATCHING_PREPARE.sql"
+      - "P_CONSO_ELIM.sql"
+
+    related_files:
+      - "api-error-catalog.yaml - Prerequisite error codes"
+      - "api-consolidation-endpoints.yaml - API handlers"

@@ -1,0 +1,2024 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.12,
+                0.07,
+                0.371,
+                0.086
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.12,
+                0.881,
+                0.205
+            ],
+            "angle": 0,
+            "content": "Moreover, the technology of expert systems is becoming more and more present and time is not so far when, on the basis of complete and detailed information, consolidation software will be able to generate automatically number of adjustments that are booked manually today by the consolidation team."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.219,
+                0.88,
+                0.268
+            ],
+            "angle": 0,
+            "content": "Classical and easy situations as dividends, write-off on consolidated participations, stocks margins eliminations, goodwill calculations are already processed automatically by professional software."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.282,
+                0.88,
+                0.334
+            ],
+            "angle": 0,
+            "content": "More difficult situations as deconsolidation, change of functional currency, disposal of subgroups, some complex capital increases with percentage variations are prepared in the R&D departments of software editors."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.347,
+                0.88,
+                0.381
+            ],
+            "angle": 0,
+            "content": "Automating all these adjustments will become possible not only with a professional consolidation software but also with a 'smart' bundle."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.12,
+                0.414,
+                0.445,
+                0.436
+            ],
+            "angle": 0,
+            "content": "2.3 Validation rules"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.456,
+                0.88,
+                0.49
+            ],
+            "angle": 0,
+            "content": "Validation rules depend on the different sheets defined in a bundle and we can only mention a few ideas."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.504,
+                0.88,
+                0.556
+            ],
+            "angle": 0,
+            "content": "The important thing is that when an error passes through the consolidation process, it should be prevented in the bundle for the next consolidation like we do for a virus patch."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.569,
+                0.68,
+                0.587
+            ],
+            "angle": 0,
+            "content": "We have grouped validations rules into several categories."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.601,
+                0.461,
+                0.619
+            ],
+            "angle": 0,
+            "content": "Validations on closina amounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.633,
+                0.807,
+                0.65
+            ],
+            "angle": 0,
+            "content": "Even if to all accountants around the world, it is worthwhile to mention"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.158,
+                0.665,
+                0.478,
+                0.68
+            ],
+            "angle": 0,
+            "content": "Total assets \\(=\\) Total liabilities"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.156,
+                0.697,
+                0.874,
+                0.729
+            ],
+            "angle": 0,
+            "content": "- Result deducted from P&L account = Result in Equity, because accounts are reported before appropriation"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.156,
+                0.665,
+                0.874,
+                0.729
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.745,
+                0.531,
+                0.763
+            ],
+            "angle": 0,
+            "content": "Validations on accounts with partners"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.776,
+                0.88,
+                0.827
+            ],
+            "angle": 0,
+            "content": "The book value of financial investments accounts in the balance sheet must be equal to the total of the contribution given by companies owned. All other non consolidated amounts should be booked on another account."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.1,
+                0.074,
+                0.848,
+                0.091
+            ],
+            "angle": 0,
+            "content": "P A R T 5 ORGANIZATION OF A CONSOLIDATION AND FAST CLOSE"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.122,
+                0.871,
+                0.172
+            ],
+            "angle": 0,
+            "content": "The reason for this approach is rather simple. Financial investments on consolidated companies are translated at historical rate while other financial investments remain at closing rate."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.187,
+                0.871,
+                0.269
+            ],
+            "angle": 0,
+            "content": "For intercompany accounts, a validation should be done on the total of contributed amounts which should be less or equal to the net balance account. If the net balance account includes only transactions with partners, which is our recommendation, then validation would be made only on the equality."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.104,
+                0.283,
+                0.795,
+                0.301
+            ],
+            "angle": 0,
+            "content": "Validations of variations between opening and closina amounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.316,
+                0.871,
+                0.365
+            ],
+            "angle": 0,
+            "content": "If the group has decided to produce a consolidated cash flow statement, flows must be defined on every balance sheet account. This implies to validate that \"opening value + total of flow amounts = closing value\"."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.38,
+                0.761,
+                0.397
+            ],
+            "angle": 0,
+            "content": "These validations must also be extended to accounts with partners."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.411,
+                0.655,
+                0.429
+            ],
+            "angle": 0,
+            "content": "Special care has to be brought to the following situation."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.145,
+                0.439,
+                0.806,
+                0.523
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Total</td><td>Partner B</td><td>Consolidated</td></tr><tr><td>Opening value</td><td>100</td><td>50</td><td>50</td></tr><tr><td>Increase</td><td>30</td><td>40</td><td>(10)</td></tr><tr><td>Decrease</td><td>(10)</td><td></td><td>(10)</td></tr><tr><td>Closing value</td><td>120</td><td>90</td><td>30</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.543,
+                0.871,
+                0.593
+            ],
+            "angle": 0,
+            "content": "We consider company A reporting its receivables account. The \"Total\" column represents the evolution of the total balance sheet account between opening and closing, including intercompany amounts with the partner B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.607,
+                0.869,
+                0.641
+            ],
+            "angle": 0,
+            "content": "In addition to this information, there must be similar information concerning each partner, as shown here for partner B."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.655,
+                0.871,
+                0.72
+            ],
+            "angle": 0,
+            "content": "This situation gives a problem after the elimination process because we remain in particular with a negative increase of (10), thanks to the fact that the intercompany increase is higher than the balance (group + \\(3^{\\text{rd}}\\) Parties) increase."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.735,
+                0.871,
+                0.769
+            ],
+            "angle": 0,
+            "content": "This is something to validate for every intercompany account in the balance sheet."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.104,
+                0.784,
+                0.593,
+                0.801
+            ],
+            "angle": 0,
+            "content": "Validations between flows and P&L accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.816,
+                0.86,
+                0.833
+            ],
+            "angle": 0,
+            "content": "These validations are much more accounting oriented than the previous ones."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.847,
+                0.871,
+                0.881
+            ],
+            "angle": 0,
+            "content": "The objective is to be sure all notes to the accounts, including the cash flow statement, will be consistent."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.12,
+                0.07,
+                0.371,
+                0.086
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.124,
+                0.882,
+                0.172
+            ],
+            "angle": 0,
+            "content": "The background of these validations is to verify that some non cash variations on balance sheet accounts are equal to the corresponding amounts booked in the P&L."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.188,
+                0.827,
+                0.205
+            ],
+            "angle": 0,
+            "content": "Without being necessarily complete, here are the main accounts to verify"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.22,
+                0.757,
+                0.236
+            ],
+            "angle": 0,
+            "content": "- Variation of depreciations on depreciation assets accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.252,
+                0.415,
+                0.269
+            ],
+            "angle": 0,
+            "content": "- Variation of provisions"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.284,
+                0.878,
+                0.317
+            ],
+            "angle": 0,
+            "content": "Write-offs and write-backs booked on financial investments (consolidated and not consolidated)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.332,
+                0.638,
+                0.348
+            ],
+            "angle": 0,
+            "content": "- Same for non current and current receivables"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.364,
+                0.878,
+                0.397
+            ],
+            "angle": 0,
+            "content": "- Unrealized exchange gain and loss on all accounts, including intercompany amounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.412,
+                0.469,
+                0.429
+            ],
+            "angle": 0,
+            "content": "- Gain/loss on assets disposal"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.444,
+                0.665,
+                0.46
+            ],
+            "angle": 0,
+            "content": "- Variations of assets and liabilities deferred taxes"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.157,
+                0.22,
+                0.878,
+                0.46
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.476,
+                0.696,
+                0.493
+            ],
+            "angle": 0,
+            "content": "Depending on local accounting rules, we could also mention"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.509,
+                0.417,
+                0.524
+            ],
+            "angle": 0,
+            "content": "- Capitalization of works"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.541,
+                0.441,
+                0.557
+            ],
+            "angle": 0,
+            "content": "Use of investment grants"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.573,
+                0.51,
+                0.588
+            ],
+            "angle": 0,
+            "content": "- Untaxed reserves booked in P&L"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.157,
+                0.509,
+                0.51,
+                0.588
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.605,
+                0.406,
+                0.621
+            ],
+            "angle": 0,
+            "content": "Validations between flows"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.637,
+                0.879,
+                0.685
+            ],
+            "angle": 0,
+            "content": "Some account variations have no impact on P&L but, referring to the double entry accounting, once a flow of a certain type is booked, there must be a counterpart on a flow of the same type on another account."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.7,
+                0.779,
+                0.718
+            ],
+            "angle": 0,
+            "content": "The transfer of an amount between two accounts is a good example."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.732,
+                0.534,
+                0.749
+            ],
+            "angle": 0,
+            "content": "Here are some other situations to consider"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.765,
+                0.875,
+                0.796
+            ],
+            "angle": 0,
+            "content": "- Revaluation of assets having an impact on Revaluation reserves in equity"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.163,
+                0.813,
+                0.877,
+                0.844
+            ],
+            "angle": 0,
+            "content": "- Difference on opening amounts is booked on a specific flow and, of course, total impact on assets and liabilities must be equal"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.162,
+                0.765,
+                0.877,
+                0.844
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "bbox": [
+                0.095,
+                0.073,
+                0.848,
+                0.091
+            ],
+            "angle": 0,
+            "content": "PART 5 ORGANIZATION OF A CONSOLIDATION AND FAST CLOSE"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.122,
+                0.867,
+                0.157
+            ],
+            "angle": 0,
+            "content": "- Entry of a company in the consolidation scope. All flows correspond to the balance sheet accounts on the day it joins the group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.171,
+                0.868,
+                0.205
+            ],
+            "angle": 0,
+            "content": "- Exit of a company from the consolidation scope. All flows correspond to the balance sheet accounts on the day it leaves the group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.219,
+                0.868,
+                0.284
+            ],
+            "angle": 0,
+            "content": "- Merge of two companies or absorption of a company by another one. All flows corresponding to the balance sheet accounts of one company must be equal to the same flows on the same accounts in the other company, but with the opposite sign."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.299,
+                0.868,
+                0.332
+            ],
+            "angle": 0,
+            "content": "- The part of the non-distributed result is transferred from the Result to Retained earnings and Reserves accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.348,
+                0.868,
+                0.461
+            ],
+            "angle": 0,
+            "content": "- After currency translation, we have seen that a translation adjustment flow is generated on each balance sheet account. Considering the fact that different rates, average or transaction rates, may be used in a single balance sheet, a validation rule should verify that the total of assets and liabilities translation adjustment flows are equal, including the flow corresponding to the evolution of the translation adjustment account in the equity."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.145,
+                0.122,
+                0.868,
+                0.461
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.103,
+                0.475,
+                0.551,
+                0.493
+            ],
+            "angle": 0,
+            "content": "Validations of sian of accounts and flows"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.508,
+                0.871,
+                0.558
+            ],
+            "angle": 0,
+            "content": "Depending on the level of sophistication the group wishes to develop in its consolidation bundle, our opinion is that controlling the sign of some accounts and flows increases the consolidation quality likewise."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.573,
+                0.547,
+                0.59
+            ],
+            "angle": 0,
+            "content": "Here are two examples to justify our position"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.141,
+                0.605,
+                0.868,
+                0.67
+            ],
+            "angle": 0,
+            "content": "- A large number of accounts are, with no discussion, either debtor or creditor, as financial investments (acquisition value) or financial investments (write-off). On the other hand, result may have both signs and cannot be validated."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.141,
+                0.685,
+                0.868,
+                0.718
+            ],
+            "angle": 0,
+            "content": "- In order to produce consistent notes to the accounts, we recommend validating the sign of a maximum of flows, amongst which"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.141,
+                0.605,
+                0.868,
+                0.718
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.217,
+                0.734,
+                0.461,
+                0.75
+            ],
+            "angle": 0,
+            "content": "o Acquisition flows (+)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.219,
+                0.751,
+                0.429,
+                0.766
+            ],
+            "angle": 0,
+            "content": "Disposal flows (-)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.219,
+                0.766,
+                0.58,
+                0.783
+            ],
+            "angle": 0,
+            "content": "Capital increase \\((+)\\) /decrease (-)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.22,
+                0.783,
+                0.5,
+                0.798
+            ],
+            "angle": 0,
+            "content": "Payment of dividends (-)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.219,
+                0.799,
+                0.621,
+                0.815
+            ],
+            "angle": 0,
+            "content": "Depreciation flows, write-off flows (-)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.219,
+                0.815,
+                0.461,
+                0.831
+            ],
+            "angle": 0,
+            "content": "Write-back flows (+)"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.217,
+                0.734,
+                0.621,
+                0.831
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.119,
+                0.07,
+                0.371,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.24,
+                0.125,
+                0.445,
+                0.147
+            ],
+            "angle": 0,
+            "content": "FAST CLOSE"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.169,
+                0.88,
+                0.203
+            ],
+            "angle": 0,
+            "content": "For groups closing their consolidation quite late and wishing to fasten the process next year, motivations can be found in some of the following reasons"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.218,
+                0.537,
+                0.232
+            ],
+            "angle": 0,
+            "content": "- To comply with legal requirements"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.234,
+                0.673,
+                0.248
+            ],
+            "angle": 0,
+            "content": "- To anticipate future and most severe regulations"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.25,
+                0.521,
+                0.264
+            ],
+            "angle": 0,
+            "content": "To improve a financial reputation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.266,
+                0.618,
+                0.281
+            ],
+            "angle": 0,
+            "content": "To give a better image of the management"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.162,
+                0.282,
+                0.495,
+                0.297
+            ],
+            "angle": 0,
+            "content": "To do better than competitors."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.162,
+                0.218,
+                0.673,
+                0.297
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.313,
+                0.881,
+                0.395
+            ],
+            "angle": 0,
+            "content": "However, we have met so many times difficult situations just because the group management didn't anticipate the arrival of new investors in the capital, or asked to reduce drastically the consolidation delays while imposing new consolidation evaluation rules and four consolidations a year instead of only one."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.41,
+                0.872,
+                0.427
+            ],
+            "angle": 0,
+            "content": "And don't reply \"it will not be possible\" because others will do it at your place!"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.442,
+                0.88,
+                0.492
+            ],
+            "angle": 0,
+            "content": "In the three next sections, we will give some \"tips and tricks\" in order to optimize the whole consolidation process and to gain not only a few days but a few weeks."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.506,
+                0.879,
+                0.54
+            ],
+            "angle": 0,
+            "content": "But be aware of the fact that these tips and tricks will only be efficient if the group management is willing to improve the planning."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.117,
+                0.573,
+                0.577,
+                0.595
+            ],
+            "angle": 0,
+            "content": "3.1 Before the consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.615,
+                0.88,
+                0.648
+            ],
+            "angle": 0,
+            "content": "It's too late to think about planning optimization when you just received all the bundles and you are ready to start the consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.664,
+                0.595,
+                0.68
+            ],
+            "angle": 0,
+            "content": "A lot of tasks can be prepared a long time ahead."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.117,
+                0.696,
+                0.787,
+                0.713
+            ],
+            "angle": 0,
+            "content": "Prepare all events having an impact on consolidated accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.728,
+                0.88,
+                0.76
+            ],
+            "angle": 0,
+            "content": "All along the period to consolidate, stay informed of all events impacting the consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.117,
+                0.775,
+                0.721,
+                0.792
+            ],
+            "angle": 0,
+            "content": "The list of these events can be rather long and we think about"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.808,
+                0.441,
+                0.823
+            ],
+            "angle": 0,
+            "content": "New company acquisition"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.156,
+                0.825,
+                0.416,
+                0.84
+            ],
+            "angle": 0,
+            "content": "- Disposal of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.841,
+                0.875,
+                0.872
+            ],
+            "angle": 0,
+            "content": "All shares transactions (acquisitions and disposals) concerning consolidated companies"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.155,
+                0.808,
+                0.875,
+                0.872
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "bbox": [
+                0.097,
+                0.072,
+                0.848,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 5 ORGANIZATION OF A CONSOLIDATION AND FAST CLOSE"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.121,
+                0.434,
+                0.136
+            ],
+            "angle": 0,
+            "content": "Capital increase/decrease"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.138,
+                0.429,
+                0.153
+            ],
+            "angle": 0,
+            "content": "Liquidation of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.154,
+                0.475,
+                0.169
+            ],
+            "angle": 0,
+            "content": "- Deconsolidation of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.17,
+                0.513,
+                0.186
+            ],
+            "angle": 0,
+            "content": "- Merge or absorption of companies"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.187,
+                0.368,
+                0.202
+            ],
+            "angle": 0,
+            "content": "- Split of a company"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.203,
+                0.477,
+                0.218
+            ],
+            "angle": 0,
+            "content": "Dividends paid by subsidiaries."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.14,
+                0.121,
+                0.513,
+                0.218
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.234,
+                0.871,
+                0.299
+            ],
+            "angle": 0,
+            "content": "For all these events, try to collect the most complete information and anticipate the corresponding adjustments, even if you don't have the final figures. Calculate the impact on \"school case\" figures that you will just need to replace at consolidation time."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.314,
+                0.658,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Inform Auditors with situations needina a decision"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.346,
+                0.871,
+                0.38
+            ],
+            "angle": 0,
+            "content": "Some situations will not be so simple. Let's just consider the following example."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.394,
+                0.868,
+                0.445
+            ],
+            "angle": 0,
+            "content": "The acquisition of a company is concluded on October 17. Of course, accounts will not be available at that date and probably not as at September 30 either. Do your Auditors agree to consider the acquisition on June 30?"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.103,
+                0.459,
+                0.557,
+                0.475
+            ],
+            "angle": 0,
+            "content": "Plannina information to group companies"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.492,
+                0.871,
+                0.557
+            ],
+            "angle": 0,
+            "content": "Communicate new planning to all group companies the sooner the better in order to give them enough time to adapt. Check each company about its capability to comply with the new planning and give help if you feel it necessary."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.104,
+                0.571,
+                0.367,
+                0.588
+            ],
+            "angle": 0,
+            "content": "Define clear procedures"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.603,
+                0.868,
+                0.653
+            ],
+            "angle": 0,
+            "content": "In most cases procedures will be written in English which is probably not the usual language of most group correspondents. That's the reason why we recommend writing these procedures in a clear way with simple words."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.668,
+                0.508,
+                0.685
+            ],
+            "angle": 0,
+            "content": "Examples always help the understanding."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.7,
+                0.597,
+                0.718
+            ],
+            "angle": 0,
+            "content": "Take special care of new companies acquired"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.732,
+                0.868,
+                0.781
+            ],
+            "angle": 0,
+            "content": "New companies joining the group know nothing about the group procedures and the group culture. Moreover, for some of these companies, it is maybe the first time they will have to fill in a consolidation bundle."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.103,
+                0.796,
+                0.661,
+                0.813
+            ],
+            "angle": 0,
+            "content": "Such situation requires special assistance from your side."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.119,
+                0.434,
+                0.136
+            ],
+            "angle": 0,
+            "content": "Capital increase/decrease"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.12,
+                0.069,
+                0.375,
+                0.086
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.123,
+                0.6,
+                0.14
+            ],
+            "angle": 0,
+            "content": "Send closing and averaae rate to companies"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.155,
+                0.881,
+                0.203
+            ],
+            "angle": 0,
+            "content": "In order to reduce the number of intercompany adjustments, send to each company the closing rates and the average rates you will use for the next consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.219,
+                0.684,
+                0.235
+            ],
+            "angle": 0,
+            "content": "This can be done on the second day after the closing date."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.251,
+                0.661,
+                0.268
+            ],
+            "angle": 0,
+            "content": "Dedicated system for intercompany reconciliation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.283,
+                0.881,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Most of the software companies are offering specialized web solutions for groups to communicate their intercompany positions and to reconcile them without any intervention from the central consolidation team."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.347,
+                0.881,
+                0.396
+            ],
+            "angle": 0,
+            "content": "Once such software is installed, it can be used several times during the year with a marginal cost. Experience shows that this approach reduces drastically the number of intercompany differences."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.411,
+                0.881,
+                0.46
+            ],
+            "angle": 0,
+            "content": "By solving themselves these intercompany differences, each correspondent becomes aware of the importance of booking correctly intercompany amounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.475,
+                0.881,
+                0.573
+            ],
+            "angle": 0,
+            "content": "This topic gives us the opportunity to clarify one point: such specialized intercompany web software does not necessarily eliminate all intercompany differences but sometimes explains why there is a difference. As an example, company A sells some services to company B which booked them as R&D in the assets. The turnover in A accounts is not matched with a purchase in B accounts, but a comment is helping to book a consolidation adjustment."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.588,
+                0.768,
+                0.605
+            ],
+            "angle": 0,
+            "content": "Prepare the next consolidation before receivina the bundles"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.619,
+                0.88,
+                0.653
+            ],
+            "angle": 0,
+            "content": "Consolidation data consist in local currency accounts and consolidation adjustments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.668,
+                0.881,
+                0.734
+            ],
+            "angle": 0,
+            "content": "These adjustments are usually kept in the consolidation because they impact the result the first year and then the reserves for a certain number of years. On the contrary, some others are impacting the result one year but must be reversed the next year."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.118,
+                0.748,
+                0.881,
+                0.797
+            ],
+            "angle": 0,
+            "content": "Depending on the consolidation software used, it is important to check that all these adjustments are managed correctly in the next consolidation. To do so, we suggest to proceed as follows"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.157,
+                0.812,
+                0.881,
+                0.845
+            ],
+            "angle": 0,
+            "content": "- Prepare the new consolidation by importing statutory equity and participations amounts of all companies."
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.073,
+                0.852,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 5 ORGANIZATION OF A CONSOLIDATION AND FAST CLOSE"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.123,
+                0.867,
+                0.154
+            ],
+            "angle": 0,
+            "content": "- Maintain the same closing and average rates as in the previous consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.171,
+                0.831,
+                0.187
+            ],
+            "angle": 0,
+            "content": "- Maintain the same group structure as in the previous consolidation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.203,
+                0.868,
+                0.234
+            ],
+            "angle": 0,
+            "content": "- Make a consolidation run and validate the consolidated reserves evolution."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.143,
+                0.123,
+                0.868,
+                0.234
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.251,
+                0.872,
+                0.3
+            ],
+            "angle": 0,
+            "content": "If everything seems correct, this means that all adjustments are correctly carried forward in the next consolidation and you are ready to import the bundles."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.316,
+                0.584,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Prepare and send the consolidation bundles"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.348,
+                0.868,
+                0.38
+            ],
+            "angle": 0,
+            "content": "Consolidation bundles will integrate all comments and additional validation rules resulting from the previous consolidation experience."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.396,
+                0.868,
+                0.429
+            ],
+            "angle": 0,
+            "content": "The more checks you add in the bundle, the higher quality of figures you get back and the maximum of time you gain during the consolidation process."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.444,
+                0.868,
+                0.508
+            ],
+            "angle": 0,
+            "content": "One single error in one bundle turns into a mail to the concerned company. Misunderstanding of the question, correspondent on a meeting or abroad or on vacation, some delay because time difference are as many reasons to delay a final correct answer sometimes a few days."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.524,
+                0.663,
+                0.54
+            ],
+            "angle": 0,
+            "content": "Such situation can put you in a difficult planning position."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.556,
+                0.335,
+                0.572
+            ],
+            "angle": 0,
+            "content": "Define a cut-off date"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.588,
+                0.868,
+                0.636
+            ],
+            "angle": 0,
+            "content": "For intercompany purpose, the group should define a cut-off date in order to avoid the issuing of any group transactions such as invoices and payments between this date and the closing date for the consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.652,
+                0.675,
+                0.669
+            ],
+            "angle": 0,
+            "content": "It is interesting to describe the following existing situation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.683,
+                0.868,
+                0.717
+            ],
+            "angle": 0,
+            "content": "This group defines a cut-off date for the year-end consolidation which is respected by each company."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.732,
+                0.868,
+                0.797
+            ],
+            "angle": 0,
+            "content": "For June consolidation, there is no cut-off date. Company A issues an invoice to company B for some products. The problem is that, because of the consolidation planning, company B reports its bundle without the corresponding purchase. There is an intercompany to adjust."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.812,
+                0.304,
+                0.828
+            ],
+            "angle": 0,
+            "content": "But more than that!"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.118,
+                0.07,
+                0.373,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.124,
+                0.88,
+                0.172
+            ],
+            "angle": 0,
+            "content": "The products are not booked in company B assets. They are still in the truck somewhere on a highway! This implies the booking of another adjustment and, considering the stocks margins, we finally need to eliminate it as well."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.187,
+                0.88,
+                0.22
+            ],
+            "angle": 0,
+            "content": "The conclusion is to propose a cut-off date for each consolidation, regardless whether it is a fiscal year consolidation or not."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.235,
+                0.495,
+                0.253
+            ],
+            "angle": 0,
+            "content": "Use mapping tables when possible"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.268,
+                0.88,
+                0.332
+            ],
+            "angle": 0,
+            "content": "Avoid all data entry because it is time consuming and it is a source of errors (wrong amounts, wrong accounts, wrong flows, wrong partners, ...). Each time data import is possible, use that facility including mapping tables for conversion of codes."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.347,
+                0.424,
+                0.364
+            ],
+            "angle": 0,
+            "content": "Such feature can be applied for"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.38,
+                0.875,
+                0.41
+            ],
+            "angle": 0,
+            "content": "- Importing data into the consolidation bundle or in the consolidation software if no bundle"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.428,
+                0.875,
+                0.459
+            ],
+            "angle": 0,
+            "content": "- Importing currency rates for large international groups, which avoid to key in rates with sometimes up to eight decimals"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.476,
+                0.873,
+                0.507
+            ],
+            "angle": 0,
+            "content": "- Importing intercompany positions with partners, which may come from a separate dedicated software"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.155,
+                0.38,
+                0.875,
+                0.507
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.524,
+                0.879,
+                0.557
+            ],
+            "angle": 0,
+            "content": "and, in a more general situation, for any set of data that would take too much time if processed manually. This could include some sets of adjustments."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.119,
+                0.572,
+                0.414,
+                0.589
+            ],
+            "angle": 0,
+            "content": "Avoid stage consolidations"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.604,
+                0.879,
+                0.652
+            ],
+            "angle": 0,
+            "content": "Stage consolidations appear when the group can be decomposed in several independent sub-groups without implying technical problems at consolidation level."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.668,
+                0.879,
+                0.75
+            ],
+            "angle": 0,
+            "content": "It is clear that in a group of 50 companies which can be separated into two subgroups of about the same size of 25 companies, it could be interesting at the final level to ask to consolidate the two subgroups first. The final consolidation scope would then consist in only three companies: the parent company and the head of the two subgroups."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.119,
+                0.764,
+                0.792,
+                0.781
+            ],
+            "angle": 0,
+            "content": "This \"push down\" policy, unfortunately, presents some disadvantages"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.16,
+                0.797,
+                0.872,
+                0.827
+            ],
+            "angle": 0,
+            "content": "- A lack of transparency on both sub-group consolidations concerning the respect of the final group evaluation rules"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.16,
+                0.845,
+                0.873,
+                0.874
+            ],
+            "angle": 0,
+            "content": "- A difficulty for any contribution view over the fifty companies in the consolidated accounts"
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.16,
+                0.797,
+                0.873,
+                0.874
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "bbox": [
+                0.096,
+                0.073,
+                0.848,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 5 ORGANIZATION OF A CONSOLIDATION AND FAST CLOSE"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.122,
+                0.868,
+                0.155
+            ],
+            "angle": 0,
+            "content": "- A difficulty to get a segmented information at once with a complete contribution view again (if IFRS)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.17,
+                0.871,
+                0.22
+            ],
+            "angle": 0,
+            "content": "For fast close, the risk to create two bottlenecks is real. Both subgroups could put the group planning in problem with a difficulty to react because these subgroups could maybe be located far away from the parent company."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.254,
+                0.572,
+                0.276
+            ],
+            "angle": 0,
+            "content": "3.2 During the consolidation"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.296,
+                0.658,
+                0.313
+            ],
+            "angle": 0,
+            "content": "Fix a deadline to receive the consolidation bundles"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.329,
+                0.871,
+                0.392
+            ],
+            "angle": 0,
+            "content": "By deadline, we mean a date and time, the latest, to receive the consolidation bundles. This doesn't mean all bundles have to arrive on that date. The message should be that a bundle should be sent as soon as it is ready and error-free."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.41,
+                0.583,
+                0.426
+            ],
+            "angle": 0,
+            "content": "Do not accept different versions of a bundle"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.441,
+                0.871,
+                0.505
+            ],
+            "angle": 0,
+            "content": "The sooner the date we receive the bundles, the more risk we have to receive temporary figures. Very often companies feel guilty to send such bundles and prefer to send an improved version some days later. Unless the changes are really material, do not accept these new versions."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.522,
+                0.163,
+                0.539
+            ],
+            "angle": 0,
+            "content": "Why?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.553,
+                0.871,
+                0.618
+            ],
+            "angle": 0,
+            "content": "In the meantime, you may have done some slight changes like reclassification of accounts and flows. Maybe you already gave the bundle to the consolidation Auditors. That's the best way to enter into a messy situation with planning problems at the end."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.634,
+                0.525,
+                0.65
+            ],
+            "angle": 0,
+            "content": "Process the consolidation step by step"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.666,
+                0.868,
+                0.699
+            ],
+            "angle": 0,
+            "content": "We know a consolidated reporting is a construction where at a certain date everything must stick together in a consistent way."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.714,
+                0.868,
+                0.746
+            ],
+            "angle": 0,
+            "content": "However, we recommend to consolidate by fixing a particular attention first to the consolidated equity which must be reconciled in an accounting way."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.763,
+                0.868,
+                0.795
+            ],
+            "angle": 0,
+            "content": "Then, one should process the consolidation of all variations in order to produce a valid cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.102,
+                0.811,
+                0.868,
+                0.859
+            ],
+            "angle": 0,
+            "content": "When both equity and cash flow statement are correctly produced, an analysis of consolidated figures by someone knowing well the group but not being involved in the process of consolidation is necessary to conclude the work."
+        }
+    ]
+]

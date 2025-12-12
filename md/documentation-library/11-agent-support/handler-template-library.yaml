@@ -1,0 +1,1250 @@
+# Handler Template Library for Technical Designer Agent
+# Version: 1.0
+# Created: 2024-12-04
+# Purpose: Scaffolding templates for message handlers in PATH C (Technical Designer)
+#
+# This library contains ready-to-use templates for creating new API message handlers
+# following Prophix.Conso patterns and conventions.
+
+metadata:
+  version: "1.0"
+  last_updated: "2024-12-04"
+  total_templates: 10
+  framework: ".NET Framework 4.8, Entity Framework 6.4.4"
+  architecture: "Message Broker Pattern with Long Polling"
+  handler_registration: "Sigma.Mona.WebApplication/MessagesBroker/MessageHandler.cs"
+
+# =============================================================================
+# HANDLER SIGNATURE OVERVIEW
+# =============================================================================
+
+handler_signatures:
+  description: "Different handler signatures based on requirements"
+
+  ef_standard:
+    name: "EF Standard Handler (Recipe 4 - Recommended)"
+    use_for: "New handlers with Entity Framework"
+    signature: |
+      internal static async Task {HandlerName}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+
+  ef_no_response:
+    name: "EF Handler Without Response"
+    use_for: "Handlers that don't send a response message"
+    signature: |
+      internal static async Task {HandlerName}(
+          SessionController helper,
+          MessageValidationHelper validation,
+          bool debug)
+
+  linq_legacy:
+    name: "LINQ-to-SQL Legacy Handler"
+    use_for: "Legacy handlers (DO NOT USE for new code)"
+    signature: |
+      internal static void {HandlerName}(
+          SessionController helper,
+          Message requestMessage,
+          Message responseMessage)
+
+  environment_based:
+    name: "Environment-Based Handler"
+    use_for: "Handlers needing full environment access"
+    signature: |
+      internal static async Task {HandlerName}(
+          MessageHandler.HandlerEnvironment env)
+
+# =============================================================================
+# TEMPLATE 1: EF READ HANDLER (Query/List)
+# =============================================================================
+
+templates:
+
+  ef_read_list:
+    name: "EF Read/List Handler"
+    naming: "{Feature}_{Operation}"
+    use_case: "Query data with pagination, filtering, and sorting"
+    source_reference: "SubGroupsService.cs - SubGroups_GetSubGroupsCompanies"
+    pattern_type: "Recipe 4 EF Pattern"
+
+    template: |
+      using System;
+      using System.Collections.Generic;
+      using System.Data.Entity;
+      using System.Linq;
+      using System.Threading.Tasks;
+      using Sigma.Mona.Business;
+      using Sigma.Mona.EF;
+      using Sigma.Mona.WebApplication.Utility;
+
+      namespace Sigma.Mona.WebApplication.Screens.{Feature}
+      {
+          using TrK = Resources.TranslationKeys;
+
+          public static partial class {Feature}Service
+          {
+              /// <summary>
+              /// Message handler {Feature}_{Operation}
+              /// Returns a list of {EntityName} with pagination support
+              /// </summary>
+              public static async Task {Feature}_{Operation}(
+                  SessionController helper,
+                  EF.MonaDbContext db,
+                  Utility.MessageValidationHelper validation,
+                  IDictionary<string, object> responseMessage,
+                  bool debug)
+              {
+                  var logHelper = helper.LogHelper;
+                  logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+                  // =========================================
+                  // 1. ACCESS RIGHTS CHECK
+                  // =========================================
+                  await helper.EnsureAccessRight(db, UserActions.{Feature}_{Operation});
+
+                  // =========================================
+                  // 2. PARSE AND VALIDATE PARAMETERS
+                  // =========================================
+                  logHelper.AddLogMessage("Parsing parameters");
+
+                  // Pagination parameters (standard)
+                  var includeTotalRowCount = validation.ValidateIncludeTotalRowCount(
+                      MessageConstants.RqstMsgParmScfIncludeTotalRowCount,
+                      MessageConstants.RqstMsgParmIncludeTotalRowCount);
+                  var fromRow = validation.ValidateFromRow(
+                      MessageConstants.RqstMsgParmScfFromRow,
+                      MessageConstants.RqstMsgParmFromRow);
+                  var rowCount = validation.ValidateRowCount(
+                      MessageConstants.RqstMsgParmScfRowCount,
+                      MessageConstants.RqstMsgParmRowCount);
+                  var orderBy = validation.ValidateOrderBy(
+                      MessageConstants.RqstMsgParmScfOrderBy,
+                      MessageConstants.RqstMsgParmOrderBy);
+
+                  // Feature-specific parameters
+                  var {filterParam1} = validation.ValidateID("{FilterParam1}", required: false);
+                  var {filterParam2} = validation.ValidateString("{FilterParam2}", required: false, nullIfEmpty: true);
+                  var includeInactive = validation.ValidateBool("IncludeInactive", required: false) ?? false;
+
+                  if (logHelper.HasErrors)
+                      return;
+
+                  // =========================================
+                  // 3. BUILD BASE QUERY
+                  // =========================================
+                  logHelper.AddLogMessage("Building query");
+
+                  var query = db.{EntitySet}
+                      .Where(x => x.CustomerID == helper.CustomerID)
+                      .Where(x => x.ConsoID == helper.WorkingConsoID);
+
+                  // Apply filters
+                  if ({filterParam1}.HasValue)
+                      query = query.Where(x => x.{FilterProperty1} == {filterParam1}.Value);
+
+                  if (!string.IsNullOrEmpty({filterParam2}))
+                      query = query.Where(x => x.{FilterProperty2}.Contains({filterParam2}));
+
+                  if (!includeInactive)
+                      query = query.Where(x => x.IsActive);
+
+                  // =========================================
+                  // 4. TOTAL COUNT (if requested)
+                  // =========================================
+                  if (includeTotalRowCount)
+                  {
+                      var total = await query.CountAsync();
+                      responseMessage[MessageConstants.RespMsgParmTotalRowCount] = total;
+                      responseMessage[MessageConstants.RespMsgParmScfTotalRowCount] = total;
+                  }
+
+                  // =========================================
+                  // 5. APPLY ORDERING
+                  // =========================================
+                  query = query.OrderBy(x => x.{DefaultOrderProperty});
+
+                  // =========================================
+                  // 6. APPLY PAGINATION
+                  // =========================================
+                  query = query.ApplyTakeSkip(skip: fromRow, take: rowCount);
+
+                  // =========================================
+                  // 7. PROJECT TO RESPONSE DTO
+                  // =========================================
+                  var result = await query
+                      .Select(x => new
+                      {
+                          {EntityId} = x.{EntityId},
+                          Code = x.{CodeProperty},
+                          Description = x.{DescriptionProperty},
+                          IsActive = x.IsActive,
+                          // Add additional properties as needed
+                          {AdditionalProperties}
+                      })
+                      .ToListAsync();
+
+                  // =========================================
+                  // 8. RETURN RESPONSE
+                  // =========================================
+                  responseMessage[MessageConstants.RespMsgParmRowItems] = result;
+              }
+          }
+      }
+
+    placeholders:
+      - name: "{Feature}"
+        description: "Feature name (e.g., Elimination, Company, Account)"
+        example: "Elimination"
+      - name: "{Operation}"
+        description: "Operation name (e.g., GetEliminations, GetList)"
+        example: "GetEliminations"
+      - name: "{EntitySet}"
+        description: "DbContext entity set name"
+        example: "Eliminations"
+      - name: "{EntityId}"
+        description: "Primary key property name"
+        example: "EliminationID"
+
+    pagination_constants:
+      request:
+        - "MessageConstants.RqstMsgParmScfIncludeTotalRowCount"
+        - "MessageConstants.RqstMsgParmScfFromRow"
+        - "MessageConstants.RqstMsgParmScfRowCount"
+        - "MessageConstants.RqstMsgParmScfOrderBy"
+      response:
+        - "MessageConstants.RespMsgParmTotalRowCount"
+        - "MessageConstants.RespMsgParmScfTotalRowCount"
+        - "MessageConstants.RespMsgParmRowItems"
+
+# =============================================================================
+# TEMPLATE 2: EF READ SINGLE HANDLER (Get by ID)
+# =============================================================================
+
+  ef_read_single:
+    name: "EF Read Single Entity Handler"
+    naming: "{Feature}_Get{Entity}"
+    use_case: "Retrieve a single entity by ID"
+    pattern_type: "Recipe 4 EF Pattern"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Get{Entity}
+      /// Returns a single {Entity} by ID
+      /// </summary>
+      public static async Task {Feature}_Get{Entity}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          // 1. Access Rights
+          await helper.EnsureAccessRight(db, UserActions.{Feature}_View);
+
+          // 2. Parse Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+          var {entityId} = validation.ValidateID("{EntityId}", required: true);
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Query Entity
+          logHelper.AddLogMessage("Retrieving {Entity}");
+          var entity = await db.{EntitySet}
+              .Where(x => x.{EntityId} == {entityId})
+              .Where(x => x.CustomerID == helper.CustomerID)
+              .Select(x => new
+              {
+                  x.{EntityId},
+                  x.Code,
+                  x.Description,
+                  x.IsActive,
+                  x.CreationDate,
+                  x.ModificationDate,
+                  {AdditionalProperties}
+              })
+              .FirstOrDefaultAsync();
+
+          // 4. Handle Not Found
+          if (entity == null)
+          {
+              validation.AddError("{EntityId}", MessageValidationHelper.ValidationNotFoundTranslationKeySuffix);
+              return;
+          }
+
+          // 5. Return Response
+          responseMessage["{entity}"] = entity;
+      }
+
+# =============================================================================
+# TEMPLATE 3: EF WRITE HANDLER (Create/Update)
+# =============================================================================
+
+  ef_write_create_update:
+    name: "EF Write Handler (Create/Update)"
+    naming: "{Feature}_Save{Entity}"
+    use_case: "Create new or update existing entity with transaction management"
+    source_reference: "UserSecurityService.cs"
+    pattern_type: "Recipe 4 EF Pattern with UpdateHelper"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Save{Entity}
+      /// Creates or updates a {Entity}
+      /// </summary>
+      public static async Task {Feature}_Save{Entity}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          try
+          {
+              // =========================================
+              // 1. ACCESS RIGHTS CHECK
+              // =========================================
+              await helper.EnsureAccessRight(db, UserActions.{Feature}_Manage);
+
+              // =========================================
+              // 2. PARSE AND VALIDATE PARAMETERS
+              // =========================================
+              logHelper.AddLogMessage("Parsing parameters");
+
+              var {entityId} = validation.ValidateID("{EntityId}", required: false);  // NULL = create new
+              var code = validation.ValidateString("Code", required: true, maxLength: 12);
+              var description = validation.ValidateString("Description", required: false, maxLength: 256);
+              var isActive = validation.ValidateBool("IsActive", required: false) ?? true;
+              var entityVersion = validation.ValidateLong("EntityVersion", required: false);
+              var screenID = validation.ValidateID("ScreenID", required: false);
+              {AdditionalParameterValidation}
+
+              if (logHelper.HasErrors)
+                  return;
+
+              // =========================================
+              // 3. BUSINESS VALIDATION
+              // =========================================
+              logHelper.AddLogMessage("Validating business rules");
+
+              // Check for duplicate code
+              var existingByCode = await db.{EntitySet}
+                  .Where(x => x.CustomerID == helper.CustomerID)
+                  .Where(x => x.Code == code)
+                  .Where(x => x.{EntityId} != ({entityId} ?? 0))
+                  .FirstOrDefaultAsync();
+
+              if (existingByCode != null)
+              {
+                  validation.AddError("Code", "DuplicateCode");
+                  return;
+              }
+
+              {AdditionalBusinessValidation}
+
+              // =========================================
+              // 4. BEGIN TRANSACTION
+              // =========================================
+              using (var updateHelper = await helper.CreateUpdateHelper(db, exclusive: true))
+              {
+                  EF.Entities.{Entity} entity;
+                  bool isNew = !{entityId}.HasValue;
+                  string logMessageKey;
+
+                  if (isNew)
+                  {
+                      // =========================================
+                      // 5A. CREATE NEW ENTITY
+                      // =========================================
+                      logHelper.AddLogMessage("Creating new {Entity}");
+
+                      entity = new EF.Entities.{Entity}
+                      {
+                          CustomerID = helper.CustomerID,
+                          ConsoID = helper.WorkingConsoID,
+                          Code = code,
+                          Description = description,
+                          IsActive = isActive,
+                          CreationDate = DateTime.UtcNow,
+                          CreationUserLogin = helper.Username,
+                          {AdditionalNewEntityProperties}
+                      };
+
+                      db.{EntitySet}.Add(entity);
+                      logMessageKey = Data.ModificationsLog.Message.LogKeyCreated;
+                  }
+                  else
+                  {
+                      // =========================================
+                      // 5B. UPDATE EXISTING ENTITY
+                      // =========================================
+                      logHelper.AddLogMessage("Updating existing {Entity}");
+
+                      entity = await db.{EntitySet}
+                          .Where(x => x.{EntityId} == {entityId}.Value)
+                          .Where(x => x.CustomerID == helper.CustomerID)
+                          .FirstOrDefaultAsync();
+
+                      if (entity == null)
+                      {
+                          validation.AddError("{EntityId}", MessageValidationHelper.ValidationNotFoundTranslationKeySuffix);
+                          return;
+                      }
+
+                      // Verify entity version (optimistic concurrency)
+                      if (entityVersion.HasValue)
+                      {
+                          await updateHelper.VerifyEntityVersions(
+                              new[] { new EntityVersionInfo(EntityTypes.{Entity}, entity.{EntityId}, entityVersion.Value) });
+                      }
+
+                      // Update properties
+                      entity.Code = code;
+                      entity.Description = description;
+                      entity.IsActive = isActive;
+                      entity.ModificationDate = DateTime.UtcNow;
+                      entity.ModificationUserLogin = helper.Username;
+                      {AdditionalUpdateProperties}
+
+                      logMessageKey = Data.ModificationsLog.Message.LogKeyModified;
+                  }
+
+                  // =========================================
+                  // 6. AUDIT LOGGING
+                  // =========================================
+                  logHelper.AddLogMessage("Adding audit log entry");
+                  var logEntry = EF.Entities.LogModification.NewLogEntry(
+                      customerID: helper.CustomerID,
+                      logGroup: Data.ModificationsLog.LogGroups.{LogGroup},
+                      messageKey: logMessageKey,
+                      consoID: helper.WorkingConsoID,
+                      userID: helper.UserID,
+                      screenStructureID: screenID,
+                      login: helper.Username,
+                      logHelper: logHelper);
+
+                  logEntry.MessageObject.ObjectCode = code;
+                  db.LogModifications.Add(logEntry);
+
+                  // =========================================
+                  // 7. SAVE CHANGES
+                  // =========================================
+                  await db.SaveChangesAsync();
+
+                  // =========================================
+                  // 8. INCREMENT ENTITY VERSION
+                  // =========================================
+                  if (!isNew)
+                  {
+                      await updateHelper.IncreaseEntityVersion(EntityTypes.{Entity}, entity.{EntityId});
+                  }
+
+                  // =========================================
+                  // 9. COMMIT TRANSACTION
+                  // =========================================
+                  logHelper.AddLogMessage("Committing transaction");
+                  await updateHelper.Complete();
+
+                  // =========================================
+                  // 10. RETURN RESPONSE
+                  // =========================================
+                  responseMessage["{entityId}"] = entity.{EntityId};
+                  responseMessage["success"] = true;
+              }
+          }
+          catch (Exception ex)
+          {
+              logHelper.AddExceptionToErrors(ex);
+          }
+      }
+
+    key_concepts:
+      - name: "UpdateHelper"
+        description: "Manages transaction scope and entity versioning"
+        usage: "using (var updateHelper = await helper.CreateUpdateHelper(db, exclusive: true))"
+      - name: "EntityVersion"
+        description: "Optimistic concurrency control"
+        usage: "await updateHelper.VerifyEntityVersions(...)"
+      - name: "LogModification"
+        description: "Audit trail for data changes"
+        usage: "EF.Entities.LogModification.NewLogEntry(...)"
+
+# =============================================================================
+# TEMPLATE 4: EF DELETE HANDLER
+# =============================================================================
+
+  ef_delete:
+    name: "EF Delete Handler"
+    naming: "{Feature}_Delete{Entity}"
+    use_case: "Delete entity with validation and audit trail"
+    pattern_type: "Recipe 4 EF Pattern"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Delete{Entity}
+      /// Deletes a {Entity} by ID
+      /// </summary>
+      public static async Task {Feature}_Delete{Entity}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          try
+          {
+              // 1. Access Rights
+              await helper.EnsureAccessRight(db, UserActions.{Feature}_Delete);
+
+              // 2. Parse Parameters
+              logHelper.AddLogMessage("Parsing parameters");
+              var {entityId} = validation.ValidateID("{EntityId}", required: true);
+              var screenID = validation.ValidateID("ScreenID", required: false);
+
+              if (logHelper.HasErrors)
+                  return;
+
+              // 3. Begin Transaction
+              using (var updateHelper = await helper.CreateUpdateHelper(db, exclusive: true))
+              {
+                  // 4. Find Entity
+                  var entity = await db.{EntitySet}
+                      .Where(x => x.{EntityId} == {entityId})
+                      .Where(x => x.CustomerID == helper.CustomerID)
+                      .FirstOrDefaultAsync();
+
+                  if (entity == null)
+                  {
+                      validation.AddError("{EntityId}", MessageValidationHelper.ValidationNotFoundTranslationKeySuffix);
+                      return;
+                  }
+
+                  // 5. Check for Dependencies
+                  var hasDependencies = await db.{DependentEntitySet}
+                      .AnyAsync(x => x.{ForeignKey} == {entityId});
+
+                  if (hasDependencies)
+                  {
+                      validation.AddError("{EntityId}", "HasDependencies");
+                      return;
+                  }
+
+                  // 6. Delete Entity
+                  logHelper.AddLogMessage("Deleting {Entity}");
+                  db.{EntitySet}.Remove(entity);
+
+                  // 7. Audit Logging
+                  var logEntry = EF.Entities.LogModification.NewLogEntry(
+                      customerID: helper.CustomerID,
+                      logGroup: Data.ModificationsLog.LogGroups.{LogGroup},
+                      messageKey: Data.ModificationsLog.Message.LogKeyDeleted,
+                      consoID: helper.WorkingConsoID,
+                      userID: helper.UserID,
+                      screenStructureID: screenID,
+                      login: helper.Username,
+                      logHelper: logHelper);
+
+                  logEntry.MessageObject.ObjectCode = entity.Code;
+                  db.LogModifications.Add(logEntry);
+
+                  // 8. Save and Commit
+                  await db.SaveChangesAsync();
+                  await updateHelper.Complete();
+
+                  responseMessage["success"] = true;
+              }
+          }
+          catch (Exception ex)
+          {
+              logHelper.AddExceptionToErrors(ex);
+          }
+      }
+
+# =============================================================================
+# TEMPLATE 5: JOB TRIGGER HANDLER
+# =============================================================================
+
+  job_trigger:
+    name: "Job Trigger Handler"
+    naming: "{Feature}_Execute{Operation}"
+    use_case: "Trigger background Hangfire job and return job ID"
+    source_reference: "SubGroupsService.cs - SubGroups_CalculateIndirectPercentages"
+    pattern_type: "Recipe 4 EF Pattern with Job Creation"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Execute{Operation}
+      /// Triggers a background job for {Operation}
+      /// </summary>
+      internal static async Task {Feature}_Execute{Operation}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          // 1. Access Rights
+          await helper.EnsureAccessRight(db, UserActions.{Feature}_{Operation});
+
+          // 2. Parse Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+          var screenID = validation.ValidateInt("ScreenID", required: true);
+          {AdditionalParameterValidation}
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Begin Transaction
+          using (var updateHelper = await helper.CreateUpdateHelper(db, exclusive: true))
+          {
+              // 4. Prepare Job Parameters
+              var jobParams = new Jobs.JobParams();
+              jobParams[Jobs.{JobCategory}.{JobClass}.JobParameter{Param1}] = {param1Value};
+              jobParams[Jobs.{JobCategory}.{JobClass}.JobParameter{Param2}] = {param2Value};
+              {AdditionalJobParameters}
+
+              var jobScheduleDescription = "{JobDescription}";
+              var jobScheduleName = "{JobName}";
+
+              // 5. Create Job
+              logHelper.AddLogMessage("Creating job: " + jobScheduleName);
+              var job = await JobHelper.CreateUserJob(
+                  helper,
+                  db,
+                  jobScheduleDescription,
+                  jobScheduleName,
+                  Jobs.{JobCategory}.{JobClass}.JOBFILE,
+                  Jobs.{JobCategory}.{JobClass}.JOBCLASS,
+                  jobParams,
+                  screenID);
+
+              if (!logHelper.HasErrors)
+              {
+                  // 6. Audit Logging
+                  logHelper.AddLogMessage("Adding system log entry");
+                  var logEntry = EF.Entities.LogModification.NewLogEntry(
+                      logGroup: Data.ModificationsLog.LogGroups.System,
+                      customerID: helper.CustomerID,
+                      messageKey: Data.ModificationsLog.Message.LogKeyJobStarted,
+                      consoID: helper.WorkingConsoID,
+                      userID: helper.UserID,
+                      screenStructureID: screenID,
+                      login: helper.Username);
+
+                  logEntry.MessageObject.Parameters[Data.ModificationsLog.Message.LogParmObjectName] =
+                      "" + JobType.{JobType};
+                  db.LogModifications.Add(logEntry);
+
+                  await db.SaveChangesAsync();
+
+                  // 7. Commit Transaction
+                  logHelper.AddLogMessage("Committing transaction");
+                  await updateHelper.Complete();
+              }
+
+              // 8. Execute Job (if not in SIT mode)
+              if (!Common.Config.SitMode)
+              {
+                  using var source = new CancellationTokenSource();
+                  await HangfireJobs.Job.ExecuteJobAsync(
+                      job.JobScheduleID,
+                      JobType.{JobType},
+                      source.Token);
+              }
+
+              // 9. Return Job ID
+              responseMessage["JobID"] = job.JobID;
+          }
+      }
+
+    job_types:
+      - "ConsolidationIntegrationJob"
+      - "CalculateIndirectPercentagesJob"
+      - "ImportDataJob"
+      - "ExportDataJob"
+      - "ReportGenerationJob"
+
+# =============================================================================
+# TEMPLATE 6: STORED PROCEDURE CALL HANDLER
+# =============================================================================
+
+  stored_procedure_call:
+    name: "Stored Procedure Call Handler"
+    naming: "{Feature}_Execute{ProcedureName}"
+    use_case: "Execute stored procedure and return results"
+    pattern_type: "Direct SP execution"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Execute{ProcedureName}
+      /// Executes stored procedure P_{ProcedureName}
+      /// </summary>
+      public static async Task {Feature}_Execute{ProcedureName}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          // 1. Access Rights
+          await helper.EnsureAccessRight(db, UserActions.{Feature}_{Operation});
+
+          // 2. Parse Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+          var consoID = validation.ValidateID("ConsoID", required: false) ?? helper.WorkingConsoID;
+          {AdditionalParameterValidation}
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Execute Stored Procedure
+          logHelper.AddLogMessage("Executing stored procedure");
+
+          var connection = (System.Data.SqlClient.SqlConnection)db.Database.Connection;
+          using (new Sigma.Utils.ConnectionOpenner(connection))
+          using (var command = new System.Data.SqlClient.SqlCommand("dbo.P_{ProcedureName}", connection))
+          {
+              command.CommandType = System.Data.CommandType.StoredProcedure;
+              command.CommandTimeout = Common.Config.ScriptsCommandTimeoutSeconds;
+
+              // Add parameters
+              command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ConsoID", consoID));
+              {AdditionalCommandParameters}
+
+              // Output parameter for errors
+              var xmlErrorInfo = command.Parameters.Add(
+                  new System.Data.SqlClient.SqlParameter("@errorinfo", System.Data.SqlDbType.Xml, -1));
+              xmlErrorInfo.Direction = System.Data.ParameterDirection.Output;
+
+              // Execute
+              logHelper.AddLogMessage("Executing procedure");
+              await command.ExecuteNonQueryAsync();
+              logHelper.AddLogMessage("Procedure returned");
+
+              // Check for errors
+              if (xmlErrorInfo.Value != DBNull.Value)
+              {
+                  logHelper.AddLogMessage("Parsing @errorinfo");
+                  var errorInfo = Sigma.Mona.Common.ErrorInfo.Parse((string)xmlErrorInfo.Value);
+                  if (errorInfo.HasErrors)
+                  {
+                      foreach (var error in errorInfo.Errors)
+                      {
+                          logHelper.AddErrorMessageTranslated(error.MessageKey, error.Parameters);
+                      }
+                      return;
+                  }
+              }
+          }
+
+          responseMessage["success"] = true;
+      }
+
+# =============================================================================
+# TEMPLATE 7: LINQ-TO-SQL LEGACY HANDLER
+# =============================================================================
+
+  linq_legacy_handler:
+    name: "LINQ-to-SQL Legacy Handler"
+    naming: "{Feature}_{Operation}"
+    use_case: "Legacy pattern - FOR REFERENCE/MIGRATION ONLY"
+    note: "DO NOT USE for new handlers. Use EF pattern instead."
+    source_reference: "InterCompanyDataEntryService.cs"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_{Operation}
+      /// LEGACY PATTERN - Consider migrating to EF
+      /// </summary>
+      internal static void {Operation}(
+          SessionController helper,
+          Message requestMessage,
+          Message responseMessage)
+      {
+          bool debug = false;
+          bool includeLogs = false;
+
+          using (var db = DAOFactory.CreateDataContext())
+          try
+          {
+              helper.LogHelper.AddLogMessage("Received message '" + requestMessage[Message.KeyMessageHandler] + "'");
+
+              // 1. Access Rights
+              helper.EnsureAccessRight(db, UserActions.{Feature}_{Operation});
+
+              // 2. Parse Parameters
+              helper.LogHelper.AddLogMessage("Parsing parameters");
+              var validation = new Utility.MessageValidationHelper(
+                  logHelper: helper.LogHelper,
+                  messageItem: requestMessage);
+              validation.ValidationTranslationKeyPrefix = "{Feature}_";
+
+              debug = validation.ValidateBool("Debug", required: false) ?? false;
+              var {param1} = validation.ValidateID("{Param1}", required: true);
+
+              if (helper.LogHelper.HasErrors)
+                  goto EXIT;
+
+              // 3. Business Logic
+              helper.LogHelper.AddLogMessage("Executing query");
+              {QueryLogic}
+
+              // 4. Return Results
+              responseMessage[MessageConstants.RespMsgParmRowItems] = results.ToArray();
+          }
+          catch (System.Exception ex)
+          {
+              bool errorMessageTranslated;
+              helper.LogHelper.AddExceptionToErrors(ex, out errorMessageTranslated);
+              if (!errorMessageTranslated)
+                  includeLogs = true;
+          }
+          EXIT:
+          if (debug)
+          {
+              helper.LogHelper.AddWarningMessage("LOGS");
+              includeLogs = true;
+          }
+
+          scripts.MasterJS.FillResponseMessage(responseMessage, helper, includeLogs);
+      }
+
+    migration_steps:
+      - step: 1
+        action: "Change signature to async Task with EF parameters"
+      - step: 2
+        action: "Replace DAOFactory.CreateDataContext() with injected MonaDbContext"
+      - step: 3
+        action: "Replace SubmitChanges() with SaveChangesAsync()"
+      - step: 4
+        action: "Add async/await throughout"
+      - step: 5
+        action: "Remove goto EXIT pattern, use early returns"
+      - step: 6
+        action: "Update handler registration in MessageHandler.cs"
+
+# =============================================================================
+# TEMPLATE 8: CONSOLIDATION-SPECIFIC HANDLER
+# =============================================================================
+
+  consolidation_handler:
+    name: "Consolidation Operation Handler"
+    naming: "Consolidation_{Operation}"
+    use_case: "Consolidation-specific operations (integration, eliminations)"
+    pattern_type: "Recipe 4 + Job Pattern"
+
+    template: |
+      /// <summary>
+      /// Message handler Consolidation_{Operation}
+      /// Executes consolidation {Operation}
+      /// </summary>
+      public static async Task Consolidation_{Operation}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          // 1. Access Rights
+          await helper.EnsureAccessRight(db, UserActions.Consolidation_{Operation});
+
+          // 2. Parse Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+
+          var consoIDs = validation.ValidateIDArray("ConsoIDs", required: false);
+          var consoCodes = validation.ValidateStringArray("ConsoCodes", required: false);
+          var companyIDs = validation.ValidateIDArray("CompanyIDs", required: false);
+          var companyCodes = validation.ValidateStringArray("CompanyCodes", required: false);
+          var executeDimensions = validation.ValidateBool("ExecuteDimensions", required: false) ?? false;
+          var screenID = validation.ValidateInt("ScreenID", required: true);
+
+          // Stored procedures to execute (flags)
+          var executeBundles = validation.ValidateBool("ExecuteBundles", required: false) ?? true;
+          var executeAdjustments = validation.ValidateBool("ExecuteAdjustments", required: false) ?? true;
+          var executeEliminations = validation.ValidateBool("ExecuteEliminations", required: false) ?? true;
+
+          // Must have either ConsoIDs or ConsoCodes
+          if ((consoIDs == null || consoIDs.Length == 0) && (consoCodes == null || consoCodes.Length == 0))
+          {
+              validation.AddError("ConsoIDs", "Required");
+              return;
+          }
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Calculate StoredProcedures flag
+          var storedProcedures = Jobs.Database.ConsolidationIntegrationJob.StoredProcedures.Undefined;
+          if (executeBundles)
+              storedProcedures |= Jobs.Database.ConsolidationIntegrationJob.StoredProcedures.Bundles;
+          if (executeAdjustments)
+              storedProcedures |= Jobs.Database.ConsolidationIntegrationJob.StoredProcedures.Adjustments;
+          if (executeEliminations)
+              storedProcedures |= Jobs.Database.ConsolidationIntegrationJob.StoredProcedures.Elims;
+
+          // 4. Create Job
+          using (var updateHelper = await helper.CreateUpdateHelper(db, exclusive: true))
+          {
+              var jobParams = new Jobs.JobParams();
+              jobParams[Jobs.Database.ConsolidationIntegrationJob.JobParameterConsoIDs] = consoIDs;
+              jobParams[Jobs.Database.ConsolidationIntegrationJob.JobParameterConsoCodes] = consoCodes;
+              jobParams[Jobs.Database.ConsolidationIntegrationJob.JobParameterCompanyIDs] = companyIDs;
+              jobParams[Jobs.Database.ConsolidationIntegrationJob.JobParameterCompanyCodes] = companyCodes;
+              jobParams[Jobs.Database.ConsolidationIntegrationJob.JobParameterStoredProceduresToExecute] = storedProcedures;
+              jobParams[Jobs.Database.ConsolidationIntegrationJob.JobParameterExecuteDimensions] = executeDimensions;
+
+              var job = await JobHelper.CreateUserJob(
+                  helper,
+                  db,
+                  "Consolidation Integration",
+                  "Consolidation",
+                  Jobs.Database.ConsolidationIntegrationJob.JOBFILE,
+                  Jobs.Database.ConsolidationIntegrationJob.JOBCLASS,
+                  jobParams,
+                  screenID);
+
+              if (!logHelper.HasErrors)
+              {
+                  await db.SaveChangesAsync();
+                  await updateHelper.Complete();
+              }
+
+              // Execute job
+              if (!Common.Config.SitMode)
+              {
+                  using var source = new CancellationTokenSource();
+                  await HangfireJobs.Job.ExecuteJobAsync(
+                      job.JobScheduleID,
+                      JobType.ConsolidationIntegrationJob,
+                      source.Token);
+              }
+
+              responseMessage["JobID"] = job.JobID;
+          }
+      }
+
+# =============================================================================
+# TEMPLATE 9: IMPORT HANDLER (File Upload)
+# =============================================================================
+
+  import_handler:
+    name: "Import/File Upload Handler"
+    naming: "{Feature}_Import{DataType}"
+    use_case: "Handle file uploads and data imports"
+    pattern_type: "3-phase import pattern"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Import{DataType}
+      /// Imports {DataType} from uploaded file
+      /// </summary>
+      public static async Task {Feature}_Import{DataType}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          // 1. Access Rights
+          await helper.EnsureAccessRight(db, UserActions.{Feature}_Import);
+
+          // 2. Parse Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+
+          var fileID = validation.ValidateGuid("FileID", required: true);
+          var screenID = validation.ValidateInt("ScreenID", required: true);
+          var validateOnly = validation.ValidateBool("ValidateOnly", required: false) ?? false;
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Retrieve File
+          logHelper.AddLogMessage("Retrieving uploaded file");
+          var fileProvider = helper.GetService<IFileProvider>();
+          var fileStream = await fileProvider.GetFileAsync(fileID.Value);
+
+          if (fileStream == null)
+          {
+              validation.AddError("FileID", "FileNotFound");
+              return;
+          }
+
+          // 4. Parse File
+          logHelper.AddLogMessage("Parsing file");
+          var importData = new List<{ImportDTO}>();
+
+          using (var excelEngine = new ExcelEngine())
+          {
+              var workbook = excelEngine.Excel.Workbooks.Open(fileStream);
+              var worksheet = workbook.Worksheets[0];
+
+              // Read header row
+              var headers = new Dictionary<string, int>();
+              for (int col = 1; col <= worksheet.UsedRange.LastColumn; col++)
+              {
+                  var header = worksheet[1, col].Text?.Trim();
+                  if (!string.IsNullOrEmpty(header))
+                      headers[header] = col;
+              }
+
+              // Read data rows
+              for (int row = 2; row <= worksheet.UsedRange.LastRow; row++)
+              {
+                  var item = new {ImportDTO}
+                  {
+                      RowNumber = row,
+                      {PropertyMappings}
+                  };
+                  importData.Add(item);
+              }
+          }
+
+          // 5. Validate Data
+          logHelper.AddLogMessage("Validating import data");
+          var validationErrors = new List<ImportValidationError>();
+          {ValidationLogic}
+
+          if (validationErrors.Any())
+          {
+              responseMessage["validationErrors"] = validationErrors;
+              responseMessage["success"] = false;
+              return;
+          }
+
+          if (validateOnly)
+          {
+              responseMessage["validatedRowCount"] = importData.Count;
+              responseMessage["success"] = true;
+              return;
+          }
+
+          // 6. Import Data
+          logHelper.AddLogMessage("Importing data");
+          using (var updateHelper = await helper.CreateUpdateHelper(db, exclusive: true))
+          {
+              {ImportLogic}
+
+              await db.SaveChangesAsync();
+              await updateHelper.Complete();
+          }
+
+          responseMessage["importedRowCount"] = importData.Count;
+          responseMessage["success"] = true;
+      }
+
+# =============================================================================
+# TEMPLATE 10: EXPORT HANDLER
+# =============================================================================
+
+  export_handler:
+    name: "Export/Download Handler"
+    naming: "{Feature}_Export{DataType}"
+    use_case: "Export data to file for download"
+    pattern_type: "File generation pattern"
+
+    template: |
+      /// <summary>
+      /// Message handler {Feature}_Export{DataType}
+      /// Exports {DataType} to Excel file
+      /// </summary>
+      public static async Task {Feature}_Export{DataType}(
+          SessionController helper,
+          EF.MonaDbContext db,
+          Utility.MessageValidationHelper validation,
+          IDictionary<string, object> responseMessage,
+          bool debug)
+      {
+          var logHelper = helper.LogHelper;
+          logHelper.AddLogMessage("Received message '" + validation.ValidationMessageItem[Message.KeyMessageHandler] + "'");
+
+          // 1. Access Rights
+          await helper.EnsureAccessRight(db, UserActions.{Feature}_Export);
+
+          // 2. Parse Parameters
+          logHelper.AddLogMessage("Parsing parameters");
+          {FilterParameterValidation}
+
+          if (logHelper.HasErrors)
+              return;
+
+          // 3. Query Data
+          logHelper.AddLogMessage("Querying data for export");
+          var data = await db.{EntitySet}
+              .Where(x => x.CustomerID == helper.CustomerID)
+              .Where(x => x.ConsoID == helper.WorkingConsoID)
+              {AdditionalFilters}
+              .Select(x => new
+              {
+                  {ExportProperties}
+              })
+              .ToListAsync();
+
+          // 4. Generate Excel File
+          logHelper.AddLogMessage("Generating Excel file");
+          using (var excelEngine = new ExcelEngine())
+          {
+              var workbook = excelEngine.Excel.Workbooks.Create(1);
+              var worksheet = workbook.Worksheets[0];
+              worksheet.Name = "{SheetName}";
+
+              // Write headers
+              var headers = new[] { {HeaderNames} };
+              for (int i = 0; i < headers.Length; i++)
+              {
+                  worksheet[1, i + 1].Text = headers[i];
+                  worksheet[1, i + 1].CellStyle.Font.Bold = true;
+              }
+
+              // Write data
+              int row = 2;
+              foreach (var item in data)
+              {
+                  {WriteDataRows}
+                  row++;
+              }
+
+              // Auto-fit columns
+              worksheet.UsedRange.AutofitColumns();
+
+              // Save to stream
+              using (var stream = new MemoryStream())
+              {
+                  workbook.SaveAs(stream);
+                  stream.Position = 0;
+
+                  // Store file for download
+                  var fileProvider = helper.GetService<IFileProvider>();
+                  var fileID = await fileProvider.StoreFileAsync(
+                      stream,
+                      "{Feature}_{DataType}_Export.xlsx",
+                      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+                  responseMessage["fileID"] = fileID;
+                  responseMessage["fileName"] = "{Feature}_{DataType}_Export.xlsx";
+              }
+          }
+
+          responseMessage["success"] = true;
+          responseMessage["exportedRowCount"] = data.Count;
+      }
+
+# =============================================================================
+# HANDLER REGISTRATION
+# =============================================================================
+
+handler_registration:
+  description: "How to register handlers in MessageHandler.cs"
+  file: "Sigma.Mona.WebApplication/MessagesBroker/MessageHandler.cs"
+
+  ef_pattern: |
+    // EF Pattern (Recipe 4) - Recommended
+    self.AddMessageHandler(
+        nameof({ServiceClass}.{HandlerName}),
+        {ServiceClass}.{HandlerName});
+
+  legacy_pattern: |
+    // Legacy Pattern (LINQ-to-SQL) - Do not use for new handlers
+    self.AddMessageHandler(
+        "{HandlerName}",
+        (helper, request, response) => {ServiceClass}.{HandlerName}(helper, request, response));
+
+# =============================================================================
+# VALIDATION HELPER METHODS
+# =============================================================================
+
+validation_methods:
+  description: "Common validation methods from MessageValidationHelper"
+
+  methods:
+    - name: "ValidateID"
+      signature: "int? ValidateID(string paramName, bool required)"
+      description: "Validate integer ID parameter"
+      example: "var id = validation.ValidateID(\"CompanyID\", required: true);"
+
+    - name: "ValidateString"
+      signature: "string ValidateString(string paramName, bool required, bool nullIfEmpty = false, int? maxLength = null)"
+      description: "Validate string parameter"
+      example: "var code = validation.ValidateString(\"Code\", required: true, maxLength: 12);"
+
+    - name: "ValidateBool"
+      signature: "bool? ValidateBool(string paramName, bool required)"
+      description: "Validate boolean parameter"
+      example: "var flag = validation.ValidateBool(\"IsActive\", required: false) ?? true;"
+
+    - name: "ValidateInt"
+      signature: "int? ValidateInt(string paramName, bool required)"
+      description: "Validate integer parameter"
+      example: "var count = validation.ValidateInt(\"RowCount\", required: false);"
+
+    - name: "ValidateLong"
+      signature: "long? ValidateLong(string paramName, bool required)"
+      description: "Validate long parameter (for entity versions)"
+      example: "var version = validation.ValidateLong(\"EntityVersion\", required: false);"
+
+    - name: "ValidateGuid"
+      signature: "Guid? ValidateGuid(string paramName, bool required)"
+      description: "Validate GUID parameter"
+      example: "var fileID = validation.ValidateGuid(\"FileID\", required: true);"
+
+    - name: "ValidateChar"
+      signature: "char ValidateChar(string paramName, bool required)"
+      description: "Validate single character parameter"
+      example: "var type = validation.ValidateChar(\"Type\", required: true);"
+
+    - name: "ValidateIDArray"
+      signature: "int[] ValidateIDArray(string paramName, bool required)"
+      description: "Validate array of IDs"
+      example: "var ids = validation.ValidateIDArray(\"CompanyIDs\", required: false);"
+
+    - name: "ValidateConsoCodeExisting"
+      signature: "int? ValidateConsoCodeExisting(DataContext dc, SessionController helper, string paramName, bool required)"
+      description: "Validate conso code exists and return ConsoID"
+      example: "var consoID = validation.ValidateConsoCodeExisting(db, helper, \"ConsoCode\", required: true);"
+
+    - name: "ValidateFromRow"
+      signature: "int ValidateFromRow(string scfParamName, string paramName)"
+      description: "Validate pagination from row"
+      example: "var fromRow = validation.ValidateFromRow(MessageConstants.RqstMsgParmScfFromRow, MessageConstants.RqstMsgParmFromRow);"
+
+    - name: "ValidateRowCount"
+      signature: "int ValidateRowCount(string scfParamName, string paramName)"
+      description: "Validate pagination row count"
+      example: "var rowCount = validation.ValidateRowCount(MessageConstants.RqstMsgParmScfRowCount, MessageConstants.RqstMsgParmRowCount);"
+
+# =============================================================================
+# RELATED DOCUMENTATION
+# =============================================================================
+
+related_documentation:
+  - name: "Code Pattern Library"
+    path: "docs/DC/md/documentation-library/11-agent-support/code-pattern-library.yaml"
+  - name: "Stored Procedure Templates"
+    path: "docs/DC/md/documentation-library/11-agent-support/stored-procedure-templates.yaml"
+  - name: "EF Migration Rules"
+    path: "docs/EF_Migration/LINQ_to_EF_MigrationRules.md"
+  - name: "API Endpoints Documentation"
+    path: "docs/DC/md/documentation-library/11-agent-support/api-index.yaml"

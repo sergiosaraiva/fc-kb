@@ -1,0 +1,1180 @@
+# Stored Procedure Templates for Technical Designer Agent
+# Version: 1.0
+# Created: 2024-12-04
+# Purpose: Scaffolding templates for database stored procedures in PATH C (Technical Designer)
+#
+# This library contains ready-to-use templates for creating new stored procedures
+# following Prophix.Conso patterns and conventions.
+
+metadata:
+  version: "1.0"
+  last_updated: "2024-12-04"
+  total_templates: 8
+  database: "SQL Server 2022"
+  naming_convention:
+    prefix_conso_elim: "P_CONSO_ELIM_{NAME}"
+    prefix_conso_calc: "P_CONSO_CALCULATE_{NAME}"
+    prefix_view: "P_VIEW_{NAME}"
+    prefix_sys: "P_SYS_{NAME}"
+    prefix_helper: "P_CONSO_HELPER_{NAME}"
+    prefix_event: "P_CONSO_EVENT_{NAME}"
+
+# =============================================================================
+# TEMPLATE 1: ELIMINATION PROCEDURE (P_CONSO_ELIM_*)
+# =============================================================================
+
+templates:
+
+  elimination_standard:
+    name: "Standard Elimination Procedure"
+    naming: "P_CONSO_ELIM_{ELIMINATION_NAME}"
+    use_case: "System eliminations (S0XX codes) - Minority Interest, Equity Capital, Participations, etc."
+    source_reference: "P_CONSO_ELIM_MINORITYINTEREST.sql"
+    typical_elimination_codes:
+      - code: "S077"
+        name: "Not Consolidated"
+        step: 50
+      - code: "S079"
+        name: "Proportional"
+        step: 51
+      - code: "S081"
+        name: "Equity Method"
+        step: 52
+      - code: "S083"
+        name: "Intercompany"
+        step: 53
+      - code: "S085"
+        name: "Minority Interest"
+        step: 61
+      - code: "S087"
+        name: "Equity Capital"
+        step: 55
+      - code: "S089"
+        name: "Participations (Level 0)"
+        step: 56
+      - code: "S090"
+        name: "Participations (Level 1)"
+        step: 57
+
+    template: |
+      /*
+       Author:
+          {AuthorName}
+       Description:
+          {Description}
+
+          Theory Reference: {TheoryReference}
+          IFRS Standards: {IFRSStandards}
+
+          eg: Test case:
+              declare @errorinfo xml
+              exec [dbo].[P_CONSO_ELIM_{ELIMINATION_NAME}]
+                  @Login = 'admin',
+                  @SessionID = 12345,
+                  @ConsoID = 1,
+                  @RefConsoID = 1,
+                  @PreviousPeriodAdjFlowID = 100,
+                  @ConsoCurrCode = 'EUR',
+                  @ParentCompanyID = 1,
+                  @JournalTypeS001ID = 1,
+                  @UNEXPVarFlowID = 10,
+                  @NETVarFlowID = 11,
+                  @ExecuteDimensions = 0,
+                  @Debug = 1,
+                  @errorinfo = @errorinfo OUTPUT
+              SELECT @errorinfo
+
+       History:
+       Date        By          Description
+       ----        ----        ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_CONSO_ELIM_{ELIMINATION_NAME}]
+          @Login nvarchar(256),           -- User that initiated this process
+          @SessionID int,                 -- Session ID for temp tables
+          @ConsoID int,                   -- Current consolidation period ID
+          @RefConsoID int,                -- Reference (previous) period ID
+          @PreviousPeriodAdjFlowID int,   -- Flow ID for previous period adjustments
+          @ConsoCurrCode nvarchar(3),     -- Consolidation currency code
+          @ParentCompanyID int,           -- Parent company ID
+          @JournalTypeS001ID int,         -- Journal type for S001 (integration)
+          @UNEXPVarFlowID int,            -- Unexplained variance flow ID
+          @NETVarFlowID int,              -- Net variance flow ID
+          @ExecuteDimensions bit,         -- Execute dimension processing
+          @Debug bit = 0,                 -- Debug mode flag
+          @errorinfo xml OUTPUT           -- Error information output
+      AS BEGIN
+          SET NOCOUNT ON
+
+          ---------------------------------------------
+          -- SECTION 1: Variable Declarations
+          ---------------------------------------------
+          DECLARE @JournalType{ELIM_CODE}ID int
+          DECLARE @JournalText nvarchar(max)
+          DECLARE @Behaviour tinyint
+          DECLARE @MinorityFlag bit
+          DECLARE @AssociatedJournalTypeID int
+          DECLARE @ConsoMethodSelectionID int
+          DECLARE @Parent bit
+          DECLARE @Active bit
+          DECLARE @RoundingDecimal tinyint
+
+          -- Special Account IDs
+          {SPECIAL_ACCOUNT_DECLARATIONS}
+
+          -- Special Flow IDs
+          {SPECIAL_FLOW_DECLARATIONS}
+
+          -- Create temp table for selected companies
+          CREATE TABLE #SelectedCompanies (pk int IDENTITY, CompanyID int)
+
+          BEGIN TRY
+              ---------------------------------------------
+              -- SECTION 2: Get General Information
+              ---------------------------------------------
+              SELECT @RoundingDecimal = NbrDec
+              FROM dbo.TS096S0 WITH(NOLOCK)
+              WHERE ConsoID = @ConsoID
+
+              ---------------------------------------------
+              -- SECTION 3: Get Elimination Configuration
+              ---------------------------------------------
+              SELECT  @JournalType{ELIM_CODE}ID = a.JournalTypeID,
+                      @JournalText = a.JournalText,
+                      @Behaviour = a.Behaviour,
+                      @MinorityFlag = a.MinorityFlag,
+                      @AssociatedJournalTypeID = a.AssociatedJournalTypeID,
+                      @ConsoMethodSelectionID = a.ConsoMethodSelectionID,
+                      @Parent = b.Parent,
+                      @Active = a.Active
+              FROM    dbo.TS070S0 a WITH(NOLOCK)
+                      INNER JOIN dbo.TS070S1 b WITH(NOLOCK)
+                          ON (b.ConsoMethodSelectionID = a.ConsoMethodSelectionID)
+              WHERE   a.ConsoID = @ConsoID
+                      AND a.ElimCode = '{ELIM_CODE}'
+
+              IF @@ROWCOUNT = 0
+                  RAISERROR ('Elimination with code {ELIM_CODE} not found', 16, 1)
+
+              ---------------------------------------------
+              -- SECTION 4: Get Special Accounts
+              ---------------------------------------------
+              {GET_SPECIAL_ACCOUNTS}
+
+              -- Validate required accounts exist
+              {ACCOUNT_VALIDATION}
+
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              ---------------------------------------------
+              -- SECTION 5: Get Special Flows
+              ---------------------------------------------
+              {GET_SPECIAL_FLOWS}
+
+              -- Validate required flows exist
+              {FLOW_VALIDATION}
+
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              ---------------------------------------------
+              -- SECTION 6: Select Companies for Processing
+              ---------------------------------------------
+              INSERT INTO #SelectedCompanies (CompanyID)
+                  -- Parent company (if @Parent = 1)
+                  SELECT a.CompanyID
+                  FROM #AllCompanies a
+                  WHERE a.IncludedInCompanySelection = 1
+                        AND (@Parent = 1 AND a.CompanyID = @ParentCompanyID)
+
+                  UNION
+
+                  -- Companies matching the consolidation method
+                  SELECT a.CompanyID
+                  FROM #AllCompanies a
+                       INNER JOIN dbo.TS070S2 b WITH(NOLOCK)
+                           ON (b.ConsoMethodSelectionID = @ConsoMethodSelectionID
+                               AND b.ConsoMethod = a.ConsoMethod)
+                  WHERE a.IncludedInCompanySelection = 1
+                        AND (@Parent = 1 OR a.CompanyID <> @ParentCompanyID)
+
+              ---------------------------------------------
+              -- SECTION 7: Calculate Elimination Amounts
+              -- (Closing Amounts - TMP_TD035C2)
+              ---------------------------------------------
+              INSERT INTO dbo.TMP_TD035C2 (
+                  SessionID, CompanyID, JournalTypeID, JournalEntry, JournalSequence,
+                  AccountID, PartnerCompanyID, CurrCode, Amount,
+                  TransactionCurrCode, TransactionAmount, MinorityFlag, ConsoID, Step)
+              SELECT
+                  @SessionID,
+                  a.CompanyID,
+                  @JournalType{ELIM_CODE}ID,
+                  b.JournalEntry,
+                  1 AS JournalSequence,
+                  {TARGET_ACCOUNT_LOGIC},
+                  a.PartnerCompanyID,
+                  @ConsoCurrCode AS CurrCode,
+                  ROUND({AMOUNT_CALCULATION}, @RoundingDecimal) AS Amount,
+                  CASE WHEN a.PartnerCompanyID IS NULL THEN NULL ELSE @ConsoCurrCode END AS TransactionCurrCode,
+                  CASE WHEN a.PartnerCompanyID IS NULL THEN NULL
+                       ELSE ROUND({AMOUNT_CALCULATION}, @RoundingDecimal) END AS TransactionAmount,
+                  @MinorityFlag,
+                  @ConsoID,
+                  {STEP_NUMBER} AS Step
+              FROM (
+                  {SOURCE_DATA_QUERY}
+              ) a
+              INNER JOIN #AllCompanies b ON (b.CompanyID = a.CompanyID)
+              WHERE {COMPANY_FILTER_CONDITION}
+
+              ---------------------------------------------
+              -- SECTION 8: Calculate Flow Amounts
+              -- (TMP_TD045C2)
+              ---------------------------------------------
+              INSERT INTO dbo.TMP_TD045C2 (
+                  SessionID, CompanyID, JournalTypeID, JournalEntry, JournalSequence,
+                  AccountID, FlowID, PartnerCompanyID, CurrCode, Amount,
+                  TransactionCurrCode, TransactionAmount, MinorityFlag, ConsoID, Step)
+              SELECT
+                  @SessionID,
+                  a.CompanyID,
+                  @JournalType{ELIM_CODE}ID,
+                  b.JournalEntry,
+                  1 AS JournalSequence,
+                  {TARGET_ACCOUNT_LOGIC},
+                  a.FlowID,
+                  a.PartnerCompanyID,
+                  @ConsoCurrCode AS CurrCode,
+                  ROUND({FLOW_AMOUNT_CALCULATION}, @RoundingDecimal) AS Amount,
+                  CASE WHEN a.PartnerCompanyID IS NULL THEN NULL ELSE @ConsoCurrCode END AS TransactionCurrCode,
+                  CASE WHEN a.PartnerCompanyID IS NULL THEN NULL
+                       ELSE ROUND({FLOW_AMOUNT_CALCULATION}, @RoundingDecimal) END AS TransactionAmount,
+                  @MinorityFlag,
+                  @ConsoID,
+                  {STEP_NUMBER} AS Step
+              FROM (
+                  {FLOW_SOURCE_DATA_QUERY}
+              ) a
+              INNER JOIN #AllCompanies b ON (b.CompanyID = a.CompanyID)
+              WHERE {COMPANY_FILTER_CONDITION}
+
+              ---------------------------------------------
+              -- SECTION 9: Create Balancing Entries
+              ---------------------------------------------
+              INSERT INTO dbo.TMP_TD035C2 (
+                  SessionID, CompanyID, JournalTypeID, JournalEntry, JournalSequence,
+                  AccountID, PartnerCompanyID, CurrCode, Amount,
+                  TransactionCurrCode, TransactionAmount, MinorityFlag, ConsoID, Step)
+              SELECT
+                  @SessionID,
+                  a.CompanyID,
+                  @JournalType{ELIM_CODE}ID,
+                  b.JournalEntry,
+                  2 AS JournalSequence,  -- Balancing entry
+                  {BALANCING_ACCOUNT_LOGIC},
+                  a.PartnerCompanyID,
+                  @ConsoCurrCode,
+                  (-1 * a.Amount) AS Amount,  -- Reverse sign for balance
+                  CASE WHEN a.PartnerCompanyID IS NULL THEN NULL ELSE @ConsoCurrCode END,
+                  CASE WHEN a.PartnerCompanyID IS NULL THEN NULL ELSE -1 * a.Amount END,
+                  @MinorityFlag,
+                  @ConsoID,
+                  {STEP_NUMBER} AS Step
+              FROM (
+                  SELECT CompanyID, PartnerCompanyID,
+                         {BALANCING_ACCOUNT_MAPPING},
+                         SUM(Amount) AS Amount
+                  FROM dbo.TMP_TD035C2 WITH(NOLOCK)
+                  WHERE SessionID = @SessionID
+                        AND Step BETWEEN {STEP_START} AND {STEP_END}
+                  GROUP BY CompanyID, PartnerCompanyID, {BALANCING_GROUP_BY}
+              ) a
+              INNER JOIN #AllCompanies b ON (b.CompanyID = a.CompanyID)
+
+              ---------------------------------------------
+              -- SECTION 10: Create Journal Headers
+              ---------------------------------------------
+              INSERT INTO dbo.TMP_TD033E0 (
+                  SessionID, ConsoID, CompanyID, JournalTypeID, CurrCode,
+                  JournalEntry, JournalText, Behaviour, MinorityFlag,
+                  AssociatedJournalTypeID, CurrencyFlag, [Status],
+                  CreationDate, ModificationDate, CreationUserLogin, ModificationUserLogin,
+                  Step, SourceCompanyID)
+              SELECT
+                  @SessionID,
+                  @ConsoID,
+                  a.CompanyID,
+                  @JournalType{ELIM_CODE}ID,
+                  @ConsoCurrCode,
+                  b.JournalEntry,
+                  @JournalText,
+                  @Behaviour,
+                  @MinorityFlag,
+                  @AssociatedJournalTypeID,
+                  'G' AS CurrencyFlag,        -- G = Group currency
+                  0 AS [Status],
+                  GETUTCDATE() AS CreationDate,
+                  NULL AS ModificationDate,
+                  @Login AS CreationUserLogin,
+                  NULL AS ModificationUserLogin,
+                  {STEP_NUMBER} AS Step,
+                  a.CompanyID AS SourceCompanyID
+              FROM (
+                  SELECT DISTINCT a.CompanyID
+                  FROM dbo.TMP_TD035C2 a WITH(NOLOCK)
+                  WHERE a.SessionID = @SessionID AND Step BETWEEN {STEP_START} AND {STEP_END}
+
+                  UNION
+
+                  SELECT DISTINCT a.CompanyID
+                  FROM dbo.TMP_TD045C2 a WITH(NOLOCK)
+                  WHERE a.SessionID = @SessionID AND Step BETWEEN {STEP_START} AND {STEP_END}
+              ) a
+              INNER JOIN #AllCompanies b ON (b.CompanyID = a.CompanyID)
+
+              ---------------------------------------------
+              -- SECTION 11: Dimension Processing (Optional)
+              ---------------------------------------------
+              IF @ExecuteDimensions = 1
+              BEGIN
+                  {DIMENSION_PROCESSING_LOGIC}
+              END
+
+          END TRY
+
+          BEGIN CATCH
+              DECLARE @errormessage nvarchar(max)
+              SET @errormessage = 'Procedure: ' + ERROR_PROCEDURE() +
+                                  ' - Line: ' + CAST(ERROR_LINE() AS varchar(10)) +
+                                  ' - Message: ' + ERROR_MESSAGE()
+          END CATCH
+
+          CleanupAndEnd:
+              DROP TABLE #SelectedCompanies
+              IF @errormessage IS NOT NULL
+                  RAISERROR (@errormessage, 16, 1)
+      END
+      GO
+
+    placeholders:
+      - name: "{ELIMINATION_NAME}"
+        description: "Name of the elimination (e.g., MINORITYINTEREST, EQUITYCAPITAL)"
+        required: true
+      - name: "{ELIM_CODE}"
+        description: "Elimination code (e.g., S085, S087)"
+        required: true
+      - name: "{STEP_NUMBER}"
+        description: "Processing step number (see typical_elimination_codes)"
+        required: true
+      - name: "{STEP_START}"
+        description: "Step range start (typically STEP_NUMBER)"
+        required: true
+      - name: "{STEP_END}"
+        description: "Step range end (typically STEP_NUMBER + 9)"
+        required: true
+      - name: "{AMOUNT_CALCULATION}"
+        description: "SQL expression for amount calculation"
+        example: "(-1 * ISNULL(a.Amount, 0) * ISNULL(b.MinorPerc, 0) / 100)"
+      - name: "{SOURCE_DATA_QUERY}"
+        description: "SELECT query for source data"
+        required: true
+
+    key_tables:
+      input:
+        - name: "#AllCompanies"
+          description: "Session temp table with company selection (created by P_CONSO_ELIM orchestrator)"
+        - name: "TS070S0"
+          description: "Elimination configuration"
+        - name: "TS070S1"
+          description: "Consolidation method selections"
+        - name: "TS070S2"
+          description: "Method-to-elimination mapping"
+        - name: "TS096S0"
+          description: "Consolidation period setup"
+      output:
+        - name: "TMP_TD033E0"
+          description: "Journal headers (temporary)"
+        - name: "TMP_TD035C2"
+          description: "Closing amounts (temporary)"
+        - name: "TMP_TD045C2"
+          description: "Flow amounts (temporary)"
+        - name: "TMP_TD055C2"
+          description: "Dimension amounts (temporary)"
+
+    special_account_functions:
+      - function: "dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'PLBAL')"
+        description: "P&L Balance account"
+      - function: "dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'PLINC')"
+        description: "P&L Income account"
+      - function: "dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'CONSODIFF')"
+        description: "Consolidation difference account"
+      - function: "dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'MINORINTERESTS')"
+        description: "Minority interests account"
+      - function: "dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, 'GOODWILL')"
+        description: "Goodwill account"
+
+    special_flow_functions:
+      - function: "dbo.UDF_GET_SPECIAL_FLOW(@ConsoID, 'VarPercInteg')"
+        description: "Variation in integration percentage flow"
+      - function: "dbo.UDF_GET_SPECIAL_FLOW(@ConsoID, 'UNEXPVar')"
+        description: "Unexplained variance flow"
+
+# =============================================================================
+# TEMPLATE 2: INTERCOMPANY ELIMINATION (P_CONSO_ELIM_INTERCOMPANY_*)
+# =============================================================================
+
+  elimination_intercompany:
+    name: "Intercompany Elimination Procedure"
+    naming: "P_CONSO_ELIM_INTERCOMPANY_{VARIANT}"
+    use_case: "IC eliminations - netting, 100%, non-entity variants"
+    source_reference: "P_CONSO_ELIM_INTERCOMPANY.sql"
+    variants:
+      - name: "Standard IC"
+        file: "P_CONSO_ELIM_INTERCOMPANY.sql"
+      - name: "100% Elimination"
+        file: "P_CONSO_ELIM_INTERCOMPANY_100PC.sql"
+      - name: "Netting"
+        file: "P_CONSO_ELIM_INTERCOMPANY_NETTING.sql"
+      - name: "Non-Entity"
+        file: "P_CONSO_ELIM_INTERCOMPANY_NE.sql"
+
+    template: |
+      CREATE PROCEDURE [dbo].[P_CONSO_ELIM_INTERCOMPANY_{VARIANT}]
+          @Login nvarchar(256),
+          @SessionID int,
+          @ConsoID int,
+          @RefConsoID int,
+          @PreviousPeriodAdjFlowID int,
+          @ConsoCurrCode nvarchar(3),
+          @ParentCompanyID int,
+          @JournalTypeS001ID int,
+          @UNEXPVarFlowID int,
+          @NETVarFlowID int,
+          @ExecuteDimensions bit,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+      AS BEGIN
+          SET NOCOUNT ON
+
+          -- IC-specific variables
+          DECLARE @JournalTypeID int
+          DECLARE @ICRuleID int
+          DECLARE @EliminationPercent decimal(24,6)
+
+          -- Create temp tables
+          CREATE TABLE #ICPairs (
+              pk int IDENTITY,
+              CompanyID int,
+              PartnerCompanyID int,
+              AccountID int,
+              PartnerAccountID int,
+              Amount decimal(24,6),
+              PartnerAmount decimal(24,6),
+              Difference decimal(24,6)
+          )
+
+          BEGIN TRY
+              ---------------------------------------------
+              -- Get IC matching rules from TS080S0
+              ---------------------------------------------
+              {IC_RULE_QUERY}
+
+              ---------------------------------------------
+              -- Match IC transactions
+              ---------------------------------------------
+              INSERT INTO #ICPairs (CompanyID, PartnerCompanyID, AccountID, PartnerAccountID,
+                                    Amount, PartnerAmount, Difference)
+              {IC_MATCHING_QUERY}
+
+              ---------------------------------------------
+              -- Generate elimination entries
+              ---------------------------------------------
+              {IC_ELIMINATION_LOGIC}
+
+              ---------------------------------------------
+              -- Handle unmatched differences
+              ---------------------------------------------
+              {UNMATCHED_HANDLING}
+
+          END TRY
+          BEGIN CATCH
+              -- Error handling
+          END CATCH
+
+          CleanupAndEnd:
+              DROP TABLE #ICPairs
+      END
+      GO
+
+    key_concepts:
+      - name: "IC Matching"
+        description: "Match intercompany transactions between related entities"
+      - name: "Netting"
+        description: "Net offsetting IC balances before elimination"
+      - name: "100% Elimination"
+        description: "Full elimination regardless of ownership percentage"
+
+# =============================================================================
+# TEMPLATE 3: CALCULATION/INTEGRATION PROCEDURE (P_CONSO_CALCULATE_*)
+# =============================================================================
+
+  calculation_integration:
+    name: "Calculation/Integration Procedure"
+    naming: "P_CONSO_CALCULATE_{CALC_NAME}"
+    use_case: "Bundle integration, adjustments integration, currency translation orchestration"
+    source_reference: "P_CONSO_CALCULATE_BUNDLE_INTEGRATION.sql"
+
+    template: |
+      /*
+       Author:
+          {AuthorName}
+       Description:
+          {Description}
+
+          This procedure orchestrates the following sub-procedures:
+          {SUB_PROCEDURE_LIST}
+
+          eg: Test case:
+              declare @errorinfo xml
+              exec [dbo].[P_CONSO_CALCULATE_{CALC_NAME}]
+                  @UserID = 11,
+                  @ConsoID = 25168,
+                  @CompanyIDs = NULL,  -- NULL = all companies
+                  @ExecuteDimensions = 0,
+                  @Debug = 1,
+                  @errorinfo = @errorinfo OUTPUT
+              SELECT @errorinfo
+
+       History:
+       Date        By          Description
+       ----        ----        ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_CONSO_CALCULATE_{CALC_NAME}]
+          @UserID int,                      -- User that initiated this process (NULL = SYSTEM)
+          @ConsoID int,                     -- Consolidation period ID
+          @CompanyIDs varchar(max) = NULL,  -- Comma-separated list (NULL = all companies)
+          @ExecuteDimensions bit = 0,       -- Execute dimension processing
+          @Debug bit = 0,                   -- Debug mode flag
+          @errorinfo xml OUTPUT             -- Error information output
+      AS BEGIN
+          SET NOCOUNT ON
+
+          SET @errorinfo = NULL
+
+          ---------------------------------------------
+          -- Variable Declarations
+          ---------------------------------------------
+          DECLARE @CustomerID int
+          DECLARE @Login nvarchar(256)
+          DECLARE @SessionID int
+          DECLARE @RefConsoID int
+          DECLARE @ConsoCurrCode nvarchar(3)
+          DECLARE @NoClearConsoStatusExisted bit
+          DECLARE @LockPeriodDuringConso bit = 0
+          DECLARE @LockedByGuid uniqueidentifier = NEWID()
+
+          PRINT CONVERT(varchar(20), GETUTCDATE(), 114) + ': P_CONSO_CALCULATE_{CALC_NAME} started'
+
+          ---------------------------------------------
+          -- Check Lock Configuration
+          ---------------------------------------------
+          SELECT @LockPeriodDuringConso = (
+              CASE WHEN dbo.UDF_GET_CONFIG('LOCK_PERIOD_DURING_CONSO', NULL, @ConsoID) = 'true'
+                   THEN 1 ELSE 0 END
+          )
+
+          ---------------------------------------------
+          -- Check if Consolidation is Locked
+          ---------------------------------------------
+          EXEC dbo.[P_CONSO_CHECK_LOCKED]
+               @ConsoID = @ConsoID,
+               @errorinfo = @errorinfo OUTPUT
+          IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+          -- Optional extended lock (during processing)
+          IF @LockPeriodDuringConso = 1
+          BEGIN
+              EXEC dbo.P_CONSO_CHECK_LOCKED_EXTENDED
+                  @ConsoID = @ConsoID,
+                  @ConsoIDRange = NULL,
+                  @LockedByGuid = @LockedByGuid,
+                  @Login = @Login,
+                  @LockedReason = 'ConsoLockedByConsolidationJob',
+                  @MinutesToWait = 30,
+                  @JobID = NULL,
+                  @BlockOnManualLock = 0,
+                  @errorinfo = @errorinfo OUTPUT
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+          END
+
+          ---------------------------------------------
+          -- Disable Trigger Code (if needed)
+          ---------------------------------------------
+          IF (OBJECT_ID('tempdb..#NO_CLEAR_CONSO_STATUS') IS NULL)
+          BEGIN
+              SET @NoClearConsoStatusExisted = 0
+              CREATE TABLE #NO_CLEAR_CONSO_STATUS (pk int)
+          END
+          ELSE SET @NoClearConsoStatusExisted = 1
+
+          ---------------------------------------------
+          -- Default Company List (if not provided)
+          ---------------------------------------------
+          IF @CompanyIDs IS NULL
+          BEGIN
+              SET @CompanyIDs = dbo.UDF_GET_COMPANYLIST(@ConsoID)
+          END
+
+          ---------------------------------------------
+          -- Get Consolidation Configuration
+          ---------------------------------------------
+          SELECT  @RefConsoID = ReferenceConsoID,
+                  @ConsoCurrCode = CurrCode,
+                  @CustomerID = CustomerID
+          FROM    dbo.TS096S0
+          WHERE   ConsoID = @ConsoID
+
+          ---------------------------------------------
+          -- Get User Login
+          ---------------------------------------------
+          IF @UserID IS NULL
+          BEGIN
+              SET @Login = 'SYSTEM'
+          END
+          ELSE
+          BEGIN
+              SELECT @Login = [Login]
+              FROM dbo.TS001G0
+              WHERE UserID = @UserID
+          END
+
+          ---------------------------------------------
+          -- Create Async Session for Progress Tracking
+          ---------------------------------------------
+          EXEC dbo.P_ASYNC_SESSION_CREATE
+              @CustomerID = @CustomerID,
+              @UserID = @UserID,
+              @Comment = '{CALC_NAME} started',
+              @SessionID = @SessionID OUTPUT
+
+          BEGIN TRY
+              ---------------------------------------------
+              -- STEP 1: Prepare Company Selection
+              ---------------------------------------------
+              IF @Debug = 1
+                  PRINT CONVERT(varchar(20), GETUTCDATE(), 114) + ': Filling company table'
+
+              EXEC dbo.P_CONSO_HELPER_FILL_COMPANY_TABLE
+                  @SessionID = @SessionID,
+                  @ConsoID = @ConsoID,
+                  @CompanyIDs = @CompanyIDs,
+                  @errorinfo = @errorinfo OUTPUT
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              ---------------------------------------------
+              -- STEP 2: {STEP_2_NAME}
+              ---------------------------------------------
+              IF @Debug = 1
+                  PRINT CONVERT(varchar(20), GETUTCDATE(), 114) + ': {STEP_2_NAME}'
+
+              EXEC dbo.P_ASYNC_SESSION_UPDATE
+                  @SessionID = @SessionID,
+                  @Comment = '{STEP_2_NAME}'
+
+              {STEP_2_EXECUTION}
+
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              ---------------------------------------------
+              -- STEP 3: {STEP_3_NAME}
+              ---------------------------------------------
+              IF @Debug = 1
+                  PRINT CONVERT(varchar(20), GETUTCDATE(), 114) + ': {STEP_3_NAME}'
+
+              EXEC dbo.P_ASYNC_SESSION_UPDATE
+                  @SessionID = @SessionID,
+                  @Comment = '{STEP_3_NAME}'
+
+              {STEP_3_EXECUTION}
+
+              IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+              ---------------------------------------------
+              -- Additional Steps as needed
+              ---------------------------------------------
+              {ADDITIONAL_STEPS}
+
+              ---------------------------------------------
+              -- Update Company Status
+              ---------------------------------------------
+              EXEC dbo.P_CONSO_UPDATE_COMPANY_STATUS
+                  @SessionID = @SessionID,
+                  @ConsoID = @ConsoID,
+                  @StatusColumn = '{STATUS_COLUMN}',
+                  @errorinfo = @errorinfo OUTPUT
+
+              ---------------------------------------------
+              -- Finalize
+              ---------------------------------------------
+              EXEC dbo.P_ASYNC_SESSION_UPDATE
+                  @SessionID = @SessionID,
+                  @Comment = '{CALC_NAME} completed'
+
+          END TRY
+          BEGIN CATCH
+              SET @errorinfo = dbo.AddError(
+                  'STORED_PROCEDURE_ERROR',
+                  ERROR_PROCEDURE(),
+                  ERROR_MESSAGE(),
+                  @errorinfo)
+          END CATCH
+
+          CleanupAndEnd:
+              -- Unlock if we locked
+              IF @LockPeriodDuringConso = 1
+              BEGIN
+                  EXEC dbo.P_CONSO_UNLOCK_BY_GUID
+                      @ConsoID = @ConsoID,
+                      @LockedByGuid = @LockedByGuid
+              END
+
+              -- Cleanup temp tables
+              IF @NoClearConsoStatusExisted = 0
+                  DROP TABLE #NO_CLEAR_CONSO_STATUS
+
+              PRINT CONVERT(varchar(20), GETUTCDATE(), 114) + ': P_CONSO_CALCULATE_{CALC_NAME} ended'
+      END
+      GO
+
+    helper_procedures:
+      - name: "P_CONSO_HELPER_FILL_COMPANY_TABLE"
+        description: "Fills TMP_CONSO_COMPANYID with selected companies"
+      - name: "P_CONSO_HELPER_FILL_EXCHANGERATE"
+        description: "Fills TMP_CONSO_EXCHANGERATE with exchange rates"
+      - name: "P_CONSO_UPDATE_COMPANY_STATUS"
+        description: "Updates company status flags after processing"
+      - name: "P_ASYNC_SESSION_CREATE"
+        description: "Creates async session for progress tracking"
+      - name: "P_ASYNC_SESSION_UPDATE"
+        description: "Updates async session progress"
+
+# =============================================================================
+# TEMPLATE 4: VIEW/QUERY PROCEDURE (P_VIEW_*)
+# =============================================================================
+
+  view_query:
+    name: "View/Query Procedure"
+    naming: "P_VIEW_{VIEW_NAME}"
+    use_case: "Data retrieval for screens, reports, exports"
+    source_reference: "P_VIEW_BUNDLE_ACCOUNT.sql"
+
+    template: |
+      /*
+       Author:
+          {AuthorName}
+       Description:
+          {Description}
+
+          Returns {ResultSetCount} resultsets:
+          1. {ResultSet1Description}
+          2. {ResultSet2Description}
+          3. {ResultSet3Description}
+
+          eg:
+              DECLARE @OutputParam1 {OutputType1}
+              EXEC P_VIEW_{VIEW_NAME}
+                  @ConsoID = 1,
+                  @CompanyCode = 'COMP1',
+                  @Option = 1,
+                  @DataLanguageID = 2057,
+                  @DefaultDataLanguageID = 2057,
+                  @OutputParam1 = @OutputParam1 OUTPUT
+              SELECT @OutputParam1
+
+       History:
+       Date        By          Description
+       ----        ----        ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_VIEW_{VIEW_NAME}]
+          @ConsoID int,                         -- Consolidation period ID
+          @CompanyCode nvarchar(12) = NULL,     -- Company filter (NULL = all)
+          @Option tinyint,                      -- View option:
+                                                -- 1 = Option 1 description
+                                                -- 2 = Option 2 description
+                                                -- 3 = Option 3 description
+          @ResultSetNr tinyint = 4,             -- Which resultset to return:
+                                                -- 1 = Row definitions only
+                                                -- 2 = Column definitions only
+                                                -- 3 = Data values only
+                                                -- 4 = All resultsets
+          @DataLanguageID int,                  -- User's data language LCID
+          @DefaultDataLanguageID int,           -- Default data language LCID
+          @OutputParam1 {OutputType1} OUTPUT,   -- Output parameter 1
+          @OutputParam2 {OutputType2} OUTPUT    -- Output parameter 2
+      AS BEGIN
+          SET NOCOUNT ON
+
+          -- Validate required parameters
+          IF (@ConsoID IS NULL)
+              RAISERROR ('@ConsoID should be provided', 16, 1)
+
+          -- Normalize empty strings to NULL
+          IF @CompanyCode = '' SET @CompanyCode = NULL
+
+          ---------------------------------------------
+          -- Get Configuration
+          ---------------------------------------------
+          DECLARE @CustomerID int
+          DECLARE @CurrCode nvarchar(3)
+          DECLARE @NbrDec tinyint
+
+          SELECT  @CustomerID = CustomerID,
+                  @CurrCode = CurrCode,
+                  @NbrDec = NbrDec
+          FROM    dbo.TS096S0 WITH(NOLOCK)
+          WHERE   ConsoID = @ConsoID
+
+          -- Set output parameters
+          SET @OutputParam1 = {OutputValue1}
+          SET @OutputParam2 = {OutputValue2}
+
+          ---------------------------------------------
+          -- ResultSet 1: Row Definitions
+          ---------------------------------------------
+          IF @ResultSetNr IN (1, 4)
+          BEGIN
+              SELECT  {RowDefinitionColumns}
+              FROM    {RowDefinitionSource}
+              WHERE   {RowDefinitionFilter}
+              ORDER BY {RowDefinitionOrder}
+          END
+
+          ---------------------------------------------
+          -- ResultSet 2: Column Definitions
+          ---------------------------------------------
+          IF @ResultSetNr IN (2, 4)
+          BEGIN
+              SELECT  {ColumnDefinitionColumns}
+              FROM    {ColumnDefinitionSource}
+              WHERE   {ColumnDefinitionFilter}
+              ORDER BY {ColumnDefinitionOrder}
+          END
+
+          ---------------------------------------------
+          -- ResultSet 3: Data Values
+          ---------------------------------------------
+          IF @ResultSetNr IN (3, 4)
+          BEGIN
+              -- Select based on @Option
+              IF @Option = 1
+              BEGIN
+                  {OPTION_1_QUERY}
+              END
+              ELSE IF @Option = 2
+              BEGIN
+                  {OPTION_2_QUERY}
+              END
+              ELSE IF @Option = 3
+              BEGIN
+                  {OPTION_3_QUERY}
+              END
+          END
+      END
+      GO
+
+    option_values:
+      data_entry:
+        - value: 1
+          description: "Local bundles (TD030B1)"
+        - value: 2
+          description: "Locally adjusted (TD030B2)"
+        - value: 3
+          description: "Local adjustments (TD030E0/E2)"
+        - value: 4
+          description: "Local + adjustments period N"
+        - value: 5
+          description: "Local + adjustments period N-1"
+        - value: 6
+          description: "Groups adjusted data (TD035C2)"
+
+# =============================================================================
+# TEMPLATE 5: HELPER/UTILITY PROCEDURE (P_CONSO_HELPER_*)
+# =============================================================================
+
+  helper_utility:
+    name: "Helper/Utility Procedure"
+    naming: "P_CONSO_HELPER_{HELPER_NAME}"
+    use_case: "Reusable utility functions for consolidation processing"
+    source_reference: "P_CONSO_HELPER_FILL_COMPANY_TABLE.sql"
+
+    template: |
+      /*
+       Author:
+          {AuthorName}
+       Description:
+          {Description}
+
+       History:
+       Date        By          Description
+       ----        ----        ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_CONSO_HELPER_{HELPER_NAME}]
+          @SessionID int,
+          @ConsoID int,
+          {ADDITIONAL_PARAMETERS}
+          @errorinfo xml OUTPUT
+      AS BEGIN
+          SET NOCOUNT ON
+
+          BEGIN TRY
+              {HELPER_LOGIC}
+          END TRY
+          BEGIN CATCH
+              SET @errorinfo = dbo.AddError(
+                  'STORED_PROCEDURE_ERROR',
+                  ERROR_PROCEDURE(),
+                  ERROR_MESSAGE(),
+                  @errorinfo)
+          END CATCH
+      END
+      GO
+
+# =============================================================================
+# TEMPLATE 6: EVENT PROCEDURE (P_CONSO_EVENT_*)
+# =============================================================================
+
+  event_procedure:
+    name: "Consolidation Event Procedure"
+    naming: "P_CONSO_EVENT_{EVENT_NAME}"
+    use_case: "Process consolidation events (acquisitions, disposals, method changes)"
+    source_reference: "P_CONSO_EVENT_GENERIC.sql"
+
+    template: |
+      /*
+       Author:
+          {AuthorName}
+       Description:
+          Processes the {EVENT_NAME} consolidation event.
+
+          Event Types:
+          - Acquisition: New subsidiary enters group
+          - Disposal: Subsidiary leaves group
+          - Method Change: Change in consolidation method
+          - Dividend: Dividend distribution
+
+       History:
+       Date        By          Description
+       ----        ----        ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_CONSO_EVENT_{EVENT_NAME}]
+          @UserID int,
+          @ConsoID int,
+          @EventID int,
+          @CompanyID int,
+          @EventDate datetime,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+      AS BEGIN
+          SET NOCOUNT ON
+
+          DECLARE @Login nvarchar(256)
+          DECLARE @SessionID int
+
+          BEGIN TRY
+              -- Validate event exists
+              IF NOT EXISTS (SELECT 1 FROM dbo.{EVENT_TABLE} WHERE EventID = @EventID)
+              BEGIN
+                  SET @errorinfo = dbo.AddError('EVENT_NOT_FOUND', @EventID, NULL, @errorinfo)
+                  RETURN
+              END
+
+              -- Process event
+              {EVENT_PROCESSING_LOGIC}
+
+              -- Generate journal entries if needed
+              {JOURNAL_GENERATION}
+
+              -- Update company status
+              {STATUS_UPDATE}
+
+          END TRY
+          BEGIN CATCH
+              SET @errorinfo = dbo.AddError(
+                  'STORED_PROCEDURE_ERROR',
+                  ERROR_PROCEDURE(),
+                  ERROR_MESSAGE(),
+                  @errorinfo)
+          END CATCH
+      END
+      GO
+
+# =============================================================================
+# TEMPLATE 7: SYSTEM PROCEDURE (P_SYS_*)
+# =============================================================================
+
+  system_procedure:
+    name: "System Utility Procedure"
+    naming: "P_SYS_{SYS_NAME}"
+    use_case: "System-level operations (logging, debugging, maintenance)"
+    source_reference: "P_SYS_DEBUG_PRINT.sql"
+
+    template: |
+      CREATE PROCEDURE [dbo].[P_SYS_{SYS_NAME}]
+          {PARAMETERS}
+      AS BEGIN
+          SET NOCOUNT ON
+
+          {SYSTEM_LOGIC}
+      END
+      GO
+
+# =============================================================================
+# TEMPLATE 8: MATCHING PROCEDURE (P_CONSO_MATCHING_*)
+# =============================================================================
+
+  matching_procedure:
+    name: "IC Matching Procedure"
+    naming: "P_CONSO_MATCHING_{MATCHING_NAME}"
+    use_case: "Intercompany matching, reconciliation, and corrections"
+    source_reference: "P_CONSO_MATCHING_PREPARE.sql"
+
+    template: |
+      /*
+       Author:
+          {AuthorName}
+       Description:
+          {Description}
+
+       History:
+       Date        By          Description
+       ----        ----        ------------------
+       {Date}      {Initials}  Initial creation
+      */
+      CREATE PROCEDURE [dbo].[P_CONSO_MATCHING_{MATCHING_NAME}]
+          @UserID int,
+          @ConsoID int,
+          @CompanyID int = NULL,
+          @PartnerCompanyID int = NULL,
+          @AccountID int = NULL,
+          @Debug bit = 0,
+          @errorinfo xml OUTPUT
+      AS BEGIN
+          SET NOCOUNT ON
+
+          -- Create temp table for matching results
+          CREATE TABLE #MatchingResults (
+              MatchID int IDENTITY,
+              CompanyID int,
+              PartnerCompanyID int,
+              AccountID int,
+              PartnerAccountID int,
+              LocalAmount decimal(24,6),
+              PartnerAmount decimal(24,6),
+              Difference decimal(24,6),
+              MatchStatus char(1),  -- M=Matched, U=Unmatched, P=Partial
+              ToleranceUsed decimal(24,6)
+          )
+
+          BEGIN TRY
+              {MATCHING_LOGIC}
+          END TRY
+          BEGIN CATCH
+              SET @errorinfo = dbo.AddError(
+                  'STORED_PROCEDURE_ERROR',
+                  ERROR_PROCEDURE(),
+                  ERROR_MESSAGE(),
+                  @errorinfo)
+          END CATCH
+
+          CleanupAndEnd:
+              DROP TABLE #MatchingResults
+      END
+      GO
+
+# =============================================================================
+# QUICK REFERENCE: ERROR HANDLING FUNCTIONS
+# =============================================================================
+
+error_handling:
+  functions:
+    - name: "dbo.HasError(@errorinfo)"
+      description: "Returns 1 if @errorinfo contains errors"
+      usage: "IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd"
+
+    - name: "dbo.AddError(code, param1, param2, @errorinfo)"
+      description: "Adds error to @errorinfo XML"
+      usage: "SET @errorinfo = dbo.AddError('ERROR_CODE', @param1, @param2, @errorinfo)"
+
+    - name: "dbo.AddError2(code, param1, param2, @errorinfo)"
+      description: "Alternative error addition function"
+      usage: "SET @errorinfo = dbo.AddError2('SPECIFIC_ACCOUNT_NOT_FOUND', 'AccountName', 'Context', @errorinfo)"
+
+  pattern: |
+    BEGIN TRY
+        -- Main logic
+    END TRY
+    BEGIN CATCH
+        DECLARE @errormessage nvarchar(max)
+        SET @errormessage = 'Procedure: ' + ERROR_PROCEDURE() +
+                            ' - Line: ' + CAST(ERROR_LINE() AS varchar(10)) +
+                            ' - Message: ' + ERROR_MESSAGE()
+    END CATCH
+
+    CleanupAndEnd:
+        -- Cleanup temp tables
+        IF @errormessage IS NOT NULL
+            RAISERROR (@errormessage, 16, 1)
+
+# =============================================================================
+# QUICK REFERENCE: COMMON PARAMETERS
+# =============================================================================
+
+common_parameters:
+  elimination:
+    - "@Login nvarchar(256)"
+    - "@SessionID int"
+    - "@ConsoID int"
+    - "@RefConsoID int"
+    - "@PreviousPeriodAdjFlowID int"
+    - "@ConsoCurrCode nvarchar(3)"
+    - "@ParentCompanyID int"
+    - "@JournalTypeS001ID int"
+    - "@UNEXPVarFlowID int"
+    - "@NETVarFlowID int"
+    - "@ExecuteDimensions bit"
+    - "@Debug bit = 0"
+    - "@errorinfo xml OUTPUT"
+
+  calculation:
+    - "@UserID int"
+    - "@ConsoID int"
+    - "@CompanyIDs varchar(max) = NULL"
+    - "@ExecuteDimensions bit = 0"
+    - "@Debug bit = 0"
+    - "@errorinfo xml OUTPUT"
+
+  view:
+    - "@ConsoID int"
+    - "@CompanyCode nvarchar(12) = NULL"
+    - "@Option tinyint"
+    - "@ResultSetNr tinyint = 4"
+    - "@DataLanguageID int"
+    - "@DefaultDataLanguageID int"
+
+# =============================================================================
+# RELATED DOCUMENTATION
+# =============================================================================
+
+related_documentation:
+  - name: "Stored Procedures Catalog"
+    path: "docs/DC/md/documentation-library/07-database-implementation/stored-procedures-catalog.md"
+  - name: "Code Pattern Library"
+    path: "docs/DC/md/documentation-library/11-agent-support/code-pattern-library.yaml"
+  - name: "Data Tables Catalog"
+    path: "docs/DC/md/documentation-library/07-database-implementation/data-tables-catalog.md"
+  - name: "Elimination Entries Documentation"
+    path: "docs/DC/md/documentation-library/04-elimination-entries/"

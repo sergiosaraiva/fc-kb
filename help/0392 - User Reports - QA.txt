@@ -1,0 +1,380 @@
+Topics:
+Cash-Flow Report Creation, Flow Report Creation, Multi-Period Report Creation, Standard Report Creation
+
+Keywords:
+Cash-Flow Report, Flow Report, Multi-Period Report, Standard Report, User Reports, Report Generation, Financial Data, Data Analysis
+
+Summary:
+The provided documentation for the Financial Consolidation product includes detailed instructions on creating various types of reports. The Cash-Flow Report Creation section explains how to define and generate reports for cash flow statements. The Flow Report Creation section details the process of creating reports based on flow structures across different periods, journals, and accounts. The Multi-Period Report Creation section provides steps for generating reports that span multiple periods, allowing comprehensive financial analysis over time. The Standard Report Creation section outlines the creation of linear reports based on account structures. These instructions ensure accurate and efficient financial reporting and analysis.
+
+Contents:
+
+Question: How do you access the User Report Definition - Cash Flow page?
+Answer: The User Report Definition - Cash Flow page is accessed from the page when you select a Cash Flow type report and then, click the Define this report button.
+
+Question: What structures are used in the User Report Definition - Cash Flow page?
+Answer: The structures used are Account and Calculated Account structure, the Flow structure, and the Journal structure.
+
+Question: How do you add a new line to a cash-flow report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What is the purpose of the Line Number in a cash-flow report?
+Answer: The Line Number allows you to identify each line in the report.
+
+Question: What information is required to add a new line to a cash-flow report?
+Answer: You need to enter the line number, select a Line Type, enter a Group Number, provide a description, adjust Indentation, Font, and Layout, change the Sign if necessary, select the Period, Account or Calculated Account Code, Flow or Calculated Flow Code, Journal or Journal View Code, and decide whether to show or hide the line.
+
+Question: How do you modify an existing line in a cash-flow report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you create a flow report?
+Answer: To create a flow report, access the User Report Definition - Flow page from the page when you select a Flow type report and click the Define this report button.
+
+Question: What columns are displayed in the User Report Definition - Flow page?
+Answer: The columns displayed are Line Number, Type, Code, Description, Sign, Period, Journal, and Col1 to Col3.
+
+Question: How do you add a new line to a flow report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What information is required to add a new line to a flow report?
+Answer: You need to enter the line number, select a Line Type, provide a Flow or Calculated Flow, adjust Indentation, Font, and Layout, change the Sign if necessary, select the Period, Journal or Journal View, and select up to three accounts.
+
+Question: How do you modify an existing line in a flow report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you create a multi-period report?
+Answer: To create a multi-period report, access the User Report Definition - MultiPeriod page from the page when you select a Multi-period type report and click the Define this report button.
+
+Question: What are the two tabs available in the User Report Definition - MultiPeriod page?
+Answer: The two tabs available are Rows and Columns.
+
+Question: What information is required to add a new line (row) in a multi-period report?
+Answer: You need to enter the line number, select a Line Type, provide an Account or Calculated Account Code, adjust Indentation, Font, and Layout, and change the Sign if necessary.
+
+Question: How do you add a new column in a multi-period report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the column, then click .
+
+Question: What information is required to add a new column in a multi-period report?
+Answer: You need to define the Column Number, select Month and Month Offset, define the Sequence and Category, select the Type and Cur/Ref.
+
+Question: How do you modify an existing line in a multi-period report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you create a standard report?
+Answer: To create a standard report, access the User Report Definition - Standard page from the page when you select a Standard type report and click the Define this report button.
+
+Question: What columns are displayed in the User Report Definition - Standard page?
+Answer: The columns displayed are Line Number, Type, Code, Description, and Sign.
+
+Question: How do you add a new line to a standard report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What information is required to add a new line to a standard report?
+Answer: You need to enter the line number, select a Line Type, provide an Account or Calculated Account Code, adjust Indentation, Font, and Layout, and change the Sign if necessary.
+
+Question: How do you modify an existing line in a standard report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you generate a user report?
+Answer: To generate a user report, select a report from the Report drop-down list, enter a reference consolidation period in the Ref Period field, select the type of data from the Data drop-down list, select a company, select a journal view in the Journal Summation field, specify how the contribution should be shown in the Contribution by field, select a Point of View, and select the output file type in the File type field, then click .
+
+Question: How do you drill down a user report?
+Answer: To drill down a user report, select a user report in the Report field, select a journal view in the Journal Summation field, click , identify the line to analyze and click the plus sign (+) beside the Description, select the structure to analyze in the pop-up, and drill down into the selected structure.
+
+Question: What is the purpose of the Cash-Flow Report Creation section?
+Answer: The Cash-Flow Report Creation section explains how to define and generate reports for cash flow statements.
+
+Question: What is the purpose of the Flow Report Creation section?
+Answer: The Flow Report Creation section details the process of creating reports based on flow structures across different periods, journals, and accounts.
+
+Question: What is the purpose of the Multi-Period Report Creation section?
+Answer: The Multi-Period Report Creation section provides steps for generating reports that span multiple periods, allowing comprehensive financial analysis over time.
+
+Question: What is the purpose of the Standard Report Creation section?
+Answer: The Standard Report Creation section outlines the creation of linear reports based on account structures.
+
+Question: How do you access the User Report Definition - Cash Flow page?
+Answer: The User Report Definition - Cash Flow page is accessed from the page when you select a Cash Flow type report and then, click the Define this report button.
+
+Question: What structures are used in the User Report Definition - Cash Flow page?
+Answer: The structures used are Account and Calculated Account structure, the Flow structure, and the Journal structure.
+
+Question: How do you add a new line to a cash-flow report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What is the purpose of the Line Number in a cash-flow report?
+Answer: The Line Number allows you to identify each line in the report.
+
+Question: What information is required to add a new line to a cash-flow report?
+Answer: You need to enter the line number, select a Line Type, enter a Group Number, provide a description, adjust Indentation, Font, and Layout, change the Sign if necessary, select the Period, Account or Calculated Account Code, Flow or Calculated Flow Code, Journal or Journal View Code, and decide whether to show or hide the line.
+
+Question: How do you modify an existing line in a cash-flow report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you create a flow report?
+Answer: To create a flow report, access the User Report Definition - Flow page from the page when you select a Flow type report and click the Define this report button.
+
+Question: What columns are displayed in the User Report Definition - Flow page?
+Answer: The columns displayed are Line Number, Type, Code, Description, Sign, Period, Journal, and Col1 to Col3.
+
+Question: How do you add a new line to a flow report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What information is required to add a new line to a flow report?
+Answer: You need to enter the line number, select a Line Type, provide a Flow or Calculated Flow, adjust Indentation, Font, and Layout, change the Sign if necessary, select the Period, Journal or Journal View, and select up to three accounts.
+
+Question: How do you modify an existing line in a flow report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you create a multi-period report?
+Answer: To create a multi-period report, access the User Report Definition - MultiPeriod page from the page when you select a Multi-period type report and click the Define this report button.
+
+Question: What are the two tabs available in the User Report Definition - MultiPeriod page?
+Answer: The two tabs available are Rows and Columns.
+
+Question: What information is required to add a new line (row) in a multi-period report?
+Answer: You need to enter the line number, select a Line Type, provide an Account or Calculated Account Code, adjust Indentation, Font, and Layout, and change the Sign if necessary.
+
+Question: How do you add a new column in a multi-period report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the column, then click .
+
+Question: What information is required to add a new column in a multi-period report?
+Answer: You need to define the Column Number, select Month and Month Offset, define the Sequence and Category, select the Type and Cur/Ref.
+
+Question: How do you modify an existing line in a multi-period report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you create a standard report?
+Answer: To create a standard report, access the User Report Definition - Standard page from the page when you select a Standard type report and click the Define this report button.
+
+Question: What columns are displayed in the User Report Definition - Standard page?
+Answer: The columns displayed are Line Number, Type, Code, Description, and Sign.
+
+Question: How do you add a new line to a standard report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What information is required to add a new line to a standard report?
+Answer: You need to enter the line number, select a Line Type, provide an Account or Calculated Account Code, adjust Indentation, Font, and Layout, and change the Sign if necessary.
+
+Question: How do you modify an existing line in a standard report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: How do you generate a user report?
+Answer: To generate a user report, select a report from the Report drop-down list, enter a reference consolidation period in the Ref Period field, select the type of data from the Data drop-down list, select a company, select a journal view in the Journal Summation field, specify how the contribution should be shown in the Contribution by field, select a Point of View, and select the output file type in the File type field, then click .
+
+Question: How do you drill down a user report?
+Answer: To drill down a user report, select a user report in the Report field, select a journal view in the Journal Summation field, click , identify the line to analyze and click the plus sign (+) beside the Description, select the structure to analyze in the pop-up, and drill down into the selected structure.
+
+Question: What is the purpose of the Cash-Flow Report Creation section?
+Answer: The Cash-Flow Report Creation section explains how to define and generate reports for cash flow statements.
+
+Question: What is the purpose of the Flow Report Creation section?
+Answer: The Flow Report Creation section details the process of creating reports based on flow structures across different periods, journals, and accounts.
+
+Question: What is the purpose of the Multi-Period Report Creation section?
+Answer: The Multi-Period Report Creation section provides steps for generating reports that span multiple periods, allowing comprehensive financial analysis over time.
+
+Question: What is the purpose of the Standard Report Creation section?
+Answer: The Standard Report Creation section outlines the creation of linear reports based on account structures.
+
+Question: What are the key components of the User Report Definition - Cash Flow page?
+Answer: The key components include Line Number, Group Number, Type, Description, Account, Flow, Journal, Sign, Period, and Visible option.
+
+Question: How do you define the layout for each line in a cash-flow report?
+Answer: Each line has a Line Number, Group Number, Type, Description, Account, Flow, Journal, Sign, Period, and Visible option to define its layout.
+
+Question: What does the Line Number represent in a report?
+Answer: The Line Number represents the identifier for each line in the report.
+
+Question: What are the different Line Types available in a cash-flow report?
+Answer: The Line Types are T - Text Line, C - Cash-Flow Line, S - Summation data, and P - Page Break.
+
+Question: What is the purpose of the Visible option in a report line?
+Answer: The Visible option allows you to show or hide the line on the report.
+
+Question: What parameters are adjusted for each line in a cash-flow report?
+Answer: Parameters include Line Number, Group Number, Type, Description, Indentation, Font, Layout, Sign, Period, Account, Flow, Journal, and Visible option.
+
+Question: What is the purpose of the User Report Definition - Flow page?
+Answer: The User Report Definition - Flow page enables you to create a linear report based on the Flow structure across different Periods, Journals, and Accounts.
+
+Question: How do you access the User Report Definition - Flow page?
+Answer: Access the User Report Definition - Flow page from the page when you select a Flow type report and then, click the Define this report button.
+
+Question: What are the Line Types available in a flow report?
+Answer: The Line Types are T - Text line, H - Header line, F - Flow data, X - Calculated Flow data, S - Summation data, and P - Page Break.
+
+Question: What is displayed in the Code column of a flow report?
+Answer: The Code column shows the F - Flow or X - Calculated Flow Code.
+
+Question: What is the purpose of the Sign column in a flow report?
+Answer: The Sign column shows the amount presented as negative or positive.
+
+Question: What is the purpose of the Period column in a flow report?
+Answer: The Period column shows the amounts from the Current (C) or Reference (R) Consolidation Period.
+
+Question: What does the Journal column indicate in a flow report?
+Answer: The Journal column indicates the applicable Journal or Journal View used for the line.
+
+Question: What do Col1 to Col3 represent in a flow report?
+Answer: Col1 to Col3 represent the accounts or calculated accounts displayed per line.
+
+Question: What information is required to add a new line to a flow report?
+Answer: You need to enter the line number, select a Line Type, provide a Flow or Calculated Flow, adjust Indentation, Font, and Layout, change the Sign if necessary, select the Period, Journal or Journal View, and select up to three accounts.
+
+Question: What is the purpose of the User Report Definition - MultiPeriod page?
+Answer: The User Report Definition - MultiPeriod page enables you to create a report based on the Account structure across different Flows, Journals, and Periods.
+
+Question: How do you access the User Report Definition - MultiPeriod page?
+Answer: Access the User Report Definition - MultiPeriod page from the page when you select a Multi-period type report and then, click the Define this report button.
+
+Question: What are the two tabs available in the User Report Definition - MultiPeriod page?
+Answer: The two tabs available are Rows and Columns.
+
+Question: What is displayed in the Line Number column of a multi-period report?
+Answer: The Line Number column displays the identifier for each line in the report.
+
+Question: What are the Line Types available in a multi-period report?
+Answer: The Line Types are T - Text line, A - Account data, S - Summation Account data, and P - Page Break.
+
+Question: What does the Description column show in a multi-period report?
+Answer: The Description column shows the content of the line number.
+
+Question: What is the purpose of the Sign column in a multi-period report?
+Answer: The Sign column shows the amount presented as negative or positive.
+
+Question: How do you add a new line (row) to a multi-period report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What information is required to add a new line (row) in a multi-period report?
+Answer: You need to enter the line number, select the Line Type, provide an Account or Calculated Account Code, adjust Indentation, Font, and Layout, and change the Sign if necessary.
+
+Question: What information is displayed in the Column Number column of a multi-period report?
+Answer: The Column Number column displays the position or number of the selected Column within the report.
+
+Question: What does the Month column show in a multi-period report?
+Answer: The Month column shows the selected option from the drop-down.
+
+Question: What is the purpose of the Month Offset column in a multi-period report?
+Answer: The Month Offset column shows the number of months before or after, relatively from the Period defined within the Category and Cur/Ref fields.
+
+Question: What does the Fixed Month column indicate in a multi-period report?
+Answer: The Fixed Month column indicates if a fixed month is selected for the column.
+
+Question: What is the purpose of the Last Sequence column in a multi-period report?
+Answer: The Last Sequence column shows if the last existing sequence for that period is automatically used.
+
+Question: What does the Sequence column define in a multi-period report?
+Answer: The Sequence column defines the sequence of the selected consolidation period.
+
+Question: What is the Same Category column used for in a multi-period report?
+Answer: The Same Category column shows if the same Category/Nature as your Current or Reference Consolidation Period is used.
+
+Question: What does the Category column show in a multi-period report?
+Answer: The Category column shows the selected category from the drop-down.
+
+Question: What does the Type column indicate in a multi-period report?
+Answer: The Type column indicates the selected amounts as Year to Date (cumulative) amounts or Monthly amounts.
+
+Question: What does the Cur/Ref column show in a multi-period report?
+Answer: The Cur/Ref column shows the Period you want to display on the column, either the Current or the Reference Consolidation Period.
+
+Question: What information is required to add a new column in a multi-period report?
+Answer: You need to define the Column Number, select Month and Month Offset, define the Sequence and Category, select the Type and Cur/Ref.
+
+Question: What is the purpose of the User Report Definition - Standard page?
+Answer: The User Report Definition - Standard page enables you to create a linear report based on the Account structure.
+
+Question: How do you access the User Report Definition - Standard page?
+Answer: Access the User Report Definition - Standard page from the page when you select a Standard type report and then, click the Define this report button.
+
+Question: What columns are displayed in the User Report Definition - Standard page?
+Answer: The columns displayed are Line Number, Type, Code, Description, and Sign.
+
+Question: What is displayed in the Line Number column of a standard report?
+Answer: The Line Number column displays the identifier for each line in the report.
+
+Question: What are the Line Types available in a standard report?
+Answer: The Line Types are T - Text line, A - Account data, S - Summation Account data, and P - Page Break.
+
+Question: What does the Code column show in a standard report?
+Answer: The Code column shows the A - Account or S - Calculated Account Code.
+
+Question: What is the purpose of the Description column in a standard report?
+Answer: The Description column describes the content of the line number.
+
+Question: What is the purpose of the Sign column in a standard report?
+Answer: The Sign column shows the amount presented as negative or positive.
+
+Question: How do you add a new line to a standard report?
+Answer: Click . A Details pop-up appears for you to enter the required information for the line, then click .
+
+Question: What information is required to add a new line to a standard report?
+Answer: You need to enter the line number, select a Line Type, provide an Account or Calculated Account Code, adjust Indentation, Font, and Layout, and change the Sign if necessary.
+
+Question: How do you modify an existing line in a standard report?
+Answer: To modify an existing line, click on the line, make your changes in the Details pop-up, and click .
+
+Question: What is the purpose of the User Reports page?
+Answer: The User Reports page allows you to select and run the user reports defined on the page.
+
+Question: How do you access the User Reports page?
+Answer: To access the User Reports page, click Reports > User Reports > User Reports.
+
+Question: How do you generate a user report?
+Answer: To generate a user report, select a report from the Report drop-down list, enter a reference consolidation period in the Ref Period field, select the type of data from the Data drop-down list, select a company, select a journal view in the Journal Summation field, specify how the contribution should be shown in the Contribution by field, select a Point of View, and select the output file type in the File type field, then click .
+
+Question: What does the Report drop-down list in the User Reports page allow you to do?
+Answer: The Report drop-down list allows you to select a user report to generate.
+
+Question: What is the purpose of the Ref Period field in the User Reports page?
+Answer: The Ref Period field allows you to enter a reference consolidation period or search for one.
+
+Question: What options are available in the Data drop-down list on the User Reports page?
+Answer: The Data drop-down list allows you to select the type of data to use for the report.
+
+Question: How do you select a company for the report on the User Reports page?
+Answer: Select a company from the available options.
+
+Question: What does the Journal Summation field allow you to do on the User Reports page?
+Answer: The Journal Summation field allows you to select a journal view for the report.
+
+Question: How do you specify the contribution in the User Reports page?
+Answer: In the Contribution by field, specify how the contribution should be shown.
+
+Question: What is the purpose of the Point of View field in the User Reports page?
+Answer: The Point of View field allows you to select a specific point of view for the report.
+
+Question: What options are available in the File type field on the User Reports page?
+Answer: The File type field allows you to select the output file type for the report.
+
+Question: What happens after you click on the User Reports page?
+Answer: After clicking , the report is generated and a download link appears below for you to click and view it in the selected file type.
+
+Question: How do you drill down a user report?
+Answer: To drill down a user report, select a user report in the Report field, select a journal view in the Journal Summation field, click , identify the line to analyze and click the plus sign (+) beside the Description, select the structure to analyze in the pop-up, and drill down into the selected structure.
+
+Question: What is the purpose of the Drill-Down Analysis section?
+Answer: The Drill-Down Analysis section allows you to drill down into multiple hierarchies in a user report, including POV (Point of View), companies, accounts, journals, and more.
+
+Question: How do you access the Drill-Down Analysis section?
+Answer: To access the Drill-Down Analysis section, click Reports > Drill-Down Analysis > User Reports.
+
+Question: What does the Report field allow you to do in the Drill-Down Analysis section?
+Answer: The Report field allows you to select a user report to drill down into.
+
+Question: What is the purpose of the Journal Summation field in the Drill-Down Analysis section?
+Answer: The Journal Summation field allows you to select a journal view for the drill-down analysis.
+
+Question: How do you start the drill-down analysis in the Drill-Down Analysis section?
+Answer: Click to display the selected report and identify the line to analyze.
+
+Question: What do you click to drill down a line in a user report?
+Answer: Click the plus sign (+) beside the Description to drill down a line in a user report.
+
+Question: What is the next step after clicking the plus sign (+) in a user report?
+Answer: In the pop-up, select the structure to analyze and drill down into the selected structure.
+
+Question: How can you drill down further after the initial drill-down?
+Answer: After drilling down the selected structure, you can drill down on the detail even further using other structures.
+

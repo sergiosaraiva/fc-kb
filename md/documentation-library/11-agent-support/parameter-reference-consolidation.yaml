@@ -1,0 +1,634 @@
+# Parameter Reference: Consolidation Stored Procedures
+# Purpose: Complete parameter documentation for agent invocation
+# Version: 1.0
+
+parameter_reference:
+  name: "Consolidation Procedure Parameters"
+  version: "1.0"
+  description: "Comprehensive parameter reference for consolidation stored procedures"
+
+  # ============================================================
+  # P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+  # Main consolidation orchestrator
+  # ============================================================
+  P_CONSO_CALCULATE_BUNDLE_INTEGRATION:
+    description: "Main consolidation orchestrator - converts local data to consolidated currency"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_CALCULATE_BUNDLE_INTEGRATION.sql"
+    category: "Consolidation Core"
+    execution_order: 1
+    typical_runtime: "1-30 minutes depending on data volume"
+
+    # Sub-procedures called
+    calls:
+      - "P_CONSO_HELPER_FILL_COMPANY_TABLE"
+      - "P_CONSO_HELPER_FILL_EXCHANGERATE"
+      - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_CLOSING"
+      - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_FLOWS"
+      - "P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_HISTORICAL"
+      - "P_CONSO_BUNDLE_INTEGRATION_UPDATE_COMPANY_STATUS"
+
+    parameters:
+      - name: "@UserID"
+        type: "int"
+        required: true
+        nullable: true
+        description: "User ID that initiated the process"
+        source: "T_USER.UserID or NULL for system processes"
+        example: 11
+        notes: "If NULL, login is set to 'SYSTEM'"
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+        nullable: false
+        description: "Consolidation ID - identifies the consolidation period"
+        source: "TS096S0.ConsoID"
+        example: 25168
+        validation: "Must exist in TS096S0"
+
+      - name: "@CompanyIDs"
+        type: "varchar(max)"
+        required: false
+        nullable: true
+        default: "null"
+        description: "Comma-separated list of CompanyIDs to process"
+        source: "TS014C0.CompanyID values"
+        example: "1001,1002,1003"
+        notes: "If NULL, processes all companies via UDF_GET_COMPANYLIST(@ConsoID)"
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        required: false
+        nullable: false
+        default: 0
+        description: "Whether to process dimensional data"
+        values:
+          0: "Skip dimensional processing (faster)"
+          1: "Include dimensional processing"
+        example: 0
+
+      - name: "@Debug"
+        type: "bit"
+        required: false
+        nullable: false
+        default: 0
+        description: "Enable debug output"
+        values:
+          0: "Normal execution"
+          1: "Print debug messages and timing"
+        example: 1
+
+      - name: "@errorinfo"
+        type: "xml"
+        required: true
+        direction: "OUTPUT"
+        description: "Returns error/warning information"
+        check_function: "dbo.HasError(@errorinfo)"
+        example_check: "if dbo.HasError(@errorinfo) = 1 -- handle error"
+
+    example_call: |
+      DECLARE @errorinfo xml
+
+      EXEC [dbo].[P_CONSO_CALCULATE_BUNDLE_INTEGRATION]
+          @UserID = 11,
+          @ConsoID = 25168,
+          @CompanyIDs = NULL,        -- All companies
+          @ExecuteDimensions = 0,
+          @Debug = 1,
+          @errorinfo = @errorinfo OUTPUT
+
+      IF dbo.HasError(@errorinfo) = 1
+          PRINT 'Error: ' + CAST(@errorinfo AS VARCHAR(MAX))
+
+    prerequisites:
+      - "Exchange rates loaded in TS017R0 for all company currencies"
+      - "Local data imported in TD030B2"
+      - "Consolidation not locked (P_CONSO_CHECK_LOCKED)"
+
+    outputs:
+      - table: "TD035C2"
+        description: "Consolidated closing amounts"
+      - table: "TD045C2"
+        description: "Consolidated flow data"
+      - table: "TS014C0.Status_Bundles"
+        description: "Set to 0 (completed) for processed companies"
+
+    related_config:
+      - key: "LOCK_PERIOD_DURING_CONSO"
+        description: "If 'true', locks period during processing"
+
+  # ============================================================
+  # P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+  # Ownership calculation with Gauss elimination
+  # ============================================================
+  P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES:
+    description: "Calculates indirect ownership percentages using matrix algebra (Gauss elimination)"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES.sql"
+    category: "Ownership Calculation"
+    execution_order: 0  # Run before consolidation
+    typical_runtime: "5-60 seconds"
+
+    algorithm: |
+      Uses matrix multiplication and Gauss elimination to calculate:
+      - Direct percentages from ownership links
+      - Indirect percentages through multi-tier structures
+      - Circular ownership resolution
+      - Third-party (minority) percentages
+
+    parameters:
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+        nullable: false
+        description: "Consolidation ID"
+        source: "TS096S0.ConsoID"
+        example: 25584
+        validation: "Must exist and not be NULL"
+
+      - name: "@CustomerID"
+        type: "int"
+        required: true
+        nullable: false
+        description: "Customer/tenant ID for multi-tenant isolation"
+        source: "TS096S0.CustomerID"
+        example: 1574
+        validation: "Must exist and not be NULL"
+
+      - name: "@ParentID"
+        type: "int"
+        required: false
+        nullable: true
+        default: "null"
+        description: "Override parent company ID"
+        source: "TS014C0.CompanyID"
+        notes: "If NULL, uses the parent defined in TS096S0"
+
+      - name: "@UpdateConsoMethod"
+        type: "bit"
+        required: false
+        nullable: false
+        default: 1
+        description: "Whether to auto-update consolidation method based on control %"
+        values:
+          0: "Keep existing ConsoMethod values"
+          1: "Update ConsoMethod based on GroupCtrlPerc thresholds"
+        thresholds:
+          "G (Global)": "> 50% control"
+          "P (Proportional)": "= 50% control"
+          "E (Equity)": ">= 20% and < 50% control"
+          "N (Not Consolidated)": "< 20% control"
+
+      - name: "@Login"
+        type: "varchar(256)"
+        required: false
+        nullable: true
+        default: "null"
+        description: "Login name for audit trail"
+        example: "john.doe@company.com"
+
+      - name: "@UseSessionTable"
+        type: "bit"
+        required: true
+        nullable: false
+        description: "Where to write results"
+        values:
+          0: "Write results to TS014C0 (permanent)"
+          1: "Write results to TMP_SUBGROUP_PERCENTAGES (temporary)"
+
+      - name: "@SessionID"
+        type: "int"
+        required: false
+        direction: "OUTPUT"
+        description: "Returns session ID if @UseSessionTable = 1"
+
+      - name: "@errorinfo"
+        type: "xml"
+        required: true
+        direction: "OUTPUT"
+        description: "Returns error/warning information"
+
+      - name: "@Debug"
+        type: "bit"
+        required: false
+        nullable: false
+        default: 0
+        description: "Enable debug output"
+
+    example_call: |
+      DECLARE @errorinfo xml
+      DECLARE @SessionID int
+
+      EXEC [dbo].[P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES]
+          @ConsoID = 25584,
+          @CustomerID = 1574,
+          @ParentID = NULL,
+          @UpdateConsoMethod = 1,
+          @Login = 'admin',
+          @UseSessionTable = 0,      -- Write to TS014C0
+          @SessionID = @SessionID OUTPUT,
+          @errorinfo = @errorinfo OUTPUT,
+          @Debug = 1
+
+    prerequisites:
+      - "Ownership links defined in TS015S0"
+      - "Companies exist in TS014C0"
+      - "Consolidation not locked"
+
+    outputs:
+      - table: "TS014C0"
+        columns:
+          - "GroupPerc - Group financial percentage"
+          - "MinorPerc - Minority (NCI) percentage"
+          - "GroupCtrlPerc - Group control percentage"
+          - "ConsoMethod - Updated if @UpdateConsoMethod = 1"
+
+    error_messages:
+      - code: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_SHAREHOLDER"
+        meaning: "Company has no shareholders defined"
+        resolution: "Add ownership link in TS015S0"
+
+    related_config:
+      - key: "CONSO_NO_PROPORTIONAL"
+        value: "1"
+        effect: "Disables proportional method - P becomes E"
+
+  # ============================================================
+  # P_CONSO_ELIM
+  # Elimination orchestrator
+  # ============================================================
+  P_CONSO_ELIM:
+    description: "Main elimination orchestrator - executes all system and user eliminations"
+    file: "Sigma.Database/dbo/Stored Procedures/P_CONSO_ELIM.sql"
+    category: "Eliminations"
+    execution_order: 2  # After bundle integration
+    typical_runtime: "2-15 minutes"
+
+    elimination_sequence:
+      - "System eliminations (S###) by Level + Code"
+      - "User eliminations (U###)"
+
+    parameters:
+      - name: "@UserID"
+        type: "int"
+        required: true
+        nullable: true
+        description: "User ID that initiated the process"
+        source: "T_USER.UserID"
+        example: 11
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+        nullable: false
+        description: "Consolidation ID"
+        source: "TS096S0.ConsoID"
+        example: 506872
+
+      - name: "@CompanyIDs"
+        type: "varchar(max)"
+        required: false
+        nullable: true
+        default: "null"
+        description: "Comma-separated list of CompanyIDs to process"
+        notes: "If NULL or empty, processes all companies in consolidation scope"
+        example: "267052,267053,267054"
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        required: false
+        nullable: false
+        default: 0
+        description: "Whether to process dimensional eliminations"
+        values:
+          0: "Skip dimensional eliminations"
+          1: "Include dimensional eliminations"
+
+      - name: "@Debug"
+        type: "bit"
+        required: false
+        nullable: false
+        default: 0
+        description: "Enable debug output"
+        values:
+          0: "Normal execution"
+          1: "Print debug messages, timing, and intermediate results"
+
+      - name: "@errorinfo"
+        type: "xml"
+        required: true
+        direction: "OUTPUT"
+        description: "Returns error/warning information"
+
+    example_call: |
+      DECLARE @errorinfo xml
+
+      EXEC [dbo].[P_CONSO_ELIM]
+          @UserID = 11,
+          @ConsoID = 506872,
+          @CompanyIDs = NULL,        -- All companies
+          @ExecuteDimensions = 0,
+          @Debug = 1,
+          @errorinfo = @errorinfo OUTPUT
+
+    prerequisites:
+      - "Bundle integration completed (Status_Bundles = 0)"
+      - "Elimination codes configured in TS070S0"
+      - "Consolidation not locked"
+
+    outputs:
+      - table: "TD035C2"
+        description: "Consolidated amounts after eliminations"
+      - table: "TD045C2"
+        description: "Elimination journal entries"
+
+    journal_deletion_rules:
+      - rule: "Inactive elimination with no other active for same journal type"
+        action: "Delete all journal entries for all companies"
+      - rule: "S090/S094 journals"
+        action: "Delete for companies where ownership changed or ConsolidatedCompany = 0"
+      - rule: "Other journals"
+        action: "Delete for selected companies and ConsolidatedCompany = 0"
+
+    temp_tables_created:
+      - "#AllCompanies - Companies in scope with percentages"
+      - "#JournalsToDelete - Journals to be deleted"
+      - "#SelectedCompanies - Companies selected for elimination"
+
+  # ============================================================
+  # P_CONSO_ELIM_PARTICIPATIONS Family (0-4)
+  # Participation elimination procedures
+  # ============================================================
+  P_CONSO_ELIM_PARTICIPATIONS_FAMILY:
+    description: "Family of procedures handling participation (investment) eliminations"
+    procedures:
+      - "P_CONSO_ELIM_PARTICIPATIONS0 - Setup/initialization"
+      - "P_CONSO_ELIM_PARTICIPATIONS1 - S089: Investment elimination"
+      - "P_CONSO_ELIM_PARTICIPATIONS2 - S090: Link account elimination"
+      - "P_CONSO_ELIM_PARTICIPATIONS3 - S093: Consolidated reserves"
+      - "P_CONSO_ELIM_PARTICIPATIONS4 - S094: Goodwill/bargain"
+
+    # Common parameters for all P_CONSO_ELIM_PARTICIPATIONS procedures
+    common_parameters:
+      - name: "@Login"
+        type: "nvarchar(256)"
+        required: true
+        description: "User login for audit trail"
+
+      - name: "@SessionID"
+        type: "int"
+        required: true
+        description: "Session ID from P_CONSO_ELIM"
+        source: "TL010S0.SessionID"
+
+      - name: "@ConsoID"
+        type: "int"
+        required: true
+        description: "Consolidation ID"
+
+      - name: "@RefConsoID"
+        type: "int"
+        required: true
+        description: "Reference (prior period) consolidation ID"
+        source: "TS096S0.ReferenceConsoID"
+
+      - name: "@PreviousPeriodAdjFlowID"
+        type: "int"
+        required: true
+        description: "Flow ID for previous period adjustments"
+        source: "UDF_GET_SPECIAL_FLOW(@ConsoID, 'PREVIOUSPERIODADJ')"
+
+      - name: "@ConsoCurrCode"
+        type: "nvarchar(3)"
+        required: true
+        description: "Consolidation currency code"
+        source: "TS096S0.CurrCode"
+        example: "EUR"
+
+      - name: "@ParentCompanyID"
+        type: "int"
+        required: true
+        description: "Parent company ID"
+        source: "TS096S0 via parent determination"
+
+      - name: "@JournalTypeS001ID"
+        type: "int"
+        required: true
+        description: "S001 journal type ID (for compatibility)"
+        notes: "Not used in all procedures but included for parameter compatibility"
+
+      - name: "@UNEXPVarFlowID"
+        type: "int"
+        required: true
+        description: "Unexplained variance flow ID"
+        source: "UDF_GET_SPECIAL_FLOW(@ConsoID, 'UNEXPVAR')"
+
+      - name: "@NETVarFlowID"
+        type: "int"
+        required: true
+        description: "Net variance flow ID"
+        source: "UDF_GET_SPECIAL_FLOW(@ConsoID, 'NETVAR')"
+
+      - name: "@ExecuteDimensions"
+        type: "bit"
+        required: false
+        default: 0
+        description: "Process dimensional data"
+
+      - name: "@Debug"
+        type: "bit"
+        required: false
+        default: 0
+        description: "Enable debug output"
+
+      - name: "@errorinfo"
+        type: "xml"
+        required: true
+        direction: "OUTPUT"
+        description: "Error/warning information"
+
+    # P_CONSO_ELIM_PARTICIPATIONS1 specific (S089)
+    P_CONSO_ELIM_PARTICIPATIONS1:
+      description: "Eliminates investment accounts at 100% to link account"
+      elim_code: "S089"
+      journal_type: "S089"
+
+      special_accounts_required:
+        - code: "LINKPARTELIM"
+          description: "Link Participation Elimination account"
+          purpose: "Intermediate account for investment elimination offset"
+
+        - code: "EQUITYVAL"
+          description: "Equity Value account"
+          purpose: "For equity method company investments"
+
+      logic: |
+        1. Get companies with participations (PartnerType = 2 accounts)
+        2. For each participation account:
+           - Debit: Participation account (eliminate investment)
+           - Credit: LINKPARTELIM account
+        3. Apply group percentage: (GroupPerc + MinorPerc) / 100
+
+      example_call: |
+        -- Called internally by P_CONSO_ELIM, not typically called directly
+        EXEC [dbo].[P_CONSO_ELIM_PARTICIPATIONS1]
+            @Login = 'admin',
+            @SessionID = 12345,
+            @ConsoID = 506872,
+            @RefConsoID = 506871,
+            @PreviousPeriodAdjFlowID = 100,
+            @ConsoCurrCode = 'EUR',
+            @ParentCompanyID = 1001,
+            @JournalTypeS001ID = 50,
+            @UNEXPVarFlowID = 101,
+            @NETVarFlowID = 102,
+            @ExecuteDimensions = 0,
+            @Debug = 1,
+            @errorinfo = @errorinfo OUTPUT
+
+    # P_CONSO_ELIM_PARTICIPATIONS2 specific (S090)
+    P_CONSO_ELIM_PARTICIPATIONS2:
+      description: "Eliminates link account balance against consolidation difference"
+      elim_code: "S090"
+      journal_type: "S090"
+
+      special_accounts_required:
+        - code: "LINKPARTELIM"
+          description: "Link Participation Elimination account"
+        - code: "CONSODIFF"
+          description: "Consolidation Difference account"
+
+      logic: |
+        1. Get LINKPARTELIM balances from S089
+        2. Create offsetting entries:
+           - Debit: CONSODIFF
+           - Credit: LINKPARTELIM (eliminate link account)
+
+    # P_CONSO_ELIM_PARTICIPATIONS3 specific (S093)
+    P_CONSO_ELIM_PARTICIPATIONS3:
+      description: "Calculates consolidated reserves"
+      elim_code: "S093"
+      journal_type: "S093"
+
+      formula: |
+        Consolidated Reserves = (GroupPerc/100) × Subsidiary Equity - Investment Cost
+
+        Where Subsidiary Equity = Capital + Reserves + Retained Earnings + Current Profit
+
+      special_accounts_required:
+        - code: "CONSORES"
+          description: "Consolidated Reserves account"
+
+    # P_CONSO_ELIM_PARTICIPATIONS4 specific (S094)
+    P_CONSO_ELIM_PARTICIPATIONS4:
+      description: "Calculates goodwill or bargain purchase gain"
+      elim_code: "S094"
+      journal_type: "S094"
+
+      formula: |
+        Goodwill = Investment Cost - (GroupPerc/100) × Fair Value of Net Assets
+
+        If positive: Recognize as GOODWILL asset
+        If negative: Recognize as NEGGOODWILL (bargain purchase gain)
+
+      special_accounts_required:
+        - code: "GOODWILL"
+          description: "Goodwill account (positive difference)"
+        - code: "NEGGOODWILL"
+          description: "Negative Goodwill account (bargain purchase)"
+
+  # ============================================================
+  # Helper: Special Accounts Reference
+  # ============================================================
+  special_accounts:
+    description: "Special accounts required for elimination procedures"
+    retrieval_function: "dbo.UDF_GET_SPECIAL_ACCOUNT(@ConsoID, @AccountCode)"
+
+    accounts:
+      - code: "LINKPARTELIM"
+        description: "Link Participation Elimination"
+        used_by: ["S089", "S090"]
+
+      - code: "CONSODIFF"
+        description: "Consolidation Difference"
+        used_by: ["S087", "S090"]
+
+      - code: "CONSORES"
+        description: "Consolidated Reserves"
+        used_by: ["S093"]
+
+      - code: "GOODWILL"
+        description: "Goodwill"
+        used_by: ["S094"]
+
+      - code: "NEGGOODWILL"
+        description: "Negative Goodwill (Bargain Purchase)"
+        used_by: ["S094"]
+
+      - code: "EQUITYVAL"
+        description: "Equity Value (for equity method)"
+        used_by: ["S089", "S080"]
+
+      - code: "MINORITYINTEREST"
+        description: "Minority Interest (NCI) - Balance Sheet"
+        used_by: ["S085"]
+
+      - code: "MINORITYINTERESTPL"
+        description: "Minority Interest (NCI) - P&L"
+        used_by: ["S085"]
+
+  # ============================================================
+  # Helper: Special Flows Reference
+  # ============================================================
+  special_flows:
+    description: "Special flows used in consolidation procedures"
+    retrieval_function: "dbo.UDF_GET_SPECIAL_FLOW(@ConsoID, @FlowCode)"
+
+    flows:
+      - code: "UNEXPVAR"
+        description: "Unexplained Variance"
+        purpose: "Captures unexplained differences in flow reconciliation"
+
+      - code: "NETVAR"
+        description: "Net Variance"
+        purpose: "Net movement flow"
+
+      - code: "PREVIOUSPERIODADJ"
+        description: "Previous Period Adjustment"
+        purpose: "Adjustments to prior period balances"
+
+      - code: "TRANSADJ"
+        description: "Translation Adjustment"
+        purpose: "Currency translation difference (CTA)"
+
+      - code: "VarPercInteg"
+        description: "Variation Percentage Integration"
+        purpose: "Impact of ownership percentage changes"
+
+  # ============================================================
+  # Common Patterns
+  # ============================================================
+  common_patterns:
+    error_checking: |
+      -- Standard error check pattern
+      IF dbo.HasError(@errorinfo) = 1
+      BEGIN
+          -- Handle error
+          GOTO CleanupAndEnd
+      END
+
+    lock_checking: |
+      -- Check if consolidation is locked
+      EXEC dbo.[P_CONSO_CHECK_LOCKED]
+          @ConsoID = @ConsoID,
+          @errorinfo = @errorinfo OUTPUT
+      IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+    company_list: |
+      -- Get all companies if not specified
+      IF @CompanyIDs IS NULL
+          SET @CompanyIDs = dbo.UDF_GET_COMPANYLIST(@ConsoID)
+
+    debug_print: |
+      -- Debug timing pattern
+      IF @Debug = 1
+          EXEC dbo.P_SYS_DEBUG_PRINT 'Step description', @StartTime, @LastTime OUTPUT

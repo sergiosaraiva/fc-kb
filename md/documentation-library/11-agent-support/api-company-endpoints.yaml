@@ -1,0 +1,764 @@
+# API Company Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of companies
+
+api_company_endpoints:
+  name: "Company API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing companies in the consolidation system.
+
+    Companies are the fundamental entities in consolidation:
+    - Each company belongs to a consolidation period (ConsoID)
+    - Companies have consolidation method (Full, Proportional, Equity, Cost)
+    - Companies have ownership percentages (Group%, Minority%, Control%)
+    - Companies define reporting currency and conversion settings
+
+    Key relationships:
+    - Company -> ConsolidationPeriod (ConsoID)
+    - Company -> Country (CountryCode)
+    - Company -> Currency (CurrCode)
+    - Company -> ConsolidationMethod (ConsoMethod)
+    - Company -> Ownership (via OwnershipService)
+
+    Source: Sigma.Mona.WebApplication/Screens/Company/CompanyService.cs
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    CompanyDTO:
+      description: "Complete company data structure"
+      fields:
+        - name: "CompanyID"
+          type: "integer"
+          description: "Unique company identifier within the period"
+        - name: "CompanyCode"
+          type: "string"
+          description: "Unique company code (alphanumeric)"
+        - name: "CompanyName"
+          type: "string"
+          description: "Company display name"
+        - name: "CountryCode"
+          type: "string"
+          description: "ISO country code"
+        - name: "CurrencyCode"
+          type: "string"
+          description: "Reporting currency code"
+        - name: "ConsolidatedCompany"
+          type: "boolean"
+          description: "Whether company is included in consolidation"
+        - name: "ConsolidationMethod"
+          type: "char"
+          description: "Consolidation method code (F=Full, P=Proportional, E=Equity, C=Cost)"
+        - name: "UnitsOf"
+          type: "byte"
+          description: "Unit multiplier (0=units, 1=thousands, 2=millions)"
+        - name: "NbrDec"
+          type: "byte"
+          description: "Number of decimal places"
+        - name: "ConversionMethod"
+          type: "byte"
+          description: "Currency conversion method"
+        - name: "GroupPercentage"
+          type: "decimal"
+          nullable: true
+          description: "Group ownership percentage (0-100)"
+        - name: "MinorityPercentage"
+          type: "decimal"
+          nullable: true
+          description: "Minority interest percentage (0-100)"
+        - name: "GroupControlPercentage"
+          type: "decimal"
+          nullable: true
+          description: "Group control percentage based on voting rights"
+        - name: "NumberOfFinancialRights"
+          type: "long"
+          nullable: true
+          description: "Total financial rights/shares issued"
+        - name: "NumberOfVotingRights"
+          type: "long"
+          nullable: true
+          description: "Total voting rights issued"
+        - name: "FlagExistingScope"
+          type: "boolean"
+          description: "Company existed in previous period"
+        - name: "FlagEnteringScope"
+          type: "boolean"
+          description: "Company entering consolidation scope this period"
+        - name: "FlagDiscontinuing"
+          type: "boolean"
+          description: "Company is discontinuing operations"
+        - name: "AvailableForSale"
+          type: "boolean"
+          description: "Company is available for sale"
+        - name: "CalculateDeferredTax"
+          type: "boolean"
+          description: "Whether to calculate deferred tax"
+        - name: "DeferredTax"
+          type: "decimal"
+          nullable: true
+          description: "Deferred tax rate"
+        - name: "IsInInterweb"
+          type: "boolean"
+          description: "Linked to Interweb data collection"
+        - name: "InterwebCompanyCode"
+          type: "string"
+          nullable: true
+          description: "Corresponding Interweb company code"
+
+    CompanySelectionDTO:
+      description: "Simplified company for selection lists"
+      fields:
+        - name: "CompanyID"
+          type: "integer"
+        - name: "CompanyCode"
+          type: "string"
+        - name: "CompanyName"
+          type: "string"
+
+  # ============================================================================
+  # CONSOLIDATION METHOD ENUM
+  # ============================================================================
+  enums:
+    ConsolidationMethods:
+      description: "Methods for consolidating subsidiary companies"
+      values:
+        - code: "F"
+          name: "Full Consolidation"
+          description: "100% of balances included, minority interest recognized"
+          control_threshold: "> 50% control"
+        - code: "P"
+          name: "Proportional Consolidation"
+          description: "Pro-rata share of balances included"
+          control_threshold: "Joint control (typically 50%)"
+        - code: "E"
+          name: "Equity Method"
+          description: "Investment + share of profit only"
+          control_threshold: "20-50% significant influence"
+        - code: "C"
+          name: "Cost Method"
+          description: "Investment at cost only"
+          control_threshold: "< 20% ownership"
+
+    ConversionMethods:
+      description: "Currency conversion methods"
+      values:
+        - value: 0
+          name: "Closing Rate"
+          description: "All items at period-end rate"
+        - value: 1
+          name: "Temporal"
+          description: "Monetary at closing, non-monetary at historical"
+        - value: 2
+          name: "Average Rate"
+          description: "Income statement at average rate"
+
+    UnitsOf:
+      description: "Unit multipliers for amounts"
+      values:
+        - value: 0
+          name: "Units"
+          multiplier: 1
+        - value: 1
+          name: "Thousands"
+          multiplier: 1000
+        - value: 2
+          name: "Millions"
+          multiplier: 1000000
+
+  # ============================================================================
+  # HANDLERS
+  # ============================================================================
+  handlers:
+    - name: "Company_GetCompanies"
+      description: |
+        Primary endpoint for retrieving company data.
+        Supports single company lookup or filtered list with pagination.
+        Returns comprehensive company details including consolidation settings.
+      access_right: "Company_GetCompanies"
+      async: true
+
+      request:
+        _t: "Company_GetCompanies"
+        parameters:
+          - name: "CompanyId"
+            type: "integer"
+            required: false
+            validation: "ValidateID"
+            description: "Specific company ID to retrieve"
+          - name: "CompanyCode"
+            type: "string"
+            required: false
+            validation: "ValidateString"
+            description: "Specific company code to retrieve"
+          - name: "ConsoCode"
+            type: "string"
+            required: false
+            validation: "ValidateConsoCode"
+            description: "Consolidation period code (default: working period)"
+          - name: "UserAccessibleOnly"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Filter to companies user has access to"
+          - name: "FilterConsolidatedCompany"
+            type: "boolean"
+            required: false
+            description: "Filter to consolidated companies only"
+          - name: "FilterCompanyCode"
+            type: "string"
+            required: false
+            description: "Filter by company code pattern (LIKE)"
+          - name: "FilterCompanyName"
+            type: "string"
+            required: false
+            description: "Filter by company name pattern (LIKE)"
+          - name: "FilterCountryCode"
+            type: "string"
+            required: false
+            description: "Filter by country code pattern (LIKE)"
+          - name: "ExcludeCompanyID"
+            type: "integer"
+            required: false
+            description: "Exclude specific company from results"
+          - name: "PointOfViewId"
+            type: "integer"
+            required: false
+            description: "Filter by Point of View structure"
+          - name: "PointOfViewCriteriaCode"
+            type: "string"
+            required: false
+            description: "Point of View criteria code"
+          - name: "StatusConfirmed"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Filter to companies with confirmed status"
+          - name: "OnlyNotClosed"
+            type: "boolean"
+            required: false
+            description: "Exclude closed companies"
+          - name: "OutputOnlyCodes"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Return only company codes (not full objects)"
+          - name: "scf_include_entities"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Include entity version for concurrency"
+          - name: "scf_from_row"
+            type: "integer"
+            required: false
+            default: 0
+          - name: "scf_row_count"
+            type: "integer"
+            required: false
+          - name: "scf_order_by"
+            type: "string"
+            required: false
+            valid_values: ["COMPANYCODE", "COMPANYNAME", "COUNTRYCODE"]
+          - name: "scf_include_total_row_count"
+            type: "boolean"
+            required: false
+            default: false
+        example_single:
+          json: |
+            {
+              "_t": "Company_GetCompanies",
+              "CompanyId": 123,
+              "scf_include_entities": true
+            }
+        example_list:
+          json: |
+            {
+              "_t": "Company_GetCompanies",
+              "FilterConsolidatedCompany": true,
+              "scf_order_by": "COMPANYCODE ASC",
+              "scf_from_row": 0,
+              "scf_row_count": 50,
+              "scf_include_total_row_count": true
+            }
+
+      response:
+        single_company:
+          description: "Response when CompanyId or CompanyCode specified"
+          WorkingCompany:
+            type: "CompanyDTO"
+            description: "Complete company data including reference period comparisons"
+            additional_fields:
+              - "RefConsolidatedCompany"
+              - "RefGroupPercentage"
+              - "RefMinorityPercentage"
+              - "RefConsolidationMethod"
+          IsInInterwebEnabled:
+            type: "boolean"
+            description: "Whether Interweb integration is configured"
+          EntityVersion:
+            type: "array<EntityVersion>"
+            nullable: true
+        company_list:
+          description: "Response when no specific company requested"
+          scf_items:
+            type: "array<CompanyDTO>"
+          scf_total_row_count:
+            type: "integer"
+
+    - name: "Company_SaveCompany"
+      description: |
+        Creates or updates a company record.
+        Validates company code uniqueness, percentage constraints, and period lock status.
+      access_right: "Company_ManageCompany"
+      async: true
+
+      request:
+        _t: "Company_SaveCompany"
+        parameters:
+          - name: "WorkingCompany"
+            type: "object"
+            required: true
+            description: "Company data to save"
+            nested_parameters:
+              - name: "CompanyID"
+                type: "integer"
+                required: false
+                description: "Null for new, value for update"
+              - name: "CompanyCode"
+                type: "string"
+                required: true
+                validation: "ValidateCode"
+              - name: "CompanyName"
+                type: "string"
+                required: true
+              - name: "CountryCode"
+                type: "string"
+                required: true
+              - name: "CurrencyCode"
+                type: "string"
+                required: true
+              - name: "ConsolidatedCompany"
+                type: "boolean"
+                required: false
+                default: false
+              - name: "ConsolidationMethod"
+                type: "char"
+                required: true
+                description: "F, P, E, or C"
+              - name: "UnitsOf"
+                type: "byte"
+                required: true
+              - name: "NbrDec"
+                type: "byte"
+                required: true
+              - name: "ConversionMethod"
+                type: "byte"
+                required: true
+              - name: "GroupPercentage"
+                type: "decimal"
+                required: false
+              - name: "MinorityPercentage"
+                type: "decimal"
+                required: false
+              - name: "GroupControlPercentage"
+                type: "decimal"
+                required: false
+              - name: "NumberOfFinancialRights"
+                type: "long"
+                required: false
+              - name: "NumberOfVotingRights"
+                type: "long"
+                required: false
+              - name: "FlagExistingScope"
+                type: "boolean"
+                required: false
+              - name: "FlagEnteringScope"
+                type: "boolean"
+                required: false
+              - name: "AvailableForSale"
+                type: "boolean"
+                required: false
+              - name: "FlagDiscontinuing"
+                type: "boolean"
+                required: false
+              - name: "CalculateDeferredTax"
+                type: "boolean"
+                required: false
+              - name: "DeferredTax"
+                type: "decimal"
+                required: "when CalculateDeferredTax=true"
+              - name: "IsInInterweb"
+                type: "boolean"
+                required: false
+              - name: "InterwebCompanyCode"
+                type: "string"
+                required: false
+              - name: "EntityVersion"
+                type: "array<EntityVersion>"
+                required: false
+          - name: "LogScreenID"
+            type: "integer"
+            required: false
+            description: "Screen ID for audit logging"
+        example:
+          json: |
+            {
+              "_t": "Company_SaveCompany",
+              "WorkingCompany": {
+                "CompanyID": null,
+                "CompanyCode": "NEWCO",
+                "CompanyName": "New Company Ltd",
+                "CountryCode": "US",
+                "CurrencyCode": "USD",
+                "ConsolidatedCompany": true,
+                "ConsolidationMethod": "F",
+                "UnitsOf": 1,
+                "NbrDec": 2,
+                "ConversionMethod": 0,
+                "GroupPercentage": 100.00,
+                "MinorityPercentage": 0,
+                "GroupControlPercentage": 100.00
+              },
+              "LogScreenID": 100
+            }
+
+      response:
+        success:
+          description: "Empty response on success"
+        errors:
+          - pattern: "TotalPercentageExceded"
+            cause: "GroupPercentage + MinorityPercentage > 100"
+          - pattern: "DeferredTaxCalcInvalid"
+            cause: "CalculateDeferredTax=true but DeferredTax=0"
+          - pattern: "NOT_FOUND"
+            cause: "Company not found for update"
+          - pattern: "P_CONSO_CHECK_LOCKED"
+            cause: "Consolidation period is locked"
+
+    - name: "Company_RemoveCompany"
+      description: |
+        Deletes a company from the consolidation period.
+        Validates period lock status before deletion.
+      access_right: "Company_RemoveCompany"
+      async: true
+
+      request:
+        _t: "Company_RemoveCompany"
+        parameters:
+          - name: "CompanyID"
+            type: "integer"
+            required: true
+            validation: "ValidateID"
+            description: "Company ID to delete"
+          - name: "LogScreenID"
+            type: "integer"
+            required: false
+            description: "Screen ID for audit logging"
+        example:
+          json: |
+            {
+              "_t": "Company_RemoveCompany",
+              "CompanyID": 123,
+              "LogScreenID": 100
+            }
+
+      response:
+        success:
+          description: "Empty response on success"
+        errors:
+          - pattern: "NOT_FOUND"
+            cause: "Company not found"
+          - pattern: "P_CONSO_CHECK_LOCKED"
+            cause: "Period is locked"
+
+    - name: "Company_GetSecurityCompanies"
+      description: |
+        Retrieves companies the current user has access to.
+        Respects user security permissions.
+      access_right: "Company_GetSecurityCompanies"
+      async: false
+
+      request:
+        _t: "Company_GetSecurityCompanies"
+        parameters:
+          - name: "CompanyId"
+            type: "integer"
+            required: false
+          - name: "CompanyCode"
+            type: "string"
+            required: false
+          - name: "FilterCompanyCode"
+            type: "string"
+            required: false
+          - name: "FilterCompanyName"
+            type: "string"
+            required: false
+          - name: "scf_include_entities"
+            type: "boolean"
+            required: false
+          - name: "scf_from_row"
+            type: "integer"
+            required: false
+          - name: "scf_row_count"
+            type: "integer"
+            required: false
+          - name: "scf_order_by"
+            type: "string"
+            required: false
+          - name: "scf_include_total_row_count"
+            type: "boolean"
+            required: false
+        example:
+          json: |
+            {
+              "_t": "Company_GetSecurityCompanies",
+              "scf_order_by": "COMPANYCODE ASC"
+            }
+
+      response:
+        success:
+          scf_items:
+            type: "array"
+            element_schema:
+              CompanyID: "integer"
+              CompanyCode: "string"
+              CompanyName: "string"
+
+    - name: "Company_FillCompanies"
+      description: |
+        Returns a simple list of companies for dropdown population.
+        Optionally filtered to consolidated companies only.
+      access_right: "Company_GetSecurityCompanies"
+      async: false
+
+      request:
+        _t: "Company_FillCompanies"
+        parameters:
+          - name: "ConsoID"
+            type: "integer"
+            required: false
+            description: "Consolidation period (default: working)"
+          - name: "ConsoCode"
+            type: "string"
+            required: false
+            description: "Consolidation code (alternative to ConsoID)"
+          - name: "ConsolidatedCompany"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Filter to consolidated companies"
+          - name: "ShowOnlyCodeName"
+            type: "boolean"
+            required: false
+            default: true
+            description: "Return simple code/name pairs"
+        example:
+          json: |
+            {
+              "_t": "Company_FillCompanies",
+              "ConsolidatedCompany": true,
+              "ShowOnlyCodeName": true
+            }
+
+      response:
+        success:
+          scf_items:
+            type: "array<KeyValuePair<string,string>>"
+            description: "CompanyCode -> CompanyName pairs"
+
+    - name: "Company_FillCompaniesByConsoCode"
+      description: |
+        Returns companies for a specific consolidation period by code.
+      access_right: "Company_GetSecurityCompanies"
+      async: false
+
+      request:
+        _t: "Company_FillCompaniesByConsoCode"
+        parameters:
+          - name: "ConsoCode"
+            type: "string"
+            required: false
+            description: "Consolidation period code"
+          - name: "ShowOnlyCodeName"
+            type: "boolean"
+            required: false
+            default: true
+        example:
+          json: |
+            {
+              "_t": "Company_FillCompaniesByConsoCode",
+              "ConsoCode": "2024.12.A.01",
+              "ShowOnlyCodeName": true
+            }
+
+    - name: "Company_GetCompaniesCodeDescription"
+      description: |
+        Returns company code/description pairs for autocomplete/search.
+        Supports pattern matching and context filters.
+      access_right: null
+      async: false
+
+      request:
+        _t: "Company_GetCompaniesCodeDescription"
+        parameters:
+          - name: "code"
+            type: "string"
+            required: false
+            default: ""
+            description: "Company code pattern"
+          - name: "description"
+            type: "string"
+            required: false
+            default: ""
+            description: "Company name pattern"
+          - name: "maxRows"
+            type: "integer"
+            required: false
+            description: "Maximum results to return"
+          - name: "addEmptyItemFirst"
+            type: "boolean"
+            required: false
+            default: false
+          - name: "context"
+            type: "string"
+            required: false
+            description: "Context filters (e.g., 'ExcludeCompanyCode=ABC/DEF;ConsolidatedCompany=1')"
+        example:
+          json: |
+            {
+              "_t": "Company_GetCompaniesCodeDescription",
+              "code": "AC%",
+              "maxRows": 20
+            }
+
+      response:
+        success:
+          scf_items:
+            type: "array<KeyValuePair<string,string>>"
+            description: "Code -> 'Code: Name' pairs"
+
+    - name: "Company_GetPartnerCompaniesCodeDescription"
+      description: |
+        Returns partner (intercompany) company code/description pairs.
+        Used for intercompany transaction entry.
+      access_right: null
+      async: false
+
+      request:
+        _t: "Company_GetPartnerCompaniesCodeDescription"
+        parameters:
+          - name: "code"
+            type: "string"
+            required: false
+          - name: "description"
+            type: "string"
+            required: false
+          - name: "maxRows"
+            type: "integer"
+            required: false
+          - name: "addEmptyItemFirst"
+            type: "boolean"
+            required: false
+          - name: "context"
+            type: "string"
+            required: false
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    company_setup_workflow:
+      name: "New Company Setup Workflow"
+      description: "Complete workflow for adding a new company to consolidation"
+      steps:
+        - step: 1
+          name: "Create Company"
+          handler: "Company_SaveCompany"
+          parameters:
+            CompanyID: null
+          purpose: "Create the company record"
+
+        - step: 2
+          name: "Setup Ownership"
+          handler: "Ownership_SaveOwnership"
+          purpose: "Define ownership structure (shareholders/participations)"
+          reference: "api-ownership-endpoints.yaml"
+
+        - step: 3
+          name: "Calculate Percentages"
+          handler: "Ownership_LaunchCalculateIndirectPercentagesJob"
+          monitor: "Job_GetJobStatusPolling"
+          purpose: "Calculate indirect ownership percentages"
+
+        - step: 4
+          name: "Verify Setup"
+          handler: "Company_GetCompanies"
+          purpose: "Confirm company created with correct percentages"
+
+    consolidation_scope_analysis:
+      name: "Consolidation Scope Analysis"
+      description: "Analyze which companies are in consolidation scope"
+      steps:
+        - step: 1
+          name: "Get All Companies"
+          handler: "Company_GetCompanies"
+          parameters:
+            FilterConsolidatedCompany: true
+          purpose: "List all consolidated companies"
+
+        - step: 2
+          name: "Analyze Methods"
+          description: |
+            Group companies by ConsolidationMethod:
+            - F (Full): Include 100%, recognize minority
+            - P (Proportional): Include pro-rata share
+            - E (Equity): Investment + profit share
+            - C (Cost): Investment only
+          purpose: "Understand consolidation treatment"
+
+        - step: 3
+          name: "Check Percentages"
+          description: |
+            Verify consistency:
+            - GroupPercentage + MinorityPercentage <= 100
+            - ConsolidationMethod matches control percentage
+          purpose: "Validate consolidation parameters"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_VALIDATE_COMPANY"
+      description: "Validates company data before save"
+      called_by: "Company_SaveCompany"
+
+    - name: "P_SECURITY_NEW_COMPANY"
+      description: "Grants user access to newly created company"
+      called_by: "Company_SaveCompany"
+
+    - name: "P_SYS_DELETE_COMPANIES"
+      description: "Deletes company and related data"
+      called_by: "Company_RemoveCompany"
+
+    - name: "P_CONSO_CHECK_LOCKED"
+      description: "Verifies consolidation period is not locked"
+      called_by: "Company_SaveCompany, Company_RemoveCompany"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Company/CompanyService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Company/CompanyServiceConstants.cs"
+      - "Sigma.Mona.WebApplication/Screens/Company/CompanyController.cs"
+    handler_count: 8
+    purpose: |
+      Enable AI agents to manage companies including:
+      - Retrieving company lists and details
+      - Creating and updating company records
+      - Understanding consolidation scope and methods
+      - Integrating with ownership management

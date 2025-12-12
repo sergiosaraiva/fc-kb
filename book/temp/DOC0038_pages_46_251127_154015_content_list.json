@@ -1,0 +1,1635 @@
+[
+    {
+        "type": "text",
+        "text": "Question 1.03",
+        "text_level": 2,
+        "bbox": [
+            421,
+            124,
+            578,
+            139
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/2d7d6013f99b4bb71e06a325495cf40e151201d796174b2b5a491fa371bb0c8d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>In CUR</td><td>Rates</td></tr><tr><td>Capital</td><td>1000</td><td>1.3</td></tr><tr><td>Retained earnings</td><td>600</td><td>1.4</td></tr><tr><td>Profit</td><td>100</td><td></td></tr></table>",
+        "bbox": [
+            114,
+            169,
+            455,
+            238
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/66a5b523c5bb542342498299952a5448aaa37bef67fc0d074c5cd722fd75715b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Closing rate</td><td>1.5</td></tr><tr><td>Average rate</td><td>1.6</td></tr></table>",
+        "bbox": [
+            116,
+            248,
+            455,
+            286
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Here are the equity accounts of a foreign company whose currency is CUR.",
+        "bbox": [
+            466,
+            158,
+            879,
+            191
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This company is consolidated by the global integration method with an indirect financial percentage of  \\(80\\%\\) .",
+        "bbox": [
+            466,
+            206,
+            879,
+            254
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Rates 1.3 and 1.4 are historical rates.",
+        "bbox": [
+            468,
+            270,
+            836,
+            286
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "What is the contribution of the company in the « Translation adjustments » account in the consolidated equity?",
+        "bbox": [
+            112,
+            301,
+            881,
+            335
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/8e7a0f65a7279b897f40501c44f00ec06357459e436d566cd9a63f783d60231a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>Debit</td><td>200</td></tr><tr><td>b</td><td></td><td>Debit</td><td>250</td></tr><tr><td>c</td><td></td><td>Credit</td><td>200</td></tr><tr><td>d</td><td></td><td>Credit</td><td>250</td></tr></table>",
+        "bbox": [
+            116,
+            342,
+            400,
+            411
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Question 1.04",
+        "text_level": 2,
+        "bbox": [
+            419,
+            449,
+            574,
+            464
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The evolution of the Tangible assets account of a foreign company is given here below in local currency CUR.",
+        "bbox": [
+            112,
+            483,
+            877,
+            516
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/33a6c5a4d4e2bdfec1df621232947c137f3476281b126b715d196a638c2b447a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Opening value</td><td>100</td><td>0.5</td></tr><tr><td>Acquisitions Disposals</td><td>30 (10)</td><td></td></tr><tr><td>Closing value</td><td>120</td><td>0.7</td></tr></table>",
+        "bbox": [
+            324,
+            528,
+            641,
+            626
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The rate 0.5 is the closing rate to apply for the opening value and 0.7 for the closing value.",
+        "bbox": [
+            110,
+            642,
+            875,
+            677
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The Acquisitions and Disposals flows are translated at the average rate 0.6.",
+        "bbox": [
+            112,
+            691,
+            845,
+            708
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "What will be the value of the Translation adjustment flow after currency conversion?",
+        "bbox": [
+            112,
+            724,
+            877,
+            756
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/e05cdb9f940d66a968245acbb45215b52ea79a7e87b4c7c8914d4584ec31b3e9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>20</td></tr><tr><td>b</td><td></td><td>0</td></tr><tr><td>c</td><td></td><td>22</td></tr><tr><td>d</td><td></td><td>(20)</td></tr></table>",
+        "bbox": [
+            114,
+            768,
+            311,
+            838
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            370,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "454",
+        "bbox": [
+            472,
+            923,
+            516,
+            938
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Question 1.05",
+        "text_level": 2,
+        "bbox": [
+            411,
+            125,
+            565,
+            141
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "A group consists in a parent company P owning directly three companies: A, B and C with financial percentages and consolidated with consolidation methods as presented hereunder.",
+        "bbox": [
+            103,
+            172,
+            873,
+            223
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/eb9818781edc7f19b82c797270de6a9c67478976ab1a3c22723f654969364384.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company</td><td>Consolidation method</td><td>Financial %</td><td>Closing value</td></tr><tr><td>P</td><td>Parent company</td><td></td><td>2,000</td></tr><tr><td>A</td><td>Global integration</td><td>80%</td><td>1,000</td></tr><tr><td>B</td><td>Proportional integration</td><td>50%</td><td>600</td></tr><tr><td>C</td><td>Equity method</td><td>30%</td><td>800</td></tr></table>",
+        "bbox": [
+            185,
+            236,
+            827,
+            321
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The statutory closing value of the Bank account of each of these companies is also given here.",
+        "bbox": [
+            103,
+            349,
+            869,
+            384
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "What will be the consolidated value of this Bank account?",
+        "bbox": [
+            107,
+            397,
+            736,
+            413
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/07fdc94efefabf5ba10009936217783eb0564e47187d778cb48deb63d70a19d4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>3,300</td></tr><tr><td>b</td><td></td><td>4,400</td></tr><tr><td>c</td><td></td><td>3,340</td></tr><tr><td>d</td><td></td><td>3,100</td></tr></table>",
+        "bbox": [
+            109,
+            426,
+            324,
+            495
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Question 1.06",
+        "text_level": 2,
+        "bbox": [
+            411,
+            527,
+            565,
+            543
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Company P consolidates A and B by the global integration method.",
+        "bbox": [
+            105,
+            578,
+            755,
+            595
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Total equity of companies A and B and the financial investment from A in B are given here below.",
+        "bbox": [
+            103,
+            609,
+            761,
+            643
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/231400b14e9dc1ecdf3dfe295dbd9cf5300577c93395f2d1e944a1ce92102968.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Total equity of A</td><td>1,000</td></tr><tr><td>Financial investment from A in B</td><td>800</td></tr><tr><td>Total equity of B</td><td>1,000</td></tr></table>",
+        "bbox": [
+            202,
+            659,
+            628,
+            711
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/a4b324880074421bc8de1e01546b29c19fe65bd071f7293c4cfaf20018b16cb1.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            774,
+            567,
+            867,
+            733
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "What will be the value of the Minority interests account in the consolidated balance sheet?",
+        "bbox": [
+            105,
+            754,
+            869,
+            788
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/76263e1eb2bfeabe50162f69a079d373a6e1bcce74f00fd719760c562949a4d0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>720</td></tr><tr><td>b</td><td></td><td>600</td></tr><tr><td>c</td><td></td><td>440</td></tr><tr><td>d</td><td></td><td>560</td></tr></table>",
+        "bbox": [
+            107,
+            805,
+            295,
+            872
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 7 CONSOLIDATION QUIZZ",
+        "bbox": [
+            504,
+            73,
+            856,
+            90
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Question 1.07",
+        "text_level": 2,
+        "bbox": [
+            419,
+            124,
+            573,
+            140
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The structure of this group remains unchanged in Year 1 and Year 2.",
+        "bbox": [
+            113,
+            157,
+            780,
+            173
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Company B is a foreign company with currency CUR.",
+        "bbox": [
+            113,
+            190,
+            626,
+            207
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 1, company B decides to pay dividends of 1000 CUR and local laws require company B to withhold a tax of  \\(25\\%\\)  on these dividends.",
+        "bbox": [
+            113,
+            220,
+            786,
+            269
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Company A receives a cash amount of 525 CUR = 70% * [75% * 1000 CUR] which corresponds to 470 EUR on the Bank receipt and book for that amount on the Financial income account.",
+        "bbox": [
+            113,
+            283,
+            786,
+            334
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "image",
+        "img_path": "images/b93f6f9a11c353df53e7f6ce44b201420404d096ede164ef6afd455c6e994677.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            799,
+            156,
+            894,
+            327
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Last information: average rate of currency CUR of Year 1 is 0.8 and of Year 2 is 0.7.",
+        "bbox": [
+            113,
+            349,
+            877,
+            380
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "What is the amount of dividends to eliminate in company A accounts, that is to transfer from profit to reserves?",
+        "bbox": [
+            113,
+            397,
+            875,
+            429
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/50011217bbd3a4ee1bda6f99a9a4f4260d4986a86f0acbdcde5f371429291eeb.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>600</td></tr><tr><td>b</td><td></td><td>560</td></tr><tr><td>c</td><td></td><td>800</td></tr><tr><td>d</td><td></td><td>470</td></tr></table>",
+        "bbox": [
+            116,
+            444,
+            308,
+            511
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Question 1.08",
+        "text_level": 2,
+        "bbox": [
+            417,
+            545,
+            571,
+            559
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "A company P acquires  \\(80\\%\\)  of shares of a company A for a price of 1000.",
+        "bbox": [
+            113,
+            578,
+            822,
+            595
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "At the date of acquisition, company A total statutory equity is 800 and, after the due diligence process, it is decided to reevaluate a building for 200.",
+        "bbox": [
+            113,
+            611,
+            873,
+            643
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "If this transaction leads to a goodwill, what would be its value?",
+        "bbox": [
+            113,
+            657,
+            803,
+            675
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/c66ee592ed1826a910d37d03a911d081d85edbb297d4ba5098eded88c6d3d938.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>160</td></tr><tr><td>b</td><td></td><td>0</td></tr><tr><td>c</td><td></td><td>200</td></tr><tr><td>d</td><td></td><td>40</td></tr></table>",
+        "bbox": [
+            116,
+            688,
+            318,
+            755
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            367,
+            83
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Question 1.09",
+        "text_level": 2,
+        "bbox": [
+            408,
+            123,
+            565,
+            137
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Here is the consolidated P&L of a group.",
+        "bbox": [
+            103,
+            156,
+            495,
+            174
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/69ba46b86a991c24880cc8888c395133e7294b90c140b2d7c9a23f122463d809.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Turnover</td><td>2,000</td></tr><tr><td>Cost of sales</td><td>(1,600)</td></tr><tr><td>Depreciations</td><td>(200)</td></tr><tr><td>Provisions</td><td>(100)</td></tr><tr><td>Financial income</td><td>150</td></tr><tr><td>Profit from equity method comp</td><td>50</td></tr><tr><td>Consolidated profit</td><td>300</td></tr><tr><td>3rd Parties profit</td><td>60</td></tr><tr><td>Group profit</td><td>240</td></tr></table>",
+        "bbox": [
+            279,
+            184,
+            703,
+            357
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "What is the consolidated cash flow statement of this group?",
+        "bbox": [
+            103,
+            382,
+            762,
+            398
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/9f486443ecb60143a9d98394e3d499f4e3e5ac1f93fb10837ddc4b23c7964a01.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>300</td></tr><tr><td>b</td><td></td><td>550</td></tr><tr><td>c</td><td></td><td>490</td></tr><tr><td>d</td><td></td><td>600</td></tr></table>",
+        "bbox": [
+            105,
+            409,
+            307,
+            476
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Question 1.10",
+        "text_level": 2,
+        "bbox": [
+            408,
+            514,
+            565,
+            527
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "A few years ago, the following consolidation adjustment has been booked in local currency in a company consolidated by the proportional method at  \\(50\\%\\) .",
+        "bbox": [
+            103,
+            546,
+            870,
+            582
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/1f879f11f9392891d3ba7e0f142dc51069ce5a07de3b54f213e195e28422be7a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Write-off on receivables (P&amp;L)</td><td>100</td><td></td></tr><tr><td>Receivables (Balance sheet)</td><td></td><td>100</td></tr></table>",
+        "bbox": [
+            258,
+            593,
+            743,
+            646
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "For this consolidation, the closing rate was 2.3 and the average rate 2.5.",
+        "bbox": [
+            103,
+            675,
+            813,
+            693
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This year, the adjustment is maintained in the consolidation and the closing and average rates are 1.8 and 1.7 respectively.",
+        "bbox": [
+            103,
+            708,
+            870,
+            741
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "What is the contribution of the adjustment in the consolidated Translation adjustment account?",
+        "bbox": [
+            103,
+            756,
+            875,
+            788
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/e9ccdc891c4f86190d9c852ca5e98063a2302e80e2205d18179d6c8d608eecf6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>Debit 35</td></tr><tr><td>b</td><td></td><td>Debit 70</td></tr><tr><td>c</td><td></td><td>Credit 35</td></tr><tr><td>d</td><td></td><td>Credit 70</td></tr></table>",
+        "bbox": [
+            105,
+            803,
+            336,
+            870
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 7 CONSOLIDATION QUIZZ",
+        "bbox": [
+            502,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "2 QUIZZ 2  \\((++)\\)",
+        "text_level": 1,
+        "bbox": [
+            114,
+            121,
+            472,
+            146
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Question 2.01",
+        "text_level": 2,
+        "bbox": [
+            417,
+            171,
+            569,
+            187
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We consider the three following companies belonging to a consolidation scope, with their consolidation method as specified here below.",
+        "bbox": [
+            112,
+            202,
+            879,
+            236
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/d94f904bafb7f2671c58692eb4728897ef99ed51d20f384b49fd68923b8599ef.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company P</td><td>Consolidating company</td></tr><tr><td>Company A</td><td>Global integration</td></tr><tr><td>Company B</td><td>Equity method</td></tr></table>",
+        "bbox": [
+            326,
+            247,
+            694,
+            299
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We also give the Payables account of each company, with the intercompany details.",
+        "bbox": [
+            110,
+            331,
+            877,
+            363
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/a1d8bb8fa82f43bb3bf6c129a376370ea1e842531cc824de700cd2bda25676ec.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"3\">Company P</td><td>3rd parties</td><td>500</td></tr><tr><td>Company A</td><td>200</td></tr><tr><td>Company B</td><td>300</td></tr><tr><td rowspan=\"2\">Company A</td><td>3rd parties</td><td>700</td></tr><tr><td>Company P</td><td>100</td></tr><tr><td rowspan=\"2\">Company B</td><td>3rd parties</td><td>100</td></tr><tr><td>Company P</td><td>400</td></tr></table>",
+        "bbox": [
+            343,
+            379,
+            675,
+            526
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Supposing all intercompany accounts are correctly reconciled, what will be the consolidated value of this Payables account?",
+        "bbox": [
+            112,
+            539,
+            879,
+            574
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/2f4cf30c060ae748c4a8e88d81c899569bd5fe6cb805223e763f28a681863210.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>1,300</td></tr><tr><td>b</td><td></td><td>1,200</td></tr><tr><td>c</td><td></td><td>1,700</td></tr><tr><td>d</td><td></td><td>1,500</td></tr></table>",
+        "bbox": [
+            116,
+            586,
+            328,
+            653
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            366,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Question 2.02",
+        "text_level": 2,
+        "bbox": [
+            408,
+            124,
+            565,
+            139
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "At the beginning of the year, company A is owned with a financial percentage of  \\(90\\%\\) .",
+        "bbox": [
+            101,
+            156,
+            870,
+            188
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "On July 1 \\(^{\\text{st}}\\) , the group sells  \\(20\\%\\)  of shares and company A is now owned at  \\(70\\%\\) .",
+        "bbox": [
+            101,
+            204,
+            870,
+            238
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The 12 months statutory profit of 200 splits into 120 for the first half year and 80 for the second half year.",
+        "bbox": [
+            101,
+            254,
+            870,
+            288
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Moreover, there is a consolidation adjustment booked for 40 corresponding to an additional depreciation.",
+        "bbox": [
+            101,
+            301,
+            870,
+            336
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "What is the contribution of the company in the consolidated profit of the group?",
+        "bbox": [
+            101,
+            349,
+            870,
+            383
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/0a39714c2ad1568de45ea310f939bf8952e789c44f67ed3e4bb48a4a1610ddf1.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>112</td></tr><tr><td>b</td><td></td><td>128</td></tr><tr><td>c</td><td></td><td>132</td></tr><tr><td>d</td><td></td><td>136</td></tr></table>",
+        "bbox": [
+            105,
+            396,
+            290,
+            465
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Question 2.03",
+        "text_level": 2,
+        "bbox": [
+            408,
+            513,
+            565,
+            528
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Parent company P owns  \\(80\\%\\)  of company A, for a statutory value of 1000.",
+        "bbox": [
+            103,
+            547,
+            826,
+            565
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "P decides to sell  \\(20\\%\\)  of its participation to  \\(3^{\\text{rd}}\\)  Parties for a price of 400, making a gain of 150.",
+        "bbox": [
+            101,
+            579,
+            866,
+            613
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "At the date of disposal, the company A total adjusted equity is 1500.",
+        "bbox": [
+            103,
+            628,
+            773,
+            645
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "What will be the amount of the consolidation adjustment correcting the statutory gain in P&L?",
+        "bbox": [
+            103,
+            658,
+            870,
+            693
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/727c63cc8a42c675b29d2ce95847595f50c71977d10f3a1dd3b979730754a5d4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>Debit 50</td></tr><tr><td>b</td><td></td><td>Credit 150</td></tr><tr><td>c</td><td></td><td>Credit 50</td></tr><tr><td>d</td><td></td><td>Debit 150</td></tr></table>",
+        "bbox": [
+            105,
+            705,
+            360,
+            773
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 7 CONSOLIDATION QUIZZ",
+        "bbox": [
+            502,
+            73,
+            855,
+            90
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Question 2.04",
+        "text_level": 2,
+        "bbox": [
+            423,
+            124,
+            578,
+            139
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "In this group,  \\(\\mathsf{P}\\)  is the consolidating company and  \\(\\mathsf{A}, \\mathsf{B}\\)  and  \\(\\mathsf{C}\\)  are consolidated with the global integration method.",
+        "bbox": [
+            114,
+            158,
+            775,
+            191
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Here below is some information on some accounts. All amounts are in consolidation currency.",
+        "bbox": [
+            114,
+            206,
+            775,
+            240
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/270ccefd68467d45f5bcc9e3f93dc392cac9e3dd9b30e08cc46d765ed8ecfee3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Total equity of A</td><td>2,000</td></tr><tr><td>Total equity of B</td><td>1,000</td></tr><tr><td>Total equity of C</td><td>1,000</td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Financial investment from A in B</td><td>900</td></tr><tr><td>Financial investment from B in C</td><td>700</td></tr></table>",
+        "bbox": [
+            173,
+            250,
+            605,
+            355
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/7eeefbd9526423d6c6680e6b49f851a69e0f0c3c15850ef90cd18c30064c3e63.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            786,
+            158,
+            881,
+            390
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "What is the amount of Minority interests in the consolidated equity?",
+        "bbox": [
+            118,
+            398,
+            858,
+            417
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/1e7e644928b4fab4aa0d55ef988cf1d8ed7c3e0ee3806c250a45ce477dc2eaba.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>1,016</td></tr><tr><td>b</td><td></td><td>1,500</td></tr><tr><td>c</td><td></td><td>1,100</td></tr><tr><td>d</td><td></td><td>1,520</td></tr></table>",
+        "bbox": [
+            118,
+            428,
+            332,
+            496
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Question 2.05",
+        "text_level": 2,
+        "bbox": [
+            421,
+            530,
+            574,
+            544
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We show below the statutory equity of the consolidating company and the consolidated equity of its group.",
+        "bbox": [
+            114,
+            563,
+            881,
+            597
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/86d8b09deff335feed8e8a253d748eb978a17a220cef20b93f4f39942fa6d4d9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Statutory equity</td><td>Consolidated equity</td></tr><tr><td>Capital</td><td>1,000</td><td>1,000</td></tr><tr><td>Reserves</td><td>800</td><td>(300)</td></tr><tr><td>Translation adjustments</td><td></td><td>100</td></tr><tr><td>Minority interests</td><td></td><td>200</td></tr><tr><td></td><td>1,800</td><td>1,000</td></tr></table>",
+        "bbox": [
+            211,
+            607,
+            754,
+            730
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Considering these figures, which of the four following proposals is the correct one?",
+        "bbox": [
+            114,
+            740,
+            881,
+            771
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/29bc766bfa20850dc3951f00f224cc9c67f528a62d001a3dd82d9eb559fcd268.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>If Reserves are negative (Debit), it should be the same for Minority interests</td></tr><tr><td>b</td><td></td><td>At least one company is making more losses than profits since its first consolidation</td></tr><tr><td>c</td><td></td><td>Reserves cannot be negative (debit)</td></tr><tr><td>d</td><td></td><td>Consolidated equity is always greater than statutory equity of parent company</td></tr></table>",
+        "bbox": [
+            118,
+            792,
+            911,
+            850
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            67,
+            370,
+            83
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "page_number",
+        "text": "460",
+        "bbox": [
+            476,
+            923,
+            521,
+            939
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Question 2.06",
+        "text_level": 2,
+        "bbox": [
+            408,
+            123,
+            565,
+            140
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In this group,",
+        "bbox": [
+            99,
+            158,
+            235,
+            175
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- P pays dividends of 300",
+            "A pays dividends of 200",
+            "B pays dividends of 100"
+        ],
+        "bbox": [
+            139,
+            190,
+            415,
+            237
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "These dividends are all related to previous year, paid and booked in the corresponding Financial income accounts during the first months of this year.",
+        "bbox": [
+            99,
+            253,
+            781,
+            303
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "image",
+        "img_path": "images/fc9958cf4131c03c9609d56abb93a6d42a9179312aeaa996454d16b334af4add.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            792,
+            158,
+            887,
+            338
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "What will be the total amount of dividends paid in the consolidated cash flow statement?",
+        "bbox": [
+            101,
+            318,
+            781,
+            351
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/85c3cbaad8f5b8bb915c63a82d04afa433b4df0c7d005164a80914dae41ae8d9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>(600)</td></tr><tr><td>b</td><td></td><td>(530)</td></tr><tr><td>c</td><td></td><td>(384)</td></tr><tr><td>d</td><td></td><td>(370)</td></tr></table>",
+        "bbox": [
+            105,
+            363,
+            319,
+            432
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Question 2.07",
+        "text_level": 2,
+        "bbox": [
+            408,
+            466,
+            561,
+            480
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Company A is consolidated by the equity method with a percentage of  \\(30\\%\\) .",
+        "bbox": [
+            101,
+            500,
+            838,
+            517
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This company decides to increase its capital by 1000 and each shareholder subscribes with respect to its participation percentage. Thus, the parent company subscribes 300 and the other shareholders, all together, subscribe 700.",
+        "bbox": [
+            101,
+            532,
+            870,
+            596
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "What will be the amount appearing in the consolidated cash flow statement concerning this capital increase?",
+        "bbox": [
+            103,
+            612,
+            870,
+            646
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/4ec69b97180e8494ebaa046c90521a91dc153a87b66f1cd931610f8fb6749ae8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>0</td></tr><tr><td>b</td><td></td><td>700</td></tr><tr><td>c</td><td></td><td>(300)</td></tr><tr><td>d</td><td></td><td>1,000</td></tr></table>",
+        "bbox": [
+            105,
+            659,
+            319,
+            727
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 7 CONSOLIDATION QUIZZ",
+        "bbox": [
+            500,
+            71,
+            855,
+            89
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Question 2.08",
+        "text_level": 2,
+        "bbox": [
+            419,
+            124,
+            575,
+            140
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We consider a group of two companies, the consolidating company P and a subsidiary A owned at  \\(80\\%\\)  (global integration).",
+        "bbox": [
+            113,
+            159,
+            879,
+            191
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Here is the consolidated reserves evolution report.",
+        "bbox": [
+            116,
+            207,
+            607,
+            222
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/c2464ef562a2963e3d5e6b677712398f812ebf18c9a8ca7872e19456761c020f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Reserves Year 1</td><td>Result Year 2</td><td>Dividends paid</td><td>Dividends received</td><td>Transfers</td><td>Appropriation</td><td>Reserves Year 2</td></tr><tr><td>P</td><td>2,000</td><td>500</td><td></td><td>100</td><td>150</td><td>(200)</td><td>2,550</td></tr><tr><td>A</td><td>1,000</td><td>300</td><td>(100)</td><td></td><td>(150)</td><td></td><td>1,050</td></tr><tr><td></td><td>3,000</td><td>800</td><td>(100)</td><td>100</td><td>0</td><td>(200)</td><td>3,600</td></tr></table>",
+        "bbox": [
+            118,
+            235,
+            873,
+            314
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Which of the following proposals is not correct?",
+        "bbox": [
+            118,
+            346,
+            639,
+            364
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/c7a0bdd78a5a0577d4907eed4f8e6ccc0eca53ee91af840bfd6a54c13e39a6f6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>A pays a gross dividend of 125</td></tr><tr><td>b</td><td></td><td>P pays a gross dividend of 200</td></tr><tr><td>c</td><td></td><td>This report is technically correct</td></tr><tr><td>d</td><td></td><td>A pays an interim dividend of 150</td></tr></table>",
+        "bbox": [
+            118,
+            376,
+            569,
+            443
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Question 2.09",
+        "text_level": 2,
+        "bbox": [
+            419,
+            477,
+            573,
+            491
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The parent company P owns  \\(60\\%\\)  of company A and the statutory book value of this participation is 1000. Company A statutory equity is 2000.",
+        "bbox": [
+            113,
+            510,
+            877,
+            544
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, we have booked the following adjustments",
+        "bbox": [
+            113,
+            560,
+            700,
+            576
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/832145a172f44b45d3c0934a3cfc475fdea23676274511d5d03fa128e5ae0025.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td>Debit</td><td>Credit</td></tr><tr><td>In P accounts</td><td>Financial investment/A \nReserves</td><td>200</td><td>200</td></tr></table>",
+        "bbox": [
+            118,
+            588,
+            679,
+            642
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/16917a60044ea7bf4f75c3b7edbcf8844fac7ec105a2452512a9af298c6c16d6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td>Debit</td><td>Credit</td></tr><tr><td rowspan=\"2\">In A accounts</td><td>Tangible assets</td><td>500</td><td></td></tr><tr><td>Reserves</td><td></td><td>500</td></tr></table>",
+        "bbox": [
+            118,
+            653,
+            664,
+            711
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/c3c18d1936b0c10934340da83958173a118c5f447b68ee7839a79b87fcd737b7.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Reserves</td><td>200</td><td></td></tr><tr><td>Provisions</td><td></td><td>200</td></tr></table>",
+        "bbox": [
+            253,
+            723,
+            662,
+            762
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This second adjustment in company A accounts is booked  \\(100\\%\\)  on group accounts.",
+        "bbox": [
+            113,
+            768,
+            877,
+            800
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/be6c2bba4ae771d7281da5f13d4d101948bc9777ceb1d8ff7eed5f9d38947da0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>180</td></tr><tr><td>b</td><td></td><td>100</td></tr><tr><td>c</td><td></td><td>300</td></tr><tr><td>d</td><td></td><td>500</td></tr></table>",
+        "bbox": [
+            118,
+            806,
+            305,
+            874
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "What are the consolidated reserves of company A?",
+        "bbox": [
+            320,
+            815,
+            869,
+            834
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            68,
+            369,
+            84
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "page_number",
+        "text": "462",
+        "bbox": [
+            474,
+            923,
+            521,
+            938
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Question 2.10",
+        "text_level": 2,
+        "bbox": [
+            409,
+            124,
+            567,
+            138
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We present here the evolution of the statutory equity of a foreign company.",
+        "bbox": [
+            103,
+            173,
+            843,
+            192
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/3e894a89a465faba9e6147a894654bf6d19a381ea9dbf32787dfaf687667ae2b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td>Capital</td><td>1,000</td><td></td><td>2,000</td></tr><tr><td>Increase in capital</td><td></td><td>1,000</td><td></td></tr><tr><td>Retained earnings</td><td>800</td><td rowspan=\"2\">(100)</td><td rowspan=\"2\">700</td></tr><tr><td>Dividends paid</td><td></td></tr><tr><td>Result</td><td>200</td><td>(200)</td><td>300</td></tr><tr><td>Dividends paid</td><td></td><td rowspan=\"2\">300</td><td rowspan=\"2\"></td></tr><tr><td>Year 2 profit</td><td></td></tr><tr><td>Total</td><td>2,000</td><td>1,000</td><td>3,000</td></tr></table>",
+        "bbox": [
+            185,
+            211,
+            801,
+            366
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The different rates used for Year 1 and Year 2 consolidations are given hereunder",
+        "bbox": [
+            105,
+            381,
+            871,
+            415
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/300dcdfde14f88b20ccdc16e51f8216d306147480918167d020fc6a03139bea1.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"4\">Year 1</td><td>Historical rate for the capital</td><td>3.0</td></tr><tr><td>Average rate</td><td>3.5</td></tr><tr><td>Retained earnings for 800 consist in 300 at historical rate of</td><td>3.1</td></tr><tr><td>500 at historical rate of</td><td>3.2</td></tr><tr><td></td><td></td><td></td></tr><tr><td rowspan=\"3\">Year 2</td><td>Closing rate</td><td>3.7</td></tr><tr><td>Average rate</td><td>3.4</td></tr><tr><td>Rate for the capital increase</td><td>3.6</td></tr></table>",
+        "bbox": [
+            183,
+            435,
+            814,
+            581
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Notice that the dividends for 100 are coming from the 500 part of the Retained earnings amount of 800.",
+        "bbox": [
+            105,
+            606,
+            871,
+            640
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "What is the amount of translation adjustments for this company?",
+        "bbox": [
+            109,
+            654,
+            818,
+            673
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/dbcaa7a87bba7b763c12647d2bc35fa40065a1ee043de3236b2b87189eb13b03.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>a</td><td></td><td>Debit 900</td></tr><tr><td>b</td><td></td><td>Credit 900</td></tr><tr><td>c</td><td></td><td>Debit 1270</td></tr><tr><td>d</td><td></td><td>Credit 1270</td></tr></table>",
+        "bbox": [
+            109,
+            685,
+            362,
+            752
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 7 CONSOLIDATION QUIZZ",
+        "bbox": [
+            502,
+            74,
+            854,
+            90
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "page_number",
+        "text": "463",
+        "bbox": [
+            464,
+            921,
+            510,
+            935
+        ],
+        "page_idx": 9
+    }
+]

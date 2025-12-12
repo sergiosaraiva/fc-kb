@@ -1,0 +1,487 @@
+# Help Content Metadata for RAG Retrieval
+# Version: 1.0
+# Last Updated: 2024-12-03
+
+metadata:
+  total_topics: 26
+  total_qa_pairs: 500
+  source: "Prophix.Conso Product Help Files"
+  conversion_format: "Markdown with merged Q&A"
+
+# Topic definitions for RAG retrieval
+topics:
+  - index: "0101"
+    title: "Financial Consolidation Overview"
+    file: "help-content/0101-financial-consolidation-overview.md"
+    category: "overview"
+    phase: 0
+    topics:
+      - "Financial Consolidation Process"
+      - "Data Mapping and Adjustment"
+      - "Currency Conversion"
+      - "Intercompany Reconciliation"
+    keywords:
+      - "financial consolidation"
+      - "subsidiaries"
+      - "data mapping"
+      - "currency conversion"
+      - "intercompany transactions"
+      - "GAAP"
+      - "IFRS"
+      - "consolidated financial statements"
+      - "minority interest"
+    theory_chunks: ["0001-0050"]
+    question_patterns:
+      - "what is consolidation"
+      - "consolidation process"
+      - "steps in consolidation"
+      - "why consolidate"
+
+  - index: "0102"
+    title: "Getting Started"
+    file: "help-content/0102-getting-started.md"
+    category: "overview"
+    phase: 0
+    topics:
+      - "Navigating Interface"
+      - "Data Entry and Management"
+      - "Reporting and Analysis"
+      - "System Configuration"
+    keywords:
+      - "login"
+      - "logout"
+      - "navigation"
+      - "password reset"
+      - "workflow"
+      - "filters"
+      - "wildcards"
+    navigation_path: null
+    question_patterns:
+      - "how to login"
+      - "where to find"
+      - "navigate to"
+      - "get started"
+
+  - index: "0210"
+    title: "Basics"
+    file: "help-content/0210-basics.md"
+    category: "overview"
+    phase: 0
+    topics:
+      - "User Settings"
+      - "Workflow Management"
+      - "Status Board"
+      - "File Repository"
+    keywords:
+      - "profile"
+      - "consolidation period"
+      - "task management"
+      - "gantt chart"
+      - "validation"
+      - "document storage"
+    navigation_paths:
+      - "Profile icon"
+      - "Workflows > Workflow"
+      - "Reports > Document Repository"
+
+  - index: "0301"
+    title: "Select a Consolidation Period"
+    file: "help-content/0301-select-consolidation-period.md"
+    category: "setup"
+    phase: 1
+    topics:
+      - "Period Selection"
+      - "Period Locking"
+    keywords:
+      - "consolidation period"
+      - "current period"
+      - "reference period"
+      - "period locking"
+      - "data locking"
+    navigation_paths:
+      - "Click period on top bar"
+      - "Group > Periods"
+    question_patterns:
+      - "change period"
+      - "lock period"
+      - "select period"
+
+  - index: "0303"
+    title: "Input the Currency Rates"
+    file: "help-content/0303-input-currency-rates.md"
+    category: "setup"
+    phase: 1
+    topics:
+      - "Currency Exchange Rates"
+      - "Rate Import"
+      - "Rate Export"
+    keywords:
+      - "exchange rates"
+      - "closing rate"
+      - "average rate"
+      - "currency conversion"
+      - "ECB"
+      - "NBS"
+      - "SDMX"
+    navigation_paths:
+      - "Group > Exchange Rates"
+      - "Transfers > Exchange Rates > Import"
+      - "Transfers > Exchange Rates > Export"
+    theory_reference: "IAS 21"
+    question_patterns:
+      - "enter currency"
+      - "exchange rate"
+      - "import rates"
+
+  - index: "0306"
+    title: "Input the Consolidation Scope"
+    file: "help-content/0306-input-consolidation-scope.md"
+    category: "setup"
+    phase: 1
+    topics:
+      - "Company Management"
+      - "Group Structure"
+      - "Ownership Percentages"
+    keywords:
+      - "company"
+      - "subsidiary"
+      - "group structure"
+      - "ownership"
+      - "financial rights"
+      - "voting rights"
+      - "consolidation method"
+    navigation_paths:
+      - "Group > Companies"
+      - "Group > Group Structure"
+    theory_reference: "IFRS 10, IAS 27"
+    question_patterns:
+      - "add company"
+      - "ownership percentage"
+      - "group structure"
+
+  - index: "0309"
+    title: "Local Amounts"
+    file: "help-content/0309-local-amounts.md"
+    category: "setup"
+    phase: 1
+    keywords:
+      - "local currency"
+      - "local amounts"
+      - "currency settings"
+
+  - index: "0312"
+    title: "Local Adjustments"
+    file: "help-content/0312-local-adjustments.md"
+    category: "data-entry"
+    phase: 2
+    topics:
+      - "Pre-consolidation Adjustments"
+      - "Local Corrections"
+    keywords:
+      - "local adjustment"
+      - "pre-consolidation"
+      - "correction"
+    navigation_paths:
+      - "Data Entry > Local Adjustments"
+
+  - index: "0314"
+    title: "Manual Data Entry"
+    file: "help-content/0314-manual-data-entry.md"
+    category: "data-entry"
+    phase: 2
+    topics:
+      - "Bundle Entry"
+      - "Spread Entry"
+    keywords:
+      - "data entry"
+      - "bundle"
+      - "spread"
+      - "manual entry"
+    navigation_paths:
+      - "Data Entry > Bundles"
+      - "Data Entry > Spread Data Entry"
+
+  - index: "0321"
+    title: "Use Excel Consolidation Bundles"
+    file: "help-content/0321-excel-bundles.md"
+    category: "data-entry"
+    phase: 2
+    keywords:
+      - "excel"
+      - "bundle template"
+      - "upload"
+      - "download"
+    navigation_paths:
+      - "Data Entry > Bundles > Excel"
+
+  - index: "0325"
+    title: "Import/Export Data"
+    file: "help-content/0325-import-export-data.md"
+    category: "data-entry"
+    phase: 2
+    keywords:
+      - "import"
+      - "export"
+      - "data transfer"
+      - "mapping"
+    navigation_paths:
+      - "Transfers > Import"
+      - "Transfers > Export"
+
+  - index: "0332"
+    title: "Bundle Validation"
+    file: "help-content/0332-bundle-validation.md"
+    category: "validation"
+    phase: 3
+    keywords:
+      - "validation"
+      - "validation rules"
+      - "errors"
+      - "warnings"
+    navigation_paths:
+      - "Data Entry > Validation Reports"
+
+  - index: "0340"
+    title: "Reconcile Intercompany Data"
+    file: "help-content/0340-reconcile-intercompany-data.md"
+    category: "validation"
+    phase: 3
+    topics:
+      - "Intercompany Matching"
+      - "IC Elimination"
+      - "Threshold"
+    keywords:
+      - "intercompany"
+      - "IC"
+      - "matching"
+      - "elimination"
+      - "threshold"
+      - "reconciliation"
+    navigation_paths:
+      - "Consolidation > Consolidation > Intercompany Matching"
+      - "Data Entry > Validation Reports > Intercompany Validation"
+    theory_reference: "IC Eliminations"
+    question_patterns:
+      - "match intercompany"
+      - "IC difference"
+      - "eliminate IC"
+
+  - index: "0350"
+    title: "Introduce the Consolidation Adjustments"
+    file: "help-content/0350-consolidation-adjustments.md"
+    category: "processing"
+    phase: 4
+    keywords:
+      - "consolidation adjustment"
+      - "group adjustment"
+      - "journal entry"
+    navigation_paths:
+      - "Adjustments > Journal Entry"
+
+  - index: "0360"
+    title: "Generate the Consolidation Events"
+    file: "help-content/0360-generate-consolidation-events.md"
+    category: "processing"
+    phase: 4
+    topics:
+      - "Consolidation Events"
+      - "Event Generation"
+      - "Custom Events"
+    keywords:
+      - "event"
+      - "acquisition"
+      - "disposal"
+      - "custom event"
+    navigation_paths:
+      - "Consolidation > Events > Generate Events"
+    theory_reference: "IFRS 3, IFRS 10"
+
+  - index: "0370"
+    title: "Consolidate"
+    file: "help-content/0370-consolidate.md"
+    category: "processing"
+    phase: 4
+    topics:
+      - "Consolidation Status"
+      - "Consolidation Batch"
+      - "Bundle Integration"
+      - "Adjustment Integration"
+      - "Eliminations"
+    keywords:
+      - "consolidation"
+      - "statusboard"
+      - "integrate bundles"
+      - "integrate adjustments"
+      - "eliminations"
+      - "consolidation batch"
+    navigation_paths:
+      - "Consolidation > Consolidation > Statusboard"
+      - "Consolidation > Consolidation > Integrate Bundles"
+      - "Consolidation > Consolidation > Integrate Adjustments"
+      - "Consolidation > Consolidation > Eliminations"
+    theory_reference: "Direct Consolidation Chapters 8-12"
+    question_patterns:
+      - "run consolidation"
+      - "execute consolidation"
+      - "bundle checkbox"
+      - "statusboard"
+
+  - index: "0380"
+    title: "Check and Justify the Consolidated Equity"
+    file: "help-content/0380-check-justify-equity.md"
+    category: "processing"
+    phase: 4
+    keywords:
+      - "equity"
+      - "equity reconciliation"
+      - "variance"
+    theory_reference: "Equity Roll-Forward"
+
+  - index: "0390"
+    title: "Standard Reports"
+    file: "help-content/0390-standard-reports.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "standard report"
+      - "financial statement"
+      - "balance sheet"
+      - "income statement"
+    navigation_paths:
+      - "Reports > Standard Reports"
+
+  - index: "0391"
+    title: "Consolidation Reports"
+    file: "help-content/0391-consolidation-reports.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "consolidation report"
+      - "elimination report"
+      - "adjustment report"
+    navigation_paths:
+      - "Reports > Consolidation Reports"
+
+  - index: "0392"
+    title: "User Reports"
+    file: "help-content/0392-user-reports.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "user report"
+      - "custom report"
+    navigation_paths:
+      - "Reports > User Reports"
+
+  - index: "0393"
+    title: "Analysis Reports"
+    file: "help-content/0393-analysis-reports.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "analysis"
+      - "variance analysis"
+    navigation_paths:
+      - "Reports > Analysis Reports"
+
+  - index: "0394"
+    title: "Pivot Reports"
+    file: "help-content/0394-pivot-reports.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "pivot"
+      - "pivot table"
+      - "interactive"
+    navigation_paths:
+      - "Reports > Pivot Reports"
+
+  - index: "0395"
+    title: "Additional Reports"
+    file: "help-content/0395-additional-reports.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "additional report"
+    navigation_paths:
+      - "Reports > Additional Reports"
+
+  - index: "0398"
+    title: "Use the General Ledger of Accounts"
+    file: "help-content/0398-general-ledger-accounts.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "general ledger"
+      - "account detail"
+      - "drill down"
+
+  - index: "0399"
+    title: "Use the General Ledger of Flows"
+    file: "help-content/0399-general-ledger-flows.md"
+    category: "reporting"
+    phase: 5
+    keywords:
+      - "flow"
+      - "cash flow"
+      - "movement"
+
+  - index: "0510"
+    title: "FAQ"
+    file: "help-content/0510-faq.md"
+    category: "reference"
+    phase: null
+    keywords:
+      - "FAQ"
+      - "frequently asked"
+      - "common questions"
+
+# Category definitions
+categories:
+  overview:
+    description: "Introduction and getting started"
+    topics: ["0101", "0102", "0210"]
+  setup:
+    description: "Initial configuration and setup"
+    topics: ["0301", "0303", "0306", "0309"]
+  data-entry:
+    description: "Data entry and import"
+    topics: ["0312", "0314", "0321", "0325"]
+  validation:
+    description: "Validation and reconciliation"
+    topics: ["0332", "0340"]
+  processing:
+    description: "Consolidation processing"
+    topics: ["0350", "0360", "0370", "0380"]
+  reporting:
+    description: "Reports and analysis"
+    topics: ["0390", "0391", "0392", "0393", "0394", "0395", "0398", "0399"]
+  reference:
+    description: "Reference materials"
+    topics: ["0510"]
+
+# Retrieval boosting rules
+retrieval_rules:
+  - pattern: "how to|where to|how do I"
+    boost_categories: ["data-entry", "processing"]
+    boost_factor: 1.5
+
+  - pattern: "why|explain|what is"
+    boost_sources: ["theory_chunks", "discrepancy_mapping"]
+    boost_factor: 1.3
+
+  - pattern: "error|problem|doesn't work|not working"
+    boost_categories: ["validation", "reference"]
+    boost_factor: 1.4
+
+  - pattern: "report|export|print"
+    boost_categories: ["reporting"]
+    boost_factor: 1.5
+
+  - pattern: "intercompany|IC"
+    boost_topics: ["0340"]
+    boost_factor: 2.0
+
+  - pattern: "consolidation|consolidate"
+    boost_topics: ["0370", "0101"]
+    boost_factor: 1.5

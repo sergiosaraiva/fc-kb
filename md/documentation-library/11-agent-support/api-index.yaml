@@ -1,0 +1,937 @@
+# API Index - Financial Consolidation Agent Knowledge Base
+# Master Catalog of All API Documentation Files
+# Version: 1.2
+# Purpose: Central index for AI agent navigation of consolidation system APIs
+# Updated: 2025-12-04 (Phase 5 Consolidation)
+
+api_index:
+  name: "Financial Consolidation API Index"
+  version: "1.2"
+  created: "2024-12-02"
+  updated: "2025-12-04"
+  description: |
+    Master index of all API documentation files for the Prophix.Conso financial
+    consolidation system. This index provides:
+
+    - Complete catalog of 25 YAML documentation files (24 active + 1 archived)
+    - Cross-references between related endpoints
+    - Workflow dependency mappings
+    - Handler counts and service coverage
+    - Navigation guide for AI agents
+    - Error code catalog (95+ errors, 30+ warnings)
+    - Authentication guide (Keycloak OIDC)
+    - Workflow state machine (9 steps)
+    - Debugging patterns and recovery procedures
+
+    Total API handlers: 525 (242 documented)
+    Total documented services: 40+
+    Total error codes: 95+
+    Total warning codes: 30+
+    Total report templates: 30+
+    Total validation rules: 10+ system rules
+
+    CHANGE LOG (v1.2 - Phase 5):
+    - Added api-debugging-patterns.yaml (debug/recovery content)
+    - Archived error-handling-patterns.yaml (content consolidated)
+    - Updated handler count to 525 total (Phase 4 verification)
+    - Added cross-references between related files
+
+  # ============================================================================
+  # FILE CATALOG
+  # ============================================================================
+  files:
+    # --------------------------------------------------------------------------
+    # FOUNDATION FILES
+    # --------------------------------------------------------------------------
+    foundation:
+      description: "Core types, consolidation execution, and infrastructure"
+
+      - file: "api-common-types.yaml"
+        handlers: 0
+        purpose: "Shared data types, enums, and EntityVersion patterns"
+        contains:
+          - EntityVersion definition
+          - Common enums (DebitCredit, AccountType, etc.)
+          - Standard pagination parameters (scf_*)
+          - Error response patterns
+        dependencies: "Used by all other YAML files"
+
+      - file: "api-error-catalog.yaml"
+        handlers: 0
+        purpose: "Complete error code catalog for AI agent error diagnosis"
+        created: "2024-12-04"
+        updated: "2025-12-04"
+        version: "1.1"
+        contains:
+          - 95+ error codes with diagnostic queries
+          - 30+ warning codes with impact analysis
+          - 12 error categories
+          - Resolution steps for each error
+          - Source procedure references
+        use_cases:
+          - Error diagnosis
+          - Troubleshooting guidance
+          - Resolution recommendations
+        related_files:
+          - api-debugging-patterns.yaml
+          - api-error-handling.yaml
+
+      - file: "api-debugging-patterns.yaml"
+        handlers: 0
+        purpose: "Debug techniques, failure scenarios, and recovery procedures"
+        created: "2025-12-04"
+        version: "1.0"
+        status: "NEW - Phase 5"
+        source: "Extracted from error-handling-patterns.yaml"
+        contains:
+          - Error infrastructure (XML structure, AddError functions)
+          - Debug patterns (P_SYS_DEBUG_PRINT, temp tables)
+          - 5 failure scenarios with diagnosis/recovery
+          - 4 recovery procedures (SQL scripts)
+          - Quick reference for debugging
+        use_cases:
+          - Debug stored procedure errors
+          - Diagnose consolidation failures
+          - Execute recovery procedures
+        related_files:
+          - api-error-catalog.yaml
+          - api-error-handling.yaml
+
+      - file: "api-authentication-guide.yaml"
+        handlers: 0
+        purpose: "API authentication and session management documentation"
+        created: "2024-12-04"
+        contains:
+          - Keycloak OpenID Connect configuration
+          - Three authentication flows (Auth Code + PKCE, Client Credentials, Bearer)
+          - Session management (SessionObject, token lifecycle)
+          - Multi-tenant CustomerID injection
+          - Rate limiting guidance
+          - Message broker communication protocol
+        use_cases:
+          - Agent authentication setup
+          - Session token management
+          - Multi-tenant context handling
+
+      - file: "api-validation-rules-catalog.yaml"
+        handlers: 0
+        purpose: "Validation rules catalog for data quality and compliance"
+        created: "2024-12-04"
+        contains:
+          - System validation rules (BALBS, BALPL, ICBAL, etc.)
+          - User-defined rule configuration
+          - Validation reports (BUNDLE, INTERCO, CONSO, FLOWS)
+          - Error resolution guide
+          - Data model documentation
+        use_cases:
+          - Explain validation failures
+          - Guide rule configuration
+          - Data quality diagnosis
+
+      - file: "api-report-templates-catalog.yaml"
+        handlers: 0
+        purpose: "Report templates with use case mappings"
+        created: "2024-12-04"
+        contains:
+          - 30+ report templates
+          - 8 report categories
+          - Use case mappings (question → report)
+          - Cross-tab report documentation
+          - Custom report types
+        use_cases:
+          - Recommend appropriate reports
+          - Answer "what report for X" questions
+          - Report selection guidance
+
+      - file: "api-workflow-state-machine.yaml"
+        handlers: 0
+        purpose: "Consolidation workflow states and prerequisites"
+        created: "2024-12-04"
+        contains:
+          - 9 workflow steps with prerequisites
+          - Company status flags (Status_Bundles, etc.)
+          - Period status (Locked, ConsoStatus)
+          - StoredProcedures bitmask values
+          - Prerequisite error codes
+          - State transitions and reset triggers
+          - Agent decision tree
+        use_cases:
+          - Workflow orchestration
+          - Prerequisite validation
+          - Error prevention
+
+      - file: "api-consolidation-endpoints.yaml"
+        handlers: 12
+        purpose: "Core consolidation execution and control"
+        services:
+          - ConsolidationService
+        contains:
+          - Consolidation_Execute
+          - Consolidation_GetStatus
+          - Consolidation_Lock/Unlock
+          - ConsolidationScopeMethod handlers
+        cross_references:
+          - api-job-monitoring-endpoints.yaml (job tracking)
+          - api-event-endpoints.yaml (event execution)
+          - api-ownership-endpoints.yaml (ownership data)
+          - api-validation-rule-endpoints.yaml (pre-consolidation validation)
+
+      - file: "api-job-monitoring-endpoints.yaml"
+        handlers: 4
+        purpose: "Background job monitoring and control"
+        services:
+          - JobService
+        contains:
+          - Job_GetJobStatus
+          - Job_GetJobProgress
+          - Job_CancelJob
+          - Job_GetJobLog
+        cross_references:
+          - api-consolidation-endpoints.yaml (consolidation jobs)
+          - api-import-data-endpoints.yaml (import jobs)
+          - api-export-data-endpoints.yaml (export jobs)
+          - api-reports-endpoints.yaml (report generation jobs)
+
+    # --------------------------------------------------------------------------
+    # MASTER DATA FILES
+    # --------------------------------------------------------------------------
+    master_data:
+      description: "Core master data entities for consolidation"
+
+      - file: "api-company-endpoints.yaml"
+        handlers: 8
+        purpose: "Company master data and hierarchy"
+        services:
+          - CompanyService
+          - CompanyTreeService
+        contains:
+          - Company_GetCompanies
+          - Company_SaveCompany
+          - Company_RemoveCompany
+          - Company tree navigation
+        cross_references:
+          - api-ownership-endpoints.yaml (company ownership)
+          - api-data-entry-endpoints.yaml (company bundles)
+          - api-interco-endpoints.yaml (company partners)
+
+      - file: "api-account-endpoints.yaml"
+        handlers: 20
+        purpose: "Account master data, trees, and summations"
+        services:
+          - AccountService
+          - AccountTreeService
+          - AccountSummationService
+          - SpecificAccountService
+        contains:
+          - Account_GetAccounts
+          - Account_SaveAccount
+          - Account tree navigation
+          - Account summation management
+          - Specific (consolidation) accounts
+        cross_references:
+          - api-data-entry-endpoints.yaml (account data entry)
+          - api-adjustment-endpoints.yaml (adjustment accounts)
+          - api-elimination-endpoints.yaml (elimination accounts)
+          - api-event-endpoints.yaml (event account mappings)
+
+      - file: "api-flow-endpoints.yaml"
+        handlers: 16
+        purpose: "Flow master data, trees, and summations"
+        services:
+          - FlowService
+          - FlowTreeService
+          - FlowSummationService
+          - SpecificFlowService
+        contains:
+          - Flow_GetFlows
+          - Flow_SaveFlow
+          - Flow tree navigation
+          - Flow summation management
+          - Specific (consolidation) flows
+        cross_references:
+          - api-data-entry-endpoints.yaml (flow data entry)
+          - api-adjustment-endpoints.yaml (adjustment flows)
+          - api-elimination-endpoints.yaml (elimination flows)
+          - api-event-endpoints.yaml (event flow mappings)
+
+      - file: "api-currency-endpoints.yaml"
+        handlers: 12
+        purpose: "Currency master data and exchange rates"
+        services:
+          - CurrencyService
+          - ExchangeRateService
+        contains:
+          - Currency_GetCurrencies
+          - Currency_SaveCurrency
+          - Currency_GetExchangeRates
+          - Currency_SaveExchangeRates
+        cross_references:
+          - api-company-endpoints.yaml (company currencies)
+          - api-import-data-endpoints.yaml (rate import)
+          - api-export-data-endpoints.yaml (rate export)
+          - api-consolidation-endpoints.yaml (currency translation)
+
+      - file: "api-dimension-endpoints.yaml"
+        handlers: 26
+        purpose: "Dimension master data, groups, and trees"
+        services:
+          - DimensionService
+          - DimensionGroupService
+          - DimensionTreeService
+          - DimensionDataEntryService
+          - DimensionCompanyGroupService
+        contains:
+          - Dimension_GetDimensions
+          - Dimension_SaveDimension
+          - DimensionGroup management
+          - DimensionTree navigation
+          - Dimension data entry (matrix view)
+          - Company-dimension assignments
+        cross_references:
+          - api-data-entry-endpoints.yaml (dimension data)
+          - api-adjustment-endpoints.yaml (adjustment dimensions)
+          - api-elimination-endpoints.yaml (elimination dimensions)
+          - api-event-endpoints.yaml (event dimension mappings)
+
+      - file: "api-conso-period-endpoints.yaml"
+        handlers: 7
+        purpose: "Consolidation period management"
+        services:
+          - ConsoPeriodService
+        contains:
+          - ConsoPeriod_GetPeriods
+          - ConsoPeriod_SavePeriod
+          - ConsoPeriod_RemovePeriod
+          - Period copy/rollforward
+        cross_references:
+          - api-consolidation-endpoints.yaml (period execution)
+          - api-ownership-endpoints.yaml (period ownership)
+          - api-data-entry-endpoints.yaml (period data)
+
+    # --------------------------------------------------------------------------
+    # OWNERSHIP & STRUCTURE FILES
+    # --------------------------------------------------------------------------
+    ownership_structure:
+      description: "Ownership structure and group relationships"
+
+      - file: "api-ownership-endpoints.yaml"
+        handlers: 3
+        purpose: "Ownership percentages and structure"
+        services:
+          - OwnershipService
+        contains:
+          - Ownership_GetOwnership
+          - Ownership_SaveOwnership
+          - Ownership structure queries
+        cross_references:
+          - api-company-endpoints.yaml (company hierarchy)
+          - api-consolidation-endpoints.yaml (ownership calculation)
+          - api-event-endpoints.yaml (minority interest events)
+
+    # --------------------------------------------------------------------------
+    # DATA ENTRY FILES
+    # --------------------------------------------------------------------------
+    data_entry:
+      description: "Data input and transaction management"
+
+      - file: "api-data-entry-endpoints.yaml"
+        handlers: 27
+        purpose: "Local bundle data entry and management"
+        services:
+          - BundleStandardService
+          - BundleFlowService
+          - BundleIntercoService
+          - BundleParticipationService
+          - BundlePartnerService
+        contains:
+          - BundleStandard_GetDataEntry
+          - BundleStandard_SaveDataEntry
+          - Flow breakdown entry
+          - Intercompany entry
+          - Participation entry
+          - Partner entry
+        cross_references:
+          - api-company-endpoints.yaml (company selection)
+          - api-account-endpoints.yaml (account selection)
+          - api-flow-endpoints.yaml (flow selection)
+          - api-dimension-endpoints.yaml (dimension entry)
+          - api-interco-endpoints.yaml (intercompany data)
+
+      - file: "api-interco-endpoints.yaml"
+        handlers: 17
+        purpose: "Intercompany transactions and matching"
+        services:
+          - IntercoDataEntryService
+          - IntercoMatchingService
+          - IntercoReconciliationService
+        contains:
+          - IntercoDataEntry_GetData
+          - IntercoDataEntry_SaveData
+          - IntercoMatching handlers
+          - Reconciliation reports
+        cross_references:
+          - api-company-endpoints.yaml (partner companies)
+          - api-data-entry-endpoints.yaml (bundle interco)
+          - api-elimination-endpoints.yaml (interco eliminations)
+          - api-adjustment-endpoints.yaml (interco adjustments)
+
+      - file: "api-adjustment-endpoints.yaml"
+        handlers: 20
+        purpose: "Adjustment journal management"
+        services:
+          - JournalService
+          - JournalDetailService
+          - JournalTypeService
+        contains:
+          - Journal_GetJournals
+          - Journal_SaveJournal
+          - Journal_RemoveJournal
+          - JournalDetail handlers
+          - Journal type management
+        cross_references:
+          - api-account-endpoints.yaml (adjustment accounts)
+          - api-flow-endpoints.yaml (adjustment flows)
+          - api-company-endpoints.yaml (adjustment companies)
+          - api-import-data-endpoints.yaml (adjustment import)
+          - api-export-data-endpoints.yaml (adjustment export)
+
+    # --------------------------------------------------------------------------
+    # CONSOLIDATION CONFIGURATION FILES
+    # --------------------------------------------------------------------------
+    consolidation_config:
+      description: "Consolidation process configuration"
+
+      - file: "api-event-endpoints.yaml"
+        handlers: 7
+        purpose: "Consolidation events and detail mappings"
+        services:
+          - EventService
+          - EventDetailsService
+        contains:
+          - Event_GetEvents
+          - Event_SaveEvent
+          - Event_RemoveEvent
+          - EventDetails handlers (From→To mappings)
+        cross_references:
+          - api-consolidation-endpoints.yaml (event execution)
+          - api-account-endpoints.yaml (event accounts)
+          - api-flow-endpoints.yaml (event flows)
+          - api-dimension-endpoints.yaml (event dimensions)
+          - api-ownership-endpoints.yaml (percentage calculations)
+
+      - file: "api-elimination-endpoints.yaml"
+        handlers: 18
+        purpose: "Intercompany elimination rules"
+        services:
+          - EliminationService
+          - EliminationDetailService
+          - EliminationGroupService
+        contains:
+          - Elimination_GetEliminations
+          - Elimination_SaveElimination
+          - Elimination_RemoveElimination
+          - EliminationDetail handlers
+          - Elimination groups
+        cross_references:
+          - api-interco-endpoints.yaml (intercompany data)
+          - api-account-endpoints.yaml (elimination accounts)
+          - api-flow-endpoints.yaml (elimination flows)
+          - api-consolidation-endpoints.yaml (elimination execution)
+
+      - file: "api-validation-rule-endpoints.yaml"
+        handlers: 6
+        purpose: "Data validation rules for quality checks"
+        services:
+          - ValidationReportRuleService
+        contains:
+          - ValidationReportRule_GetValidationReportRules
+          - ValidationReportRule_SaveValidationReportRule
+          - ValidationReportRule_RemoveValidationReportRule
+          - ValidationReportRuleDetails handlers
+        cross_references:
+          - api-consolidation-endpoints.yaml (pre-consolidation validation)
+          - api-account-endpoints.yaml (validation accounts)
+          - api-flow-endpoints.yaml (validation flows)
+          - api-dimension-endpoints.yaml (validation dimensions)
+
+    # --------------------------------------------------------------------------
+    # DATA TRANSFER FILES
+    # --------------------------------------------------------------------------
+    data_transfer:
+      description: "Import and export functionality"
+
+      - file: "api-import-data-endpoints.yaml"
+        handlers: 12
+        purpose: "Data import from files and external sources"
+        services:
+          - ImportDataService
+          - ImportAdjustmentsService
+          - ImportExchangeRatesService
+        contains:
+          - ImportData_ImportFile
+          - ImportData_ImportHub
+          - ImportData_Process
+          - ImportAdjustments handlers
+          - ImportExchangeRates handlers (ECB, NBS, MAS APIs)
+        cross_references:
+          - api-job-monitoring-endpoints.yaml (import jobs)
+          - api-data-entry-endpoints.yaml (imported data)
+          - api-adjustment-endpoints.yaml (imported adjustments)
+          - api-currency-endpoints.yaml (imported rates)
+
+      - file: "api-export-data-endpoints.yaml"
+        handlers: 3
+        purpose: "Data export to files and external systems"
+        services:
+          - ExportDataService
+          - ExportAdjustmentsService
+          - ExportExchangeRatesService
+        contains:
+          - ExportData_Export
+          - ExportAdjustments_Export
+          - ExportExchangeRates_Export
+        cross_references:
+          - api-job-monitoring-endpoints.yaml (export jobs)
+          - api-data-entry-endpoints.yaml (exported data)
+          - api-adjustment-endpoints.yaml (exported adjustments)
+          - api-currency-endpoints.yaml (exported rates)
+
+    # --------------------------------------------------------------------------
+    # REPORTING FILES
+    # --------------------------------------------------------------------------
+    reporting:
+      description: "Report generation and output"
+
+      - file: "api-reports-endpoints.yaml"
+        handlers: 24
+        purpose: "Report generation and management"
+        services:
+          - ReportService
+          - ReportExportService
+          - ReportSchedulerService
+        contains:
+          - Report_GetReports
+          - Report_ExecuteReport
+          - Report_ExportReport
+          - Report scheduling
+          - Multiple output formats (PDF, Excel, Word)
+        cross_references:
+          - api-job-monitoring-endpoints.yaml (report jobs)
+          - api-consolidation-endpoints.yaml (consolidated data)
+          - api-company-endpoints.yaml (report scope)
+          - api-conso-period-endpoints.yaml (report period)
+
+  # ============================================================================
+  # WORKFLOW DEPENDENCIES
+  # ============================================================================
+  workflow_dependencies:
+    description: "How endpoints connect in typical consolidation workflows"
+
+    consolidation_setup:
+      name: "Consolidation Setup Workflow"
+      sequence:
+        - step: 1
+          name: "Master Data Setup"
+          files:
+            - api-company-endpoints.yaml
+            - api-account-endpoints.yaml
+            - api-flow-endpoints.yaml
+            - api-currency-endpoints.yaml
+            - api-dimension-endpoints.yaml
+          purpose: "Establish foundation data"
+
+        - step: 2
+          name: "Period Configuration"
+          files:
+            - api-conso-period-endpoints.yaml
+            - api-ownership-endpoints.yaml
+          purpose: "Configure consolidation period and ownership"
+
+        - step: 3
+          name: "Process Configuration"
+          files:
+            - api-event-endpoints.yaml
+            - api-elimination-endpoints.yaml
+            - api-validation-rule-endpoints.yaml
+          purpose: "Define consolidation rules"
+
+    data_collection:
+      name: "Data Collection Workflow"
+      sequence:
+        - step: 1
+          name: "Import Exchange Rates"
+          files:
+            - api-import-data-endpoints.yaml
+            - api-currency-endpoints.yaml
+          purpose: "Load current exchange rates"
+
+        - step: 2
+          name: "Import/Enter GL Data"
+          files:
+            - api-import-data-endpoints.yaml
+            - api-data-entry-endpoints.yaml
+          purpose: "Load or enter local bundle data"
+
+        - step: 3
+          name: "Enter Intercompany Data"
+          files:
+            - api-interco-endpoints.yaml
+            - api-data-entry-endpoints.yaml
+          purpose: "Enter intercompany transactions"
+
+        - step: 4
+          name: "Enter Adjustments"
+          files:
+            - api-adjustment-endpoints.yaml
+            - api-import-data-endpoints.yaml
+          purpose: "Enter or import adjustment journals"
+
+    consolidation_execution:
+      name: "Consolidation Execution Workflow"
+      sequence:
+        - step: 1
+          name: "Pre-Consolidation Validation"
+          files:
+            - api-validation-rule-endpoints.yaml
+          purpose: "Validate data quality"
+
+        - step: 2
+          name: "Execute Consolidation"
+          files:
+            - api-consolidation-endpoints.yaml
+            - api-job-monitoring-endpoints.yaml
+          purpose: "Run consolidation process"
+          events_executed:
+            - api-event-endpoints.yaml
+            - api-elimination-endpoints.yaml
+
+        - step: 3
+          name: "Review Results"
+          files:
+            - api-reports-endpoints.yaml
+            - api-data-entry-endpoints.yaml
+          purpose: "Generate reports and review data"
+
+        - step: 4
+          name: "Export Results"
+          files:
+            - api-export-data-endpoints.yaml
+          purpose: "Export consolidated data"
+
+    period_close:
+      name: "Period Close Workflow"
+      sequence:
+        - step: 1
+          name: "Final Validation"
+          files:
+            - api-validation-rule-endpoints.yaml
+          purpose: "Run final validation checks"
+
+        - step: 2
+          name: "Lock Period"
+          files:
+            - api-consolidation-endpoints.yaml
+          purpose: "Lock period to prevent changes"
+
+        - step: 3
+          name: "Generate Final Reports"
+          files:
+            - api-reports-endpoints.yaml
+          purpose: "Generate period-end reports"
+
+        - step: 4
+          name: "Rollforward to Next Period"
+          files:
+            - api-conso-period-endpoints.yaml
+          purpose: "Create next period with opening balances"
+
+  # ============================================================================
+  # HANDLER SUMMARY BY CATEGORY
+  # ============================================================================
+  handler_summary:
+    total_handlers: 525
+    documented_handlers: 242
+    coverage_percentage: "46.1%"
+    total_files: 18
+    note: |
+      The 525 total handlers represent all registered message handlers in the system.
+      The 242 documented handlers cover core consolidation functionality.
+      Remaining 283 handlers cover administration, security, imports, exports, etc.
+      Updated: 2025-12-04 (Phase 4 API Accuracy verification)
+
+    by_category:
+      foundation:
+        files: 3
+        handlers: 16
+        percentage: "6.6%"
+
+      master_data:
+        files: 6
+        handlers: 89
+        percentage: "36.8%"
+
+      ownership_structure:
+        files: 1
+        handlers: 3
+        percentage: "1.2%"
+
+      data_entry:
+        files: 3
+        handlers: 64
+        percentage: "26.4%"
+
+      consolidation_config:
+        files: 3
+        handlers: 31
+        percentage: "12.8%"
+
+      data_transfer:
+        files: 2
+        handlers: 15
+        percentage: "6.2%"
+
+      reporting:
+        files: 1
+        handlers: 24
+        percentage: "9.9%"
+
+    by_file:
+      - file: api-data-entry-endpoints.yaml
+        handlers: 27
+      - file: api-dimension-endpoints.yaml
+        handlers: 26
+      - file: api-reports-endpoints.yaml
+        handlers: 24
+      - file: api-account-endpoints.yaml
+        handlers: 20
+      - file: api-adjustment-endpoints.yaml
+        handlers: 20
+      - file: api-elimination-endpoints.yaml
+        handlers: 18
+      - file: api-interco-endpoints.yaml
+        handlers: 17
+      - file: api-flow-endpoints.yaml
+        handlers: 16
+      - file: api-consolidation-endpoints.yaml
+        handlers: 12
+      - file: api-currency-endpoints.yaml
+        handlers: 12
+      - file: api-import-data-endpoints.yaml
+        handlers: 12
+      - file: api-company-endpoints.yaml
+        handlers: 8
+      - file: api-conso-period-endpoints.yaml
+        handlers: 7
+      - file: api-event-endpoints.yaml
+        handlers: 7
+      - file: api-validation-rule-endpoints.yaml
+        handlers: 6
+      - file: api-job-monitoring-endpoints.yaml
+        handlers: 4
+      - file: api-ownership-endpoints.yaml
+        handlers: 3
+      - file: api-export-data-endpoints.yaml
+        handlers: 3
+      - file: api-common-types.yaml
+        handlers: 0
+
+  # ============================================================================
+  # QUICK REFERENCE - COMMON TASKS
+  # ============================================================================
+  quick_reference:
+    description: "Common tasks and which files to use"
+
+    tasks:
+      - task: "Execute a consolidation"
+        primary: api-consolidation-endpoints.yaml
+        supporting:
+          - api-job-monitoring-endpoints.yaml
+          - api-event-endpoints.yaml
+
+      - task: "Enter local bundle data"
+        primary: api-data-entry-endpoints.yaml
+        supporting:
+          - api-account-endpoints.yaml
+          - api-flow-endpoints.yaml
+
+      - task: "Manage intercompany transactions"
+        primary: api-interco-endpoints.yaml
+        supporting:
+          - api-company-endpoints.yaml
+          - api-elimination-endpoints.yaml
+
+      - task: "Create adjustment journals"
+        primary: api-adjustment-endpoints.yaml
+        supporting:
+          - api-account-endpoints.yaml
+          - api-flow-endpoints.yaml
+
+      - task: "Import GL data"
+        primary: api-import-data-endpoints.yaml
+        supporting:
+          - api-job-monitoring-endpoints.yaml
+          - api-data-entry-endpoints.yaml
+
+      - task: "Import exchange rates"
+        primary: api-import-data-endpoints.yaml
+        supporting:
+          - api-currency-endpoints.yaml
+
+      - task: "Generate reports"
+        primary: api-reports-endpoints.yaml
+        supporting:
+          - api-job-monitoring-endpoints.yaml
+
+      - task: "Configure consolidation events"
+        primary: api-event-endpoints.yaml
+        supporting:
+          - api-account-endpoints.yaml
+          - api-flow-endpoints.yaml
+
+      - task: "Setup elimination rules"
+        primary: api-elimination-endpoints.yaml
+        supporting:
+          - api-account-endpoints.yaml
+          - api-interco-endpoints.yaml
+
+      - task: "Define validation rules"
+        primary: api-validation-rule-endpoints.yaml
+        supporting:
+          - api-account-endpoints.yaml
+          - api-flow-endpoints.yaml
+
+      - task: "Manage ownership structure"
+        primary: api-ownership-endpoints.yaml
+        supporting:
+          - api-company-endpoints.yaml
+          - api-conso-period-endpoints.yaml
+
+      - task: "Setup dimensions"
+        primary: api-dimension-endpoints.yaml
+        supporting:
+          - api-account-endpoints.yaml
+          - api-company-endpoints.yaml
+
+  # ============================================================================
+  # ENTITY TYPE MAPPINGS
+  # ============================================================================
+  entity_types:
+    description: "EntityVersion types used across handlers"
+
+    mappings:
+      - entity_type: "Company"
+        files:
+          - api-company-endpoints.yaml
+          - api-data-entry-endpoints.yaml
+          - api-interco-endpoints.yaml
+
+      - entity_type: "Account"
+        files:
+          - api-account-endpoints.yaml
+          - api-data-entry-endpoints.yaml
+          - api-adjustment-endpoints.yaml
+
+      - entity_type: "Flow"
+        files:
+          - api-flow-endpoints.yaml
+          - api-data-entry-endpoints.yaml
+
+      - entity_type: "Currency"
+        files:
+          - api-currency-endpoints.yaml
+
+      - entity_type: "ConsoPeriod"
+        files:
+          - api-conso-period-endpoints.yaml
+
+      - entity_type: "Ownership"
+        files:
+          - api-ownership-endpoints.yaml
+
+      - entity_type: "Journal"
+        files:
+          - api-adjustment-endpoints.yaml
+
+      - entity_type: "Elimination"
+        files:
+          - api-elimination-endpoints.yaml
+
+      - entity_type: "Event"
+        files:
+          - api-event-endpoints.yaml
+
+      - entity_type: "ValidationReportRule"
+        files:
+          - api-validation-rule-endpoints.yaml
+
+      - entity_type: "Dimension"
+        files:
+          - api-dimension-endpoints.yaml
+
+      - entity_type: "DimensionGroup"
+        files:
+          - api-dimension-endpoints.yaml
+
+      - entity_type: "DimensionCompanyGroup"
+        files:
+          - api-dimension-endpoints.yaml
+
+  # ============================================================================
+  # ACCESS RIGHTS REFERENCE
+  # ============================================================================
+  access_rights_overview:
+    description: "Access right patterns across the API"
+
+    patterns:
+      read_pattern: "{Entity}_Get{Entity}s"
+      write_pattern: "{Entity}_Manage{Entity}s"
+
+    examples:
+      - read: "Event_GetEvents"
+        write: "Event_ManageEvents"
+      - read: "Account_GetAccounts"
+        write: "Account_ManageAccounts"
+      - read: "Elimination_GetEliminations"
+        write: "Elimination_ManageEliminations"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    purpose: |
+      This index file serves as the master catalog for the Financial Consolidation
+      Agent API Knowledge Base. It enables AI agents to:
+
+      1. Navigate the documentation efficiently
+      2. Understand relationships between endpoints
+      3. Find relevant files for specific tasks
+      4. Follow proper workflow sequences
+      5. Identify cross-dependencies
+
+      The documentation covers the complete core consolidation workflow from
+      master data setup through period close and reporting.
+
+    coverage:
+      documented:
+        - Core consolidation execution
+        - Master data management (Company, Account, Flow, Currency, Dimension)
+        - Data entry (Local bundles, Intercompany, Adjustments)
+        - Process configuration (Events, Eliminations, Validation Rules)
+        - Data transfer (Import/Export)
+        - Reporting
+        - Job monitoring
+        - Period management
+        - Ownership structure
+
+      not_documented:
+        - Security and access control
+        - Audit logging
+        - System administration
+        - User management
+        - Workflow scheduling (beyond job monitoring)
+
+    related_documentation:
+      - "/docs/architecture/README.md"
+      - "/docs/EF_Migration/LINQ_to_EF_MigrationRules.md"
+      - "/CLAUDE.md"

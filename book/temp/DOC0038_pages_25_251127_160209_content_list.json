@@ -1,0 +1,1552 @@
+[
+    {
+        "type": "text",
+        "text": "So, nothing particular in this process.",
+        "bbox": [
+            112,
+            121,
+            480,
+            139
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Direct consolidation technique",
+        "text_level": 1,
+        "bbox": [
+            112,
+            153,
+            449,
+            170
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "By consolidating now carefully with the direct technique, we get the following consolidated accounts",
+        "bbox": [
+            112,
+            186,
+            879,
+            217
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/8ef5c861ce8ada6140513dc147c4478f6d9932b0814eedfcf13fbcdf6a2a2d46.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + A + B</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td>Equity value (A)</td><td>112</td><td>Result</td><td>50</td></tr><tr><td>Equity value (B)</td><td>24</td><td>Conso. Res.(A)</td><td>32</td></tr><tr><td></td><td></td><td>Conso. Res.(B)</td><td>4</td></tr><tr><td>Other assets</td><td>1,400</td><td>Other liabilities</td><td>650</td></tr></table>",
+        "bbox": [
+            266,
+            234,
+            750,
+            338
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "text_level": 2,
+        "bbox": [
+            114,
+            346,
+            177,
+            360
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A)  \\(= {32} = {40}\\% {}^{ * }\\left\\lbrack  {{200} + {100} + {30}}\\right\\rbrack   - {100}\\)",
+            "- Consolidated reserves (B)  \\(= 4 = 12\\%\\)  * [100 + 80 + 20] - 40% * 50",
+            "Equity value (A)  \\(= 112 = 40\\%\\)  \\* [200 + 100 + 30] - 40% \\* 50",
+            "Equity value (B)  \\(= 24 = 12\\%\\)  \\* [100+80+20]"
+        ],
+        "bbox": [
+            150,
+            376,
+            866,
+            492
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "On the Consolidated reserves side, nothing new to explain. We just apply the well-known formulas.",
+        "bbox": [
+            112,
+            507,
+            877,
+            539
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "On the Equity values side, two remarks must be mentioned",
+        "bbox": [
+            112,
+            555,
+            692,
+            571
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- First, the percentage used to evaluate the equity is the group percentage. We could say it is the integration percentage but the  \\(3^{\\text{rd}}\\)  Parties percentage being zero, group and integration percentages are equal.",
+            "- Second, for company A, the equity value is calculated on what is called the \"net equity\" which is the equity less the financial investments in the consolidated companies."
+        ],
+        "bbox": [
+            150,
+            587,
+            877,
+            715
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "When taking into account these two remarks, we get the same consolidated accounts as those obtained by the stage technique.",
+        "bbox": [
+            112,
+            731,
+            877,
+            765
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            368,
+            83
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1.2 Equity method company owned by a global integration company",
+        "text_level": 1,
+        "bbox": [
+            103,
+            121,
+            855,
+            169
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We consider the following group where parent company P owns  \\(80\\%\\)  of shares of company A which is consolidated by the global integration method.",
+        "bbox": [
+            101,
+            190,
+            726,
+            238
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This company owns  \\(30\\%\\)  of shares of company B for which the equity method will be applied.",
+        "bbox": [
+            101,
+            254,
+            724,
+            288
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We will first consolidate the structure by the stage technique, considering company A as a consolidating company and B being consolidated by the equity method with  \\(30\\%\\) .",
+        "bbox": [
+            103,
+            303,
+            724,
+            352
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/58baee2d4e354ac6c44ca68b2918cf838df4b21aadbc61ab2e572f4a3767f9ff.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            735,
+            185,
+            830,
+            355
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Once consolidated figures  \\(A + B\\)  are produced, company P will consolidate them by the global integration method.",
+        "bbox": [
+            101,
+            367,
+            870,
+            402
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This process can be done without questioning ourselves about possible mistakes. It is rather easy, with no traps.",
+        "bbox": [
+            101,
+            415,
+            870,
+            450
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Then, we will proceed the consolidation again by using the direct technique, but at the same time we will give some information to avoid some traps in this case.",
+        "bbox": [
+            101,
+            462,
+            870,
+            513
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Stage consolidation technique",
+        "text_level": 1,
+        "bbox": [
+            103,
+            528,
+            438,
+            544
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We start by considering companies A and B accounts",
+        "bbox": [
+            103,
+            560,
+            622,
+            578
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/ea3ce913c9bd1b5db854a59611856aa934359f4a088bf8e81c540a82b7604e6f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A</td></tr><tr><td rowspan=\"3\">Fin. Inv./B</td><td rowspan=\"3\">50</td><td>Capital 200</td></tr><tr><td>Reserves 100</td></tr><tr><td>Result 30</td></tr><tr><td>Other assets</td><td>550</td><td>Other liabilities 270</td></tr></table>",
+        "bbox": [
+            105,
+            591,
+            466,
+            666
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/e5983649fb5da814e8ee9a0c76a9b91f6c06710bc9fab97d57f332fd306eab98.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">B</td></tr><tr><td></td><td>Capital 100</td></tr><tr><td></td><td>Reserves 80</td></tr><tr><td></td><td>Result 20</td></tr><tr><td>Other assets</td><td>500 Other liabilities 300</td></tr></table>",
+        "bbox": [
+            508,
+            591,
+            866,
+            666
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "and by consolidating them we get",
+        "bbox": [
+            103,
+            682,
+            440,
+            699
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/ebd136bdafebdf3b598157805a9b4415437ad6ee272032ed48c552ff73d6132c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">A+B</td></tr><tr><td rowspan=\"6\">Equity value</td><td>60</td></tr><tr><td>Capital 200</td></tr><tr><td>Reserves 100</td></tr><tr><td>Result 30</td></tr><tr><td>Conso. Res. 10</td></tr><tr><td>Minority int. 0</td></tr><tr><td rowspan=\"2\">Other assets</td><td>550</td></tr><tr><td>Other liabilities 270</td></tr></table>",
+        "bbox": [
+            315,
+            710,
+            675,
+            812
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            103,
+            827,
+            169,
+            841
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "- Consolidated reserves  \\(= 10 = 30\\%\\) \\(\\left[100 + 80 + 20\\right] - 50\\)",
+        "bbox": [
+            141,
+            855,
+            764,
+            875
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            438,
+            73,
+            855,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Minority interests are 0 because B is an equity method company",
+            "Equity value  \\(= 60 = 30\\%\\)  \\* [100 + 80 +20]",
+            "- Other assets and liabilities are those from A because of the equity method"
+        ],
+        "bbox": [
+            152,
+            121,
+            879,
+            218
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "by just applying the definitions we have explained in Part 2.",
+        "bbox": [
+            114,
+            234,
+            697,
+            250
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We can now consolidate one stage higher, at company P level, with the following accounts",
+        "bbox": [
+            112,
+            266,
+            879,
+            299
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/48e5bf1cac9a5cd9855413a3ad87d331b7e65f2f75c71ca236b45c8be4605769.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">150</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>Other assets</td><td>1,350</td><td>Other liabilities</td><td>650</td></tr></table>",
+        "bbox": [
+            288,
+            312,
+            697,
+            388
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "giving the final consolidated accounts",
+        "bbox": [
+            114,
+            410,
+            480,
+            428
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/2129baab4f0455a0124c2d89ebc7504ef0a45c84730b91980f340985609cba30.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + [A + B]</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td>Equity value</td><td>60</td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>Conso. Res.</td><td>122</td></tr><tr><td></td><td></td><td>Minority int.</td><td>68</td></tr><tr><td>Other assets</td><td>1,900</td><td>Other liabilities</td><td>920</td></tr></table>",
+        "bbox": [
+            288,
+            448,
+            697,
+            552
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            114,
+            555,
+            177,
+            570
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves  \\(= {122} = {80}\\%  * \\left\\lbrack  {{200} + {100} + {30} + {10}}\\right\\rbrack   - {150}\\)",
+            "Minority interests  \\(= 68 = 20\\%\\)  \\* [200 + 100 + 30 + 10]",
+            "- Equity value, other assets and other liabilities are now processed as usual by the global integration method."
+        ],
+        "bbox": [
+            152,
+            586,
+            877,
+            684
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "So, nothing special to say about this stage technique that works perfectly well.",
+        "bbox": [
+            112,
+            700,
+            877,
+            731
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Direct consolidation technique",
+        "text_level": 1,
+        "bbox": [
+            114,
+            747,
+            449,
+            763
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This consolidation technique requires to be more careful.",
+        "bbox": [
+            114,
+            780,
+            663,
+            796
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "First, we have to calculate the indirect financial percentage for companies A and B which are respectively  \\(80\\%\\)  for A and  \\(24\\% = 80\\%\\) \\(30\\%\\)  for B. That's indeed the percentage we will use to calculate the group part in the Equity of company B.",
+        "bbox": [
+            112,
+            812,
+            881,
+            878
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            68,
+            366,
+            83
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "On the other hand, let's take temporarily the place of the  \\(3^{\\text{rd}}\\)  Parties which are present as shareholders of company A. It is clear that the value of their shares depends on  \\(30\\%\\)  of the value of B. Moreover, if B paid dividends, these  \\(3^{\\text{rd}}\\)  Parties would receive indirectly  \\(6\\% = 20\\% \\times 30\\%\\)  of them.",
+        "bbox": [
+            101,
+            134,
+            872,
+            202
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "That means we have to consider the existence of a minority interest percentage of  \\(6\\%\\)  in company B, besides the fact that this company is consolidated with the equity method.",
+        "bbox": [
+            101,
+            216,
+            872,
+            266
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Here are the consolidated accounts by applying the direct technique and we can see there are the same as the ones we obtained by the stage consolidation.",
+        "bbox": [
+            101,
+            279,
+            872,
+            330
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/082f3198d11f89e5ca2276368840a67167bc7c731d385090da4080d3b8e50e51.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P +</td><td colspan=\"2\">A + B</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td>Equity value</td><td>60</td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>Conso. Res.(A)</td><td>114</td></tr><tr><td></td><td></td><td>Conso. Res.(B)</td><td>8</td></tr><tr><td></td><td></td><td>Minority int. (A)</td><td>56</td></tr><tr><td></td><td></td><td>Minority int. (B)</td><td>12</td></tr><tr><td>Other assets</td><td>1,900</td><td>Other liabilities</td><td>920</td></tr></table>",
+        "bbox": [
+            298,
+            348,
+            724,
+            478
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Here are the corresponding comments",
+        "bbox": [
+            103,
+            489,
+            483,
+            506
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 114 = 80% * [200 + 100 + 30] - 150",
+            "- Consolidated reserves (B)  \\(= 8 = 24\\%\\)  * [100 + 80 + 20] - 80% * 50",
+            "Minority interests (A)  \\(= 56 = 20\\%\\)  \\* [200 + 100 + 30] - 20% \\* 50",
+            "Minority interests (B) = 12 = 6% * [100 + 80 + 20]",
+            "Equity value  \\(= 60 = [24\\% + 6\\%]^{*} [100 + 80 + 20]\\)"
+        ],
+        "bbox": [
+            141,
+            519,
+            858,
+            667
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The Consolidated reserves of B are calculated with the indirect financial percentage in the equity and the financial percentage in A, just as explained in Part 2.",
+        "bbox": [
+            101,
+            680,
+            872,
+            730
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Minority interests in A are calculated on the basis of its equity less the financial investments.",
+        "bbox": [
+            101,
+            746,
+            870,
+            778
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The equity value of company B is calculated on the basis of its equity in which we apply the indirect financial percentage (24%) plus the  \\(3^{\\text{rd}}\\)  Parties percentage (6%).",
+        "bbox": [
+            101,
+            793,
+            870,
+            843
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The addition of both percentages is called the integration percentage, which is equal to  \\(30\\%\\) . This definition is to be compared to a global integration",
+        "bbox": [
+            101,
+            843,
+            870,
+            878
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            438,
+            70,
+            855,
+            86
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "company for which we apply also an integration percentage on all assets and liabilities. This integration percentage is  \\(100\\%\\)  equal to the group percentage plus the  \\(3^{\\text{rd}}\\)  Parties percentage.",
+        "bbox": [
+            114,
+            120,
+            881,
+            168
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "What happens if we don't apply this particularity?",
+        "bbox": [
+            114,
+            183,
+            601,
+            200
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The consolidated accounts will remain in balance and unfortunately we will not get a red light saying something is wrong.",
+        "bbox": [
+            114,
+            215,
+            881,
+            249
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "However the balance sheet will contain two errors, an equity value equal to  \\(48 = 24\\%\\)  * 200 instead of 60, so a difference of 12, and minority interests missing these  \\(6\\%\\)  and equal to 12, so the same difference on both sides of the balance sheet.",
+        "bbox": [
+            114,
+            263,
+            883,
+            329
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "1.3 Proportional integration company owned by a global integration method company",
+        "text_level": 1,
+        "bbox": [
+            116,
+            363,
+            836,
+            410
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "image",
+        "img_path": "images/2cb6bf496bcc2c14118f1b93da4b80e245d7f294ca147198273649ad8e9e7b80.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            114,
+            416,
+            207,
+            586
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This time we consider company B owned at  \\(50\\%\\)  by company A and consolidated with the proportional consolidation method.",
+        "bbox": [
+            218,
+            445,
+            881,
+            480
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Company A is consolidated by the global integration method.",
+        "bbox": [
+            218,
+            494,
+            809,
+            513
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Again, we will see that the direct technique implies some specificity.",
+        "bbox": [
+            218,
+            527,
+            881,
+            561
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Staae consolidationtechniaue",
+        "text_level": 2,
+        "bbox": [
+            114,
+            607,
+            447,
+            624
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We start by consolidating company B by the proportional method in company A on the basis of the following statutory accounts",
+        "bbox": [
+            114,
+            639,
+            881,
+            673
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/1c4c8d859b1e27549a88a382ec97e81fccdb9384e2b393d267eb7695a96841e9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A</td></tr><tr><td rowspan=\"3\">Fin. Inv./B</td><td rowspan=\"3\">50</td><td>Capital 200</td></tr><tr><td>Reserves 100</td></tr><tr><td>Result 30</td></tr><tr><td>Other assets</td><td>550</td><td>Other liabilities 270</td></tr></table>",
+        "bbox": [
+            116,
+            683,
+            493,
+            759
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/a35703755b8ffec1fd2378c896103cefd9fc7afa88e0b8ec8de9df7b5c20346b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">B</td></tr><tr><td></td><td>Capital 100</td></tr><tr><td></td><td>Reserves 80</td></tr><tr><td></td><td>Result 20</td></tr><tr><td>Other assets</td><td>500</td></tr><tr><td>Other liabilities</td><td>300</td></tr></table>",
+        "bbox": [
+            512,
+            683,
+            894,
+            759
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "image",
+        "img_path": "images/8824e4ad495ee21a7bcedc6da2a9a2819d5bf334a152ffb9f3ee3d94757fc40e.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            305,
+            772,
+            686,
+            863
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            65,
+            372,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            103,
+            121,
+            169,
+            134
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves  \\(= 50 = 50\\%\\) \\(\\star\\) \\([100 + 80 + 20] - 50\\)",
+            "Other assets  \\(= 800 = 550 + 50\\%\\)  \\* 500",
+            "Other liabilities  \\(= 420 = 270 + 50\\%\\)  300"
+        ],
+        "bbox": [
+            139,
+            149,
+            764,
+            234
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We then consolidate  \\(A + B\\)  in  \\(P\\)  by the global integration method on the basis of the following statutory accounts for  \\(P\\)",
+        "bbox": [
+            101,
+            249,
+            870,
+            282
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/296106296721bb6203e630623b39d115581fd3be803b3d8e582e2dec206cf815.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">200</td><td>Capital</td><td>500</td></tr><tr><td>Reserves</td><td>300</td></tr><tr><td>Result</td><td>50</td></tr><tr><td>Other assets</td><td>1,300</td><td>Other liabilities</td><td>650</td></tr></table>",
+        "bbox": [
+            258,
+            297,
+            741,
+            373
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "giving",
+        "bbox": [
+            103,
+            379,
+            169,
+            395
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/4d77683187dcdff3597c18d0a14fef833298e46a2a66d2da01a3727fd85d9fe0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + [A + B]</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td>Result</td><td>50</td></tr><tr><td></td><td>Conso. Res.</td><td>104</td></tr><tr><td></td><td>Minority int.</td><td>76</td></tr><tr><td>Other assets</td><td>2,100</td><td>1,070</td></tr></table>",
+        "bbox": [
+            258,
+            403,
+            739,
+            505
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "with",
+        "bbox": [
+            103,
+            524,
+            152,
+            538
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves  \\(= 104 = 80\\%\\) \\(\\left[200 + 100 + 30 + 50\\right] - 200\\)",
+            "Minority interests  \\(= 76 = 20\\%\\)  \\* [200 + 100 + 30 +50]",
+            "- Other assets and liabilities are just the addition of corresponding accounts"
+        ],
+        "bbox": [
+            141,
+            551,
+            870,
+            651
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Direct consolidation technique",
+        "text_level": 1,
+        "bbox": [
+            103,
+            668,
+            440,
+            684
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The group percentage of company B is  \\(40\\% = 80\\%\\)  and like the previous equity method case, the  \\(3^{\\text{rd}}\\)  Parties with their  \\(20\\%\\)  in company A have also a financial interest in B for  \\(10\\% = 20\\%\\)",
+        "bbox": [
+            103,
+            697,
+            870,
+            749
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The same principle applies here by calculating an integration percentage for company B equal to group percentage  \\((40\\%) + 3^{\\text{rd}}\\)  Parties percentage  \\((10\\%)\\) .",
+        "bbox": [
+            103,
+            763,
+            870,
+            797
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "By doing this we get the following consolidated accounts",
+        "bbox": [
+            103,
+            812,
+            656,
+            829
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            436,
+            71,
+            855,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/7e63e8850d74c541be25d39088ffb2170ebd7eefb5c75ad391a47830bb838e59.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + A + B</td></tr><tr><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td>Result</td><td>50</td></tr><tr><td></td><td>Conso. Res.(A)</td><td>64</td></tr><tr><td></td><td>Conso. Res.(B)</td><td>40</td></tr><tr><td></td><td>Minority int.(A)</td><td>56</td></tr><tr><td></td><td>Minority int.(B)</td><td>20</td></tr><tr><td>Other assets</td><td>2,100</td><td>1,070</td></tr></table>",
+        "bbox": [
+            266,
+            117,
+            750,
+            250
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "in which",
+        "bbox": [
+            112,
+            266,
+            201,
+            280
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves(A) = 64 = 80% * [200 + 100 + 30] - 200",
+            "- Consolidated reserves(B) = 40 = 40% * [100 + 80 + 20] - 80% * 50",
+            "Minority interests(A)  \\(= 56 = 20\\%\\)  \\* [200 + 100 + 30] - 20% \\* 50",
+            "Minority interests(B) = 20 = 10% * [100 + 80 + 20]",
+            "- Other assets  \\(= {2100} = {1300} + {550} + {50}\\%  * {500}\\)",
+            "Other liabilities  \\(= 1070 = 650 + 270 + 50\\%\\)  300"
+        ],
+        "bbox": [
+            150,
+            297,
+            875,
+            473
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The conclusion is similar to the one concerning company B as an equity method company. There are minority interests to calculate in the equity of B and again, we have to consider the integration percentage as  \\(40\\% + 10\\%\\) . If we forget these  \\(10\\%\\)  of Minority interests and, if in the same time, we apply the proportional method with  \\(40\\%\\)  instead of  \\(50\\%\\) , the consolidated balance sheet will be in balance and no \"red light\" will tell something is wrong.",
+        "bbox": [
+            112,
+            489,
+            879,
+            605
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "1.4 An equity method company owns shares of a global integration method company",
+        "text_level": 1,
+        "bbox": [
+            114,
+            637,
+            866,
+            684
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This case considers company A consolidated with the global integration method and company B with the equity method. Moreover, B owns  \\(20\\%\\)  shares of A.",
+        "bbox": [
+            112,
+            703,
+            540,
+            782
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/324f91f470c8df58bce428817d00a125fbd612362f956a8ece6e0ed8b38d5789.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            550,
+            699,
+            851,
+            802
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The consolidation of this structure will show how easy it is to apply the direct technique while the stage technique brings some difficulties.",
+        "bbox": [
+            112,
+            816,
+            879,
+            850
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We will start by using the direct technique.",
+        "bbox": [
+            112,
+            863,
+            531,
+            882
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            372,
+            80
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Direct consolidation technique",
+        "text_level": 1,
+        "bbox": [
+            105,
+            120,
+            440,
+            137
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We provide the statutory accounts of each company, reflecting the above structure",
+        "bbox": [
+            105,
+            152,
+            871,
+            184
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/a2cceef8b2f35d9183bf7c8c6bcf318828722888a78a2c4aceb39c945c8044f3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Fin. Inv./A</td><td>200</td><td>Capital</td><td>500</td></tr><tr><td>Fin. Inv./B</td><td>70</td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>50</td></tr><tr><td>Other assets</td><td>1,230</td><td>Other liabilities</td><td>650</td></tr></table>",
+        "bbox": [
+            240,
+            187,
+            732,
+            273
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/5867b2a2765ff4bc9a70c08b5468b0a724a78dba90db174355f606f661359109.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A</td></tr><tr><td></td><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td></td><td>Reserves</td><td>100</td></tr><tr><td></td><td></td><td>Result</td><td>30</td></tr><tr><td>Other assets</td><td>600</td><td>Other liabilities</td><td>270</td></tr></table>",
+        "bbox": [
+            240,
+            292,
+            732,
+            377
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/b79d595e18755c66bd835178821f4b63b4f336a4288ac483b10910a7999487a0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">B</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">50</td><td>Capital</td><td>100</td></tr><tr><td>Reserves</td><td>80</td></tr><tr><td>Result</td><td>20</td></tr><tr><td>Other assets</td><td>450</td><td>Other liabilities</td><td>300</td></tr></table>",
+        "bbox": [
+            240,
+            392,
+            732,
+            475
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "which are followed immediately by the consolidated figures and the necessary comments relevant to the direct technique used. Of course, it will be noticed that the indirect percentage in A is  \\(88\\% = 80\\% + 40\\% \\times 20\\%\\)  and so  \\(12\\%\\)  of  \\(3^{\\text{rd}}\\)  Parties percentage. Company B is consolidated by the equity method with a percentage of  \\(40\\%\\) .",
+        "bbox": [
+            105,
+            490,
+            871,
+            572
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/63feebb16286ab20bc3b6beca9222451bdf67e67ece4dd04c89598fa7ec4260f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + A + B</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td>Equity value(B)</td><td>60</td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>Conso. Res.(A)</td><td>70.4</td></tr><tr><td></td><td></td><td>Conso. Res.(B)</td><td>10</td></tr><tr><td></td><td></td><td>Minority int.(A)</td><td>39.6</td></tr><tr><td>Other assets</td><td>1,830</td><td>Other liabilities</td><td>920</td></tr></table>",
+        "bbox": [
+            240,
+            588,
+            732,
+            721
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 70.4 = 88% * [200 + 100 + 30] - 200 - 40% * 50",
+            "- Consolidated reserves (B)  \\(= 10 = 40\\%\\)  [100 + 80 + 20] - 70",
+            "Minority interests (A) = 39.6 = 12% \\* [200 + 100 + 30]",
+            "Equity value (B) = 60 = 40%  \\(\\star\\)  [100 + 80 + 20 - 50]"
+        ],
+        "bbox": [
+            143,
+            743,
+            867,
+            877
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            438,
+            71,
+            856,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For this last account, we consider the net equity of company B which is the equity less the financial investments in consolidated companies.",
+        "bbox": [
+            109,
+            120,
+            882,
+            154
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Staae consolidation techniaue",
+        "text_level": 2,
+        "bbox": [
+            111,
+            167,
+            447,
+            185
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The difficult issue with this structure is not the fact that company B is consolidated by the equity method. The real problem is the difficulty to identify stages in this structure.",
+        "bbox": [
+            109,
+            200,
+            884,
+            250
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The stage technique approach supposes to consolidate two companies at a time, starting from the bottom of the structure until we remain with the parent company only.",
+        "bbox": [
+            109,
+            265,
+            882,
+            315
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We could start with P and A and than P and B but then we would remain with a  \\(20\\%\\)  participation from B into A not consolidated. But what can we do else?",
+        "bbox": [
+            109,
+            328,
+            882,
+            363
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let's try the following.",
+        "bbox": [
+            111,
+            377,
+            329,
+            394
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Staee 1 : P consolidates  \\(80\\%\\)  of A by the global integration method",
+        "bbox": [
+            109,
+            409,
+            777,
+            427
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This consolidation produces the following consolidated accounts",
+        "bbox": [
+            109,
+            441,
+            734,
+            459
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/827f05709f33306be97e69c61f76bb4c2b6d46e5c2a6b89d2cbde40144748e5e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + 80% A</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td>Fin. Inv./B</td><td>70</td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>Conso. Res.(A)</td><td>64</td></tr><tr><td></td><td></td><td>Minority int.(A)</td><td>66</td></tr><tr><td>Other assets</td><td>1,830</td><td>Other liabilities</td><td>920</td></tr></table>",
+        "bbox": [
+            239,
+            472,
+            736,
+            590
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            111,
+            603,
+            177,
+            618
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A)  \\(= {64} = {80}\\%  * \\left\\lbrack  {{200} + {100} + {30}}\\right\\rbrack   - {200}\\)",
+            "Minority interests (A)  \\(= 66 = 20^{*}\\)  [200 + 100 + 30]"
+        ],
+        "bbox": [
+            149,
+            634,
+            835,
+            684
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "And of course, these consolidated accounts still contain the financial investment on company B for 70.",
+        "bbox": [
+            109,
+            699,
+            880,
+            733
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Stage 2 : B consolidates  \\(20\\%\\)  of A by the equity method",
+        "bbox": [
+            109,
+            748,
+            665,
+            765
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/1b5fce533ee520e203838f6aa0db236d6de10c371b7ee928ef14d312f5accb2d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">B + 20% A</td></tr><tr><td></td><td>Capital</td><td>100</td></tr><tr><td>Equity value(A)</td><td>66</td><td>Reserves</td></tr><tr><td></td><td></td><td>Result</td></tr><tr><td></td><td></td><td>Conso. Res.(A)</td></tr><tr><td>Other assets</td><td>450</td><td>Other liabilities</td></tr><tr><td></td><td></td><td>300</td></tr></table>",
+        "bbox": [
+            239,
+            779,
+            734,
+            880
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            64,
+            372,
+            81
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "No particular problem with this consolidation where",
+        "bbox": [
+            103,
+            118,
+            610,
+            137
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Consolidated reserves (A)  \\(= 16 = 20\\%\\)  [200 + 100 + 30] - 50",
+            "Equity value (A)  \\(= 66 = 20\\%\\)  \\* [200 + 100 + 30]"
+        ],
+        "bbox": [
+            141,
+            147,
+            809,
+            200
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Staae 3 : [P+80%A] consolidates 40% of [B+20%A] bv the eaiity method",
+        "bbox": [
+            103,
+            216,
+            838,
+            232
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "And again nothing particular in this final consolidated balance sheet",
+        "bbox": [
+            103,
+            248,
+            766,
+            265
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/f1d8ed900f50ed792daea017e7d53a64a5896fbe1ea306a2f2cd715ff071e700.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">[P + 80% A] + 40% [B + 20% A]</td></tr><tr><td></td><td></td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td>Equity value(B+20%A)</td><td>86.4</td><td>Result</td><td>50</td></tr><tr><td></td><td></td><td>Conso. Res.(A)</td><td>64</td></tr><tr><td></td><td></td><td>Conso. Res.(B+20%A)</td><td>16.4</td></tr><tr><td></td><td></td><td>Minority int.(A)</td><td>66</td></tr><tr><td>Other assets</td><td>1,830</td><td>Other liabilities</td><td>920</td></tr></table>",
+        "bbox": [
+            163,
+            275,
+            807,
+            408
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "text_level": 2,
+        "bbox": [
+            105,
+            426,
+            171,
+            440
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) are just coming from the \"pre\" consolidated figures of  \\([P + 80\\% A]\\) . They are part of the consolidating entity reserves.",
+            "- Consolidated reserves  \\((\\mathrm{B} + 20\\% \\mathrm{A}) = 16.4 = 40\\%\\)  [100 + 80 + 20 + 16] - 70",
+            "Equity value  \\((\\mathsf{P} + 80\\% \\mathsf{A}) = 86.4 = 40\\%\\)  [100+80+20+16]"
+        ],
+        "bbox": [
+            141,
+            440,
+            872,
+            572
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "But this final consolidated balance sheet is not the same as the one produced by the direct technique!",
+        "bbox": [
+            103,
+            585,
+            875,
+            620
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The difference on the equity value is 26.4 higher and the minority interests are also higher for the same amount, but even if the consolidated reserves are the same with an amount of 80.4.",
+        "bbox": [
+            103,
+            633,
+            875,
+            683
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Which approach is wrong?",
+        "bbox": [
+            105,
+            699,
+            372,
+            715
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Let's consider first the Minority interests account.",
+        "bbox": [
+            105,
+            730,
+            586,
+            748
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The group has an indirect financial percentage of  \\(88\\%\\)  in company A which is controlled and as such, consolidated by the global integration method. This gives  \\(12\\%\\)  of minority interests. In the stage 1 approach, we have considered a global integration of A with  \\(80\\%\\) . So  \\(8\\%\\)  of company A equity are given to the  \\(3^{\\text{rd}}\\)  Parties instead of keeping them on group side and",
+        "bbox": [
+            103,
+            762,
+            875,
+            844
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n8 \\% * [ 200 + 100 + 30 ] = 26.4\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            330,
+            857,
+            644,
+            875
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            438,
+            70,
+            855,
+            86
+        ],
+        "page_idx": 9
+    }
+]

@@ -1,0 +1,488 @@
+Topics:
+Interface Navigation, Reporting and Analysis, Wildcard Usage, Data Formatting
+
+Keywords:
+Financial Consolidation, Interface Navigation, Report Generation, Wildcards, CSV Format, Line Types, User Settings, Data Integration
+
+Summary:
+The provided documents cover various aspects of using the Financial Consolidation application. They detail how to navigate the interface, generate reports, use wildcards for efficient searching, and format data in CSV files. Specific sections include descriptions of different line types used in reports, procedures for launching and saving reports, user settings customization, and the use of wildcards in queries. These documents aim to enhance user understanding and efficiency in handling financial data consolidation tasks.
+
+Contents:
+
+Question: What are the different Line Types in User Reports?
+Answer: There are nine different Line Types in User Reports: Account, Calculated Account, Text, Page Break, Header, Flow, Calculated Flow, Summation, and Cash-Flow. Only Text and Page Break are used in all User Report Types.
+
+Question: How can wildcards be used in Financial Consolidation?
+Answer: Wildcards are special characters used to query values. '*' matches any number of characters, and '?' matches a single character in a specific location. They help in searching for accounts, consolidation periods, etc.
+
+Question: How can you search for all accounts starting with '211'?
+Answer: Use the wildcard '211*' to show all accounts starting with 211, such as 211000, 211800, and 211900.
+
+Question: How can you display consolidation periods with 'ACT' in them?
+Answer: Use the wildcard '*ACT*' to show all consolidation periods containing the text ACT, regardless of position.
+
+Question: How can you show the first sequence of all consolidation periods?
+Answer: Use the wildcard '*001' to show the first sequence of all consolidation periods.
+
+Question: What does the selection pop-up window allow you to do?
+Answer: The selection pop-up window allows you to enter a code or description and use wildcards to refine search criteria. Select the value you want and it will be inserted in the field.
+
+Question: How do you search with a code using wildcards?
+Answer: Enter the code followed by an asterisk (e.g., '23*'), click to display results, select the desired account, and confirm.
+
+Question: How do you search with a description using wildcards?
+Answer: Enter an asterisk, then the word, and another asterisk (e.g., '*title*'), click to display results, select the desired account, and confirm.
+
+Question: How can reports be launched in Financial Consolidation?
+Answer: Reports can be launched as PDF or Excel files. Click the report button to generate a hyperlink to the report, which remains available until you leave the page.
+
+Question: How do you launch a report as a PDF file?
+Answer: Select PDF format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: How do you launch a report as an Excel file?
+Answer: Select XLS or XLSX format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: What is a CSV file format?
+Answer: A CSV (comma-separated values) file stores data in a table format, with fields separated by commas. It is used to move tabular data between programs.
+
+Question: What are common delimiters in CSV files?
+Answer: Common delimiters in CSV files include comma, tab, colon, vertical bar, and space. Fields containing special characters must be enclosed in double quotes.
+
+Question: How do you format fields containing delimiters in CSV files?
+Answer: Fields containing delimiters, quotes, or line-breaks must be enclosed in double quotes. A quote within a field must be preceded by an additional quote.
+
+Question: What information can you edit in the User Settings page?
+Answer: You can view your profile, edit your language, and change your working consolidation period in the User Settings page.
+
+Question: How do you access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or the Current/Reference consolidation period at the top of any page.
+
+Question: How can you access the User Settings page through the profile icon?
+Answer: Click the Profile icon, select User Profile, and the User Settings page will display both your profile and consolidation period selection areas.
+
+Question: How can you access the User Settings page through a consolidation period?
+Answer: Click the Current or Reference consolidation period at the top of the page to access the User Settings page, displaying only the period selection area.
+
+Question: How do you select a different consolidation period?
+Answer: Access the User Settings page, hide locked periods if necessary, and click the desired period to set it as current or reference.
+
+Question: How can you change the application or data language?
+Answer: On the User Settings page, select the desired language from the Application or Data Language drop-down menu and confirm the selection.
+
+Question: How do you download generated PDF files?
+Answer: Select the Download generated PDF files option on the User Settings page accessed through the Profile icon and confirm the download.
+
+Question: What tasks can be managed on the Workflow page?
+Answer: The Workflow page allows you to view tasks assigned to you, manage them, and see their descriptions, owners, start and end dates, and status.
+
+Question: How can you display tasks in a Gantt chart?
+Answer: Use the Gantt timeline and Gantt scale drop-down fields on the Workflow page to display tasks in a Gantt chart.
+
+Question: How do you show tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+
+Question: How can you export tasks to Excel?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: How do you start work on a task?
+Answer: Select a company from the table, choose a task from the Task list, change the status to In progress, and click to navigate to the task page or start the task.
+
+Question: How do you complete a task?
+Answer: Update the status to Completed in the Task details panel, optionally add comments, and confirm. An automatic email will be sent to the approver.
+
+Question: How do you reject a task?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How can authorized users use the Status Board?
+Answer: Authorized users can generate status reports, run validation rules, review error details, and update data entry status using the Status Board.
+
+Question: What are the different Line Types in User Reports?
+Answer: There are nine different Line Types in User Reports: Account, Calculated Account, Text, Page Break, Header, Flow, Calculated Flow, Summation, and Cash-Flow. Only Text and Page Break are used in all User Report Types.
+
+Question: How can wildcards be used in Financial Consolidation?
+Answer: Wildcards are special characters used to query values. '*' matches any number of characters, and '?' matches a single character in a specific location. They help in searching for accounts, consolidation periods, etc.
+
+Question: How can you search for all accounts starting with '211'?
+Answer: Use the wildcard '211*' to show all accounts starting with 211, such as 211000, 211800, and 211900.
+
+Question: How can you display consolidation periods with 'ACT' in them?
+Answer: Use the wildcard '*ACT*' to show all consolidation periods containing the text ACT, regardless of position.
+
+Question: How can you show the first sequence of all consolidation periods?
+Answer: Use the wildcard '*001' to show the first sequence of all consolidation periods.
+
+Question: What does the selection pop-up window allow you to do?
+Answer: The selection pop-up window allows you to enter a code or description and use wildcards to refine search criteria. Select the value you want and it will be inserted in the field.
+
+Question: How do you search with a code using wildcards?
+Answer: Enter the code followed by an asterisk (e.g., '23*'), click to display results, select the desired account, and confirm.
+
+Question: How do you search with a description using wildcards?
+Answer: Enter an asterisk, then the word, and another asterisk (e.g., '*title*'), click to display results, select the desired account, and confirm.
+
+Question: How can reports be launched in Financial Consolidation?
+Answer: Reports can be launched as PDF or Excel files. Click the report button to generate a hyperlink to the report, which remains available until you leave the page.
+
+Question: How do you launch a report as a PDF file?
+Answer: Select PDF format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: How do you launch a report as an Excel file?
+Answer: Select XLS or XLSX format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: What is a CSV file format?
+Answer: A CSV (comma-separated values) file stores data in a table format, with fields separated by commas. It is used to move tabular data between programs.
+
+Question: What are common delimiters in CSV files?
+Answer: Common delimiters in CSV files include comma, tab, colon, vertical bar, and space. Fields containing special characters must be enclosed in double quotes.
+
+Question: How do you format fields containing delimiters in CSV files?
+Answer: Fields containing delimiters, quotes, or line-breaks must be enclosed in double quotes. A quote within a field must be preceded by an additional quote.
+
+Question: What information can you edit in the User Settings page?
+Answer: You can view your profile, edit your language, and change your working consolidation period in the User Settings page.
+
+Question: How do you access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or the Current/Reference consolidation period at the top of any page.
+
+Question: How can you access the User Settings page through the profile icon?
+Answer: Click the Profile icon, select User Profile, and the User Settings page will display both your profile and consolidation period selection areas.
+
+Question: How can you access the User Settings page through a consolidation period?
+Answer: Click the Current or Reference consolidation period at the top of the page to access the User Settings page, displaying only the period selection area.
+
+Question: How do you select a different consolidation period?
+Answer: Access the User Settings page, hide locked periods if necessary, and click the desired period to set it as current or reference.
+
+Question: How can you change the application or data language?
+Answer: On the User Settings page, select the desired language from the Application or Data Language drop-down menu and confirm the selection.
+
+Question: How do you download generated PDF files?
+Answer: Select the Download generated PDF files option on the User Settings page accessed through the Profile icon and confirm the download.
+
+Question: What tasks can be managed on the Workflow page?
+Answer: The Workflow page allows you to view tasks assigned to you, manage them, and see their descriptions, owners, start and end dates, and status.
+
+Question: How can you display tasks in a Gantt chart?
+Answer: Use the Gantt timeline and Gantt scale drop-down fields on the Workflow page to display tasks in a Gantt chart.
+
+Question: How do you show tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+
+Question: How can you export tasks to Excel?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: How do you start work on a task?
+Answer: Select a company from the table, choose a task from the Task list, change the status to In progress, and click to navigate to the task page or start the task.
+
+Question: How do you complete a task?
+Answer: Update the status to Completed in the Task details panel, optionally add comments, and confirm. An automatic email will be sent to the approver.
+
+Question: How do you reject a task?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How can authorized users use the Status Board?
+Answer: Authorized users can generate status reports, run validation rules, review error details, and update data entry status using the Status Board.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear below.
+
+Question: How do you run validation rules?
+Answer: In the Run the validation panel, select the companies, click Validate, and check the validation status in the respective column.
+
+Question: How do you review error details?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, choose the new status in the Change status panel, and click to update the status based on user roles.
+
+Question: What is the Documents Repository?
+Answer: The Documents Repository is a collaborative storage area accessible to all authorized users for organizing and managing documents.
+
+Question: How do you access the Documents Repository?
+Answer: Click Reports > Document Repository to access the Documents Repository.
+
+Question: What can users do in the Documents Repository?
+Answer: Depending on their permissions, users can view, download, refresh, delete, and upload files in the Documents Repository.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: Select a folder, click to upload, enter a description, and confirm to upload a file to the Documents Repository.
+
+Question: How can administrators manage user access and permissions?
+Answer: Administrators can specify user access and permissions to folders in the Documents Repository.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you hide the list of companies in Workflow Management?
+Answer: Click the Show/Hide the companies icon to toggle the visibility of the companies list.
+
+Question: What information is shown in the Gantt chart?
+Answer: The Gantt chart displays tasks with their Description, Owner, Start and End dates, and Status according to the set timeline and scale.
+
+Question: How do you update a task's status to In progress?
+Answer: Select the task from the Task list, change the status in the Status field to In progress, and click to navigate to the task page or start the task.
+
+Question: What is the CSV file format used for?
+Answer: A CSV file format is used to store data in a table format, with fields separated by commas. It is commonly used for moving tabular data between programs.
+
+Question: What are common delimiters used in CSV files?
+Answer: Common delimiters in CSV files include comma, tab, colon, vertical bar, and space. Fields with special characters must be enclosed in double quotes.
+
+Question: How do you format fields containing delimiters in CSV files?
+Answer: Fields containing delimiters, quotes, or line-breaks must be enclosed in double quotes. A quote within a field must be preceded by an additional quote.
+
+Question: What are the benefits of using wildcards in searches?
+Answer: Wildcards help refine search criteria by matching any number of characters with '*', or a single character in a specific location with '?', making searches more efficient.
+
+Question: How can you display tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+
+Question: What does the selection pop-up window allow you to do?
+Answer: The selection pop-up window allows you to enter a code or description and use wildcards to refine search criteria. Select the value you want and it will be inserted in the field.
+
+Question: How do you search with a code using wildcards?
+Answer: Enter the code followed by an asterisk (e.g., '23*'), click to display results, select the desired account, and confirm.
+
+Question: How do you search with a description using wildcards?
+Answer: Enter an asterisk, then the word, and another asterisk (e.g., '*title*'), click to display results, select the desired account, and confirm.
+
+Question: How can reports be launched in Financial Consolidation?
+Answer: Reports can be launched as PDF or Excel files. Click the report button to generate a hyperlink to the report, which remains available until you leave the page.
+
+Question: How do you launch a report as a PDF file?
+Answer: Select PDF format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: How do you launch a report as an Excel file?
+Answer: Select XLS or XLSX format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: How do you access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or the Current/Reference consolidation period at the top of any page.
+
+Question: How can you access the User Settings page through the profile icon?
+Answer: Click the Profile icon, select User Profile, and the User Settings page will display both your profile and consolidation period selection areas.
+
+Question: How can you access the User Settings page through a consolidation period?
+Answer: Click the Current or Reference consolidation period at the top of the page to access the User Settings page, displaying only the period selection area.
+
+Question: How do you select a different consolidation period?
+Answer: Access the User Settings page, hide locked periods if necessary, and click the desired period to set it as current or reference.
+
+Question: How can you change the application or data language?
+Answer: On the User Settings page, select the desired language from the Application or Data Language drop-down menu and confirm the selection.
+
+Question: How do you download generated PDF files?
+Answer: Select the Download generated PDF files option on the User Settings page accessed through the Profile icon and confirm the download.
+
+Question: What tasks can be managed on the Workflow page?
+Answer: The Workflow page allows you to view tasks assigned to you, manage them, and see their descriptions, owners, start and end dates, and status.
+
+Question: How can you display tasks in a Gantt chart?
+Answer: Use the Gantt timeline and Gantt scale drop-down fields on the Workflow page to display tasks in a Gantt chart.
+
+Question: How do you show tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+
+Question: How can you export tasks to Excel?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: How do you start work on a task?
+Answer: Select a company from the table, choose a task from the Task list, change the status to In progress, and click to navigate to the task page or start the task.
+
+Question: How do you complete a task?
+Answer: Update the status to Completed in the Task details panel, optionally add comments, and confirm. An automatic email will be sent to the approver.
+
+Question: How do you reject a task?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How can authorized users use the Status Board?
+Answer: Authorized users can generate status reports, run validation rules, review error details, and update data entry status using the Status Board.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear below.
+
+Question: How do you run validation rules?
+Answer: In the Run the validation panel, select the companies, click Validate, and check the validation status in the respective column.
+
+Question: How do you review error details?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, choose the new status in the Change status panel, and click to update the status based on user roles.
+
+Question: What is the Documents Repository?
+Answer: The Documents Repository is a collaborative storage area accessible to all authorized users for organizing and managing documents.
+
+Question: How do you access the Documents Repository?
+Answer: Click Reports > Document Repository to access the Documents Repository.
+
+Question: What can users do in the Documents Repository?
+Answer: Depending on their permissions, users can view, download, refresh, delete, and upload files in the Documents Repository.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: Select a folder, click to upload, enter a description, and confirm to upload a file to the Documents Repository.
+
+Question: How can administrators manage user access and permissions?
+Answer: Administrators can specify user access and permissions to folders in the Documents Repository.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you hide the list of companies in Workflow Management?
+Answer: Click the Show/Hide the companies icon to toggle the visibility of the companies list.
+
+Question: What information is shown in the Gantt chart?
+Answer: The Gantt chart displays tasks with their Description, Owner, Start and End dates, and Status according to the set timeline and scale.
+
+Question: How do you update a task's status to In progress?
+Answer: Select the task from the Task list, change the status in the Status field to In progress, and click to navigate to the task page or start the task.
+
+Question: What is the CSV file format used for?
+Answer: A CSV file format is used to store data in a table format, with fields separated by commas. It is commonly used for moving tabular data between programs.
+
+Question: What are common delimiters used in CSV files?
+Answer: Common delimiters in CSV files include comma, tab, colon, vertical bar, and space. Fields with special characters must be enclosed in double quotes.
+
+Question: How do you format fields containing delimiters in CSV files?
+Answer: Fields containing delimiters, quotes, or line-breaks must be enclosed in double quotes. A quote within a field must be preceded by an additional quote.
+
+Question: What are the benefits of using wildcards in searches?
+Answer: Wildcards help refine search criteria by matching any number of characters with '*', or a single character in a specific location with '?', making searches more efficient.
+
+Question: How can you display tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+
+Question: What does the selection pop-up window allow you to do?
+Answer: The selection pop-up window allows you to enter a code or description and use wildcards to refine search criteria. Select the value you want and it will be inserted in the field.
+
+Question: How do you search with a code using wildcards?
+Answer: Enter the code followed by an asterisk (e.g., '23*'), click to display results, select the desired account, and confirm.
+
+Question: How do you search with a description using wildcards?
+Answer: Enter an asterisk, then the word, and another asterisk (e.g., '*title*'), click to display results, select the desired account, and confirm.
+
+Question: How can reports be launched in Financial Consolidation?
+Answer: Reports can be launched as PDF or Excel files. Click the report button to generate a hyperlink to the report, which remains available until you leave the page.
+
+Question: How do you launch a report as a PDF file?
+Answer: Select PDF format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: How do you launch a report as an Excel file?
+Answer: Select XLS or XLSX format under File type, click to generate the report, click the hyperlink to download, and save it to your hard drive.
+
+Question: How do you access the User Settings page?
+Answer: Access the User Settings page by clicking the Profile icon or the Current/Reference consolidation period at the top of any page.
+
+Question: How can you access the User Settings page through the profile icon?
+Answer: Click the Profile icon, select User Profile, and the User Settings page will display both your profile and consolidation period selection areas.
+
+Question: How can you access the User Settings page through a consolidation period?
+Answer: Click the Current or Reference consolidation period at the top of the page to access the User Settings page, displaying only the period selection area.
+
+Question: How do you select a different consolidation period?
+Answer: Access the User Settings page, hide locked periods if necessary, and click the desired period to set it as current or reference.
+
+Question: How can you change the application or data language?
+Answer: On the User Settings page, select the desired language from the Application or Data Language drop-down menu and confirm the selection.
+
+Question: How do you download generated PDF files?
+Answer: Select the Download generated PDF files option on the User Settings page accessed through the Profile icon and confirm the download.
+
+Question: What tasks can be managed on the Workflow page?
+Answer: The Workflow page allows you to view tasks assigned to you, manage them, and see their descriptions, owners, start and end dates, and status.
+
+Question: How can you display tasks in a Gantt chart?
+Answer: Use the Gantt timeline and Gantt scale drop-down fields on the Workflow page to display tasks in a Gantt chart.
+
+Question: How do you show tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+
+Question: How can you export tasks to Excel?
+Answer: On the Workflow page, click the Export to Excel icon, select the task list to export, and confirm to export the list to an Excel file.
+
+Question: How do you start work on a task?
+Answer: Select a company from the table, choose a task from the Task list, change the status to In progress, and click to navigate to the task page or start the task.
+
+Question: How do you complete a task?
+Answer: Update the status to Completed in the Task details panel, optionally add comments, and confirm. An automatic email will be sent to the approver.
+
+Question: How do you reject a task?
+Answer: Select the task, change the status to Rejected in the Task details panel, add comments, and confirm to notify the approver.
+
+Question: What is the purpose of the Status Board?
+Answer: The Status Board provides an overview of the data entry process status for each company in the consolidation.
+
+Question: How can authorized users use the Status Board?
+Answer: Authorized users can generate status reports, run validation rules, review error details, and update data entry status using the Status Board.
+
+Question: How do you generate a status report?
+Answer: Go to the Status Report panel, select the output file type, and click to generate the report. A download link will appear below.
+
+Question: How do you run validation rules?
+Answer: In the Run the validation panel, select the companies, click Validate, and check the validation status in the respective column.
+
+Question: How do you review error details?
+Answer: Click to review specifics of balance errors or data loaded, providing better insight into issues.
+
+Question: How do you change a company's data entry status?
+Answer: Select the company, choose the new status in the Change status panel, and click to update the status based on user roles.
+
+Question: What is the Documents Repository?
+Answer: The Documents Repository is a collaborative storage area accessible to all authorized users for organizing and managing documents.
+
+Question: How do you access the Documents Repository?
+Answer: Click Reports > Document Repository to access the Documents Repository.
+
+Question: What can users do in the Documents Repository?
+Answer: Depending on their permissions, users can view, download, refresh, delete, and upload files in the Documents Repository.
+
+Question: How do you upload a file to the Documents Repository?
+Answer: Select a folder, click to upload, enter a description, and confirm to upload a file to the Documents Repository.
+
+Question: How can administrators manage user access and permissions?
+Answer: Administrators can specify user access and permissions to folders in the Documents Repository.
+
+Question: What is the purpose of the Gantt chart in Workflow Management?
+Answer: The Gantt chart visually displays tasks with their Description, Owner, Start and End dates, and Status according to the timeline and scale.
+
+Question: How do you show or hide the Gantt chart?
+Answer: Click the Gantt chart icon to toggle the visibility of the Gantt chart on the Workflow page.
+
+Question: How can you hide the list of companies in Workflow Management?
+Answer: Click the Show/Hide the companies icon to toggle the visibility of the companies list.
+
+Question: What information is shown in the Gantt chart?
+Answer: The Gantt chart displays tasks with their Description, Owner, Start and End dates, and Status according to the set timeline and scale.
+
+Question: How do you update a task's status to In progress?
+Answer: Select the task from the Task list, change the status in the Status field to In progress, and click to navigate to the task page or start the task.
+
+Question: What is the CSV file format used for?
+Answer: A CSV file format is used to store data in a table format, with fields separated by commas. It is commonly used for moving tabular data between programs.
+
+Question: What are common delimiters used in CSV files?
+Answer: Common delimiters in CSV files include comma, tab, colon, vertical bar, and space. Fields with special characters must be enclosed in double quotes.
+
+Question: How do you format fields containing delimiters in CSV files?
+Answer: Fields containing delimiters, quotes, or line-breaks must be enclosed in double quotes. A quote within a field must be preceded by an additional quote.
+
+Question: What are the benefits of using wildcards in searches?
+Answer: Wildcards help refine search criteria by matching any number of characters with '*', or a single character in a specific location with '?', making searches more efficient.
+
+Question: How can you display tasks in a pie chart?
+Answer: Select the Show/Hide the Pie Chart icon to display tasks in a pie chart, with colors indicating different statuses.
+

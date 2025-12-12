@@ -1,0 +1,1511 @@
+# API Adjustment Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent management of adjustment journals and entries
+
+api_adjustment_endpoints:
+  name: "Adjustment Journal API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing consolidation adjustment journals and entries.
+
+    Adjustments are manual journal entries used to:
+    - Make local adjustments to subsidiary data (Local type)
+    - Make group-level consolidation adjustments (Group type)
+    - Record elimination entries, manual corrections, and tax adjustments
+
+    Key concepts:
+    - Adjustment Types: Local (subsidiary), Group (consolidation)
+    - Journal Types: L (Local), E (Elimination), M (Manual), T (Tax/Technical)
+    - Behaviour: Controls carry-forward behavior (0=NotToCopy, 1=Copy, 2=FwdRes, 3=FwdKeep, 4=Reverse)
+    - Currency Flag: L=Local currency, G=Group currency
+    - Minority Flag: false=Before third party, true=After third party
+    - Approval: Group journals can be approved (end users cannot delete approved journals)
+
+    Services documented:
+    - AdjustmentsJournalService: Journal listing and details (4 handlers)
+    - AdjustmentsManagementService: Journal management actions (4 handlers)
+    - AdjustmentJournalEditServices: Journal editing (8 handlers)
+    - ImportAdjustmentsService: Import from files/HUB (3 handlers)
+    - ExportAdjustmentsService: Export to files/HUB (1 handler)
+
+  # ============================================================================
+  # ENUMS
+  # ============================================================================
+  enums:
+    AdjustmentTypes:
+      description: "Types of adjustment journals"
+      values:
+        - value: "Local"
+          request_value: "local"
+          description: "Local adjustments at subsidiary level"
+          access_right_prefix: "AdjustmentLocal"
+        - value: "Group"
+          request_value: "group"
+          description: "Group adjustments at consolidation level"
+          access_right_prefix: "AdjustmentGroup"
+
+    JournalTypes:
+      description: "Types of journals within adjustment categories"
+      values:
+        - code: "L"
+          name: "Local"
+          description: "Local adjustment journal"
+          adjustment_type: "Local"
+        - code: "E"
+          name: "Elimination"
+          description: "Elimination adjustment journal"
+          adjustment_type: "Group"
+        - code: "M"
+          name: "Manual"
+          description: "Manual adjustment journal"
+          adjustment_type: "Group"
+        - code: "T"
+          name: "Tax/Technical"
+          description: "Tax or technical adjustment (system-generated)"
+          adjustment_type: "Group"
+          read_only: true
+
+    BehaviourTypes:
+      description: "Journal carry-forward behavior"
+      values:
+        - value: 0
+          name: "NotToCopy"
+          description: "Do not copy to next period"
+        - value: 1
+          name: "Copy"
+          description: "Copy to next period"
+        - value: 2
+          name: "FwdRes"
+          description: "Forward and reset (default for new journals)"
+        - value: 3
+          name: "FwdKeep"
+          description: "Forward and keep amounts"
+        - value: 4
+          name: "Reverse"
+          description: "Reverse in next period"
+
+    CurrencyFlags:
+      description: "Currency type for amounts"
+      values:
+        - code: "L"
+          name: "Local"
+          description: "Amounts in local (company) currency"
+        - code: "G"
+          name: "Group"
+          description: "Amounts in group (consolidated) currency"
+
+    ManagementActions:
+      description: "Batch actions for journal management"
+      values:
+        - value: 0
+          name: "Delete"
+          description: "Delete selected journals"
+        - value: 1
+          name: "Move"
+          description: "Move journals to different type/category"
+        - value: 2
+          name: "Translate"
+          description: "Translate journal descriptions"
+        - value: 3
+          name: "Aggregate"
+          description: "Aggregate multiple journals"
+        - value: 4
+          name: "Import"
+          description: "Import journals from reference period"
+
+    FileTypes:
+      description: "Import/export file formats"
+      values:
+        - value: 0
+          name: "CSV"
+          description: "Comma-separated values file"
+        - value: 1
+          name: "XLS"
+          description: "Excel file format"
+        - value: 2
+          name: "HUB"
+          description: "HUB (Interweb) package format"
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    AdjustmentsJournalItem:
+      description: "Complete adjustment journal header with details"
+      source: "AdjustmentJournalEditServices.cs"
+      fields:
+        - name: "ID"
+          type: "integer"
+          nullable: true
+          description: "Journal header ID (null for new)"
+        - name: "ConsoID"
+          type: "integer"
+          description: "Consolidation period ID"
+        - name: "JournalCode"
+          type: "string"
+          description: "Combined journal type and category"
+        - name: "JournalType"
+          type: "string"
+          description: "Journal type (L, E, M, T)"
+        - name: "JournalCategory"
+          type: "string"
+          description: "Journal category code"
+        - name: "JournalDescription"
+          type: "string"
+          description: "Journal description (localized)"
+        - name: "AssociatedJournalCode"
+          type: "string"
+          nullable: true
+          description: "Associated reversal journal code"
+        - name: "AssociatedJournalType"
+          type: "string"
+          nullable: true
+        - name: "AssociatedJournalCategory"
+          type: "string"
+          nullable: true
+        - name: "AssociatedJournalDescription"
+          type: "string"
+          nullable: true
+        - name: "JournalEntry"
+          type: "long"
+          description: "Journal entry number"
+        - name: "JournalEntryLong"
+          type: "long"
+          description: "Journal entry as long value"
+        - name: "CompanyID"
+          type: "integer"
+          description: "Company ID"
+        - name: "CompanyCode"
+          type: "string"
+          description: "Company code"
+        - name: "CompanyName"
+          type: "string"
+          description: "Company display name"
+        - name: "JournalText"
+          type: "string"
+          nullable: true
+          description: "Free-text description"
+        - name: "CurrCode"
+          type: "string"
+          description: "Currency code"
+        - name: "DeferredTaxRate"
+          type: "decimal"
+          nullable: true
+          description: "Deferred tax rate (Group journals only)"
+        - name: "DeferredTaxRateChecked"
+          type: "boolean"
+          nullable: true
+          description: "Whether deferred tax applies"
+        - name: "MinorityFlag"
+          type: "boolean"
+          description: "false=Before third party, true=After"
+        - name: "CurrencyFlag"
+          type: "string"
+          description: "L=Local, G=Group currency"
+        - name: "Behaviour"
+          type: "byte"
+          description: "Carry-forward behavior (0-4)"
+        - name: "NbrDec"
+          type: "byte"
+          description: "Number of decimal places"
+        - name: "UnitsOf"
+          type: "byte"
+          description: "Unit scale (0=units, 1=thousands, 2=millions)"
+        - name: "ModificationUserLogin"
+          type: "string"
+          nullable: true
+        - name: "CreationDate"
+          type: "datetime"
+          nullable: true
+        - name: "ModificationDate"
+          type: "datetime"
+          nullable: true
+        - name: "HeaderFileID"
+          type: "integer"
+          nullable: true
+          description: "Attached file ID"
+        - name: "File"
+          type: "object"
+          nullable: true
+          description: "Attached file download info"
+        - name: "Approved"
+          type: "boolean"
+          description: "Whether journal is approved (Group only)"
+        - name: "CanModify"
+          type: "boolean"
+          description: "Whether user can modify this journal"
+        - name: "FlagCarriedOrCopied"
+          type: "boolean"
+          nullable: true
+          description: "Whether journal was carried/copied from reference"
+        - name: "Rows"
+          type: "array<AdjustmentJournalDetailItem>"
+          description: "Journal detail lines"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+
+    AdjustmentJournalDetailItem:
+      description: "Journal detail line (account entry)"
+      fields:
+        - name: "ID"
+          type: "integer"
+          nullable: true
+          description: "Detail line ID"
+        - name: "LineNr"
+          type: "integer"
+          nullable: true
+          description: "Sequence number"
+        - name: "Account"
+          type: "string"
+          description: "GL account code"
+        - name: "AccountType"
+          type: "char"
+          nullable: true
+          description: "B=Balance, P=P&L"
+        - name: "AccountDescription"
+          type: "string"
+          description: "Account description"
+        - name: "PartnerCode"
+          type: "string"
+          nullable: true
+          description: "Intercompany partner code (Group only)"
+        - name: "PartnerName"
+          type: "string"
+          nullable: true
+        - name: "Flow"
+          type: "string"
+          nullable: true
+          description: "Flow code (Group only)"
+        - name: "FlowDescription"
+          type: "string"
+          nullable: true
+        - name: "Debit"
+          type: "decimal"
+          nullable: true
+          description: "Debit amount"
+        - name: "Credit"
+          type: "decimal"
+          nullable: true
+          description: "Credit amount"
+        - name: "TransAmount"
+          type: "decimal"
+          nullable: true
+          description: "Transaction currency amount"
+        - name: "TransRate"
+          type: "decimal"
+          nullable: true
+          description: "Transaction exchange rate"
+        - name: "TransCurrCode"
+          type: "string"
+          nullable: true
+          description: "Transaction currency code"
+        - name: "Dim"
+          type: "short"
+          nullable: true
+          description: "Dimension indicator"
+        - name: "HasDimension"
+          type: "boolean"
+          description: "Whether account has dimensions"
+        - name: "DimensionURL"
+          type: "string"
+          description: "URL to dimension data entry"
+        - name: "NbrDec"
+          type: "byte"
+          nullable: true
+        - name: "UnitsOf"
+          type: "byte"
+          nullable: true
+
+    JournalTypeDTO:
+      description: "Journal type definition"
+      fields:
+        - name: "ID"
+          type: "integer"
+        - name: "Journal"
+          type: "string"
+          description: "Journal code (Type + Category)"
+        - name: "Name"
+          type: "string"
+          description: "Journal description"
+
+    JournalEntryDTO:
+      description: "Journal entry for management operations"
+      fields:
+        - name: "Key"
+          type: "integer"
+          description: "Journal header ID"
+        - name: "Type"
+          type: "string"
+          description: "Journal type code"
+        - name: "Category"
+          type: "string"
+          description: "Journal category"
+        - name: "Entry"
+          type: "string"
+          description: "Journal entry number"
+        - name: "CompanyCode"
+          type: "string"
+        - name: "CompanyName"
+          type: "string"
+        - name: "Description"
+          type: "string"
+        - name: "NewType"
+          type: "string"
+          nullable: true
+          description: "Target type for move action"
+        - name: "NewCategory"
+          type: "string"
+          nullable: true
+          description: "Target category for move action"
+        - name: "NewEntry"
+          type: "long"
+          nullable: true
+          description: "Target entry for move action"
+        - name: "FlagCarriedOrCopied"
+          type: "boolean"
+          nullable: true
+        - name: "Entities"
+          type: "array<EntityVersion>"
+
+    HeaderGridViewItem:
+      description: "Journal header for grid display"
+      source: "AdjustmentsJournalService.cs"
+      fields:
+        - name: "ID"
+          type: "integer"
+        - name: "JournalType"
+          type: "string"
+        - name: "JournalCategory"
+          type: "string"
+        - name: "JournalDescription"
+          type: "string"
+        - name: "JournalEntry"
+          type: "long"
+        - name: "CompanyID"
+          type: "integer"
+        - name: "CompanyCode"
+          type: "string"
+        - name: "CompanyName"
+          type: "string"
+        - name: "JournalText"
+          type: "string"
+        - name: "Behaviour"
+          type: "byte"
+        - name: "MinorityFlag"
+          type: "boolean"
+        - name: "CurrencyFlag"
+          type: "string"
+        - name: "CurrCode"
+          type: "string"
+        - name: "NbrDec"
+          type: "byte"
+        - name: "UnitsOf"
+          type: "byte"
+        - name: "Approved"
+          type: "boolean"
+        - name: "DeferredTaxRate"
+          type: "decimal"
+          nullable: true
+        - name: "FlagCarriedOrCopied"
+          type: "boolean"
+          nullable: true
+
+  # ============================================================================
+  # ADJUSTMENTS JOURNAL LIST HANDLERS
+  # ============================================================================
+  adjustments_journal_handlers:
+    description: |
+      Endpoints for listing and viewing adjustment journals.
+      Source: Sigma.Mona.WebApplication/Screens/AdjustmentsJournal/AdjustmentsJournalService.cs
+
+    handlers:
+      - name: "AdjustmentsJournal_GetAdjustments"
+        description: |
+          Retrieves adjustment journal list with filtering and pagination.
+          Returns grid-friendly list of journal headers.
+          Supports both Local and Group adjustment types.
+        access_right: "AdjustmentLocal_GetAdjustments or AdjustmentGroup_GetAdjustments"
+        async: true
+
+        request:
+          _t: "AdjustmentsJournal_GetAdjustments"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+              description: "'local' or 'group'"
+            - name: "FilterJournalType"
+              type: "string"
+              required: false
+              description: "Filter by journal type code"
+            - name: "FilterCompanyCode"
+              type: "string"
+              required: false
+              description: "Filter by company code"
+            - name: "FilterJournalEntry"
+              type: "string"
+              required: false
+              description: "Filter by entry number"
+            - name: "FilterDescription"
+              type: "string"
+              required: false
+              description: "Filter by description text"
+            - name: "FilterApproved"
+              type: "boolean"
+              required: false
+              description: "Filter by approval status (Group only)"
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_order_by"
+              type: "string"
+              required: false
+            - name: "scf_include_total_row_count"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AdjustmentsJournal_GetAdjustments",
+                "AdjustmentType": "group",
+                "FilterJournalType": "M",
+                "scf_order_by": "JOURNALENTRY DESC",
+                "scf_include_total_row_count": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<HeaderGridViewItem>"
+            scf_total_row_count:
+              type: "integer"
+
+      - name: "AdjustmentsJournal_GetAdjustmentDetails"
+        description: |
+          Retrieves summary details for a specific adjustment journal.
+          Returns totals and metadata for the journal.
+        access_right: "AdjustmentLocal_GetAdjustments or AdjustmentGroup_GetAdjustments"
+        async: true
+
+        request:
+          _t: "AdjustmentsJournal_GetAdjustmentDetails"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "AdjustmentJournalID"
+              type: "integer"
+              required: true
+          example:
+            json: |
+              {
+                "_t": "AdjustmentsJournal_GetAdjustmentDetails",
+                "AdjustmentType": "group",
+                "AdjustmentJournalID": 123
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "object"
+              description: "Journal summary with totals"
+
+      - name: "AdjustmentsJournal_DeleteAdjustment"
+        description: |
+          Deletes an adjustment journal and all its detail lines.
+          Validates user permissions and journal status before deletion.
+          End users cannot delete approved Group journals.
+        access_right: "AdjustmentLocal_ManageAdjustments or AdjustmentGroup_ManageAdjustments"
+        async: true
+
+        request:
+          _t: "AdjustmentsJournal_DeleteAdjustment"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "AdjustmentJournalID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AdjustmentsJournal_DeleteAdjustment",
+                "AdjustmentType": "local",
+                "AdjustmentJournalID": 123,
+                "scf_entity_version": [{"Name": "LocalAdjustment", "Key": "789_123", "Version": 5}]
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "EndUserDeleteApproved"
+              cause: "End user cannot delete approved journal"
+
+      - name: "AdjustmentsJournal_GetAdjustmentsJournalEntry"
+        description: |
+          Retrieves detailed journal entry for editing or viewing.
+          Returns complete journal with all detail lines.
+        access_right: "AdjustmentLocal_GetAdjustments or AdjustmentGroup_GetAdjustments"
+        async: true
+
+        request:
+          _t: "AdjustmentsJournal_GetAdjustmentsJournalEntry"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "AdjustmentJournalID"
+              type: "integer"
+              required: true
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+
+        response:
+          success:
+            scf_items:
+              type: "AdjustmentsJournalItem"
+
+  # ============================================================================
+  # ADJUSTMENTS MANAGEMENT HANDLERS
+  # ============================================================================
+  adjustments_management_handlers:
+    description: |
+      Endpoints for managing journal types and batch operations.
+      Source: Sigma.Mona.WebApplication/Screens/AdjustmentsManagement/AdjustmentsManagementService.cs
+
+    handlers:
+      - name: "AdjustmentsManagement_GetJournalTypes"
+        description: |
+          Retrieves available journal types for the current period.
+          Used to populate journal type dropdowns.
+        access_right: "AdjustmentsManagement_GetJournalTypes"
+        async: true
+
+        request:
+          _t: "AdjustmentsManagement_GetJournalTypes"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+              description: "'local' or 'group'"
+          example:
+            json: |
+              {
+                "_t": "AdjustmentsManagement_GetJournalTypes",
+                "AdjustmentType": "group"
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<JournalTypeDTO>"
+
+      - name: "AdjustmentsManagement_GetGroupAdjustmentsJournalNextEntry"
+        description: |
+          Gets the next available journal entry number for Group adjustments.
+          Ensures entry numbers are unique within the period.
+        access_right: "AdjustmentsManagement_GetJournalEntries"
+        async: true
+
+        request:
+          _t: "AdjustmentsManagement_GetGroupAdjustmentsJournalNextEntry"
+          parameters: []
+
+        response:
+          success:
+            NextEntry:
+              type: "long"
+              description: "Next available journal entry number"
+
+      - name: "AdjustmentsManagement_GetJournalEntries"
+        description: |
+          Retrieves journal entries for management operations.
+          Used for batch actions like move, delete, aggregate.
+        access_right: "AdjustmentsManagement_GetJournalEntries"
+        async: true
+
+        request:
+          _t: "AdjustmentsManagement_GetJournalEntries"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "JournalType"
+              type: "string"
+              required: false
+              description: "Filter by journal type"
+            - name: "JournalCategory"
+              type: "string"
+              required: false
+            - name: "CompanyCode"
+              type: "string"
+              required: false
+            - name: "scf_from_row"
+              type: "integer"
+              required: false
+            - name: "scf_row_count"
+              type: "integer"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AdjustmentsManagement_GetJournalEntries",
+                "AdjustmentType": "group",
+                "JournalType": "M",
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "array<JournalEntryDTO>"
+
+      - name: "AdjustmentsManagement_ExecuteAction"
+        description: |
+          Executes a batch management action on selected journals.
+          Supports Delete, Move, Translate, Aggregate, and Import actions.
+        access_right: "AdjustmentsManagement_ExecuteAction"
+        async: true
+
+        request:
+          _t: "AdjustmentsManagement_ExecuteAction"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "Action"
+              type: "integer"
+              required: true
+              description: "0=Delete, 1=Move, 2=Translate, 3=Aggregate, 4=Import"
+              enum_ref: "ManagementActions"
+            - name: "JournalEntries"
+              type: "array<JournalEntryDTO>"
+              required: true
+              description: "Journals to process"
+            - name: "TargetType"
+              type: "string"
+              required: false
+              description: "Target type for Move action"
+            - name: "TargetCategory"
+              type: "string"
+              required: false
+              description: "Target category for Move action"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AdjustmentsManagement_ExecuteAction",
+                "AdjustmentType": "group",
+                "Action": 1,
+                "JournalEntries": [
+                  {"Key": 123, "Type": "M", "Category": "01", "Entry": "100"}
+                ],
+                "TargetType": "E",
+                "TargetCategory": "02"
+              }
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "JournalApproved"
+              cause: "Cannot modify approved journal"
+
+  # ============================================================================
+  # ADJUSTMENT JOURNAL EDIT HANDLERS
+  # ============================================================================
+  adjustment_journal_edit_handlers:
+    description: |
+      Endpoints for creating and editing adjustment journals.
+      Source: Sigma.Mona.WebApplication/Screens/AdjustmentsJournalEdit/AdjustmentJournalEditServices.cs
+
+    handlers:
+      - name: "AdjustmentJournalEdit_Init"
+        description: |
+          Initializes the journal edit screen with configuration data.
+          Returns dropdowns, navigation URLs, and screen settings.
+        access_right: "AdjustmentsJournalEdit_GetLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_GetGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_Init"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+              description: "'local' or 'group'"
+            - name: "ID"
+              type: "integer"
+              required: false
+              description: "Journal ID (null for new)"
+            - name: "CopyType"
+              type: "string"
+              required: false
+              description: "'Header' or 'Details' for template copy"
+            - name: "TemplateID"
+              type: "integer"
+              required: false
+              description: "Source journal ID for copy"
+            - name: "PeriodMode"
+              type: "string"
+              required: false
+              description: "'current' or 'reference'"
+            - name: "ReturnURL"
+              type: "string"
+              required: false
+          example:
+            json: |
+              {
+                "_t": "AdjustmentJournalEdit_Init",
+                "AdjustmentType": "group",
+                "ID": 123
+              }
+
+        response:
+          success:
+            Init:
+              type: "object"
+              description: "Screen initialization data"
+              schema:
+                CanModify: "boolean"
+                AdjustmentJournalID: "integer"
+                AdjustmentType: "string"
+                DDLBehavior: "array"
+                DDLCurrencies: "array"
+                DDLCurrencyFlag: "array"
+                DDLListThirds: "array"
+                IsEndUser: "boolean"
+                NextURL: "string"
+                PreviousURL: "string"
+                SelectedConsoID: "integer"
+                LockJournal: "boolean"
+                CanEdit: "boolean"
+                CurrentPosition: "integer"
+                TotalJournals: "integer"
+
+      - name: "AdjustmentJournalEdit_GetAdjustmentJournalEdit"
+        description: |
+          Retrieves complete journal data for editing.
+          Supports loading existing journal or creating from template.
+          Returns all detail lines with account information.
+        access_right: "AdjustmentsJournalEdit_GetLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_GetGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_GetAdjustmentJournalEdit"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "AdjustmentJournalID"
+              type: "integer"
+              required: "if TemplateID not provided"
+              description: "Journal ID to load"
+            - name: "TemplateID"
+              type: "integer"
+              required: false
+              description: "Source journal for copy"
+            - name: "TemplateCopyType"
+              type: "string"
+              required: false
+              description: "'Header' or 'Details'"
+            - name: "SelectedConsoID"
+              type: "integer"
+              required: false
+            - name: "ListSort"
+              type: "string"
+              required: false
+              description: "Detail sort: 'L' (LineNr), 'P' (P&L first), 'B' (BS first)"
+            - name: "Period"
+              type: "string"
+              required: false
+            - name: "scf_include_entities"
+              type: "boolean"
+              required: false
+              default: true
+          example:
+            json: |
+              {
+                "_t": "AdjustmentJournalEdit_GetAdjustmentJournalEdit",
+                "AdjustmentType": "group",
+                "AdjustmentJournalID": 123,
+                "scf_include_entities": true
+              }
+
+        response:
+          success:
+            scf_items:
+              type: "AdjustmentsJournalItem"
+              description: "Complete journal with details"
+
+      - name: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+        description: |
+          Creates or updates an adjustment journal with all detail lines.
+          Validates that debits equal credits before saving.
+          Triggers entity version updates for concurrency control.
+        access_right: "AdjustmentsJournalEdit_ManageLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_ManageGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "SelectedConsoID"
+              type: "integer"
+              required: true
+            - name: "AdjustmentJournalItem"
+              type: "object"
+              required: true
+              description: "Complete journal data"
+              nested_parameters:
+                - name: "ID"
+                  type: "integer"
+                  required: false
+                  description: "Null for new journal"
+                - name: "CompanyCode"
+                  type: "string"
+                  required: true
+                - name: "JournalCode"
+                  type: "string"
+                  required: true
+                - name: "JournalEntry"
+                  type: "long"
+                  required: true
+                - name: "JournalText"
+                  type: "string"
+                  required: false
+                - name: "MinorityFlag"
+                  type: "boolean"
+                  required: false
+                - name: "CurrencyFlag"
+                  type: "char"
+                  required: false
+                - name: "Behaviour"
+                  type: "byte"
+                  required: true
+                - name: "DeferredTaxRate"
+                  type: "decimal"
+                  required: false
+                - name: "Approved"
+                  type: "boolean"
+                  required: false
+                - name: "Rows"
+                  type: "array<AdjustmentJournalDetailItem>"
+                  required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: true
+          example:
+            json: |
+              {
+                "_t": "AdjustmentJournalEdit_SaveAdjustmentJournalEdit",
+                "AdjustmentType": "group",
+                "SelectedConsoID": 789,
+                "AdjustmentJournalItem": {
+                  "ID": null,
+                  "CompanyCode": "ACME",
+                  "JournalCode": "M01",
+                  "JournalEntry": 1001,
+                  "JournalText": "Year-end accrual",
+                  "CurrencyFlag": "L",
+                  "Behaviour": 2,
+                  "Rows": [
+                    {"Account": "6000", "Debit": 10000, "Credit": null},
+                    {"Account": "2100", "Debit": null, "Credit": 10000}
+                  ]
+                },
+                "LogScreenID": 100
+              }
+
+        response:
+          success:
+            AdjustmentJournalID:
+              type: "integer"
+              description: "Saved journal ID"
+          errors:
+            - pattern: "RowsDifferenceNotZero"
+              cause: "Debits do not equal credits"
+            - pattern: "Duplicated"
+              cause: "Journal entry number already exists"
+            - pattern: "JournalChange"
+              cause: "Cannot modify carried forward journal"
+
+      - name: "AdjustmentJournalEdit_ApplyTax"
+        description: |
+          Applies deferred tax calculation to a Group adjustment journal.
+          Saves journal and then calculates tax entries.
+        access_right: "AdjustmentsJournalEdit_ManageGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_ApplyTax"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+              description: "Must be 'group'"
+            - name: "SelectedConsoID"
+              type: "integer"
+              required: true
+            - name: "AdjustmentJournalItem"
+              type: "object"
+              required: true
+              description: "Journal data with DeferredTaxRate"
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+            - name: "LogScreenID"
+              type: "integer"
+              required: true
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "AdjustmentJournalEdit_GetJournalInfo"
+        description: |
+          Gets next entry number and associated journal info for a journal code.
+          Used when changing journal type to get appropriate entry number.
+        access_right: "AdjustmentsJournalEdit_ManageLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_ManageGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_GetJournalInfo"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "SelectedConsoID"
+              type: "integer"
+              required: true
+            - name: "JournalCode"
+              type: "string"
+              required: true
+          example:
+            json: |
+              {
+                "_t": "AdjustmentJournalEdit_GetJournalInfo",
+                "AdjustmentType": "group",
+                "SelectedConsoID": 789,
+                "JournalCode": "M01"
+              }
+
+        response:
+          success:
+            JournalInfo:
+              type: "object"
+              schema:
+                NextJournalEntry: "string"
+                AssociatedJournalCode: "string"
+                AssociatedJournalType: "string"
+                AssociatedJournalCategory: "string"
+                AssociatedJournalDescription: "string"
+
+      - name: "AdjustmentJournalEdit_RemoveAdjustmentJournal"
+        description: |
+          Deletes an adjustment journal from the edit screen.
+          Same functionality as AdjustmentsJournal_DeleteAdjustment.
+        access_right: "AdjustmentsJournalEdit_ManageLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_ManageGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_RemoveAdjustmentJournal"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "AdjustmentJournalID"
+              type: "integer"
+              required: true
+            - name: "CompanyCode"
+              type: "string"
+              required: false
+            - name: "SelectedConsoID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: true
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+
+      - name: "AdjustmentJournalEdit_RemoveAdjustmentJournalFile"
+        description: |
+          Removes an attached file from an adjustment journal.
+          End users cannot remove files from approved Group journals.
+        access_right: "AdjustmentsJournalEdit_ManageLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_ManageGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_RemoveAdjustmentJournalFile"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "AdjustmentJournalID"
+              type: "integer"
+              required: true
+            - name: "HeaderFileID"
+              type: "integer"
+              required: true
+            - name: "SelectedConsoID"
+              type: "integer"
+              required: true
+            - name: "scf_entity_version"
+              type: "array<EntityVersion>"
+              required: false
+
+        response:
+          success:
+            description: "Empty response on success"
+          errors:
+            - pattern: "EndUserDeleteAttachment"
+              cause: "End user cannot delete attachment from approved journal"
+
+      - name: "AdjustmentJournalEdit_GetJournalAtPosition"
+        description: |
+          Gets the journal ID at a specific position in the filtered list.
+          Used for pagination navigation.
+        access_right: "AdjustmentsJournalEdit_GetLocalAdjustmentsJournalEdit or AdjustmentsJournalEdit_GetGroupAdjustmentsJournalEdit"
+        async: true
+
+        request:
+          _t: "AdjustmentJournalEdit_GetJournalAtPosition"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "Position"
+              type: "integer"
+              required: true
+              description: "1-based position in list"
+
+        response:
+          success:
+            JournalID:
+              type: "integer"
+              description: "-1 if position invalid"
+
+  # ============================================================================
+  # IMPORT ADJUSTMENTS HANDLERS
+  # ============================================================================
+  import_adjustments_handlers:
+    description: |
+      Endpoints for importing adjustments from files or HUB.
+      Source: Sigma.Mona.WebApplication/Screens/ImportAdjustments/ImportAdjustmentsService.cs
+
+      Import workflow:
+      1. Upload file → Get JobID (parsing)
+      2. Monitor job until complete
+      3. Process validated data → Get JobID (processing)
+      4. Monitor job until complete
+
+    handlers:
+      - name: "ImportAdjustments_Upload"
+        description: |
+          Uploads and parses an adjustment file for import.
+          Supports CSV, Excel, and HUB package formats.
+          Returns job ID for monitoring parsing progress.
+        access_right: "ImportAdjustments_Import"
+        async: false
+        background_job: true
+        job_class: "Jobs.Database.ImportAdjustmentsJob"
+
+        request:
+          _t: "ImportAdjustments_Upload"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "DataSourceType"
+              type: "integer"
+              required: true
+              description: "0=CSV, 1=XLS, 2=HUB"
+              enum_ref: "FileTypes"
+            - name: "OverwriteType"
+              type: "integer"
+              required: false
+              description: "How to handle existing data"
+            - name: "PackageID"
+              type: "integer"
+              required: "if DataSourceType=2"
+              description: "HUB package ID"
+            - name: "UploadedFiles"
+              type: "array"
+              required: "if DataSourceType=0 or 1"
+              description: "Uploaded file references"
+            - name: "CSVSeparator"
+              type: "string"
+              required: false
+              default: ";"
+            - name: "TextQuote"
+              type: "string"
+              required: false
+              default: "\""
+            - name: "DecimalSeparator"
+              type: "string"
+              required: false
+              default: "."
+            - name: "ThousandSeparator"
+              type: "string"
+              required: false
+              default: ","
+            - name: "FirstRowIsHeader"
+              type: "boolean"
+              required: false
+              default: true
+          example_csv:
+            json: |
+              {
+                "_t": "ImportAdjustments_Upload",
+                "AdjustmentType": "group",
+                "DataSourceType": 0,
+                "UploadedFiles": [{"fileName": "adjustments.csv", "url": "/uploads/..."}],
+                "CSVSeparator": ";",
+                "FirstRowIsHeader": true
+              }
+          example_hub:
+            json: |
+              {
+                "_t": "ImportAdjustments_Upload",
+                "AdjustmentType": "group",
+                "DataSourceType": 2,
+                "PackageID": 456
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+
+      - name: "ImportAdjustments_Process"
+        description: |
+          Processes validated adjustment data into the system.
+          Called after upload/parsing job completes successfully.
+          Returns job ID for monitoring processing progress.
+        access_right: "ImportAdjustments_Import"
+        async: false
+        background_job: true
+        job_class: "Jobs.Database.ImportAdjustmentsJob"
+
+        request:
+          _t: "ImportAdjustments_Process"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "SessionID"
+              type: "integer"
+              required: true
+              description: "Session ID from upload"
+            - name: "LogScreenID"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+
+      - name: "ImportAdjustments_GetAdjustmentsPackageIdsCodeDescription"
+        description: |
+          Retrieves available HUB packages for adjustment import.
+          Used to populate package dropdown for HUB imports.
+        access_right: "ImportAdjustments_Import"
+        async: true
+
+        request:
+          _t: "ImportAdjustments_GetAdjustmentsPackageIdsCodeDescription"
+          parameters:
+            - name: "code"
+              type: "string"
+              required: false
+            - name: "description"
+              type: "string"
+              required: false
+            - name: "maxRows"
+              type: "integer"
+              required: false
+
+        response:
+          success:
+            scf_items:
+              type: "array<KeyValuePair<int,string>>"
+              description: "PackageID -> Description pairs"
+
+  # ============================================================================
+  # EXPORT ADJUSTMENTS HANDLERS
+  # ============================================================================
+  export_adjustments_handlers:
+    description: |
+      Endpoints for exporting adjustments to files or HUB.
+      Source: Sigma.Mona.WebApplication/Screens/ExportAdjustments/ExportAdjustmentsService.cs
+
+    handlers:
+      - name: "ExportAdjustments_Export"
+        description: |
+          Exports adjustments to CSV, Excel, or HUB package.
+          Runs as background job (ExportAdjustmentsJob).
+          Returns job ID for monitoring export progress.
+        access_right: "ExportAdjustments_Export"
+        async: false
+        background_job: true
+        job_class: "Jobs.Database.ExportAdjustmentsJob"
+
+        request:
+          _t: "ExportAdjustments_Export"
+          parameters:
+            - name: "AdjustmentType"
+              type: "string"
+              required: true
+            - name: "ConsoCode"
+              type: "string"
+              required: false
+              description: "Period code (default: working period)"
+            - name: "FileType"
+              type: "integer"
+              required: true
+              description: "0=CSV, 1=XLS, 2=HUB"
+            - name: "CompanyCodes"
+              type: "string"
+              required: false
+              description: "Filter by company codes (comma-separated)"
+            - name: "JournalSummationCode"
+              type: "string"
+              required: false
+              description: "Filter by journal summation"
+            - name: "TypeExportAmounts"
+              type: "integer"
+              required: false
+              description: "Amount export format"
+            - name: "CSVSeparator"
+              type: "string"
+              required: false
+              default: ";"
+            - name: "TextQuote"
+              type: "string"
+              required: false
+              default: "\""
+            - name: "DecimalSeparator"
+              type: "string"
+              required: false
+              default: "."
+            - name: "ThousandSeparator"
+              type: "string"
+              required: false
+              default: ","
+          example:
+            json: |
+              {
+                "_t": "ExportAdjustments_Export",
+                "AdjustmentType": "group",
+                "FileType": 1,
+                "CompanyCodes": "ACME,SUB01"
+              }
+
+        response:
+          success:
+            JobID:
+              type: "integer"
+              description: "Background job ID for monitoring"
+          notes:
+            - "Use Job_GetJobStatusPolling to monitor export progress"
+            - "Job output includes download URL for exported file"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    create_adjustment_workflow:
+      name: "Create Adjustment Journal Workflow"
+      description: "Complete workflow for creating a new adjustment journal"
+      steps:
+        - step: 1
+          name: "Initialize Edit Screen"
+          handler: "AdjustmentJournalEdit_Init"
+          parameters:
+            AdjustmentType: "group"
+            ID: null
+          purpose: "Get screen configuration and dropdowns"
+
+        - step: 2
+          name: "Get Journal Info"
+          handler: "AdjustmentJournalEdit_GetJournalInfo"
+          purpose: "Get next entry number for selected journal type"
+
+        - step: 3
+          name: "Enter Journal Data"
+          description: "User fills in company, journal type, and detail lines"
+          client_side: true
+          validation: "Debits must equal credits"
+
+        - step: 4
+          name: "Save Journal"
+          handler: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+          purpose: "Persist new journal"
+
+        - step: 5
+          name: "Apply Deferred Tax"
+          handler: "AdjustmentJournalEdit_ApplyTax"
+          condition: "If Group journal with DeferredTaxRate"
+          optional: true
+
+    import_adjustments_workflow:
+      name: "Import Adjustments Workflow"
+      description: "Import adjustments from file or HUB"
+      steps:
+        - step: 1
+          name: "Upload File"
+          handler: "ImportAdjustments_Upload"
+          output: "JobID"
+
+        - step: 2
+          name: "Monitor Parsing"
+          handler: "Job_GetJobStatusPolling"
+          purpose: "Wait for file parsing to complete"
+
+        - step: 3
+          name: "Review Validation"
+          description: "User reviews parsed data for errors"
+          decision:
+            if_errors: "Fix source file and retry from step 1"
+            if_ok: "Continue to step 4"
+
+        - step: 4
+          name: "Process Import"
+          handler: "ImportAdjustments_Process"
+          output: "JobID"
+
+        - step: 5
+          name: "Monitor Processing"
+          handler: "Job_GetJobStatusPolling"
+          purpose: "Wait for import to complete"
+
+        - step: 6
+          name: "Verify Import"
+          handler: "AdjustmentsJournal_GetAdjustments"
+          purpose: "Confirm adjustments imported correctly"
+
+    batch_management_workflow:
+      name: "Batch Journal Management Workflow"
+      description: "Perform batch operations on journals"
+      steps:
+        - step: 1
+          name: "Get Journal Types"
+          handler: "AdjustmentsManagement_GetJournalTypes"
+          purpose: "Get available journal types"
+
+        - step: 2
+          name: "Get Journal Entries"
+          handler: "AdjustmentsManagement_GetJournalEntries"
+          purpose: "Get journals for selection"
+
+        - step: 3
+          name: "Select Journals"
+          description: "User selects journals for batch operation"
+          client_side: true
+
+        - step: 4
+          name: "Execute Action"
+          handler: "AdjustmentsManagement_ExecuteAction"
+          purpose: "Perform selected action (Delete, Move, etc.)"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    - name: "P_UPDATE_LOCALADJUSTMENT_JOURNAL_DETAIL"
+      description: "Creates/updates/deletes local adjustment detail lines"
+      called_by: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+
+    - name: "P_UPDATE_GROUPADJUSTMENT_JOURNAL_DETAIL"
+      description: "Creates/updates/deletes group adjustment detail lines"
+      called_by: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+
+    - name: "P_UPDATE_LOCALADJUSTMENT_JOURNAL_DETAIL_VALIDATE"
+      description: "Validates local adjustment after save"
+      called_by: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+
+    - name: "P_UPDATE_GROUPADJUSTMENT_JOURNAL_DETAIL_VALIDATE"
+      description: "Validates group adjustment and applies tax"
+      called_by: "AdjustmentJournalEdit_SaveAdjustmentJournalEdit"
+
+    - name: "P_UPDATE_GROUPADJUSTMENT_JOURNAL_DETAIL_DEFERRED_TAX"
+      description: "Calculates and applies deferred tax entries"
+      called_by: "AdjustmentJournalEdit_ApplyTax"
+
+    - name: "P_VIEW_GROUPADJUSTMENT_JOURNAL_DETAIL"
+      description: "Returns group adjustment detail lines"
+      called_by: "AdjustmentJournalEdit_GetAdjustmentJournalEdit"
+
+  # ============================================================================
+  # CONFIGURATION
+  # ============================================================================
+  configuration:
+    - name: "PreventChangesOnAdjustmentsCarriedForward"
+      description: "When true, prevents editing journals that were carried forward"
+      default: false
+      impact: "Users cannot modify FlagCarriedOrCopied=true journals"
+
+    - name: "LockJournalForChanges"
+      description: "When true, existing journals cannot be modified"
+      default: false
+      impact: "Only new journals can be created"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/AdjustmentsJournal/AdjustmentsJournalService.cs"
+      - "Sigma.Mona.WebApplication/Screens/AdjustmentsManagement/AdjustmentsManagementService.cs"
+      - "Sigma.Mona.WebApplication/Screens/AdjustmentsJournalEdit/AdjustmentJournalEditServices.cs"
+      - "Sigma.Mona.WebApplication/Screens/ImportAdjustments/ImportAdjustmentsService.cs"
+      - "Sigma.Mona.WebApplication/Screens/ExportAdjustments/ExportAdjustmentsService.cs"
+    handler_count: 20
+    purpose: |
+      Enable AI agents to manage consolidation adjustments including:
+      - Creating and editing local and group adjustment journals
+      - Managing journal detail lines with debit/credit entries
+      - Applying deferred tax calculations
+      - Importing adjustments from CSV, Excel, or HUB
+      - Exporting adjustments for backup or transfer
+      - Batch management operations (delete, move, aggregate)
+
+      Adjustment journals are essential for:
+      - Recording elimination entries for intercompany transactions
+      - Making manual consolidation corrections
+      - Recording tax adjustments and provisions
+      - Maintaining audit trail of consolidation adjustments

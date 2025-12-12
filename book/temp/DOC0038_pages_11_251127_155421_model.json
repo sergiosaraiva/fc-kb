@@ -1,0 +1,1353 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.067,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.121,
+                0.875,
+                0.155
+            ],
+            "angle": 0,
+            "content": "profit by 50 and this is normal because, from the group point of view, the value of these stocks was 300 and not 350."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.168,
+                0.876,
+                0.203
+            ],
+            "angle": 0,
+            "content": "Then, we see the adjustment (e) which is the same as the one booked in Year 1, corresponding to the elimination of the new stocks margin of 60."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.216,
+                0.518,
+                0.232
+            ],
+            "angle": 0,
+            "content": "We would conclude with three comments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.249,
+                0.874,
+                0.329
+            ],
+            "angle": 0,
+            "content": "- First, eliminating stocks margins between companies is not an easy process. At the end of each consolidation period, it is necessary to audit the stocks of each company and to identify which part has been sold by another company of the group with the corresponding stocks margin."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.345,
+                0.875,
+                0.394
+            ],
+            "angle": 0,
+            "content": "- When decision is taken to eliminate stocks margins, the impact on the group profit can be really important the first year (50 in our case study)."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.249,
+                0.875,
+                0.394
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.324,
+                0.409,
+                0.665,
+                0.478
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1</td><td>Year 2</td></tr><tr><td>Company A</td><td>(50)</td><td>(60)</td></tr><tr><td>Company B</td><td>0</td><td>50</td></tr><tr><td></td><td>(50)</td><td>(10)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.489,
+                0.875,
+                0.556
+            ],
+            "angle": 0,
+            "content": "- As illustrated here above, we can see that after Year 1, and for ever, if the stocks margins are relatively similar each year, the impact on the profit cannot be significant (-10 in our case study). That's why we recommend simulating figures before taking such decision."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.588,
+                0.757,
+                0.612
+            ],
+            "angle": 0,
+            "content": "8.5 Leasing not booked in balance sheet"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.63,
+                0.262,
+                0.648
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.663,
+                0.876,
+                0.697
+            ],
+            "angle": 0,
+            "content": "Depending on local accounting regulations, the same leasing contract may not be booked the same way by companies of a same group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.71,
+                0.875,
+                0.791
+            ],
+            "angle": 0,
+            "content": "- In some countries, the booking consists in showing the gross value of the asset and its depreciations and the remaining value of the loan. In the P&L, we find depreciations and financial interest charges. In fact, this is the expected way to book such transaction which is also compliant with the IFRS practices."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.807,
+                0.873,
+                0.855
+            ],
+            "angle": 0,
+            "content": "- In some other countries, we don't see the leased asset or the loan. Only the P&L shows a single services amount including capital reimbursement and financial interests."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.71,
+                0.875,
+                0.855
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.307,
+                0.072,
+                0.855,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.12,
+                0.877,
+                0.155
+            ],
+            "angle": 0,
+            "content": "For those companies having such accounting practices, additional consolidation adjustments must be booked."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.168,
+                0.555,
+                0.186
+            ],
+            "angle": 0,
+            "content": "Let's explain how with the following example."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.2,
+                0.779,
+                0.218
+            ],
+            "angle": 0,
+            "content": "Company A decides to lease an asset under the following conditions:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.232,
+                0.576,
+                0.248
+            ],
+            "angle": 0,
+            "content": "The corresponding leased capital is 100"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.265,
+                0.475,
+                0.281
+            ],
+            "angle": 0,
+            "content": "- Contract duration is 10 years"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.148,
+                0.297,
+                0.795,
+                0.314
+            ],
+            "angle": 0,
+            "content": "Financial lease interest is a fixed \\(3\\%\\) /year during the 10 years."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.148,
+                0.232,
+                0.795,
+                0.314
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.329,
+                0.876,
+                0.363
+            ],
+            "angle": 0,
+            "content": "Here are the company A statutory accounts for Year 1 and Year 2, which are the two periods we will follow."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.247,
+                0.372,
+                0.78,
+                0.519
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A (Year 1)</td></tr><tr><td>Asset (Acq. Value)</td><td>0</td><td>Capital   300</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves   200</td></tr><tr><td>Cash</td><td>487</td><td>Result    (13)</td></tr><tr><td></td><td></td><td>Loan(leasing)   0</td></tr><tr><td>Depreciation</td><td>0</td><td></td></tr><tr><td>Services</td><td>13</td><td></td></tr><tr><td>Interests charges</td><td>0</td><td></td></tr><tr><td>Result</td><td>(13)</td><td></td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.247,
+                0.535,
+                0.78,
+                0.683
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td colspan=\"2\">A (Year 2)</td></tr><tr><td>Asset (Acq. Value)</td><td>0</td><td>Capital 300</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves 187</td></tr><tr><td>Cash</td><td>474</td><td>Result (13)</td></tr><tr><td></td><td></td><td>Loan(leasing) 0</td></tr><tr><td>Depreciation</td><td>0</td><td></td></tr><tr><td>Services</td><td>13</td><td></td></tr><tr><td>Interests charges</td><td>0</td><td></td></tr><tr><td>Result</td><td>(13)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.699,
+                0.877,
+                0.749
+            ],
+            "angle": 0,
+            "content": "We can see that the only impact of the leasing transaction is a services expense of 13 in the P&L accounts, which consists in a reimbursement of capital for 10 and financial interests for 3."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.763,
+                0.876,
+                0.797
+            ],
+            "angle": 0,
+            "content": "This presentation is not compliant with group's rules or IFRS rules and so need some consolidation adjustments."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.11,
+                0.065,
+                0.364,
+                0.079
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.119,
+                0.393,
+                0.135
+            ],
+            "angle": 0,
+            "content": "The adjustments = Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.151,
+                0.685,
+                0.169
+            ],
+            "angle": 0,
+            "content": "There are three consolidation adjustments (a), (b) and (c)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.263,
+                0.187,
+                0.805,
+                0.464
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year I)</td></tr><tr><td>Asset (Acq. Value)</td><td>0</td><td>Capital</td><td>300</td></tr><tr><td>(a)</td><td>100</td><td>Reserves</td><td>100</td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Result</td><td>(13)</td></tr><tr><td>(b)</td><td>(10)</td><td>Loan(leasing)</td><td>0</td></tr><tr><td>Cash</td><td>287</td><td>(a)</td><td>100</td></tr><tr><td></td><td></td><td>(b)</td><td>(10)</td></tr><tr><td>Depreciation</td><td>0</td><td></td><td></td></tr><tr><td>(c)</td><td>10</td><td></td><td></td></tr><tr><td>Services</td><td>13</td><td></td><td></td></tr><tr><td>(c)</td><td>(13)</td><td></td><td></td></tr><tr><td>Interests charges</td><td>0</td><td></td><td></td></tr><tr><td>(c)</td><td>3</td><td></td><td></td></tr><tr><td>Result</td><td>(13)</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.49,
+                0.879,
+                0.522
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) consists in booking the gross value of the leased asset in Assets and the leased capital as a loan in the Liabilities."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.538,
+                0.879,
+                0.586
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) depreciates the asset value on the basis of a 10 years \\((10\\%)\\) duration and the corresponding debit is the decreasing of the capital loans by the same amount."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.602,
+                0.878,
+                0.652
+            ],
+            "angle": 0,
+            "content": "Adjustment (c) consists in a reclassification in the P&L accounts. Services for an amount of 13 are set to zero, 10 being transferred to Depreciation account and 3 to Financial interest charges."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.667,
+                0.794,
+                0.684
+            ],
+            "angle": 0,
+            "content": "No impact on the result for such journal entries, only reclassifications."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.7,
+                0.391,
+                0.716
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.731,
+                0.876,
+                0.796
+            ],
+            "angle": 0,
+            "content": "When receiving the statutory accounts of company A for Year 2, the leasing transaction does not appear and again, not only consolidation adjustments are required but we also have to take care of \"historical\" adjustments of Year 1."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.306,
+                0.072,
+                0.854,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.12,
+                0.5,
+                0.138
+            ],
+            "angle": 0,
+            "content": "Here are company A adjusted accounts."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.264,
+                0.153,
+                0.8,
+                0.428
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td>Asset (Acq. Value)</td><td>0</td><td>Capital</td><td>300</td></tr><tr><td>(a)</td><td>100</td><td></td><td></td></tr><tr><td>Asset (Deprec.)</td><td>0</td><td>Reserves</td><td>187</td></tr><tr><td>(b)</td><td>(20)</td><td></td><td></td></tr><tr><td>Cash</td><td>474</td><td>Result</td><td>(13)</td></tr><tr><td></td><td></td><td>Loan(leasing)</td><td>0</td></tr><tr><td></td><td></td><td></td><td>(a)</td></tr><tr><td></td><td></td><td></td><td>(b)</td></tr><tr><td>Depreciation</td><td>0</td><td></td><td></td></tr><tr><td>(c)</td><td>10</td><td></td><td></td></tr><tr><td>Services</td><td>13</td><td></td><td></td></tr><tr><td>(c)</td><td>(13)</td><td></td><td></td></tr><tr><td>Interests charges</td><td>0</td><td></td><td></td></tr><tr><td>(c)</td><td>3</td><td></td><td></td></tr><tr><td>Result</td><td>(13)</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.458,
+                0.75,
+                0.475
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) is the same as the one we have booked in Year 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.491,
+                0.875,
+                0.525
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) shows a depreciation of the asset for two years and the corresponding reimbursement of capital loan."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.538,
+                0.876,
+                0.587
+            ],
+            "angle": 0,
+            "content": "Adjustments (c) reclassifies services into depreciation and financial interest charges in the same way we booked it in Year 1. This journal entry will last for 10 years."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.602,
+                0.874,
+                0.669
+            ],
+            "angle": 0,
+            "content": "The important question is to know who has to book these adjustments. We recommend to practise the \"push down\" policy consisting of asking companies to book these adjustments themselves somewhere between their accounting system and the consolidation reporting."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.702,
+                0.591,
+                0.725
+            ],
+            "angle": 0,
+            "content": "8.6 Deferred tax adjustments"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.744,
+                0.259,
+                0.761
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.776,
+                0.875,
+                0.841
+            ],
+            "angle": 0,
+            "content": "When we receive the accounts of a company, we can check with more or less accuracy that the amount of tax is a certain tax rate applied to the profit before tax. But as soon as we book consolidation adjustments, this relation is not verified any more."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.067,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.121,
+                0.878,
+                0.187
+            ],
+            "angle": 0,
+            "content": "For instance, in section 8.2, we modified the depreciation and consequently the profit before tax but we didn't calculate a tax effect on these adjustments. It is not correct. On such adjustments modifying the result (profit or loss), we should calculate what is called a deferred tax."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.201,
+                0.878,
+                0.252
+            ],
+            "angle": 0,
+            "content": "Such tax (real and deferred) shows the amount of tax the company would have to pay by booking all these consolidation adjustments in its local accounting."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.265,
+                0.878,
+                0.348
+            ],
+            "angle": 0,
+            "content": "When we consider these combined tax effects on a transaction over the periods for which they have an impact in consolidation, we will notice that the total amount of tax paid remains the same as if we would have considered only real taxes. But the annual tax rate is much more consistent when we include deferred tax."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.361,
+                0.373,
+                0.379
+            ],
+            "angle": 0,
+            "content": "Let's consider an example."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.394,
+                0.876,
+                0.427
+            ],
+            "angle": 0,
+            "content": "In Year 1, a company A has booked R&D in its statutory assets for a gross amount of 120 and decides to depreciate it over three years."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.442,
+                0.876,
+                0.492
+            ],
+            "angle": 0,
+            "content": "To make things simple, we will suppose that for the next three next years, company A has an ongoing business generating a profit before tax of 200 each year. Tax rate for this company is \\(30\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.506,
+                0.429,
+                0.522
+            ],
+            "angle": 0,
+            "content": "Here are the accounts of Year 1."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.248,
+                0.541,
+                0.794,
+                0.688
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>R&amp;D (Acq. Value)</td><td>120</td><td>Capital</td><td>500</td></tr><tr><td>R&amp;D (Deprec.)</td><td>(40)</td><td>Reserves</td><td>0</td></tr><tr><td>Cash</td><td>580</td><td>Result</td><td>112</td></tr><tr><td></td><td></td><td>Tax payables</td><td>48</td></tr><tr><td>Purchases</td><td>700</td><td>Sales</td><td>900</td></tr><tr><td>Depreciation</td><td>40</td><td></td><td></td></tr><tr><td>Tax</td><td>48</td><td></td><td></td></tr><tr><td>Result</td><td>112</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.698,
+                0.876,
+                0.749
+            ],
+            "angle": 0,
+            "content": "We also suppose that Year 2 and Year 3 accounts generate the same ongoing profit of \\(200 = 900 - 700\\) and the R&D continues to be depreciated for 40. This means that each year, company A pays a tax of \\(48 = 30\\%\\) [200 - 40]."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.072,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.12,
+                0.391,
+                0.136
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.152,
+                0.876,
+                0.203
+            ],
+            "angle": 0,
+            "content": "Now, the difficult point is that the group does not accept R&D (IFRS approach) in the intangible assets and asks the company to book them as an expense of the year."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.217,
+                0.874,
+                0.25
+            ],
+            "angle": 0,
+            "content": "That approach requires consolidation adjustments that will be booked in consolidation and not in the statutory accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.25,
+                0.674,
+                0.266
+            ],
+            "angle": 0,
+            "content": "Here are the accounts with the consolidation adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.266,
+                0.278,
+                0.737,
+                0.564
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>R&amp;D (Acq. Value)</td><td>120</td><td>Capital</td><td>500</td></tr><tr><td>(b)</td><td>(120)</td><td></td><td></td></tr><tr><td>R&amp;D (Deprec.)</td><td>(40)</td><td>Reserves</td><td>0</td></tr><tr><td>(a)</td><td>40</td><td></td><td></td></tr><tr><td>Deferred tax</td><td>(a)</td><td>Result</td><td>112</td></tr><tr><td>(b)</td><td>36</td><td>(a)</td><td>28</td></tr><tr><td></td><td></td><td>(b)</td><td>(84)</td></tr><tr><td>Cash</td><td>580</td><td>Tax payables</td><td>48</td></tr><tr><td>Purchases</td><td>700</td><td>Sales</td><td>900</td></tr><tr><td>(b)</td><td>120</td><td></td><td></td></tr><tr><td>Depreciation</td><td>40</td><td></td><td></td></tr><tr><td>(a)</td><td>(40)</td><td></td><td></td></tr><tr><td>Tax (Real)</td><td>48</td><td></td><td></td></tr><tr><td>Tax (Deferred)</td><td>(a)</td><td>12</td><td></td></tr><tr><td>(b)</td><td>(36)</td><td></td><td></td></tr><tr><td>Result</td><td>112</td><td></td><td></td></tr><tr><td>(a)</td><td>28</td><td></td><td></td></tr><tr><td>(b)</td><td>(84)</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.586,
+                0.876,
+                0.62
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) reverses the statutory depreciation of 40, but includes a deferred tax effect of \\(30\\%\\) giving a net impact of result for 28."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.634,
+                0.876,
+                0.683
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) reverses the statutory gross value of R&D for 120, again with a deferred tax effect of \\(30\\%\\) giving a net impact of result for (84) and an asset deferred tax of \\(36 = 30\\% * 120\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.699,
+                0.864,
+                0.716
+            ],
+            "angle": 0,
+            "content": "Statutory and adjusted profits before tax are represented in the report below"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.266,
+                0.731,
+                0.779,
+                0.815
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Tax proof Year 1</td><td>Statutory</td><td>Consolidation</td></tr><tr><td>Profit before tax</td><td>160</td><td>80</td></tr><tr><td>Tax (Real)</td><td>48</td><td>48</td></tr><tr><td>Tax (Deferred)</td><td>0</td><td>(24)</td></tr><tr><td>Calculated tax rate</td><td>30%</td><td>30%</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.843,
+                0.876,
+                0.877
+            ],
+            "angle": 0,
+            "content": "which shows that real and deferred taxes, considered together, give the expected tax rate of \\(30\\%\\)."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.066,
+                0.367,
+                0.081
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.12,
+                0.395,
+                0.138
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 2"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.152,
+                0.878,
+                0.203
+            ],
+            "angle": 0,
+            "content": "Receiving Year 2 statutory accounts, R&D have been depreciated twice. In consolidation, we have to carry forward Year 1 adjustments and book an appropriate adjustment for Year 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.216,
+                0.643,
+                0.234
+            ],
+            "angle": 0,
+            "content": "Here are the accounts after consolidation adjustments."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.266,
+                0.248,
+                0.739,
+                0.507
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td>R&amp;D (Acq. Value)</td><td>120(b)(120)</td><td>Capital</td><td>500</td></tr><tr><td rowspan=\"3\">R&amp;D (Deprec.)</td><td rowspan=\"3\">(80)(a)</td><td>Reserves</td><td>112</td></tr><tr><td>(a)</td><td>28</td></tr><tr><td>(b)</td><td>(84)</td></tr><tr><td rowspan=\"2\">Deferred tax</td><td>(a)(24)</td><td rowspan=\"2\">Result</td><td>112</td></tr><tr><td>(b)36</td><td>28</td></tr><tr><td>Cash</td><td>732</td><td>Tax payables</td><td>48</td></tr><tr><td>Purchases</td><td>700</td><td>Sales</td><td>900</td></tr><tr><td>Depreciation</td><td>40</td><td></td><td></td></tr><tr><td>Tax (Real)</td><td>48</td><td></td><td></td></tr><tr><td>Tax (Deferred)</td><td>(a)12</td><td></td><td></td></tr><tr><td>Result</td><td>112</td><td></td><td></td></tr><tr><td>(a]</td><td>28</td><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.537,
+                0.875,
+                0.603
+            ],
+            "angle": 0,
+            "content": "Adjustment (a) reverses two depreciations for a total of 80, one amount of 40 is the carry forward of Year 1 and impacts the Reserves and the other one impacts the P&L because related to Year 2. For each of these depreciations, we take care of a deferred tax effect of \\(30\\%\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.617,
+                0.776,
+                0.636
+            ],
+            "angle": 0,
+            "content": "Adjustment (b) is just the carry forward of adjustment (b) of Year 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.65,
+                0.865,
+                0.668
+            ],
+            "angle": 0,
+            "content": "Here is the corresponding tax proof comparing statutory and adjusted figures"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.245,
+                0.685,
+                0.76,
+                0.771
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Tax roof Year 2</td><td>Statuto</td><td>Consolidation</td></tr><tr><td>Profit before tax</td><td></td><td></td></tr><tr><td>Tax (Real)</td><td></td><td></td></tr><tr><td>Tax Deferred</td><td></td><td></td></tr><tr><td>Calculated tax rate</td><td>30%</td><td>30%</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.795,
+                0.585,
+                0.812
+            ],
+            "angle": 0,
+            "content": "where we find hopefully the same tax rate again."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.302,
+                0.072,
+                0.855,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.106,
+                0.121,
+                0.391,
+                0.138
+            ],
+            "angle": 0,
+            "content": "The adjustments - Year 3"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.153,
+                0.876,
+                0.187
+            ],
+            "angle": 0,
+            "content": "This Year 3 is the final year for this transaction and we present here below the consolidation adjustments without any comments because it is quite obvious."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.201,
+                0.876,
+                0.234
+            ],
+            "angle": 0,
+            "content": "One can see that statutory net value of R&D is zero as required in consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.249,
+                0.523,
+                0.266
+            ],
+            "angle": 0,
+            "content": "Deferred tax assets are also equal to zero."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.263,
+                0.294,
+                0.737,
+                0.552
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 3)</td></tr><tr><td>R&amp;D (Acq. Value)</td><td>120</td><td>Capital</td><td>500</td></tr><tr><td></td><td>(b)</td><td>(120)</td><td></td></tr><tr><td>R&amp;D (Deprec.)</td><td>(120)</td><td>Reserves</td><td>224</td></tr><tr><td></td><td>(a)</td><td>120</td><td>(a)</td></tr><tr><td></td><td></td><td></td><td>(b)</td></tr><tr><td>Deferred tax</td><td></td><td>Result</td><td>112</td></tr><tr><td></td><td>(a)</td><td>(36)</td><td>(a)</td></tr><tr><td></td><td>(b)</td><td>36</td><td></td></tr><tr><td>Cash</td><td>884</td><td>Tax payables</td><td>48</td></tr><tr><td>Purchases</td><td>700</td><td>Sales</td><td>900</td></tr><tr><td>Depreciation</td><td>40</td><td></td><td></td></tr><tr><td>Tax (Real)</td><td>48</td><td></td><td></td></tr><tr><td>Tax (Deferred)</td><td>(a)</td><td>(40)</td><td></td></tr><tr><td>(a)</td><td>12</td><td></td><td></td></tr><tr><td>Result</td><td>112</td><td></td><td></td></tr><tr><td></td><td>(a)</td><td>28</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.571,
+                0.876,
+                0.604
+            ],
+            "angle": 0,
+            "content": "In Year 4, everything will be set to zero in statutory and no consolidation adjustments have to be carried forward any more."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.619,
+                0.876,
+                0.669
+            ],
+            "angle": 0,
+            "content": "Let's conclude this case study by comparing the effective tax amounts really paid during these three years and the total tax adjusted by our adjustments during that same period."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.207,
+                0.68,
+                0.855,
+                0.733
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Year 1</td><td>Year 2</td><td>Year 3</td><td>Total</td></tr><tr><td>Tax paid</td><td>48</td><td>48</td><td>48</td><td>144</td></tr><tr><td>Tax paid and deferred</td><td>24</td><td>60</td><td>60</td><td>144</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.764,
+                0.427,
+                0.781
+            ],
+            "angle": 0,
+            "content": "This report gives two messages:"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.146,
+                0.796,
+                0.874,
+                0.829
+            ],
+            "angle": 0,
+            "content": "- The total tax paid is 144 and the adjusted tax over these three periods is also 144"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.844,
+                0.875,
+                0.877
+            ],
+            "angle": 0,
+            "content": "- The second line shows which amount of tax the company A would have paid by applying the group rules in its statutory accounts."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.146,
+                0.796,
+                0.875,
+                0.877
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.067,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.122,
+                0.851,
+                0.138
+            ],
+            "angle": 0,
+            "content": "Annual amounts are different but both totals are equal over the three years."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.154,
+                0.874,
+                0.234
+            ],
+            "angle": 0,
+            "content": "And our final conclusion will be to say that not all consolidation adjustments require calculation of a deferred tax effect. Most of the time, depreciation adjustment implies a deferred tax, depreciations and impairments on consolidation goodwill and elimination of dividends never imply a deferred tax effect."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.268,
+                0.771,
+                0.311
+            ],
+            "angle": 0,
+            "content": "8.7 Elimination of dividends in a classical situation"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.334,
+                0.262,
+                0.351
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.365,
+                0.875,
+                0.48
+            ],
+            "angle": 0,
+            "content": "Up to now, we have seen some examples of consolidation adjustments which are booked because of group's evaluation rules or because of a group profit which has no economic meaning with regard to the basic consolidation principles. This means that if these adjustments would not have been booked, someone not having a knowledge of what is happening in that group wouldn't be aware of the fact. To say it in another way, not booking such adjustments doesn't generate technical or visible errors in a consolidation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.495,
+                0.874,
+                0.56
+            ],
+            "angle": 0,
+            "content": "This last comment is not true for some other transactions in a group like dividends paid by a company to its shareholders, acquisition or disposal of a company, ... For these events, it is absolutely compulsory to book some adjustments. Not booking them would lead to visible errors again."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.574,
+                0.873,
+                0.607
+            ],
+            "angle": 0,
+            "content": "We are going to illustrate this problem with some of these events, the first one being the dividends."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.623,
+                0.873,
+                0.67
+            ],
+            "angle": 0,
+            "content": "We consider a company A owned by the parent company P with a financial percentage of \\(80\\%\\) and this percentage is maintained unchanged during Year 1 and Year 2."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.687,
+                0.873,
+                0.735
+            ],
+            "angle": 0,
+            "content": "At the end of Year 1, company A pays a dividend of 10 to its shareholders, which means that P books a gross dividend of \\(8 = 80\\% * 10\\). At the same time, P decides to pay a dividend of 15 to its own shareholders."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.751,
+                0.741,
+                0.768
+            ],
+            "angle": 0,
+            "content": "Here are the statutory accounts of P and A for Year 1 and Year 2"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.775,
+                0.486,
+                0.848
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P (Year 1)</td></tr><tr><td rowspan=\"3\">Fin. Invest./A</td><td rowspan=\"3\">80</td><td>Capital</td><td>200</td></tr><tr><td>Reserves</td><td>100</td></tr><tr><td>Result</td><td>30</td></tr><tr><td>Other assets</td><td>420</td><td>Other liabilities</td><td>170</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.495,
+                0.775,
+                0.868,
+                0.848
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">P (Year 2)</td></tr><tr><td>Fin. Invest./A</td><td>80</td><td>Capital</td><td>200</td></tr><tr><td></td><td></td><td>Reserves</td><td>115</td></tr><tr><td></td><td></td><td>Result</td><td>45</td></tr><tr><td>Other assets</td><td>530</td><td>Other liabilities</td><td>250</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.309,
+                0.072,
+                0.861,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.131,
+                0.49,
+                0.206
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A (Year 1)</td></tr><tr><td></td><td></td><td>Capital 100</td></tr><tr><td></td><td></td><td>Reserves 50</td></tr><tr><td></td><td></td><td>Result 20</td></tr><tr><td>Other assets</td><td>400</td><td>Other liabilities 230</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.516,
+                0.131,
+                0.894,
+                0.207
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A (Year 2)</td></tr><tr><td></td><td></td><td>Capital 100</td></tr><tr><td></td><td></td><td>Reserves 60</td></tr><tr><td></td><td></td><td>Result 30</td></tr><tr><td>Other assets</td><td>540</td><td>Other liabilities 350</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.221,
+                0.375,
+                0.238
+            ],
+            "angle": 0,
+            "content": "with the following remarks"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.253,
+                0.875,
+                0.287
+            ],
+            "angle": 0,
+            "content": "- We see by considering the Result and Reserves accounts that indeed P is paying a gross dividend of 15"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.152,
+                0.301,
+                0.764,
+                0.318
+            ],
+            "angle": 0,
+            "content": "- Same remark for company A paying a gross dividend of 10"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.333,
+                0.875,
+                0.366
+            ],
+            "angle": 0,
+            "content": "- For some practical reasons, we will not consider the P&L but it is understood that the \\(\\mathbb{P}\\) profit of 45 includes a dividend received for 8"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.152,
+                0.381,
+                0.875,
+                0.413
+            ],
+            "angle": 0,
+            "content": "- In consolidation, we always consider the gross dividend, whatever the net dividend received because of local taxes"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.152,
+                0.43,
+                0.875,
+                0.51
+            ],
+            "angle": 0,
+            "content": "- At the end of each year, we consolidate accounts before any appropriation. This is an organizational requirement because it wouldn't be acceptable to wait for the final audited accounts approved by the general annual meeting. Consolidated figures would be closed to late."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.253,
+                0.875,
+                0.51
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.526,
+                0.876,
+                0.56
+            ],
+            "angle": 0,
+            "content": "This group will be consolidated by the global method with a financial percentage of \\(80\\%\\) for each of the two years."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.114,
+                0.59,
+                0.771,
+                0.607
+            ],
+            "angle": 0,
+            "content": "But what is the problem in consolidation with this dividend?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.622,
+                0.877,
+                0.687
+            ],
+            "angle": 0,
+            "content": "The group dividend of 8 received by P is booked as a financial income in Year 2 but that amount was part of the profit of A in Year 1. This means that the consolidated profits of these two years are showing the same amount and this duplication leads to an unacceptable situation."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.703,
+                0.877,
+                0.768
+            ],
+            "angle": 0,
+            "content": "Going back to some basic principles of consolidation, profit of A in Year 1 is an economical profit contributing to the consolidated profit and accepted as such. The duplication use appearing in Year 2 in P accounts has to be eliminated. Clearly, we have to debit the financial income of 8."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.114,
+                0.783,
+                0.554,
+                0.8
+            ],
+            "angle": 0,
+            "content": "What will be the counterpart of this account?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.815,
+                0.877,
+                0.88
+            ],
+            "angle": 0,
+            "content": "Let's suppose company A doesn't pay that dividend which would then be transferred to its own reserves (or retained earnings). This is the answer but, from a group point of view, the counterpart account will not be company A reserves but P reserves."
+        }
+    ]
+]

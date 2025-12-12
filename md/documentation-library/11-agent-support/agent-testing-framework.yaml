@@ -1,0 +1,1170 @@
+# Agent Capability Testing Framework for Financial Consolidation
+# Purpose: Validate agent knowledge base with structured test scenarios
+# Version: 1.0
+
+agent_testing_framework:
+  name: "Financial Consolidation Agent Testing Framework"
+  version: "1.0"
+  description: "Structured test scenarios to validate agent knowledge base accuracy and completeness"
+
+  # ============================================================
+  # SECTION 1: TEST CASE LIBRARY
+  # ============================================================
+  test_case_library:
+    description: "Machine-parseable test scenarios organized by capability area"
+
+    # ----- Decision Tree Tests -----
+    decision_tree_tests:
+      category: "Level 5 - Complex Reasoning"
+
+      consolidation_method_tests:
+        test_id_prefix: "DT-CM"
+        decision_tree: "consolidation-method-decision.yaml"
+
+        test_cases:
+          - test_id: "DT-CM-001"
+            name: "Global Integration - Clear Majority"
+            description: "Test method determination for >50% control"
+            inputs:
+              control_percentage: 75
+              financial_percentage: 75
+              is_joint_arrangement: false
+              has_board_control: true
+            expected_result:
+              method: "G"
+              method_name: "Global Integration"
+              rationale: "Control percentage > 50%"
+            validation:
+              check_procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+              verify_sql: |
+                SELECT ConsoMethod FROM TS014C0
+                WHERE ConsoID = @ConsoID AND CompanyCode = @CompanyCode
+              expected_value: "G"
+
+          - test_id: "DT-CM-002"
+            name: "Equity Method - Significant Influence"
+            description: "Test method for 20-50% ownership without control"
+            inputs:
+              control_percentage: 35
+              financial_percentage: 35
+              is_joint_arrangement: false
+              has_board_control: false
+              has_significant_influence: true
+            expected_result:
+              method: "E"
+              method_name: "Equity Method"
+              rationale: "Significant influence (20-50%) without control"
+            validation:
+              verify_sql: |
+                SELECT ConsoMethod FROM TS014C0
+                WHERE ConsoID = @ConsoID AND GroupCtrlPerc BETWEEN 20 AND 50
+
+          - test_id: "DT-CM-003"
+            name: "Proportional Integration - Joint Venture"
+            description: "Test method for joint venture arrangement"
+            inputs:
+              control_percentage: 50
+              financial_percentage: 50
+              is_joint_arrangement: true
+              joint_arrangement_type: "joint_venture"
+            expected_result:
+              method: "P"
+              method_name: "Proportional Integration"
+              rationale: "Joint venture with proportional integration"
+            validation:
+              verify_sql: |
+                SELECT ConsoMethod FROM TS014C0
+                WHERE ConsoID = @ConsoID AND ConsoMethod = 'P'
+
+          - test_id: "DT-CM-004"
+            name: "De Facto Control - Below 50%"
+            description: "Test de facto control determination"
+            inputs:
+              control_percentage: 45
+              financial_percentage: 45
+              is_joint_arrangement: false
+              has_board_control: true
+              other_shareholders_dispersed: true
+            expected_result:
+              method: "G"
+              method_name: "Global Integration"
+              rationale: "De facto control via board majority despite <50%"
+            validation:
+              manual_verification: true
+              notes: "Requires judgment - document IFRS 10 control analysis"
+
+          - test_id: "DT-CM-005"
+            name: "Not Consolidated - No Influence"
+            description: "Test exclusion from consolidation"
+            inputs:
+              control_percentage: 15
+              financial_percentage: 15
+              is_joint_arrangement: false
+              has_significant_influence: false
+            expected_result:
+              method: "N"
+              method_name: "Not Consolidated"
+              rationale: "<20% ownership, no significant influence"
+            validation:
+              verify_sql: |
+                SELECT ConsoMethod FROM TS014C0
+                WHERE ConsoID = @ConsoID AND ConsoMethod = 'N'
+
+          - test_id: "DT-CM-006"
+            name: "Boundary Case - Exactly 50%"
+            description: "Test 50% ownership boundary"
+            inputs:
+              control_percentage: 50
+              financial_percentage: 50
+              is_joint_arrangement: false
+              has_board_control: false
+            expected_result:
+              method: "E"
+              method_name: "Equity Method"
+              rationale: "50% without control = significant influence"
+            notes: "Boundary case - could be G with de facto control"
+
+          - test_id: "DT-CM-007"
+            name: "Boundary Case - Exactly 20%"
+            description: "Test 20% ownership boundary"
+            inputs:
+              control_percentage: 20
+              financial_percentage: 20
+              is_joint_arrangement: false
+              has_significant_influence: true
+            expected_result:
+              method: "E"
+              method_name: "Equity Method"
+              rationale: "20% = presumed significant influence (IAS 28)"
+
+      elimination_code_tests:
+        test_id_prefix: "DT-EC"
+        decision_tree: "elimination-code-selection.yaml"
+
+        test_cases:
+          - test_id: "DT-EC-001"
+            name: "Intercompany Receivable/Payable"
+            description: "Route intercompany balance elimination"
+            inputs:
+              transaction_type: "intercompany_balance"
+              account_type: "receivable_payable"
+              partner_exists: true
+            expected_result:
+              elimination_code: "S001"
+              procedure: "P_CONSO_ELIM_INTERCOMPANY"
+              journal_type: "TC"
+
+          - test_id: "DT-EC-002"
+            name: "Intercompany Dividend"
+            description: "Route dividend elimination"
+            inputs:
+              transaction_type: "dividend"
+              dividend_type: "final"
+              consolidation_method: "G"
+            expected_result:
+              elimination_code: "S020"
+              procedure: "P_CONSO_ELIM_DIVIDEND"
+              journal_type: "TD"
+
+          - test_id: "DT-EC-003"
+            name: "Participation Elimination - Global"
+            description: "Route participation elimination for subsidiary"
+            inputs:
+              transaction_type: "participation"
+              consolidation_method: "G"
+              entry_year: "current"
+            expected_result:
+              elimination_code: "S050"
+              procedure: "P_CONSO_ELIM_PARTICIPATIONS0"
+              journal_type: "TP"
+
+          - test_id: "DT-EC-004"
+            name: "Minority Interest Calculation"
+            description: "Route NCI calculation"
+            inputs:
+              transaction_type: "minority_interest"
+              consolidation_method: "G"
+              has_nci: true
+            expected_result:
+              elimination_code: "S085"
+              procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+              journal_type: "TI"
+
+          - test_id: "DT-EC-005"
+            name: "Equity Method Pickup"
+            description: "Route equity method profit/loss"
+            inputs:
+              transaction_type: "equity_method"
+              consolidation_method: "E"
+            expected_result:
+              elimination_code: "S080"
+              procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+              journal_type: "TE"
+
+          - test_id: "DT-EC-006"
+            name: "User Elimination - Goodwill"
+            description: "Route custom goodwill elimination"
+            inputs:
+              transaction_type: "user_defined"
+              purpose: "goodwill_recognition"
+            expected_result:
+              elimination_code: "U###"
+              procedure: "P_CONSO_ELIM_USER"
+              journal_type: "Custom"
+              notes: "User defines elimination code"
+
+      currency_translation_tests:
+        test_id_prefix: "DT-CT"
+        decision_tree: "currency-translation-decision.yaml"
+
+        test_cases:
+          - test_id: "DT-CT-001"
+            name: "Balance Sheet - Current Rate"
+            description: "Test B/S translation rate selection"
+            inputs:
+              account_type: "balance_sheet"
+              item_type: "asset"
+              is_monetary: true
+              translation_method: "current_rate"
+            expected_result:
+              rate_type: "CC"
+              rate_name: "Closing Rate - Closing"
+              historical_flag: false
+
+          - test_id: "DT-CT-002"
+            name: "P&L - Average Rate"
+            description: "Test P&L translation rate selection"
+            inputs:
+              account_type: "profit_loss"
+              translation_method: "current_rate"
+            expected_result:
+              rate_type: "AC"
+              rate_name: "Average Rate - Closing"
+              historical_flag: false
+
+          - test_id: "DT-CT-003"
+            name: "Equity - Historical Rate"
+            description: "Test equity historical rate"
+            inputs:
+              account_type: "equity"
+              item_type: "share_capital"
+              is_historical: true
+            expected_result:
+              rate_type: "CC"
+              historical_flag: true
+              notes: "Uses rate from acquisition date"
+
+          - test_id: "DT-CT-004"
+            name: "Temporal Method - Non-Monetary"
+            description: "Test temporal method for fixed assets"
+            inputs:
+              account_type: "balance_sheet"
+              item_type: "fixed_asset"
+              is_monetary: false
+              translation_method: "temporal"
+            expected_result:
+              rate_type: "Historical"
+              historical_flag: true
+
+    # ----- Workflow Tests -----
+    workflow_tests:
+      category: "Level 4 - Workflow Execution"
+
+      add_subsidiary_tests:
+        test_id_prefix: "WF-AS"
+        workflow: "workflow-add-subsidiary.yaml"
+
+        test_cases:
+          - test_id: "WF-AS-001"
+            name: "Add Direct Subsidiary - Global"
+            description: "Test adding 100% owned subsidiary"
+            inputs:
+              company_code: "NEWSUB01"
+              company_name: "New Subsidiary Inc."
+              currency: "USD"
+              parent_company: "PARENT"
+              financial_percentage: 100
+              control_percentage: 100
+            expected_steps:
+              - step: 1
+                action: "Create company in TS014C0"
+                verification: |
+                  SELECT COUNT(*) FROM TS014C0
+                  WHERE ConsoID = @ConsoID AND CompanyCode = 'NEWSUB01'
+                expected: 1
+              - step: 2
+                action: "Create ownership link in TS015S0"
+                verification: |
+                  SELECT FinPercentage, CtrlPercentage FROM TS015S0 s
+                  INNER JOIN TS014C0 c ON c.CompanyID = s.CompanyOwnedID
+                  WHERE c.ConsoID = @ConsoID AND c.CompanyCode = 'NEWSUB01'
+                expected_fin: 100
+                expected_ctrl: 100
+              - step: 3
+                action: "Calculate ownership percentages"
+                verification: |
+                  SELECT GroupPerc, MinorPerc, ConsoMethod FROM TS014C0
+                  WHERE ConsoID = @ConsoID AND CompanyCode = 'NEWSUB01'
+                expected_group: 100
+                expected_minor: 0
+                expected_method: "G"
+            post_conditions:
+              - "Company exists in TS014C0"
+              - "ConsoMethod = 'G'"
+              - "GroupPerc = 100, MinorPerc = 0"
+
+          - test_id: "WF-AS-002"
+            name: "Add Indirect Subsidiary"
+            description: "Test adding subsidiary through intermediate"
+            inputs:
+              company_code: "GRANDSUB"
+              parent_company: "SUBSID01"
+              grandparent_ownership: 80
+              parent_to_sub_ownership: 75
+            expected_result:
+              effective_ownership: 60
+              group_percentage: 60
+              minority_percentage: 40
+              consolidation_method: "G"
+            verification: |
+              SELECT GroupPerc, MinorPerc FROM TS014C0
+              WHERE ConsoID = @ConsoID AND CompanyCode = 'GRANDSUB'
+
+          - test_id: "WF-AS-003"
+            name: "Add Associate Company"
+            description: "Test adding 30% equity method investee"
+            inputs:
+              company_code: "ASSOC01"
+              financial_percentage: 30
+              control_percentage: 30
+            expected_result:
+              consolidation_method: "E"
+              group_percentage: 30
+              minority_percentage: 0
+
+      acquisition_tests:
+        test_id_prefix: "WF-AQ"
+        workflow: "workflow-process-acquisition.yaml"
+
+        test_cases:
+          - test_id: "WF-AQ-001"
+            name: "Basic Acquisition with Goodwill"
+            description: "Test 80% acquisition with positive goodwill"
+            inputs:
+              purchase_price: 1000000
+              net_assets_fair_value: 900000
+              ownership_acquired: 80
+              nci_measurement: "proportionate"
+            expected_result:
+              goodwill_amount: 280000
+              goodwill_calculation: |
+                Purchase Price: 1,000,000
+                - Share of Net Assets (80% × 900,000): 720,000
+                = Goodwill: 280,000
+              nci_initial: 180000
+            journal_entries:
+              - debit: "Goodwill"
+                amount: 280000
+              - debit: "Net Assets"
+                amount: 720000
+              - credit: "Investment"
+                amount: 1000000
+
+          - test_id: "WF-AQ-002"
+            name: "Bargain Purchase"
+            description: "Test acquisition with negative goodwill"
+            inputs:
+              purchase_price: 800000
+              net_assets_fair_value: 1000000
+              ownership_acquired: 100
+            expected_result:
+              bargain_purchase_gain: 200000
+              treatment: "Recognize in P&L per IFRS 3.34"
+            validation:
+              manual_review: true
+              notes: "Reassess fair values before recognizing gain"
+
+      year_end_close_tests:
+        test_id_prefix: "WF-YE"
+        workflow: "workflow-year-end-close.yaml"
+
+        test_cases:
+          - test_id: "WF-YE-001"
+            name: "Complete Year-End Close"
+            description: "Test full year-end close process"
+            prerequisites:
+              - "All companies consolidated (Status_Bundles = 0)"
+              - "Exchange rates complete"
+              - "IC reconciled"
+            validation_gates:
+              - gate: 1
+                name: "Data Completeness"
+                check_sql: |
+                  SELECT COUNT(*) FROM TS014C0
+                  WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+                    AND Status_Bundles <> 0
+                expected: 0
+              - gate: 2
+                name: "Ownership Valid"
+                check_sql: |
+                  SELECT COUNT(*) FROM TS014C0
+                  WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+                    AND (GroupPerc + MinorPerc) <> 100
+                    AND ConsoMethod = 'G'
+                expected: 0
+              - gate: 3
+                name: "IC Reconciled"
+                check_sql: |
+                  SELECT SUM(AmountGroup) FROM TD035C2 d
+                  INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+                  WHERE d.ConsoID = @ConsoID AND a.PartnerType = 1
+                expected: 0
+              - gate: 4
+                name: "Eliminations Balance"
+                check_sql: |
+                  SELECT SUM(AmountElim) FROM TD035C2
+                  WHERE ConsoID = @ConsoID
+                expected: 0
+              - gate: 5
+                name: "BS Balances"
+                check_sql: |
+                  SELECT SUM(CASE WHEN a.DebitCredit = 'D' THEN AmountGroup
+                                  ELSE -AmountGroup END)
+                  FROM TD035C2 d
+                  INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+                  WHERE d.ConsoID = @ConsoID AND a.AccountType = 'B'
+                expected: 0
+
+    # ----- Playbook Tests -----
+    playbook_tests:
+      category: "Level 5 - Complex Scenario Orchestration"
+
+      acquisition_playbook_tests:
+        test_id_prefix: "PB-AQ"
+        playbook: "business-scenario-playbooks.yaml#acquisition_playbook"
+
+        test_cases:
+          - test_id: "PB-AQ-001"
+            name: "Full Acquisition Scenario - Global"
+            description: "End-to-end test of acquisition playbook"
+            scenario:
+              acquisition_type: "100% control"
+              target_company: "TargetCo"
+              purchase_price: 5000000
+              net_assets_fv: 4200000
+              acquisition_date: "2024-12-01"
+            phases_to_validate:
+              - phase: 1
+                name: "Method Determination"
+                expected_method: "G"
+              - phase: 2
+                name: "Entity Setup"
+                verifications:
+                  - "Company in TS014C0"
+                  - "Ownership in TS015S0"
+                  - "Percentages calculated"
+              - phase: 3
+                name: "Opening Balance"
+                verifications:
+                  - "Data in TD030B2"
+                  - "Integration complete"
+              - phase: 4
+                name: "Goodwill"
+                expected_goodwill: 800000
+                verifications:
+                  - "User elimination created"
+                  - "Journal entry balanced"
+              - phase: 5
+                name: "Eliminations"
+                verifications:
+                  - "S050-S054 executed"
+                  - "S085 calculated"
+              - phase: 6
+                name: "Review"
+                validation_rules:
+                  - "OWN-001"
+                  - "BS-003"
+            success_criteria:
+              - "Entity in consolidation scope"
+              - "Goodwill recognized"
+              - "BS balances"
+
+  # ============================================================
+  # SECTION 2: EXPECTED OUTCOMES
+  # ============================================================
+  expected_outcomes:
+    description: "Expected agent responses to common user questions"
+
+    common_questions:
+      - question_id: "Q-001"
+        question: "What consolidation method should I use for a 45% ownership?"
+        expected_response:
+          primary_answer: "Equity Method (E)"
+          rationale: "45% ownership without control indicates significant influence"
+          decision_tree_path: "control_percentage → significant_influence → equity_method"
+          caveats:
+            - "Could be Global if de facto control exists"
+            - "Could be Proportional if joint arrangement"
+          documentation_links:
+            - "consolidation-method-determination.md"
+            - "equity-method.md"
+        validation:
+          correct_method_identified: true
+          caveats_mentioned: true
+
+      - question_id: "Q-002"
+        question: "How do I add a new subsidiary to the consolidation?"
+        expected_response:
+          workflow_reference: "workflow-add-subsidiary.yaml"
+          steps_summary:
+            - "Create company record (TS014C0)"
+            - "Create ownership link (TS015S0)"
+            - "Calculate percentages (P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES)"
+            - "Verify exchange rates (TS017R0)"
+          prerequisites_mentioned:
+            - "Parent company exists"
+            - "Currency defined"
+          documentation_links:
+            - "workflow-add-subsidiary.yaml"
+            - "direct-indirect-holdings.md"
+
+      - question_id: "Q-003"
+        question: "Why is my elimination not running?"
+        expected_response:
+          troubleshooting_steps:
+            - "Check Active = 1 in TS070S0"
+            - "Verify ConsoMethodSelectionID matches company method"
+            - "Check prerequisite eliminations completed"
+            - "Verify special accounts mapped"
+          diagnostic_queries:
+            - query: "Check elimination status"
+              sql: |
+                SELECT ElimCode, Active, ElimLevel, ConsoMethodSelectionID
+                FROM TS070S0 WHERE ConsoID = @ConsoID
+          common_causes:
+            - "Elimination deactivated (Active = 0)"
+            - "Method mismatch"
+            - "Missing special account"
+          error_references:
+            - "error-handling-patterns.yaml#FAIL-003"
+            - "validation-rules.yaml#PC-004"
+
+      - question_id: "Q-004"
+        question: "How do I calculate goodwill for an acquisition?"
+        expected_response:
+          formula: |
+            Goodwill = Purchase Price
+                     + NCI at acquisition (if full goodwill)
+                     - Fair Value of Net Assets Acquired
+          steps:
+            - "Determine purchase price"
+            - "Identify net assets at fair value"
+            - "Choose NCI measurement method"
+            - "Calculate using formula"
+            - "Create user elimination for goodwill journal"
+          nci_options:
+            proportionate: "NCI = % × Net Assets FV"
+            full_goodwill: "NCI at fair value (includes NCI share of goodwill)"
+          documentation_links:
+            - "goodwill-calculation.md"
+            - "workflow-process-acquisition.yaml"
+
+      - question_id: "Q-005"
+        question: "What exchange rate should I use for fixed assets?"
+        expected_response:
+          decision_tree_path: "currency-translation-decision.yaml"
+          answer_by_method:
+            current_rate_method:
+              rate: "CC (Closing Rate)"
+              historical: false
+              rationale: "IAS 21 - all assets at closing rate"
+            temporal_method:
+              rate: "Historical"
+              historical: true
+              rationale: "Non-monetary item at historical rate"
+          default_recommendation: "Current Rate Method - CC"
+          documentation_links:
+            - "translation-methods.md"
+            - "exchange-rate-types.md"
+
+      - question_id: "Q-006"
+        question: "How do I process a disposal of a subsidiary?"
+        expected_response:
+          playbook_reference: "business-scenario-playbooks.yaml#disposal_playbook"
+          key_steps:
+            - "Freeze subsidiary balances"
+            - "Calculate accumulated CTA"
+            - "Calculate disposal gain/loss"
+            - "Create user elimination for deconsolidation"
+            - "Update entity status"
+            - "Remove ownership links"
+          formula: |
+            Disposal Gain/Loss =
+                Sale Proceeds
+              - Carrying Amount of Net Assets
+              - Goodwill Allocated
+              + CTA Recycled to P&L
+              + NCI Derecognized
+          ifrs_references:
+            - "IFRS 10 - Loss of control"
+            - "IAS 21 - CTA recycling"
+
+      - question_id: "Q-007"
+        question: "What special accounts are required for consolidation?"
+        expected_response:
+          minimum_required:
+            - code: "PLBAL"
+              purpose: "P&L balance / Result"
+            - code: "TDBS"
+              purpose: "Translation difference (OCI)"
+            - code: "ConsoRes"
+              purpose: "Consolidated reserves"
+            - code: "MinorInterests"
+              purpose: "NCI - Balance Sheet"
+            - code: "MinorBSProfitLoss"
+              purpose: "NCI - P&L"
+            - code: "EquityVal"
+              purpose: "Investment carrying amount"
+            - code: "DivReceived"
+              purpose: "Dividend income"
+          verification_query: |
+            SELECT SpecAccountCode,
+                   CASE WHEN c0.AccountID IS NOT NULL
+                        THEN 'MAPPED' ELSE 'MISSING' END
+            FROM TS010C1 c1
+            LEFT JOIN TS010C0 c0 ON c0.SpecAccountCode = c1.SpecAccountCode
+            WHERE c1.SpecAccountCode IN ('PLBAL','TDBS','ConsoRes',...)
+
+      - question_id: "Q-008"
+        question: "Why are my ownership percentages wrong?"
+        expected_response:
+          diagnostic_steps:
+            - "Verify direct percentages in TS015S0"
+            - "Check for circular ownership"
+            - "Run P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+            - "Verify parent company marked (FlagParent = 1)"
+          common_issues:
+            - issue: "GroupPerc + MinorPerc ≠ 100%"
+              cause: "Calculation not run after ownership change"
+              fix: "Execute P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+            - issue: "Wrong indirect percentage"
+              cause: "Missing intermediate ownership link"
+              fix: "Verify all ownership links in TS015S0"
+          validation_rule: "OWN-003"
+
+  # ============================================================
+  # SECTION 3: VALIDATION QUERIES
+  # ============================================================
+  validation_queries:
+    description: "SQL queries to confirm correct agent-guided execution"
+
+    ownership_validations:
+      - query_id: "VAL-OWN-001"
+        name: "Verify Percentage Ranges"
+        purpose: "All percentages between 0 and 100"
+        sql: |
+          SELECT CompanyCode, GroupPerc, MinorPerc, GroupCtrlPerc
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND (GroupPerc < 0 OR GroupPerc > 100
+                 OR MinorPerc < 0 OR MinorPerc > 100
+                 OR GroupCtrlPerc < 0 OR GroupCtrlPerc > 100)
+        expected_rows: 0
+        error_if_rows: "Invalid percentage values found"
+
+      - query_id: "VAL-OWN-002"
+        name: "Verify Group + Minor = 100 (Global)"
+        purpose: "Global companies have correct split"
+        sql: |
+          SELECT CompanyCode, GroupPerc, MinorPerc,
+                 (GroupPerc + MinorPerc) AS Total
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsoMethod = 'G'
+            AND ConsolidatedCompany = 1
+            AND ABS((GroupPerc + MinorPerc) - 100) > 0.01
+        expected_rows: 0
+        error_if_rows: "Group + Minor ≠ 100% for Global company"
+
+      - query_id: "VAL-OWN-003"
+        name: "Verify No Orphan Companies"
+        purpose: "All companies have shareholders"
+        sql: |
+          SELECT c.CompanyCode, c.CompanyName
+          FROM TS014C0 c
+          WHERE c.ConsoID = @ConsoID
+            AND c.ConsolidatedCompany = 1
+            AND c.FlagParent = 0
+            AND NOT EXISTS (
+                SELECT 1 FROM TS015S0 s
+                WHERE s.ConsoID = c.ConsoID
+                  AND s.CompanyOwnedID = c.CompanyID
+            )
+        expected_rows: 0
+        error_if_rows: "Orphan company found (no shareholders)"
+
+      - query_id: "VAL-OWN-004"
+        name: "Verify Method Matches Control"
+        purpose: "Consolidation method appropriate for control %"
+        sql: |
+          SELECT CompanyCode, GroupCtrlPerc, ConsoMethod,
+                 CASE
+                     WHEN GroupCtrlPerc > 50 AND ConsoMethod <> 'G' THEN 'Expected G'
+                     WHEN GroupCtrlPerc BETWEEN 20 AND 50 AND ConsoMethod NOT IN ('E','P') THEN 'Expected E/P'
+                     WHEN GroupCtrlPerc < 20 AND ConsoMethod NOT IN ('N','E') THEN 'Expected N/E'
+                     ELSE 'OK'
+                 END AS MethodCheck
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID
+            AND ConsolidatedCompany = 1
+            AND FlagParent = 0
+        review: "Manual verification for special cases (de facto control, joint arrangements)"
+
+    elimination_validations:
+      - query_id: "VAL-ELIM-001"
+        name: "Verify Elimination Journals Balance"
+        purpose: "All elimination entries balance"
+        sql: |
+          SELECT d.JournalTypeID, jt.JournalTypeCode,
+                 SUM(CASE WHEN a.DebitCredit = 'D' THEN d.AmountElim
+                          ELSE -d.AmountElim END) AS NetAmount
+          FROM TD035C2 d
+          INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+          INNER JOIN TS020S0 jt ON jt.JournalTypeID = d.JournalTypeID
+          WHERE d.ConsoID = @ConsoID
+            AND d.AmountElim <> 0
+          GROUP BY d.JournalTypeID, jt.JournalTypeCode
+          HAVING ABS(SUM(CASE WHEN a.DebitCredit = 'D' THEN d.AmountElim
+                              ELSE -d.AmountElim END)) > 0.01
+        expected_rows: 0
+        error_if_rows: "Unbalanced elimination journal found"
+
+      - query_id: "VAL-ELIM-002"
+        name: "Verify IC Eliminated"
+        purpose: "Intercompany balances net to zero"
+        sql: |
+          SELECT a.Account, a.AccountName,
+                 SUM(d.AmountGroup) AS ICBalance,
+                 SUM(d.AmountElim) AS Eliminated,
+                 SUM(d.AmountGroup + d.AmountElim) AS NetAfterElim
+          FROM TD035C2 d
+          INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+          WHERE d.ConsoID = @ConsoID
+            AND a.PartnerType = 1
+            AND d.FlowCode = 'CLOSE'
+          GROUP BY a.Account, a.AccountName
+          HAVING ABS(SUM(d.AmountGroup + d.AmountElim)) > 0.01
+        expected_rows: 0
+        error_if_rows: "IC balance not fully eliminated"
+
+      - query_id: "VAL-ELIM-003"
+        name: "Verify Eliminations Executed"
+        purpose: "All active eliminations have generated entries"
+        sql: |
+          SELECT h.ElimCode, h.ElimLevel
+          FROM TS070S0 h
+          WHERE h.ConsoID = @ConsoID
+            AND h.Active = 1
+            AND NOT EXISTS (
+                SELECT 1 FROM TD035C2 d
+                WHERE d.ConsoID = h.ConsoID
+                  AND d.AmountElim <> 0
+                  -- Additional join criteria based on elimination type
+            )
+        review: "Some eliminations may have zero amounts legitimately"
+
+    balance_sheet_validations:
+      - query_id: "VAL-BS-001"
+        name: "Verify Assets = Liab + Equity"
+        purpose: "Balance sheet equation holds"
+        sql: |
+          SELECT
+              SUM(CASE WHEN a.AccountClass = 'ASSET' THEN d.AmountConso ELSE 0 END) AS Assets,
+              SUM(CASE WHEN a.AccountClass = 'LIABILITY' THEN d.AmountConso ELSE 0 END) AS Liabilities,
+              SUM(CASE WHEN a.AccountClass = 'EQUITY' THEN d.AmountConso ELSE 0 END) AS Equity,
+              SUM(CASE WHEN a.AccountClass = 'ASSET' THEN d.AmountConso ELSE 0 END)
+              - SUM(CASE WHEN a.AccountClass IN ('LIABILITY','EQUITY') THEN d.AmountConso ELSE 0 END) AS Difference
+          FROM TD035C2 d
+          INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+          WHERE d.ConsoID = @ConsoID
+            AND a.AccountType = 'B'
+            AND d.FlowCode = 'CLOSE'
+        tolerance: 0.01
+        error_if: "ABS(Difference) > 0.01"
+
+      - query_id: "VAL-BS-002"
+        name: "Verify Flow Reconciliation"
+        purpose: "Opening + Movements = Closing"
+        sql: |
+          SELECT a.Account, a.AccountName,
+                 SUM(CASE WHEN d.FlowCode = 'OPEN' THEN d.AmountConso ELSE 0 END) AS Opening,
+                 SUM(CASE WHEN d.FlowCode NOT IN ('OPEN','CLOSE') THEN d.AmountConso ELSE 0 END) AS Movements,
+                 SUM(CASE WHEN d.FlowCode = 'CLOSE' THEN d.AmountConso ELSE 0 END) AS Closing,
+                 SUM(CASE WHEN d.FlowCode = 'OPEN' THEN d.AmountConso ELSE 0 END)
+                 + SUM(CASE WHEN d.FlowCode NOT IN ('OPEN','CLOSE') THEN d.AmountConso ELSE 0 END)
+                 - SUM(CASE WHEN d.FlowCode = 'CLOSE' THEN d.AmountConso ELSE 0 END) AS Variance
+          FROM TD035C2 d
+          INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+          WHERE d.ConsoID = @ConsoID
+            AND a.AccountType = 'B'
+          GROUP BY a.Account, a.AccountName
+          HAVING ABS(SUM(CASE WHEN d.FlowCode = 'OPEN' THEN d.AmountConso ELSE 0 END)
+                 + SUM(CASE WHEN d.FlowCode NOT IN ('OPEN','CLOSE') THEN d.AmountConso ELSE 0 END)
+                 - SUM(CASE WHEN d.FlowCode = 'CLOSE' THEN d.AmountConso ELSE 0 END)) > 0.01
+        expected_rows: 0
+        error_if_rows: "Flow reconciliation variance found"
+
+    configuration_validations:
+      - query_id: "VAL-CFG-001"
+        name: "Verify Special Accounts Mapped"
+        purpose: "Required special accounts exist"
+        sql: |
+          SELECT c1.SpecAccountCode, c1.SpecAccountDescription,
+                 CASE WHEN c0.AccountID IS NOT NULL THEN 'OK' ELSE 'MISSING' END AS Status
+          FROM TS010C1 c1
+          LEFT JOIN TS010C0 c0 ON c0.SpecAccountCode = c1.SpecAccountCode
+                               AND c0.ConsoID = @ConsoID
+          WHERE c1.SpecAccountCode IN (
+              'PLBAL', 'TDBS', 'ConsoRes', 'MinorInterests',
+              'MinorBSProfitLoss', 'EquityVal', 'DivReceived'
+          )
+        expected: "All rows show 'OK'"
+
+      - query_id: "VAL-CFG-002"
+        name: "Verify Exchange Rates Complete"
+        purpose: "All foreign currencies have rates"
+        sql: |
+          SELECT c.CurrCode AS MissingCurrency, COUNT(*) AS CompanyCount
+          FROM TS014C0 c
+          INNER JOIN TS096S0 s ON s.ConsoID = c.ConsoID
+          LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID AND r.CurrCode = c.CurrCode
+          WHERE c.ConsoID = @ConsoID
+            AND c.ConsolidatedCompany = 1
+            AND c.CurrCode <> s.CurrCode
+            AND r.CurrCode IS NULL
+          GROUP BY c.CurrCode
+        expected_rows: 0
+        error_if_rows: "Missing exchange rates for currencies"
+
+  # ============================================================
+  # SECTION 4: EDGE CASE CATALOG
+  # ============================================================
+  edge_case_catalog:
+    description: "Unusual scenarios and expected handling"
+
+    ownership_edge_cases:
+      - case_id: "EDGE-OWN-001"
+        name: "Circular Ownership"
+        description: "Company A owns B, B owns C, C owns A"
+        scenario:
+          structure: "A → B (60%) → C (70%) → A (5%)"
+          complexity: "High"
+        expected_handling:
+          procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+          algorithm: "Matrix algebra via Gauss elimination"
+          result: "Amplified effective percentages"
+        validation: |
+          -- Check for circular ownership
+          SELECT * FROM TS015S0 s1
+          WHERE EXISTS (
+              SELECT 1 FROM TS015S0 s2
+              WHERE s2.CompanyID = s1.CompanyOwnedID
+                AND s2.CompanyOwnedID = s1.CompanyID
+          )
+        documentation: "circular-ownership.md"
+
+      - case_id: "EDGE-OWN-002"
+        name: "Treasury Shares"
+        description: "Subsidiary owns parent shares"
+        scenario:
+          structure: "Parent owns Sub (80%), Sub owns Parent shares (2%)"
+        expected_handling:
+          status: "PARTIAL_IMPLEMENTATION"
+          workaround: "Configure OWNERSHIP_AUTHORIZE_OWNSHARES"
+          calculation: "Effective % = Direct % / (100% - Treasury %)"
+        gap_reference: "treasury-shares.md"
+
+      - case_id: "EDGE-OWN-003"
+        name: "Multiple Paths to Same Entity"
+        description: "Parent owns Sub both directly and indirectly"
+        scenario:
+          structure: "Parent → Sub (40% direct) + Parent → Intermediate (80%) → Sub (60%)"
+          total_direct: 40
+          total_indirect: 48
+          effective: 88
+        expected_handling:
+          procedure: "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+          result: "Sum of all paths"
+        validation: |
+          SELECT CompanyCode, GroupPerc, MinorPerc
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND CompanyCode = 'SUB'
+          -- Expected: GroupPerc = 88, MinorPerc = 12
+
+      - case_id: "EDGE-OWN-004"
+        name: "De Facto Control"
+        description: "<50% but effective control"
+        scenario:
+          ownership: 45
+          board_control: true
+          dispersed_shareholders: true
+        expected_handling:
+          method_override: "Manual override to 'G'"
+          documentation_required: "IFRS 10 control assessment"
+          sql_override: |
+            UPDATE TS014C0
+            SET ConsoMethod = 'G'
+            WHERE ConsoID = @ConsoID AND CompanyCode = @Code
+        notes: "Agent should recommend manual override with documentation"
+
+    elimination_edge_cases:
+      - case_id: "EDGE-ELIM-001"
+        name: "Partial Year Acquisition"
+        description: "Subsidiary acquired mid-year"
+        scenario:
+          acquisition_date: "2024-07-01"
+          year_end: "2024-12-31"
+          months_consolidated: 6
+        expected_handling:
+          bs_treatment: "Full balance at year-end"
+          pl_treatment: "Only post-acquisition P&L"
+          status: "MANUAL_PRORATION"
+          workaround: "Enter prorated P&L amounts in data entry"
+        gap_reference: "scope-changes.md"
+
+      - case_id: "EDGE-ELIM-002"
+        name: "Dividend Before Acquisition"
+        description: "Dividend declared from pre-acquisition reserves"
+        scenario:
+          dividend_declared: 100000
+          pre_acquisition_reserves: 80000
+          post_acquisition_reserves: 20000
+        expected_handling:
+          treatment: "Split between investment reduction and income"
+          pre_acq_portion: "Reduce investment carrying amount"
+          post_acq_portion: "Eliminate as normal IC dividend"
+        documentation: "dividend-eliminations.md"
+
+      - case_id: "EDGE-ELIM-003"
+        name: "Negative Minority Interest"
+        description: "NCI goes negative due to losses"
+        scenario:
+          subsidiary_losses: -500000
+          nci_percentage: 20
+          nci_share_of_loss: -100000
+          nci_balance_before: 80000
+        expected_handling:
+          treatment: "Absorb by parent unless NCI has obligation"
+          ifrs_reference: "IFRS 10.B94"
+          calculation: |
+            If NCI balance would go negative:
+            - Allocate full loss to parent
+            - OR allocate to NCI if binding obligation exists
+        validation: |
+          SELECT MinorInterests_Balance
+          FROM ConsolidatedBalanceSheet
+          -- Check if negative, flag for review
+
+      - case_id: "EDGE-ELIM-004"
+        name: "Method Change Mid-Year"
+        description: "Step acquisition changes method E→G"
+        scenario:
+          original_method: "E"
+          new_method: "G"
+          change_date: "2024-06-30"
+          original_ownership: 30
+          new_ownership: 70
+        expected_handling:
+          flow: "VarConsoMeth_EG"
+          elimination: "S072"
+          ifrs_treatment: |
+            1. Remeasure previous 30% at fair value
+            2. Recognize gain/loss on remeasurement
+            3. Calculate goodwill on full 70%
+          status: "PARTIAL_IMPLEMENTATION"
+        gap_reference: "step-acquisition.md"
+
+    currency_edge_cases:
+      - case_id: "EDGE-CUR-001"
+        name: "Hyperinflationary Subsidiary"
+        description: "Subsidiary in hyperinflationary economy"
+        scenario:
+          subsidiary_currency: "VES"
+          cumulative_inflation: ">100% over 3 years"
+        expected_handling:
+          method: "Temporal method"
+          configuration: |
+            UPDATE TS014C0
+            SET ConversionMethod = 2  -- Temporal
+            WHERE CompanyCode = @HyperinflationaryCompany
+          additional_steps:
+            - "Restate local financials using IAS 29"
+            - "Translate at closing rate"
+          status: "PARTIAL_IMPLEMENTATION"
+        gap_reference: "hyperinflation-accounting.md"
+
+      - case_id: "EDGE-CUR-002"
+        name: "Multiple Exchange Rate Sources"
+        description: "Different rates for different items"
+        scenario:
+          closing_rate: 1.15
+          average_rate: 1.12
+          historical_rate_equity: 1.05
+        expected_handling:
+          configuration: |
+            -- Configure account-level rate types
+            UPDATE TS010S0
+            SET RateType1 = CASE
+                    WHEN AccountType = 'B' THEN 'CC'
+                    WHEN AccountType = 'P' THEN 'AC'
+                    END,
+                FlagHistoricalRate1 = CASE
+                    WHEN AccountClass = 'EQUITY' THEN 1
+                    ELSE 0
+                    END
+        documentation: "exchange-rate-types.md"
+
+    configuration_edge_cases:
+      - case_id: "EDGE-CFG-001"
+        name: "Missing Special Account at Runtime"
+        description: "Elimination fails due to missing account"
+        scenario:
+          elimination: "S085"
+          missing_account: "MinorInterests"
+          error_code: "SPECIFIC_ACCOUNT_NOT_FOUND"
+        expected_handling:
+          diagnosis: |
+            SELECT SpecAccountCode FROM TS010C1
+            WHERE SpecAccountCode NOT IN (
+                SELECT SpecAccountCode FROM TS010C0
+                WHERE ConsoID = @ConsoID
+            )
+          resolution: |
+            INSERT INTO TS010C0 (ConsoID, AccountID, SpecAccountCode)
+            SELECT @ConsoID, AccountID, 'MinorInterests'
+            FROM TS010S0
+            WHERE ConsoID = @ConsoID AND Account = @MinorInterestAccount
+        error_reference: "error-handling-patterns.yaml#FAIL-003"
+
+      - case_id: "EDGE-CFG-002"
+        name: "Elimination Order Conflict"
+        description: "Wrong elimination sequence causing errors"
+        scenario:
+          problem: "S085 running before S050"
+          result: "Incorrect minority calculation"
+        expected_handling:
+          diagnosis: |
+            SELECT ElimCode, ElimLevel FROM TS070S0
+            WHERE ConsoID = @ConsoID
+            ORDER BY ElimLevel
+          resolution: |
+            -- Ensure correct order
+            UPDATE TS070S0 SET ElimLevel = 10 WHERE ElimCode LIKE 'S00%'  -- IC
+            UPDATE TS070S0 SET ElimLevel = 20 WHERE ElimCode = 'S020'     -- Dividend
+            UPDATE TS070S0 SET ElimLevel = 30 WHERE ElimCode LIKE 'S05%'  -- Participation
+            UPDATE TS070S0 SET ElimLevel = 40 WHERE ElimCode = 'S085'     -- Minority
+            UPDATE TS070S0 SET ElimLevel = 50 WHERE ElimCode = 'S080'     -- Equity method
+
+  # ============================================================
+  # TEST EXECUTION FRAMEWORK
+  # ============================================================
+  test_execution:
+    description: "How to execute and report on test results"
+
+    execution_modes:
+      automated:
+        description: "Agent runs validation queries automatically"
+        trigger: "After each workflow step or decision"
+        output: "Pass/Fail with details"
+
+      manual:
+        description: "User runs diagnostic queries"
+        trigger: "When agent recommends verification"
+        output: "Query results for review"
+
+      audit:
+        description: "Complete test suite execution"
+        trigger: "Period close or audit preparation"
+        output: "Full test report"
+
+    reporting_format:
+      test_result:
+        test_id: "string"
+        test_name: "string"
+        status: "PASS | FAIL | REVIEW"
+        executed_at: "timestamp"
+        details:
+          expected: "value"
+          actual: "value"
+          variance: "if applicable"
+        recommendations: ["list of next steps"]
+
+      summary_report:
+        total_tests: "number"
+        passed: "number"
+        failed: "number"
+        review_required: "number"
+        critical_failures: ["list of critical issues"]
+        recommendations: ["prioritized action items"]
+
+    test_categories:
+      - category: "Pre-Close Validation"
+        tests: ["VAL-OWN-*", "VAL-CFG-*"]
+        timing: "Before period close"
+        mandatory: true
+
+      - category: "Post-Elimination Validation"
+        tests: ["VAL-ELIM-*", "VAL-BS-*"]
+        timing: "After elimination execution"
+        mandatory: true
+
+      - category: "Configuration Audit"
+        tests: ["VAL-CFG-*"]
+        timing: "Periodic review"
+        mandatory: false
+
+  # ============================================================
+  # QUICK REFERENCE
+  # ============================================================
+  quick_reference:
+
+    test_id_prefixes:
+      DT-CM: "Decision Tree - Consolidation Method"
+      DT-EC: "Decision Tree - Elimination Code"
+      DT-CT: "Decision Tree - Currency Translation"
+      WF-AS: "Workflow - Add Subsidiary"
+      WF-AQ: "Workflow - Acquisition"
+      WF-YE: "Workflow - Year End"
+      PB-AQ: "Playbook - Acquisition"
+      VAL-OWN: "Validation - Ownership"
+      VAL-ELIM: "Validation - Elimination"
+      VAL-BS: "Validation - Balance Sheet"
+      VAL-CFG: "Validation - Configuration"
+      EDGE-OWN: "Edge Case - Ownership"
+      EDGE-ELIM: "Edge Case - Elimination"
+      EDGE-CUR: "Edge Case - Currency"
+      EDGE-CFG: "Edge Case - Configuration"
+
+    validation_query_summary:
+      ownership: 4
+      elimination: 3
+      balance_sheet: 2
+      configuration: 2
+      total: 11
+
+    edge_case_summary:
+      ownership: 4
+      elimination: 4
+      currency: 2
+      configuration: 2
+      total: 12
+
+    common_question_coverage:
+      method_determination: "Q-001"
+      add_subsidiary: "Q-002"
+      elimination_troubleshooting: "Q-003"
+      goodwill_calculation: "Q-004"
+      exchange_rates: "Q-005"
+      disposal: "Q-006"
+      special_accounts: "Q-007"
+      ownership_issues: "Q-008"

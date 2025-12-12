@@ -1,0 +1,1257 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/0cd1ca7c6cb89c700503e34d9c76a6e628bef323cd014e2f35dde313961fe5d9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">Company P</td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td>Capital</td><td></td><td>1,500</td><td></td><td>2,000</td></tr><tr><td></td><td>Increase</td><td></td><td>500</td><td></td></tr><tr><td>Reserves</td><td></td><td>400</td><td>50</td><td>450</td></tr><tr><td></td><td>Transfer</td><td></td><td></td><td></td></tr><tr><td>Result</td><td></td><td>100</td><td></td><td>80</td></tr><tr><td></td><td>Transfer</td><td></td><td>(50)</td><td></td></tr><tr><td></td><td>Dividend</td><td></td><td>(50)</td><td></td></tr><tr><td></td><td>Result Year 2</td><td></td><td>80</td><td></td></tr><tr><td>Payables/-</td><td></td><td>1,000</td><td></td><td>1,470</td></tr><tr><td></td><td>Net variation</td><td></td><td>470</td><td></td></tr><tr><td colspan=\"2\">Total</td><td>3,000</td><td>1,000</td><td>4,000</td></tr></table>",
+        "bbox": [
+            171,
+            116,
+            826,
+            310
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Capital is increased by 500 and the Year 1 profit of 100 is partly paid as a dividend for (50) and partly transferred to reserves.",
+        "bbox": [
+            109,
+            326,
+            882,
+            360
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Let's now show the statutory cash flow statement built with the flows mentioned above.",
+        "bbox": [
+            109,
+            375,
+            882,
+            407
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/05da1fb422798a44ad6f99afcdfc88a70823f2b44a7384d87f07596de7f85389.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company P</td><td>Year 2</td></tr><tr><td>Result</td><td>80</td></tr><tr><td>Depreciations</td><td>0</td></tr><tr><td>Gain on disposals</td><td>(150)</td></tr><tr><td>Cash flow</td><td>(70)</td></tr><tr><td>Var. Receivables</td><td>(300)</td></tr><tr><td>Var. Payables</td><td>470</td></tr><tr><td>Working capital</td><td>170</td></tr><tr><td></td><td></td></tr><tr><td>Cash from operating activities</td><td>100</td></tr></table>",
+        "bbox": [
+            111,
+            425,
+            516,
+            592
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We start with the profit of 80 and eliminate non cash amounts in the P&L, gain on disposals in this case.",
+        "bbox": [
+            528,
+            425,
+            880,
+            475
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Considering statutory accounts, net variation of receivables must include also intercompany amounts.",
+        "bbox": [
+            528,
+            490,
+            880,
+            553
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/f66fd2b9ec9929009b34bc5ddb4f3bf1f05cfba659b48f9e4f86bdd773bf3457.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Investments</td><td></td></tr><tr><td>Tangible assets</td><td>0</td></tr><tr><td>Financial invest.</td><td>(860)</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangible assets</td><td>0</td></tr><tr><td>Financial invest.</td><td>350</td></tr><tr><td>Cash from Inv./Disinv.</td><td>(510)</td></tr></table>",
+        "bbox": [
+            109,
+            622,
+            513,
+            739
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The acquisition of  \\(90\\%\\)  of shares of company B is considered as an investment.",
+        "bbox": [
+            526,
+            618,
+            880,
+            665
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The disposal of  \\(20\\%\\)  of A shares is a disinvestment. It's the cash received that appear here and not the book value disposed.",
+        "bbox": [
+            526,
+            667,
+            880,
+            733
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/0f7ee6b602ace38e5e1abda39a731bc47ad2465a3cdd8a41c7787d27c71d01ff.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Capital increase</td><td>500</td></tr><tr><td>Dividends</td><td>(50)</td></tr><tr><td>Cash from financial activities</td><td>450</td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Net cash variation</td><td>40</td></tr></table>",
+        "bbox": [
+            109,
+            761,
+            513,
+            843
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The financial part includes a capital increase for 500 and the payment of the dividend for 50.",
+        "bbox": [
+            526,
+            764,
+            877,
+            812
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            64,
+            370,
+            78
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The net cash variation calculated here can be cross-checked with the net variation found in the balance sheet. It's one of the most important technical validations we can do. If this validation fails, something is certainly wrong in the cash flow statement.",
+        "bbox": [
+            103,
+            121,
+            877,
+            185
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/f0253672c7bf2af4362057d33997834b97f4e9513cfce3330bc2c9ac4e3edfbc.jpg",
+        "table_caption": [
+            "Statutory accounts of company A"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">Company A</td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td rowspan=\"2\">Tang. Assets (Acq.)</td><td>Acquisition</td><td>3,000</td><td>1,000</td><td>3,700</td></tr><tr><td>Disposal</td><td></td><td>(370)</td><td></td></tr><tr><td rowspan=\"2\">Tang. Assets (Dep.)</td><td>Gain/disposal</td><td>(800)</td><td>70</td><td>(850)</td></tr><tr><td>Depreciation</td><td></td><td>(50)</td><td></td></tr><tr><td>Receivables/-</td><td>Aktion</td><td>1,300</td><td>500</td><td>1,800</td></tr><tr><td>Cash</td><td>Net variation</td><td>500</td><td>(150)</td><td>350</td></tr><tr><td></td><td>Total</td><td>4,000</td><td>1,000</td><td>5,000</td></tr></table>",
+        "bbox": [
+            167,
+            226,
+            817,
+            424
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This company acquires tangible assets for 1000 and sells some others for 300. These transactions are made with  \\(3^{rd}\\)  Parties.",
+        "bbox": [
+            105,
+            442,
+            875,
+            475
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/f3a1ccd0e516617bca1d810147274a5cc5a6a978e45cb7c42ea8394d50ee2fe0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">Company A</td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td>Capital</td><td></td><td>1,000</td><td></td><td>1,000</td></tr><tr><td>Reserves</td><td>Increase</td><td>600</td><td></td><td>620</td></tr><tr><td rowspan=\"4\">Result</td><td>Transfer</td><td>50</td><td>20</td><td>40</td></tr><tr><td>Transfer</td><td></td><td>(20)</td><td></td></tr><tr><td>Dividend</td><td></td><td>(30)</td><td></td></tr><tr><td>Result Year 2</td><td></td><td>40</td><td></td></tr><tr><td>Payables/P</td><td></td><td>200</td><td></td><td>300</td></tr><tr><td>Payables/-</td><td></td><td>2,150</td><td>100</td><td>3,040</td></tr><tr><td></td><td>Net variation</td><td></td><td>890</td><td></td></tr><tr><td></td><td>Total</td><td>4,000</td><td>1,000</td><td>5,000</td></tr></table>",
+        "bbox": [
+            167,
+            489,
+            817,
+            715
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The Year 1 profit of 50 is paid as a dividend for 30 and transferred to reserves for 20. As explained earlier, this dividend of 30 is paid for  \\(24 = 80\\% * 30\\)  to company P.",
+        "bbox": [
+            105,
+            730,
+            875,
+            783
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "There are intercompany payables correctly reconciled with receivables in company P accounts.",
+        "bbox": [
+            105,
+            796,
+            872,
+            830
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            355,
+            71,
+            862,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here is the corresponding statutory cash flow statement.",
+        "bbox": [
+            113,
+            122,
+            666,
+            140
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/15f09403fb19692716ceed7fdbcc65318864e53f850222e612a90855edda575f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company A</td><td>Year 2</td></tr><tr><td>Result</td><td>40</td></tr><tr><td>Depreciations</td><td>50</td></tr><tr><td>Gain on disposals</td><td>(70)</td></tr><tr><td>Cash flow</td><td>20</td></tr><tr><td>Var. Receivables</td><td>(500)</td></tr><tr><td>Var. Payables</td><td>990</td></tr><tr><td>Working capital</td><td>490</td></tr><tr><td></td><td></td></tr><tr><td>Cash from operating activities</td><td>510</td></tr></table>",
+        "bbox": [
+            116,
+            154,
+            514,
+            318
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Profit is 40 and there is a depreciation flow of 50 corresponding to depreciations in the P&L for the same amount.",
+        "bbox": [
+            527,
+            154,
+            875,
+            219
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Net variation of payables includes intercompany amounts.",
+        "bbox": [
+            527,
+            233,
+            875,
+            267
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/d204c430af59c9899e5295de9f16c3c977e8aaadb93c2ff5bc8bc4c31e7786c9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Investments</td><td></td></tr><tr><td>Tangible assets</td><td>(1,000)</td></tr><tr><td>Financial invest.</td><td>0</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangible assets</td><td>370</td></tr><tr><td>Financial invest.</td><td>0</td></tr><tr><td>Cash from Inv./Disinv.</td><td>(630)</td></tr></table>",
+        "bbox": [
+            116,
+            345,
+            514,
+            460
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "There are acquisitions of tangible assets for 1000 and disposals for 370. These transactions are made with  \\(3^{rd}\\)  Parties. Notice that this disposal gives a gain of 70 as shown in the cash flow above.",
+        "bbox": [
+            527,
+            346,
+            875,
+            442
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/778657a2e729ee2e4cf9e07e1461302d9abd8ec847fc5564e8492b8668c0e6a8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Capital increase</td><td>0</td></tr><tr><td>Dividends</td><td>(30)</td></tr><tr><td>Cash from financial activities</td><td>(30)</td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Net cash variation</td><td>(150)</td></tr></table>",
+        "bbox": [
+            116,
+            504,
+            514,
+            587
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "No capital increase but only the payment of the dividend for 30. Remember company P receives 24  \\(= 80\\%\\)  \\* 30.",
+        "bbox": [
+            527,
+            507,
+            875,
+            571
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The net cash variation for (150) is again equal to the net cash variation found in the balance sheet.",
+        "bbox": [
+            111,
+            602,
+            873,
+            635
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Statutory accounts of company B",
+        "text_level": 1,
+        "bbox": [
+            113,
+            650,
+            474,
+            668
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The most important issue for this company is the fact that it was not consolidated in Year 1. Being acquired on the  \\(\\mathbb{I}^{\\text{St}}\\)  of January Year 2, all flows mentioned will be taken into account to build the cash flow statement, but all the opening balance sheet amounts have to be ignored. In a consolidation software, these opening amounts would be mentioned on specific flows \"Entry in the consolidation scope\", considering the fact the opening amounts would have been zero. These flows are considered as non cash.",
+        "bbox": [
+            111,
+            682,
+            875,
+            796
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            68,
+            369,
+            84
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/f3de2f497456517a42f9ffea4d4242c051aceda8193931b9bc917d654ebef6c0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">Company B</td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td>Tang. Assets (Acq.)</td><td></td><td>1,000</td><td></td><td>1,500</td></tr><tr><td></td><td>Acquisition</td><td></td><td>700</td><td></td></tr><tr><td></td><td>Disposal</td><td></td><td>(300)</td><td></td></tr><tr><td></td><td>Gain/disposal</td><td></td><td>100</td><td></td></tr><tr><td>Tang. Assets (Dep.)</td><td></td><td>(600)</td><td></td><td>(650)</td></tr><tr><td></td><td>Depreciation</td><td></td><td>(50)</td><td></td></tr><tr><td>Receivables/-</td><td></td><td>500</td><td></td><td>800</td></tr><tr><td></td><td>Net variation</td><td></td><td>300</td><td></td></tr><tr><td>Cash</td><td></td><td>100</td><td></td><td>350</td></tr><tr><td></td><td>Net variation</td><td></td><td>250</td><td></td></tr><tr><td colspan=\"2\">Total</td><td>1,000</td><td>1,000</td><td>2,000</td></tr></table>",
+        "bbox": [
+            163,
+            133,
+            815,
+            329
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/29d734dcec80aff4955aad9a982fccd818b608effdc6b61962f18fbe846d17d9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">Company B</td><td>Year 1</td><td>Flows</td><td>Year 2</td></tr><tr><td>Capital</td><td></td><td>200</td><td rowspan=\"2\">800</td><td>1,000</td></tr><tr><td>Reserves</td><td>Increase</td><td>70</td><td>100</td></tr><tr><td>Result</td><td>Transfer</td><td>30</td><td>(30)</td><td>20</td></tr><tr><td rowspan=\"2\">Payable,</td><td>Transfer \nDividend \nResult Year 2</td><td rowspan=\"2\">700</td><td>0</td><td rowspan=\"2\">880</td></tr><tr><td>Net variation</td><td>180</td></tr><tr><td></td><td>Total</td><td>1,000</td><td>1,000</td><td>2,000</td></tr></table>",
+        "bbox": [
+            163,
+            344,
+            815,
+            542
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The disposal of tangible assets has been made for a price of 300, giving a gain on disposal of 100.",
+        "bbox": [
+            103,
+            570,
+            870,
+            602
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "As announced, there is a capital increase for 800 which is subscribed for  \\(70\\%\\)  by company P and for  \\(30\\%\\)  by the  \\(3^{\\text{rd}}\\)  Parties. So, we keep the same financial percentage before and after the capital increase. There are no dividends paid.",
+        "bbox": [
+            103,
+            618,
+            872,
+            668
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Here is the corresponding statutory cash flow statement.",
+        "bbox": [
+            105,
+            683,
+            658,
+            700
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/fd0e1e92c2b78594129089fb122aaaba8bf938966c0dab87198e8a79981b33db.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company B</td><td>Year 2</td></tr><tr><td>Result</td><td>20</td></tr><tr><td>Depreciations</td><td>50</td></tr><tr><td>Gain on disposals</td><td>(100)</td></tr><tr><td>Cash flow</td><td>(30)</td></tr><tr><td>Var. Receivables</td><td>(300)</td></tr><tr><td>Var. Payables</td><td>180</td></tr><tr><td>Working capital</td><td>(120)</td></tr><tr><td></td><td></td></tr><tr><td>Cash from operating activities</td><td>(150)</td></tr></table>",
+        "bbox": [
+            108,
+            712,
+            514,
+            878
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We start with the profit of 20 and adjust it with the depreciations and gain on tangible assets disposals.",
+        "bbox": [
+            523,
+            730,
+            870,
+            778
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "No intercompany amounts in these net variations.",
+        "bbox": [
+            523,
+            794,
+            870,
+            826
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            70,
+            860,
+            86
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/5315fa018bafc33aba857fda8c20f0f31816f9b9233a95ca9f51bff9c4797a29.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Investments</td><td></td></tr><tr><td>Tangible assets</td><td>(700)</td></tr><tr><td>Financial invest.</td><td>0</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangible assets</td><td>300</td></tr><tr><td>Financial invest.</td><td>0</td></tr><tr><td>Cash from Inv./Disinv.</td><td>(400)</td></tr></table>",
+        "bbox": [
+            116,
+            118,
+            514,
+            234
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "There are acquisitions of tangible assets for 700 and disposals for a cash received of 300.",
+        "bbox": [
+            527,
+            137,
+            875,
+            184
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/1f26319709710fb35a9722c561fde71557b6c7bb350af96456bce69109664395.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Capital increase</td><td>800</td></tr><tr><td>Dividends</td><td></td></tr><tr><td>Cash from financial activities</td><td>800</td></tr><tr><td colspan=\"2\"></td></tr><tr><td>Net cash variation</td><td>250</td></tr></table>",
+        "bbox": [
+            116,
+            263,
+            514,
+            346
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We only have a capital increase and no dividends.",
+        "bbox": [
+            527,
+            265,
+            875,
+            297
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Net cash variation is in line with the one in the balance sheet.",
+        "bbox": [
+            113,
+            361,
+            713,
+            377
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The consolidated cash flow statement",
+        "text_level": 2,
+        "bbox": [
+            113,
+            393,
+            525,
+            409
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "With these three statutory cash flow statements, we are ready to apply the following methodology which consists in adding first these three cash flow statements together. Of course, we will get a technically correct cash flow statement but it will be premature to call it consolidated cash flow statement.",
+        "bbox": [
+            113,
+            426,
+            875,
+            491
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Why?",
+        "bbox": [
+            113,
+            506,
+            175,
+            522
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Because we will have to take into account some of the events which are at this time reflected directly from the statutory accounts but should be adapted to the consolidation requirements.",
+        "bbox": [
+            113,
+            538,
+            875,
+            587
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In the column \"Total\" hereunder we find the three cash flow statements simply added together.",
+        "bbox": [
+            113,
+            601,
+            875,
+            635
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            367,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/bf7155a359396ef37b07da4c43a082bbee6cb5fcca367a73728b9216cc024abf.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>A</td><td>B</td><td>Total</td><td>J1</td><td>J2</td><td>J3</td><td>J4</td><td>Conso</td></tr><tr><td>Result</td><td>80</td><td>40</td><td>20</td><td>140</td><td></td><td>(24)</td><td></td><td>(124)</td><td>(8)</td></tr><tr><td>Depreciations</td><td>0</td><td>50</td><td>50</td><td>100</td><td></td><td></td><td></td><td></td><td>100</td></tr><tr><td>Gain on disposals</td><td>(150)</td><td>(70)</td><td>(100)</td><td>(320)</td><td></td><td></td><td></td><td>124</td><td>(196)</td></tr><tr><td>Cash flow</td><td>(70)</td><td>20</td><td>(30)</td><td>(80)</td><td>0</td><td>(24)</td><td>0</td><td>0</td><td>(104)</td></tr><tr><td>Var. Receivables</td><td>(300)</td><td>(500)</td><td>(300)</td><td>(1,100)</td><td>100</td><td></td><td></td><td></td><td>(1,000)</td></tr><tr><td>Var. Payables</td><td>470</td><td>990</td><td>180</td><td>1,640</td><td>(100)</td><td></td><td></td><td></td><td>1,540</td></tr><tr><td>Working capital</td><td>170</td><td>490</td><td>(120)</td><td>540</td><td>0</td><td>0</td><td>0</td><td>0</td><td>540</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cash from operating activities</td><td>100</td><td>510</td><td>(150)</td><td>460</td><td>0</td><td>(24)</td><td>0</td><td>0</td><td>436</td></tr><tr><td colspan=\"9\"></td><td></td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangible assets</td><td>0</td><td>(1,000)</td><td>(700)</td><td>(1,700)</td><td></td><td></td><td>560</td><td></td><td>(1,700)</td></tr><tr><td>Financial invest.</td><td>(860)</td><td>0</td><td>0</td><td>(860)</td><td></td><td></td><td></td><td></td><td>(300)</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangible assets</td><td>0</td><td>370</td><td>300</td><td>670</td><td></td><td></td><td></td><td></td><td>670</td></tr><tr><td>Financial invest.</td><td>350</td><td>0</td><td>0</td><td>350</td><td></td><td></td><td></td><td></td><td>350</td></tr><tr><td>Cash from Inv./Disinv.</td><td>(510)</td><td>(630)</td><td>(400)</td><td>(1,540)</td><td>0</td><td>0</td><td>560</td><td>0</td><td>(980)</td></tr><tr><td colspan=\"9\"></td><td></td></tr><tr><td>Capital increase</td><td>500</td><td>0</td><td>800</td><td>1,300</td><td></td><td></td><td>(560)</td><td></td><td>740</td></tr><tr><td>Dividends</td><td>(50)</td><td>(30)</td><td></td><td>(80)</td><td>24</td><td></td><td></td><td></td><td>(56)</td></tr><tr><td>Cash from financial activities</td><td>450</td><td>(30)</td><td>800</td><td>1,220</td><td>0</td><td>24</td><td>(560)</td><td>0</td><td>684</td></tr><tr><td colspan=\"9\"></td><td></td></tr><tr><td>Net cash variation</td><td>40</td><td>(150)</td><td>250</td><td>140</td><td>0</td><td>0</td><td>0</td><td>0</td><td>140</td></tr></table>",
+        "bbox": [
+            107,
+            118,
+            858,
+            383
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The four columns J1 to J4 are adjustments in order to make it converge towards the final consolidated cash flow statement. Of course, this requires some consolidation knowledge.",
+        "bbox": [
+            105,
+            399,
+            871,
+            448
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J1",
+        "text_level": 3,
+        "bbox": [
+            107,
+            463,
+            253,
+            480
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "If we go back to the statutory accounts of parent company  \\(\\mathsf{P}\\) , we see that receivables have been considered as intercompany amounts included with a total net variation of 600. In consolidation, we know these intercompany amounts are eliminated as well as the flows attached to them. This means a net variation of only 500.",
+        "bbox": [
+            105,
+            495,
+            871,
+            576
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The same comment can be done for the payables in company A accounts, which implies to reduce from 990 to 890 their variation. This explains the amount of 100.",
+        "bbox": [
+            105,
+            592,
+            869,
+            640
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 32",
+        "text_level": 3,
+        "bbox": [
+            107,
+            656,
+            253,
+            672
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, we eliminate dividends received from consolidated companies, as it has been explained in Part 2 Chapter 8. This means the company P statutory profit of 80 must be reduced by 24 corresponding to the  \\(80\\% * 30\\)  of dividends received.",
+        "bbox": [
+            105,
+            687,
+            871,
+            752
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "But there is a counterpart to this adjustment. The dividends paid as mentioned on line \"Dividends\" in the cash flow statement show a payment of (30) in A. In fact (24) remains in the group by being paid to P. Only (6) represents a cash out corresponding to dividends paid to  \\(3^{rd}\\)  Parties.",
+        "bbox": [
+            105,
+            767,
+            871,
+            833
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            356,
+            71,
+            862,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J3",
+        "text_level": 3,
+        "bbox": [
+            116,
+            120,
+            259,
+            137
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We know that the capital of company B has been increased by 500 and that each shareholder has subscribed according to its percentage. Company P brings  \\(560 = 70\\%\\)  * 800 to company B and the  \\(3^{\\text{rd}}\\)  Parties the remaining 240 = 30% * 800. The 560 must be considered as a cash transfer between companies with no effect in the cash flow statement.",
+        "bbox": [
+            116,
+            152,
+            875,
+            232
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The counterpart is the financial investment of (860) that must be adapted to be only (300) corresponding to the cash paid to  \\(3^{\\text{rd}}\\)  Parties for the acquisition of the  \\(70\\%\\)  shares of company B.",
+        "bbox": [
+            116,
+            248,
+            873,
+            297
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J4",
+        "text_level": 3,
+        "bbox": [
+            116,
+            311,
+            259,
+            329
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This last comment concerns the sale of  \\(20\\%\\)  of the shares of company A. In the statutory accounts the 200 book value of these shares has been disposed for a price of 350, giving a gain of  \\(150 = 350 - 200\\) .",
+        "bbox": [
+            116,
+            344,
+            873,
+            392
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "In consolidation we know that the value of these  \\(20\\%\\)  is the corresponding part of the equity on that date, that is  \\(324 = 20\\% * [1000 + 600 + 50 - 30]\\) , giving a gain of only  \\(26 = 350 - 324\\) . In such situation, we have to book a consolidation adjustment correcting the statutory gain and bringing it to the consolidated gain. The correction amount is  \\(124 = 150 - 26\\)  and the corresponding adjustment is a debit in P&L and a credit in reserves. Consequently, the net profit of parent company P is reduced by 124 and the gain in P&L is now 26 and not 150 any more.",
+        "bbox": [
+            116,
+            409,
+            873,
+            537
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Conclusions",
+        "text_level": 2,
+        "bbox": [
+            116,
+            553,
+            234,
+            569
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "If we are sure we have adjusted the necessary items, then we can state the final column on the right is the consolidated cash flow statement.",
+        "bbox": [
+            116,
+            585,
+            873,
+            617
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "A few comments should be given before going further.",
+        "bbox": [
+            116,
+            633,
+            637,
+            650
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Starting with technically correct statutory cash flow statement, the addition we made maintain a technically valid cash flow statement",
+            "This method requires a good knowledge of all the events that have occurred in Year 2, with a good understanding of their cash influence",
+            "- Moreover, the knowledge of what is happening during the consolidation process is also required. All consolidation adjustments modifying the result of a company have an impact in the cash flow statement, most of the time it merely leads to some reclassifications between result and non cash items without modifying the cash flow."
+        ],
+        "bbox": [
+            151,
+            664,
+            871,
+            838
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            367,
+            81
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- A special care must be brought to dividends and capital increase to reflect the real cash out or cash in attached to these transactions.",
+            "- Without really being aware of the fact, this group has acquired a new company and we didn't worry about a possible goodwill and we will see there is indeed one!",
+            "- In the same way, the consolidated equity requires sometimes heavy calculations and difficult justification of evolution between two periods. The cash flow statement doesn't care about minority interests percentages. We 'think  \\(100\\%\\) \""
+        ],
+        "bbox": [
+            144,
+            120,
+            870,
+            297
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The example we have just analyzed shows clearly that this method works for a limited number of companies. Adding statutory cash flow statements together is easy, but finding all the necessary adjustments to converge to the consolidated cash flow statement becomes impracticable for groups with a large number of companies, a priori if some are foreign companies. A professional consolidation software becomes a must.",
+        "bbox": [
+            105,
+            313,
+            875,
+            411
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Consolidated accounts - Year 1",
+        "text_level": 1,
+        "bbox": [
+            105,
+            424,
+            451,
+            443
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We are now going to approach the same problem in a more natural way",
+        "bbox": [
+            105,
+            458,
+            809,
+            475
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- By providing the consolidated accounts of Year 1",
+            "And the same for Year 2",
+            "- And by calculating the consolidated flows explaining the evolution of these accounts."
+        ],
+        "bbox": [
+            144,
+            490,
+            870,
+            553
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Once these flows are known, we will be able to fill in a first version of a cash flow statement.",
+        "bbox": [
+            105,
+            569,
+            868,
+            601
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Consolidated accounts - Year 1",
+        "text_level": 2,
+        "bbox": [
+            105,
+            617,
+            451,
+            635
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "These accounts are produced with the logic explained in Part 2 Chapter 4 concerning the consolidation method.",
+        "bbox": [
+            105,
+            651,
+            868,
+            683
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/a7d70ad839d385a8eb361cf4b3aedf372367c4bf1511e69373ce1a87aa014ab4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Consolidation Year 1</td><td>P</td><td>A</td><td>31</td><td>J2</td><td>J3</td><td>34</td><td>35</td><td>36</td><td>Conso.</td></tr><tr><td>Tang. Assets (Acq.)</td><td></td><td>3,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>3,000</td></tr><tr><td>Tang. Assets (Dep.)</td><td></td><td>(800)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(800)</td></tr><tr><td>Fin. Inv./A</td><td>800</td><td></td><td>(800)</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables</td><td>1,800</td><td>1,300</td><td></td><td>(200)</td><td></td><td></td><td></td><td></td><td>2,900</td></tr><tr><td>Cash</td><td>400</td><td>500</td><td></td><td></td><td></td><td></td><td></td><td></td><td>900</td></tr><tr><td>Link account (Interco)</td><td></td><td></td><td></td><td>200</td><td>(200)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account (Fin. Inv.)</td><td></td><td></td><td>800</td><td></td><td></td><td></td><td></td><td>(800)</td><td>0</td></tr><tr><td>Total</td><td>3,000</td><td>4,000</td><td>0</td><td>0</td><td>(200)</td><td>0</td><td>0</td><td>(800)</td><td>6,000</td></tr><tr><td>Consolidation Year 1</td><td>P</td><td>A</td><td>J1</td><td>J2</td><td>33</td><td>J4</td><td>35</td><td>J6</td><td>Conso.</td></tr><tr><td>Capital</td><td>1,500</td><td>1,000</td><td></td><td></td><td></td><td>(200)</td><td>(800)</td><td></td><td>1,500</td></tr><tr><td>Reserves</td><td>400</td><td>600</td><td></td><td></td><td></td><td>(120)</td><td>(480)</td><td></td><td>400</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td></td><td></td><td>(10)</td><td>(40)</td><td></td><td>100</td></tr><tr><td>Cons</td><td></td><td></td><td></td><td></td><td></td><td></td><td>1,320</td><td>(800)</td><td>520</td></tr><tr><td>Min..</td><td></td><td></td><td></td><td></td><td></td><td>330</td><td></td><td></td><td>330</td></tr><tr><td>Payal</td><td>1,000</td><td>2,350</td><td></td><td></td><td>(200)</td><td></td><td></td><td></td><td>3,150</td></tr><tr><td>Total</td><td>3,000</td><td>4,000</td><td>0</td><td>0</td><td>(200)</td><td>0</td><td>0</td><td>(800)</td><td>6,000</td></tr></table>",
+        "bbox": [
+            110,
+            699,
+            881,
+            816
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            355,
+            71,
+            864,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [],
+        "table_footnote": [],
+        "bbox": [
+            114,
+            118,
+            885,
+            219
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 31: Elimination of the financial investment via a link account",
+        "bbox": [
+            110,
+            237,
+            817,
+            252
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustments 32 and 13:-Elimination of intercompany amounts via link account",
+        "bbox": [
+            110,
+            268,
+            870,
+            285
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J4: Elimination of minority equity of company A and reclassification on minority interests",
+        "bbox": [
+            110,
+            300,
+            875,
+            335
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J5: Elimination of group equity of company A and reclassification on consolidated reserves",
+        "bbox": [
+            110,
+            348,
+            875,
+            379
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 36: Set link account to zero with counterpart on consolidated reserves of company A",
+        "bbox": [
+            110,
+            397,
+            875,
+            429
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Consolidated accounts - Year 2",
+        "text_level": 2,
+        "bbox": [
+            110,
+            445,
+            455,
+            461
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This consolidation is a little bit trickier because of the new company B, the dividends and the disposal of shares. Here are the accounts followed by the necessary comments.",
+        "bbox": [
+            110,
+            478,
+            875,
+            527
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/2b965ff2cc00253606d16a170561410117433466b83920ebd85a65a9c20c7ad7.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Consolidation Year 2</td><td>P</td><td>A</td><td>B</td><td>31</td><td>32</td><td>33</td><td>34</td><td>35</td><td>36</td><td>37</td></tr><tr><td>Goodwill</td><td></td><td></td><td></td><td></td><td></td><td>90</td><td></td><td></td><td></td><td></td></tr><tr><td>Tang. Assets (Acq.)</td><td></td><td>3,700</td><td>1,500</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tang. Assets (Dep.)</td><td></td><td>(850)</td><td>(650)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Fm. Inv./A</td><td>600</td><td></td><td></td><td></td><td></td><td></td><td>(600)</td><td></td><td></td><td></td></tr><tr><td>Fin. Inv./B</td><td>860</td><td></td><td></td><td></td><td></td><td>(90)</td><td></td><td>(770)</td><td></td><td></td></tr><tr><td>Receivables</td><td>2,100</td><td>1,800</td><td>800</td><td></td><td></td><td></td><td></td><td></td><td>(300)</td><td></td></tr><tr><td>Cash</td><td>440</td><td>350</td><td>350</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Link account (Interco)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>300</td><td>(300)</td></tr><tr><td>Link account (Fin. Inv.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>600</td><td>770</td><td></td><td></td></tr><tr><td>Total</td><td>&#x27;4,000</td><td>5,000</td><td>2,000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(300)</td></tr></table>",
+        "bbox": [
+            114,
+            539,
+            885,
+            671
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/b6f58e00fdce7f766da42962898dd093e9344db0bf1edebd753efc41fafbf650.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Consolidation Year 2</td><td>P</td><td>A</td><td>B</td><td>J1</td><td>3.2</td><td>J3</td><td>34</td><td>35</td><td>36</td><td>37</td></tr><tr><td>Capital</td><td>2,000</td><td>1,000</td><td>1,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Reserves</td><td>450</td><td>620</td><td>100</td><td>24</td><td>124</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Result</td><td>80</td><td>40</td><td>20</td><td>(24)</td><td>(124)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cons. Rt.(A)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cons. Re(B)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Min. Int. (A)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Min. Int. (B)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Payables</td><td>1,470</td><td>3,340</td><td>880</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(300)</td></tr><tr><td>Total</td><td>4,000</td><td>5,000</td><td>2,000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(300)</td></tr></table>",
+        "bbox": [
+            114,
+            702,
+            883,
+            822
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J1: Elimination of company A dividend for  \\(24 = 80\\%\\)  * 30",
+        "bbox": [
+            110,
+            835,
+            790,
+            854
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            114,
+            65,
+            366,
+            80
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 12: Correction of gain on  \\(20\\%\\)  A shares disposal. For more explanation, see below.",
+        "bbox": [
+            103,
+            118,
+            870,
+            153
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 13: Goodwill concerning company B acquisition is  \\(90 = 300 - 70\\%\\) \\((200 + 100)\\) , the equity considered here is before the capital increase",
+        "bbox": [
+            103,
+            166,
+            872,
+            202
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J4: Elimination of the A financial investment via a link account",
+        "bbox": [
+            103,
+            216,
+            832,
+            232
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 15: Elimination of the B financial investment via a link account",
+        "bbox": [
+            103,
+            248,
+            832,
+            265
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustments 16 and 37:-Elimination of intercompany amounts via link account",
+        "bbox": [
+            103,
+            279,
+            864,
+            298
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/59f4b5645c60828b3a080fa15e3cf67055c99fd6f33000b017963d13f72f821e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Consolidation Year 2</td><td>J8</td><td>39</td><td>310</td><td>311</td><td>312</td><td>313</td><td>Conso.</td></tr><tr><td>Goodwill</td><td></td><td></td><td></td><td></td><td></td><td></td><td>90</td></tr><tr><td>Tang. Assets (Acq.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>5,200</td></tr><tr><td>Tang. Assets (Dep.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(1,500)</td></tr><tr><td>Fin. Inv./A</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin. Inv./E</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4,400</td></tr><tr><td>Cash</td><td></td><td></td><td></td><td></td><td></td><td></td><td>1,140</td></tr><tr><td>Link account (Interco)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account (Fin. Inv.)</td><td></td><td></td><td>(600)</td><td></td><td></td><td>(770)</td><td>0</td></tr><tr><td>Total</td><td>0</td><td>0</td><td>(600)</td><td>0</td><td>0</td><td>(770)</td><td>9,330</td></tr></table>",
+        "bbox": [
+            163,
+            320,
+            783,
+            456
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/7b3e7343590e110b146eb125c1d5235018348ca0a60bf05dadfbbbd8383d8bb0.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Consolidation Year 2</td><td>J8</td><td>J9</td><td>J10</td><td>J11</td><td>312</td><td>313</td><td>Conso.</td></tr><tr><td>Capital</td><td>(400)</td><td>(600)</td><td></td><td>(300)</td><td>(700)</td><td></td><td>2,000</td></tr><tr><td>Reserves</td><td>(216)</td><td>(372)</td><td></td><td>(30)</td><td>(70)</td><td></td><td>598</td></tr><tr><td>Result</td><td></td><td>(24)</td><td></td><td>(6)</td><td>(14)</td><td></td><td>(68)</td></tr><tr><td>Cons. Res</td><td>(4)</td><td>996</td><td>(600)</td><td></td><td></td><td></td><td>396</td></tr><tr><td>Cons. Res.</td><td>(6)</td><td></td><td></td><td></td><td>784</td><td>(770)</td><td>14</td></tr><tr><td>Mm. Int. (A)</td><td>664</td><td></td><td></td><td></td><td></td><td></td><td>664</td></tr><tr><td>Min. Int. (B)</td><td></td><td></td><td></td><td>336</td><td></td><td></td><td>336</td></tr><tr><td>Payables</td><td></td><td></td><td></td><td></td><td></td><td></td><td>5,390</td></tr><tr><td>Total</td><td>0</td><td>0</td><td>(600)</td><td>0</td><td>0</td><td>(770)</td><td>9,330</td></tr></table>",
+        "bbox": [
+            167,
+            475,
+            783,
+            597
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 18: Elimination of minority equity of company A and reclassification on minority interests",
+        "bbox": [
+            103,
+            617,
+            872,
+            651
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 19: Elimination of group equity of company A and reclassification on consolidated reserves",
+        "bbox": [
+            103,
+            666,
+            870,
+            699
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 110: Set link account to zero with counterpart on consolidated reserves of company A",
+        "bbox": [
+            103,
+            714,
+            870,
+            749
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment J11: Elimination of minority equity of company B and reclassification on minority interests",
+        "bbox": [
+            103,
+            762,
+            870,
+            796
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Adjustment 112: Elimination of group equity of company B and reclassification on consolidated reserves",
+        "bbox": [
+            103,
+            811,
+            870,
+            844
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            71,
+            862,
+            87
+        ],
+        "page_idx": 9
+    }
+]

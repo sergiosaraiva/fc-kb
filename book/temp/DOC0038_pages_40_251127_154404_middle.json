@@ -1,0 +1,4346 @@
+{
+    "pdf_info": [
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        55,
+                        80,
+                        410,
+                        296
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                55,
+                                80,
+                                410,
+                                296
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        55,
+                                        80,
+                                        410,
+                                        296
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                55,
+                                                80,
+                                                410,
+                                                296
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\"></td><td colspan=\"2\">ALPHA</td><td colspan=\"2\">BETA</td><td colspan=\"2\">GAMMA</td><td>MU</td><td colspan=\"2\">DELTA (CUR)</td></tr><tr><td>Year 1</td><td>Year 2</td><td>Year 1</td><td>Year 2</td><td>Year 1</td><td>Year 2</td><td>Year 2</td><td>Year 1</td><td>Year 2</td></tr><tr><td>Lands</td><td>1,000</td><td></td><td></td><td>1,500</td><td>1,000</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangible assets (acq.val.)</td><td></td><td></td><td>3,000</td><td>4,000</td><td>4,000</td><td>5,000</td><td>6,000</td><td>8,000</td><td>8,000</td></tr><tr><td>Tangible assets (deprec.)</td><td></td><td></td><td>(1,200)</td><td>(1,800)</td><td>(800)</td><td>(1,300)</td><td>(3,000)</td><td>(4,000)</td><td>(4,800)</td></tr><tr><td>Fin.invest./BETA</td><td>5,000</td><td>7,400</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Fin.invest./GAMMA</td><td>2,100</td><td>900</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Fin.invest./DELTA</td><td>3,600</td><td>3,600</td><td></td><td>4,000</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Receivables/3rd Parties</td><td>1,500</td><td>1,600</td><td>5,000</td><td>7,000</td><td>2,000</td><td>3,000</td><td>3,000</td><td>8,000</td><td>14,000</td></tr><tr><td>Receivables/DELTA</td><td></td><td>1,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cash</td><td>800</td><td>1,500</td><td>1,200</td><td>1,000</td><td>800</td><td>1,300</td><td>2,000</td><td>6,000</td><td>4,800</td></tr><tr><td></td><td>14,000</td><td>16,000</td><td>8,000</td><td>15,700</td><td>7,000</td><td>8,000</td><td>8,000</td><td>18,000</td><td>22,000</td></tr><tr><td>Capital</td><td>5,000</td><td>5,000</td><td>3,000</td><td>6,000</td><td>2,000</td><td>2,000</td><td>3,000</td><td>8,000</td><td>8,000</td></tr><tr><td>Retained earnings</td><td>3,000</td><td>3,100</td><td>2,000</td><td>2,300</td><td>(500)</td><td>(900)</td><td>1,000</td><td>4,000</td><td>4,200</td></tr><tr><td>Result</td><td>400</td><td>800</td><td>300</td><td>900</td><td>(400)</td><td>(200)</td><td>500</td><td>600</td><td>1,000</td></tr><tr><td>Provisions</td><td>1,000</td><td>1,200</td><td>500</td><td>600</td><td></td><td></td><td></td><td>1,400</td><td>2,000</td></tr><tr><td>Payables/3rd Paries</td><td>4,600</td><td>5,900</td><td>2,200</td><td>5,900</td><td>5,900</td><td>7,100</td><td>3,500</td><td>4,000</td><td>5,550</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1,250</td></tr><tr><td></td><td>14,000</td><td>16,000</td><td>8,000</td><td>15,700</td><td>7,000</td><td>8,000</td><td>8,000</td><td>18,000</td><td>22,000</td></tr><tr><td>Turnover/3rd Parties</td><td>10,000</td><td>12,000</td><td>20,000</td><td>30,000</td><td>30,000</td><td>35,000</td><td>10,000</td><td>30,000</td><td>40,000</td></tr><tr><td>Turnover/DELTA</td><td></td><td>3,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Dividends/DELTA</td><td></td><td>150</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Gain on disposals</td><td></td><td>500</td><td></td><td></td><td></td><td>300</td><td></td><td></td><td></td></tr><tr><td>Purchases/3rd Parties</td><td>(9,600)</td><td>(14,250)</td><td>(18,900)</td><td>(28,400)</td><td>(30,100)</td><td>(35,000)</td><td>(8,900)</td><td>(28,600)</td><td>(32,400)</td></tr><tr><td>Purchases/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>(5,800)</td></tr><tr><td>Depreciations</td><td></td><td></td><td>(300)</td><td>(600)</td><td>(300)</td><td>(500)</td><td>(600)</td><td>(800)</td><td>(600)</td></tr><tr><td>Provisions</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Loss on disposals</td><td></td><td>(200)</td><td>(500)</td><td>(100)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Result</td><td>400</td><td>800</td><td>300</td><td>900</td><td>(400)</td><td>(200)</td><td>500</td><td>600</td><td>1,000</td></tr></table>",
+                                            "image_path": "557e6273c54e0f734f4df4d5a264e82909ac947a55ada3bc4135b9ca159c6d1a.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        44,
+                        173,
+                        54
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                44,
+                                173,
+                                54
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        44,
+                                        173,
+                                        54
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "bbox": [
+                        223,
+                        628,
+                        244,
+                        638
+                    ],
+                    "type": "page_number",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                223,
+                                628,
+                                244,
+                                638
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        223,
+                                        628,
+                                        244,
+                                        638
+                                    ],
+                                    "type": "text",
+                                    "content": "394"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 0
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        49,
+                        82,
+                        136,
+                        93
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                82,
+                                136,
+                                93
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        82,
+                                        136,
+                                        93
+                                    ],
+                                    "type": "text",
+                                    "content": "Comeany ALPHA"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        66,
+                        103,
+                        411,
+                        391
+                    ],
+                    "type": "list",
+                    "angle": 0,
+                    "index": 8,
+                    "blocks": [
+                        {
+                            "bbox": [
+                                66,
+                                103,
+                                411,
+                                127
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        103,
+                                        411,
+                                        127
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                66,
+                                                103,
+                                                411,
+                                                127
+                                            ],
+                                            "type": "text",
+                                            "content": "- The lands for 1000 in Year 1 have been sold to company BETA for a price of 1500, giving a group profit of 500 that should be eliminated."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 2
+                        },
+                        {
+                            "bbox": [
+                                67,
+                                138,
+                                411,
+                                193
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        67,
+                                        138,
+                                        411,
+                                        193
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                67,
+                                                138,
+                                                411,
+                                                193
+                                            ],
+                                            "type": "text",
+                                            "content": "- There is an increase of 2400 in the financial investment in BETA. This corresponds to a subscription of "
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                138,
+                                                411,
+                                                193
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "2400 = 80\\% * 3000"
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                138,
+                                                411,
+                                                193
+                                            ],
+                                            "type": "text",
+                                            "content": " in the capital increase of company. It is important to notice that each shareholder subscribes in the proportion of its participation and that transaction should not imply consolidation adjustments."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 3
+                        },
+                        {
+                            "bbox": [
+                                67,
+                                203,
+                                411,
+                                247
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        67,
+                                        203,
+                                        411,
+                                        247
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "text",
+                                            "content": "- ALPHA has reduced its participation in company GAMMA from "
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "70\\%"
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "text",
+                                            "content": " to "
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "30\\%"
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "text",
+                                            "content": " by selling for a price of 800 "
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "40\\%"
+                                        },
+                                        {
+                                            "bbox": [
+                                                67,
+                                                203,
+                                                411,
+                                                247
+                                            ],
+                                            "type": "text",
+                                            "content": " of shares at a book value of 1200. This transaction gives a loss on disposal for 400 as it can be seen in the P&L"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 4
+                        },
+                        {
+                            "bbox": [
+                                67,
+                                258,
+                                411,
+                                302
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        67,
+                                        258,
+                                        411,
+                                        302
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                67,
+                                                258,
+                                                411,
+                                                302
+                                            ],
+                                            "type": "text",
+                                            "content": "- There are intercompany receivables with company DELTA for an amount of 1000. The P&L shows also intercompany turnover for 3000 with the same company. These figures will require a special care because the partner DELTA closes its accounts in CUR."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 5
+                        },
+                        {
+                            "bbox": [
+                                67,
+                                313,
+                                411,
+                                346
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        67,
+                                        313,
+                                        411,
+                                        346
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                67,
+                                                313,
+                                                411,
+                                                346
+                                            ],
+                                            "type": "text",
+                                            "content": "- Analysis of equity shows a distribution of gross dividends for 300. These dividends have been paid during Year 2, which means such transaction should appear in the cash flow statement."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6
+                        },
+                        {
+                            "bbox": [
+                                67,
+                                357,
+                                411,
+                                391
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        67,
+                                        357,
+                                        411,
+                                        391
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                67,
+                                                357,
+                                                411,
+                                                391
+                                            ],
+                                            "type": "text",
+                                            "content": "- The dividends for 150 in the P&L have been paid by company DELTA on the basis of 240 CUR = 60% * 400 CUR. These dividends are related to Year 1 profit and paid during Year 2."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 7
+                        }
+                    ],
+                    "sub_type": "text"
+                },
+                {
+                    "bbox": [
+                        50,
+                        401,
+                        130,
+                        413
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                401,
+                                130,
+                                413
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        401,
+                                        130,
+                                        413
+                                    ],
+                                    "type": "text",
+                                    "content": "Comeany BETA"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 9,
+                    "line_avg_height": 15,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        68,
+                        422,
+                        411,
+                        521
+                    ],
+                    "type": "list",
+                    "angle": 0,
+                    "index": 13,
+                    "blocks": [
+                        {
+                            "bbox": [
+                                68,
+                                422,
+                                411,
+                                445
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        68,
+                                        422,
+                                        411,
+                                        445
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                68,
+                                                422,
+                                                411,
+                                                445
+                                            ],
+                                            "type": "text",
+                                            "content": "- The lands for 1500 have been acquired from company ALPHA. This book value includes a group profit for 500 to be eliminated."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 10
+                        },
+                        {
+                            "bbox": [
+                                68,
+                                456,
+                                411,
+                                500
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        68,
+                                        456,
+                                        411,
+                                        500
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                68,
+                                                456,
+                                                411,
+                                                500
+                                            ],
+                                            "type": "text",
+                                            "content": "- BETA acquires "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                456,
+                                                411,
+                                                500
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "90\\%"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                456,
+                                                411,
+                                                500
+                                            ],
+                                            "type": "text",
+                                            "content": " of shares of company MU for a price of 4000. This acquisition occurs on July "
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                456,
+                                                411,
+                                                500
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "1^{st}"
+                                        },
+                                        {
+                                            "bbox": [
+                                                68,
+                                                456,
+                                                411,
+                                                500
+                                            ],
+                                            "type": "text",
+                                            "content": ", Year 2. This will imply a goodwill calculation at that date. Moreover, we must consolidate only the last six months of the new company."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 11
+                        },
+                        {
+                            "bbox": [
+                                68,
+                                510,
+                                359,
+                                521
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        68,
+                                        510,
+                                        359,
+                                        521
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                68,
+                                                510,
+                                                359,
+                                                521
+                                            ],
+                                            "type": "text",
+                                            "content": "We notice indeed a capital increase for an amount of 3000."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12
+                        }
+                    ],
+                    "sub_type": "text"
+                },
+                {
+                    "bbox": [
+                        50,
+                        533,
+                        142,
+                        544
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                533,
+                                142,
+                                544
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        533,
+                                        142,
+                                        544
+                                    ],
+                                    "type": "text",
+                                    "content": "Company GAMMA"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 14,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        67,
+                        554,
+                        411,
+                        588
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                67,
+                                554,
+                                411,
+                                588
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        67,
+                                        554,
+                                        411,
+                                        588
+                                    ],
+                                    "type": "text",
+                                    "content": "- All transactions reflected in these accounts occur with the outside world and need no consolidation adjustments. Of course, this company is now consolidated with the equity method."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 15
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        205,
+                        50,
+                        405,
+                        61
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                205,
+                                50,
+                                405,
+                                61
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        205,
+                                        50,
+                                        405,
+                                        61
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                474,
+                684
+            ],
+            "page_idx": 1
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        56,
+                        81,
+                        412,
+                        296
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                56,
+                                81,
+                                412,
+                                296
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        81,
+                                        412,
+                                        296
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                56,
+                                                81,
+                                                412,
+                                                296
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td rowspan=\"2\"></td><td colspan=\"2\">ALPHA</td><td colspan=\"2\">BETA</td><td colspan=\"2\">GAMMA</td><td>MUJ</td><td colspan=\"2\">DELTA (CUR)</td></tr><tr><td>Year 1</td><td>Year 2</td><td>Year 1</td><td>Year 2</td><td>Year 1</td><td>Year 2</td><td>Year 2</td><td>Year 1</td><td>Year 2</td></tr><tr><td>Lands</td><td>1,000</td><td></td><td></td><td>1,500</td><td>1,000</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangible assets (acq.val.)</td><td></td><td></td><td>3,000</td><td>4,000</td><td>4,000</td><td>5,000</td><td>6,000</td><td>8,000</td><td>8,000</td></tr><tr><td>Tangible assets (deprec.)</td><td></td><td></td><td>(1,200)</td><td>(1,800)</td><td>(800)</td><td>(1,300)</td><td>(3,000)</td><td>(4,000)</td><td>(4,800)</td></tr><tr><td>Fin.invest./BETA</td><td>5,000</td><td>7,400</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Fin.invest./GAMMA</td><td>2,100</td><td>900</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Fin.invest./DELTA</td><td>3,600</td><td>3,600</td><td></td><td>4,000</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Receivables/3rd Parties</td><td>1,500</td><td>1,600</td><td>5,000</td><td>7,000</td><td>2,000</td><td>3,000</td><td>3,000</td><td>8,000</td><td>14,000</td></tr><tr><td>Receivables/DELTA</td><td></td><td>1,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Cash</td><td>800</td><td>1,500</td><td>1,200</td><td>1,000</td><td>800</td><td>1,300</td><td>2,000</td><td>6,000</td><td>4,800.</td></tr><tr><td></td><td>14,000</td><td>16,000</td><td>8,000</td><td>15,700</td><td>7,000</td><td>8,000</td><td>8,000</td><td>18,000</td><td>22,000</td></tr><tr><td>Capital</td><td>5,000</td><td>5,000</td><td>3,000</td><td>6,000</td><td>2,000</td><td>2,000</td><td>3,000</td><td>8,000</td><td>8,000</td></tr><tr><td>Retained earnings</td><td>3,000</td><td>3,100</td><td>2,000</td><td>2,300</td><td>(500)</td><td>(900)</td><td>1,000</td><td>4,000</td><td>4,200</td></tr><tr><td>Result</td><td>400</td><td>800</td><td>300</td><td>900</td><td>(400)</td><td>(200)</td><td>500</td><td>600</td><td>1,000</td></tr><tr><td>Provisions</td><td>1,000</td><td>1,200</td><td>500</td><td>600</td><td></td><td></td><td></td><td>1,400</td><td>2,000</td></tr><tr><td>Payables/3rd Parties</td><td>4,600</td><td>5,900</td><td>2,200</td><td>5,900</td><td>5,900</td><td>7,100</td><td>3,500</td><td>4,000</td><td>5,550</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1,250</td></tr><tr><td></td><td>14,000</td><td>16,000</td><td>8,000</td><td>15,700</td><td>7,000</td><td>8,000</td><td>8,000</td><td>18,000</td><td>22,000</td></tr><tr><td>Turnover/3rd Parties</td><td>10,000</td><td>12,000</td><td>20,000</td><td>30,000</td><td>30,000</td><td>35,000</td><td>10,000</td><td>30,000</td><td>40,000</td></tr><tr><td>Turnover/DELTA</td><td></td><td>3,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Dividends/DELTA</td><td></td><td>150</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Gain on disposals</td><td></td><td>500</td><td></td><td></td><td></td><td>300</td><td></td><td></td><td></td></tr><tr><td>Purchases/3rd Parties</td><td>(9,600)</td><td>(14,250)</td><td>(18,900)</td><td>(28,400)</td><td>(30,100)</td><td>(35,000)</td><td>(8,900)</td><td>(28,600)</td><td>(32,400)</td></tr><tr><td>Purchases/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>(5,200)</td></tr><tr><td>Depreciations</td><td></td><td></td><td>(300)</td><td>(600)</td><td>(300)</td><td>(500)</td><td>(600)</td><td>(800)</td><td>(800)</td></tr><tr><td>Provisions</td><td></td><td>(200)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(600)</td></tr><tr><td>Loss on disposals</td><td></td><td>(400)</td><td>(500)</td><td>(100)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Result</td><td>400</td><td>800</td><td>300</td><td>900</td><td>(400)</td><td>(200)</td><td>500</td><td>600</td><td>1,000</td></tr></table>",
+                                            "image_path": "05a7b08b92a7ba829d9425fd5f17ce576662319367e00c8e803dc38c57ebca3b.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        46,
+                        175,
+                        55
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                46,
+                                175,
+                                55
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        46,
+                                        175,
+                                        55
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "bbox": [
+                        224,
+                        629,
+                        244,
+                        639
+                    ],
+                    "type": "page_number",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                224,
+                                629,
+                                244,
+                                639
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        224,
+                                        629,
+                                        244,
+                                        639
+                                    ],
+                                    "type": "text",
+                                    "content": "396"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                }
+            ],
+            "page_size": [
+                472,
+                682
+            ],
+            "page_idx": 2
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        48,
+                        83,
+                        118,
+                        94
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                83,
+                                118,
+                                94
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        83,
+                                        118,
+                                        94
+                                    ],
+                                    "type": "text",
+                                    "content": "Company MU"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 12,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        66,
+                        105,
+                        410,
+                        138
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                66,
+                                105,
+                                410,
+                                138
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        105,
+                                        410,
+                                        138
+                                    ],
+                                    "type": "text",
+                                    "content": "- This is a new company acquired by company GAMMA on July "
+                                },
+                                {
+                                    "bbox": [
+                                        66,
+                                        105,
+                                        410,
+                                        138
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "1^{st}"
+                                },
+                                {
+                                    "bbox": [
+                                        66,
+                                        105,
+                                        410,
+                                        138
+                                    ],
+                                    "type": "text",
+                                    "content": ", Year 2. On that date, the company's result was already 200. Here are the accounts giving that result:"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        102,
+                        149,
+                        220,
+                        181
+                    ],
+                    "type": "list",
+                    "angle": 0,
+                    "index": 6,
+                    "blocks": [
+                        {
+                            "bbox": [
+                                102,
+                                149,
+                                220,
+                                159
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        102,
+                                        149,
+                                        220,
+                                        159
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                102,
+                                                149,
+                                                220,
+                                                159
+                                            ],
+                                            "type": "text",
+                                            "content": "Turnover 6000"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 3
+                        },
+                        {
+                            "bbox": [
+                                103,
+                                160,
+                                219,
+                                170
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        103,
+                                        160,
+                                        219,
+                                        170
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                103,
+                                                160,
+                                                219,
+                                                170
+                                            ],
+                                            "type": "text",
+                                            "content": "o Purchases 5500"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 4
+                        },
+                        {
+                            "bbox": [
+                                103,
+                                172,
+                                219,
+                                181
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        103,
+                                        172,
+                                        219,
+                                        181
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                103,
+                                                172,
+                                                219,
+                                                181
+                                            ],
+                                            "type": "text",
+                                            "content": "o Depreciations 300"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 5
+                        }
+                    ],
+                    "sub_type": "text"
+                },
+                {
+                    "bbox": [
+                        66,
+                        192,
+                        330,
+                        204
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                66,
+                                192,
+                                330,
+                                204
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        192,
+                                        330,
+                                        204
+                                    ],
+                                    "type": "text",
+                                    "content": "The due diligence concludes to no goodwill allocation."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7
+                },
+                {
+                    "bbox": [
+                        49,
+                        215,
+                        135,
+                        226
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                215,
+                                135,
+                                226
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        215,
+                                        135,
+                                        226
+                                    ],
+                                    "type": "text",
+                                    "content": "Company DELTA"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8,
+                    "line_avg_height": 14,
+                    "level": 1
+                },
+                {
+                    "bbox": [
+                        66,
+                        237,
+                        410,
+                        411
+                    ],
+                    "type": "list",
+                    "angle": 0,
+                    "index": 13,
+                    "blocks": [
+                        {
+                            "bbox": [
+                                66,
+                                237,
+                                410,
+                                269
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        237,
+                                        410,
+                                        269
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                66,
+                                                237,
+                                                410,
+                                                269
+                                            ],
+                                            "type": "text",
+                                            "content": "Equity analysis confirms the payment of dividends for 400 CUR. As stated before, company ALPHA receives "
+                                        },
+                                        {
+                                            "bbox": [
+                                                66,
+                                                237,
+                                                410,
+                                                269
+                                            ],
+                                            "type": "inline_equation",
+                                            "content": "240\\ \\mathrm{CUR} = 60\\%"
+                                        },
+                                        {
+                                            "bbox": [
+                                                66,
+                                                237,
+                                                410,
+                                                269
+                                            ],
+                                            "type": "text",
+                                            "content": " * 400 CUR booked for a value of 150 EUR."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9
+                        },
+                        {
+                            "bbox": [
+                                66,
+                                280,
+                                410,
+                                324
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        280,
+                                        410,
+                                        324
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                66,
+                                                280,
+                                                410,
+                                                324
+                                            ],
+                                            "type": "text",
+                                            "content": "- We remind that the provisions still include an amount of 300 CUR to be eliminated. These provisions have already been adjusted during Year 1 consolidation. This means that the adjustment has to be maintained."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 10
+                        },
+                        {
+                            "bbox": [
+                                66,
+                                335,
+                                410,
+                                380
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        335,
+                                        410,
+                                        380
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                66,
+                                                335,
+                                                410,
+                                                380
+                                            ],
+                                            "type": "text",
+                                            "content": "- The intercompany payables of 1250 CUR with partner ALPHA correspond to the intercompany receivables booked in ALPHA accounts. This means the difference that will be noticed after currency translation is to be considered as an exchange gain or loss."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 11
+                        },
+                        {
+                            "bbox": [
+                                66,
+                                389,
+                                410,
+                                411
+                            ],
+                            "type": "text",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        66,
+                                        389,
+                                        410,
+                                        411
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                66,
+                                                389,
+                                                410,
+                                                411
+                                            ],
+                                            "type": "text",
+                                            "content": "- The same comment can be made for the intercompany purchases with ALPHA for an amount of 5200 CUR."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 12
+                        }
+                    ],
+                    "sub_type": "text"
+                },
+                {
+                    "bbox": [
+                        49,
+                        422,
+                        375,
+                        434
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                422,
+                                375,
+                                434
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        422,
+                                        375,
+                                        434
+                                    ],
+                                    "type": "text",
+                                    "content": "Let's now proceed to the consolidation of Year 2 like we did for Year 1."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 14
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        204,
+                        50,
+                        403,
+                        61
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                204,
+                                50,
+                                403,
+                                61
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        50,
+                                        403,
+                                        61
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                474,
+                683
+            ],
+            "page_idx": 3
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        55,
+                        96,
+                        404,
+                        482
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                55,
+                                96,
+                                404,
+                                482
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        55,
+                                        96,
+                                        404,
+                                        482
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                55,
+                                                96,
+                                                404,
+                                                482
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>ALPHA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td><td>(7)</td></tr><tr><td>Goodwill (gross val.)</td><td></td><td>500</td><td></td><td>300</td><td></td><td></td><td>800</td></tr><tr><td>Goodwill (deprec.)</td><td></td><td></td><td>(400)</td><td></td><td>(300)</td><td></td><td>(700)</td></tr><tr><td>Lands</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (deprec.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./BETA</td><td>7,400</td><td>(500)</td><td></td><td>(300)</td><td></td><td></td><td>6,900</td></tr><tr><td>Fin.invest./GAMMA</td><td>900</td><td></td><td></td><td></td><td></td><td></td><td>600</td></tr><tr><td>Fin.invest./DELTA</td><td>3,600</td><td></td><td></td><td></td><td></td><td></td><td>3,600</td></tr><tr><td>Fin.invest./MU</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>1,600</td><td></td><td></td><td></td><td></td><td></td><td>1,600</td></tr><tr><td>Receivables/DELTA</td><td>1,000</td><td></td><td></td><td></td><td></td><td></td><td>1,000</td></tr><tr><td>Cash</td><td>1,500</td><td></td><td></td><td></td><td></td><td></td><td>1,500</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Fin,Inv.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>16,000</td><td>0</td><td>(400)</td><td>0</td><td>(300)</td><td>0</td><td>15,300&#x27;</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Capital</td><td>5,000</td><td></td><td></td><td></td><td></td><td></td><td>5,000</td></tr><tr><td>Retained earnings</td><td>3,100</td><td></td><td></td><td></td><td></td><td></td><td>3,100</td></tr><tr><td>Reserves</td><td></td><td></td><td>(300)</td><td></td><td>(240)</td><td>168</td><td>(372)</td></tr><tr><td>Result</td><td>800</td><td></td><td>(100)</td><td></td><td>(60)</td><td>(168)</td><td>472</td></tr><tr><td>Consolidated reserves</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Minority interests</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Provisions</td><td>1,200</td><td></td><td></td><td></td><td></td><td></td><td>1,200</td></tr><tr><td>Payables/3rd Parties</td><td>5,900</td><td></td><td></td><td></td><td></td><td></td><td>5,900</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>16,000</td><td>0</td><td>(400)</td><td>0</td><td>(300)</td><td>0</td><td>15,300</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Turnover/3rd Parties</td><td>12,000</td><td></td><td></td><td></td><td></td><td></td><td>12,000</td></tr><tr><td>Turnover/DELTA</td><td>3,000</td><td></td><td></td><td></td><td></td><td></td><td>3,000</td></tr><tr><td>Dividends/DELTA</td><td>150</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td>500</td><td></td><td></td><td></td><td></td><td></td><td>500</td></tr><tr><td>Purchases/3rd Parties</td><td>(14,250)</td><td></td><td></td><td></td><td></td><td></td><td>(14,250)</td></tr><tr><td>Purchases/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td></td><td></td><td>(100)</td><td></td><td>(60)</td><td></td><td>(160)</td></tr><tr><td>Provisions</td><td>(200)</td><td></td><td></td><td></td><td></td><td></td><td>(200)</td></tr><tr><td>Exchange loss( realized)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(18)</td></tr><tr><td>Loss on disposals</td><td>(400)</td><td></td><td></td><td></td><td></td><td></td><td>(400)</td></tr><tr><td>Loss on equity cies</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>800</td><td>0</td><td>(100)</td><td>0</td><td>(60)</td><td>(168)</td><td>472</td></tr></table>",
+                                            "image_path": "9fd6a0f808d1f7652c12ffa08b85d27324aa293c6a7d3a2453d450924d6d9638.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        58,
+                        44,
+                        175,
+                        54
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                58,
+                                44,
+                                175,
+                                54
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        58,
+                                        44,
+                                        175,
+                                        54
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 4
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        48,
+                        81,
+                        156,
+                        94
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                81,
+                                156,
+                                94
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        81,
+                                        156,
+                                        94
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (1)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        48,
+                        104,
+                        139,
+                        116
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                104,
+                                139,
+                                116
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        104,
+                                        139,
+                                        116
+                                    ],
+                                    "type": "text",
+                                    "content": "Statutory accounts."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        48,
+                        126,
+                        156,
+                        138
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                126,
+                                156,
+                                138
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        126,
+                                        156,
+                                        138
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (2)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        47,
+                        147,
+                        196,
+                        192
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                47,
+                                147,
+                                196,
+                                192
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        47,
+                                        147,
+                                        196,
+                                        192
+                                    ],
+                                    "type": "text",
+                                    "content": "Historical goodwill of 500 related to the acquisition of company BETA in beginning of Year -1."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        202,
+                        144,
+                        411,
+                        180
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                202,
+                                144,
+                                411,
+                                180
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        202,
+                                        144,
+                                        411,
+                                        180
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                202,
+                                                144,
+                                                411,
+                                                180
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill (gross val.)</td><td>500</td><td></td></tr><tr><td>Fin.invest./BETA</td><td></td><td>500</td></tr></table>",
+                                            "image_path": "5a0e8ed0333446ed656ec724ece3e7ca59f863a777446815045d5e1633e010c0.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 5,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "bbox": [
+                        48,
+                        203,
+                        156,
+                        215
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                203,
+                                156,
+                                215
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        203,
+                                        156,
+                                        215
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (3)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6,
+                    "line_avg_height": 13,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        48,
+                        225,
+                        197,
+                        291
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                225,
+                                197,
+                                291
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        225,
+                                        197,
+                                        291
+                                    ],
+                                    "type": "text",
+                                    "content": "This goodwill is now depreciated for an amount of (400) corresponding to (300) impacting the Reserves and a depreciation of (100) to book in P&L."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7
+                },
+                {
+                    "bbox": [
+                        337,
+                        226,
+                        409,
+                        237
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                337,
+                                226,
+                                409,
+                                237
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        337,
+                                        226,
+                                        409,
+                                        237
+                                    ],
+                                    "type": "text",
+                                    "content": "Debit Credit"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "bbox": [
+                        204,
+                        238,
+                        249,
+                        248
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                204,
+                                238,
+                                249,
+                                248
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        238,
+                                        249,
+                                        248
+                                    ],
+                                    "type": "text",
+                                    "content": "Reserves"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        204,
+                        248,
+                        287,
+                        260
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                204,
+                                248,
+                                287,
+                                260
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        248,
+                                        287,
+                                        260
+                                    ],
+                                    "type": "text",
+                                    "content": "Goodwill (deprec.)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10
+                },
+                {
+                    "bbox": [
+                        204,
+                        260,
+                        270,
+                        270
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                204,
+                                260,
+                                270,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        260,
+                                        270,
+                                        270
+                                    ],
+                                    "type": "text",
+                                    "content": "De, reciations"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "bbox": [
+                        48,
+                        302,
+                        156,
+                        313
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                302,
+                                156,
+                                313
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        302,
+                                        156,
+                                        313
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (4)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 12,
+                    "line_avg_height": 13,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        48,
+                        323,
+                        198,
+                        368
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                323,
+                                198,
+                                368
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        323,
+                                        198,
+                                        368
+                                    ],
+                                    "type": "text",
+                                    "content": "Initially, we had a gross goodwill of 700 corresponding to the "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        323,
+                                        198,
+                                        368
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "70\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        323,
+                                        198,
+                                        368
+                                    ],
+                                    "type": "text",
+                                    "content": " acquisition of GAMMA. In January this year,"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        204,
+                        323,
+                        413,
+                        360
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                204,
+                                323,
+                                413,
+                                360
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        323,
+                                        413,
+                                        360
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                204,
+                                                323,
+                                                413,
+                                                360
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill (gross val.)</td><td>300</td><td></td></tr><tr><td>Fin.invest./GAMMA</td><td></td><td>300</td></tr></table>",
+                                            "image_path": "e43efbe6f16c7bf96e81b7fdc43388a5259fdb28da48fad6a8cf99c96df76b07.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 14,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 14
+                },
+                {
+                    "bbox": [
+                        48,
+                        368,
+                        410,
+                        402
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                368,
+                                410,
+                                402
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA has sold "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "40\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "text",
+                                    "content": " of these shares, remaining with a participation of "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "30\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "text",
+                                    "content": ". The remaining gross goodwill kept in the consolidation is than "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "300 = 700 \\times [30\\% / 70\\%]"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        368,
+                                        410,
+                                        402
+                                    ],
+                                    "type": "text",
+                                    "content": "."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 15
+                },
+                {
+                    "bbox": [
+                        49,
+                        411,
+                        156,
+                        423
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                411,
+                                156,
+                                423
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        411,
+                                        156,
+                                        423
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (5)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 16,
+                    "line_avg_height": 14,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        48,
+                        433,
+                        198,
+                        488
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                433,
+                                198,
+                                488
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        433,
+                                        198,
+                                        488
+                                    ],
+                                    "type": "text",
+                                    "content": "Same comment can be made for the goodwill depreciations which opening value is (240) = (560) "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        433,
+                                        198,
+                                        488
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "\\times"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        433,
+                                        198,
+                                        488
+                                    ],
+                                    "type": "text",
+                                    "content": " [30% / 70%]. After this transaction, the net value"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 17
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        204,
+                        431,
+                        413,
+                        479
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                204,
+                                431,
+                                413,
+                                479
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        431,
+                                        413,
+                                        479
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                204,
+                                                431,
+                                                413,
+                                                479
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>240</td><td></td></tr><tr><td>Goodwill (deprec.)</td><td></td><td>300</td></tr><tr><td>Depreciations</td><td>60</td><td></td></tr></table>",
+                                            "image_path": "7cffd21e38fff1a1dfba852365b1f97a87d41469db9065b3c9ddcc92ea7ee58e.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 18,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 18
+                },
+                {
+                    "bbox": [
+                        48,
+                        488,
+                        376,
+                        500
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                488,
+                                376,
+                                500
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        488,
+                                        376,
+                                        500
+                                    ],
+                                    "type": "text",
+                                    "content": "of the goodwill is now 60 and the group decides to depreciate it totally."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 19
+                },
+                {
+                    "bbox": [
+                        49,
+                        510,
+                        156,
+                        522
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                510,
+                                156,
+                                522
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        510,
+                                        156,
+                                        522
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (6)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 20,
+                    "line_avg_height": 14,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        48,
+                        532,
+                        196,
+                        576
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                532,
+                                196,
+                                576
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        532,
+                                        196,
+                                        576
+                                    ],
+                                    "type": "text",
+                                    "content": "Company DELTA is paying dividends for 400 CUR valuated at Year 1 average rate of 0.7. ALPHA should then receive 168"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 21
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        203,
+                        522,
+                        411,
+                        568
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                203,
+                                522,
+                                411,
+                                568
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        203,
+                                        522,
+                                        411,
+                                        568
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                203,
+                                                522,
+                                                411,
+                                                568
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Dividends/DELTA</td><td>150</td><td></td></tr><tr><td>Exchange loss(realized)</td><td>18</td><td></td></tr><tr><td>Reserves</td><td></td><td>168</td></tr></table>",
+                                            "image_path": "64d17336a384889a2c904efe7bae8b01e53792ee8b964ac34fff1d2052b1847f.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 22,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 22
+                },
+                {
+                    "bbox": [
+                        48,
+                        576,
+                        410,
+                        600
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                48,
+                                576,
+                                410,
+                                600
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        576,
+                                        410,
+                                        600
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "= 60\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        576,
+                                        410,
+                                        600
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "400"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        576,
+                                        410,
+                                        600
+                                    ],
+                                    "type": "text",
+                                    "content": " CUR "
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        576,
+                                        410,
+                                        600
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "^{\\star}0.7"
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        576,
+                                        410,
+                                        600
+                                    ],
+                                    "type": "text",
+                                    "content": " but, on the basis of the bank receipt, books only 150. The difference is considered as a realized exchange loss."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 23
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        204,
+                        49,
+                        404,
+                        60
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                204,
+                                49,
+                                404,
+                                60
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        204,
+                                        49,
+                                        404,
+                                        60
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                472,
+                682
+            ],
+            "page_idx": 5
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        54,
+                        79,
+                        411,
+                        533
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                54,
+                                79,
+                                411,
+                                533
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        79,
+                                        411,
+                                        533
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                54,
+                                                79,
+                                                411,
+                                                533
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>ALPHA</td><td>(7)</td><td>(8)</td><td>(9)</td><td>(10)</td><td>(11)</td><td>(12)</td></tr><tr><td>Goodwill (gross val.)</td><td>800</td><td></td><td></td><td></td><td></td><td>800</td></tr><tr><td>Goodwill (deprec.)</td><td>(700)</td><td></td><td></td><td></td><td></td><td>(700)</td></tr><tr><td>Lands</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (deprec.)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./BETA</td><td>6,900</td><td></td><td></td><td></td><td>(6,900)</td><td>0</td></tr><tr><td>Fin.invest./GAMMA</td><td>600</td><td></td><td></td><td></td><td>(600)</td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td>3,600</td><td></td><td></td><td></td><td>(3,600)</td><td>0</td></tr><tr><td>Fin.invest./MU</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>1,600</td><td></td><td></td><td></td><td></td><td>1,600</td></tr><tr><td>Receivables/DELTA</td><td>1,000</td><td></td><td></td><td>(1,000)</td><td></td><td>0</td></tr><tr><td>Cash</td><td>1,500</td><td></td><td></td><td></td><td></td><td>1,500</td></tr><tr><td>Link account(Intercos)</td><td>0</td><td></td><td></td><td></td><td></td><td>1,000</td></tr><tr><td>Link account(Fin.Inv.)</td><td>0</td><td></td><td></td><td></td><td>11,100</td><td>11,100</td></tr><tr><td></td><td>15,300</td><td>0</td><td>0</td><td>0</td><td>0</td><td>15,300</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Capital</td><td>5,000</td><td></td><td></td><td></td><td></td><td>5,000</td></tr><tr><td>Retained earnings</td><td>3,100</td><td></td><td></td><td></td><td></td><td>3,100</td></tr><tr><td>Reserves</td><td>(372)</td><td>400</td><td>(680)</td><td></td><td></td><td>(652)</td></tr><tr><td>Result</td><td>472</td><td>(400)</td><td>680</td><td></td><td></td><td>752</td></tr><tr><td>Consolidated reserves</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Translation adjustments</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Minority interests</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Provisions</td><td>1,200</td><td></td><td></td><td></td><td></td><td>1,200</td></tr><tr><td>Payables/3rd Parties</td><td>5,900</td><td></td><td></td><td></td><td></td><td>5,900</td></tr><tr><td>Payables/ALPHA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>15,300</td><td>0</td><td>0</td><td></td><td>0</td><td>15,300</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Turnover/3rd Parties</td><td>12,000</td><td></td><td></td><td></td><td></td><td>12,000</td></tr><tr><td>Turnover/DELTA</td><td>3,000</td><td></td><td></td><td>(3,000)</td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td>500</td><td>(400)</td><td>280</td><td></td><td></td><td>380</td></tr><tr><td>Purchases/3rd Parties</td><td>(14,250)</td><td></td><td></td><td></td><td></td><td>(14,250)</td></tr><tr><td>Purchases/ALPHA</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td>(160)</td><td></td><td></td><td></td><td></td><td>(160)</td></tr><tr><td>Provisions</td><td>(200)</td><td></td><td></td><td></td><td></td><td>(200)</td></tr><tr><td>Exchange loss( realized)</td><td>(18)</td><td></td><td></td><td></td><td></td><td>(18)</td></tr><tr><td>Loss on disposals</td><td>(400)</td><td></td><td>400</td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity cies</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td>0</td><td></td><td></td><td>3,000</td><td></td><td>3,000</td></tr><tr><td>Result</td><td>472</td><td>(400)</td><td>680</td><td>0</td><td>0</td><td>752</td></tr><tr><td>Group result</td><td></td><td></td><td></td><td></td><td></td><td>752</td></tr><tr><td>Minority result</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr></table>",
+                                            "image_path": "570fb952f48de37b28bdc4b305708e882de01b456e4f0c3087b0127c5ac18801.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        44,
+                        175,
+                        52
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                44,
+                                175,
+                                52
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        44,
+                                        175,
+                                        52
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 6
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        51,
+                        84,
+                        159,
+                        95
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                84,
+                                159,
+                                95
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        84,
+                                        159,
+                                        95
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA = Column (7)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        51,
+                        105,
+                        305,
+                        117
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                105,
+                                305,
+                                117
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        105,
+                                        305,
+                                        117
+                                    ],
+                                    "type": "text",
+                                    "content": "We continue by referencing to the subtotal column (7)."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        51,
+                        128,
+                        159,
+                        140
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                128,
+                                159,
+                                140
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        128,
+                                        159,
+                                        140
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (8)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 14,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        150,
+                        199,
+                        183
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                150,
+                                199,
+                                183
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        150,
+                                        199,
+                                        183
+                                    ],
+                                    "type": "text",
+                                    "content": "We have already noticed that the disposal of lands for a price of 1500 generates a group"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        206,
+                        147,
+                        415,
+                        182
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                206,
+                                147,
+                                415,
+                                182
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        206,
+                                        147,
+                                        415,
+                                        182
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                206,
+                                                147,
+                                                415,
+                                                182
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposals</td><td>400</td><td></td></tr><tr><td>Reserves</td><td></td><td>400</td></tr></table>",
+                                            "image_path": "a8d298bfb8e9e89286a3b4c50180784649d81a1e1a9af6f419f38342fbec644e.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 5,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "bbox": [
+                        50,
+                        184,
+                        414,
+                        227
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                184,
+                                414,
+                                227
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": "profit of 500. This transaction being concluded with the "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "80\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": " owned company BETA implies we recognize a group profit for only "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "400 = 80\\% * 500"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": " which has to be eliminated and we keep a profit of "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "100 = 20\\% * 500"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": " with the "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "3^{\\text{rd}}"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        184,
+                                        414,
+                                        227
+                                    ],
+                                    "type": "text",
+                                    "content": " Parties."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "bbox": [
+                        51,
+                        237,
+                        159,
+                        250
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                237,
+                                159,
+                                250
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        237,
+                                        159,
+                                        250
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (9)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        259,
+                        414,
+                        283
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                259,
+                                414,
+                                283
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        259,
+                                        414,
+                                        283
+                                    ],
+                                    "type": "text",
+                                    "content": "In statutory accounts, the "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        259,
+                                        414,
+                                        283
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "40\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        259,
+                                        414,
+                                        283
+                                    ],
+                                    "type": "text",
+                                    "content": " GAMMA shares valuated at 1200 are disposed for a price of 800 giving a loss of 400."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "bbox": [
+                        50,
+                        292,
+                        415,
+                        358
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                292,
+                                415,
+                                358
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "text",
+                                    "content": "In consolidated accounts, the value of these shares is "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "440 = 40\\% * [2000 + (900)]"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "text",
+                                    "content": " where figures between brackets are the equity at time of disposal. Moreover, a corresponding part of the remaining goodwill has also to be eliminated against the P&L. We speak about "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "80 = [40\\% / 70\\%]^{*} [700 + (560)]"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "text",
+                                    "content": ". Compared to the disposal price of 800, the consolidated gain is "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "280 = 800 - 440 - 80"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        415,
+                                        358
+                                    ],
+                                    "type": "text",
+                                    "content": "."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        51,
+                        369,
+                        200,
+                        413
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                369,
+                                200,
+                                413
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        369,
+                                        200,
+                                        413
+                                    ],
+                                    "type": "text",
+                                    "content": "The final adjustment eliminates the statutory loss for 400 and book a complementary gain of 280."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        206,
+                        363,
+                        415,
+                        408
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                206,
+                                363,
+                                415,
+                                408
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        206,
+                                        363,
+                                        415,
+                                        408
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                206,
+                                                363,
+                                                415,
+                                                408
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>680</td><td></td></tr><tr><td>Loss on disposals</td><td></td><td>400</td></tr><tr><td>Gain on disposals</td><td></td><td>280</td></tr></table>",
+                                            "image_path": "948bec6ee5499526020b7a097736d464c7ae4484f395868d85c272cd79ce7ada.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 11,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "bbox": [
+                        51,
+                        424,
+                        166,
+                        437
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                424,
+                                166,
+                                437
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        424,
+                                        166,
+                                        437
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (10)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 12,
+                    "line_avg_height": 17,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        51,
+                        445,
+                        199,
+                        501
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                445,
+                                199,
+                                501
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        445,
+                                        199,
+                                        501
+                                    ],
+                                    "type": "text",
+                                    "content": "We eliminate the intercompany positions with DELTA on the receivables and turnover accounts against the Link account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 13
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        206,
+                        443,
+                        415,
+                        501
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                206,
+                                443,
+                                415,
+                                501
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        206,
+                                        443,
+                                        415,
+                                        501
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                206,
+                                                443,
+                                                415,
+                                                501
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Link account(Intercos)</td><td>1,000</td><td></td></tr><tr><td>Receivables/DELTA</td><td></td><td></td></tr><tr><td>Turnover/DELTA</td><td>3,000</td><td></td></tr><tr><td>Link account Intercos</td><td></td><td>3,000</td></tr></table>",
+                                            "image_path": "bc75185034717d8ae5e0d75317c6e05aad223d7fb6bd8740015647732d8958f3.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 14,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 14
+                },
+                {
+                    "bbox": [
+                        51,
+                        522,
+                        166,
+                        534
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                522,
+                                166,
+                                534
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        522,
+                                        166,
+                                        534
+                                    ],
+                                    "type": "text",
+                                    "content": "ALPHA - Column (11)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 15,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        544,
+                        199,
+                        578
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                544,
+                                199,
+                                578
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        544,
+                                        199,
+                                        578
+                                    ],
+                                    "type": "text",
+                                    "content": "Elimination of each Financial investment via the Link account."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 16
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        206,
+                        524,
+                        415,
+                        582
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                206,
+                                524,
+                                415,
+                                582
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        206,
+                                        524,
+                                        415,
+                                        582
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                206,
+                                                524,
+                                                415,
+                                                582
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Link account(Fin.Inv.)</td><td>11,100</td><td></td></tr><tr><td>Fin.invest./BETA</td><td></td><td>6,900</td></tr><tr><td>Fin.invest./GAMMA</td><td></td><td></td></tr><tr><td>Fin.invest./DELTA</td><td></td><td>3 600</td></tr></table>",
+                                            "image_path": "781adb00ebd67a835ce64eb2b512ece011795bb7ca2b4f33af38db6fe8f9ec7d.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 17,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 17
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        208,
+                        51,
+                        407,
+                        62
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                208,
+                                51,
+                                407,
+                                62
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        208,
+                                        51,
+                                        407,
+                                        62
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                476,
+                685
+            ],
+            "page_idx": 7
+        },
+        {
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        54,
+                        79,
+                        427,
+                        540
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                54,
+                                79,
+                                427,
+                                540
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        79,
+                                        427,
+                                        540
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                54,
+                                                79,
+                                                427,
+                                                540
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>BETA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td><td>(7)</td></tr><tr><td>Goodwill (gross val.)</td><td></td><td></td><td></td><td></td><td>220</td><td>(22)</td><td>220</td></tr><tr><td>Goodwill (deprec.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(22)</td></tr><tr><td>Lands</td><td>1,500</td><td></td><td></td><td>(500)</td><td></td><td></td><td>1,000</td></tr><tr><td>Tangible assets (acq.val.)</td><td>4,000</td><td>1,000</td><td></td><td></td><td></td><td></td><td>5,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>(1,800)</td><td></td><td>(400)</td><td></td><td></td><td></td><td>(2,200)</td></tr><tr><td>Fin.invest./BETA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./GAIYMA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./DELTA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./MU</td><td>4,000</td><td></td><td></td><td></td><td>(220)</td><td></td><td>3,780</td></tr><tr><td>Equity value</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Receivables/3rd Parties</td><td>7,000</td><td></td><td></td><td></td><td></td><td></td><td>7,000</td></tr><tr><td>Receivables/DELTA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash</td><td>1,000</td><td></td><td></td><td></td><td></td><td></td><td>1,000</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Fin.Inv.)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>15,700</td><td>1,000</td><td>(400)</td><td>(500)</td><td>0</td><td>(22)</td><td>15,778</td></tr><tr><td>Capital</td><td>6,000</td><td></td><td></td><td></td><td></td><td></td><td>6,000</td></tr><tr><td>Retained earnings</td><td>2,300</td><td></td><td></td><td></td><td></td><td></td><td>2,300</td></tr><tr><td>Reserves</td><td></td><td>1,000</td><td>(300)</td><td>(500)</td><td></td><td>(22)</td><td>778</td></tr><tr><td>Result</td><td>900</td><td></td><td>(100)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Consolidated reserves</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Translation adjustments</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Minority interests</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Provisions</td><td>600</td><td></td><td></td><td></td><td></td><td></td><td>600</td></tr><tr><td>Payables/3rd Parties</td><td>5,900</td><td></td><td></td><td></td><td></td><td></td><td>5,900</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td></td><td>15,700</td><td>1,000</td><td>(400)</td><td>(500)</td><td>0</td><td>(22)</td><td>15,778</td></tr><tr><td>Turnover/3rd Parties</td><td>30,000</td><td></td><td></td><td></td><td></td><td></td><td>30,000</td></tr><tr><td>Turnover/DELTA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Dividends/DELTA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Exchange gain(unrealized)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain on disposals</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Purchases/3rd Parties</td><td>(28,400)</td><td></td><td></td><td></td><td></td><td></td><td>(28,400)</td></tr><tr><td>Purchases/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Depreciations</td><td>(600)</td><td></td><td>(100)</td><td></td><td></td><td>(22)</td><td>(722)</td></tr><tr><td>Provisions</td><td>(100)</td><td></td><td></td><td></td><td></td><td></td><td>(100)</td></tr><tr><td>Exchange loss( realized)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on disposals</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss on equity cies</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Link account(Intercos)</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Result</td><td>900</td><td>0</td><td>(100)</td><td>0</td><td>0</td><td>(22)</td><td>778</td></tr><tr><td>Group result</td><td>900</td><td>0</td><td>(100)</td><td>0</td><td>0</td><td>(22)</td><td>778</td></tr><tr><td>Minority result</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>",
+                                            "image_path": "10e807e5ab9b099e46ca2218b7592d90bce7b4ab48c33a2d6806e316736b232a.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 1,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        56,
+                        44,
+                        174,
+                        53
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                56,
+                                44,
+                                174,
+                                53
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        56,
+                                        44,
+                                        174,
+                                        53
+                                    ],
+                                    "type": "text",
+                                    "content": "DIRECT CONSOLIDATION"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                467,
+                679
+            ],
+            "page_idx": 8
+        },
+        {
+            "para_blocks": [
+                {
+                    "bbox": [
+                        51,
+                        84,
+                        151,
+                        95
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                51,
+                                84,
+                                151,
+                                95
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        51,
+                                        84,
+                                        151,
+                                        95
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (1)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 1,
+                    "line_avg_height": 14,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        106,
+                        142,
+                        117
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                106,
+                                142,
+                                117
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        106,
+                                        142,
+                                        117
+                                    ],
+                                    "type": "text",
+                                    "content": "Statutory accounts."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        128,
+                        151,
+                        140
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                128,
+                                151,
+                                140
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        128,
+                                        151,
+                                        140
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA = Column (2)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 3,
+                    "line_avg_height": 17,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        150,
+                        190,
+                        194
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                150,
+                                190,
+                                194
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        150,
+                                        190,
+                                        194
+                                    ],
+                                    "type": "text",
+                                    "content": "At time of acquisition in Year -1, the initial goodwill has been partially allocated to some tangible assets for an"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "bbox": [
+                        50,
+                        194,
+                        412,
+                        216
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                194,
+                                412,
+                                216
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        194,
+                                        412,
+                                        216
+                                    ],
+                                    "type": "text",
+                                    "content": "amount of 1000. These tangible assets are still in the company and so we keep the adjustment."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 5
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        197,
+                        155,
+                        414,
+                        190
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                197,
+                                155,
+                                414,
+                                190
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        197,
+                                        155,
+                                        414,
+                                        190
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                197,
+                                                155,
+                                                414,
+                                                190
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Tangible assets (acq.val.)</td><td>1,000</td><td></td></tr><tr><td>Reserves</td><td></td><td>1,000</td></tr></table>",
+                                            "image_path": "7e250fe655e69c9e32719eea77c3729e10d080777064a6e2cc299605ba0cd12c.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "bbox": [
+                        50,
+                        227,
+                        150,
+                        238
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                227,
+                                150,
+                                238
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        227,
+                                        150,
+                                        238
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (3)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 7,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        249,
+                        189,
+                        270
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                249,
+                                189,
+                                270
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        249,
+                                        189,
+                                        270
+                                    ],
+                                    "type": "text",
+                                    "content": "A new depreciation is booked in the P&L."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 8
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        197,
+                        237,
+                        414,
+                        282
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                197,
+                                237,
+                                414,
+                                282
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        197,
+                                        237,
+                                        414,
+                                        282
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                197,
+                                                237,
+                                                414,
+                                                282
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>300</td><td></td></tr><tr><td>Tangible assets (deprec.)</td><td></td><td>400</td></tr><tr><td>Depreciations</td><td>100</td><td></td></tr></table>",
+                                            "image_path": "ba3186811bb46fc2e86d72b7211503180dab9f4e3d5014b818a80600d5392b92.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "bbox": [
+                        50,
+                        292,
+                        150,
+                        304
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                292,
+                                150,
+                                304
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        292,
+                                        150,
+                                        304
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (4)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 10,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        315,
+                        190,
+                        358
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                315,
+                                190,
+                                358
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        315,
+                                        190,
+                                        358
+                                    ],
+                                    "type": "text",
+                                    "content": "Lands account includes a group profit of 500 we eliminate against the Reserves account. We did the"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 11
+                },
+                {
+                    "bbox": [
+                        50,
+                        358,
+                        412,
+                        392
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                358,
+                                412,
+                                392
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        358,
+                                        412,
+                                        392
+                                    ],
+                                    "type": "text",
+                                    "content": "same in APLHA by eliminating the group profit for 400 also against the Reserves. The impact in BETA being taken at "
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        358,
+                                        412,
+                                        392
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "80\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        50,
+                                        358,
+                                        412,
+                                        392
+                                    ],
+                                    "type": "text",
+                                    "content": ", Reserves accounts between the two companies will be netted to zero."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 12
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        197,
+                        317,
+                        414,
+                        352
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                197,
+                                317,
+                                414,
+                                352
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        197,
+                                        317,
+                                        414,
+                                        352
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                197,
+                                                317,
+                                                414,
+                                                352
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Reserves</td><td>500</td><td></td></tr><tr><td>Lands</td><td></td><td>500</td></tr></table>",
+                                            "image_path": "835a7b7f4a28dcb334e6e5aa080c9634764a0fa36c90e9580169cca7271ca384.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 13,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 13
+                },
+                {
+                    "bbox": [
+                        50,
+                        402,
+                        150,
+                        413
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                402,
+                                150,
+                                413
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        402,
+                                        150,
+                                        413
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (5)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 14,
+                    "line_avg_height": 14,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        50,
+                        424,
+                        190,
+                        501
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                424,
+                                190,
+                                501
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        424,
+                                        190,
+                                        501
+                                    ],
+                                    "type": "text",
+                                    "content": "Acquisition of company MU is done with a goodwill corresponding to the difference between the acquisition price of 4000 and between brackets are the MU first six months profit."
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 15
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        197,
+                        428,
+                        413,
+                        463
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                197,
+                                428,
+                                413,
+                                463
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        197,
+                                        428,
+                                        413,
+                                        463
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                197,
+                                                428,
+                                                413,
+                                                463
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill</td><td>220</td><td></td></tr><tr><td>Fin.invest./MU</td><td></td><td>220</td></tr></table>",
+                                            "image_path": "0711868f6909fac1ea4b4f9877cb06ab9d521ae93cff59760773db2f14c6e0be.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 16,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 16
+                },
+                {
+                    "bbox": [
+                        191,
+                        467,
+                        412,
+                        491
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                191,
+                                467,
+                                412,
+                                491
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        191,
+                                        467,
+                                        412,
+                                        491
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "3780 = 90\\% * [3000 + 1000 + 200]"
+                                },
+                                {
+                                    "bbox": [
+                                        191,
+                                        467,
+                                        412,
+                                        491
+                                    ],
+                                    "type": "text",
+                                    "content": ". Figures equity on July "
+                                },
+                                {
+                                    "bbox": [
+                                        191,
+                                        467,
+                                        412,
+                                        491
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "1^{st}"
+                                },
+                                {
+                                    "bbox": [
+                                        191,
+                                        467,
+                                        412,
+                                        491
+                                    ],
+                                    "type": "text",
+                                    "content": ", Year 2, 200 representing the"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 17
+                },
+                {
+                    "bbox": [
+                        50,
+                        511,
+                        150,
+                        523
+                    ],
+                    "type": "title",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                50,
+                                511,
+                                150,
+                                523
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        50,
+                                        511,
+                                        150,
+                                        523
+                                    ],
+                                    "type": "text",
+                                    "content": "BETA - Column (6)"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 18,
+                    "line_avg_height": 15,
+                    "level": 2
+                },
+                {
+                    "bbox": [
+                        49,
+                        533,
+                        190,
+                        589
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                49,
+                                533,
+                                190,
+                                589
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        49,
+                                        533,
+                                        190,
+                                        589
+                                    ],
+                                    "type": "text",
+                                    "content": "This goodwill is depreciated over 5 years, starting at acquisition date. The corresponding depreciation for Year 2 is "
+                                },
+                                {
+                                    "bbox": [
+                                        49,
+                                        533,
+                                        190,
+                                        589
+                                    ],
+                                    "type": "inline_equation",
+                                    "content": "22 = 20\\%"
+                                },
+                                {
+                                    "bbox": [
+                                        49,
+                                        533,
+                                        190,
+                                        589
+                                    ],
+                                    "type": "text",
+                                    "content": " 220"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 19
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        196,
+                        534,
+                        413,
+                        569
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                196,
+                                534,
+                                413,
+                                569
+                            ],
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        196,
+                                        534,
+                                        413,
+                                        569
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                196,
+                                                534,
+                                                413,
+                                                569
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Depreciations</td><td>22</td><td></td></tr><tr><td>Goodwill</td><td></td><td>22</td></tr></table>",
+                                            "image_path": "50a1f13d9a2ab10c9d9d3b33afadb6aa519b65063e738a3e5177fdf59b0c5492.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 20,
+                            "angle": 0,
+                            "type": "table_body"
+                        }
+                    ],
+                    "index": 20
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        208,
+                        51,
+                        407,
+                        62
+                    ],
+                    "type": "header",
+                    "angle": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                208,
+                                51,
+                                407,
+                                62
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        208,
+                                        51,
+                                        407,
+                                        62
+                                    ],
+                                    "type": "text",
+                                    "content": "PART 6 CONSOLIDATION CASE STUDY"
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "page_size": [
+                476,
+                685
+            ],
+            "page_idx": 9
+        }
+    ],
+    "_backend": "vlm",
+    "_version_name": "2.6.5"
+}

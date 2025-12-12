@@ -1,0 +1,1458 @@
+[
+    {
+        "type": "text",
+        "text": "Consolidated accounts of the subgroup",
+        "text_level": 1,
+        "bbox": [
+            116,
+            117,
+            542,
+            134
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/3d83badd3425894c25fe0db7709f0c334ba52a90f0ecd1f10153eed423e461f3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">P + A + B</td></tr><tr><td></td><td rowspan=\"7\">Goodwill</td><td rowspan=\"7\">144</td><td>Capital 3,000</td></tr><tr><td></td><td>Reserves 1,000</td></tr><tr><td></td><td>Result 200</td></tr><tr><td></td><td>Conso. Res.(A) 204</td></tr><tr><td></td><td>Conso. Res.(B) (192)</td></tr><tr><td></td><td>Minority int.(A) 720</td></tr><tr><td></td><td>Minority int.(B) 312</td></tr><tr><td>where</td><td>Other assets</td><td>11,700</td><td>Other liabilities 6,600</td></tr></table>",
+        "bbox": [
+            118,
+            153,
+            754,
+            308
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 204 = 60% * [2000 + 500 + 100] - [1500 + (144)]",
+            "- Consolidated reserves (B) = (192) = 48% * [1000 + (300) + (100)] - 60% * 800",
+            "Minority interests (A) = 720 = 40%  \\(\\star\\)  [2000 + 500 + 100 + (800)]",
+            "Minority interests (B) = 312 = 52%  \\(*\\)  [1000 + (300) + (100)]"
+        ],
+        "bbox": [
+            154,
+            325,
+            879,
+            471
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "As explained in Part 2, consolidated reserves of a new company entering the consolidation scope are equal to the group part in the result since that date. In the case of a subgroup, this property doesn't apply individually to each company, but on the subgroup figures.",
+        "bbox": [
+            116,
+            486,
+            879,
+            551
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Indeed, the total of A and B consolidated reserves is equal to  \\(12 = 204 +\\)  (192) which corresponds to the group part in the profit of A,  \\(60 = 60\\% * 100,\\)  added to the group part in the loss of B,  \\((48) = 48\\% * (100)\\) .",
+        "bbox": [
+            116,
+            566,
+            879,
+            617
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            62,
+            375,
+            77
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "3.2 Disposal of a subgroup",
+        "text_level": 2,
+        "bbox": [
+            99,
+            120,
+            540,
+            144
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Without any specific assumptions, this case study may look rather similar to the subgroup acquisition case seen before. That's the reason why we are going to add some complexity.",
+        "bbox": [
+            97,
+            163,
+            870,
+            213
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This subgroup has been acquired in Year 0 with a goodwill (for both companies) of 360, after having allocated part of it on a tangible asset in company A for a gross amount of 500.",
+        "bbox": [
+            99,
+            228,
+            569,
+            294
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "It has been decided to appreciate the goodwill over a period of 5 years and its allocation over a period of 10 years.",
+        "bbox": [
+            99,
+            308,
+            569,
+            358
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Until Year 1, company A is consolidated by the global integration method and company B by the equity method.",
+        "bbox": [
+            99,
+            371,
+            569,
+            423
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/0102e1840d9d1b244af5f4ea13ec4bb9cc774289c90d426383486a281395e28b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            580,
+            226,
+            694,
+            428
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/28282d92cc58c0d29184d70da758c917a8165a5a4a9fd0249c6d0641e18e9529.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            750,
+            226,
+            866,
+            428
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "On January  \\(1^{st}\\)  Year 2, a new law requires company P to sell  \\(50\\%\\)  of its participation in company A to some state partner. Before closing the transaction, company A pays dividends to company P equal to its Year 1 result, so 200.",
+        "bbox": [
+            97,
+            436,
+            866,
+            502
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Of course, the disposal of these  \\(50\\%\\)  shares of A for a price of 1300 implies the selling of part of the subgroup A+B. Consolidation method for company A becomes the proportional method whilst B remains consolidated with the equity method.",
+        "bbox": [
+            97,
+            516,
+            866,
+            582
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We will consolidate Year 1 and Year 2 and will justify the group equity and  \\(3^{rd}\\)  Parties variation.",
+        "bbox": [
+            97,
+            595,
+            866,
+            629
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consolidation = Year 1",
+        "text_level": 3,
+        "bbox": [
+            99,
+            645,
+            349,
+            661
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We propose to consider equity accounts with all the consolidation adjustments already included.",
+        "bbox": [
+            97,
+            677,
+            866,
+            710
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/86c11ee72abf9d192c1eb98462ffa770256d20bb1e7fb373cd1730c3f545f0d6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">P</td></tr><tr><td rowspan=\"3\">Goodwill</td><td rowspan=\"2\">(a) 360</td><td>Capital</td><td>1,5000</td></tr><tr><td>Reserves</td><td>500</td></tr><tr><td>(b) (144)</td><td></td><td>(b) (72)</td></tr><tr><td rowspan=\"2\">Fin. Inv./A</td><td>2,000</td><td>Result</td><td>300</td></tr><tr><td>(a) (360)</td><td></td><td>(b) (72)</td></tr><tr><td>Other assets</td><td>3,000</td><td>Other liabilities</td><td>2,700</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"2\">Fin. Inv./B</td><td rowspan=\"2\">500</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td colspan=\"1\">500</td></tr><tr><td>Tangible assets</td><td>1,000</td><td>(c)</td><td>500</td></tr><tr><td>(c)</td><td>500</td><td>(d)</td><td>(50)</td></tr><tr><td rowspan=\"2\">(d)</td><td rowspan=\"2\">(100)</td><td>Result</td><td>200</td></tr><tr><td>(d)</td><td colspan=\"1\">(50)</td></tr><tr><td>Other assets</td><td>1,500</td><td>Other liabilities</td><td>1,300</td></tr><tr><td colspan=\"4\">B</td></tr><tr><td></td><td></td><td>Capital</td><td>1,000</td></tr><tr><td></td><td></td><td>Reserves</td><td>500</td></tr><tr><td></td><td></td><td>Result</td><td>200</td></tr><tr><td>Other assets</td><td>2,000</td><td>Other liabilities</td><td>300</td></tr></table>",
+        "bbox": [
+            313,
+            724,
+            682,
+            809
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            434,
+            71,
+            853,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [],
+        "table_footnote": [],
+        "bbox": [
+            329,
+            114,
+            708,
+            287
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): Gross goodwill as calculated in Year 0 when acquiring the subgroup. This goodwill is unique for both companies A and B.",
+        "bbox": [
+            115,
+            294,
+            888,
+            329
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): Cumulated depreciations on the goodwill. 20% in Year 0  \nbooked on the Reserves account and 20% in Year 1 booked in the P&L.",
+        "bbox": [
+            115,
+            344,
+            888,
+            377
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Revaluation of tangible assets, corresponding to a partial allocation of the goodwill.",
+        "bbox": [
+            115,
+            393,
+            888,
+            425
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): Cumulated depreciations of the revaluation as  \\(10\\%\\)  booked on the Reserves account and  \\(10\\%\\)  booked in the P&L.",
+        "bbox": [
+            115,
+            440,
+            888,
+            472
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Here are the consolidated accounts",
+        "bbox": [
+            115,
+            488,
+            464,
+            505
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/677de67d958a4da6408fe009b70a1899f21f246cdfe95b2bc57ae8ee8ed69078.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + A + B</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">216</td><td>Capital</td><td>1,500</td></tr><tr><td>Reserves</td><td>428</td></tr><tr><td rowspan=\"2\">Tangible assets</td><td rowspan=\"2\">1,400</td><td>Result</td><td>228</td></tr><tr><td>Conso. Res.(A)</td><td>460</td></tr><tr><td>Equity value (B)</td><td>680</td><td>Conso. Res.(B)</td><td>180</td></tr><tr><td>Other assets</td><td>4,500</td><td>Other liabilities</td><td>4,000</td></tr></table>",
+        "bbox": [
+            349,
+            516,
+            745,
+            609
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            115,
+            618,
+            182,
+            634
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 460 = 100% * [1000 + 500 + 500 + (50) + 200 + (50)] - [2000 + (360)]",
+            "- Consolidated reserves (B) = 180 = 40% * [1000 + 500 + 200] - 100% * 500",
+            "Equity value (B) = 680 = 40% * [1000 + 500 + 200]"
+        ],
+        "bbox": [
+            152,
+            650,
+            886,
+            749
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In this consolidation, there are no  \\(3^{\\text{rd}}\\)  Parties.",
+        "bbox": [
+            113,
+            762,
+            561,
+            779
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            119,
+            64,
+            376,
+            79
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consolidation = Year 2",
+        "text_level": 3,
+        "bbox": [
+            94,
+            117,
+            349,
+            135
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Again, we first consider the adjusted statutory accounts of each company",
+        "bbox": [
+            94,
+            150,
+            822,
+            167
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/2babcbb2874537867d43b24dafac8e8b67f2a9b50168c7ec5241569b9dd84763.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"5\">p</td></tr><tr><td rowspan=\"5\">Goodwill</td><td rowspan=\"2\">(a)</td><td rowspan=\"2\">180</td><td>Capital</td><td>1,500</td></tr><tr><td>Reserves</td><td>800</td></tr><tr><td>(b)</td><td>(72)</td><td>(b)</td><td>(72)</td></tr><tr><td rowspan=\"2\">(e)</td><td rowspan=\"2\">(36)</td><td>(f)</td><td>200</td></tr><tr><td>(g)</td><td>148</td></tr><tr><td rowspan=\"4\">Fin. Inv./A</td><td rowspan=\"4\">(a)</td><td>1,000</td><td>Result</td><td>300</td></tr><tr><td rowspan=\"3\">(180)</td><td>(e)</td><td>(36)</td></tr><tr><td>(f)</td><td>(200)</td></tr><tr><td>(g)</td><td>(148)</td></tr><tr><td>Other assets</td><td colspan=\"2\">3,000</td><td>Other liabilities</td><td>1,400</td></tr></table>",
+        "bbox": [
+            291,
+            175,
+            693,
+            307
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/6ded26b7b2168fda185ccf8d7a49d1e5705294e6e514ca630a4b4f5583c41ff8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A</td></tr><tr><td rowspan=\"2\">Fin. Inv./B</td><td rowspan=\"2\">500</td><td>Capital</td><td>1,000</td></tr><tr><td>Reserves</td><td>500</td></tr><tr><td>Tangible assets</td><td>900</td><td></td><td>(500)</td></tr><tr><td>(c)</td><td>500</td><td></td><td>(d)</td></tr><tr><td rowspan=\"2\">(d)</td><td rowspan=\"2\">(150)</td><td>Result</td><td>100</td></tr><tr><td>(d)</td><td>(50)</td></tr><tr><td>Other assets</td><td>1,700</td><td>Other liabilities</td><td>1,500</td></tr></table>",
+        "bbox": [
+            98,
+            329,
+            475,
+            421
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/53b7bba488beb20365981c40d018c7dbeb25d33f9acad0194c7edd5ae3bfad62.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">B</td></tr><tr><td></td><td></td><td>Capital 1,000</td></tr><tr><td></td><td></td><td>Reserves 700</td></tr><tr><td></td><td></td><td>Result 300</td></tr><tr><td>Other assets</td><td>2,200</td><td>Other liabilities 200</td></tr></table>",
+        "bbox": [
+            483,
+            328,
+            862,
+            390
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "with the following remarks from a statutory point of view",
+        "bbox": [
+            96,
+            435,
+            661,
+            455
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- The financial investment on company A in company P accounts is now equal to 1000 after a disposal of 1000 for a price of 1300 leading to a statutory gain of 300",
+            "- Company P pays no dividends",
+            "- As said above, company A pays dividends of 200,  \\(100\\%\\)  of these dividends are booked as a financial income in company P accounts",
+            "- The tangible assets that have been revaluated are still in company A accounts",
+            "- Company B pays no dividends."
+        ],
+        "bbox": [
+            134,
+            468,
+            871,
+            678
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let's analyze the consolidation adjustments.",
+        "bbox": [
+            96,
+            695,
+            535,
+            712
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): The initial gross goodwill of 360 attached to the  \\(100\\%\\)  shares is now reduced by  \\(50\\%\\)  and so becomes equal to 180.",
+        "bbox": [
+            96,
+            727,
+            871,
+            761
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): By the end of Year 1, the cumulated depreciations of that goodwill were (144) and now we keep only  \\(50\\%\\)  of this amount.",
+        "bbox": [
+            96,
+            774,
+            871,
+            810
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Revaluation of a tangible asset for 500. This amount has to be maintained unchanged, regardless the consolidation method that is now",
+        "bbox": [
+            96,
+            824,
+            871,
+            858
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            432,
+            70,
+            854,
+            85
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "changing from global to proportional integration. A change of consolidation method doesn't affect the economical view of revaluating that asset.",
+        "bbox": [
+            116,
+            120,
+            883,
+            153
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): Of course, depreciation continues to be applied to that revaluation on a  \\(10\\%\\)  per year basis.",
+        "bbox": [
+            116,
+            168,
+            883,
+            202
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (e): We have seen that the Year 2 net opening goodwill is 108. Moreover, it remains three years of depreciation still remain, so 36 per year.",
+        "bbox": [
+            116,
+            215,
+            879,
+            250
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (f): The 200 dividends booked as financial income must be eliminated in the classical way against the reserves.",
+        "bbox": [
+            116,
+            263,
+            883,
+            297
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (g): This adjustment concerns the disposal of the  \\(50\\%\\)  shares of company A and requires some explanations.",
+        "bbox": [
+            116,
+            312,
+            883,
+            347
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In statutory accounts, company P has made a gain of  \\(300 = 1300\\)  (selling price) - 1000 (shares value in statutory accounts).",
+        "bbox": [
+            116,
+            360,
+            883,
+            395
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, the gain is calculated as the difference between that selling price and the group part of consolidated equity disposed. Moreover, we also have to consider as an expense the part of the goodwill attached to these shares, so  \\(108 = 50\\% * [360 + (144)]\\) .",
+        "bbox": [
+            116,
+            409,
+            883,
+            475
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Group part of consolidated equity disposed",
+        "text_level": 3,
+        "bbox": [
+            118,
+            489,
+            536,
+            507
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This value is given by the following calculation, based on January  \\(1^{\\text{st}}\\) , Year 2 equity. The consolidated reserves of B are  \\(180 = 40\\%\\)  \\* [1000 + 700] - 500.",
+        "bbox": [
+            118,
+            521,
+            506,
+            602
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/f2b90a7511fd071c4036da7faa0285c733cfc64010edf621b4fc0bcb1a5dcca4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Adjusted equity of A</td><td>1,900</td></tr><tr><td>Consolidated reserves of B</td><td>180</td></tr><tr><td>Total equity</td><td>2,080</td></tr><tr><td>% disposed</td><td>50%</td></tr><tr><td>Equity disposed</td><td>1,040</td></tr></table>",
+        "bbox": [
+            521,
+            521,
+            883,
+            605
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Compared to the selling price of 1300, there is a gain of  \\(260 = 1300 - 1040\\)  in consolidation. But the net goodwill attached to the shares disposed cannot remain as an asset and must be booked in the P&L, reducing the gain by 108, giving a net gain of  \\(152 = 260 - 108\\) .",
+        "bbox": [
+            116,
+            618,
+            883,
+            683
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "So we have to adjust the statutory gain by (148) to show the consolidation gain as  \\(152 = 300 + (148)\\) .",
+        "bbox": [
+            116,
+            697,
+            883,
+            731
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Here are finally the consolidated accounts",
+        "text_level": 3,
+        "bbox": [
+            118,
+            746,
+            527,
+            763
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/ef448654aadfad63a76438fdec9d20c91d3dfc6d87048d3b07372abd71c2f27c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">P + A + B</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">72</td><td>Capital</td><td>1,500</td></tr><tr><td>Reserves</td><td>1,076</td></tr><tr><td rowspan=\"2\">Tangible assets</td><td rowspan=\"2\">625</td><td>Result</td><td>(84)</td></tr><tr><td>Conso. Res.(A)</td><td>155</td></tr><tr><td>Equity value (B)</td><td>400</td><td>Conso. Res.(B)</td><td>150</td></tr><tr><td>Other assets</td><td>3,850</td><td>Other liabilities</td><td>2,150</td></tr></table>",
+        "bbox": [
+            254,
+            778,
+            792,
+            894
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            120,
+            65,
+            372,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            100,
+            119,
+            167,
+            134
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Consolidated reserves (A) = 155 = 50% * [1000 + 500 + 500 + 100 + (100) + (50)] - [1000 + (180)]",
+            "- Consolidated reserves (B) = 150 = 20% * [1000 + 700 + 300] - 50% * 500",
+            "Equity value  \\((\\mathrm{B}) = 400 = 20\\%\\)  [1000 + 700 + 300]",
+            "- Other assets  \\(= {3850} = {3000} + {50}\\%  * {1700}\\)",
+            "Other liabilities  \\(= 2150 = 1400 + 50\\% * 1500\\)"
+        ],
+        "bbox": [
+            137,
+            147,
+            873,
+            328
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves evolution",
+        "text_level": 3,
+        "bbox": [
+            100,
+            344,
+            460,
+            360
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/5e9f7f91882e068ba2853c763e4c2d37c9095620a5c40a31042caa4dcbe1783d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends -</td><td>Dividends +</td><td>Transfers</td><td>Dividends P</td><td>Year 2 reserves</td></tr><tr><td>P</td><td>656</td><td>(84)</td><td></td><td>200</td><td>220</td><td>0</td><td>992</td></tr><tr><td>A</td><td>460</td><td>25</td><td>(200)</td><td></td><td>(130)</td><td></td><td>155</td></tr><tr><td>B</td><td>180</td><td>60</td><td></td><td></td><td>(90)</td><td></td><td>150</td></tr><tr><td></td><td>1,296</td><td>1</td><td>(200)</td><td>200</td><td>0</td><td>0</td><td>1,297</td></tr></table>",
+        "bbox": [
+            102,
+            379,
+            841,
+            475
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The only issue we want to point out concerns the transferred amounts. We find here the same property as when the group sells a single company: the consolidated reserves attached to the shares disposed are transferred to the company selling these shares.",
+        "bbox": [
+            100,
+            491,
+            877,
+            556
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Considering here shares related to a subgroup doesn't change this property.",
+        "bbox": [
+            102,
+            572,
+            852,
+            590
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The amount of (130) concerning company A corresponds to  \\(50\\% = 50\\% / 100\\%\\)  of its consolidated reserves after having paid the 200 dividends, so  \\((130) = 50\\% * [460 + (200)]\\) .",
+        "bbox": [
+            100,
+            603,
+            877,
+            655
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The amount of 90 concerning company B corresponds to  \\(50\\% = 20\\% /40\\%\\)  of its consolidated reserves of 180.",
+        "bbox": [
+            100,
+            668,
+            877,
+            702
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "These two amounts are transferred to company P for a total of 220.",
+        "bbox": [
+            102,
+            717,
+            770,
+            734
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "All the other figures are directly exported from the consolidated accounts.",
+        "bbox": [
+            102,
+            749,
+            826,
+            767
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATIONTOPICS",
+        "bbox": [
+            436,
+            69,
+            862,
+            85
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "3.3 Disposal of shares of a foreign company to 3rd Parties",
+        "text_level": 2,
+        "bbox": [
+            111,
+            119,
+            867,
+            164
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The disposal of shares to  \\(3^{\\text{rd}}\\)  Parties has already been analyzed in Part 2 of this book and with this present case we propose to give a clear answer to the following question: is the translation adjustments amount attached to the shares disposed booked in P&L?",
+        "bbox": [
+            109,
+            185,
+            886,
+            251
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Listening to the answer from experienced actors in consolidation such as consolidators, CFO's or Auditors, the answer can be sometimes yes and sometimes no!",
+        "bbox": [
+            109,
+            266,
+            884,
+            316
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We propose to illustrate this through a realistic case study in order to give our own conclusion with the necessary explanations.",
+        "bbox": [
+            109,
+            329,
+            882,
+            365
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Description of the situation",
+        "text_level": 3,
+        "bbox": [
+            111,
+            378,
+            413,
+            394
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/319c7953bd41de188968adde89349910e6228f3972c034ceee961c65128f2d2b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            109,
+            419,
+            218,
+            559
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/16029c2898704a47087aa73018854df6d10716ed0bae326cc4c4de9b6fa243ec.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            244,
+            419,
+            351,
+            558
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We are considering a company A whose accounts are in a foreign currency CUR. This company is owned by the parent company P at  \\(80\\%\\)  during Year 1. On January  \\(1^{st}\\)  Year 2,  \\(20\\%\\)  of these shares are disposed to  \\(3^{rd}\\)  Parties for a price of 900.",
+        "bbox": [
+            361,
+            425,
+            884,
+            509
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Company A has been acquired during Year -1, so two years ago, with a goodwill of 400, after allocation on some tangible fixed assets for a gross",
+        "bbox": [
+            361,
+            524,
+            882,
+            572
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "amount of 100 CUR. That allocation is depreciated by  \\(10\\%\\)  per year. Since Year 0, a total of 200 impairments has been booked and we will assume that during Year 1 and Year 2 there will be no additional impairments.",
+        "bbox": [
+            109,
+            572,
+            882,
+            621
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The scenario of this case study consists in",
+        "bbox": [
+            109,
+            637,
+            526,
+            655
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidate Year 1",
+            "- Analyze the impact of these  \\(20\\%\\)  disposal of shares",
+            "- Consolidate Year 2",
+            "- Justify the evolution of consolidated reserves, minority interests and currency translation adjustments"
+        ],
+        "bbox": [
+            149,
+            668,
+            880,
+            749
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "and finally answer to the above question.",
+        "bbox": [
+            109,
+            765,
+            516,
+            783
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            64,
+            372,
+            79
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Consolidation - Year 1",
+        "text_level": 3,
+        "bbox": [
+            102,
+            119,
+            350,
+            137
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Here are, as usual, the statutory accounts of both companies already adjusted, followed by the additional explanations.",
+        "bbox": [
+            100,
+            153,
+            863,
+            188
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/7bf4862502ee58b2675c85375940625944be320c2b7525e1f0e647875b48a22f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td colspan=\"2\">Goodwill</td><td>Capital</td><td>5,000</td></tr><tr><td></td><td>(a) 400</td><td>Reserves</td><td>3,000</td></tr><tr><td></td><td>(b) (200)</td><td></td><td>(200)</td></tr><tr><td colspan=\"2\">Fin. Inv./A</td><td>Result</td><td>1,000</td></tr><tr><td></td><td>(a) (400)</td><td></td><td></td></tr><tr><td colspan=\"2\">Other assets</td><td>Other liabilities</td><td>3,000</td></tr></table>",
+        "bbox": [
+            235,
+            208,
+            754,
+            327
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/652af50d4df3e8fa908c7d8d600491db7d3b4932a6c402863286e3ed5a36122b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A (CUR)</td></tr><tr><td>Tangible assets</td><td>600</td><td>Capital</td><td>200</td></tr><tr><td>(c)</td><td>100</td><td>Reserves</td><td>200</td></tr><tr><td>(d)</td><td>(30)</td><td>(c)</td><td>100</td></tr><tr><td></td><td></td><td>(d)</td><td>(20)</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td></td><td></td><td>(d)</td><td>(10)</td></tr><tr><td>Other assets</td><td>400</td><td>Other liabilities</td><td>500</td></tr></table>",
+        "bbox": [
+            235,
+            343,
+            752,
+            475
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): Goodwill of 400",
+        "bbox": [
+            102,
+            490,
+            420,
+            506
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): Total impairments until end of Year 0. The counterpart impacts the reserves.",
+        "bbox": [
+            100,
+            522,
+            865,
+            554
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Gross amount of goodwill allocation for 100 CUR on fixed tangible assets. Counterpart impacts the reserves.",
+        "bbox": [
+            100,
+            570,
+            865,
+            605
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): Depreciation of the goodwill allocation, so  \\(3*10\\%\\)  of 100 CUR corresponding to the periods Year -1, Year 0 and Year 1. An amount of (20) CUR is booked on the Reserves and (10) CUR on the P&L.",
+        "bbox": [
+            100,
+            618,
+            863,
+            668
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Currency translation of company A accounts",
+        "text_level": 4,
+        "bbox": [
+            102,
+            683,
+            581,
+            699
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "These accounts are translated according to the following rates",
+        "bbox": [
+            102,
+            715,
+            705,
+            732
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/d21664d96b7d08f7879ab70a2644154b7b36208fd1164224c9b751fad9cd4a47.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Historical rate</td><td colspan=\"2\">Δ (c)</td><td colspan=\"2\">UR)</td></tr><tr><td>Capital</td><td>Tangible assets</td><td>5,400</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>(c)</td><td>900</td><td>Reserves</td><td>2,000</td></tr><tr><td>Closing rate</td><td>(d)</td><td>(270)</td><td>(c)</td><td>1,000</td></tr><tr><td>Avera e rate</td><td></td><td></td><td>(d)</td><td>(200)</td></tr><tr><td></td><td></td><td></td><td>Result</td><td>800</td></tr><tr><td></td><td></td><td></td><td>(d)</td><td>(80)</td></tr><tr><td></td><td></td><td></td><td>Trans. Adjust.</td><td>(300)</td></tr><tr><td></td><td></td><td></td><td>(c)</td><td>(100)</td></tr><tr><td></td><td></td><td></td><td>(d)</td><td>10</td></tr><tr><td></td><td>Other assets</td><td>3,600</td><td>Other liabilities</td><td>4,500</td></tr></table>",
+        "bbox": [
+            102,
+            738,
+            846,
+            899
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            434,
+            72,
+            850,
+            89
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            118,
+            121,
+            184,
+            136
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- All other assets accounts and Other liabilities accounts are translated with the closing rate of 9",
+            "- Capital account and Reserves accounts, including adjustments, are translated with the historical rate of 10.",
+            "The profit amounts are translated with the average rate of 8"
+        ],
+        "bbox": [
+            156,
+            153,
+            879,
+            263
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "and, finally, this translated balance sheet is balanced again by impacting the Translation adjustments account for a net amount of (300).",
+        "bbox": [
+            118,
+            281,
+            879,
+            313
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Then we translate each adjustment with the same rules giving an additional impact on the translation adjustments.",
+        "bbox": [
+            118,
+            313,
+            879,
+            344
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Consolidation of companies P and A",
+        "text_level": 3,
+        "bbox": [
+            118,
+            362,
+            510,
+            379
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The global integration method applies to A with a percentage of  \\(80\\%\\) , giving",
+        "bbox": [
+            118,
+            392,
+            860,
+            410
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/ae371f555919f9b18f5e97c63db4f3387df8977ea20c78e8d80f322700a2b364.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td colspan=\"2\">A</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">200</td><td>Capital</td><td>5,000</td></tr><tr><td>Reserves</td><td>2,800</td></tr><tr><td rowspan=\"4\">Tangible assets</td><td rowspan=\"4\">6,030</td><td>Result</td><td>1,000</td></tr><tr><td>Conso. Res.(A)</td><td>2,816</td></tr><tr><td>Trans. Adjust.</td><td>(312)</td></tr><tr><td>Minority int.(A)</td><td>1,026</td></tr><tr><td>Other assets</td><td>13,600</td><td>Other liabilities</td><td>7,500</td></tr></table>",
+        "bbox": [
+            254,
+            425,
+            771,
+            558
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            118,
+            571,
+            184,
+            586
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A) = 2816 = 80% * [2000 + 2000 + 1000 + (200) + 800 + (80)] - [2000 + (400)]",
+            "Minority interests (A) = 1026 = 80% * [2000 + 2000 + 1000 + (200) + 800 + (80) + (300) + (100) + 10]",
+            "Translation adjustments  \\(= (312) = 80\\%\\)  \\* [(300) + (100) + 10]"
+        ],
+        "bbox": [
+            156,
+            615,
+            877,
+            730
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Analysis of the  \\(20\\%\\)  disposal of shares",
+        "text_level": 4,
+        "bbox": [
+            118,
+            747,
+            542,
+            763
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We are going to consider three different points of view which will lead to the same consolidation adjustment.",
+        "bbox": [
+            116,
+            778,
+            881,
+            812
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            120,
+            67,
+            377,
+            83
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The \"straight to the point\" method",
+        "text_level": 4,
+        "bbox": [
+            97,
+            120,
+            434,
+            137
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In statutory accounts, parent company P makes a disposal of  \\(500 = 2000 * (20\\% / 80\\%)\\)  for a price of 900, booking a statutory gain of 400.",
+        "bbox": [
+            97,
+            152,
+            862,
+            185
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, we are selling  \\(20\\%\\)  of the equity for the same price of 900, giving a loss of  \\(900 - 20\\% * [2000 + 2000 + 1000 + (200) + 800 + (80)] = 900 - 1104 = (204)\\) .",
+        "bbox": [
+            97,
+            200,
+            864,
+            250
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "But why don't we take into account the translation adjustments for (390)?",
+        "bbox": [
+            97,
+            266,
+            824,
+            284
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This amount has never been booked in the P&L in the past, on the contrary of all the other amounts considered at historical rates which entered the Reserves through the elimination process. If not clear, let's wait for the two other methods.",
+        "bbox": [
+            97,
+            297,
+            864,
+            361
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For the moment, we have to consider a consolidation adjustment eliminating the statutory gain of 400 and booking an additional loss of 204.",
+        "bbox": [
+            97,
+            377,
+            864,
+            412
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Moreover, we also have to eliminate the part of the net goodwill attached to the  \\(20\\%\\)  of shares disposed, that is  \\(50 = [400 + (200)]^{*} (20\\% / 80)\\) , which gives the final adjustment",
+        "bbox": [
+            97,
+            426,
+            864,
+            475
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/fe793558dd35139bde2746f4cd94c740c3ea2a66a9f591d2dfaf3506136ad42b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Gain on disposal</td><td>400</td><td></td></tr><tr><td>Loss on disposal</td><td>204</td><td></td></tr><tr><td>Impairment</td><td>50</td><td></td></tr><tr><td>Reserves</td><td></td><td>654</td></tr></table>",
+        "bbox": [
+            310,
+            487,
+            656,
+            571
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The \"step by step\" method",
+        "text_level": 4,
+        "bbox": [
+            99,
+            585,
+            364,
+            603
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The principle of this method consists in considering a transaction that occurred at statutory level with amounts that have no signification at consolidation level.",
+        "bbox": [
+            97,
+            617,
+            864,
+            667
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/680679693148fea477f102bd4b439cd19e8d7c5130ff0d86330471a4b23d544c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Fin. Invest./A</td><td>500</td><td></td></tr><tr><td>Cash</td><td></td><td>900</td></tr><tr><td>Gain on disposal</td><td>400</td><td></td></tr></table>",
+        "bbox": [
+            101,
+            682,
+            445,
+            749
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "So we are going to temporarily reverse that statutory sale corresponding to the  \\(20\\%\\)  of shares by the following adjustment",
+        "bbox": [
+            457,
+            682,
+            864,
+            748
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/055ef9ae217472b5d88c07979591490fe0bc5c8394f5a36f3078f685c92079b4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Debit</td><td>Credit</td></tr><tr><td>Goodwill</td><td>100</td><td></td></tr><tr><td>Fin. Invest./A</td><td></td><td>100</td></tr></table>",
+        "bbox": [
+            101,
+            781,
+            445,
+            834
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Of course, the gross goodwill attached to these shares has to be booked back in the balance sheet.",
+        "bbox": [
+            457,
+            778,
+            864,
+            827
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            430,
+            71,
+            850,
+            87
+        ],
+        "page_idx": 9
+    }
+]

@@ -1,0 +1,85 @@
+Topics:
+Interface Navigation, Reporting and Analysis, Wildcard Usage, Data Formatting
+
+Keywords:
+Financial Consolidation, Interface Navigation, Report Generation, Wildcards, CSV Format, Line Types, User Settings, Data Integration
+
+Summary:
+The provided documents cover various aspects of using the Financial Consolidation application. They detail how to navigate the interface, generate reports, use wildcards for efficient searching, and format data in CSV files. Specific sections include descriptions of different line types used in reports, procedures for launching and saving reports, user settings customization, and the use of wildcards in queries. These documents aim to enhance user understanding and efficiency in handling financial data consolidation tasks.
+
+Contents:
+Line types: There are nine different Line Types that can be used in the User Reports. The Line Types that appear in the Report Definitions depend on the Report Types. Line Type Standard User Report, Flow User Report, Multi-Period Report, Cash-Flow Report. Account, Calculated Account, Text, Page Break, Header, Flow, Calculated Flow, Summation, Cash-Flow. Only the Line Types Text and Page Break are used in all User Report Types.
+
+Using wildcards: Wildcards are special characters that can stand in for unknown characters when querying values from a list. There are two wildcards used in the application: 
+- * Matches any number of characters. You can use the asterisk (*) anywhere in a character string. Example: 123* finds 1234, 1237, 123456
+- ? Matches a single letter in a specific location. Example: 123? finds 1234, 1237, but not 123456. This wildcard filter allows only 4-digit length.
+
+In Financial Consolidation, you could use these wildcards to: 
+- Show all accounts that start with the same characters. Ex: 211* shows all accounts starting with 211 (211000, 211800, 211900 and 211950).
+- Show all Consolidation Periods of the same category. Ex. *ACT* would show all Consolidation Periods with the text ACT in them, regardless of the position.
+- Show all Consolidation Periods of the same sequence. Ex. *001 would show the first sequence of all Consolidation Periods.
+
+Searching in a pop-up window: When you click the button beside any field, a selection pop-up window specifically for that field (Select a “Name of field”) is displayed. At the top of the selection screen, either enter a code or enter the description. You can use wildcards to refine your search criteria. Click to display the results relevant to your search criteria. From the search results, select the value you want to use. Click to return to the main screen where the value you selected is inserted in the field.
+
+Search with a code: 
+1. Enter 23 followed by an asterisk in the code field (23*).
+2. Click and all accounts beginning with 23 will be displayed in the search results (230986, 230001, 238766, 23091, etc.)
+3. Select the desired account (for example, account with the code 230000).
+4. Click.
+
+Search with a description: 
+1. Enter an asterisk, then the word “title” then another asterisk (*title*). With these criteria, the word "title" can be placed anywhere in the description.
+2. Click and all accounts containing the word “title” will be displayed in search results (entitlements, subtitle, titleholder, etc.)
+3. Select the desired account.
+4. Click.
+
+Launching a report: All reports that are available in Financial Consolidation can be launched as PDF or Excel files, allowing you to print or save them for later use. You can use the procedures below to launch a report anywhere there is a button. When you click the button, the report is generated and a hyperlink to the report is displayed. This hyperlink remains available until you leave the page.
+
+Launch a report as a PDF file: 
+1. Under File type, select PDF format.
+2. Click. The report is created and a hyperlink to the file is displayed.
+3. Click the hyperlink to download the report. At this point, the file is stored temporarily in some temporary drive. To save the report, you need to open and then, save it to a specific location on your hard drive.
+4. To open the report, click the downloaded PDF document.
+5. You have these options: To print the document, click the printer icon. To save the document on your hard drive, click the download icon to open Windows Explorer and choose a place to save the file.
+
+Launch a report as an Excel file: 
+1. Under File type, select either XLS or XLSX format.
+2. Click. The report is created and a hyperlink to the file is displayed.
+3. Click the hyperlink to download the report. At this point, the file is stored temporarily in some temporary drive. To save the report, you need to open and then, save it to a specific location on your hard drive. If you make any modifications to the file before saving it, you will lose all your modifications after you close the file.
+4. To open the report, click the downloaded Excel document.
+5. You have these options: To print the document, click the printer icon. To save the document on your hard drive, click the download icon to open Windows Explorer and choose a place to save the file.
+
+The CSV file format: A comma-separated values (CSV) file is used to store data structured in a table or list form. Each line in the CSV file corresponds to a row in the table. Within a line, fields are separated by commas, each field belonging to one table column. Since it is a common and simple file format, CSV files are often used for moving tabular data between two different computer programs. CSV is a delimited data format that has fields/columns separated by a comma. The field delimiter is placed between each field of a record. Fields that contain a special character such as comma, newline, or double quote, must be enclosed in double quotes. The first record in a CSV file may contain column names in each of the fields: Year, Make, Model. Examples: 2008, Ford, Mustang. 2007, Chevrolet, Corvette. Any character or sequence of characters may be used to separate the values, but the most common delimiters are the comma, tab, and colon. The vertical bar, also referred to as pipe, and space are also sometimes used. Theoretically, when using another character than the comma, the file would be called a DSV (delimiter-separated values) file.
+
+Examples: 
+Year, Make, Model, Options, Price.
+1997, Ford, Mustang, ac abs, 18000.00.
+1999, Chevy, Corvette, ac abs, 25000.00.
+2008, Chevy, Corvette, C06, 50000.00.
+1996, Jeep, Grand Cherokee, MUST SELL!, ac moon roof loaded, 4799.00.
+
+This CSV example illustrates that: 
+Fields that contain the delimiter (commas, double-quotes, or line-breaks) must be quoted. A quote within a field must be accompanied with an additional quote immediately preceding the literal quote. A quote and a delimiter (comma within a field must be accompanied with an extra additional quote preceding the literal quote.
+
+User settings: The User Settings page allows you to view your profile and edit some settings such as your language and working consolidation period to match your preferences or needs.
+
+Access the user settings page: You can access this page by doing one of the following: Clicking the Profile icon. Clicking either a Current or Reference consolidation period on top of any page.
+
+Access through profile icon: Click and then, select the User Profile option. Accessing the User Settings page this way displays both your user profile and consolidation period selection areas (full page).
+
+Access through a consolidation period: Click either the Current or Reference consolidation period on top of the page. Accessing the User Settings page this way hides the user profile area and displays only the period selection area where you can select a different period.
+
+Select a different consolidation period: 
+1. Access the User Settings page by either clicking or the consolidation period you want to change on top of the page. The User Settings page is displayed showing the consolidation periods from which you can select including their codes, reference period codes, and names. A red lock indicates a locked period. A black lock indicates an open period. To limit the number of consolidation periods in view, you can either hide all the locked periods by selecting or filter the list to narrow the consolidation periods displayed.
+2. From this list, look for the consolidation period that you want to use and click on it.
+3. In the Select Period column you have these options: click to set the period as both the current and reference period (as set up on the page). Click to set the period as the current period. Click to set the period as the reference period. The consolidation periods you select are reflected on the right-side pane in the Current Period and Reference Period fields respectively.
+4. Click.
+
+Change application or data languages: 
+1. Access the User Settings page through your Profile icon.
+2. To change either your Application or Data Language, go to the appropriate field and select another language from the drop-down.
+3. Click.
+
+Download PDF files: 
+1. If you prefer to download generated PDF files on your local hard instead of displaying them in your browser, select the Download generated PDF files option. In order to see this option, access the User Settings page through your Profile icon.
+2. Click.

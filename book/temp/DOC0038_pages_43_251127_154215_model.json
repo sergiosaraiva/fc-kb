@@ -1,0 +1,814 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.122,
+                0.068,
+                0.371,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.121,
+                0.119,
+                0.897,
+                0.251
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>ALPHA</td><td>Year 1</td><td>Disposal</td><td>Gain on disposals</td><td>Loss on disposals</td><td>Capital increase</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Lands</td><td>1,000</td><td>(1,500)</td><td>500</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Fin.invest./BETA</td><td>5,000</td><td></td><td></td><td></td><td>2,400</td><td></td><td>7,400</td></tr><tr><td>Fin.invest./GAMMA</td><td>2,100</td><td>(800)</td><td></td><td>(400)</td><td></td><td></td><td>900</td></tr><tr><td>Fin.invest./DELTA</td><td>3,600</td><td></td><td></td><td></td><td></td><td></td><td>3,600</td></tr><tr><td>Receivables/3rd Parties</td><td>1,500</td><td></td><td></td><td></td><td></td><td>100</td><td>1,600</td></tr><tr><td>Receivables/DELTA</td><td></td><td></td><td></td><td></td><td></td><td>1,000</td><td>1,000</td></tr><tr><td>Cash</td><td>800</td><td></td><td></td><td></td><td></td><td>700</td><td>1,500</td></tr><tr><td></td><td>14,000</td><td></td><td></td><td></td><td></td><td></td><td>16,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.12,
+                0.278,
+                0.887,
+                0.384
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>ALPHA</td><td>Year 1</td><td>Dividends</td><td>Approp.</td><td>Result</td><td>Provisions</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Capital</td><td>5,000</td><td></td><td></td><td></td><td></td><td></td><td>5,000</td></tr><tr><td>Retained earnings</td><td>3,000</td><td></td><td>100</td><td></td><td></td><td></td><td>3,100</td></tr><tr><td>Result</td><td>400</td><td>(300)</td><td>(100)</td><td>800</td><td></td><td></td><td>800</td></tr><tr><td>Provisions</td><td>1,000</td><td></td><td></td><td></td><td>200</td><td></td><td>1,200</td></tr><tr><td>Payables/3rd Parties</td><td>4,600</td><td></td><td></td><td></td><td></td><td>1,300</td><td>5,900</td></tr><tr><td></td><td>14,000</td><td></td><td></td><td></td><td></td><td></td><td>16,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.117,
+                0.422,
+                0.46,
+                0.813
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">ALPHA</td></tr><tr><td>Result</td><td>800</td></tr><tr><td>Depreciations</td><td>0</td></tr><tr><td>Provisions</td><td>200</td></tr><tr><td>Gain/disposals</td><td>(500)</td></tr><tr><td>Loss/disposals</td><td>400</td></tr><tr><td>Cash Flow</td><td>900</td></tr><tr><td>Net v   s</td><td>(1,100)</td></tr><tr><td>Net variation of payables</td><td>1,300</td></tr><tr><td>Cash from operating activities</td><td>1,100</td></tr><tr><td>Investments</td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>0</td></tr><tr><td>Financial assets acquisitions</td><td>(2,400)</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangibles assets disposals</td><td>1,500</td></tr><tr><td>Financial assets disposals</td><td>800</td></tr><tr><td>Cash from investment activities</td><td>(100)</td></tr><tr><td>Capital increase</td><td>0</td></tr><tr><td>Dividends paid (M)</td><td>(300)</td></tr><tr><td>Dividends paid (other cies)</td><td>0</td></tr><tr><td>Cash from financial activities</td><td>(300)</td></tr><tr><td>Net cash variation</td><td>700</td></tr><tr><td>Cash variation from balance</td><td>700</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.434,
+                0.071,
+                0.861,
+                0.087
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.101,
+                0.12,
+                0.536,
+                0.136
+            ],
+            "angle": 0,
+            "content": "ALPHA = Statutory cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.152,
+                0.875,
+                0.186
+            ],
+            "angle": 0,
+            "content": "Most of the figures in this cash flow statement are just picked up from the flows justifying the accounts evolution."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.202,
+                0.56,
+                0.218
+            ],
+            "angle": 0,
+            "content": "However, here are some additional comments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.233,
+                0.874,
+                0.298
+            ],
+            "angle": 0,
+            "content": "- We are aware of the fact that there are intercompany receivables with company DELTA for 1000, but at this moment we just think 'statutory\" and we consider the evolution of this account, including the intercompany, as \\(1100 = [1600 + 1000] - 1500\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.314,
+                0.875,
+                0.363
+            ],
+            "angle": 0,
+            "content": "- The subscription to BETA capital increase appears as a financial investment. At consolidation level, we will have to come back to this booking."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.378,
+                0.875,
+                0.476
+            ],
+            "angle": 0,
+            "content": "- We know ALPHA sold lands to company BETA for a price of 1500, making a profit of 500. Two flows are used to describe the transaction: one flow showing the price paid (cash item and one flow showing the gain (non cash item). It is the amount of 1500 that appears in the cash flow statement while the amount of 500 is just ignored."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.491,
+                0.874,
+                0.542
+            ],
+            "angle": 0,
+            "content": "- The same comment is made for the selling of GAMMA shares for a book value of 1200. In fact, we show the price received of 800 (cash item) and the loss on disposal for 400 (non cash item), separately."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.556,
+                0.595,
+                0.573
+            ],
+            "angle": 0,
+            "content": "- Dividends paid is a cash out for the group."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.589,
+                0.875,
+                0.636
+            ],
+            "angle": 0,
+            "content": "Notice that finally the \"Appropriation flow\" which can be considered as a \"Transfer flow\" is the only one that does not appear in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.654,
+                0.875,
+                0.718
+            ],
+            "angle": 0,
+            "content": "The net cash variation of 700 corresponding to the addition of \"Cash from operating activities\", \"Cash from investment activities\" and \"Cash from financial activities\" is equal to the cash variation deducted from the balance evolution."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.734,
+                0.499,
+                0.751
+            ],
+            "angle": 0,
+            "content": "This is a mandatory technical validation."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.119,
+                0.068,
+                0.368,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.118,
+                0.135,
+                0.791,
+                0.254
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>BETA</td><td>Year 1</td><td>Acquisitions</td><td>Disposals</td><td>Deprec.</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Lands</td><td>0</td><td>1,500</td><td></td><td></td><td></td><td>1,500</td></tr><tr><td>Tangible assets (acq.val.)</td><td>3,000</td><td>1,800</td><td>(800)</td><td>(600)</td><td></td><td>4,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>(1,200)</td><td></td><td></td><td></td><td></td><td>(1,800)</td></tr><tr><td>Fin.invest./DELTA</td><td></td><td>4,000</td><td></td><td></td><td></td><td>4,000</td></tr><tr><td>Receivables/3rd Parties</td><td>5,000</td><td></td><td></td><td></td><td>2,000</td><td>7,000</td></tr><tr><td>Cash</td><td>1,200</td><td></td><td></td><td></td><td>(200)</td><td>1,000</td></tr><tr><td></td><td>8,000</td><td></td><td></td><td></td><td></td><td>15,700</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.118,
+                0.293,
+                0.787,
+                0.4
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>BETA</td><td colspan=\"2\">Year 1&#x27; Approp.</td><td>Result</td><td>Capital increase.</td><td>Provisions!</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Capital</td><td>3,000</td><td></td><td></td><td>3,000</td><td></td><td></td><td>6,000</td></tr><tr><td>Retained earnings</td><td>2,000</td><td>300</td><td></td><td></td><td></td><td></td><td>2,300</td></tr><tr><td>Result</td><td>300</td><td>(300)</td><td>900</td><td></td><td></td><td></td><td>900</td></tr><tr><td>Provisions</td><td>500</td><td></td><td></td><td></td><td>100</td><td></td><td>600</td></tr><tr><td>Payables/3rd Parties</td><td>2,200</td><td></td><td></td><td></td><td></td><td>3,700</td><td>5,900</td></tr><tr><td></td><td>8,000</td><td></td><td></td><td></td><td></td><td></td><td>15,700</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.118,
+                0.426,
+                0.442,
+                0.787
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">BETA</td></tr><tr><td>Result</td><td>900</td></tr><tr><td></td><td>Depreciations 600</td></tr><tr><td></td><td>Provisions 100</td></tr><tr><td></td><td>Gain/disposals 0</td></tr><tr><td></td><td>Loss/disposals 0</td></tr><tr><td>Cash Flow</td><td>1,600</td></tr><tr><td>Net variation of receivables</td><td>(2,000)</td></tr><tr><td>Net variation of payables</td><td>3,700</td></tr><tr><td>Cash from operating activities</td><td>3,300</td></tr><tr><td>Investments</td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>(3,300)</td></tr><tr><td>Financial assets acquisitions</td><td>(4,000)</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangibles assets disposals</td><td>800</td></tr><tr><td>Financial assets disposals</td><td>0</td></tr><tr><td>Cash from investment activities</td><td>(6,500)</td></tr><tr><td>Capital increase</td><td>3,000</td></tr><tr><td>Dividends paid (M)</td><td>0</td></tr><tr><td>Dividends paid (other cies)</td><td>0</td></tr><tr><td>Cash from financial activities</td><td>3,000</td></tr><tr><td>Net cash variation</td><td>(200)</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.118,
+                0.796,
+                0.442,
+                0.812
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Cash variation From balance</td><td>(200)</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.433,
+                0.073,
+                0.855,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.102,
+                0.121,
+                0.517,
+                0.138
+            ],
+            "angle": 0,
+            "content": "BETA - Statutory cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.101,
+                0.153,
+                0.871,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Again, all statutory flows, except 'Appropriation flow\", find their place in the cash flow statement."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.14,
+                0.202,
+                0.868,
+                0.235
+            ],
+            "angle": 0,
+            "content": "- The investments in tangible assets for 3300 include Lands for 1500 and Tangible assets for 1800"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.141,
+                0.25,
+                0.868,
+                0.316
+            ],
+            "angle": 0,
+            "content": "- The lands have been disposed by ALPHA at a price of 1500, including the gain of 500. At statutory level, we keep this price as it is but in the final consolidated cash flow statement, the amount will not appear anymore because it is a group transaction."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.141,
+                0.33,
+                0.868,
+                0.364
+            ],
+            "angle": 0,
+            "content": "- The disposal of tangible assets for an amount of 800 has been made without a gain or loss, otherwise we would see a corresponding flow"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.142,
+                0.379,
+                0.868,
+                0.443
+            ],
+            "angle": 0,
+            "content": "- The increase in capital by 3000 appears on the correct line, but in the consolidated cash flow statement this amount will show only the cash brought by the \\(3^{rd}\\) Parties. The subscription of 2400 by ALPHA will be eliminated."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.14,
+                0.202,
+                0.868,
+                0.443
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.12,
+                0.068,
+                0.371,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.119,
+                0.885,
+                0.226
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>GAMMA</td><td>Year 1</td><td>Acquisitions</td><td>Disposals</td><td>Gain on disposals</td><td>Deprec.</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Lands</td><td>1,000</td><td></td><td>(1,300)</td><td>300</td><td></td><td></td><td>0</td></tr><tr><td>Tangible assets (acq.val.)</td><td>4,000</td><td>2,000</td><td>(1,000)</td><td></td><td>(500)</td><td></td><td>5,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>(800)</td><td></td><td></td><td></td><td></td><td></td><td>(1,300)</td></tr><tr><td>Receivables/3rd Parties</td><td>2,000</td><td></td><td></td><td></td><td></td><td>1,000</td><td>3,000</td></tr><tr><td>Cash</td><td>800</td><td></td><td></td><td></td><td></td><td>500</td><td>1,300</td></tr><tr><td></td><td>7,000</td><td colspan=\"5\"></td><td>8,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.27,
+                0.637,
+                0.364
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>GAMMA</td><td>Year 1</td><td>Approp.</td><td>Result</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Capital</td><td>2,000</td><td></td><td></td><td></td><td>2,000</td></tr><tr><td>Retained earnings</td><td>(500)</td><td>(400)</td><td></td><td></td><td>(900)</td></tr><tr><td>Result</td><td>(400)</td><td>400</td><td>(200)</td><td></td><td>(200)</td></tr><tr><td>Payables/3rd Parties</td><td>5,900</td><td></td><td></td><td>1,200</td><td>7,100</td></tr><tr><td></td><td>7,000</td><td></td><td></td><td></td><td>8,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.117,
+                0.397,
+                0.442,
+                0.784
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">GAMMA</td></tr><tr><td>Result</td><td>(200)</td></tr><tr><td>Depreciations</td><td>500</td></tr><tr><td>Provisions</td><td>0</td></tr><tr><td>Gain/disposals</td><td>(300)</td></tr><tr><td>Loss/disposals</td><td>0</td></tr><tr><td>Cash Flow</td><td>0</td></tr><tr><td>Net variation of receivables</td><td>(1,000)</td></tr><tr><td>Net variation of payables</td><td>1,200</td></tr><tr><td>Cash from operating activities</td><td>200</td></tr><tr><td>Investments</td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>(2,000)</td></tr><tr><td>Financial assets acquisitions</td><td></td></tr><tr><td>Disinvestment&#x27;s</td><td></td></tr><tr><td>Tangibles assets disposals</td><td>2,300</td></tr><tr><td>Financial assets disposals</td><td></td></tr><tr><td>Cash from investment activities</td><td>300</td></tr><tr><td>Capital increase</td><td>0</td></tr><tr><td>Dividends paid (M)</td><td>0</td></tr><tr><td>Dividends paid (other cies)</td><td>0</td></tr><tr><td>Cash from financial activities</td><td>0</td></tr><tr><td></td><td></td></tr><tr><td>Net cash variation</td><td>500</td></tr><tr><td>Cash variation from balance</td><td>500</td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.433,
+                0.072,
+                0.859,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.099,
+                0.121,
+                0.548,
+                0.138
+            ],
+            "angle": 0,
+            "content": "GAMMA - Statutory cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.098,
+                0.152,
+                0.877,
+                0.187
+            ],
+            "angle": 0,
+            "content": "This presentation may look unusual because GAMMA is now consolidated by the equity method and all that information is not necessary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.098,
+                0.202,
+                0.877,
+                0.235
+            ],
+            "angle": 0,
+            "content": "We will see later on that like for closing amounts, nearly all flows in the statutory cash flow statement will also be eliminated."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.143,
+                0.25,
+                0.871,
+                0.281
+            ],
+            "angle": 0,
+            "content": "- The disposal of lands is supposed to have been made with \\(3^{rd}\\) Parties and the gain is maintained as it is."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.145,
+                0.298,
+                0.79,
+                0.315
+            ],
+            "angle": 0,
+            "content": "- The disposal of tangible assets for 1000 gives no gain or loss."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.143,
+                0.25,
+                0.871,
+                0.315
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.099,
+                0.331,
+                0.877,
+                0.364
+            ],
+            "angle": 0,
+            "content": "Be sure to always validate the \"Net cash variation\" that must be equal to the cash variation in the balance sheet."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.119,
+                0.07,
+                0.367,
+                0.085
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.121,
+                0.687,
+                0.219
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>DELTA (CUR)</td><td>Year 1</td><td>Deprec.</td><td>Net variations</td><td>Dividends</td><td>Year 2</td></tr><tr><td>Tangible assets (acq.val.)</td><td>8,000</td><td>(800)</td><td></td><td></td><td>8,000</td></tr><tr><td>Tangible assets (deprec.)</td><td>(4,000)</td><td></td><td></td><td></td><td>(4,800)</td></tr><tr><td>Receivables/3rd Parties</td><td>8,000</td><td></td><td>6,000</td><td></td><td>14,000</td></tr><tr><td>Cash</td><td>6,000</td><td></td><td>(800)</td><td>(400)</td><td>4,800</td></tr><tr><td></td><td>18,000</td><td></td><td></td><td></td><td>22,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.12,
+                0.25,
+                0.79,
+                0.374
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>DELTA (CUR)</td><td>Year 1</td><td>Dividends</td><td>Approp.</td><td>Result</td><td>Provisions</td><td>Net variation</td><td>Year 2</td></tr><tr><td>Capital</td><td>8,000</td><td></td><td></td><td></td><td></td><td></td><td>8,000</td></tr><tr><td>Retained earnings</td><td>4,000</td><td rowspan=\"2\">(400)</td><td>200</td><td rowspan=\"2\">1,000</td><td></td><td></td><td>4,200</td></tr><tr><td>Result</td><td>600</td><td>(200)</td><td></td><td></td><td>1,000</td></tr><tr><td>Provisions</td><td>1,400</td><td></td><td></td><td></td><td>600</td><td></td><td>2,000</td></tr><tr><td>Payables/3rd Parties</td><td>4,000</td><td></td><td></td><td></td><td></td><td>1,550</td><td>5,550</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td>1,250</td><td>1,250</td></tr><tr><td></td><td>18,000</td><td></td><td></td><td></td><td></td><td></td><td>22,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.12,
+                0.411,
+                0.76,
+                0.51
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>DELTA (EUR)</td><td>Year 1</td><td>Deprec.</td><td>Net variations</td><td>Dividends</td><td>Trans. adjust.</td><td>Year 2</td></tr><tr><td>Tangible assets (acq.val.)</td><td>6,400</td><td>(480)</td><td></td><td></td><td>800</td><td>7,200</td></tr><tr><td>Tangible assets (deprec.)</td><td>(3,200)</td><td></td><td></td><td></td><td>(640)</td><td>(4,320)</td></tr><tr><td>Receivables/3rd Parties</td><td>6,400</td><td></td><td>3,600</td><td></td><td>2,600</td><td>12,600</td></tr><tr><td>Cash</td><td>4,800</td><td></td><td>(480)</td><td>(280)</td><td>280</td><td>4,320</td></tr><tr><td></td><td>14,400</td><td></td><td></td><td></td><td>3,040</td><td>19,800</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.12,
+                0.538,
+                0.861,
+                0.673
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>DELTA (EUR)</td><td>Year 1</td><td>Dividends</td><td>Approp.</td><td>Result</td><td>Provisions</td><td>Net variation</td><td>Trans. \nadjust.</td><td>Year 2</td></tr><tr><td>Capital</td><td>7,200</td><td></td><td></td><td></td><td></td><td></td><td></td><td>7,200</td></tr><tr><td>Retained earnings</td><td>3,400</td><td></td><td>140</td><td></td><td></td><td></td><td></td><td>3,540</td></tr><tr><td>Result</td><td>420</td><td>(280)</td><td>(140)</td><td>600</td><td></td><td></td><td></td><td>600</td></tr><tr><td>Trans. adjust.</td><td>(940)</td><td></td><td></td><td></td><td></td><td></td><td>1,480</td><td>540</td></tr><tr><td>Provisions</td><td>1,120</td><td></td><td></td><td></td><td>360</td><td></td><td>320</td><td>1,800</td></tr><tr><td>Payables/3rd Parties</td><td>3,200</td><td></td><td></td><td></td><td></td><td>930</td><td>865</td><td>4,995</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td>750</td><td>375</td><td>1,125</td></tr><tr><td></td><td>14,400</td><td></td><td></td><td></td><td></td><td></td><td>3,040</td><td>19,800</td></tr></table>"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.478,
+                0.925,
+                0.521,
+                0.939
+            ],
+            "angle": 0,
+            "content": "430"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.437,
+                0.075,
+                0.856,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.107,
+                0.121,
+                0.536,
+                0.138
+            ],
+            "angle": 0,
+            "content": "DELTA = Statutory cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.154,
+                0.621,
+                0.172
+            ],
+            "angle": 0,
+            "content": "Here we start with flow information in local currency."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.187,
+                0.872,
+                0.253
+            ],
+            "angle": 0,
+            "content": "Only one item needs a comment: the flow dividends on the cash account. The general principle for flows is to apply the Year 2 average rate for their translation into EUR. But there are some exceptions as for the dividends flow on the equity side which is translated at the Year 1 average rate."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.267,
+                0.872,
+                0.349
+            ],
+            "angle": 0,
+            "content": "Considering the fact these dividends are valuated with such rate, then the payment must also be valuated with the same rate. That's the reason why we extract a flow dividends for (400) from the net variation of cash for (1200). The remaining (800) is supposed to represent cash operations with the outside world and valuated at Year 2 average rate."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.364,
+                0.518,
+                0.38
+            ],
+            "angle": 0,
+            "content": "The main principles for the translation are"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.396,
+                0.59,
+                0.411
+            ],
+            "angle": 0,
+            "content": "Year 1 amounts at Year 1 closing rate 0.8"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.412,
+                0.588,
+                0.427
+            ],
+            "angle": 0,
+            "content": "Year 2 amounts at Year 2 closing rate 0.9"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.144,
+                0.427,
+                0.868,
+                0.459
+            ],
+            "angle": 0,
+            "content": "- All flows at Year 2 average rate 0.6, except \"Dividends\" and \"Appropriation\" flows at Year 1 average rate 0.7."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.144,
+                0.396,
+                0.868,
+                0.459
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.106,
+                0.475,
+                0.871,
+                0.509
+            ],
+            "angle": 0,
+            "content": "To balance in EUR the relation 'Opening + Sum of flows = Closing' for each line, we need to introduce a \"Translation adjustment\" flow."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.524,
+                0.872,
+                0.621
+            ],
+            "angle": 0,
+            "content": "One important check consists in verifying that the sum of this flow must be equal on assets and liabilities sides. This is the case with a total of 3040. If the payment of the dividends would have been translated at Year 2 average rate, for sure we would have found a mistake already in the statutory cash flow statement which would have been carried over in the consolidated cash flow statement."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.119,
+                0.068,
+                0.371,
+                0.083
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.12,
+                0.773,
+                0.216
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>DELTA (EUR)</td><td>Year 1</td><td>Deprec.</td><td>Net \nvariation</td><td>Dividends</td><td>Trans. \nadjust.</td><td>Year 2</td></tr><tr><td>Tangible assets (acq.val.)</td><td>6,400</td><td></td><td></td><td></td><td>800</td><td>7,200</td></tr><tr><td>Tangible assets (deprec.)</td><td>(3,200)</td><td>(480)</td><td></td><td></td><td>(640)</td><td>(4,320)</td></tr><tr><td>Receivables/3rd Parties</td><td>6,400</td><td></td><td>3,600</td><td></td><td>2,600</td><td>12,600</td></tr><tr><td>Cash</td><td>4,800</td><td></td><td>(480)</td><td>(280)</td><td>280</td><td>4,320</td></tr><tr><td></td><td>14,400</td><td></td><td></td><td></td><td>3,040</td><td>19,800</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.119,
+                0.248,
+                0.885,
+                0.383
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">DELTA (EUFR) Year 1</td><td>Dividends</td><td>Approp.</td><td>Result</td><td>Provisions</td><td>Net variation</td><td>Trans. adjust.</td><td>Year 2</td></tr><tr><td>Capital</td><td>7,200</td><td></td><td></td><td></td><td></td><td></td><td></td><td>7,200</td></tr><tr><td>Retained earnings</td><td>3,400</td><td rowspan=\"3\">(280)</td><td>140</td><td rowspan=\"2\">600</td><td></td><td></td><td></td><td>3,540</td></tr><tr><td>Result</td><td>420</td><td>(140)</td><td></td><td></td><td></td><td>600</td></tr><tr><td>Trans adjust.</td><td>(940)</td><td></td><td></td><td></td><td></td><td>1,480</td><td>540</td></tr><tr><td>Provisions</td><td>1,120</td><td></td><td></td><td></td><td>360</td><td></td><td>320</td><td>1,800</td></tr><tr><td>Payables/3rd Parties</td><td>3,200</td><td></td><td></td><td></td><td></td><td>930</td><td>865</td><td>4,995</td></tr><tr><td>Payables/ALPHA</td><td></td><td></td><td></td><td></td><td></td><td>750</td><td>375</td><td>1,125</td></tr><tr><td></td><td>14,400</td><td></td><td></td><td></td><td></td><td></td><td>3,040</td><td>19,800</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.116,
+                0.426,
+                0.462,
+                0.817
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">DELTA</td></tr><tr><td>Result</td><td>600</td></tr><tr><td>Depreciations</td><td>480</td></tr><tr><td>Provisions</td><td>360</td></tr><tr><td>Gain/disposals</td><td>0</td></tr><tr><td>Loss/disposals</td><td>0</td></tr><tr><td>Cash Flow</td><td>1,440</td></tr><tr><td>Net variation of receivables</td><td>(3,600)</td></tr><tr><td>Net variation of payables</td><td>1,680</td></tr><tr><td>Cash from operating activities</td><td>(480)</td></tr><tr><td>Investments</td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>0</td></tr><tr><td>Financial assets acquisitions</td><td>0</td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangibles posals</td><td>0</td></tr><tr><td>Financial posals</td><td>0</td></tr><tr><td>Cash from investment activities</td><td>0</td></tr><tr><td>Capital increase</td><td>0</td></tr><tr><td>Dividends paid (M)</td><td>0</td></tr><tr><td>Dividends paid (other cies)</td><td>(280)</td></tr><tr><td>Cash from financial activities</td><td>(280)</td></tr><tr><td>Net cash variation</td><td>(760)</td></tr><tr><td>Cash variation from balance</td><td>(760)</td></tr></table>"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.474,
+                0.926,
+                0.519,
+                0.94
+            ],
+            "angle": 0,
+            "content": "432"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.434,
+                0.072,
+                0.861,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 6 CONSOLIDATION CASE STUDY"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.1,
+                0.12,
+                0.677,
+                0.138
+            ],
+            "angle": 0,
+            "content": "Here are the main comments for this cash flow statement"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.138,
+                0.153,
+                0.874,
+                0.219
+            ],
+            "angle": 0,
+            "content": "- There are intercompany payables with company ALPHA, which are ignored at the statutory level. So we consider an evolution of these payables from 3200 to \\(6120 = 4995 + 1125\\), taking into account the existence or a translation adjustment flow for \\(1240 = 865 + 375\\)."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.138,
+                0.233,
+                0.822,
+                0.251
+            ],
+            "angle": 0,
+            "content": "- As for the previous companies, \"Appropriation\" flows are ignored"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.138,
+                0.264,
+                0.875,
+                0.299
+            ],
+            "angle": 0,
+            "content": "- The \"Dividends\" flow appears for (280) = (400) CUR * 0.7, the Year 1 average rate"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.314,
+                0.872,
+                0.347
+            ],
+            "angle": 0,
+            "content": "- There are no transactions on Tangible assets accounts (investments) nor on Financial assets accounts"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.139,
+                0.363,
+                0.875,
+                0.396
+            ],
+            "angle": 0,
+            "content": "- All translation adjustments flows are considered as non cash items and are ignored in the cash flow statement."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.138,
+                0.153,
+                0.875,
+                0.396
+            ],
+            "angle": 0,
+            "content": null
+        }
+    ]
+]

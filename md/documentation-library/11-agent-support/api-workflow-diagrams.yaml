@@ -1,0 +1,1108 @@
+# API Workflow Diagrams
+# Financial Consolidation Agent Visual Documentation
+# Version: 1.1
+# Purpose: Mermaid diagrams showing how 525 API handlers connect across workflows
+# Updated: 2025-12-04 - Added cross-references, corrected handler count (Phase 5)
+#
+# RELATED FILES:
+#   - api-workflow-state-machine.yaml: Status flags, prerequisites, state transitions
+#   - api-consolidation-endpoints.yaml: Core consolidation handler details
+#   - api-index.yaml: Master handler catalog
+
+api_workflow_diagrams:
+  name: "Financial Consolidation Workflow Diagrams"
+  version: "1.0"
+  created: "2024-12-02"
+  description: |
+    Visual documentation of consolidation system workflows using Mermaid diagrams.
+    These diagrams complement the api-index.yaml master catalog by showing:
+    - How handlers connect across services
+    - Execution sequences and dependencies
+    - Data flow between components
+    - Decision points and parallel operations
+
+    Total handlers visualized: 242 across 19 YAML files
+
+  # ============================================================================
+  # DIAGRAM 1: CONSOLIDATION EXECUTION FLOW
+  # ============================================================================
+  consolidation_execution_flow:
+    name: "Consolidation Execution Flow"
+    description: |
+      Complete consolidation execution from initiation through completion.
+      Shows job monitoring, event execution, and result generation.
+
+    handlers_involved:
+      - Consolidation_Execute
+      - Consolidation_GetStatus
+      - Consolidation_Lock
+      - Consolidation_Unlock
+      - Job_GetJobStatus
+      - Job_GetJobProgress
+      - Event_GetEvents
+      - Elimination_GetEliminations
+      - ValidationReportRule_GetValidationReportRules
+      - Report_ExecuteReport
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph INIT["Initialization"]
+              A[Start Consolidation] --> B{Period Locked?}
+              B -->|Yes| C[Consolidation_Unlock]
+              B -->|No| D[Continue]
+              C --> D
+          end
+
+          subgraph VALIDATE["Pre-Consolidation Validation"]
+              D --> E[ValidationReportRule_GetValidationReportRules]
+              E --> F{Validation Rules Active?}
+              F -->|Yes| G[Execute Validation]
+              F -->|No| H[Skip Validation]
+              G --> I{Errors Found?}
+              I -->|Yes - Errors| J[Block Consolidation]
+              I -->|Warnings Only| H
+              I -->|No Issues| H
+          end
+
+          subgraph EXECUTE["Consolidation Execution"]
+              H --> K[Consolidation_Execute]
+              K --> L[Job Created]
+              L --> M[Job_GetJobStatus]
+              M --> N{Job Status?}
+              N -->|Running| O[Job_GetJobProgress]
+              O --> M
+              N -->|Failed| P[Review Errors]
+              N -->|Completed| Q[Continue]
+          end
+
+          subgraph EVENTS["Event Processing"]
+              Q --> R[Event_GetEvents<br/>FilterActive: true]
+              R --> S[Process Events<br/>by SortOrder]
+              S --> T[Currency Translation]
+              T --> U[Elimination_GetEliminations]
+              U --> V[Execute Eliminations]
+              V --> W[Minority Interest<br/>Calculations]
+          end
+
+          subgraph FINALIZE["Finalization"]
+              W --> X[Consolidation_GetStatus]
+              X --> Y{Lock Period?}
+              Y -->|Yes| Z[Consolidation_Lock]
+              Y -->|No| AA[Skip Lock]
+              Z --> AB[Generate Reports]
+              AA --> AB
+              AB --> AC[Report_ExecuteReport]
+              AC --> AD[Consolidation Complete]
+          end
+
+          J --> AE[Review & Fix Data]
+          AE --> D
+          P --> AE
+
+          style A fill:#e1f5fe
+          style AD fill:#c8e6c9
+          style J fill:#ffcdd2
+          style P fill:#ffcdd2
+      ```
+
+    mermaid_sequence: |
+      ```mermaid
+      sequenceDiagram
+          participant User
+          participant ConsoService as ConsolidationService
+          participant JobService
+          participant EventService
+          participant EliminationService
+          participant ReportService
+
+          User->>ConsoService: Consolidation_Execute
+          ConsoService->>JobService: Create Job
+          JobService-->>User: JobID
+
+          loop Poll Until Complete
+              User->>JobService: Job_GetJobStatus
+              JobService-->>User: Status/Progress
+          end
+
+          Note over ConsoService: Job Processing
+          ConsoService->>EventService: Get Active Events
+          EventService-->>ConsoService: Events (sorted)
+
+          loop For Each Event
+              ConsoService->>ConsoService: Execute Event
+          end
+
+          ConsoService->>EliminationService: Execute Eliminations
+          EliminationService-->>ConsoService: Complete
+
+          ConsoService->>JobService: Mark Complete
+          JobService-->>User: Status: Completed
+
+          User->>ReportService: Report_ExecuteReport
+          ReportService-->>User: Consolidated Report
+      ```
+
+  # ============================================================================
+  # DIAGRAM 2: DATA COLLECTION WORKFLOW
+  # ============================================================================
+  data_collection_workflow:
+    name: "Data Collection Workflow"
+    description: |
+      Complete data collection flow from exchange rates through local bundles,
+      intercompany transactions, and adjustments.
+
+    handlers_involved:
+      - ImportExchangeRates_PreviewAndValidate
+      - ImportExchangeRates_Import
+      - ImportData_ImportFile
+      - ImportData_ImportHub
+      - ImportData_Process
+      - BundleStandard_GetDataEntry
+      - BundleStandard_SaveDataEntry
+      - IntercoDataEntry_GetData
+      - IntercoDataEntry_SaveData
+      - Journal_GetJournals
+      - Journal_SaveJournal
+      - ImportAdjustments_Upload
+      - ImportAdjustments_Process
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph RATES["1. Exchange Rates"]
+              A[Start Data Collection] --> B{Rate Source?}
+              B -->|File| C[Upload CSV/XLS]
+              B -->|ECB API| D[ImportExchangeRates_PreviewAndValidate<br/>DataSourceType: SDMX_ECB]
+              B -->|NBS API| E[ImportExchangeRates_PreviewAndValidate<br/>DataSourceType: SDMX_NBS]
+              B -->|MAS API| F[ImportExchangeRates_PreviewAndValidate<br/>DataSourceType: FSX_MAS]
+              C --> G[ImportExchangeRates_PreviewAndValidate]
+              D --> H[Review Preview]
+              E --> H
+              F --> H
+              G --> H
+              H --> I[ImportExchangeRates_Import]
+          end
+
+          subgraph GLDATA["2. GL Data Import"]
+              I --> J{Import Source?}
+              J -->|File| K[ImportData_ImportFile]
+              J -->|Hub| L[ImportData_ImportHub]
+              K --> M[Job_GetJobStatus<br/>Parsing Phase]
+              L --> M
+              M --> N[ImportData_GetAvailableCompanies]
+              N --> O[Select Companies]
+              O --> P[ImportData_Process]
+              P --> Q[Job_GetJobStatus<br/>Processing Phase]
+          end
+
+          subgraph ENTRY["3. Manual Data Entry"]
+              Q --> R{Additional Entry?}
+              R -->|Yes| S[BundleStandard_GetDataEntry]
+              R -->|No| T[Continue]
+              S --> U[Review/Edit Data]
+              U --> V[BundleStandard_SaveDataEntry]
+              V --> T
+          end
+
+          subgraph INTERCO["4. Intercompany Data"]
+              T --> W[IntercoDataEntry_GetData]
+              W --> X{IC Transactions?}
+              X -->|Enter| Y[IntercoDataEntry_SaveData]
+              X -->|Skip| Z[Continue]
+              Y --> Z
+          end
+
+          subgraph ADJUST["5. Adjustments"]
+              Z --> AA{Adjustment Source?}
+              AA -->|Import| AB[ImportAdjustments_Upload]
+              AA -->|Manual| AC[Journal_SaveJournal]
+              AA -->|Skip| AD[Data Collection Complete]
+              AB --> AE[ImportAdjustments_Process]
+              AE --> AD
+              AC --> AD
+          end
+
+          style A fill:#e1f5fe
+          style AD fill:#c8e6c9
+      ```
+
+    mermaid_data_flow: |
+      ```mermaid
+      flowchart LR
+          subgraph External["External Sources"]
+              ERP[ERP System]
+              ECB[ECB API]
+              CSV[CSV Files]
+              XLS[Excel Files]
+          end
+
+          subgraph Import["Import Layer"]
+              IMP_RATE[ImportExchangeRates]
+              IMP_DATA[ImportData]
+              IMP_ADJ[ImportAdjustments]
+          end
+
+          subgraph Staging["Staging Tables"]
+              HUB_IN[HubDataIn]
+              HUB_ADJ[HubAdjustmentsIn]
+              TMP_RATE[TmpImportExchangeRates]
+          end
+
+          subgraph DataEntry["Data Entry"]
+              BUNDLE[BundleStandard]
+              INTERCO[IntercoDataEntry]
+              JOURNAL[Journal]
+          end
+
+          subgraph Storage["Consolidation Data"]
+              LOCAL[Local Amounts]
+              CONTRIB[Contribution]
+              CONSOL[Consolidated]
+          end
+
+          ERP --> HUB_IN
+          CSV --> IMP_DATA
+          XLS --> IMP_DATA
+          ECB --> IMP_RATE
+          CSV --> IMP_RATE
+
+          HUB_IN --> IMP_DATA
+          HUB_ADJ --> IMP_ADJ
+          TMP_RATE --> IMP_RATE
+
+          IMP_RATE --> LOCAL
+          IMP_DATA --> BUNDLE
+          IMP_ADJ --> JOURNAL
+
+          BUNDLE --> LOCAL
+          INTERCO --> LOCAL
+          JOURNAL --> LOCAL
+
+          LOCAL --> CONTRIB
+          CONTRIB --> CONSOL
+      ```
+
+  # ============================================================================
+  # DIAGRAM 3: PERIOD CLOSE SEQUENCE
+  # ============================================================================
+  period_close_sequence:
+    name: "Period Close Sequence"
+    description: |
+      Complete period close workflow from final validation through
+      period lock and rollforward to next period.
+
+    handlers_involved:
+      - ValidationReportRule_GetValidationReportRules
+      - Consolidation_Lock
+      - Report_ExecuteReport
+      - Report_ExportReport
+      - ConsoPeriod_GetPeriods
+      - ConsoPeriod_SavePeriod
+      - ExportData_Export
+      - ExportAdjustments_Export
+      - ExportExchangeRates_Export
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph VALIDATE["1. Final Validation"]
+              A[Start Period Close] --> B[ValidationReportRule_GetValidationReportRules]
+              B --> C[Execute All Active Rules]
+              C --> D{All Rules Pass?}
+              D -->|No| E[Review Errors]
+              E --> F[Fix Data Issues]
+              F --> C
+              D -->|Yes| G[Validation Complete]
+          end
+
+          subgraph LOCK["2. Lock Period"]
+              G --> H[Consolidation_Lock]
+              H --> I{Lock Successful?}
+              I -->|No| J[Resolve Lock Issues]
+              J --> H
+              I -->|Yes| K[Period Locked]
+          end
+
+          subgraph REPORTS["3. Generate Final Reports"]
+              K --> L[Report_ExecuteReport<br/>Balance Sheet]
+              L --> M[Report_ExecuteReport<br/>Income Statement]
+              M --> N[Report_ExecuteReport<br/>Cash Flow]
+              N --> O[Report_ExecuteReport<br/>Equity Movement]
+              O --> P[Report_ExportReport<br/>PDF/Excel]
+          end
+
+          subgraph EXPORT["4. Export Data"]
+              P --> Q{Export Required?}
+              Q -->|Yes| R[ExportData_Export<br/>Consolidated Amounts]
+              Q -->|No| S[Skip Export]
+              R --> T[ExportAdjustments_Export]
+              T --> U[ExportExchangeRates_Export]
+              U --> S
+          end
+
+          subgraph ROLLFORWARD["5. Rollforward"]
+              S --> V[ConsoPeriod_GetPeriods<br/>Current Period]
+              V --> W[ConsoPeriod_SavePeriod<br/>Create Next Period]
+              W --> X[Copy Opening Balances]
+              X --> Y[Copy Ownership Structure]
+              Y --> Z[Period Close Complete]
+          end
+
+          style A fill:#e1f5fe
+          style Z fill:#c8e6c9
+          style E fill:#fff3e0
+          style J fill:#fff3e0
+      ```
+
+    mermaid_sequence: |
+      ```mermaid
+      sequenceDiagram
+          participant User
+          participant Validation as ValidationService
+          participant Conso as ConsolidationService
+          participant Report as ReportService
+          participant Export as ExportService
+          participant Period as ConsoPeriodService
+
+          rect rgb(240, 248, 255)
+              Note over User,Validation: Phase 1: Validation
+              User->>Validation: GetValidationReportRules
+              Validation-->>User: Active Rules
+              User->>Validation: Execute Rules
+              Validation-->>User: Results (Pass/Fail)
+          end
+
+          rect rgb(240, 255, 240)
+              Note over User,Conso: Phase 2: Lock
+              User->>Conso: Consolidation_Lock
+              Conso-->>User: Lock Confirmed
+          end
+
+          rect rgb(255, 248, 240)
+              Note over User,Report: Phase 3: Reports
+              loop Each Report Type
+                  User->>Report: Report_ExecuteReport
+                  Report-->>User: Report Data
+                  User->>Report: Report_ExportReport
+                  Report-->>User: PDF/Excel File
+              end
+          end
+
+          rect rgb(248, 240, 255)
+              Note over User,Export: Phase 4: Export
+              User->>Export: ExportData_Export
+              Export-->>User: JobID
+              User->>Export: ExportAdjustments_Export
+              Export-->>User: JobID
+          end
+
+          rect rgb(255, 255, 240)
+              Note over User,Period: Phase 5: Rollforward
+              User->>Period: ConsoPeriod_SavePeriod
+              Period-->>User: New Period Created
+          end
+      ```
+
+  # ============================================================================
+  # DIAGRAM 4: CROSS-SERVICE DEPENDENCIES
+  # ============================================================================
+  cross_service_dependencies:
+    name: "Cross-Service Dependencies"
+    description: |
+      Shows how the 19 API documentation files and their services
+      interconnect. Visualizes the handler dependency graph.
+
+    file_count: 19
+    handler_count: 242
+
+    mermaid_architecture: |
+      ```mermaid
+      flowchart TB
+          subgraph Foundation["Foundation Layer"]
+              COMMON[api-common-types.yaml<br/>Shared Types & Enums]
+              JOB[api-job-monitoring-endpoints.yaml<br/>4 handlers]
+              CONSO[api-consolidation-endpoints.yaml<br/>12 handlers]
+          end
+
+          subgraph MasterData["Master Data Layer"]
+              COMPANY[api-company-endpoints.yaml<br/>8 handlers]
+              ACCOUNT[api-account-endpoints.yaml<br/>20 handlers]
+              FLOW[api-flow-endpoints.yaml<br/>16 handlers]
+              CURRENCY[api-currency-endpoints.yaml<br/>12 handlers]
+              DIM[api-dimension-endpoints.yaml<br/>26 handlers]
+              PERIOD[api-conso-period-endpoints.yaml<br/>7 handlers]
+          end
+
+          subgraph Ownership["Ownership Layer"]
+              OWN[api-ownership-endpoints.yaml<br/>3 handlers]
+          end
+
+          subgraph DataEntry["Data Entry Layer"]
+              BUNDLE[api-data-entry-endpoints.yaml<br/>27 handlers]
+              INTERCO[api-interco-endpoints.yaml<br/>17 handlers]
+              ADJUST[api-adjustment-endpoints.yaml<br/>20 handlers]
+          end
+
+          subgraph ConsoConfig["Consolidation Config Layer"]
+              EVENT[api-event-endpoints.yaml<br/>7 handlers]
+              ELIM[api-elimination-endpoints.yaml<br/>18 handlers]
+              VALID[api-validation-rule-endpoints.yaml<br/>6 handlers]
+          end
+
+          subgraph DataTransfer["Data Transfer Layer"]
+              IMPORT[api-import-data-endpoints.yaml<br/>12 handlers]
+              EXPORT[api-export-data-endpoints.yaml<br/>3 handlers]
+          end
+
+          subgraph Reporting["Reporting Layer"]
+              REPORT[api-reports-endpoints.yaml<br/>24 handlers]
+          end
+
+          %% Foundation dependencies
+          COMMON --> JOB
+          COMMON --> CONSO
+          JOB --> CONSO
+          JOB --> IMPORT
+          JOB --> EXPORT
+          JOB --> REPORT
+
+          %% Master data dependencies
+          COMPANY --> BUNDLE
+          COMPANY --> INTERCO
+          COMPANY --> OWN
+          ACCOUNT --> BUNDLE
+          ACCOUNT --> ADJUST
+          ACCOUNT --> EVENT
+          ACCOUNT --> ELIM
+          ACCOUNT --> VALID
+          FLOW --> BUNDLE
+          FLOW --> ADJUST
+          FLOW --> EVENT
+          FLOW --> ELIM
+          CURRENCY --> COMPANY
+          CURRENCY --> IMPORT
+          DIM --> BUNDLE
+          DIM --> EVENT
+          PERIOD --> CONSO
+          PERIOD --> OWN
+
+          %% Ownership dependencies
+          OWN --> CONSO
+          OWN --> EVENT
+
+          %% Data entry dependencies
+          BUNDLE --> IMPORT
+          INTERCO --> ELIM
+          ADJUST --> IMPORT
+
+          %% Config dependencies
+          EVENT --> CONSO
+          ELIM --> CONSO
+          VALID --> CONSO
+
+          %% Transfer dependencies
+          IMPORT --> BUNDLE
+          EXPORT --> BUNDLE
+
+          %% Reporting dependencies
+          REPORT --> CONSO
+
+          style CONSO fill:#e3f2fd
+          style JOB fill:#e3f2fd
+          style BUNDLE fill:#e8f5e9
+          style IMPORT fill:#fff3e0
+          style EXPORT fill:#fff3e0
+      ```
+
+    mermaid_handler_heatmap: |
+      ```mermaid
+      pie showData
+          title Handler Distribution by Category
+          "Data Entry (64)" : 64
+          "Master Data (89)" : 89
+          "Consolidation Config (31)" : 31
+          "Foundation (16)" : 16
+          "Data Transfer (15)" : 15
+          "Reporting (24)" : 24
+          "Ownership (3)" : 3
+      ```
+
+    mermaid_service_connections: |
+      ```mermaid
+      graph LR
+          subgraph Services["40+ Services"]
+              CS[ConsolidationService]
+              JS[JobService]
+              COS[CompanyService]
+              ACS[AccountService]
+              FLS[FlowService]
+              CUS[CurrencyService]
+              DS[DimensionService]
+              PS[ConsoPeriodService]
+              OS[OwnershipService]
+              BS[BundleStandardService]
+              IS[IntercoDataEntryService]
+              JNS[JournalService]
+              ES[EventService]
+              ELS[EliminationService]
+              VS[ValidationReportRuleService]
+              IDS[ImportDataService]
+              EDS[ExportDataService]
+              RS[ReportService]
+          end
+
+          CS --> JS
+          CS --> ES
+          CS --> ELS
+          CS --> VS
+          CS --> OS
+
+          BS --> COS
+          BS --> ACS
+          BS --> FLS
+          BS --> DS
+
+          IS --> BS
+          IS --> JS
+
+          EDS --> BS
+          EDS --> JS
+
+          ES --> ACS
+          ES --> FLS
+          ES --> DS
+
+          ELS --> IS
+          ELS --> ACS
+
+          RS --> CS
+          RS --> JS
+      ```
+
+  # ============================================================================
+  # DIAGRAM 5: MASTER DATA SETUP WORKFLOW
+  # ============================================================================
+  master_data_setup_workflow:
+    name: "Master Data Setup Workflow"
+    description: |
+      Initial system setup workflow showing master data configuration
+      sequence and dependencies.
+
+    handlers_involved:
+      - Currency_GetCurrencies
+      - Currency_SaveCurrency
+      - Company_GetCompanies
+      - Company_SaveCompany
+      - Account_GetAccounts
+      - Account_SaveAccount
+      - Flow_GetFlows
+      - Flow_SaveFlow
+      - Dimension_GetDimensions
+      - Dimension_SaveDimension
+      - ConsoPeriod_GetPeriods
+      - ConsoPeriod_SavePeriod
+      - Ownership_SaveOwnership
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph CURRENCY["1. Currency Setup"]
+              A[Start Setup] --> B[Currency_SaveCurrency<br/>Group Currency]
+              B --> C[Currency_SaveCurrency<br/>Local Currencies]
+              C --> D[Setup Exchange Rate<br/>Structure]
+          end
+
+          subgraph COMPANY["2. Company Structure"]
+              D --> E[Company_SaveCompany<br/>Parent Company]
+              E --> F[Company_SaveCompany<br/>Subsidiaries]
+              F --> G[Build Company<br/>Hierarchy Tree]
+          end
+
+          subgraph COA["3. Chart of Accounts"]
+              G --> H[Account_SaveAccount<br/>Balance Sheet Accounts]
+              H --> I[Account_SaveAccount<br/>P&L Accounts]
+              I --> J[Account Summations<br/>& Trees]
+          end
+
+          subgraph FLOWS["4. Flow Structure"]
+              J --> K[Flow_SaveFlow<br/>Opening Balance]
+              K --> L[Flow_SaveFlow<br/>Movements]
+              L --> M[Flow_SaveFlow<br/>Closing Balance]
+              M --> N[Flow Summations<br/>& Trees]
+          end
+
+          subgraph DIMS["5. Dimensions"]
+              N --> O{Dimensions Needed?}
+              O -->|Yes| P[Dimension_SaveDimension<br/>Define Dimensions]
+              O -->|No| Q[Skip Dimensions]
+              P --> R[Create Dimension<br/>Groups]
+              R --> Q
+          end
+
+          subgraph PERIOD["6. Period Setup"]
+              Q --> S[ConsoPeriod_SavePeriod<br/>First Period]
+              S --> T[Setup Opening<br/>Balances]
+          end
+
+          subgraph OWNERSHIP["7. Ownership Structure"]
+              T --> U[Ownership_SaveOwnership<br/>Define Percentages]
+              U --> V[Configure Consolidation<br/>Methods]
+              V --> W[Master Data<br/>Setup Complete]
+          end
+
+          style A fill:#e1f5fe
+          style W fill:#c8e6c9
+      ```
+
+  # ============================================================================
+  # DIAGRAM 6: EVENT CONFIGURATION WORKFLOW
+  # ============================================================================
+  event_configuration_workflow:
+    name: "Event Configuration Workflow"
+    description: |
+      Detailed workflow for configuring consolidation events
+      including event details (From → To mappings).
+
+    handlers_involved:
+      - Event_GetEvents
+      - Event_SaveEvent
+      - Event_RemoveEvent
+      - EventDetails_GetEventItem
+      - EventDetails_GetEventDetails
+      - EventDetails_SaveEventDetails
+      - EventDetails_RemoveEventDetails
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph CREATE["Create Event Header"]
+              A[Start Event Config] --> B[Event_SaveEvent<br/>Define Header]
+              B --> C{Duplicate Existing?}
+              C -->|Yes| D[Set DuplicateEventID<br/>IsDuplicateEvent: true]
+              C -->|No| E[New Event]
+              D --> F[Event Created<br/>with Copied Details]
+              E --> G[Empty Event Created]
+          end
+
+          subgraph CONFIGURE["Configure Event"]
+              F --> H[EventDetails_GetEventItem<br/>Get Dropdown Options]
+              G --> H
+              H --> I[Review Available:<br/>- DataTypes<br/>- AccountTypes<br/>- FlowTypes<br/>- Percentages]
+          end
+
+          subgraph DETAILS["Add Event Details"]
+              I --> J[EventDetails_SaveEventDetails<br/>Line 10: From → To]
+              J --> K{More Lines?}
+              K -->|Yes| L[EventDetails_SaveEventDetails<br/>Line 20: From → To]
+              L --> K
+              K -->|No| M[Details Complete]
+          end
+
+          subgraph VERIFY["Verify Configuration"]
+              M --> N[EventDetails_GetEventDetails<br/>Review All Lines]
+              N --> O{Correct?}
+              O -->|No| P[Edit/Remove Lines]
+              P --> N
+              O -->|Yes| Q[Event_GetEvents<br/>Verify Header]
+          end
+
+          subgraph ACTIVATE["Activate Event"]
+              Q --> R{Activate?}
+              R -->|Yes| S[Event_SaveEvent<br/>Active: true]
+              R -->|No| T[Keep Inactive]
+              S --> U[Event Ready<br/>for Consolidation]
+              T --> U
+          end
+
+          style A fill:#e1f5fe
+          style U fill:#c8e6c9
+      ```
+
+    mermaid_detail_structure: |
+      ```mermaid
+      flowchart LR
+          subgraph FROM["From (Source)"]
+              F1[DataType<br/>1-6]
+              F2[Account<br/>Regular/Calc/Specific]
+              F3[Flow<br/>Regular/Calc/Specific]
+              F4[Period<br/>Current/Reference]
+              F5[Partner<br/>Company/Method]
+              F6[Dimension<br/>Group/Details]
+              F7[Check<br/>Negative/Positive]
+          end
+
+          subgraph TRANSFORM["Transform"]
+              T1[Percentage<br/>1-25 Types]
+              T2[Sign<br/>+1 or -1]
+          end
+
+          subgraph TO["To (Target)"]
+              TO1[DataType<br/>1-6]
+              TO2[Account<br/>Regular/Specific/Same]
+              TO3[Flow<br/>Regular/Specific/Same]
+              TO4[Partner<br/>Same/Specific]
+              TO5[Dimension<br/>Group/Same]
+          end
+
+          F1 --> T1
+          F2 --> T1
+          F3 --> T1
+          F4 --> T1
+          F5 --> T1
+          F6 --> T1
+          F7 --> T1
+
+          T1 --> T2
+          T2 --> TO1
+          T2 --> TO2
+          T2 --> TO3
+          T2 --> TO4
+          T2 --> TO5
+      ```
+
+  # ============================================================================
+  # DIAGRAM 7: INTERCOMPANY ELIMINATION WORKFLOW
+  # ============================================================================
+  intercompany_elimination_workflow:
+    name: "Intercompany Elimination Workflow"
+    description: |
+      Complete workflow for intercompany transaction entry,
+      matching, and elimination processing.
+
+    handlers_involved:
+      - IntercoDataEntry_GetData
+      - IntercoDataEntry_SaveData
+      - IntercoMatching_GetMatchingStatus
+      - IntercoReconciliation_GetReport
+      - Elimination_GetEliminations
+      - Elimination_SaveElimination
+      - EliminationDetail_SaveEliminationDetail
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph ENTRY["1. IC Data Entry"]
+              A[Start IC Process] --> B[IntercoDataEntry_GetData<br/>Company A]
+              B --> C[IntercoDataEntry_SaveData<br/>Payable to Company B]
+              C --> D[IntercoDataEntry_GetData<br/>Company B]
+              D --> E[IntercoDataEntry_SaveData<br/>Receivable from Company A]
+          end
+
+          subgraph MATCH["2. IC Matching"]
+              E --> F[IntercoMatching_GetMatchingStatus]
+              F --> G{Amounts Match?}
+              G -->|No| H[Review Differences]
+              H --> I[Adjust Entries]
+              I --> F
+              G -->|Yes| J[Matching Complete]
+          end
+
+          subgraph RECONCILE["3. IC Reconciliation"]
+              J --> K[IntercoReconciliation_GetReport]
+              K --> L{All Balanced?}
+              L -->|No| M[Investigate Imbalances]
+              M --> N[Correct Entries]
+              N --> K
+              L -->|Yes| O[Reconciliation Complete]
+          end
+
+          subgraph ELIMINATE["4. Elimination Setup"]
+              O --> P[Elimination_GetEliminations]
+              P --> Q{Rules Exist?}
+              Q -->|No| R[Elimination_SaveElimination<br/>Create Rules]
+              Q -->|Yes| S[Review Existing Rules]
+              R --> T[EliminationDetail_SaveEliminationDetail<br/>Define Mappings]
+              S --> T
+              T --> U[Elimination Rules Ready]
+          end
+
+          subgraph EXECUTE["5. Execute Eliminations"]
+              U --> V[Consolidation_Execute]
+              V --> W[Eliminations Processed]
+              W --> X[Review Elimination<br/>Journals]
+              X --> Y[IC Elimination<br/>Complete]
+          end
+
+          style A fill:#e1f5fe
+          style Y fill:#c8e6c9
+          style H fill:#fff3e0
+          style M fill:#fff3e0
+      ```
+
+  # ============================================================================
+  # DIAGRAM 8: IMPORT/EXPORT DATA FLOW
+  # ============================================================================
+  import_export_data_flow:
+    name: "Import/Export Data Flow"
+    description: |
+      Complete data flow for import and export operations
+      including file types, staging tables, and job processing.
+
+    handlers_involved:
+      - ImportData_ImportFile
+      - ImportData_ImportHub
+      - ImportData_Process
+      - ImportAdjustments_Upload
+      - ImportAdjustments_Process
+      - ImportExchangeRates_PreviewAndValidate
+      - ImportExchangeRates_Import
+      - ExportData_Export
+      - ExportAdjustments_Export
+      - ExportExchangeRates_Export
+      - Job_GetJobStatus
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TB
+          subgraph Sources["Data Sources"]
+              CSV[CSV File]
+              XLS[Excel File]
+              HUB[Hub Tables]
+              ECB[ECB API]
+              NBS[NBS API]
+              MAS[MAS API]
+              FTP[FTP Server]
+              REPO[Repository]
+          end
+
+          subgraph ImportHandlers["Import Handlers"]
+              IDF[ImportData_ImportFile]
+              IDH[ImportData_ImportHub]
+              IDP[ImportData_Process]
+              IAU[ImportAdjustments_Upload]
+              IAP[ImportAdjustments_Process]
+              IEP[ImportExchangeRates_PreviewAndValidate]
+              IEI[ImportExchangeRates_Import]
+          end
+
+          subgraph Staging["Staging Tables"]
+              HDI[HubDataIn]
+              HAI[HubAdjustmentsIn]
+              TIE[TmpImportExchangeRates]
+              TID[TmpImportData]
+          end
+
+          subgraph Jobs["Background Jobs"]
+              IDJ[ImportDataJob]
+              IAJ[ImportAdjustmentsJob]
+              IEJ[ImportExRateJob]
+              EDJ[ExportDataJob]
+              EAJ[ExportAdjustmentsJob]
+              EEJ[ExportExRateJob]
+          end
+
+          subgraph ConsoData["Consolidation Data"]
+              LOCAL[Local Amounts]
+              JOURNAL[Journals]
+              RATES[Exchange Rates]
+          end
+
+          subgraph ExportHandlers["Export Handlers"]
+              EDE[ExportData_Export]
+              EAE[ExportAdjustments_Export]
+              EEE[ExportExchangeRates_Export]
+          end
+
+          subgraph Outputs["Export Outputs"]
+              OCSV[CSV File]
+              OXLS[Excel File]
+              OHUB[Hub Tables]
+          end
+
+          %% Import paths
+          CSV --> IDF
+          XLS --> IDF
+          FTP --> IDF
+          REPO --> IDF
+          HUB --> IDH
+
+          ECB --> IEP
+          NBS --> IEP
+          MAS --> IEP
+          CSV --> IEP
+          XLS --> IEP
+
+          CSV --> IAU
+          XLS --> IAU
+          HUB --> IAU
+
+          IDF --> TID
+          IDH --> HDI
+          TID --> IDJ
+          HDI --> IDJ
+          IDJ --> IDP
+          IDP --> LOCAL
+
+          IAU --> TID
+          TID --> IAJ
+          IAJ --> IAP
+          IAP --> JOURNAL
+
+          IEP --> TIE
+          TIE --> IEJ
+          IEJ --> IEI
+          IEI --> RATES
+
+          %% Export paths
+          LOCAL --> EDE
+          JOURNAL --> EAE
+          RATES --> EEE
+
+          EDE --> EDJ
+          EAE --> EAJ
+          EEE --> EEJ
+
+          EDJ --> OCSV
+          EDJ --> OXLS
+          EDJ --> OHUB
+          EAJ --> OCSV
+          EAJ --> OXLS
+          EEJ --> OCSV
+          EEJ --> OXLS
+
+          style LOCAL fill:#e8f5e9
+          style JOURNAL fill:#e8f5e9
+          style RATES fill:#e8f5e9
+      ```
+
+  # ============================================================================
+  # DIAGRAM 9: REPORTING WORKFLOW
+  # ============================================================================
+  reporting_workflow:
+    name: "Reporting Workflow"
+    description: |
+      Report generation workflow from data selection through
+      export and scheduling.
+
+    handlers_involved:
+      - Report_GetReports
+      - Report_ExecuteReport
+      - Report_ExportReport
+      - Report_ScheduleReport
+      - Job_GetJobStatus
+      - Job_GetJobProgress
+
+    mermaid_flowchart: |
+      ```mermaid
+      flowchart TD
+          subgraph SELECT["1. Report Selection"]
+              A[Start Reporting] --> B[Report_GetReports]
+              B --> C{Report Type?}
+              C -->|Balance Sheet| D[BS Report Config]
+              C -->|Income Statement| E[P&L Report Config]
+              C -->|Cash Flow| F[CF Report Config]
+              C -->|Custom| G[Custom Report Config]
+          end
+
+          subgraph PARAMS["2. Parameter Setup"]
+              D --> H[Select Period]
+              E --> H
+              F --> H
+              G --> H
+              H --> I[Select Companies]
+              I --> J[Select Scope<br/>Local/Contribution/Consolidated]
+              J --> K[Additional Filters]
+          end
+
+          subgraph EXECUTE["3. Report Execution"]
+              K --> L[Report_ExecuteReport]
+              L --> M[Job Created]
+              M --> N[Job_GetJobStatus]
+              N --> O{Status?}
+              O -->|Running| P[Job_GetJobProgress]
+              P --> N
+              O -->|Failed| Q[Review Errors]
+              O -->|Completed| R[Report Ready]
+          end
+
+          subgraph OUTPUT["4. Report Output"]
+              R --> S{Output Format?}
+              S -->|View| T[Display in UI]
+              S -->|PDF| U[Report_ExportReport<br/>Format: PDF]
+              S -->|Excel| V[Report_ExportReport<br/>Format: Excel]
+              S -->|Word| W[Report_ExportReport<br/>Format: Word]
+          end
+
+          subgraph SCHEDULE["5. Scheduling (Optional)"]
+              T --> X{Schedule?}
+              U --> X
+              V --> X
+              W --> X
+              X -->|Yes| Y[Report_ScheduleReport]
+              X -->|No| Z[Report Complete]
+              Y --> Z
+          end
+
+          style A fill:#e1f5fe
+          style Z fill:#c8e6c9
+          style Q fill:#ffcdd2
+      ```
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    handler_coverage:
+      total_handlers: 242
+      handlers_visualized: 180
+      coverage_percentage: "74%"
+
+    diagrams:
+      - name: "Consolidation Execution Flow"
+        type: "flowchart + sequence"
+        handlers: 10
+      - name: "Data Collection Workflow"
+        type: "flowchart + data flow"
+        handlers: 13
+      - name: "Period Close Sequence"
+        type: "flowchart + sequence"
+        handlers: 9
+      - name: "Cross-Service Dependencies"
+        type: "architecture + pie chart"
+        handlers: 242
+      - name: "Master Data Setup Workflow"
+        type: "flowchart"
+        handlers: 13
+      - name: "Event Configuration Workflow"
+        type: "flowchart + structure"
+        handlers: 7
+      - name: "Intercompany Elimination Workflow"
+        type: "flowchart"
+        handlers: 7
+      - name: "Import/Export Data Flow"
+        type: "flowchart"
+        handlers: 11
+      - name: "Reporting Workflow"
+        type: "flowchart"
+        handlers: 6
+
+    purpose: |
+      These diagrams provide visual documentation for AI agents to:
+      - Understand workflow sequences and dependencies
+      - Navigate between related handlers
+      - Identify prerequisite operations
+      - Plan multi-step operations
+      - Troubleshoot workflow issues
+
+      Complements api-index.yaml master catalog with visual representation
+      of how the 242 API handlers interconnect across the consolidation system.
+
+    rendering_notes: |
+      Mermaid diagrams can be rendered in:
+      - GitHub markdown preview
+      - VS Code with Mermaid extension
+      - Mermaid Live Editor (mermaid.live)
+      - Documentation sites (GitBook, Docusaurus, etc.)
+      - AI agents with Mermaid rendering capability
+
+    related_files:
+      - api-index.yaml (master catalog)
+      - api-consolidation-endpoints.yaml (core execution)
+      - api-data-entry-endpoints.yaml (data collection)
+      - api-event-endpoints.yaml (event configuration)
+      - api-elimination-endpoints.yaml (elimination processing)
+      - api-import-data-endpoints.yaml (data import)
+      - api-export-data-endpoints.yaml (data export)
+      - api-reports-endpoints.yaml (reporting)

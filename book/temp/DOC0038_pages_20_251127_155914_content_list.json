@@ -1,0 +1,1675 @@
+[
+    {
+        "type": "text",
+        "text": "4.2 How to explain variations?",
+        "text_level": 2,
+        "bbox": [
+            109,
+            119,
+            614,
+            142
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The problem is quite simple and we can give a general approach for a \"conceptual\" account because it will apply to any other equity or financial account.",
+        "bbox": [
+            109,
+            160,
+            884,
+            210
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We will see that only the financial nature of the variation, depending of the account, will have to be stored in an appropriate column of the status board.",
+        "bbox": [
+            109,
+            226,
+            882,
+            260
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Suppose that the minority percentage for Year 1 is p l and for Year 2 is p2. p l or p2 may be  \\(0\\%\\) , depending on the consolidation method or the fact that we consider a global integration company owned at  \\(100\\%\\) .",
+        "bbox": [
+            109,
+            273,
+            882,
+            325
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We now consider one equity amount M1 in Year 1 and M2 in Year 2, with a variation V. Of course, we can write  \\(\\mathsf{M}2 = \\mathsf{M}1 + \\mathsf{V}\\) . This situation can apply to any account. V could be a capital increase, a dividend paid, a translation adjustment variation, an increase of grants, ...",
+        "bbox": [
+            109,
+            338,
+            882,
+            405
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The consolidation process calculates Minority interests respectively equal to M1 * p I for Year 1 and M2 * p2 for Year 2 and we are interested in explaining the variation",
+        "bbox": [
+            109,
+            419,
+            882,
+            469
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\nM 2 ^ {*} p 2 - M 1 ^ {*} p l = (M 1 + V) ^ {*} p 2 - M 1 ^ {*} p l = M 1 ^ {*} (p 2 - p l) + V ^ {*} p 2\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            128,
+            480,
+            860,
+            503
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "where we see that the net variation always consists in two components",
+        "bbox": [
+            109,
+            516,
+            811,
+            533
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- The first component showing the percentage variation p2 - p1 between Year 2 and Year 1 in the opening value M1 of the account",
+            "- The second component showing the Year 2 percentage p2 in the variation."
+        ],
+        "bbox": [
+            147,
+            549,
+            877,
+            628
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Let's just see what we get with this formula considering a capital increase in the following example",
+        "bbox": [
+            109,
+            645,
+            882,
+            678
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/24ca22469c16cc3fe828c9286f614e1037abd9cda36a7fbd9cfac3654ac8a91b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Capital increase</td><td>Year 2</td></tr><tr><td>Capital</td><td>100</td><td>40</td><td>140</td></tr><tr><td>Minority %</td><td>30%</td><td></td><td>20%</td></tr><tr><td>Minority interests</td><td>30</td><td></td><td>28</td></tr></table>",
+        "bbox": [
+            244,
+            686,
+            710,
+            771
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "where we can see that the variation of Minority interests to justify is (2).",
+        "bbox": [
+            109,
+            790,
+            817,
+            808
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The status board would mention the following two elements",
+        "bbox": [
+            109,
+            821,
+            698,
+            840
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "A variation in the opening amount for  \\(100^{\\star}\\) \\((20\\% - 30\\%) = (10)\\)",
+        "bbox": [
+            147,
+            852,
+            826,
+            871
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            64,
+            372,
+            79
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "And  \\(20\\% * 40 = 8\\)  corresponding to the part of the  \\(3^{\\text{rd}}\\)  Parties in the capital increase.",
+        "bbox": [
+            183,
+            134,
+            875,
+            171
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "4.3 Case study",
+        "text_level": 2,
+        "bbox": [
+            109,
+            204,
+            362,
+            226
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In this group, we are going to produce a justification of the Minority interests evolution for companies A and B which is a foreign company.",
+        "bbox": [
+            107,
+            245,
+            632,
+            297
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For Year 1, the  \\(3^{\\text{rd}}\\)  Parties percentages are  \\(10\\%\\)  in A and  \\(46\\% = 100\\% - 90\\% \\times 60\\%\\)  in B.",
+        "bbox": [
+            109,
+            310,
+            632,
+            342
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For Year 2, we find  \\(40\\%\\)  in A and  \\(58\\% = 100\\% - 60\\% * 70\\%\\)  in B.",
+        "bbox": [
+            109,
+            358,
+            632,
+            390
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Moreover, we will restrict our view on the necessary accounts, without making a complete consolidation.",
+        "bbox": [
+            109,
+            407,
+            632,
+            440
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/c20b49d1167070016fdc3f7f86548e0701873edac9ba42b80d0fd9b7218a5df3.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            643,
+            247,
+            860,
+            449
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here are these accounts",
+        "bbox": [
+            109,
+            455,
+            352,
+            471
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/81e99c0b42f88235adbed006814394c143ea705e94214218177356e1811a3b1b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company A</td><td>Year 1</td><td>Capital increase</td><td>Approp.</td><td>Divid.</td><td>Result</td><td>Shares disp.</td><td>Year 2</td></tr><tr><td>Fin. Invest./B</td><td>80</td><td></td><td></td><td></td><td></td><td>30</td><td>110</td></tr><tr><td>Capital</td><td>200</td><td>100</td><td></td><td></td><td></td><td></td><td>300</td></tr><tr><td>Reserves</td><td>160</td><td></td><td>10</td><td></td><td></td><td></td><td>170</td></tr><tr><td>Result</td><td>30</td><td></td><td>(10)</td><td>(20)</td><td>10</td><td></td><td>10</td></tr></table>",
+        "bbox": [
+            113,
+            486,
+            858,
+            582
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/1bba87b83a95e4e73188807440f4ff74052bf5bc69142901c50b351b83a4c447.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Company B</td><td>Year 1</td><td>Capital increase</td><td>Approp.</td><td>Divid.</td><td>Result</td><td>CTA variation</td><td>Year 2</td></tr><tr><td>Capital</td><td>100</td><td></td><td></td><td></td><td></td><td></td><td>100</td></tr><tr><td>Reserves</td><td>60</td><td></td><td>40</td><td></td><td></td><td></td><td>100</td></tr><tr><td>Result</td><td>40</td><td></td><td>(40)</td><td></td><td>30</td><td></td><td>30</td></tr><tr><td>Trans. Adjust.</td><td>30</td><td></td><td></td><td></td><td></td><td>20</td><td>50</td></tr></table>",
+        "bbox": [
+            113,
+            604,
+            858,
+            699
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Let's first calculate Minority interests in the usual way of a consolidation process.",
+        "bbox": [
+            109,
+            715,
+            875,
+            749
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For Year 1",
+        "text_level": 3,
+        "bbox": [
+            109,
+            764,
+            227,
+            781
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Company A:  \\(31 = 10\\%\\)  (* (200 + 160 + 30 - 80)",
+            "- Company B:  \\(105.8 = 46\\%\\)  (*  \\((100 + 60 + 40 + 30)\\)"
+        ],
+        "bbox": [
+            147,
+            793,
+            691,
+            847
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            356,
+            71,
+            864,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For Year 2",
+        "text_level": 3,
+        "bbox": [
+            110,
+            120,
+            230,
+            136
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Company A:  \\({148} = {40}\\% {}^{ * }\\left( {{300} + {170} + {10} - {110}}\\right)\\)",
+            "- Company B:  \\({162.4} = {58}\\%  * \\left( {{100} + {100} + {30} + {50}}\\right)\\)"
+        ],
+        "bbox": [
+            148,
+            149,
+            703,
+            200
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The status board to be built will contain the necessary number of columns, depending on the different variations we feel useful to show.",
+        "bbox": [
+            108,
+            216,
+            870,
+            250
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In our example, we have noticed result of the year, increase in capital, payment of dividends, shares acquisition, translation adjustment account and percentages variations.",
+        "bbox": [
+            108,
+            265,
+            875,
+            314
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Here is the status board for which we provide comments hereunder",
+        "bbox": [
+            108,
+            329,
+            766,
+            346
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/a96b62d2afd34c39c0f72f658d6221065ebc67dea713b84d81ea462cb6ce61b8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Result</td><td>Divid.</td><td>Capital increase</td><td>CTA</td><td>Fin. Inv. acquisition</td><td>Var. %</td><td>Year 2</td></tr><tr><td>A</td><td>31</td><td>4</td><td>(2)</td><td>40</td><td></td><td>(12)</td><td>87</td><td>148</td></tr><tr><td>B</td><td>105.8</td><td>17.4</td><td></td><td></td><td>15.2</td><td></td><td>24</td><td>162.4</td></tr></table>",
+        "bbox": [
+            169,
+            368,
+            841,
+            437
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Result",
+        "text_level": 4,
+        "bbox": [
+            110,
+            456,
+            177,
+            472
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Company A:4=40% \\* 10",
+            "Company B : 17.4 = 58% * 30"
+        ],
+        "bbox": [
+            148,
+            486,
+            491,
+            535
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Dividends",
+        "text_level": 4,
+        "bbox": [
+            110,
+            553,
+            211,
+            569
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We will suppose parent company has disposed its  \\(30 \\%\\) company A shares by keeping the rights on  \\(90 \\%\\) of the dividends. This implies  \\(3 ^ {rd}\\)  Parties will receive  \\(10 \\%\\) of these dividends besides the fact they have now  \\(40 \\%\\) a participation in A.",
+        "bbox": [
+            108,
+            585,
+            875,
+            651
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This means a dividend of (2)  \\(= 10\\% * (20)\\) . It is important to notice that we won't find a compensation of 2 in another column. We are not consolidating the  \\(3^{\\text{rd}}\\)  Parties group and we only act a decrease of their interests.",
+        "bbox": [
+            108,
+            666,
+            872,
+            715
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Capital increase corresponding to  \\(40 = 40\\% * 100\\)",
+        "bbox": [
+            108,
+            730,
+            603,
+            746
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "CTA includes two components",
+        "bbox": [
+            108,
+            762,
+            404,
+            778
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- First component on the opening:  \\(3.6 = 30^{\\star}\\)  (58% - 46%)",
+            "Second component on the Year 2 variation:  \\(11.6 = 20^{*}58\\%\\)"
+        ],
+        "bbox": [
+            146,
+            790,
+            781,
+            841
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "giving a net variation of 15.2.",
+        "bbox": [
+            108,
+            859,
+            398,
+            875
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            65,
+            366,
+            81
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Fin. invest. acausition for  \\(12 = 30^{*}40\\%\\) . This amount is written as negative in the status board because it is an asset (debit) netted on a liabilities account (Minority interests).",
+        "bbox": [
+            105,
+            118,
+            875,
+            171
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Var.% is the impact on variation percentage on opening amounts.",
+        "bbox": [
+            105,
+            185,
+            748,
+            200
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Company A:  \\(87 = [200 + 160 + 30 - 20 - 80]^{\\star}\\)  [40% - 10%]",
+            "- Company B:  \\({24} = {\\left\\lbrack  {100} + {60} + {40}\\right\\rbrack  }^{ * }\\left\\lbrack  {{58}\\%  - {46}\\% }\\right\\rbrack\\)"
+        ],
+        "bbox": [
+            143,
+            213,
+            803,
+            267
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "A particular attention must be brought to the equity of company A which includes the amounts of Year 1 less the dividends paid, processed separately. Financial investment must also be included in the calculation with the correct sign.",
+        "bbox": [
+            105,
+            281,
+            871,
+            348
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We cannot help noticing that this status board requires a huge arithmetical effort for a weak interest from an accounting or financial point of view.",
+        "bbox": [
+            105,
+            361,
+            869,
+            395
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Could it be sometimes a requirement from Auditors to test the capability of the consolidator and check how he is able to master his consolidation?",
+        "bbox": [
+            105,
+            409,
+            871,
+            443
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "5 EVOLUTION OF PARTICIPATION AT EQUITY VALUE",
+        "text_level": 1,
+        "bbox": [
+            107,
+            475,
+            824,
+            524
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "5.1 When Equity value and Minority Interests are the two sides of the same mirror",
+        "text_level": 2,
+        "bbox": [
+            107,
+            543,
+            837,
+            588
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The company A, owned by parent company P at  \\(30\\%\\) , is consolidated with the equity method. The other shareholder, company T considered as  \\(3^{rd}\\)  parties, owns the remaining  \\(70\\%\\)  and, if required, would consolidate company A with the global integration method.",
+        "bbox": [
+            107,
+            610,
+            556,
+            727
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/fe047a7bcbfa6121fc6309bd62d8ecf8f8b118a2bbbb8125b7dda570a7f16db4.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            567,
+            604,
+            824,
+            711
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "In its consolidated balance sheet, we would then find Minority Interests related to company A for an amount equal to  \\(30\\%\\)  of its equity valuated at the closing date.",
+        "bbox": [
+            105,
+            740,
+            871,
+            790
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "But this valuation is exactly the same as the one that would be used in the consolidation of company P when applying the equity method to company A at  \\(30\\%\\) . If we suppose both P and T are consolidating with the same rules and",
+        "bbox": [
+            107,
+            803,
+            871,
+            853
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            354,
+            71,
+            864,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "with no adjustments booked in A, Minority interests and Equity value would be equal.",
+        "bbox": [
+            109,
+            121,
+            873,
+            156
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This means that the methodology explained to justify Minority interests evolution can be reused exactly in the same way to justify the evolution of equity method participations.",
+        "bbox": [
+            109,
+            169,
+            873,
+            219
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The columns of the status board will also be non standard and adapted depending on the nature of the equity accounts and their evolution.",
+        "bbox": [
+            109,
+            232,
+            873,
+            267
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "THE CASH FLOW STATEMENT",
+        "text_level": 1,
+        "bbox": [
+            232,
+            301,
+            721,
+            325
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "6.1 About the cash flow statement and its utility",
+        "text_level": 2,
+        "bbox": [
+            111,
+            344,
+            782,
+            390
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Difficulties to understand some variations by considering a only the consolidated balance sheet",
+        "bbox": [
+            109,
+            409,
+            873,
+            443
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The only consideration of the closing amounts of two periods in a consolidated balance sheet does not allow to understand the policy of investment or financing of a group.",
+        "bbox": [
+            109,
+            458,
+            873,
+            509
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The risk of wrong conclusions is very likely.",
+        "bbox": [
+            111,
+            522,
+            533,
+            538
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "For example, the increase of an account such as stocks can of course be the consequence of bad decisions at management level.",
+        "bbox": [
+            109,
+            554,
+            871,
+            588
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "But the acquisition of new companies and their global or proportional integration in the consolidation scope will have the same effect while, maybe, for the existing companies in both periods stocks may be managed with a good efficiency.",
+        "bbox": [
+            109,
+            603,
+            871,
+            667
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Moreover, the only change of consolidation method will also provoke a failure to understand these evolutions correctly.",
+        "bbox": [
+            109,
+            683,
+            871,
+            717
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Finally, an important jump of an exchange rate will lead to the same consequence.",
+        "bbox": [
+            109,
+            730,
+            871,
+            764
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "To face these difficulties, the notes to the accounts will certainly help for a better understanding, but generally these notes concern mainly non current assets and some of the non current liabilities.",
+        "bbox": [
+            109,
+            778,
+            871,
+            828
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Because of the consolidation process, important information is also rather difficult to find such as",
+        "bbox": [
+            109,
+            844,
+            871,
+            875
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            67,
+            367,
+            83
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- The price paid to acquire a new company that cannot be deduced from the consolidated balance sheet because that item is eliminated",
+            "- The contribution of the  \\(3^{\\text{rd}}\\)  Parties in the increase of capital of a company is also impossible to evaluate",
+            "- The same can be said for the dividends paid by group companies to  \\(3^{rd}\\)  Parties"
+        ],
+        "bbox": [
+            141,
+            120,
+            872,
+            247
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "and more generally, how to analyze correctly the use of cash in a group?",
+        "bbox": [
+            105,
+            265,
+            822,
+            282
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The only acceptable answer to that question is the \"Cash Flow Statement\"",
+        "bbox": [
+            105,
+            297,
+            830,
+            313
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The cash flow statement",
+        "text_level": 3,
+        "bbox": [
+            105,
+            329,
+            377,
+            347
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The basic idea behind the cash flow statement is to explain how a group managed its cash with the outside world all along the consolidation period.",
+        "bbox": [
+            105,
+            362,
+            875,
+            395
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "There is no standard format for the cash flow statement but, beyond this problem of presentation, all groups consider three main categories, namely cash related to",
+        "bbox": [
+            105,
+            410,
+            875,
+            458
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Operating activities",
+            "Investments and disinvestments",
+            "Financial transactions"
+        ],
+        "bbox": [
+            144,
+            475,
+            502,
+            521
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The information necessary to build a cash flow statement comes from some P&L accounts and from flows and we will see that if justifying consolidated reserves is sometimes a quite technical challenge, building a correct cash flow statement requires a great deal of rigor at any time of the consolidation process.",
+        "bbox": [
+            105,
+            539,
+            875,
+            620
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The main reason for this is the fact that we must keep in mind that only cash items will be used in the cash flow statement, while cash transactions between group companies cannot appear.",
+        "bbox": [
+            105,
+            634,
+            875,
+            684
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The orocess of buildina a consolidated cash flow statement",
+        "text_level": 4,
+        "bbox": [
+            105,
+            700,
+            752,
+            717
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Some basic recommendations can already be issued in order to bring a chance of success on our side while building a cash flow statement.",
+        "bbox": [
+            105,
+            731,
+            875,
+            765
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Each group company should provide a correct local currency statutory cash flow statement as an input to the consolidation process",
+            "Each consolidation adjustment should be booked, after checking the cash and non cash impacts"
+        ],
+        "bbox": [
+            144,
+            780,
+            870,
+            860
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            355,
+            71,
+            864,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "- A very strong knowledge of all financial and investments transactions in the group is a necessary guarantee to achieve the work.",
+        "bbox": [
+            148,
+            121,
+            877,
+            156
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Of course, all technical issues such as currency rates changes, changes in consolidation scope, changes in consolidation methods will be highly under control and understood because these technical effects could present some important and unexpected effects.",
+        "bbox": [
+            110,
+            169,
+            879,
+            235
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "6.2 A cash flow statement presentation",
+        "text_level": 2,
+        "bbox": [
+            110,
+            269,
+            750,
+            292
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "What follows applies to both statutory and consolidated cash flow statement. However, when analyzing more in detail each category, we will highlight some differences brought by consolidated figures.",
+        "bbox": [
+            110,
+            310,
+            877,
+            361
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "A cash flow statement consists in three following categories",
+        "bbox": [
+            110,
+            374,
+            697,
+            393
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/71728d388dbf19689d971539ba21d04e6e2a952db8e07440131931d2957d117c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Cash from operating activities</td></tr><tr><td>Cash from investments and disinvestments \nactivities</td></tr><tr><td>Cash from financial activities</td></tr><tr><td>Net cash variation</td></tr></table>",
+        "bbox": [
+            247,
+            404,
+            713,
+            540
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The \"Net cash variation\" is equal to the total of the three first categories and one difficult point by saying this is the check to be made with the variation of Cash and Cash equivalent accounts as presented in the balance sheet. Both must be equal.",
+        "bbox": [
+            110,
+            554,
+            877,
+            620
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Cash from operating activities",
+        "text_level": 3,
+        "bbox": [
+            110,
+            635,
+            442,
+            653
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "This category shows the cash related to the ongoing business and is usually presented under two different methods: the direct method or the indirect method.",
+        "bbox": [
+            110,
+            667,
+            877,
+            717
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The direct method presentation",
+        "text_level": 4,
+        "bbox": [
+            110,
+            732,
+            423,
+            749
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Let's say immediately that this method is supported by few groups only, besides the fact that it is a recommendation of the IFRS rules. The reason for this is the difficulty to capture the input information.",
+        "bbox": [
+            110,
+            764,
+            875,
+            812
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Following this method, the following information is supposed to be provided",
+        "bbox": [
+            110,
+            827,
+            847,
+            844
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Cash received from customers",
+        "bbox": [
+            150,
+            860,
+            489,
+            875
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            112,
+            67,
+            366,
+            83
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Cash paid to suppliers",
+            "Cash paid to employees",
+            "Financial interests paid/received",
+            "Tax and VAT paid/paid back"
+        ],
+        "bbox": [
+            139,
+            119,
+            501,
+            182
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "and we understand that most accounting systems make it difficult to pick up payments, certainly for customers and suppliers, because there are all mixed up with other financial transactions on different bank accounts.",
+        "bbox": [
+            100,
+            200,
+            880,
+            250
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The indirect method avoids such a difficulty and explains its success.",
+        "bbox": [
+            102,
+            265,
+            779,
+            282
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The indirect method presentation",
+        "bbox": [
+            102,
+            297,
+            436,
+            313
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We have two main sub-categories: the cash flow and the working capital.",
+        "bbox": [
+            102,
+            329,
+            824,
+            347
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The cash flow",
+        "bbox": [
+            104,
+            362,
+            244,
+            378
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We start by considering the company result which consists in income and expenses, both cash and non cash. The idea is then to evaluate the cash part of that result by reversing all non cash income and expenses.",
+        "bbox": [
+            102,
+            394,
+            880,
+            444
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Without giving the most general and complete definition, cash flow could be defined as follows",
+        "bbox": [
+            102,
+            458,
+            877,
+            491
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Result of the period",
+            "+Non cash expenses"
+        ],
+        "bbox": [
+            143,
+            506,
+            398,
+            540
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Depreciations",
+            "+ Use of provisions",
+            "+Write-off",
+            "+ Exchange losses (unrealized)",
+            "Losses on assets disposals",
+            "+Deferred taxes (charges)",
+            "o +..."
+        ],
+        "bbox": [
+            222,
+            540,
+            569,
+            650
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "- Non cash income",
+        "bbox": [
+            145,
+            653,
+            372,
+            667
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Reverse of depreciations",
+            "- Reverse of provisions",
+            "Write-back",
+            "- Exchange gains (unrealized)",
+            "Gains on assets disposals",
+            "Deferred taxes (income)",
+            "0 -..."
+        ],
+        "bbox": [
+            222,
+            668,
+            558,
+            780
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The total of all these items gives what is called the cash flow.",
+        "bbox": [
+            104,
+            798,
+            710,
+            815
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            69,
+            865,
+            85
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The working capital",
+        "text_level": 4,
+        "bbox": [
+            111,
+            121,
+            305,
+            137
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This sub-category contains the net variation of current receivables and current payables.",
+        "bbox": [
+            109,
+            153,
+            799,
+            185
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "From a cash point of view, if payables variation is a decrease (negative amount), this variation will appear with a negative sign in the cash flow statement because it represents a cash out.",
+        "bbox": [
+            109,
+            200,
+            805,
+            250
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The opposite must be said for a decrease of receivables, so also a negative amount, with a positive impact in the cash flow statement because it represents cash received from customers.",
+        "bbox": [
+            109,
+            265,
+            837,
+            314
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Cash flow and working capital added together give the \"Cash from operating activities\".",
+        "bbox": [
+            109,
+            329,
+            854,
+            361
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Cash from investments and disinvestments activities",
+        "text_level": 3,
+        "bbox": [
+            109,
+            377,
+            683,
+            395
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This category represents all acquisitions of intangible, tangible and financial assets on one side and all disposals of these same items on the other side.",
+        "bbox": [
+            109,
+            409,
+            873,
+            443
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Obviously, investments will appear with a negative sign, representing a cash out, and the opposite for all disinvestments.",
+        "bbox": [
+            109,
+            458,
+            873,
+            491
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Nothing special should be added to this if we speak about a statutory cash flow statement, but on the other hand it becomes a problem while considering the consolidated cash flow statement because acquisitions and disposals of consolidated financial investments are eliminated in the balance sheet.",
+        "bbox": [
+            109,
+            506,
+            873,
+            571
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We will have to come back more deeply to that issue later in this chapter.",
+        "bbox": [
+            111,
+            585,
+            824,
+            603
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Cash from financial activities",
+        "text_level": 3,
+        "bbox": [
+            111,
+            617,
+            428,
+            635
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This category includes all transactions that are not current. Amongst these transactions, we list hereunder the main items",
+        "bbox": [
+            109,
+            650,
+            873,
+            682
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Capital increase/decrease (in cash)",
+            "New long term loans",
+            "- Reimbursement of long term loans",
+            "Grants received",
+            "Dividends paid to shareholders"
+        ],
+        "bbox": [
+            156,
+            698,
+            533,
+            775
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Net cash variation",
+        "text_level": 3,
+        "bbox": [
+            111,
+            793,
+            312,
+            811
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "This is simply the addition of these three cash categories and, as said above, this net amount must be equal to the net variation of Cash and Cash equivalent accounts found in the balance sheet.",
+        "bbox": [
+            109,
+            827,
+            873,
+            875
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            113,
+            67,
+            364,
+            81
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "6.3 Let's build a statutory cash flow statement",
+        "text_level": 2,
+        "bbox": [
+            103,
+            121,
+            855,
+            145
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "To do so the basic information comes from the flows on balance sheet accounts and from some non cash P&L accounts.",
+        "bbox": [
+            103,
+            164,
+            870,
+            196
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Here is the necessary information.",
+        "bbox": [
+            103,
+            211,
+            442,
+            228
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/02908e792957cdd03eb64a04a2b2717535c96b7ef78e0b2fe62cb5203804f171.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Acq.</td><td>Disp.</td><td>Net var.</td><td>Dep.</td><td>Gain/disp.</td><td>Year 2</td></tr><tr><td>Tangible assets</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Acq.Val.</td><td>7,000</td><td>3,000</td><td>(1,200)</td><td></td><td></td><td>200</td><td>9,000</td></tr><tr><td>Deprec.</td><td>(1,000)</td><td></td><td></td><td></td><td>(600)</td><td></td><td>(1,600)</td></tr><tr><td>Fin. Invest.</td><td>2,000</td><td>800</td><td>(300)</td><td></td><td></td><td></td><td>2,500</td></tr><tr><td>Receivables</td><td>1,200</td><td></td><td></td><td>400</td><td></td><td></td><td>1,600</td></tr><tr><td>Cash</td><td>800</td><td></td><td></td><td>(300)</td><td></td><td></td><td>500</td></tr><tr><td>Total</td><td>10,000</td><td></td><td></td><td></td><td></td><td></td><td>12,000</td></tr></table>",
+        "bbox": [
+            125,
+            256,
+            838,
+            363
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/46610b201445122789517945360e94f798667d2c7415a9df07c88d8aa1c07ff6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1</td><td>Increase</td><td>Reimb.</td><td>Net var.</td><td>Prov.</td><td>Divid.</td><td>Approp.</td><td>Profit</td><td>Year 2</td></tr><tr><td>Capital</td><td>3,000</td><td>1,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4,000</td></tr><tr><td>Reserves</td><td>2,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>2,300</td></tr><tr><td>Result</td><td>500</td><td></td><td></td><td></td><td></td><td></td><td>300</td><td>400</td><td>400</td></tr><tr><td>Provisions</td><td>800</td><td></td><td></td><td></td><td>400</td><td>(200)</td><td>(300)</td><td></td><td>1,200</td></tr><tr><td>Loans</td><td>2,000</td><td></td><td>(500)</td><td></td><td></td><td></td><td></td><td></td><td>1,500</td></tr><tr><td>Payables</td><td>1,700</td><td></td><td></td><td>900</td><td></td><td></td><td></td><td></td><td>2,600</td></tr><tr><td>Total</td><td>10,000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>12,000</td></tr></table>",
+        "bbox": [
+            125,
+            388,
+            845,
+            488
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For each balance sheet account, we explain in a financial or an accounting way what are the changes between opening and closing values.",
+        "bbox": [
+            103,
+            519,
+            868,
+            554
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "As you can see, the reason of changes depends on the nature of each account and some flows are \"cash\" and so candidate to impact the cash flow statement while some others are \"non cash\". In the assets, flows considered as cash are \"acquisitions\", \"disposals\" and net variations\". In the liabilities, flows considered as cash are 'Increase\", Reimbursement\", \"Net variation\" and \"Dividends\".",
+        "bbox": [
+            103,
+            567,
+            870,
+            665
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The 'Result\" flow showing the Year 2 profit is ambiguous because it includes cash and non cash amounts as seen in the P&L",
+        "bbox": [
+            105,
+            696,
+            574,
+            744
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/f4f4375ac159a53363b1debf209af9bdd8abdae5fc0b8c22cae47d28aadf8995.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 2</td></tr><tr><td>Turnover</td><td>10,000</td></tr><tr><td>Cost of sales</td><td>(8,800)</td></tr><tr><td>Depreciations</td><td>(600)</td></tr><tr><td>Provisions</td><td>(400)</td></tr><tr><td>Gain/disposals</td><td>200</td></tr><tr><td>Result</td><td>400</td></tr></table>",
+        "bbox": [
+            588,
+            667,
+            858,
+            782
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "An important validation between flows and P&L accounts must be done for \"Depreciations\", \"Provisions\" and \"Gain on disposals\". If the amounts booked on flows and on the corresponding P&L accounts are different, there will be an error in the cash flow statement.",
+        "bbox": [
+            103,
+            809,
+            872,
+            875
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 3 EVOLUTION OF CONSOLIDATED ACCOUNTS",
+        "bbox": [
+            353,
+            70,
+            862,
+            87
+        ],
+        "page_idx": 9
+    }
+]

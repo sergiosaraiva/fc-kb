@@ -1,0 +1,697 @@
+# Elimination Code Selection Decision Tree
+# Determines: Which S### or U### elimination code applies to a scenario
+# Based on: Transaction type, consolidation method, account type
+# Implementation: P_CONSO_ELIM.sql and P_CONSO_ELIM_*.sql procedures
+
+decision_tree:
+  name: "Elimination Code Selection"
+  version: "1.0"
+  description: "Routes consolidation scenarios to appropriate elimination codes"
+
+  # Implementation reference
+  implementation:
+    orchestrator: "P_CONSO_ELIM.sql"
+    procedure_prefix: "P_CONSO_ELIM_"
+    config_table: "TS070S0"
+    journal_table: "TS020S0"
+
+  # Required inputs
+  inputs:
+    - name: "transaction_type"
+      type: "enum"
+      values: ["participation", "intercompany", "dividend", "equity_adjustment", "minority_interest", "method_change", "currency_translation", "manual_adjustment", "opening_balance"]
+      description: "Type of consolidation transaction"
+      required: true
+
+    - name: "consolidation_method"
+      type: "enum"
+      values: ["G", "E", "P", "N"]
+      source: "TS014C0.ConsoMethod"
+      description: "Company's consolidation method"
+      required: true
+
+    - name: "account_type"
+      type: "enum"
+      values: ["participation", "equity", "intercompany_receivable", "intercompany_payable", "dividend_income", "dividend_expense", "p_and_l", "balance_sheet", "cta"]
+      source: "TS010S0.PartnerType, FlagEquity, etc."
+      description: "Account classification"
+      required: false
+
+    - name: "is_recurring"
+      type: "boolean"
+      description: "Whether elimination recurs each period"
+      default: true
+
+    - name: "partner_company_id"
+      type: "integer"
+      source: "TD040B2.PartnerCompanyID"
+      description: "Intercompany partner identifier"
+      required: false
+
+    - name: "pov_enabled"
+      type: "boolean"
+      source: "Config"
+      description: "Point of View (legal structure) enabled"
+      default: false
+
+  # Decision tree root
+  root: "identify_transaction_type"
+
+  # Decision nodes
+  nodes:
+    # Root: Identify transaction type
+    identify_transaction_type:
+      type: "decision"
+      question: "What type of consolidation transaction is this?"
+      branches:
+        - condition: "transaction_type == 'participation'"
+          next: "participation_elimination"
+        - condition: "transaction_type == 'intercompany'"
+          next: "intercompany_elimination"
+        - condition: "transaction_type == 'dividend'"
+          next: "dividend_elimination"
+        - condition: "transaction_type == 'equity_adjustment'"
+          next: "equity_elimination"
+        - condition: "transaction_type == 'minority_interest'"
+          next: "minority_interest"
+        - condition: "transaction_type == 'method_change'"
+          next: "method_change"
+        - condition: "transaction_type == 'manual_adjustment'"
+          next: "user_elimination"
+        - condition: "transaction_type == 'opening_balance'"
+          result: "S001_OPENING"
+        - condition: "default"
+          next: "check_method_for_default"
+
+    # Participation elimination branch
+    participation_elimination:
+      type: "decision"
+      question: "What consolidation method does the subsidiary use?"
+      branches:
+        - condition: "consolidation_method == 'G'"
+          next: "participation_global"
+        - condition: "consolidation_method == 'P'"
+          next: "participation_proportional"
+        - condition: "consolidation_method == 'E'"
+          result: "S080_EQUITY_METHOD"
+        - condition: "consolidation_method == 'N'"
+          result: "NO_ELIMINATION"
+
+    participation_global:
+      type: "decision"
+      question: "What phase of participation elimination?"
+      guidance: |
+        Participation elimination for global integration is a 5-step process:
+        - S050/Phase 0: Setup and initialization
+        - S051/Phase 1: Investment account elimination (S089)
+        - S052/Phase 2: Link account elimination (S090)
+        - S053/Phase 3: Consolidated reserves calculation (S093)
+        - S054/Phase 4: Goodwill/Bargain calculation (S094)
+      branches:
+        - condition: "phase == 0 or phase == 'setup'"
+          result: "S050_PARTICIPATION_0"
+        - condition: "phase == 1 or phase == 'investment'"
+          result: "S089_INVESTMENT"
+        - condition: "phase == 2 or phase == 'link'"
+          result: "S090_LINK"
+        - condition: "phase == 3 or phase == 'reserves'"
+          result: "S093_RESERVES"
+        - condition: "phase == 4 or phase == 'goodwill'"
+          result: "S094_GOODWILL"
+        - condition: "default"
+          result: "S050_PARTICIPATION_FULL"
+
+    participation_proportional:
+      type: "decision"
+      question: "Is this proportional integration or joint operation?"
+      branches:
+        - condition: "default"
+          result: "S060_PROPORTIONAL"
+
+    # Equity capital elimination branch
+    equity_elimination:
+      type: "decision"
+      question: "What consolidation method?"
+      branches:
+        - condition: "consolidation_method == 'G'"
+          result: "S087_EQUITY_CAPITAL"
+        - condition: "consolidation_method == 'P'"
+          result: "S087_EQUITY_CAPITAL_PROP"
+        - condition: "default"
+          result: "NO_ELIMINATION"
+
+    # Intercompany elimination branch
+    intercompany_elimination:
+      type: "decision"
+      question: "What type of intercompany elimination?"
+      branches:
+        - condition: "account_type == 'intercompany_receivable' or account_type == 'intercompany_payable'"
+          next: "intercompany_balance"
+        - condition: "default"
+          next: "intercompany_transaction"
+
+    intercompany_balance:
+      type: "decision"
+      question: "What netting approach for IC balances?"
+      guidance: |
+        IC balance elimination options:
+        - S001: Basic intercompany
+        - S002: 100% IC elimination (eliminate to zero)
+        - S003: Non-equity IC (exclude equity-type IC)
+        - S004: IC netting (partial netting)
+        - S005: IC netting full (complete netting)
+      branches:
+        - condition: "elimination_method == 'full_netting'"
+          result: "S005_IC_NETTING_FULL"
+        - condition: "elimination_method == 'partial_netting'"
+          result: "S004_IC_NETTING"
+        - condition: "elimination_method == '100_percent'"
+          result: "S002_IC_100PC"
+        - condition: "elimination_method == 'non_equity'"
+          result: "S003_IC_NON_EQUITY"
+        - condition: "default"
+          result: "S030_IC_DEFAULT"
+
+    intercompany_transaction:
+      type: "decision"
+      question: "Is this an IC P&L or B/S transaction?"
+      branches:
+        - condition: "account_type == 'p_and_l'"
+          result: "S050_IC_PL"
+        - condition: "account_type == 'balance_sheet'"
+          result: "S051_IC_BS"
+        - condition: "default"
+          result: "S030_IC_DEFAULT"
+
+    # Dividend elimination branch
+    dividend_elimination:
+      type: "decision"
+      question: "What consolidation method for dividend payer?"
+      branches:
+        - condition: "consolidation_method == 'G'"
+          result: "S020_DIVIDEND_GLOBAL"
+        - condition: "consolidation_method == 'E'"
+          result: "S020_DIVIDEND_EQUITY"
+        - condition: "consolidation_method == 'P'"
+          result: "S020_DIVIDEND_PROPORTIONAL"
+        - condition: "default"
+          result: "NO_ELIMINATION"
+
+    # Minority interest branch
+    minority_interest:
+      type: "decision"
+      question: "Is this a Global (G) entity with minority shareholders?"
+      branches:
+        - condition: "consolidation_method == 'G' and minority_percentage > 0"
+          result: "S085_MINORITY_INTEREST"
+        - condition: "consolidation_method == 'P'"
+          result: "NO_ELIMINATION"  # P method doesn't have MI
+        - condition: "default"
+          result: "NO_ELIMINATION"
+
+    # Method change branch
+    method_change:
+      type: "decision"
+      question: "What is the method change direction?"
+      branches:
+        - condition: "from_method == 'E' and to_method == 'G'"
+          result: "S072_EG"
+        - condition: "from_method == 'G' and to_method == 'E'"
+          result: "S072_GE"
+        - condition: "from_method == 'P' and to_method == 'G'"
+          result: "S072_PG"
+        - condition: "from_method == 'G' and to_method == 'P'"
+          result: "S072_GP"
+        - condition: "from_method == 'P' and to_method == 'E'"
+          result: "S072_PE"
+        - condition: "from_method == 'E' and to_method == 'P'"
+          result: "S072_EP"
+        - condition: "default"
+          result: "S072_GENERIC"
+
+    # User elimination branch
+    user_elimination:
+      type: "decision"
+      question: "What type of manual adjustment?"
+      guidance: |
+        User elimination coding convention:
+        - U001-U099: Standard recurring adjustments
+        - U100-U199: Project-specific adjustments
+        - U200+: One-time/special adjustments
+      branches:
+        - condition: "is_recurring == true"
+          result: "U_RECURRING"
+        - condition: "is_project_specific == true"
+          result: "U_PROJECT"
+        - condition: "default"
+          result: "U_ONETIME"
+
+    # Default fallback
+    check_method_for_default:
+      type: "decision"
+      question: "What is the consolidation method for default routing?"
+      branches:
+        - condition: "consolidation_method == 'G'"
+          result: "S010_GENERIC_GLOBAL"
+        - condition: "consolidation_method == 'E'"
+          result: "S030_GENERIC_EQUITY"
+        - condition: "consolidation_method == 'P'"
+          result: "S040_GENERIC_PROPORTIONAL"
+        - condition: "default"
+          result: "NO_ELIMINATION"
+
+  # Result definitions
+  results:
+    # Opening balance
+    S001_OPENING:
+      code: "S001"
+      name: "Opening Balance"
+      description: "Carry forward prior period closing balances"
+      procedure: null
+      journal_type: "B001"
+      when_used: "Every period start"
+      documentation: "../03-core-calculations/flow-management.md"
+
+    # Participation eliminations (Global integration)
+    S050_PARTICIPATION_0:
+      code: "S050"
+      name: "Participation Elimination Phase 0"
+      description: "Setup and initialization for participation elimination"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS0"
+      journal_type: "TE"
+      when_used: "Global (G) entities"
+      documentation: "../04-elimination-entries/participation-eliminations.md"
+
+    S050_PARTICIPATION_FULL:
+      code: "S050-S054"
+      name: "Full Participation Elimination"
+      description: "Complete 5-phase participation elimination"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS0 through P_CONSO_ELIM_PARTICIPATIONS4"
+      journal_type: "TE"
+      when_used: "Global (G) entities with investments"
+      related_codes: ["S089", "S090", "S093", "S094"]
+      documentation: "../04-elimination-entries/participation-eliminations.md"
+
+    S089_INVESTMENT:
+      code: "S089"
+      name: "Investment Elimination"
+      description: "Eliminate parent's investment in subsidiary"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS1"
+      journal_type: "TE"
+      accounts:
+        debit: "LINKPARTELIM"
+        credit: "Participation accounts (PartnerType = 2)"
+      when_used: "Investment accounts exist"
+      documentation: "../04-elimination-entries/participation-eliminations.md"
+
+    S090_LINK:
+      code: "S090"
+      name: "Link Account Elimination"
+      description: "Eliminate link account balance against equity"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS2"
+      journal_type: "TE"
+      accounts:
+        debit: "CONSODIFF"
+        credit: "LINKPARTELIM"
+      when_used: "After S089"
+      documentation: "../04-elimination-entries/participation-eliminations.md"
+
+    S093_RESERVES:
+      code: "S093"
+      name: "Consolidated Reserves"
+      description: "Calculate consolidated reserves (Group% × Equity - Investment)"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS3"
+      journal_type: "TE"
+      formula: "ConsRes = (GroupPerc/100) × (Capital + Reserves + Profit) - InvestmentCost"
+      when_used: "After S090"
+      documentation: "../04-elimination-entries/participation-eliminations.md"
+
+    S094_GOODWILL:
+      code: "S094"
+      name: "Goodwill/Bargain Calculation"
+      description: "Calculate goodwill (positive) or bargain purchase (negative)"
+      procedure: "P_CONSO_ELIM_PARTICIPATIONS4"
+      journal_type: "TE"
+      accounts:
+        positive: "GOODWILL"
+        negative: "NEGGOODWILL"
+      when_used: "After S093 when difference exists"
+      documentation: "../03-core-calculations/goodwill-calculation.md"
+
+    # Equity capital elimination
+    S087_EQUITY_CAPITAL:
+      code: "S087"
+      name: "Equity Capital Elimination"
+      description: "Eliminate subsidiary's equity at group percentage"
+      procedure: "P_CONSO_ELIM_EQUITYCAPITAL"
+      journal_type: "TE"
+      accounts:
+        debit: "Equity accounts (FlagEquityElimination = 1)"
+        credit: "CONSODIFF"
+      when_used: "Global (G) entities"
+      documentation: "../04-elimination-entries/participation-eliminations.md"
+
+    S087_EQUITY_CAPITAL_PROP:
+      code: "S087"
+      name: "Equity Capital Elimination (Proportional)"
+      description: "Eliminate subsidiary's equity at proportional percentage"
+      procedure: "P_CONSO_ELIM_EQUITYCAPITAL"
+      journal_type: "TE"
+      when_used: "Proportional (P) entities"
+      documentation: "../02-consolidation-methods/proportional-method.md"
+
+    # Intercompany eliminations
+    S030_IC_DEFAULT:
+      code: "S030"
+      name: "Intercompany Default"
+      description: "Basic intercompany elimination"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY"
+      journal_type: "TC"
+      when_used: "IC transactions between group companies"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    S002_IC_100PC:
+      code: "S002"
+      name: "IC 100% Elimination"
+      description: "Eliminate intercompany balances to zero"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_100PC"
+      journal_type: "TC"
+      when_used: "Complete IC balance elimination"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    S003_IC_NON_EQUITY:
+      code: "S003"
+      name: "IC Non-Equity"
+      description: "Intercompany elimination excluding equity transactions"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_NE"
+      journal_type: "TC"
+      when_used: "Non-equity IC transactions"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    S004_IC_NETTING:
+      code: "S004"
+      name: "IC Netting"
+      description: "Partial netting of intercompany balances"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING"
+      journal_type: "TC"
+      when_used: "Partial IC netting required"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    S005_IC_NETTING_FULL:
+      code: "S005"
+      name: "IC Netting Full"
+      description: "Complete netting of intercompany balances"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY_NETTING_FULL"
+      journal_type: "TC"
+      when_used: "Full IC netting"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    S050_IC_PL:
+      code: "S050"
+      name: "IC P&L Elimination"
+      description: "Intercompany P&L transaction elimination"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY"
+      journal_type: "TC"
+      when_used: "IC revenue/expense elimination"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    S051_IC_BS:
+      code: "S051"
+      name: "IC B/S Elimination"
+      description: "Intercompany balance sheet elimination"
+      procedure: "P_CONSO_ELIM_INTERCOMPANY"
+      journal_type: "TC"
+      when_used: "IC receivable/payable elimination"
+      documentation: "../04-elimination-entries/intercompany-transactions.md"
+
+    # Dividend elimination
+    S020_DIVIDEND_GLOBAL:
+      code: "S020"
+      name: "Dividend Elimination (Global)"
+      description: "Eliminate intercompany dividends for globally integrated subsidiaries"
+      procedure: "P_CONSO_ELIM_DIVIDEND"
+      journal_type: "TD"
+      accounts:
+        debit: ["DivReceived", "INTERIMDIVIDENDS"]
+        credit: ["DivPaid", "ConsoRes"]
+      formula: "ElimAmount = DividendAmount × (GroupPerc / 100)"
+      journal_structure:
+        - "DR: DivReceived (Parent) - Reverse dividend income"
+        - "CR: DivPaid (Subsidiary) - Reverse dividend expense"
+        - "DR: ConsoReserves (Subsidiary) - Adjust reserves"
+        - "CR: RetainedEarnings (Parent) - Offset"
+      when_used: "Dividends declared by G subsidiaries"
+      documentation: "../04-elimination-entries/dividend-eliminations.md"
+
+    S020_DIVIDEND_EQUITY:
+      code: "S020"
+      name: "Dividend Elimination (Equity Method)"
+      description: "Eliminate dividends from equity method investees"
+      procedure: "P_CONSO_ELIM_DIVIDEND"
+      journal_type: "TD"
+      accounts:
+        special: "DivReceivedEquity"
+      when_used: "Dividends from E method associates"
+      note: "Reduces equity pickup, not income"
+      documentation: "../04-elimination-entries/dividend-eliminations.md"
+
+    S020_DIVIDEND_PROPORTIONAL:
+      code: "S020"
+      name: "Dividend Elimination (Proportional)"
+      description: "Eliminate dividends at proportional percentage"
+      procedure: "P_CONSO_ELIM_DIVIDEND"
+      journal_type: "TD"
+      when_used: "Dividends from P method JVs"
+      documentation: "../04-elimination-entries/dividend-eliminations.md"
+
+    # Minority interest
+    S085_MINORITY_INTEREST:
+      code: "S085"
+      name: "Minority Interest"
+      description: "Calculate non-controlling interest in subsidiaries"
+      procedure: "P_CONSO_ELIM_MINORITYINTEREST"
+      journal_type: "TI"
+      formula: "MI = MinorPerc% × (EquityAtPeriodEnd)"
+      components:
+        - "MI on Balance Sheet (accumulated)"
+        - "MI on P&L (current period share)"
+      when_used: "Global (G) entities with MinorPerc > 0"
+      documentation: "../03-core-calculations/minority-interest.md"
+
+    # Equity method
+    S080_EQUITY_METHOD:
+      code: "S080"
+      name: "Equity Method"
+      description: "One-line consolidation for equity method investees"
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+      journal_type: "TM"
+      accounts:
+        investment: "EQUITYVAL"
+        income: "EquityMethodIncome"
+      formula: "EquityPickup = GroupPerc% × (NetIncome or Loss)"
+      when_used: "Equity (E) method entities"
+      documentation: "../02-consolidation-methods/equity-method.md"
+
+    # Proportional
+    S060_PROPORTIONAL:
+      code: "S060"
+      name: "Proportional Integration"
+      description: "Apply proportional percentage to all accounts"
+      procedure: "P_CONSO_ELIM_PROPORTIONAL"
+      journal_type: "TP"
+      formula: "GroupAmount = LocalAmount × (GroupPerc / 100)"
+      when_used: "Proportional (P) entities"
+      documentation: "../02-consolidation-methods/proportional-method.md"
+
+    # Method change
+    S072_EG:
+      code: "S072"
+      name: "Method Change E→G"
+      description: "Step acquisition: Equity to Global"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      flows:
+        - "VarConsoMeth_EG"
+      scenario: "Gaining control of former associate"
+      requires:
+        - "Remeasure previous holding at fair value"
+        - "Calculate goodwill on full acquisition"
+      documentation: "../03-core-calculations/step-acquisition.md"
+
+    S072_GE:
+      code: "S072"
+      name: "Method Change G→E"
+      description: "Losing control: Global to Equity"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      flows:
+        - "VarConsoMeth_GE"
+      scenario: "Losing control but retaining significant influence"
+      requires:
+        - "Deconsolidate subsidiary"
+        - "Recognize retained interest at fair value"
+        - "Recognize disposal gain/loss"
+      documentation: "../03-core-calculations/deconsolidation.md"
+
+    S072_PG:
+      code: "S072"
+      name: "Method Change P→G"
+      description: "JV to Subsidiary: Proportional to Global"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      flows:
+        - "VarConsoMeth_PG"
+      documentation: "../03-core-calculations/step-acquisition.md"
+
+    S072_GP:
+      code: "S072"
+      name: "Method Change G→P"
+      description: "Subsidiary to JV: Global to Proportional"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      flows:
+        - "VarConsoMeth_GP"
+      documentation: "../03-core-calculations/deconsolidation.md"
+
+    S072_PE:
+      code: "S072"
+      name: "Method Change P→E"
+      description: "JV to Associate: Proportional to Equity"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      flows:
+        - "VarConsoMeth_PE"
+      documentation: "../03-core-calculations/scope-changes.md"
+
+    S072_EP:
+      code: "S072"
+      name: "Method Change E→P"
+      description: "Associate to JV: Equity to Proportional"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      flows:
+        - "VarConsoMeth_EP"
+      documentation: "../03-core-calculations/scope-changes.md"
+
+    S072_GENERIC:
+      code: "S072"
+      name: "Method Change (Generic)"
+      description: "Generic method change handling"
+      procedure: "P_CONSO_ELIM_CHANGE_METHOD"
+      journal_type: "TX"
+      documentation: "../03-core-calculations/scope-changes.md"
+
+    # Generic results by method
+    S010_GENERIC_GLOBAL:
+      code: "S010"
+      name: "Generic Global Elimination"
+      description: "Default elimination for Global (G) entities"
+      procedure: "P_CONSO_ELIM_EQUITYCAPITAL"
+      journal_type: "TE"
+      documentation: "../02-consolidation-methods/global-integration.md"
+
+    S030_GENERIC_EQUITY:
+      code: "S030"
+      name: "Generic Equity Elimination"
+      description: "Default elimination for Equity (E) entities"
+      procedure: "P_CONSO_ELIM_EQUITYMETHOD"
+      journal_type: "TM"
+      documentation: "../02-consolidation-methods/equity-method.md"
+
+    S040_GENERIC_PROPORTIONAL:
+      code: "S040"
+      name: "Generic Proportional Elimination"
+      description: "Default elimination for Proportional (P) entities"
+      procedure: "P_CONSO_ELIM_PROPORTIONAL"
+      journal_type: "TP"
+      documentation: "../02-consolidation-methods/proportional-method.md"
+
+    # User eliminations
+    U_RECURRING:
+      code: "U001-U099"
+      name: "User Recurring Elimination"
+      description: "Standard recurring adjustments"
+      procedure: "P_CONSO_ELIM_USER"
+      config_table: "TS070S0 (header) + TS071S0 (detail)"
+      when_used: "Recurring period adjustments"
+      documentation: "../04-elimination-entries/user-eliminations.md"
+
+    U_PROJECT:
+      code: "U100-U199"
+      name: "User Project Elimination"
+      description: "Project-specific adjustments"
+      procedure: "P_CONSO_ELIM_USER"
+      when_used: "Project-bound adjustments"
+      documentation: "../04-elimination-entries/user-eliminations.md"
+
+    U_ONETIME:
+      code: "U200+"
+      name: "User One-Time Elimination"
+      description: "One-time special adjustments"
+      procedure: "P_CONSO_ELIM_USER"
+      when_used: "Non-recurring adjustments"
+      documentation: "../04-elimination-entries/user-eliminations.md"
+
+    # No elimination
+    NO_ELIMINATION:
+      code: null
+      name: "No Elimination Required"
+      description: "Transaction does not require consolidation elimination"
+      procedure: null
+      when_used: "Not consolidated (N) entities or non-IC transactions"
+
+  # Execution sequence
+  execution_sequence:
+    description: "Order in which eliminations are processed by P_CONSO_ELIM"
+    phases:
+      - phase: 1
+        name: "Bundle Integration"
+        codes: ["B001"]
+        note: "Prerequisite - local data to consolidated"
+      - phase: 2
+        name: "Opening Balances"
+        codes: ["S001"]
+        note: "Carry forward prior period"
+      - phase: 3
+        name: "Participation Eliminations"
+        codes: ["S050", "S089", "S090", "S093", "S094", "S087"]
+        note: "Investment vs equity"
+      - phase: 4
+        name: "Intercompany"
+        codes: ["S001", "S002", "S003", "S004", "S005"]
+        note: "IC balance/transaction"
+      - phase: 5
+        name: "Dividends"
+        codes: ["S020"]
+        note: "IC dividend elimination"
+      - phase: 6
+        name: "Equity Method"
+        codes: ["S080"]
+        note: "One-line consolidation"
+      - phase: 7
+        name: "Proportional"
+        codes: ["S060"]
+        note: "Proportional adjustments"
+      - phase: 8
+        name: "Method Changes"
+        codes: ["S072"]
+        note: "Scope change flows"
+      - phase: 9
+        name: "Minority Interest"
+        codes: ["S085"]
+        note: "NCI recognition"
+      - phase: 10
+        name: "User Eliminations"
+        codes: ["U###"]
+        note: "Manual adjustments last"
+
+  # References
+  references:
+    implementation:
+      - document: "../08-application-layer/elimination-execution-engine.md"
+      - document: "../04-elimination-entries/elimination-templates.md"
+    theory:
+      - document: "../04-elimination-entries/participation-eliminations.md"
+      - document: "../04-elimination-entries/dividend-eliminations.md"
+      - document: "../04-elimination-entries/intercompany-transactions.md"
+      - document: "../04-elimination-entries/user-eliminations.md"

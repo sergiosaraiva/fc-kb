@@ -1,0 +1,1407 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/f091f590fef54feaee038ff8bcac73e4a610973b76f63a73ae3e0a21577dfea8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>S</td><td>P(1)</td><td>S(2)</td><td>S(3)</td><td>S(4)</td><td>Consolidation</td></tr><tr><td>Income</td><td>1,000</td><td>600</td><td></td><td></td><td></td><td></td><td>1,600</td></tr><tr><td>Expenses</td><td>900</td><td>550</td><td></td><td></td><td></td><td></td><td>1,450</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td></td><td></td><td></td><td>150</td></tr><tr><td>3rd Parties result</td><td colspan=\"6\"></td><td>24.5</td></tr><tr><td>Group result</td><td colspan=\"6\"></td><td>125.5</td></tr></table>",
+        "bbox": [
+            130,
+            117,
+            856,
+            191
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "It looks more like a spreadsheet approach with adjustments booked in each company.",
+        "bbox": [
+            107,
+            207,
+            869,
+            241
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We start first with the statutory accounts of each company, one company per column and then",
+        "bbox": [
+            107,
+            257,
+            869,
+            288
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Column P (1) eliminates the investments on S by reclassifying them on a Link account",
+            "- Column S (2) reclassify  \\(49\\%\\)  of Minority interests from equity to the corresponding Minority interests account",
+            "- Column S (3) eliminates the  \\(51\\%\\)  group part of equity and reclassifies it on the consolidated reserves. At this point, equity of S is fully eliminated",
+            "- Column S (4) consists in booking in S on the Link account the opposite value of the investments on S. The counterpart is booked on Consolidated reserves."
+        ],
+        "bbox": [
+            145,
+            289,
+            867,
+            497
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Consolidated accounts are represented in the last column on the right, which consists in a simple horizontal addition of all amounts.",
+        "bbox": [
+            107,
+            513,
+            869,
+            546
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Of course, consolidated value of the Link account is zero by construction and we can see that the Consolidated reserves are obtained by adding 204 which is the group part of equity and (120) which is the value of the investment on S in P accounts.",
+        "bbox": [
+            107,
+            562,
+            869,
+            626
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "4.2 Proportional integration method",
+        "text_level": 2,
+        "bbox": [
+            107,
+            660,
+            689,
+            683
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "According to the method of proportional integration, the Assets, Liabilities, Expenses and Income of a joint subsidiary are included in the consolidated financial statements in proportion to the percentage held by the parent company.",
+        "bbox": [
+            107,
+            704,
+            869,
+            771
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Example",
+        "text_level": 3,
+        "bbox": [
+            109,
+            784,
+            206,
+            800
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/a4afd02ebd0254c39c59e25f3471a2ab0924e77e77e4cef733705ddcc586ad13.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            337,
+            809,
+            668,
+            847
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/8c33a5c8662c503e75304b0e95378f9568229d0596af773e840f95d779c4edbc.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td>Investments S</td><td>120</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities</td><td>250</td></tr><tr><td>Total</td><td>1,150</td><td>Total</td><td>1,150</td></tr></table>",
+        "bbox": [
+            104,
+            129,
+            513,
+            235
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/014927850427f0045ff93e6d69b0e2fe59833d4e78b86fed7ef091c956623523.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">S</td></tr><tr><td></td><td></td><td>Capital 200</td></tr><tr><td></td><td></td><td>Reserves 150</td></tr><tr><td></td><td></td><td>Result 50</td></tr><tr><td>Assets</td><td>700</td><td>Liabilities 300</td></tr><tr><td>Total</td><td>700</td><td>Total 700</td></tr></table>",
+        "bbox": [
+            528,
+            129,
+            897,
+            235
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/5ffac0613c89cd551c57dbbe4a445340089341ec48635d8feb4ac43f5afaf8d3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Expenses</td><td>900</td><td>Income</td><td>1,000</td></tr><tr><td>Result</td><td>100</td><td></td><td></td></tr></table>",
+        "bbox": [
+            102,
+            243,
+            507,
+            290
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/8d03163a18b97df56dcf19c86852501ec112c1beb363f61696cf6cb825e9bd26.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Expenses</td><td>550</td><td>Income</td><td>600</td></tr><tr><td>Result</td><td>50</td><td></td><td></td></tr></table>",
+        "bbox": [
+            528,
+            243,
+            895,
+            290
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/69ae3b0390ffa96c186019f809c179b9e55bf548dbedc223845f254a221cf449.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P + S</td></tr><tr><td></td><td></td><td>Capital 500</td></tr><tr><td></td><td></td><td>Reserves 300</td></tr><tr><td></td><td></td><td>Result 100</td></tr><tr><td></td><td></td><td>Conso. reserves (S) 80</td></tr><tr><td></td><td></td><td>Minority int. 0</td></tr><tr><td>Assets</td><td>1,380</td><td>Liabilities 400</td></tr><tr><td>Total</td><td>1,380</td><td>Total 1,380</td></tr></table>",
+        "bbox": [
+            276,
+            318,
+            749,
+            435
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/cf098a08df4c21a09e00039fc5243e128c2c103facea8c63191376e4a98b0ea4.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Expenses</td><td>1,175</td><td>Income</td><td>1,300</td></tr><tr><td>Result</td><td>125</td><td></td><td></td></tr><tr><td>Minor. int. res.</td><td>0</td><td></td><td></td></tr><tr><td>Group result</td><td>125</td><td></td><td></td></tr></table>",
+        "bbox": [
+            276,
+            444,
+            749,
+            519
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Explanation",
+        "text_level": 3,
+        "bbox": [
+            104,
+            540,
+            239,
+            556
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "At the balance sheet, the major difference compared to the global integration comes because the Assets and Liabilities of S are integrated in proportion to the financial percentage held. Therefore:",
+        "bbox": [
+            102,
+            572,
+            877,
+            624
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Capital, the Reserves and the Result of P are integrated at  \\(100\\%\\)",
+            "- The Capital, the Reserves and the Result of S are integrated at  \\(50\\%\\)  to calculate the Consolidated reserves  \\(= 80 = 50\\%\\)  \\* [200+150+50] - 120 (investment of S in P)",
+            "The Assets of S are integrated at  \\(50\\%\\)  and the Assets of P at  \\(100\\% = [50\\% * 700] + [100\\% * 10301] = 1380\\)",
+            "The Liabilities of S are integrated at  \\(50\\%\\)  and the Liabilities of P at  \\(100\\% = [50\\%^{*}300] + [100\\%^{*}250] = 400\\)"
+        ],
+        "bbox": [
+            141,
+            637,
+            875,
+            815
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For the Profit and Loss account, the accounts of S are integrated in proportion to the financial percentage:",
+        "bbox": [
+            102,
+            830,
+            875,
+            865
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            299,
+            69,
+            856,
+            85
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Expenses of S are integrated at  \\(50\\%\\)  and P at  \\(100\\% = [50\\% * 550] + [100\\% / 0] \\times 900] = 1175\\)",
+            "The Income of S are integrated at  \\(50\\%\\)  and P at  \\(100\\% = [50\\% \\times 600] + [100\\% \\times 1000] = 1300\\)",
+            "The Result of S is integrated at  \\(50\\%\\)  and P at  \\(100\\% = [50\\%^{*}50] + [100\\% / 100] = 125\\)"
+        ],
+        "bbox": [
+            147,
+            117,
+            884,
+            248
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Let's consider now the accounting approach for this proportional consolidation method.",
+        "bbox": [
+            109,
+            263,
+            882,
+            296
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/d7ebd8560a0db322944331ae6c12593bde964e566401357945ee031daf7044aa.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Investments S</td><td>120</td><td rowspan=\"2\">700</td><td rowspan=\"2\">(120)</td><td rowspan=\"2\">(350)</td><td></td><td></td><td>0</td></tr><tr><td>Assets</td><td>1,030</td><td></td><td></td><td>1,380</td></tr><tr><td>Link account</td><td></td><td></td><td>120</td><td></td><td></td><td>(120)</td><td>0</td></tr><tr><td>Total Assets</td><td>1,150</td><td>700</td><td>0</td><td>(350)</td><td>0</td><td>(120)</td><td>1,380</td></tr></table>",
+        "bbox": [
+            130,
+            306,
+            873,
+            369
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/3f92f99318fa6dfcd6464912c7c7b599cc7693924eada5503962e224e75c9962.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Capital</td><td>500</td><td>200</td><td></td><td>(100)</td><td>(100)</td><td></td><td>500</td></tr><tr><td>Resewes</td><td>300</td><td>150</td><td></td><td>(75)</td><td>(75)</td><td></td><td>300</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td>(25)</td><td>(25)</td><td></td><td>100</td></tr><tr><td>Conso, resewes(S)</td><td></td><td></td><td></td><td></td><td>200</td><td>(120)</td><td>80</td></tr><tr><td>Minority int.</td><td>P</td><td>S</td><td>P (1)</td><td>S(2)</td><td>S(3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Income</td><td>1,000</td><td>600</td><td></td><td>(300)</td><td></td><td></td><td>1,300</td></tr><tr><td>Expenses</td><td>900</td><td>550</td><td></td><td>(275)</td><td></td><td></td><td>1,175</td></tr><tr><td>Result</td><td>100</td><td>50</td><td>0</td><td>(25)</td><td>0</td><td>0</td><td>125</td></tr><tr><td>3rd Parties result Group result</td><td colspan=\"6\"></td><td>0 125</td></tr></table>",
+        "bbox": [
+            130,
+            399,
+            873,
+            536
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Again, we start with the statutory accounts of each companies and then",
+        "bbox": [
+            109,
+            571,
+            817,
+            589
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column P (1) eliminates the investments in P accounts, just as we did for the global integration method",
+        "bbox": [
+            184,
+            602,
+            880,
+            637
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Column S (2) eliminates the  \\(50\\%\\)  of Assets, Liabilities, Income and Expenses which cannot be integrated in the consolidated accounts",
+            "- Column S (3) eliminates the  \\(50\\%\\)  of equity and reclassify the total amount on the Consolidated reserves"
+        ],
+        "bbox": [
+            147,
+            650,
+            882,
+            733
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Column S (4) processes the investment via the Link account in the same way as before.",
+        "bbox": [
+            184,
+            748,
+            880,
+            782
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The consolidated figures are just the one obtained by horizontal addition.",
+        "bbox": [
+            109,
+            796,
+            824,
+            814
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            64,
+            372,
+            79
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "4.3 The equity method",
+        "text_level": 2,
+        "bbox": [
+            104,
+            117,
+            483,
+            142
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "An investment consolidated with the equity method is recorded in the consolidated balance sheet for the part held in the share capital of the owned company, including the result of the year.",
+        "bbox": [
+            102,
+            163,
+            882,
+            213
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "There are therefore, not as in the other two methods, additions of the Assets and Liabilities with the parent company. This makes sense given the fact that the Assets and Liabilities of the company consolidated via equity method are, by definition, not controlled.",
+        "bbox": [
+            104,
+            228,
+            884,
+            293
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/5ed081abba871ef31445b2798c79b3ce11fe50caf6f5b67e1257b9694f495a1b.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            340,
+            341,
+            678,
+            381
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/b49d9a805558e2dbaf894aa786e15a77548850125071062bd174b5bd76028f2f.jpg",
+        "image_caption": [
+            "Example"
+        ],
+        "image_footnote": [],
+        "bbox": [
+            87,
+            413,
+            516,
+            513
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/2ab36a5feb7507a7fbeb76679cbd7e0f18ebfe1d3e11db7217d0539aff8d4054.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            535,
+            413,
+            922,
+            513
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/5d2dc7bb434baddcba35d3d637e4e74135902de3cbedf1251cf501240e38c498.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Expenses</td><td>900</td><td>Income</td><td>1,000</td></tr><tr><td>Result</td><td>100</td><td></td><td></td></tr></table>",
+        "bbox": [
+            89,
+            521,
+            516,
+            567
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/1581d012a11c53dfac6286837bbd26c2ecf8d717924c70cc05d9689faf3364d6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Expenses</td><td>550</td><td>Income</td><td>600</td></tr><tr><td>Result</td><td>50</td><td></td><td></td></tr></table>",
+        "bbox": [
+            535,
+            519,
+            922,
+            565
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/d6225ed1ad1006da24edce58e613a7373e54f400c45dae36b23aabddc816cee6.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">P+S</td></tr><tr><td rowspan=\"5\">Equity value of S</td><td rowspan=\"5\">196</td><td>Capital    500</td></tr><tr><td>Reserves   300</td></tr><tr><td>Result     100</td></tr><tr><td>Conso. reserves (S)  76</td></tr><tr><td>Minority int.  0</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities   250</td></tr><tr><td>Total</td><td>1,226</td><td>Total      1,226</td></tr><tr><td></td><td></td><td></td></tr><tr><td>Expenses</td><td>900</td><td>Income      1,000</td></tr><tr><td>Result</td><td>124.5</td><td>Profit from Equity cies  24.5</td></tr><tr><td>Minor. int. res.</td><td>0</td><td></td></tr><tr><td>Group res.</td><td>124.5</td><td></td></tr></table>",
+        "bbox": [
+            265,
+            592,
+            788,
+            782
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Explanation",
+        "text_level": 3,
+        "bbox": [
+            109,
+            802,
+            244,
+            818
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "In the equity method, the investment that company P owns in company S is \"upgraded\" to the part owned in the equity of S.",
+        "bbox": [
+            107,
+            835,
+            884,
+            868
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            301,
+            67,
+            860,
+            85
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "In the consolidated balance sheet:",
+        "bbox": [
+            105,
+            118,
+            444,
+            134
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Capital, the Reserves and the Result are those of company P",
+            "The Consolidated reserves are equal to  \\(76 = 49\\%\\) \\((200 + 150 + 50)\\)  - 120",
+            "The Assets and Liabilities are those of company P",
+            "Investments are upgraded and reclassified under the heading \"Equity value of Equity method companies\" = 196 = 49% * (200 + 150 + 50)"
+        ],
+        "bbox": [
+            144,
+            151,
+            870,
+            296
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In the profit and loss account:",
+        "bbox": [
+            105,
+            310,
+            404,
+            328
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The Income and the Expenses are those of company P",
+            "Is incorporated under the heading \"Profit from Equity companies\" the result of S, attributable to  \\(\\mathrm{P} = 24.5 = 49\\% * 50\\)  (result of S)",
+            "In return, this has an impact on the result of the Group  \\(124.5 = 100\\)  (result of  \\(\\mathsf{P}\\)  ) + 24.5"
+        ],
+        "bbox": [
+            144,
+            343,
+            870,
+            454
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In a more general situation where there could exist equity companies making losses and others making profits, the final consolidated P&L will present separately \"Profits from Equity companies\" and \"Losses from Equity companies\". This is a mandatory presentation required by all consolidations rules.",
+        "bbox": [
+            105,
+            470,
+            870,
+            552
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "For those who have to produce a consolidated cash flow statement, notice that the result of S which is incorporated in the accounts of P is not a cash item.",
+        "bbox": [
+            105,
+            568,
+            870,
+            615
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Let's now present the accounting approach.",
+        "bbox": [
+            105,
+            633,
+            529,
+            649
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/280fe9f15a1865b85d691c4128bd4c3decdf98e40e4f1b0e6a94630872eb28c5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Investments S</td><td>120</td><td></td><td>(120)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Equity value of S</td><td></td><td></td><td></td><td>196</td><td></td><td></td><td>196</td></tr><tr><td>Assets</td><td>1,030</td><td>700</td><td></td><td>(700)</td><td></td><td></td><td>1,030</td></tr><tr><td>Link account</td><td></td><td></td><td>120</td><td></td><td></td><td>(120)</td><td>0</td></tr><tr><td>Total Assets</td><td>1,150</td><td>700</td><td>0</td><td>(504)</td><td>0</td><td>(120)</td><td>1,226</td></tr></table>",
+        "bbox": [
+            108,
+            671,
+            853,
+            746
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/815cbcdb846d60045e5af9a8ecf581105e179c03ca745c6cf6faed4a53c33d53.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>S (3)</td><td>S (4)</td><td>Consolidation</td></tr><tr><td>Capital</td><td>500</td><td>200</td><td></td><td>(102)</td><td>(98)</td><td></td><td>500</td></tr><tr><td>Reserves</td><td>300</td><td>150</td><td></td><td>(76.5)</td><td>(73.5)</td><td></td><td>300</td></tr><tr><td>Result</td><td>100</td><td>50</td><td></td><td>(25.5)</td><td>(24.5)</td><td></td><td>100</td></tr><tr><td>Conso. reserves (S)</td><td></td><td></td><td></td><td></td><td>196</td><td>(120)</td><td>76</td></tr><tr><td>Minority int.</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Liabilities</td><td>250</td><td>300</td><td></td><td>(300)</td><td></td><td></td><td>250</td></tr><tr><td>Total Liabilities</td><td>1,150</td><td>700</td><td>0</td><td>(504)</td><td>0</td><td>(120)</td><td>1,226</td></tr><tr><td></td><td>P</td><td>S</td><td>P (1)</td><td>S (2)</td><td>5 (3)</td><td>S (4)</td><td>Consolidaton</td></tr><tr><td>Income</td><td>1,000</td><td>600</td><td></td><td>(600)</td><td></td><td></td><td>1,000</td></tr><tr><td>Profit from Equity cies</td><td></td><td></td><td></td><td>25</td><td></td><td></td><td>24.5</td></tr><tr><td>Expenses</td><td>900</td><td>550</td><td></td><td>(550)</td><td></td><td></td><td>900</td></tr><tr><td>Result</td><td>100</td><td>50</td><td>0</td><td>(25.5)</td><td>0</td><td>0</td><td>124.5</td></tr><tr><td>3rd Parties result</td><td colspan=\"6\"></td><td>0</td></tr><tr><td>Group result</td><td colspan=\"6\"></td><td>124.5</td></tr></table>",
+        "bbox": [
+            108,
+            763,
+            853,
+            863
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            108,
+            64,
+            362,
+            80
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [],
+        "table_footnote": [],
+        "bbox": [
+            107,
+            123,
+            862,
+            210
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Column P (1) eliminates the investment on S via the Link account",
+            "- Column S (2) eliminates all accounts that cannot be integrated in the consolidated accounts, that means all Assets, Liabilities excepted the Equity for which the group must keep its  \\(49\\%\\) , Income and Expenses. Of course, as each column represents an adjustment, it must be in balance and for the balance sheet, we book the \"Equity value of S\" account which is  \\(49\\%\\)  * Equity of S.",
+            "- Column S (3) eliminates the group part in equity",
+            "- Column S (4) processes the investment via the Link account in the same way as before."
+        ],
+        "bbox": [
+            143,
+            241,
+            882,
+            453
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.4 Consolidated reserves of a company",
+        "text_level": 2,
+        "bbox": [
+            104,
+            487,
+            760,
+            509
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves are the difference between the indirect percentage held in the equity of a subsidiary and the value of the investment that the parent company owns on this subsidiary.",
+        "bbox": [
+            104,
+            533,
+            882,
+            583
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves = financial indirect  \\(\\%\\)  equity of S - Investment in P",
+        "bbox": [
+            119,
+            597,
+            871,
+            615
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Example",
+        "text_level": 3,
+        "bbox": [
+            107,
+            631,
+            209,
+            646
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In this example, parent company creates a company C with a Partner, contributing to  \\(80\\%\\)  and  \\(20\\%\\)  to the capital respectively.",
+        "bbox": [
+            104,
+            662,
+            877,
+            696
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "image",
+        "img_path": "images/eafbe8954a2273c9e9ad8ffd27ddb87dcfb950f19e8b780b86ea23a1d25d3812.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            381,
+            711,
+            635,
+            824
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The following accounts show that at the end of Year 1, company C makes a profit of 50 and a gross dividend of 20 is paid to the shareholders. At the end",
+        "bbox": [
+            104,
+            837,
+            882,
+            871
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            301,
+            69,
+            858,
+            85
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "page_number",
+        "text": "59",
+        "bbox": [
+            479,
+            923,
+            511,
+            938
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "of year 2, company C makes a profit of 40. Here are the accounts of parent and C companies.",
+        "bbox": [
+            105,
+            118,
+            875,
+            153
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/1d2b9cfb2ec3733506e748f4cb670dd0408a48ea4ba37663a1f3cbac2b380feb.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">Parent</td></tr><tr><td>Investments</td><td>160</td><td>Capital</td><td>500</td></tr><tr><td></td><td></td><td>Reserves</td><td>300</td></tr><tr><td></td><td></td><td>Result</td><td>100</td></tr><tr><td>Assets</td><td>1,030</td><td>Liabilities</td><td>250</td></tr><tr><td>Total</td><td>1,190</td><td>Total</td><td>1,150</td></tr></table>",
+        "bbox": [
+            108,
+            168,
+            489,
+            255
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/7ed9bcaa32cdae866e6ebf25e2c379f30341cd7448e3d95aadf83cb4fce75501.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">C at creation date (Year 1)</td></tr><tr><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td>Reserves</td><td>0</td></tr><tr><td></td><td>Result</td><td>0</td></tr><tr><td>Assets</td><td>Liabilities</td><td>0</td></tr><tr><td>Total</td><td>200</td><td>200</td></tr></table>",
+        "bbox": [
+            493,
+            168,
+            870,
+            255
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We will calculate successively the consolidated reserves of company C at creation date, at the end of year 1 and at the end of year 2 by applying three times the same formula.",
+        "bbox": [
+            105,
+            269,
+            875,
+            319
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "At creation date, consolidated reserves are  \\(0 = 80\\%\\)  * 200 - 160.",
+        "bbox": [
+            105,
+            332,
+            750,
+            351
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 1, consolidated reserves  \\(= 40 = 80\\%\\)  [200 + 50] - 160, which is just the group profit of Year 1  \\([80\\% * 50]\\) .",
+        "bbox": [
+            105,
+            363,
+            480,
+            431
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/e89f706ae0994d09237aea615ff401d8170e5939cdeb41b7d33ddf27cf1fcc9d.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">C at the end of ear 1</td></tr><tr><td colspan=\"3\">Capital</td></tr><tr><td colspan=\"3\">Reserves</td></tr><tr><td colspan=\"3\">Result</td></tr><tr><td>Assets</td><td>550</td><td>Liabilities</td></tr><tr><td>Total</td><td>550</td><td>Total</td></tr></table>",
+        "bbox": [
+            491,
+            357,
+            870,
+            444
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "At the end of Year 2, consolidated reserves  \\(= 56 = 80\\%\\)  [200 + 30 + 40] - 160.",
+        "bbox": [
+            105,
+            461,
+            480,
+            513
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/2cbb331f64a5a630c771b4bd1c98adf004e6fedc46a0d646ae8cff0d12c1d7d1.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">C at the end of year 2</td></tr><tr><td></td><td></td><td>Capital</td><td>200</td></tr><tr><td></td><td></td><td>Reserves</td><td>30</td></tr><tr><td></td><td></td><td>Result</td><td>40</td></tr><tr><td>Assets</td><td>670</td><td>Liabilities</td><td>400</td></tr><tr><td>Total</td><td>670</td><td>Total</td><td>670</td></tr></table>",
+        "bbox": [
+            491,
+            461,
+            870,
+            546
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The meaning of the 56 is the addition of the Year 1 and Year 2 profits for 40 and 32, minus the group dividends  \\(= 16 = 80\\%\\)  * 20.",
+        "bbox": [
+            105,
+            558,
+            875,
+            592
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "So we can state that the consolidated reserves are just the accumulation of the group part in the result made each year by company C, less the dividends that are possibly paid during the same period.",
+        "bbox": [
+            105,
+            605,
+            872,
+            656
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "That is also the reason why, at creation date, the consolidated reserves are zero, because no profit is made at that date.",
+        "bbox": [
+            105,
+            670,
+            872,
+            705
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "After a certain number of years, we can also confirm that if the consolidated reserves are positive, the net contribution of the company in the group account is certainly a profit.",
+        "bbox": [
+            105,
+            719,
+            872,
+            769
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "That specific account that appears in the consolidated accounts must be considered indeed as reserves just like other reserves accounts, because it is accumulation of non-distributed results of each company.",
+        "bbox": [
+            105,
+            785,
+            872,
+            834
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            110,
+            65,
+            366,
+            80
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "4.5 Comparison between the different consolidation methods",
+        "text_level": 2,
+        "bbox": [
+            107,
+            120,
+            721,
+            165
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "In this chapter, we have considered two companies P and S, P owning S with  \\(51\\%\\) ,  \\(50\\%\\)  and  \\(49\\%\\)  successively. For each of these percentages, we have then applied the corresponding consolidation method to statutory accounts which have been maintained identical.",
+        "bbox": [
+            107,
+            185,
+            873,
+            251
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "What is the effect of these consolidation methods on the same figures? The answer can be found in the following presentation.",
+        "bbox": [
+            107,
+            266,
+            875,
+            301
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/5aac7938289116128cc9c13e7c635709f9ceb27739766684f029596cd0ac46a9.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Investments S</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Equity value of S</td><td></td><td></td><td>196</td></tr><tr><td>Assets</td><td>1,730</td><td>1,380</td><td>1,030</td></tr><tr><td>Link account</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Total Assets</td><td>1,730</td><td>1,380</td><td>1,226</td></tr></table>",
+        "bbox": [
+            147,
+            326,
+            810,
+            440
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/5db93c16042e2c6468847efdf1fb4f8560f94a7451eed34f322e596405fbeffb.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Capital</td><td>500</td><td>500</td><td>500</td></tr><tr><td>Reserves</td><td>300</td><td>300</td><td>300</td></tr><tr><td>Result</td><td>100</td><td>100</td><td>100</td></tr><tr><td>Conso. reserves (S)</td><td>84</td><td>80</td><td>76</td></tr><tr><td>Minority int.</td><td>196</td><td>0</td><td>0</td></tr><tr><td>Liabilities</td><td>550</td><td>400</td><td>250</td></tr><tr><td>Total Liabilities</td><td>1,730</td><td>1,380</td><td>1,226</td></tr></table>",
+        "bbox": [
+            149,
+            471,
+            810,
+            617
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/0460857214ca6195dc3582e7aacd0a9950a6fd0ac51315152e7032ab65806d40.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Global integration</td><td>Proportional integration</td><td>Equity method</td></tr><tr><td>Income</td><td>1,600</td><td>1,300</td><td>1,000</td></tr><tr><td>Profit from Equity cies</td><td></td><td></td><td>24.5</td></tr><tr><td>Expenses</td><td>1,450</td><td>1,175</td><td>900</td></tr><tr><td>Result</td><td>150</td><td>125</td><td>124.5</td></tr><tr><td>3rd Parties result</td><td>24.5</td><td>0.0</td><td>0.0</td></tr><tr><td>Group result</td><td>125.5</td><td>125.0</td><td>124.5</td></tr></table>",
+        "bbox": [
+            149,
+            642,
+            810,
+            773
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We can see that the total of the consolidated balance sheet decreases the same time the group is decreasing its level of control on company C.",
+        "bbox": [
+            107,
+            796,
+            871,
+            831
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The group equity which is equal to the addition of Capital, Reserves, Result and Consolidated reserves would have been the same if the percentage itself",
+        "bbox": [
+            107,
+            844,
+            875,
+            879
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            303,
+            71,
+            852,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "would have remained unchanged. That means the Group equity does not depend on the consolidation method.",
+        "bbox": [
+            113,
+            120,
+            873,
+            152
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Of course, this becomes not true if we take into account the Minority interests which can be considered as equity (not debts!).",
+        "bbox": [
+            113,
+            166,
+            873,
+            200
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In particular, the consolidated reserves of S are showing a difference of 4 which is due to the effect of the percentage variation of  \\(1\\%\\)  on its equity.",
+        "bbox": [
+            113,
+            215,
+            873,
+            248
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Finally, the contribution of S in the group profit is also decreasing because of the  \\(1\\%\\) . That means the profit doesn't depend on the consolidation method neither.",
+        "bbox": [
+            113,
+            263,
+            873,
+            311
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "4.6 The value of a company from a consolidation point of view",
+        "text_level": 2,
+        "bbox": [
+            113,
+            345,
+            666,
+            392
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The objective of this section is certainly not to give a magic formula for the value of a company. There are so many different values depending on so many various elements that we would be completely out of the subject of this book. In fact, we just want to focus on two values amongst so many others.",
+        "bbox": [
+            113,
+            412,
+            873,
+            477
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "A first and basic value of an investment in a company A corresponds to the amount booked in parent company P accounts. That amount generally represents the historical acquisition price of the shares, which usually remains unchanged through the time. When P decides to sell these shares, the gain on disposal is just the difference between the selling price and the book value.",
+        "bbox": [
+            113,
+            491,
+            873,
+            573
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "From the consolidation point of view, the value of company A is the part of the equity owned by P in A. We speak about the 'equity value' which will apply to any company, whenever its consolidation method is. For instance, the equity value of a  \\(80\\%\\)  owned company, consolidated by the global consolidation method, is just  \\(80\\%\\)  of its equity.",
+        "bbox": [
+            113,
+            588,
+            873,
+            670
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "That means also, supposing company A is making profits each year without paying dividends, that the equity is increasing and so does the  \\(80\\%\\)  equity value.",
+        "bbox": [
+            113,
+            683,
+            873,
+            733
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let's summarize what we just said in the following formulas",
+        "bbox": [
+            113,
+            748,
+            691,
+            765
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Equity value of A = Financial % * Equity of A",
+        "bbox": [
+            274,
+            780,
+            710,
+            797
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "which could be rewritten as",
+        "bbox": [
+            113,
+            812,
+            379,
+            828
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Equity value of A = Investment in A + Financial % * Equity of A - Investment in A",
+        "bbox": [
+            172,
+            841,
+            812,
+            877
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            111,
+            65,
+            364,
+            81
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "and if we put the following brackets",
+        "bbox": [
+            109,
+            119,
+            460,
+            137
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Equity value of A = Investment in A + [Financial % * Equity of A - Investment in A]",
+        "bbox": [
+            149,
+            147,
+            829,
+            185
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "we can write",
+        "bbox": [
+            109,
+            185,
+            239,
+            201
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Equity value of A = Investment in A + Consolidated reserves of A",
+        "bbox": [
+            170,
+            216,
+            810,
+            233
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This formula shows very clearly that the difference between the statutory value of A in P accounts and the equity value is equal to the consolidated reserves of A. This is not surprising because in consolidation, we show a company A whose value is increasing year after year depending on its profits.",
+        "bbox": [
+            109,
+            250,
+            871,
+            315
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In statutory accounts of  \\(\\mathsf{P}\\) , the value is frozen.",
+        "bbox": [
+            109,
+            328,
+            558,
+            346
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The important consequence of these considerations is the fact that, for instance, if the selling price of a company is 100 and the statutory book value in P is 80, the gain on disposal is 20. If we suppose the equity value of A is 120, there is a loss on disposal of 20 in consolidation. And this is normal, because between the acquisition of A and its disposal, we have shown in consolidation a company becoming more and more \"rich\" or valuable.",
+        "bbox": [
+            109,
+            361,
+            871,
+            457
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "These considerations explained here will be reminded when we will consider the adjustments needed to process a disposal of a company out of the consolidation scope.",
+        "bbox": [
+            109,
+            473,
+            871,
+            523
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "But, at this moment, don't get confused when we speak about the equity value of a company, even if this company is not consolidated by the equity method. This is just a wording convention.",
+        "bbox": [
+            109,
+            536,
+            871,
+            586
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "THE CONSOLIDATION TECHNIQUES",
+        "text_level": 1,
+        "bbox": [
+            231,
+            619,
+            827,
+            643
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The structure of a group is often complicated by the fact that not only the parent company owns subsidiaries but that some subsidiaries can own shares in other subsidiaries. A question arises then on how to consolidate such groups. There are basically two techniques to consolidate such groups:",
+        "bbox": [
+            109,
+            666,
+            871,
+            732
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "The consolidation by stage.",
+            "The direct consolidation."
+        ],
+        "bbox": [
+            155,
+            745,
+            457,
+            793
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES",
+        "bbox": [
+            304,
+            71,
+            850,
+            87
+        ],
+        "page_idx": 9
+    }
+]

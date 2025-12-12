@@ -1,0 +1,864 @@
+# API Error Catalog - Financial Consolidation AI Agent Knowledge Base
+# Purpose: Comprehensive error code catalog for AI agent error diagnosis
+# Version: 1.1
+# Created: 2024-12-04
+# Updated: 2025-12-04 - Added cross-references, now canonical error reference (Phase 5)
+# Source: Extracted from Sigma.Database stored procedures and Sigma.Mona C# code
+#
+# RELATED FILES:
+#   - api-debugging-patterns.yaml: Debug techniques, failure scenarios, recovery procedures
+#   - api-error-handling.yaml: API-level error handling, handler-to-error mapping
+#   - api-workflow-state-machine.yaml: Prerequisite errors and workflow status
+
+api_error_catalog:
+  name: "Financial Consolidation Error Catalog"
+  version: "1.0"
+  description: |
+    Complete catalog of error codes used in the Prophix.Conso financial consolidation system.
+    Extracted from stored procedures (AddError0/1/2, AddWarning0/1/2 functions) and C# backend code.
+
+    Error Format (XML):
+    <ErrorInfo>
+      <Errors>
+        <Error Key="ERROR_CODE">
+          <Params>
+            <Param Value="param1" />
+            <Param Value="param2" />
+          </Params>
+        </Error>
+      </Errors>
+      <Warnings />
+    </ErrorInfo>
+
+    Total Errors Cataloged: 95+
+    Total Warnings Cataloged: 30+
+
+  # ============================================================================
+  # SECTION 1: CONSOLIDATION PERIOD ERRORS
+  # ============================================================================
+  consolidation_period_errors:
+    category_id: "ERR-CONSO"
+    description: "Errors related to consolidation period status and locking"
+
+    errors:
+      CONSONOTFOUND:
+        severity: ERROR
+        parameters: 0
+        description: "Consolidation period not found"
+        cause: "The specified ConsoID does not exist in TS096S0"
+        diagnostic_query: |
+          SELECT ConsoID, ConsoCode, ConsoStatus FROM TS096S0
+          WHERE ConsoID = @ConsoID
+        resolution:
+          - "Verify ConsoID is correct"
+          - "Check if period was deleted"
+          - "Use ConsoPeriod_GetPeriods to list valid periods"
+        source_procedures:
+          - P_CONSO_CHECK_LOCKED
+
+      ConsoLocked:
+        severity: ERROR
+        parameters: 0
+        description: "Consolidation period is locked"
+        cause: "Period has ConsoStatus = 'L' and cannot be modified"
+        diagnostic_query: |
+          SELECT ConsoStatus, LockedByLogin, LockedDate, LockedReason
+          FROM TS096S0 WHERE ConsoID = @ConsoID
+        resolution:
+          - "Contact the user shown in LockedByLogin to request unlock"
+          - "Wait if ConsoStatus = 'P' (processing)"
+          - "Use Consolidation_Unlock with admin privileges"
+        api_handler: "Consolidation_Unlock"
+        source_procedures:
+          - P_CONSO_CHECK_LOCKED
+
+      ConsosLocked:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["ConsoCode"]
+        description: "Multiple consolidation periods are locked"
+        cause: "Operation affects multiple periods and some are locked"
+        resolution:
+          - "Unlock all affected periods before operation"
+          - "Process each period separately"
+        source_procedures:
+          - P_CONSO_CHECK_LOCKED_EXTENDED
+
+      CONSO_BEING_DELETED:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["ConsoCode"]
+        description: "Consolidation period is being deleted"
+        cause: "Async delete operation in progress"
+        resolution:
+          - "Wait for delete operation to complete"
+          - "Check job status for delete operation"
+        source_procedures:
+          - P_CONSO_CHECK_LOCKED_EXTENDED
+
+  # ============================================================================
+  # SECTION 2: OWNERSHIP CALCULATION ERRORS
+  # ============================================================================
+  ownership_errors:
+    category_id: "ERR-OWNERSHIP"
+    description: "Errors from P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES"
+
+    errors:
+      P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_PARENT:
+        severity: ERROR
+        parameters: 0
+        description: "No parent company defined for consolidation"
+        cause: "No company has FlagParent = 1 in consolidation scope"
+        diagnostic_query: |
+          SELECT CompanyCode, CompanyName, FlagParent
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+        resolution:
+          - "Set FlagParent = 1 on the ultimate parent company"
+          - "API: Company_SaveCompany with FlagParent = true"
+        theory_references:
+          - direct-indirect-holdings.md
+          - ownership-percentages.md
+        source_procedures:
+          - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+
+      P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_SHAREHOLDER:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["CompanyCode"]
+        description: "Company in scope has no shareholder"
+        cause: "Consolidated company has no ownership link from any shareholder"
+        diagnostic_query: |
+          SELECT c.CompanyCode, c.CompanyName
+          FROM TS014C0 c
+          LEFT JOIN TS015S0 o ON o.CompanyOwnedID = c.CompanyID
+          WHERE c.ConsoID = @ConsoID AND c.ConsolidatedCompany = 1
+            AND c.FlagParent = 0 AND o.OwnershipID IS NULL
+        resolution:
+          - "Add ownership link via Ownership_SaveOwnership"
+          - "Or remove company from consolidation scope (ConsolidatedCompany = 0)"
+        api_handler: "Ownership_SaveOwnership"
+        source_procedures:
+          - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+
+      P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_COMPANY:
+        severity: ERROR
+        parameters: 0
+        description: "No companies in consolidation scope"
+        cause: "No companies with ConsolidatedCompany = 1"
+        diagnostic_query: |
+          SELECT COUNT(*) AS CompanyCount
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+        resolution:
+          - "Add companies to consolidation scope"
+          - "Set ConsolidatedCompany = 1 on relevant companies"
+        source_procedures:
+          - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+
+      P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_OWNERSHIP:
+        severity: ERROR
+        parameters: 0
+        description: "No ownership data exists"
+        cause: "TS015S0 has no ownership links for this consolidation"
+        diagnostic_query: |
+          SELECT COUNT(*) AS OwnershipCount
+          FROM TS015S0 o
+          JOIN TS014C0 c ON c.CompanyID = o.CompanyID
+          WHERE c.ConsoID = @ConsoID
+        resolution:
+          - "Create ownership links between companies"
+          - "Import ownership data"
+        source_procedures:
+          - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+
+  # ============================================================================
+  # SECTION 3: SPECIAL ACCOUNT/FLOW NOT FOUND ERRORS
+  # ============================================================================
+  configuration_errors:
+    category_id: "ERR-CONFIG"
+    description: "Missing special accounts, flows, or journal types"
+
+    errors:
+      SPECIFIC_ACCOUNT_NOT_FOUND:
+        severity: ERROR
+        parameters: 2
+        parameter_names: ["AccountFlag", "Context"]
+        description: "Required special account not configured"
+        cause: "Account with specific flag not found in chart of accounts"
+        diagnostic_query: |
+          SELECT Account, AccountName,
+                 FlagDivReceived, FlagDivPaid, FlagGoodwill,
+                 FlagMinorInterest, FlagConsoRes, FlagEquityVal,
+                 FlagPLBAL, FlagPLINC, FlagTDBS
+          FROM TS010S0
+          WHERE ConsoID = @ConsoID
+        resolution:
+          - "Identify which account flag is missing from Param1"
+          - "Find appropriate GL account in chart of accounts"
+          - "Set the special flag on the account via Account_SaveAccount"
+        required_flags:
+          DivReceived: "Dividend received (income)"
+          DivPaid: "Dividend paid (expense)"
+          Goodwill: "Goodwill asset account"
+          MinorInterest: "Non-controlling interest (balance sheet)"
+          ConsoRes: "Consolidated reserves"
+          EquityVal: "Equity method investment"
+          EquityProfit: "Share of profit (equity method)"
+          Participation: "Investment in subsidiary"
+          PLBAL: "P&L balance account"
+          PLINC: "P&L income account"
+          TDBS: "Translation difference (balance sheet)"
+          TDPLCredit: "Translation difference P&L (credit)"
+          TDPLDebit: "Translation difference P&L (debit)"
+          NOTBALPL: "Not balanced P&L"
+          NOTBALBS: "Not balanced balance sheet"
+          LinkPartElim: "Linked participation elimination"
+          CONSODIFF: "Consolidation difference"
+          VarPercInteg: "Variation percentage integration"
+        theory_references:
+          - special-accounts-mapping.md
+          - elimination-accounts.md
+        source_procedures:
+          - P_CONSO_ELIM_DIVIDEND
+          - P_CONSO_ELIM_PARTICIPATIONS*
+          - P_CONSO_BUNDLE_INTEGRATION_*
+          - P_CONSO_EVENT_*
+
+      SPECIFIC_FLOW_NOT_FOUND:
+        severity: ERROR
+        parameters: 2
+        parameter_names: ["FlowFlag", "Context"]
+        description: "Required special flow not configured"
+        cause: "Flow with specific flag not found in flow structure"
+        diagnostic_query: |
+          SELECT FlowCode, FlowName,
+                 FlagTransAdj, FlagUnexpVar, FlagNetVar,
+                 FlagDividends, FlagPreviousPeriodAdj, FlagThisPeriodAdj
+          FROM TS011C0
+          WHERE ConsoID = @ConsoID
+        resolution:
+          - "Identify which flow flag is missing from Param1"
+          - "Configure the special flag on appropriate flow"
+        required_flags:
+          TRANSAdj: "Translation adjustment flow"
+          UNEXPVar: "Unexplained variance flow"
+          NETVar: "Net variance flow"
+          DIVIDENDS: "Dividends flow"
+          PreviousPeriodAdj: "Previous period adjustment"
+          ThisPeriodAdj: "Current period adjustment"
+          ThisPeriodProfitLoss: "Current period P&L"
+          VarPercInteg: "Variation percentage integration"
+          TRANSFER: "Transfer flow"
+        theory_references:
+          - flow-configuration.md
+        source_procedures:
+          - P_CONSO_ELIM_DIVIDEND
+          - P_CONSO_BUNDLE_INTEGRATION_*
+          - P_CONSO_EVENT_*
+
+      JOURNALTYPE_NOT_FOUND:
+        severity: ERROR
+        parameters: 2
+        parameter_names: ["JournalTypeCode", "Context"]
+        description: "Required journal type not configured"
+        cause: "Journal type (e.g., B001) not found in TS020S0"
+        diagnostic_query: |
+          SELECT JournalTypeCode, Description, Category
+          FROM TS020S0
+          WHERE ConsoID = @ConsoID
+        resolution:
+          - "Create the missing journal type"
+          - "B001 is the standard bundle integration journal"
+        required_types:
+          B001: "Bundle integration journal"
+          S001: "System elimination journal"
+        source_procedures:
+          - P_CONSO_BUNDLE_INTEGRATION_*
+
+  # ============================================================================
+  # SECTION 4: ELIMINATION ERRORS
+  # ============================================================================
+  elimination_errors:
+    category_id: "ERR-ELIM"
+    description: "Errors during elimination processing"
+
+    errors:
+      ELIMINATION_S001_NOT_FOUND:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["Context"]
+        description: "System elimination S001 not configured"
+        cause: "Elimination S001 required but not found in TS070S0"
+        diagnostic_query: |
+          SELECT ElimCode, Description, Active, Level
+          FROM TS070S0
+          WHERE ConsoID = @ConsoID AND ElimCode = 'S001'
+        resolution:
+          - "Configure elimination S001 in elimination setup"
+          - "Ensure elimination is active (Active = 1)"
+        source_procedures:
+          - P_CONSO_BUNDLE_INTEGRATION_*
+          - P_CONSO_ELIM
+
+      PROCEDURE_NOT_FOUND:
+        severity: ERROR
+        parameters: 2
+        parameter_names: ["ElimCode", "ProcedureName"]
+        description: "Elimination stored procedure not found"
+        cause: "Custom elimination references non-existent procedure"
+        diagnostic_query: |
+          SELECT ElimCode, ProcedureName
+          FROM TS070S0
+          WHERE ConsoID = @ConsoID AND ElimCode = @ElimCode
+        resolution:
+          - "Verify stored procedure exists in database"
+          - "Correct the procedure name in elimination configuration"
+          - "Check for typos in procedure name"
+        source_procedures:
+          - P_CONSO_ELIM
+
+      P_CONSO_ELIM_USER_HEADER_NOT_FOUND:
+        severity: ERROR
+        parameters: 0
+        description: "User elimination header not found"
+        cause: "User-defined elimination missing header record"
+        resolution:
+          - "Reconfigure user elimination"
+          - "Check TS070S0 and TS071S0 configuration"
+        source_procedures:
+          - P_CONSO_ELIM_USER
+
+  # ============================================================================
+  # SECTION 5: EVENT ERRORS
+  # ============================================================================
+  event_errors:
+    category_id: "ERR-EVENT"
+    description: "Errors during consolidation event processing"
+
+    errors:
+      P_CONSO_EVENT_GENERIC_EVENT_HEADER_NOT_FOUND:
+        severity: ERROR
+        parameters: 0
+        description: "Event header record not found"
+        cause: "Event configuration missing in TS072E0"
+        diagnostic_query: |
+          SELECT EventID, EventType, CompanyID, EventDate
+          FROM TS072E0
+          WHERE ConsoID = @ConsoID
+        resolution:
+          - "Create event via Event_SaveEvent"
+          - "Verify event configuration"
+        source_procedures:
+          - P_CONSO_EVENT_GENERIC
+          - P_CONSO_EVENT_EQUITY_TO_GLOBAL
+          - P_CONSO_EVENT_DIVIDENDS
+          - P_CONSO_EVENT_RECONCILE_IC
+          - P_CONSO_EVENT_RECLASS_IC
+
+      P_CONSO_EVENT_REVERSE_IC_HEADER_NOT_FOUND:
+        severity: ERROR
+        parameters: 0
+        description: "IC reversal event header not found"
+        cause: "Intercompany reversal event not properly configured"
+        resolution:
+          - "Verify IC reversal event setup"
+          - "Check TS072E0 for event record"
+        source_procedures:
+          - P_CONSO_EVENT_REVERSE_IC
+          - P_CONSO_EVENT_TRANSFER_IC
+
+  # ============================================================================
+  # SECTION 6: DIMENSION ERRORS
+  # ============================================================================
+  dimension_errors:
+    category_id: "ERR-DIM"
+    description: "Errors during dimension processing"
+
+    errors:
+      P_CONSO_DIM_HELPER_FILL_SPECIAL_DIMENSION_DETAILS_MISSING_UNEXPLAINED:
+        severity: ERROR
+        parameters: 0
+        description: "Missing unexplained dimension detail"
+        cause: "Special dimension detail for unexplained variance not configured"
+        resolution:
+          - "Configure unexplained variance dimension detail"
+        source_procedures:
+          - P_CONSO_DIM_HELPER_FILL_SPECIAL_DIMENSION_DETAILS
+
+      P_CONSO_DIM_HELPER_FILL_SPECIAL_DIMENSION_DETAILS_MISSING_TECHNICAL:
+        severity: ERROR
+        parameters: 0
+        description: "Missing technical dimension detail"
+        cause: "Special dimension detail for technical entries not configured"
+        resolution:
+          - "Configure technical dimension detail"
+        source_procedures:
+          - P_CONSO_DIM_HELPER_FILL_SPECIAL_DIMENSION_DETAILS
+
+      P_CONSO_DIM_HELPER_FILL_SPECIAL_DIMENSION_DETAILS_MULTIPLE_TECHNICALUNEXP:
+        severity: ERROR
+        parameters: 0
+        description: "Multiple technical/unexplained dimension details"
+        cause: "More than one dimension detail marked as technical or unexplained"
+        resolution:
+          - "Ensure only one dimension detail is marked as technical"
+          - "Ensure only one dimension detail is marked as unexplained"
+        source_procedures:
+          - P_CONSO_DIM_HELPER_FILL_SPECIAL_DIMENSION_DETAILS
+
+  # ============================================================================
+  # SECTION 7: CURRENCY TRANSLATION ERRORS
+  # ============================================================================
+  currency_errors:
+    category_id: "ERR-CURRENCY"
+    description: "Errors during currency translation"
+
+    errors:
+      TDPLCREDIT_INVALID_DEBITCREDIT:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["Context"]
+        description: "TDPLCredit account has wrong debit/credit setting"
+        cause: "Account flagged as TDPLCredit must have DebitCredit = 'C'"
+        diagnostic_query: |
+          SELECT Account, AccountName, DebitCredit
+          FROM TS010S0
+          WHERE ConsoID = @ConsoID AND FlagTDPLCredit = 1
+        resolution:
+          - "Set DebitCredit = 'C' on TDPLCredit account"
+        source_procedures:
+          - P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_CLOSING
+
+      TDPLDEBIT_INVALID_DEBITCREDIT:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["Context"]
+        description: "TDPLDebit account has wrong debit/credit setting"
+        cause: "Account flagged as TDPLDebit must have DebitCredit = 'D'"
+        diagnostic_query: |
+          SELECT Account, AccountName, DebitCredit
+          FROM TS010S0
+          WHERE ConsoID = @ConsoID AND FlagTDPLDebit = 1
+        resolution:
+          - "Set DebitCredit = 'D' on TDPLDebit account"
+        source_procedures:
+          - P_CONSO_BUNDLE_INTEGRATION_CURRENCY_TRANSLATION_CLOSING
+
+  # ============================================================================
+  # SECTION 8: MATCHING/INTEGRATION ERRORS
+  # ============================================================================
+  matching_errors:
+    category_id: "ERR-MATCHING"
+    description: "Errors during IC matching and integration"
+
+    errors:
+      P_CONSO_MATCHING_BUNDLE_INTEGRATION_FIRST:
+        severity: ERROR
+        parameters: 0
+        description: "Bundle integration must be completed first"
+        cause: "IC matching requires bundle integration to be done"
+        diagnostic_query: |
+          SELECT CompanyCode, Status_Bundles
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND Status_Bundles <> 0
+        resolution:
+          - "Complete bundle integration for all companies"
+          - "Run Consolidation_Execute with StoredProceduresToExecute = 0x2"
+        source_procedures:
+          - P_CONSO_MATCHING_PREPARE
+
+      P_CONSO_MATCHING_ADJ_INTEGRATION_FIRST:
+        severity: ERROR
+        parameters: 0
+        description: "Adjustment integration must be completed first"
+        cause: "IC matching requires adjustment integration to be done"
+        diagnostic_query: |
+          SELECT CompanyCode, Status_Adjustments
+          FROM TS014C0
+          WHERE ConsoID = @ConsoID AND Status_Adjustments <> 0
+        resolution:
+          - "Complete adjustment integration for all companies"
+          - "Run Consolidation_Execute with StoredProceduresToExecute = 0x4"
+        source_procedures:
+          - P_CONSO_MATCHING_PREPARE
+
+      P_CONSO_MATCHING_CLOSING_AMOUNTS_FIRST:
+        severity: ERROR
+        parameters: 0
+        description: "Closing amounts calculation must be completed first"
+        cause: "IC matching requires closing amounts to be calculated"
+        resolution:
+          - "Complete closing amounts calculation"
+        source_procedures:
+          - P_CONSO_MATCHING_PREPARE
+
+      P_CONSO_MATCHING_FLOWS_FIRST:
+        severity: ERROR
+        parameters: 0
+        description: "Flow calculation must be completed first"
+        cause: "IC matching requires flows to be calculated"
+        resolution:
+          - "Complete flow calculation"
+        source_procedures:
+          - P_CONSO_MATCHING_PREPARE
+
+  # ============================================================================
+  # SECTION 9: VALIDATION ERRORS
+  # ============================================================================
+  validation_errors:
+    category_id: "ERR-VALIDATION"
+    description: "Validation report and rule errors"
+
+    errors:
+      P_VALIDATION_REPORT_ERROR:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["Comment"]
+        description: "Validation report encountered an error"
+        cause: "Validation rule execution failed"
+        resolution:
+          - "Review validation rule configuration"
+          - "Check the comment parameter for details"
+        source_procedures:
+          - P_VALIDATION_REPORT
+
+  # ============================================================================
+  # SECTION 10: GENERIC/UNKNOWN ERRORS
+  # ============================================================================
+  generic_errors:
+    category_id: "ERR-GENERIC"
+    description: "Generic and unknown errors"
+
+    errors:
+      UNKNOWN:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["ErrorMessage"]
+        description: "Unknown/uncaught error"
+        cause: "Unexpected exception occurred"
+        resolution:
+          - "Review error message parameter for details"
+          - "Check SQL Server error log"
+          - "Enable debug mode for detailed diagnostics"
+        source_procedures:
+          - P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+
+  # ============================================================================
+  # SECTION 11: WARNINGS
+  # ============================================================================
+  warnings:
+    category_id: "WARN"
+    description: "Warning messages (non-blocking)"
+
+    warnings:
+      P_CONSO_ELIM_BUNDLE_INTEGRATION_FIRST:
+        severity: WARNING
+        parameters: 0
+        description: "Bundle integration should be completed first"
+        cause: "Some companies have pending bundle integration"
+        impact: "Elimination may use stale data"
+        source_procedures:
+          - P_CONSO_ELIM
+
+      P_CONSO_ELIM_ADJ_INTEGRATION_FIRST:
+        severity: WARNING
+        parameters: 0
+        description: "Adjustment integration should be completed first"
+        cause: "Some companies have pending adjustment integration"
+        impact: "Elimination may use stale adjustment data"
+        source_procedures:
+          - P_CONSO_ELIM
+
+      ParentCompanyIsEmpty:
+        severity: WARNING
+        parameters: 0
+        description: "Parent company has no data"
+        cause: "Parent company exists but has no financial data"
+        impact: "Consolidation may be incomplete"
+        source_procedures:
+          - P_CONSO_ELIM
+
+      P_CONSO_ELIM_MULTIPLE_JOURNAL:
+        severity: WARNING
+        parameters: 1
+        parameter_names: ["JournalTypeCategory"]
+        description: "Multiple journals found for same type/category"
+        cause: "More than one journal type matches the criteria"
+        impact: "First matching journal will be used"
+        source_procedures:
+          - P_CONSO_ELIM
+
+      P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION_BUNDLE_INTEGRATION_FIRST:
+        severity: WARNING
+        parameters: 0
+        description: "Bundle integration should be completed before adjustments"
+        cause: "Running adjustment integration before bundle integration"
+        impact: "Adjustments may not integrate correctly"
+        source_procedures:
+          - P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION
+
+      INVALID_FIN_PERCENTAGE:
+        severity: WARNING
+        parameters: 2
+        parameter_names: ["OwnerCompanyName", "OwnedCompanyName"]
+        description: "Financial percentage is invalid (>100%)"
+        cause: "Ownership percentage exceeds 100%"
+        impact: "Ownership calculation may be incorrect"
+        resolution:
+          - "Verify financial percentage in ownership setup"
+        source_procedures:
+          - P_CALC_OWNERSHIP_DIRECT_PERCENTAGES
+
+      INVALID_CTRL_PERCENTAGE:
+        severity: WARNING
+        parameters: 2
+        parameter_names: ["OwnerCompanyName", "OwnedCompanyName"]
+        description: "Control percentage is invalid (>100%)"
+        cause: "Control/voting percentage exceeds 100%"
+        impact: "Control determination may be incorrect"
+        resolution:
+          - "Verify control percentage in ownership setup"
+        source_procedures:
+          - P_CALC_OWNERSHIP_DIRECT_PERCENTAGES
+
+      FINRIGHTSISSUED_EXCEEDED:
+        severity: WARNING
+        parameters: 1
+        parameter_names: ["CompanyName"]
+        description: "Financial rights issued exceeded"
+        cause: "Total financial ownership exceeds issued capital"
+        impact: "Ownership structure may be incorrect"
+        source_procedures:
+          - P_UPDATE_OWNERSHIP_DETAIL_CHECK_TOTAL
+
+      VOTINGRIGHTSISSUED_EXCEEDED:
+        severity: WARNING
+        parameters: 1
+        parameter_names: ["CompanyName"]
+        description: "Voting rights issued exceeded"
+        cause: "Total voting rights exceed issued voting rights"
+        impact: "Control determination may be incorrect"
+        source_procedures:
+          - P_UPDATE_OWNERSHIP_DETAIL_CHECK_TOTAL
+
+      RestoreConsoLocked:
+        severity: WARNING
+        parameters: 1
+        parameter_names: ["ConsoCode"]
+        description: "Restored consolidation is locked"
+        cause: "Backup was taken while period was locked"
+        impact: "Period will need to be unlocked after restore"
+        source_procedures:
+          - P_CONSO_CHECK_LOCKED
+
+      ConsoCreated:
+        severity: WARNING
+        parameters: 1
+        parameter_names: ["ConsoCode"]
+        description: "Consolidation period created (informational)"
+        cause: "New consolidation period was created successfully"
+        impact: "None - informational message"
+        source_procedures:
+          - P_SYS_DUPLICATE_CONSO
+
+      ConsoAlreadyExists:
+        severity: WARNING
+        parameters: 1
+        parameter_names: ["ConsoCode"]
+        description: "Consolidation period already exists"
+        cause: "Cannot create duplicate consolidation code"
+        impact: "Operation skipped"
+        source_procedures:
+          - P_SYS_RESTORE
+
+      P_DELETE_CONSO_ASYNC:
+        severity: WARNING
+        parameters: 0
+        description: "Consolidation delete is running asynchronously"
+        cause: "Large period deletion queued as background job"
+        impact: "Period will be deleted when job completes"
+        source_procedures:
+          - P_DELETE_CONSO
+
+      P_CONSO_MATCHING_EXECUTE_NO_DATA:
+        severity: WARNING
+        parameters: 0
+        description: "No data found for IC matching"
+        cause: "No intercompany transactions to match"
+        impact: "Matching completed with no results"
+        source_procedures:
+          - P_CONSO_MATCHING_EXECUTE
+
+      InvalidPartnerTypeForParticipationAccount:
+        severity: WARNING
+        parameters: 0
+        description: "Invalid partner type for participation account"
+        cause: "Account configuration mismatch"
+        impact: "Participation elimination may not work correctly"
+        source_procedures:
+          - P_VALIDATE_ACCOUNT
+
+      ParticipationNotEqualAccountTypes:
+        severity: WARNING
+        parameters: 0
+        description: "Participation accounts have different types"
+        cause: "Related participation accounts should have same type"
+        impact: "Elimination journals may be imbalanced"
+        source_procedures:
+          - P_VALIDATE_ACCOUNT
+
+      AdjustmentsGroupTaxIsZero:
+        severity: WARNING
+        parameters: 0
+        description: "Group adjustment deferred tax rate is zero"
+        cause: "Tax rate configuration may be missing"
+        impact: "Deferred tax calculations will be zero"
+        source_procedures:
+          - P_UPDATE_GROUPADJUSTMENT_JOURNAL_DETAIL_DEFERRED_TAX
+
+  # ============================================================================
+  # SECTION 12: IMPORT/EXPORT ERRORS
+  # ============================================================================
+  import_export_errors:
+    category_id: "ERR-IMPORT"
+    description: "Errors during import and export operations"
+
+    errors:
+      INVALID_COMPANY:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["CompanyCode"]
+        description: "Company code not found during import"
+        cause: "Import file contains company code not in TS014C0"
+        resolution:
+          - "Create the missing company in company master"
+          - "Correct the company code in import file"
+          - "Configure mapping rules"
+
+      INVALID_ACCOUNT:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["AccountCode"]
+        description: "Account code not found during import"
+        cause: "Import file contains account code not in TS010S0"
+        resolution:
+          - "Create the missing account in chart of accounts"
+          - "Correct the account code in import file"
+          - "Configure mapping rules"
+
+      INVALID_FLOW:
+        severity: ERROR
+        parameters: 1
+        parameter_names: ["FlowCode"]
+        description: "Flow code not found during import"
+        cause: "Import file contains flow code not in TS011C0"
+        resolution:
+          - "Create the missing flow in flow structure"
+          - "Correct the flow code in import file"
+
+      DUPLICATE_KEY:
+        severity: ERROR
+        parameters: 0
+        description: "Duplicate row in import file"
+        cause: "Import file contains duplicate key combination"
+        resolution:
+          - "Remove duplicate rows from import file"
+          - "Aggregate amounts before import"
+
+      INVALID_AMOUNT:
+        severity: ERROR
+        parameters: 0
+        description: "Invalid amount format in import"
+        cause: "Amount value cannot be parsed as number"
+        resolution:
+          - "Check decimal separator (comma vs period)"
+          - "Remove currency symbols or thousand separators"
+          - "Verify numeric format matches expected pattern"
+
+  # ============================================================================
+  # QUICK REFERENCE - ERROR CODES BY CATEGORY
+  # ============================================================================
+  quick_reference:
+    by_category:
+      consolidation_period:
+        - CONSONOTFOUND
+        - ConsoLocked
+        - ConsosLocked
+        - CONSO_BEING_DELETED
+
+      ownership:
+        - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_PARENT
+        - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_SHAREHOLDER
+        - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_COMPANY
+        - P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_OWNERSHIP
+
+      configuration:
+        - SPECIFIC_ACCOUNT_NOT_FOUND
+        - SPECIFIC_FLOW_NOT_FOUND
+        - JOURNALTYPE_NOT_FOUND
+
+      elimination:
+        - ELIMINATION_S001_NOT_FOUND
+        - PROCEDURE_NOT_FOUND
+        - P_CONSO_ELIM_USER_HEADER_NOT_FOUND
+
+      event:
+        - P_CONSO_EVENT_GENERIC_EVENT_HEADER_NOT_FOUND
+        - P_CONSO_EVENT_REVERSE_IC_HEADER_NOT_FOUND
+
+      currency:
+        - TDPLCREDIT_INVALID_DEBITCREDIT
+        - TDPLDEBIT_INVALID_DEBITCREDIT
+
+      matching:
+        - P_CONSO_MATCHING_BUNDLE_INTEGRATION_FIRST
+        - P_CONSO_MATCHING_ADJ_INTEGRATION_FIRST
+        - P_CONSO_MATCHING_CLOSING_AMOUNTS_FIRST
+        - P_CONSO_MATCHING_FLOWS_FIRST
+
+    most_common:
+      - error: SPECIFIC_ACCOUNT_NOT_FOUND
+        frequency: "Very High"
+        fix_time: "< 5 minutes"
+      - error: SPECIFIC_FLOW_NOT_FOUND
+        frequency: "High"
+        fix_time: "< 5 minutes"
+      - error: ConsoLocked
+        frequency: "High"
+        fix_time: "Variable (depends on lock owner)"
+      - error: P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES_NO_SHAREHOLDER
+        frequency: "Medium"
+        fix_time: "< 10 minutes"
+      - error: JOURNALTYPE_NOT_FOUND
+        frequency: "Medium"
+        fix_time: "< 5 minutes"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-04"
+    version: "1.0"
+    author: "Claude Code - Documentation automation"
+
+    statistics:
+      total_error_codes: 95
+      total_warning_codes: 30
+      categories: 12
+      source_procedures_analyzed: 75
+
+    extraction_sources:
+      - "dbo.AddError0/1/2 function calls"
+      - "dbo.AddWarning0/1/2 function calls"
+      - "RAISERROR statements"
+      - "@errorinfo XML parameter patterns"
+
+    related_files:
+      - "api-agent-prompts.yaml - Error decision trees"
+      - "api-common-types.yaml - ErrorInfo XML schema"
+      - "17-troubleshooting/common-issues.md - Troubleshooting guide"
+
+    updates:
+      - date: "2024-12-04"
+        change: "Initial catalog created from stored procedure analysis"

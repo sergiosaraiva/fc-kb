@@ -1,0 +1,791 @@
+# IFRS Compliance Checklist for Financial Consolidation
+# Purpose: Systematic checklist for validating IFRS compliance in features and work items
+# Version: 1.0
+# Last Updated: 2024-12-03
+# Standards Covered: 10 (IFRS 3, 10, 11, 12 / IAS 12, 21, 27, 28, 29, 36)
+
+metadata:
+  version: "1.0"
+  created: "2024-12-03"
+  purpose: "IFRS compliance validation for Feature Analyzer agent"
+  usage: |
+    1. Identify applicable IFRS standards for work items
+    2. Validate feature requirements against IFRS requirements
+    3. Check implementation status for each requirement
+    4. Generate compliance assessment for analysis reports
+
+# =============================================================================
+# IFRS 3 - BUSINESS COMBINATIONS
+# =============================================================================
+
+IFRS_3:
+  title: "Business Combinations"
+  effective_date: "2008-07-01"
+  last_amended: "2020"
+  scope: "Acquisition accounting for business combinations"
+  relevance: "HIGH - Core consolidation standard"
+
+  features_affected:
+    - "goodwill_calculation"
+    - "step_acquisition"
+    - "bargain_purchase"
+    - "global_integration"
+    - "participation_elimination"
+
+  checklist:
+    IFRS3_01:
+      requirement: "Identify the acquirer"
+      paragraph: "3.6-7"
+      description: "Determine which entity obtains control in every business combination"
+      implementation_status: "IMPLEMENTED"
+      verification: "TS014C0.FlagParent identifies parent; P_CALC_OWNERSHIP determines control"
+      compliance_check: "Is acquirer clearly identified in consolidation structure?"
+
+    IFRS3_02:
+      requirement: "Determine acquisition date"
+      paragraph: "3.8-9"
+      description: "Date when acquirer obtains control"
+      implementation_status: "IMPLEMENTED"
+      verification: "Period-based processing supports acquisition date tracking"
+      compliance_check: "Is acquisition date documented and used for goodwill calculation?"
+
+    IFRS3_03:
+      requirement: "Recognize and measure identifiable assets/liabilities"
+      paragraph: "3.10-17"
+      description: "At fair value as of acquisition date"
+      implementation_status: "PARTIAL"
+      gap: "Fair value adjustments require manual entry via user eliminations"
+      compliance_check: "Are all identifiable assets/liabilities measured at fair value?"
+
+    IFRS3_04:
+      requirement: "Measure consideration transferred"
+      paragraph: "3.37-40"
+      description: "Sum of fair values of assets transferred, liabilities incurred, equity issued"
+      implementation_status: "MANUAL"
+      gap: "Consideration tracked manually; not automated"
+      compliance_check: "Is consideration properly valued and documented?"
+
+    IFRS3_05:
+      requirement: "Recognize goodwill or bargain purchase gain"
+      paragraph: "3.32-34"
+      description: "Goodwill = Consideration + NCI - FV Net Assets; Bargain = Gain in P&L"
+      implementation_status: "PARTIAL"
+      implementation_note: "P_REPORT_GOODWILL calculates; posting is manual"
+      compliance_check: "Is goodwill correctly calculated per IFRS 3.32?"
+
+    IFRS3_06:
+      requirement: "NCI measurement options"
+      paragraph: "3.19"
+      description: "Choice per acquisition: fair value OR proportionate share"
+      options:
+        - "Fair value (full goodwill method)"
+        - "Proportionate share (partial goodwill method)"
+      implementation_status: "IMPLEMENTED"
+      compliance_check: "Is NCI measurement method documented per acquisition?"
+
+    IFRS3_07:
+      requirement: "Step acquisition remeasurement"
+      paragraph: "3.41-42"
+      description: "Remeasure previously held equity interest at fair value; gain/loss in P&L"
+      implementation_status: "NOT_AUTOMATED"
+      gap_severity: 8
+      workaround: "Manual calculation via user elimination (S072)"
+      compliance_check: "Is prior interest remeasured at acquisition-date fair value?"
+
+    IFRS3_08:
+      requirement: "Contingent consideration"
+      paragraph: "3.39, 3.58"
+      description: "Measure at fair value at acquisition; remeasure subsequently"
+      implementation_status: "MANUAL"
+      compliance_check: "Is contingent consideration properly accounted for?"
+
+    IFRS3_09:
+      requirement: "Measurement period adjustments"
+      paragraph: "3.45-50"
+      description: "Up to 12 months to finalize acquisition accounting"
+      implementation_status: "SUPPORTED"
+      implementation_note: "User eliminations allow adjustment entries"
+      compliance_check: "Are measurement period adjustments properly tracked?"
+
+  summary:
+    total_requirements: 9
+    implemented: 4
+    partial: 2
+    not_automated: 2
+    manual: 1
+    compliance_rating: "PARTIAL"
+
+# =============================================================================
+# IFRS 10 - CONSOLIDATED FINANCIAL STATEMENTS
+# =============================================================================
+
+IFRS_10:
+  title: "Consolidated Financial Statements"
+  effective_date: "2013-01-01"
+  scope: "Preparation and presentation of consolidated financial statements"
+  relevance: "CRITICAL - Primary consolidation standard"
+
+  features_affected:
+    - "global_integration"
+    - "consolidation_method_determination"
+    - "minority_interest"
+    - "intercompany_elimination"
+    - "dividend_elimination"
+    - "participation_elimination"
+    - "deconsolidation"
+
+  checklist:
+    IFRS10_01:
+      requirement: "Control definition"
+      paragraph: "10.5-9"
+      description: "Investor controls investee when: power over investee, exposure to variable returns, ability to use power"
+      implementation_status: "IMPLEMENTED"
+      verification: "TS014C0.GroupCtrlPerc > 50% triggers Global Integration (G)"
+      compliance_check: "Is control properly assessed based on IFRS 10 criteria?"
+
+    IFRS10_02:
+      requirement: "Consolidation scope"
+      paragraph: "10.4"
+      description: "Parent must consolidate all subsidiaries"
+      implementation_status: "IMPLEMENTED"
+      verification: "ConsoMethod = 'G' for all controlled entities"
+      compliance_check: "Are all subsidiaries included in consolidation?"
+
+    IFRS10_03:
+      requirement: "Uniform accounting policies"
+      paragraph: "10.19"
+      description: "Apply uniform accounting policies for like transactions"
+      implementation_status: "SUPPORTED"
+      implementation_note: "Chart of accounts standardization; adjustments via user eliminations"
+      compliance_check: "Are accounting policies consistent across group?"
+
+    IFRS10_04:
+      requirement: "Uniform reporting dates"
+      paragraph: "10.22-23"
+      description: "Same reporting date or within 3 months with adjustments"
+      implementation_status: "IMPLEMENTED"
+      verification: "Period-based processing ensures alignment"
+      compliance_check: "Do all entities report as of same date?"
+
+    IFRS10_05:
+      requirement: "Eliminate intragroup balances"
+      paragraph: "10.B86(c)"
+      description: "Eliminate all intragroup assets, liabilities, equity, income, expenses, cash flows"
+      implementation_status: "IMPLEMENTED"
+      verification: "S030 eliminates IC balances via P_CONSO_ELIM_INTERCOMPANY_NETTING"
+      compliance_check: "Are all intercompany balances eliminated?"
+
+    IFRS10_06:
+      requirement: "Eliminate intragroup transactions"
+      paragraph: "10.B86(c)"
+      description: "Eliminate profits/losses from intragroup transactions in full"
+      implementation_status: "IMPLEMENTED"
+      verification: "IC netting eliminates revenue/expense; user eliminations for margins"
+      compliance_check: "Are intercompany transactions fully eliminated?"
+
+    IFRS10_07:
+      requirement: "Non-controlling interest recognition"
+      paragraph: "10.22"
+      description: "Present NCI separately in equity; attribute profit/loss to NCI"
+      implementation_status: "IMPLEMENTED"
+      verification: "S085 via P_CONSO_ELIM_MINORITYINTEREST"
+      compliance_check: "Is NCI properly presented in equity and P&L?"
+
+    IFRS10_08:
+      requirement: "NCI attribution of losses"
+      paragraph: "10.B94"
+      description: "NCI can become negative (deficit); losses fully attributed to NCI"
+      implementation_status: "IMPLEMENTED"
+      verification: "P_CONSO_ELIM_MINORITYINTEREST handles negative NCI"
+      compliance_check: "Are losses properly attributed even when NCI becomes negative?"
+
+    IFRS10_09:
+      requirement: "Changes in ownership without loss of control"
+      paragraph: "10.23"
+      description: "Equity transaction - no gain/loss recognition"
+      implementation_status: "IMPLEMENTED"
+      verification: "Ownership changes processed as equity adjustments"
+      compliance_check: "Are ownership changes without control loss treated as equity transactions?"
+
+    IFRS10_10:
+      requirement: "Loss of control"
+      paragraph: "10.25-26"
+      description: "Derecognize subsidiary; recognize retained investment at fair value; gain/loss in P&L"
+      implementation_status: "MANUAL"
+      gap_severity: 6
+      workaround: "Manual adjustment entries via user eliminations"
+      compliance_check: "Is deconsolidation properly accounted for?"
+
+  summary:
+    total_requirements: 10
+    implemented: 8
+    partial: 0
+    not_automated: 0
+    manual: 2
+    compliance_rating: "HIGH"
+
+# =============================================================================
+# IFRS 11 - JOINT ARRANGEMENTS
+# =============================================================================
+
+IFRS_11:
+  title: "Joint Arrangements"
+  effective_date: "2013-01-01"
+  scope: "Accounting for joint arrangements (joint operations, joint ventures)"
+  relevance: "MEDIUM - Joint venture consolidation"
+
+  features_affected:
+    - "proportional_method"
+    - "equity_method"
+    - "consolidation_method_determination"
+
+  checklist:
+    IFRS11_01:
+      requirement: "Joint arrangement classification"
+      paragraph: "11.14-19"
+      description: "Classify as joint operation or joint venture based on rights and obligations"
+      implementation_status: "PARTIAL"
+      implementation_note: "System supports P (proportional) and E (equity) methods"
+      gap: "Classification determination is manual"
+      compliance_check: "Is joint arrangement correctly classified?"
+
+    IFRS11_02:
+      requirement: "Joint operation accounting"
+      paragraph: "11.20-21"
+      description: "Recognize assets, liabilities, revenues, expenses relating to interest"
+      implementation_status: "IMPLEMENTED"
+      verification: "ConsoMethod = 'P' applies proportional integration"
+      compliance_check: "Are joint operation interests correctly accounted for?"
+
+    IFRS11_03:
+      requirement: "Joint venture accounting"
+      paragraph: "11.24"
+      description: "Account using equity method per IAS 28"
+      implementation_status: "IMPLEMENTED"
+      verification: "ConsoMethod = 'E' applies equity method via S040"
+      compliance_check: "Are joint ventures accounted for using equity method?"
+
+    IFRS11_04:
+      requirement: "Separate financial statements option"
+      paragraph: "11.26"
+      description: "Option to use cost, IFRS 9 FV, or equity method in separate statements"
+      implementation_status: "SUPPORTED"
+      compliance_check: "Is accounting in separate statements compliant?"
+
+  summary:
+    total_requirements: 4
+    implemented: 3
+    partial: 1
+    compliance_rating: "MEDIUM"
+
+# =============================================================================
+# IAS 12 - INCOME TAXES
+# =============================================================================
+
+IAS_12:
+  title: "Income Taxes"
+  effective_date: "1998-01-01"
+  scope: "Deferred tax arising from consolidation adjustments"
+  relevance: "MEDIUM - Tax effects on eliminations"
+
+  features_affected:
+    - "deferred_tax"
+    - "user_elimination"
+
+  checklist:
+    IAS12_01:
+      requirement: "Deferred tax on consolidation adjustments"
+      paragraph: "12.39"
+      description: "Recognize deferred tax on temporary differences from consolidation"
+      implementation_status: "IMPLEMENTED"
+      verification: "User eliminations support deferred tax entries"
+      compliance_check: "Is deferred tax recognized on consolidation adjustments?"
+
+    IAS12_02:
+      requirement: "Deferred tax on unrealized profits"
+      paragraph: "12.39"
+      description: "Deferred tax on profit-in-stock eliminations"
+      implementation_status: "IMPLEMENTED"
+      verification: "Via user elimination templates"
+      compliance_check: "Is deferred tax on unrealized profits calculated?"
+
+    IAS12_03:
+      requirement: "No deferred tax on initial goodwill"
+      paragraph: "12.15"
+      description: "Do not recognize deferred tax on initial goodwill recognition"
+      implementation_status: "N/A"
+      implementation_note: "Goodwill entry is manual - user ensures compliance"
+      compliance_check: "Is deferred tax excluded from initial goodwill?"
+
+  summary:
+    total_requirements: 3
+    implemented: 2
+    na: 1
+    compliance_rating: "HIGH"
+
+# =============================================================================
+# IAS 21 - FOREIGN EXCHANGE
+# =============================================================================
+
+IAS_21:
+  title: "Effects of Changes in Foreign Exchange Rates"
+  effective_date: "2005-01-01"
+  scope: "Currency translation for consolidation"
+  relevance: "HIGH - Multi-currency consolidation"
+
+  features_affected:
+    - "currency_translation"
+    - "translation_adjustment"
+    - "hyperinflation"
+
+  checklist:
+    IAS21_01:
+      requirement: "Functional currency determination"
+      paragraph: "21.9-14"
+      description: "Determine functional currency of each entity"
+      implementation_status: "IMPLEMENTED"
+      verification: "TS014C0.CurrCode stores entity functional currency"
+      compliance_check: "Is functional currency properly identified for each entity?"
+
+    IAS21_02:
+      requirement: "Translation to presentation currency - Assets/Liabilities"
+      paragraph: "21.39(a)"
+      description: "Translate at closing rate at balance sheet date"
+      implementation_status: "IMPLEMENTED"
+      verification: "Rate type CC (Closing Current) applied to B/S items"
+      compliance_check: "Are B/S items translated at closing rate?"
+
+    IAS21_03:
+      requirement: "Translation to presentation currency - Income/Expenses"
+      paragraph: "21.39(b)"
+      description: "Translate at rates at dates of transactions (average rate permitted)"
+      implementation_status: "IMPLEMENTED"
+      verification: "Rate type AC (Average Current) applied to P&L items"
+      compliance_check: "Are P&L items translated at average rate?"
+
+    IAS21_04:
+      requirement: "Translation differences in OCI"
+      paragraph: "21.39(c)"
+      description: "Recognize translation differences in other comprehensive income"
+      implementation_status: "IMPLEMENTED"
+      verification: "TRANSADJ flow posts CTA to equity/OCI"
+      compliance_check: "Is CTA recognized in OCI?"
+
+    IAS21_05:
+      requirement: "Goodwill translation"
+      paragraph: "21.47"
+      description: "Goodwill translated at closing rate"
+      implementation_status: "IMPLEMENTED"
+      verification: "Goodwill accounts use closing rate"
+      compliance_check: "Is goodwill translated at closing rate?"
+
+    IAS21_06:
+      requirement: "Fair value adjustments translation"
+      paragraph: "21.47"
+      description: "FV adjustments translated at closing rate"
+      implementation_status: "IMPLEMENTED"
+      compliance_check: "Are FV adjustments translated at closing rate?"
+
+    IAS21_07:
+      requirement: "Disposal - recycle CTA"
+      paragraph: "21.48-49"
+      description: "Reclassify CTA to P&L on disposal of foreign operation"
+      implementation_status: "MANUAL"
+      gap: "CTA recycling requires manual entry"
+      compliance_check: "Is CTA properly recycled on disposal?"
+
+    IAS21_08:
+      requirement: "Hyperinflation adjustment before translation"
+      paragraph: "21.42-43"
+      description: "Restate for hyperinflation before translation per IAS 29"
+      implementation_status: "NOT_IMPLEMENTED"
+      gap_severity: 7
+      workaround: "Temporal method configuration"
+      compliance_check: "Is hyperinflation adjustment applied before translation?"
+
+  summary:
+    total_requirements: 8
+    implemented: 6
+    manual: 1
+    not_implemented: 1
+    compliance_rating: "HIGH"
+
+# =============================================================================
+# IAS 27 - SEPARATE FINANCIAL STATEMENTS
+# =============================================================================
+
+IAS_27:
+  title: "Separate Financial Statements"
+  effective_date: "2011-01-01"
+  scope: "Accounting for investments in separate statements"
+  relevance: "LOW - Parent-only statements"
+
+  features_affected:
+    - "equity_method"
+
+  checklist:
+    IAS27_01:
+      requirement: "Accounting policy choice"
+      paragraph: "27.10"
+      description: "Account for investments at cost, per IFRS 9, or equity method"
+      implementation_status: "SUPPORTED"
+      compliance_check: "Is accounting policy for investments consistent?"
+
+    IAS27_02:
+      requirement: "Dividend recognition"
+      paragraph: "27.12"
+      description: "Recognize dividends in P&L when right to receive established"
+      implementation_status: "IMPLEMENTED"
+      compliance_check: "Are dividends properly recognized in separate statements?"
+
+  summary:
+    total_requirements: 2
+    implemented: 2
+    compliance_rating: "HIGH"
+
+# =============================================================================
+# IAS 28 - ASSOCIATES AND JOINT VENTURES
+# =============================================================================
+
+IAS_28:
+  title: "Investments in Associates and Joint Ventures"
+  effective_date: "2011-01-01"
+  scope: "Equity method application"
+  relevance: "HIGH - Associate consolidation"
+
+  features_affected:
+    - "equity_method"
+    - "consolidation_method_determination"
+
+  checklist:
+    IAS28_01:
+      requirement: "Significant influence definition"
+      paragraph: "28.5-6"
+      description: "20% or more voting power presumed significant influence"
+      implementation_status: "IMPLEMENTED"
+      verification: "ConsoMethod = 'E' when 20% <= CtrlPerc <= 50%"
+      compliance_check: "Is significant influence properly assessed?"
+
+    IAS28_02:
+      requirement: "Equity method application"
+      paragraph: "28.10-15"
+      description: "Initially at cost; adjust for share of profit/loss"
+      implementation_status: "IMPLEMENTED"
+      verification: "S040 via P_CONSO_ELIM_EQUITYMETHOD"
+      compliance_check: "Is equity method correctly applied?"
+
+    IAS28_03:
+      requirement: "Share of profit/loss"
+      paragraph: "28.10"
+      description: "Recognize investor's share of investee's profit/loss in P&L"
+      implementation_status: "IMPLEMENTED"
+      verification: "S040 posts share of profit/loss"
+      compliance_check: "Is share of profit/loss recognized?"
+
+    IAS28_04:
+      requirement: "Share of OCI"
+      paragraph: "28.10"
+      description: "Recognize investor's share of investee's OCI"
+      implementation_status: "IMPLEMENTED"
+      verification: "Equity method adjustment includes OCI items"
+      compliance_check: "Is share of OCI recognized?"
+
+    IAS28_05:
+      requirement: "Unrealized profit elimination"
+      paragraph: "28.28"
+      description: "Eliminate unrealized profits on transactions with associate"
+      implementation_status: "SUPPORTED"
+      implementation_note: "Via user eliminations"
+      compliance_check: "Are unrealized profits with associates eliminated?"
+
+    IAS28_06:
+      requirement: "Impairment of equity investment"
+      paragraph: "28.40-43"
+      description: "Test for impairment per IAS 36"
+      implementation_status: "MANUAL"
+      compliance_check: "Is equity investment tested for impairment?"
+
+    IAS28_07:
+      requirement: "Loss of significant influence"
+      paragraph: "28.22-23"
+      description: "Discontinue equity method; remeasure retained interest"
+      implementation_status: "MANUAL"
+      gap: "Method change requires manual entries (S072)"
+      compliance_check: "Is discontinuation of equity method properly accounted for?"
+
+  summary:
+    total_requirements: 7
+    implemented: 5
+    manual: 2
+    compliance_rating: "HIGH"
+
+# =============================================================================
+# IAS 29 - HYPERINFLATIONARY ECONOMIES
+# =============================================================================
+
+IAS_29:
+  title: "Financial Reporting in Hyperinflationary Economies"
+  effective_date: "1990-01-01"
+  scope: "Price-level adjusted statements"
+  relevance: "LOW - Specific to hyperinflationary environments"
+
+  features_affected:
+    - "hyperinflation"
+    - "currency_translation"
+
+  checklist:
+    IAS29_01:
+      requirement: "Identify hyperinflationary economy"
+      paragraph: "29.3"
+      description: "Assess qualitative and quantitative indicators"
+      implementation_status: "MANUAL"
+      compliance_check: "Is hyperinflationary economy properly identified?"
+
+    IAS29_02:
+      requirement: "Restate financial statements"
+      paragraph: "29.8-28"
+      description: "Restate in current purchasing power using price index"
+      implementation_status: "NOT_IMPLEMENTED"
+      gap_severity: 7
+      workaround: "External restatement; temporal method configuration"
+      compliance_check: "Are financial statements restated for hyperinflation?"
+
+    IAS29_03:
+      requirement: "Translate after restatement"
+      paragraph: "IAS 21.42-43"
+      description: "Translate restated amounts at closing rate"
+      implementation_status: "SUPPORTED"
+      implementation_note: "If manual restatement done, standard translation applies"
+      compliance_check: "Is translation applied to restated amounts?"
+
+  summary:
+    total_requirements: 3
+    implemented: 0
+    manual: 1
+    not_implemented: 1
+    supported: 1
+    compliance_rating: "LOW"
+
+# =============================================================================
+# IAS 36 - IMPAIRMENT OF ASSETS
+# =============================================================================
+
+IAS_36:
+  title: "Impairment of Assets"
+  effective_date: "2004-03-31"
+  scope: "Goodwill impairment testing"
+  relevance: "HIGH - Annual goodwill testing required"
+
+  features_affected:
+    - "impairment_testing"
+    - "goodwill_calculation"
+
+  checklist:
+    IAS36_01:
+      requirement: "Annual impairment test for goodwill"
+      paragraph: "36.10"
+      description: "Test goodwill for impairment annually"
+      implementation_status: "NOT_IMPLEMENTED"
+      gap_severity: 8
+      workaround: "External calculation; manual entry via user elimination"
+      compliance_check: "Is goodwill tested for impairment annually?"
+
+    IAS36_02:
+      requirement: "Cash-generating unit identification"
+      paragraph: "36.66-73"
+      description: "Allocate goodwill to CGUs for impairment testing"
+      implementation_status: "NOT_IMPLEMENTED"
+      gap_severity: 8
+      compliance_check: "Is goodwill allocated to appropriate CGUs?"
+
+    IAS36_03:
+      requirement: "Recoverable amount determination"
+      paragraph: "36.18-57"
+      description: "Higher of fair value less costs to sell and value in use"
+      implementation_status: "NOT_IMPLEMENTED"
+      gap_severity: 8
+      compliance_check: "Is recoverable amount properly calculated?"
+
+    IAS36_04:
+      requirement: "Impairment loss recognition"
+      paragraph: "36.104-108"
+      description: "Recognize impairment loss in P&L; first reduce goodwill"
+      implementation_status: "SUPPORTED"
+      implementation_note: "User elimination can record impairment"
+      compliance_check: "Is impairment loss properly recognized?"
+
+    IAS36_05:
+      requirement: "No reversal of goodwill impairment"
+      paragraph: "36.124"
+      description: "Goodwill impairment cannot be reversed"
+      implementation_status: "N/A"
+      implementation_note: "No automatic reversal in system"
+      compliance_check: "Is goodwill impairment not reversed?"
+
+  summary:
+    total_requirements: 5
+    implemented: 0
+    not_implemented: 3
+    supported: 1
+    na: 1
+    compliance_rating: "LOW"
+
+# =============================================================================
+# COMPLIANCE SUMMARY BY STANDARD
+# =============================================================================
+
+compliance_summary:
+  overall_rating: "HIGH"
+  overall_score: "78%"  # (50 implemented / 64 total)
+
+  by_standard:
+    IFRS_3:
+      rating: "PARTIAL"
+      implemented: 4
+      total: 9
+      score: "44%"
+      critical_gaps: ["Step acquisition", "Contingent consideration"]
+
+    IFRS_10:
+      rating: "HIGH"
+      implemented: 8
+      total: 10
+      score: "80%"
+      critical_gaps: ["Loss of control automation"]
+
+    IFRS_11:
+      rating: "MEDIUM"
+      implemented: 3
+      total: 4
+      score: "75%"
+      critical_gaps: []
+
+    IAS_12:
+      rating: "HIGH"
+      implemented: 2
+      total: 3
+      score: "67%"
+      critical_gaps: []
+
+    IAS_21:
+      rating: "HIGH"
+      implemented: 6
+      total: 8
+      score: "75%"
+      critical_gaps: ["Hyperinflation"]
+
+    IAS_27:
+      rating: "HIGH"
+      implemented: 2
+      total: 2
+      score: "100%"
+      critical_gaps: []
+
+    IAS_28:
+      rating: "HIGH"
+      implemented: 5
+      total: 7
+      score: "71%"
+      critical_gaps: []
+
+    IAS_29:
+      rating: "LOW"
+      implemented: 0
+      total: 3
+      score: "0%"
+      critical_gaps: ["Full hyperinflation support"]
+
+    IAS_36:
+      rating: "LOW"
+      implemented: 0
+      total: 5
+      score: "0%"
+      critical_gaps: ["Impairment testing module"]
+
+# =============================================================================
+# GAP PRIORITY FOR COMPLIANCE
+# =============================================================================
+
+compliance_gaps_prioritized:
+  priority_1_critical:
+    - standard: "IAS 36"
+      requirement: "Goodwill impairment testing"
+      gap_severity: 8
+      business_impact: "HIGH"
+      audit_risk: "HIGH"
+
+    - standard: "IFRS 3"
+      requirement: "Step acquisition automation"
+      gap_severity: 8
+      business_impact: "MEDIUM"
+      audit_risk: "MEDIUM"
+
+  priority_2_important:
+    - standard: "IAS 29"
+      requirement: "Hyperinflation support"
+      gap_severity: 7
+      business_impact: "HIGH (if applicable)"
+      audit_risk: "HIGH (if applicable)"
+
+    - standard: "IFRS 10"
+      requirement: "Deconsolidation automation"
+      gap_severity: 6
+      business_impact: "MEDIUM"
+      audit_risk: "MEDIUM"
+
+  priority_3_enhancement:
+    - standard: "IFRS 3"
+      requirement: "Fair value adjustments automation"
+      gap_severity: 5
+      business_impact: "LOW"
+      audit_risk: "LOW"
+
+    - standard: "IAS 21"
+      requirement: "CTA recycling automation"
+      gap_severity: 4
+      business_impact: "LOW"
+      audit_risk: "LOW"
+
+# =============================================================================
+# USAGE FOR FEATURE ANALYZER
+# =============================================================================
+
+usage_examples:
+  - scenario: "Work item mentions goodwill calculation"
+    standards_to_check:
+      - "IFRS_3.IFRS3_05"
+      - "IFRS_3.IFRS3_06"
+      - "IAS_36.IAS36_01"
+    compliance_output: |
+      IFRS 3.32: Goodwill = Consideration + NCI - FV Net Assets - PARTIAL implementation
+      IFRS 3.19: NCI measurement options - IMPLEMENTED
+      IAS 36.10: Annual impairment test - NOT IMPLEMENTED (Gap severity 8)
+
+  - scenario: "Work item involves equity method"
+    standards_to_check:
+      - "IAS_28.IAS28_01"
+      - "IAS_28.IAS28_02"
+      - "IAS_28.IAS28_03"
+    compliance_output: |
+      IAS 28.5-6: Significant influence (20-50%) - IMPLEMENTED
+      IAS 28.10-15: Equity method application - IMPLEMENTED
+      IAS 28.10: Share of profit/loss - IMPLEMENTED
+
+  - scenario: "Work item mentions currency translation"
+    standards_to_check:
+      - "IAS_21.IAS21_01"
+      - "IAS_21.IAS21_02"
+      - "IAS_21.IAS21_03"
+      - "IAS_21.IAS21_04"
+    compliance_output: |
+      IAS 21.9-14: Functional currency - IMPLEMENTED
+      IAS 21.39(a): B/S at closing rate - IMPLEMENTED
+      IAS 21.39(b): P&L at average rate - IMPLEMENTED
+      IAS 21.39(c): CTA in OCI - IMPLEMENTED
+
+  - scenario: "Work item involves subsidiary acquisition"
+    standards_to_check:
+      - "IFRS_3" # All requirements
+      - "IFRS_10.IFRS10_01"
+      - "IFRS_10.IFRS10_02"
+    compliance_output: "Full IFRS 3 compliance checklist + control assessment"

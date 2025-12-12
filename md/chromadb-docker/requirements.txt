@@ -1,0 +1,5 @@
+# FC Knowledge Base - ChromaDB with Bedrock Embeddings
+
+chromadb>=0.4.22    # Vector database client
+boto3>=1.34.0       # AWS Bedrock for Titan embeddings
+mcp>=1.0.0          # MCP server protocol for Claude Code

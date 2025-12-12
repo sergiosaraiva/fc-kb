@@ -1,0 +1,27 @@
+services:
+  chromadb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fc-chromadb
+    ports:
+      - "8847:8000"
+    volumes:
+      - chromadb_data:/data
+    environment:
+      - CHROMA_SERVER_AUTH_PROVIDER=chromadb.auth.token_authn.TokenAuthenticationServerProvider
+      - CHROMA_SERVER_AUTH_CREDENTIALS=fc-knowledge-base-token
+      - CHROMA_SERVER_AUTH_TOKEN_TRANSPORT_HEADER=X-Chroma-Token
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v2/heartbeat"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  chromadb_data:
+    driver: local

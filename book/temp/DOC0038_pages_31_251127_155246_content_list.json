@@ -1,0 +1,1435 @@
+[
+    {
+        "type": "text",
+        "text": "In our example, the gain on absorption is 300 which can be detailed as follows :",
+        "bbox": [
+            119,
+            122,
+            882,
+            156
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n300 = 3000 - 2000 - 700 = 1000 - 700 = 100\\% * 1000 - 700\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            193,
+            170,
+            810,
+            188
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "which represents exactly the consolidated reserves calculated at the end of Year 1!",
+        "bbox": [
+            119,
+            202,
+            882,
+            236
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "If we keep the accounts of P as they are and if we go ahead in a consolidation just after the absorption, we obviously will have to face a problem because consolidated reserves for 300 are again booked in the P&L of Year 2 because of this absorption. This cannot be maintained as such and the amount of 300 has to reversed into Reserves account.",
+        "bbox": [
+            119,
+            251,
+            884,
+            332
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The important message here is that we have to know the result of absorption and the account on which it has been booked in order to reverse the booking correctly.",
+        "bbox": [
+            119,
+            347,
+            882,
+            397
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Description of the absorption case study",
+        "text_level": 2,
+        "bbox": [
+            123,
+            411,
+            560,
+            429
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/b488e264c239fe07773a757c189fef06381692298ba485675c004718fb5262df.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            121,
+            448,
+            369,
+            652
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Until end of Year 1, parent company P consolidates company A at  \\(100\\%\\)  and indirectly company B at  \\(80\\%\\) , both with the global integration method.",
+        "bbox": [
+            378,
+            458,
+            880,
+            509
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Beginning of Year 2, company A decides to absorb company B after acquiring from  \\(3^{rd}\\)  Parties the remaining  \\(20\\%\\)  of the shares for a price of 200.",
+        "bbox": [
+            378,
+            522,
+            880,
+            572
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Initially, B has been acquired a few years ago with a goodwill of 150 after allocation to a tangible asset for 100 (depreciation  \\(10\\%\\)  per year).",
+        "bbox": [
+            376,
+            586,
+            880,
+            637
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            123,
+            70,
+            376,
+            84
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Consolidation = Year 1",
+        "text_level": 2,
+        "bbox": [
+            88,
+            118,
+            338,
+            137
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We provide statutory accounts with the consolidation adjustments.",
+        "bbox": [
+            88,
+            150,
+            737,
+            169
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/c1fb30a4c34a73d19c51d2b5393a3805f1fb249774b7ba2ca3f07adafab6bff7.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">1,000</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>1,000</td></tr><tr><td>Result</td><td>300</td></tr><tr><td>Other assets</td><td>5,000</td><td>Other liabilities</td><td>2,700</td></tr></table>",
+        "bbox": [
+            205,
+            183,
+            724,
+            270
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/517c4e686f50147f38e657ed94c166465cb59f26052eecfe923655201c695111.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">A</td></tr><tr><td colspan=\"2\">Goodwill</td><td>Capital</td><td>1,000</td></tr><tr><td></td><td>(a) 150</td><td>Reserves</td><td>600</td></tr><tr><td colspan=\"2\">Fin. Inv./B</td><td>Result</td><td>200</td></tr><tr><td></td><td>(a) (150)</td><td></td><td></td></tr><tr><td colspan=\"2\">Other assets</td><td>Other liabilities</td><td>2,200</td></tr></table>",
+        "bbox": [
+            205,
+            282,
+            724,
+            383
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/caff01be2f43cd1c0f84212d29beba3db3103f2b99720199af19a6874b2dbde5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td colspan=\"2\">B</td></tr><tr><td>Tangible assets</td><td>270</td><td>Capital</td><td>500</td></tr><tr><td>(b)</td><td>100</td><td>Reserves</td><td>300</td></tr><tr><td>(c)</td><td>(30)</td><td>(b)</td><td>100</td></tr><tr><td></td><td></td><td>(c)</td><td>(20)</td></tr><tr><td></td><td></td><td>Result</td><td>(100)</td></tr><tr><td>Other assets</td><td>1,730</td><td>(c)</td><td>(10)</td></tr><tr><td></td><td></td><td>Other liabilities</td><td>1,300</td></tr></table>",
+        "bbox": [
+            205,
+            390,
+            724,
+            522
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): Goodwill attached to the initial  \\(80\\%\\)  of shares acquired.",
+        "bbox": [
+            88,
+            537,
+            794,
+            556
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): Gross value of the asset allocation.",
+        "bbox": [
+            88,
+            569,
+            593,
+            588
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Cumulated depreciations of the asset allocation.",
+        "bbox": [
+            88,
+            601,
+            716,
+            619
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The consolidated accounts are set up without any difficulty.",
+        "bbox": [
+            88,
+            633,
+            669,
+            651
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/c582827c163a31a738414e809411459364cf6981ad4fff8ac334295f09bd8ff5.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"2\">P + A + B</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">150</td><td>Capital 2,000</td></tr><tr><td>Reserves 1,000</td></tr><tr><td rowspan=\"4\">Tangible assets</td><td rowspan=\"4\">340</td><td>Result 300</td></tr><tr><td>Conso. Res.(A) 800</td></tr><tr><td>Conso. Res.(B) 66</td></tr><tr><td>Minority int.(B) 154</td></tr><tr><td>Other assets</td><td>10,030</td><td>Other liabilities 6,200</td></tr></table>",
+        "bbox": [
+            205,
+            670,
+            724,
+            800
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "with",
+        "bbox": [
+            88,
+            811,
+            135,
+            827
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves (A)  \\(= 800 = 100\\%\\)  \\* [1000 + 600 + 200] - 1000",
+        "bbox": [
+            125,
+            840,
+            855,
+            875
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            423,
+            71,
+            841,
+            87
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Consolidated reserves (B) = 66 = 80% * [500 + 300 + 100 + (20) + (100) + (10)] - [700 + (150)]",
+            "Minority interests (B) = 154 = 20% * [500 + 300 + 100 + (20) + (100) + (10)]"
+        ],
+        "bbox": [
+            167,
+            117,
+            891,
+            200
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Some aquestions before consolidatina Year 2",
+        "text_level": 3,
+        "bbox": [
+            129,
+            215,
+            610,
+            233
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In order to prepare the Year 2 consolidation, we should adopt a clear position on the following issues.",
+        "bbox": [
+            127,
+            247,
+            891,
+            281
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "What about the 150 soodwill?",
+        "bbox": [
+            129,
+            296,
+            425,
+            313
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This goodwill concerns company B that disappears because of the absorption. Shall we keep it? To answer this question let's return to some basic principles. A goodwill reflects a kind of additional cost to acquire an economic activity through a company. If it is true that the company disappear from a legal point of view, the group still maintains the activity within the absorbing company. The goodwill is fully justified because, basically, nothing has changed and the absorption is a transaction that should have no effect on the consolidated figures.",
+        "bbox": [
+            127,
+            328,
+            894,
+            458
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "What about the acquisition of the remaining  \\(20\\%\\)  of shares?",
+        "bbox": [
+            129,
+            473,
+            718,
+            489
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The absorption cannot legally be achieved without being owner of the  \\(100\\%\\)  shares of company B. This implies company A has to acquire them and the logic of a goodwill/badwill must be triggered, independently of the fact that there will be an absorption just after the transaction.",
+        "bbox": [
+            127,
+            505,
+            894,
+            570
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Supposing we calculate a new goodwill, the normal position is to book it additionally to the former one. It will be our choice.",
+        "bbox": [
+            127,
+            586,
+            894,
+            618
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "What about the soodwill allocation booked initially in company B accounts?",
+        "bbox": [
+            127,
+            633,
+            858,
+            649
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "This allocation concerns a tangible asset in company B accounts. After the absorption, the asset is transferred to company A accounts and does not leave the group. Our position is then to maintain the allocation and the historical depreciations adjustments by booking them in company A accounts which becomes the owner of this tangible asset. Priority has to be given to the economical view.",
+        "bbox": [
+            127,
+            665,
+            894,
+            763
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "And don't foraet to reverse the statutory result of absorption",
+        "bbox": [
+            127,
+            778,
+            722,
+            794
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "As explained above, we should ask company A about the value of that result of absorption and on which P&L account it has been booked.",
+        "bbox": [
+            127,
+            810,
+            894,
+            843
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            131,
+            65,
+            381,
+            80
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consolidation - Year 2",
+        "text_level": 2,
+        "bbox": [
+            97,
+            120,
+            349,
+            137
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We present the statutory accounts of each company, including the consolidation adjustments.",
+        "bbox": [
+            95,
+            153,
+            866,
+            188
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/b3437c5de5ca92fceec942de281a0aff304643e116036685fcf9af86cac9733f.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P</td></tr><tr><td rowspan=\"3\">Fin. Inv./A</td><td rowspan=\"3\">1,000</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>1,300</td></tr><tr><td>Result</td><td>200</td></tr><tr><td>Other assets</td><td>6,000</td><td>Other liabilities</td><td>3,500</td></tr><tr><td colspan=\"4\">A</td></tr><tr><td>Goodwill</td><td></td><td>Capital</td><td>1,000</td></tr><tr><td>(a)</td><td>150</td><td>Reserves</td><td>800</td></tr><tr><td>(d)</td><td>46</td><td></td><td>(a)</td></tr><tr><td></td><td></td><td></td><td>(b)</td></tr><tr><td></td><td></td><td></td><td>(c)</td></tr><tr><td></td><td></td><td></td><td>(d)</td></tr><tr><td>Tangible assets</td><td>240</td><td></td><td>(e)</td></tr><tr><td>(b)</td><td>100</td><td>Result</td><td>(100)</td></tr><tr><td>(c)</td><td>(40)</td><td></td><td>(e)</td></tr><tr><td>Other assets</td><td>6,160</td><td>Other liabilities</td><td>4,700</td></tr></table>",
+        "bbox": [
+            230,
+            197,
+            750,
+            490
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "According to our previous explanations, there are five consolidation adjustments to book.",
+        "bbox": [
+            95,
+            506,
+            864,
+            541
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): We maintain the goodwill of 150 attached to the initial  \\(80\\%\\)  of shares. However, the counterpart is not the financial investment any more but the reserves.",
+        "bbox": [
+            95,
+            554,
+            864,
+            604
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): We also maintain the gross value of the goodwill allocation in the same way it has been booked in company B accounts before absorption.",
+        "bbox": [
+            95,
+            619,
+            864,
+            654
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): This allocation continues its economical life in the group (company A) with an additional depreciation.",
+        "bbox": [
+            95,
+            667,
+            864,
+            702
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): This entry concerns the additional goodwill related to the acquisition of the  \\(20\\%\\)  of shares. The acquisition price is 200 and the corresponding equity is  \\(154 = 20\\% * [500 + 300 + 100 + (20) + (100) + (10)]\\) , giving a goodwill of  \\(46 = 200 + (154)\\) . This goodwill being calculated just before the absorption, we consider the Year 1 equity of company B.",
+        "bbox": [
+            95,
+            715,
+            864,
+            797
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            430,
+            73,
+            849,
+            87
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (e): As we know the statutory accounts of company B just before absorption, we are able to calculate the result of absorption, which is",
+        "bbox": [
+            119,
+            120,
+            895,
+            154
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/9bdad5232a6af01bff136446025831c07b81adbffc6184f4a5d96632f42a4fe2.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Net value of tangible assets</td><td>270</td></tr><tr><td>Other assets</td><td>1,730</td></tr><tr><td>Other liabilities</td><td>(1,300)</td></tr><tr><td>Financial investments (80%)</td><td>(700)</td></tr><tr><td>Financial investments 20%)</td><td>(200)</td></tr><tr><td></td><td>(200)</td></tr></table>",
+        "bbox": [
+            316,
+            170,
+            710,
+            270
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "and we will suppose that loss on absorption has been booked in the P&L.",
+        "bbox": [
+            119,
+            279,
+            835,
+            297
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Here are the corresponding consolidated accounts",
+        "bbox": [
+            119,
+            313,
+            614,
+            329
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/cc58415b3250870ccde6583787be0c8ea3be4af10f5f96c766ebbf2097fac1b8.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"4\">P + A</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">196</td><td>Capital</td><td>2,000</td></tr><tr><td>Reserves</td><td>1,300</td></tr><tr><td rowspan=\"2\">Tangible assets</td><td rowspan=\"2\">300</td><td>Result</td><td>200</td></tr><tr><td>Conso. Res.(A)</td><td>956</td></tr><tr><td>Other assets</td><td>12,160</td><td>Other liabilities</td><td>8,200</td></tr></table>",
+        "bbox": [
+            256,
+            357,
+            777,
+            459
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            119,
+            459,
+            186,
+            472
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves (A) = 956 = 100% \\* [1000 + 800 + 150 + 100 + (30) + 46 + (200) + (100) + (10) + 200] - 1000",
+        "bbox": [
+            158,
+            488,
+            892,
+            525
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Consolidated reserves evolution",
+        "text_level": 3,
+        "bbox": [
+            119,
+            539,
+            475,
+            555
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/56889fa9999098984f34ae26764c98c1816af6c099587fee14a1eb5638f921f2.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Year 1 reserves</td><td>Year 2 result</td><td>Dividends</td><td>Dividends +</td><td>Transfers</td><td>Dividends P</td><td>Year 2 reserves</td></tr><tr><td>P</td><td>1,300</td><td>200</td><td></td><td></td><td></td><td></td><td>1,500</td></tr><tr><td>A</td><td>800</td><td>90</td><td></td><td></td><td>66</td><td></td><td>956</td></tr><tr><td>B</td><td>66</td><td>0</td><td></td><td></td><td>(66)</td><td></td><td>0</td></tr><tr><td></td><td>2,166</td><td>290</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2,456</td></tr></table>",
+        "bbox": [
+            119,
+            581,
+            856,
+            677
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "In Year 1 there are three companies and only two for Year 2. Reserves of company B are just transferred to the reserves of company A.",
+        "bbox": [
+            117,
+            690,
+            892,
+            724
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "This case study may look a little bit difficult to solve but, if done correctly, the reserves evolution gives a very clear and comprehensive picture.",
+        "bbox": [
+            117,
+            739,
+            890,
+            771
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            124,
+            64,
+            379,
+            81
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "4.3 Merge of two companies",
+        "text_level": 1,
+        "bbox": [
+            88,
+            122,
+            554,
+            147
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "When two companies, owned at  \\(100\\%\\)  by a parent company, decide to merge, this transaction has no impact on the consolidated figures because it is a non cash transaction with no interaction with the outside world. The economical activity, initially located in two companies, is centralized in a single company but still remains in the group. Of course, all historical adjustments booked in each individual company must be kept and booked in the merged entity.",
+        "bbox": [
+            88,
+            166,
+            854,
+            279
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Contrary to an absorption where we have explained that the statutory result of absorption had to be reversed, there is nothing to book in a merge transaction.",
+        "bbox": [
+            88,
+            294,
+            854,
+            342
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "That's for the basic principles.",
+        "bbox": [
+            90,
+            358,
+            381,
+            376
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Unfortunately, some problems arise when the two companies are owned with different percentages and, possibly, with different consolidation methods.",
+        "bbox": [
+            88,
+            390,
+            854,
+            424
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Description of the situation",
+        "text_level": 2,
+        "bbox": [
+            90,
+            439,
+            390,
+            455
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Two companies, A and B, are owned directly by the parent company P.",
+        "bbox": [
+            88,
+            471,
+            516,
+            505
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Company A is owned at  \\(30\\%\\)  and consolidated with the equity method.  \nCompany B is owned at  \\(80\\%\\)  and consolidated with the global integration method.",
+        "bbox": [
+            88,
+            519,
+            516,
+            600
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "image",
+        "img_path": "images/b7e8ded5be9b988e9b57413dae522109583889cfea9560c408ef8e5e1c7615f1.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            531,
+            462,
+            854,
+            598
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Company A has been acquired a few years ago with a goodwill of 200.  \nCompany B has been acquired last year with a goodwill that has been partly allocated to a tangible asset for 1000 (depreciation of  \\(10\\%\\)  /year) leaving a remaining goodwill of 500.",
+        "bbox": [
+            88,
+            616,
+            854,
+            680
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Until now, no impairments have been booked on these goodwills.",
+        "bbox": [
+            90,
+            696,
+            723,
+            713
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "image",
+        "img_path": "images/10ce0cd44fb65413b2a52d817b77ff342d805f36b9dec401a6c9b929a2a34344.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            92,
+            727,
+            206,
+            863
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "On January 1st Year 2, these two companies decide to merge, giving the new following group structure, and just before, company B pays 300 dividends to its shareholders.",
+        "bbox": [
+            217,
+            743,
+            850,
+            793
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            421,
+            74,
+            839,
+            89
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "To keep further explanations clear we will consider the merged entity  \\(A + B\\)  as a new company distinct from  \\(A\\)  and  \\(B\\) . In real life, one of the two companies disappears and we remain with the other, even if its name might possibly change.",
+        "bbox": [
+            127,
+            121,
+            894,
+            187
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The new percentage of  \\(60\\%\\)  will be explained later on.",
+        "bbox": [
+            127,
+            202,
+            658,
+            219
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "As usual, we propose",
+        "bbox": [
+            127,
+            234,
+            338,
+            252
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "To consolidate first Year 1",
+            "- To analyze this merge transaction",
+            "To consolidate Year 2"
+        ],
+        "bbox": [
+            167,
+            266,
+            538,
+            313
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "and we conclude by justifying the consolidated reserves evolution in order to validate the process.",
+        "bbox": [
+            127,
+            331,
+            894,
+            363
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Consolidation- Year 1",
+        "text_level": 2,
+        "bbox": [
+            127,
+            379,
+            377,
+            395
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Here are the statutory accounts",
+        "bbox": [
+            127,
+            410,
+            440,
+            428
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/834723208932676c9cd5cb24b4207abd66fbd97f4af1b5481e783a85a2cf8ea7.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td colspan=\"2\">P</td></tr><tr><td rowspan=\"2\">Goodwill/A</td><td rowspan=\"2\">(a)</td><td rowspan=\"2\">200</td><td>Capital 3,000</td></tr><tr><td>Reserves 1,500</td></tr><tr><td>Goodwill/B</td><td>(b)</td><td>500</td><td>Result 500</td></tr><tr><td>Fin. Inv./A</td><td>(a)</td><td>1,000</td><td></td></tr><tr><td>Fin. Inv./B</td><td>(b)</td><td>5,000</td><td></td></tr><tr><td>Other assets</td><td></td><td>3,000</td><td>Other liabilities 4,000</td></tr></table>",
+        "bbox": [
+            260,
+            439,
+            796,
+            604
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/1908f576a365706950c7a644ff72940714bfa9ec8c4eef65b7eee898fd9df721.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"3\">A</td></tr><tr><td></td><td>Capital</td><td>2,000</td></tr><tr><td></td><td>Reserves</td><td>1,700</td></tr><tr><td></td><td>Result</td><td>300</td></tr><tr><td>Other assets</td><td>7,000</td><td>3,000</td></tr></table>",
+        "bbox": [
+            260,
+            618,
+            794,
+            706
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/6cd6bca12a98b91695ed4fe76e0bd78a003a0f3060cbc467807ddc4ed99e9912.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\"></td><td colspan=\"2\">B</td></tr><tr><td>Tangible assets</td><td>4,000</td><td>Capital</td><td>3,000</td></tr><tr><td>(c)(d)</td><td>1,000</td><td>Reserves</td><td>3,000</td></tr><tr><td></td><td>(200)</td><td></td><td>(c)(d)</td></tr><tr><td></td><td></td><td>Result</td><td>300</td></tr><tr><td></td><td></td><td>(d)</td><td>(100)</td></tr><tr><td>Other assets</td><td>6,000</td><td>Other liabilities</td><td>3,700</td></tr></table>",
+        "bbox": [
+            260,
+            725,
+            794,
+            859
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            131,
+            68,
+            385,
+            83
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "with the following consolidation adjustments",
+        "bbox": [
+            94,
+            122,
+            531,
+            140
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (a): Goodwill of 200 on company A",
+        "bbox": [
+            94,
+            154,
+            559,
+            171
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (b): Goodwill of 500 on company B",
+        "bbox": [
+            94,
+            185,
+            561,
+            204
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (c): Allocation of company B goodwill for a gross amount of 1000",
+        "bbox": [
+            94,
+            217,
+            852,
+            236
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Adjustment (d): This amount is depreciated over two years, one  \\(10\\%\\)  depreciation related to Year 0 and booked on the Reserves and  \\(10\\%\\)  depreciation for Year 1 booked on P&L.",
+        "bbox": [
+            94,
+            251,
+            864,
+            301
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Nothing else has to be booked and hereunder are the corresponding consolidated accounts.",
+        "bbox": [
+            94,
+            315,
+            860,
+            347
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/c93b69294424a51fe6d2cd7d762c0e44c7551ffb76b2fb2d0b5d601a1125e35b.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td colspan=\"3\">P + A + B</td></tr><tr><td rowspan=\"2\">Goodwill</td><td rowspan=\"2\">700</td><td>Capital</td><td>3,000</td></tr><tr><td>Reserves</td><td>1,500</td></tr><tr><td rowspan=\"2\">Tangible assets</td><td rowspan=\"2\">4,800</td><td>Result</td><td>500</td></tr><tr><td>Conso. Res.(A)</td><td>400</td></tr><tr><td rowspan=\"2\">Equity value (A)</td><td rowspan=\"2\">1,200</td><td>Conso. Res.(B)</td><td>1,180</td></tr><tr><td>Minority int.(B)</td><td>1,420</td></tr><tr><td>Other assets</td><td>9,000</td><td>Other liabilities</td><td>7,700</td></tr></table>",
+        "bbox": [
+            251,
+            369,
+            780,
+            502
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "where",
+        "bbox": [
+            97,
+            508,
+            164,
+            523
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Consolidated reserves (A)  \\(= 400 = 30\\%\\)  [2000 + 1700 + 300] - [1000 + (200)]",
+            "- Consolidated reserves (B) = 1180 = 80% * [3000 + 3000 + 1000 + (100) + 300 + (100)] - [5000 + (500)]",
+            "Minority interests (B) = 1420 = 20% * [3000 + 3000 + 1000 + (100) + 300 + (100)]",
+            "Equity value (A)  \\(= 1200 = 30\\%\\)  [2000 + 1700 + 300]"
+        ],
+        "bbox": [
+            135,
+            536,
+            860,
+            701
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Some aquestions before consolidatina Year 2",
+        "text_level": 3,
+        "bbox": [
+            97,
+            716,
+            578,
+            733
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Several sets of questions can be raised before going ahead in a consolidation after such a merge.",
+        "bbox": [
+            94,
+            748,
+            860,
+            782
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Concerning the group structure",
+        "text_level": 3,
+        "bbox": [
+            97,
+            796,
+            407,
+            812
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "- We recommend to ask all information about the number of shares and not the percentages. This merge transaction will lead to the creation of new shares for the A+B entity (or the merged company) and",
+        "bbox": [
+            135,
+            828,
+            860,
+            878
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            428,
+            73,
+            845,
+            89
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "existing shareholders will exchange their A and B shares against A+B shares.",
+        "bbox": [
+            200,
+            122,
+            883,
+            156
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "- Whatever the new percentage will be, the consolidated accounts after the merge",
+        "bbox": [
+            162,
+            169,
+            886,
+            204
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "Either will integrate company A figures because the merged entity is consolidated by the global method",
+            "Or company B figures will disappear because we consolidate the merged entity by the equity method. In any case, this merge will lead to a change of structure in the consolidated balance sheet and the P&L."
+        ],
+        "bbox": [
+            236,
+            219,
+            883,
+            330
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Concernina the statutory accounts",
+        "text_level": 4,
+        "bbox": [
+            124,
+            347,
+            459,
+            364
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "It is important to analyze and understand the statutory accounts before and after the merge transaction.",
+        "bbox": [
+            124,
+            378,
+            888,
+            413
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In consolidation, the equity of  \\(A + B\\)  must be equal to the sum of both equity of  \\(A\\)  and  \\(B\\) . If not, there may be dividends paid before the merge. In some countries, local regulations admit revaluation of assets when making the merge with an impact in the merged equity. If so, such revaluation must be reversed.",
+        "bbox": [
+            124,
+            426,
+            888,
+            505
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Concernina the consolidation adjustments",
+        "text_level": 4,
+        "bbox": [
+            124,
+            524,
+            533,
+            540
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "The main question is to decide what to do with all the historical adjustments, initially related to companies A and B, which have disappeared.",
+        "bbox": [
+            124,
+            555,
+            881,
+            589
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "On the basis of our example, we recommend the following",
+        "bbox": [
+            124,
+            603,
+            691,
+            619
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Goodwills must be maintained. Moreover, we recommend keeping them separate even if we don't have two companies anymore but only a single one. Why? Because if in the future company A+B sells the activity related to the former A company, the goodwill attached to it should be eliminated.",
+        "bbox": [
+            198,
+            635,
+            886,
+            714
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "- Revaluation of assets, and in a more general context, all adjustments booked in the two companies must be kept in the merged company in the same way that would have been the case in the individual companies.",
+        "bbox": [
+            162,
+            732,
+            886,
+            796
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            126,
+            68,
+            379,
+            84
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Merae analysis : The new percentage",
+        "text_level": 2,
+        "bbox": [
+            92,
+            122,
+            497,
+            138
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We present hereunder the number of shares issued in each company and the corresponding value of the equity in order to evaluate the value of one share.",
+        "bbox": [
+            90,
+            154,
+            855,
+            188
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/44b8d50a511061293de578050b3ffede29bed19e08c120be70f472711d8de5dd.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>Total equity</td><td>#shares issued</td><td>Value/share</td></tr><tr><td>Company A</td><td>4,000</td><td>2,000</td><td>2</td></tr><tr><td>Company B</td><td>6,000</td><td>1,500</td><td>4</td></tr><tr><td>Company A+B</td><td>10,000</td><td>1,000</td><td>10</td></tr></table>",
+        "bbox": [
+            130,
+            200,
+            777,
+            267
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Notice that company B equity is 6000 and not 6300 because of the dividends of 300 that will be paid to the former shareholders. This means that parent company P will receive  \\(240 = 80\\% * 300\\)  during Year 2.",
+        "bbox": [
+            90,
+            283,
+            852,
+            330
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "From this information, we can easily conclude that shareholders of A exchange 5 shares against  \\(1 \\mathrm{~A} + \\mathrm{B}\\)  share and shareholders of B exchange 5 B shares against  \\(2 \\mathrm{~A} + \\mathrm{B}\\)  shares.",
+        "bbox": [
+            90,
+            331,
+            852,
+            380
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "In consequence, parent company P receives 120 A+B shares for its  \\(600 = 30\\%\\)  * 2000 A shares and receives 480 A+B shares for its 1200 B shares, giving a final percentage in company A+B of  \\(60\\% = (120 + 480) / 1000\\) .",
+        "bbox": [
+            90,
+            396,
+            852,
+            445
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Merge analysis : The statutory accounts",
+        "text_level": 2,
+        "bbox": [
+            92,
+            460,
+            525,
+            476
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "As shown in the report above, the total equity of both companies A and B is  \\(4000 + 6300\\)  less the 300 dividends, which is equal to the opening equity of company A+B.",
+        "bbox": [
+            90,
+            492,
+            855,
+            542
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Moreover, it is important to notice that",
+        "bbox": [
+            92,
+            555,
+            474,
+            571
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "text": "\n\\[\n30 \\% * 4000 + 80 \\% * 6000 = 1200 + 4800 = 6000 = 60 \\% * 10000\n\\]\n",
+        "text_format": "latex",
+        "bbox": [
+            140,
+            587,
+            806,
+            603
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "meaning that the exchange of shares is fair for all shareholders.",
+        "bbox": [
+            92,
+            619,
+            712,
+            638
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "And so, shall we get some problems in the next consolidation? Unfortunately yes because if the exchange of shares is 'fair' when considering the statutory equity, it becomes \"unfair\" in consolidation because there are some adjustments impacting the equity.",
+        "bbox": [
+            90,
+            652,
+            855,
+            717
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We will come back to this problem when considering the Year 2 figures.",
+        "bbox": [
+            92,
+            732,
+            783,
+            750
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 4 SPECIAL CONSOLIDATION TOPICS",
+        "bbox": [
+            424,
+            74,
+            838,
+            89
+        ],
+        "page_idx": 9
+    }
+]

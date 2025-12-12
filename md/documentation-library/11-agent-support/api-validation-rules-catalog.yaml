@@ -1,0 +1,470 @@
+# Validation Rule Library - Financial Consolidation AI Agent
+# Purpose: Catalog of validation rules for AI agent error diagnosis and guidance
+# Version: 1.1
+# Created: 2024-12-04
+# Updated: 2025-12-04 - Added cross-references (Phase 5)
+#
+# RELATED FILES:
+#   - validation-rules.yaml: SQL-based validation check queries (OWN-*, BS-*, IC-*, PC-*)
+#   - api-error-catalog.yaml: Error codes returned by validation failures
+#   - api-workflow-state-machine.yaml: Workflow prerequisites and status flags
+
+api_validation_rules_catalog:
+  name: "Financial Consolidation Validation Rules Catalog"
+  version: "1.0"
+  description: |
+    Complete catalog of validation rules and validation reports used in Prophix.Conso.
+    Used by the AI agent to explain validation failures and guide users to resolution.
+
+  # ============================================================================
+  # SECTION 1: DATA MODEL OVERVIEW
+  # ============================================================================
+  data_model:
+    description: "Validation system table structure"
+
+    tables:
+      TS019S0:
+        name: "Validation Report Header"
+        purpose: "Defines validation reports that group multiple rules"
+        columns:
+          ValidationReportID: "PK - Auto-generated ID"
+          ValidationReportCode: "User-facing code (e.g., 'BUNDLE', 'INTERCO')"
+          ConsoID: "Consolidation period"
+          Active: "Whether report is active"
+          IsSystem: "System-defined vs user-defined"
+          IsProcessValidationReport: "Whether to run during consolidation"
+          ForConsolidationOnly: "Only available for consolidated data"
+
+      TS019S3:
+        name: "Validation Rule Definition"
+        purpose: "Individual validation rules with conditions and error config"
+        columns:
+          RuleID: "PK - Auto-generated ID"
+          RuleCode: "User-facing code (e.g., 'BALBS', 'BALPL')"
+          ConsoID: "Consolidation period"
+          IsSystem: "System rule vs user-defined rule"
+          SystemStoredProc: "Stored procedure for system rules"
+          ErrorType: "'E' = Error, 'W' = Warning"
+          ErrorCode: "Numeric error code for categorization"
+          Active: "Whether rule is active"
+          Operator: "Comparison operator (<, <=, =, >=, >, <>)"
+          LeftHasFlowOrSummation: "Left side includes flows"
+          LeftHasDim: "Left side includes dimensions"
+          LeftHasInterCompany: "Left side includes IC data"
+          RightHasAmount: "Right side is a fixed amount"
+          RightAmount: "Fixed amount value for comparison"
+          GroupID: "FK to rule group"
+          SequenceInGroup: "Order within group"
+          ValidationThreshold: "Tolerance threshold"
+          ValidationLeftTitle: "Description of left side"
+          ValidationRightTitle: "Description of right side"
+          ValidationExplanation: "User explanation of what rule checks"
+          ConsoMethodSelectionID: "Filter by consolidation method"
+
+      TS019S6:
+        name: "Validation Rule Group"
+        purpose: "Groups related validation rules together"
+
+      TS018S0:
+        name: "Custom Report Definition"
+        purpose: "Report templates and custom report definitions"
+        columns:
+          CustomReportID: "PK"
+          CustomReportCode: "User-facing code"
+          GroupCode: "Report group"
+          Type: |
+            Report type:
+            'S' = Standard
+            'M' = Multi-column
+            'F' = Flow
+            'C' = Cashflow
+            'D' = Dimension
+            'A' = Analysis
+          JSONDefinition: "Report structure in JSON"
+          AvailableForAnalysisOnly: "Limit to analysis mode"
+
+  # ============================================================================
+  # SECTION 2: SYSTEM VALIDATION RULES
+  # ============================================================================
+  system_validation_rules:
+    description: "Built-in validation rules with stored procedures"
+
+    rules:
+      BALBS:
+        code: "BALBS"
+        name: "Balance Sheet Balance"
+        description: "Validates that total assets = total liabilities + equity"
+        error_type: "Error"
+        category: "Balance Validation"
+        condition: "Sum(Assets) = Sum(Liabilities) + Sum(Equity)"
+        affected_data: "Closing amounts (TD030B2)"
+        common_causes:
+          - "Missing account mappings"
+          - "Incorrect debit/credit signs"
+          - "Unclassified accounts"
+          - "Rounding differences"
+        resolution:
+          - "Run Balance Check report"
+          - "Review account classifications"
+          - "Check for missing accounts"
+        api_diagnostic: |
+          Report_BalanceCheck with CompanyCode parameter
+
+      BALPL:
+        code: "BALPL"
+        name: "P&L Balance"
+        description: "Validates that P&L nets to retained earnings movement"
+        error_type: "Error"
+        category: "Balance Validation"
+        condition: "Sum(Income) - Sum(Expenses) = Net Result"
+        affected_data: "Closing amounts (TD030B2)"
+        common_causes:
+          - "P&L account classification errors"
+          - "Missing income/expense accounts"
+        resolution:
+          - "Review P&L account classifications"
+          - "Check net result account mapping"
+
+      ICBAL:
+        code: "ICBAL"
+        name: "Intercompany Balance"
+        description: "Validates IC receivables = IC payables across all companies"
+        error_type: "Error"
+        category: "Intercompany Validation"
+        condition: "Sum(IC Receivables) = Sum(IC Payables)"
+        affected_data: "Intercompany data (TD030I2)"
+        common_causes:
+          - "Missing IC partner entry"
+          - "Timing differences"
+          - "Currency conversion differences"
+          - "Unmatched IC transactions"
+        resolution:
+          - "Run IC Reconciliation report"
+          - "Match IC transactions between companies"
+          - "Review IC matching screen"
+        api_diagnostic: |
+          Report_IntercoReconciliation with ConsoID parameter
+
+      ICSALES:
+        code: "ICSALES"
+        name: "Intercompany Sales/Purchases"
+        description: "Validates IC sales = IC purchases"
+        error_type: "Error"
+        category: "Intercompany Validation"
+        condition: "Sum(IC Sales) = Sum(IC Purchases)"
+        affected_data: "Intercompany data (TD030I2)"
+        common_causes:
+          - "Missing IC partner entry"
+          - "Margin in stock not eliminated"
+        resolution:
+          - "Run IC Validation report"
+          - "Check IC matching configuration"
+
+      FLOWBAL:
+        code: "FLOWBAL"
+        name: "Flow Balance"
+        description: "Validates opening + movements = closing"
+        error_type: "Error"
+        category: "Flow Validation"
+        condition: "Opening + Sum(Flows) = Closing"
+        affected_data: "Flow data (TD040B2)"
+        common_causes:
+          - "Missing flow entries"
+          - "Incorrect flow assignments"
+          - "Opening balance mismatch"
+        resolution:
+          - "Review flow statement"
+          - "Check opening balance import"
+          - "Verify flow mappings"
+
+      DIMBAL:
+        code: "DIMBAL"
+        name: "Dimension Balance"
+        description: "Validates dimension details sum to account total"
+        error_type: "Warning"
+        category: "Dimension Validation"
+        condition: "Sum(Dimension Details) = Account Total"
+        affected_data: "Dimension data (TD050B2)"
+        common_causes:
+          - "Missing dimension allocations"
+          - "Unallocated amounts"
+        resolution:
+          - "Review dimension breakdown"
+          - "Allocate unassigned amounts"
+
+      OWNERSHIP:
+        code: "OWNERSHIP"
+        name: "Ownership Validation"
+        description: "Validates ownership percentages are properly configured"
+        error_type: "Error"
+        category: "Structure Validation"
+        stored_procedure: "P_VALIDATE_OWNERSHIP"
+        common_causes:
+          - "Total ownership > 100%"
+          - "Missing shareholder links"
+          - "Circular ownership"
+        resolution:
+          - "Review ownership structure"
+          - "Check Ownership screen"
+          - "Run Ownership Calculation"
+
+      CONSOMETHOD:
+        code: "CONSOMETHOD"
+        name: "Consolidation Method Validation"
+        description: "Validates consolidation method is appropriate for ownership"
+        error_type: "Warning"
+        category: "Structure Validation"
+        common_causes:
+          - "Method doesn't match control percentage"
+          - "Manual override incorrect"
+        resolution:
+          - "Review consolidation method"
+          - "Run ownership percentage calculation"
+
+  # ============================================================================
+  # SECTION 3: USER-DEFINED VALIDATION RULES
+  # ============================================================================
+  user_defined_rules:
+    description: "Configuration options for custom validation rules"
+
+    operators:
+      "<": "Less than"
+      "<=": "Less than or equal"
+      "=": "Equal"
+      ">=": "Greater than or equal"
+      ">": "Greater than"
+      "<>": "Not equal"
+
+    error_types:
+      E: "Error - Blocks consolidation"
+      W: "Warning - Informational only"
+
+    left_side_options:
+      account: "Single account"
+      account_summation: "Account summation group"
+      flow: "With flow breakdown"
+      flow_summation: "With flow summation"
+      dimension: "With dimension breakdown"
+      intercompany: "Intercompany amounts"
+
+    right_side_options:
+      amount: "Fixed amount (e.g., 0)"
+      account: "Compare to another account"
+      account_summation: "Compare to account summation"
+      calculation: "Calculated expression"
+
+    example_custom_rule:
+      name: "Assets = Liabilities + Equity"
+      rule_code: "BALBS_CUSTOM"
+      left_side: "Account Summation: ASSETS"
+      operator: "="
+      right_side: "Account Summation: LIABILITIES + EQUITY"
+      error_type: "Error"
+      threshold: 0.01
+      explanation: "Balance sheet must balance"
+
+  # ============================================================================
+  # SECTION 4: VALIDATION REPORTS
+  # ============================================================================
+  validation_reports:
+    description: "Pre-configured validation report templates"
+
+    system_reports:
+      BUNDLE:
+        code: "BUNDLE"
+        name: "Bundle Validation"
+        description: "Validates statutory data before integration"
+        when_to_run: "After data import, before bundle integration"
+        included_rules:
+          - "Balance sheet balance"
+          - "P&L balance"
+          - "Opening/closing balance check"
+        api_handler: "ValidationReportRule_Execute"
+
+      INTERCO:
+        code: "INTERCO"
+        name: "Intercompany Validation"
+        description: "Validates intercompany data balances"
+        when_to_run: "After IC matching, before eliminations"
+        included_rules:
+          - "IC balance check"
+          - "IC sales/purchases match"
+          - "IC dividends match"
+        api_handler: "ValidationReportRule_Execute"
+
+      CONSO:
+        code: "CONSO"
+        name: "Consolidation Validation"
+        description: "Validates consolidated results"
+        when_to_run: "After consolidation complete"
+        included_rules:
+          - "Consolidated balance check"
+          - "Minority interest validation"
+          - "Elimination completeness"
+        api_handler: "ValidationReportRule_Execute"
+
+      FLOWS:
+        code: "FLOWS"
+        name: "Flow Statement Validation"
+        description: "Validates flow statement data"
+        when_to_run: "After flow calculation"
+        included_rules:
+          - "Flow balance check"
+          - "Cash flow reconciliation"
+        api_handler: "ValidationReportRule_Execute"
+
+  # ============================================================================
+  # SECTION 5: VALIDATION PROCESS
+  # ============================================================================
+  validation_process:
+    description: "How validation is executed"
+
+    execution_flow:
+      - step: 1
+        action: "User selects validation report"
+        api: "ValidationReportRule_GetReports"
+
+      - step: 2
+        action: "User selects companies and parameters"
+        parameters:
+          - CompanyCode
+          - JournalSummationCode
+          - ConsoID
+          - RefConsoID
+
+      - step: 3
+        action: "System executes P_VALIDATION_REPORT"
+        stored_procedure: "P_VALIDATION_REPORT"
+        output: "Results written to TMP_VALIDATION_REPORT_RULE tables"
+
+      - step: 4
+        action: "Results retrieved and displayed"
+        api: "ValidationReportRule_GetResults"
+
+    data_sources:
+      by_rule_type:
+        closing_amounts: "TD030B2"
+        closing_with_ic: "TD030I2"
+        closing_with_dim: "TD050B2"
+        closing_with_dim_ic: "TD050I2"
+        flow_amounts: "TD040B2"
+        flow_with_ic: "TD040I2"
+        flow_with_dim: "TD060B2"
+        flow_with_dim_ic: "TD060I2"
+
+    dashboard_integration:
+      description: "Validation results can be stored for dashboard display"
+      tables:
+        - T_DASHBOARD_VALIDATION
+        - T_DASHBOARD_VALIDATION_DETAIL
+      flag: "IsProcessValidationReport must be true"
+
+  # ============================================================================
+  # SECTION 6: ERROR RESOLUTION GUIDE
+  # ============================================================================
+  error_resolution:
+    description: "Common validation errors and resolution steps"
+
+    balance_sheet_not_balanced:
+      symptoms:
+        - "BALBS rule fails"
+        - "Assets != Liabilities + Equity"
+      diagnostic_steps:
+        - "Run Balance Check report"
+        - "Check for unclassified accounts"
+        - "Review account type assignments"
+        - "Check for missing accounts in import"
+      api_sequence:
+        - "Report_BalanceCheck"
+        - "Account_GetAccounts with FlagUnclassified filter"
+      resolution:
+        - "Classify unclassified accounts"
+        - "Fix account type (Asset/Liability/Equity)"
+        - "Re-import missing data"
+
+    intercompany_not_balanced:
+      symptoms:
+        - "ICBAL rule fails"
+        - "IC receivables != IC payables"
+      diagnostic_steps:
+        - "Run IC Reconciliation report"
+        - "Identify unmatched IC transactions"
+        - "Check for timing differences"
+      api_sequence:
+        - "Report_IntercoReconciliation"
+        - "IntercoMatching_GetDifferences"
+      resolution:
+        - "Match IC transactions"
+        - "Create adjustment journals"
+        - "Contact counterparty for missing entries"
+
+    flow_not_balanced:
+      symptoms:
+        - "FLOWBAL rule fails"
+        - "Opening + movements != Closing"
+      diagnostic_steps:
+        - "Run Flow Statement report"
+        - "Compare opening to prior period closing"
+        - "Check for missing flow entries"
+      api_sequence:
+        - "Report_FlowStatement"
+        - "Report_OpeningBalanceCheck"
+      resolution:
+        - "Re-import opening balances"
+        - "Create flow adjustment journals"
+        - "Check flow mappings"
+
+  # ============================================================================
+  # SECTION 7: API HANDLERS
+  # ============================================================================
+  api_handlers:
+    ValidationReportRule_GetReports:
+      description: "Get list of available validation reports"
+      parameters:
+        ConsoID: "Consolidation period"
+      returns: "List of validation reports"
+
+    ValidationReportRule_Execute:
+      description: "Execute validation report"
+      parameters:
+        ConsoID: "Consolidation period"
+        ValidationReportID: "Report to execute"
+        CompanyCode: "Companies to validate (XML list)"
+      returns: "SessionID for results"
+      async: true
+
+    ValidationReportRule_GetResults:
+      description: "Get validation results"
+      parameters:
+        SessionID: "From Execute call"
+      returns: "Validation results with errors/warnings"
+
+    ValidationReportRule_GetRules:
+      description: "Get validation rules for a report"
+      parameters:
+        ConsoID: "Consolidation period"
+        ValidationReportID: "Report ID"
+      returns: "List of rules in report"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-04"
+    version: "1.0"
+    author: "Claude Code - Documentation automation"
+
+    source_tables:
+      - "TS019S0 - Validation reports"
+      - "TS019S3 - Validation rules"
+      - "TS019S6 - Rule groups"
+      - "TS018S0 - Custom reports"
+
+    source_procedures:
+      - "P_VALIDATION_REPORT"
+      - "P_VALIDATION_REPORT_VALIDATE_RULE"
+      - "P_REPORT_VALIDATION"
+
+    related_files:
+      - "api-error-catalog.yaml - Error codes"
+      - "api-reports-endpoints.yaml - Report handlers"

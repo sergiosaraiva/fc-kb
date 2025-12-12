@@ -1,0 +1,776 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/1bff6ddba0a8f4c8594cc47967b9f5dbe6f004d6c67306587355a5f34dcaa413.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>MU</td><td>Year 1</td><td>Entering \nconso.</td><td>Acquisitions</td><td>Disposals</td><td>Deprec.</td><td>Net \nvariation</td><td>Year 2</td></tr><tr><td>Tangible assets (acq.val.)</td><td></td><td>4,000</td><td>3,500</td><td>(1,500)</td><td>(300)</td><td></td><td>6,000</td></tr><tr><td>Tangible assets (deprec.)</td><td></td><td>(2,700)</td><td></td><td></td><td></td><td></td><td>(3,000)</td></tr><tr><td>Receivables/3rd Parties</td><td></td><td>2,500</td><td></td><td></td><td></td><td>500</td><td>3,000</td></tr><tr><td>Cash</td><td></td><td>3,200</td><td></td><td></td><td></td><td>(1,200)</td><td>2,000</td></tr><tr><td></td><td>0</td><td></td><td></td><td></td><td></td><td></td><td>8,000</td></tr></table>",
+        "bbox": [
+            116,
+            118,
+            847,
+            212
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/1f77533091902c8c8736847975c9a1c20c23a80df31fbcaec774f2da4d25f079.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>MU</td><td>Year 1</td><td>Entering \nconso.</td><td>Approp.</td><td>Result</td><td>Net \nvariation</td><td>Year 2</td></tr><tr><td>Capital</td><td></td><td>3,000</td><td></td><td></td><td></td><td>3,000</td></tr><tr><td>Retained earnings</td><td></td><td>1,200</td><td>(200)</td><td></td><td></td><td>1,000</td></tr><tr><td>Result</td><td></td><td></td><td>200</td><td>300</td><td></td><td>500</td></tr><tr><td>Payables/3rd Parties</td><td></td><td>2,800</td><td></td><td></td><td>700</td><td>3,500</td></tr><tr><td></td><td>0</td><td></td><td></td><td></td><td></td><td>8,000</td></tr></table>",
+        "bbox": [
+            116,
+            241,
+            684,
+            334
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "images/0586a2b7276fd4c1d72edc1ddaf4300788924542e65595f6d4620c88c910a236.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">MU</td></tr><tr><td>Result</td><td>300</td></tr><tr><td>Depredations</td><td>300</td></tr><tr><td>Provisions</td><td></td></tr><tr><td>Gain/disposals</td><td></td></tr><tr><td>Loss/disposals</td><td></td></tr><tr><td>Cash Flow</td><td>600</td></tr><tr><td>Net variation of receivables</td><td>(500)</td></tr><tr><td>Net variation of payables</td><td>700</td></tr><tr><td>Cash from operating activities</td><td>800</td></tr><tr><td>Investments</td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>(3,500)</td></tr><tr><td>Financial assets acquisitions</td><td></td></tr><tr><td>Disinvestments</td><td></td></tr><tr><td>Tangibles assets disposals</td><td>1,500</td></tr><tr><td>Financial assets disposals</td><td></td></tr><tr><td>Cash from Investment activities</td><td>(2,000)</td></tr><tr><td>Capital increase</td><td>0</td></tr><tr><td>Dividends paid (M)</td><td>0</td></tr><tr><td>Dividends paid (other cies)</td><td>0</td></tr><tr><td>Cash from financial activities</td><td>0</td></tr><tr><td></td><td></td></tr><tr><td>Net cash variation</td><td>(1,200)</td></tr><tr><td>Cash variation from balance</td><td>(1,200)</td></tr></table>",
+        "bbox": [
+            116,
+            368,
+            447,
+            760
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            116,
+            67,
+            366,
+            80
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "MU - Statutory cash flow statement",
+        "text_level": 1,
+        "bbox": [
+            101,
+            120,
+            497,
+            137
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This company enters the consolidation scope on July  \\(1^{st}\\) , Year 2. This means that we don't have the Year 1 closing amounts.",
+        "bbox": [
+            99,
+            153,
+            870,
+            188
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In such situation, the balance sheet accounts existing at that date are booked on a special flow \"Entering conso\".",
+        "bbox": [
+            99,
+            202,
+            870,
+            235
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here are our comments on the cash flow",
+        "bbox": [
+            101,
+            251,
+            504,
+            267
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- Retained earnings account is equal to 1200, already including the 200 profit of the first half year.",
+            "However, the Result in the Year 2 closing amounts is still 500 but the flow splits into 200 for  \\(1^{\\text{st}}\\)  half year and 300 for  \\(2^{\\text{nd}}\\)  half year.",
+            "- The flow \"Entering conso\" has no impact on the cash flow statement because it contains information about the period preceding the life time of the company in the group.",
+            "Investments transactions reflect transactions with the outside world and, in particular, the disposals generate no gain or loss."
+        ],
+        "bbox": [
+            139,
+            282,
+            864,
+            474
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We can check again that the 'Net cash variation\" deducted from the cash flow statement is equal to the net cash variation in the balance sheet.",
+        "bbox": [
+            101,
+            491,
+            870,
+            525
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            432,
+            73,
+            853,
+            89
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "table",
+        "img_path": "images/5810f610ed0b5d715d67c3abf1bd9556c14b73ce0cfe92c206a39242b3a90efc.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td></td><td>ALPHA</td><td>BETA</td><td>GAMMA</td><td>DELTA</td><td>MU</td><td>TOTAL</td></tr><tr><td>Result</td><td>800</td><td>900</td><td>(200)</td><td>600</td><td>300</td><td>2,400</td></tr><tr><td>Depreciations</td><td>0</td><td>600</td><td>500</td><td>480</td><td>300</td><td>1,880</td></tr><tr><td>Provisions</td><td>200</td><td>100</td><td></td><td>360</td><td>0</td><td>660</td></tr><tr><td>Gain/disposals</td><td>(500)</td><td>0</td><td>(300)</td><td>0</td><td>0</td><td>(800)</td></tr><tr><td>Loss/disposals</td><td>400</td><td>0</td><td>0</td><td>0</td><td>0</td><td>400</td></tr><tr><td>Cash Flow</td><td>900</td><td>1,600</td><td>0</td><td>1,440</td><td>600</td><td>4,540</td></tr><tr><td>Net variation of receivables</td><td>(1,100)</td><td>(2,000)</td><td>(1,000)</td><td>(3,600)</td><td>(500)</td><td>(8,200)</td></tr><tr><td>Net variation of payables</td><td>1,300</td><td>3,700</td><td>1,200</td><td>1,680</td><td>700</td><td>8,580</td></tr><tr><td>Cash from operating activities</td><td>1,100</td><td>3,300</td><td>200</td><td>(480)</td><td>800</td><td>4,920</td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles &amp; acquisitions</td><td>0</td><td>(3,300)</td><td>(2,000)</td><td>0</td><td>(3,500)</td><td>(8,800)</td></tr><tr><td>Financial assets acquisitions</td><td>(2,400)</td><td>(4,000)</td><td>0</td><td>0</td><td>0</td><td>(6,400)</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets disposals</td><td>1,500</td><td>800</td><td>2,300</td><td>0</td><td>1,500</td><td>6,100</td></tr><tr><td>Financial assets disposals</td><td>800</td><td>0</td><td>0</td><td>0</td><td>0</td><td>800</td></tr><tr><td>Cash from investment activities</td><td>(100)</td><td>(6,500)</td><td>300</td><td>0</td><td>(2,000)</td><td>(8,300)</td></tr><tr><td>Capital increase</td><td>0</td><td>3,000</td><td>0</td><td>0</td><td>0</td><td>3,000</td></tr><tr><td>Dividends paid (M)</td><td>(300)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(300)</td></tr><tr><td>Dividends paid (other cies)</td><td>0</td><td>0</td><td>0</td><td>(280)</td><td>0</td><td>(280)</td></tr><tr><td>Cash from financial activities</td><td>(300)</td><td>3,000</td><td>0</td><td>(280)</td><td>0</td><td>2,420</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Net cash variation</td><td>700</td><td>(200)</td><td>500</td><td>(760)</td><td>(1,200)</td><td>(960)</td></tr></table>",
+        "bbox": [
+            118,
+            118,
+            855,
+            508
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            68,
+            368,
+            83
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Addition of statutory cash flow statements",
+        "text_level": 2,
+        "bbox": [
+            103,
+            121,
+            569,
+            137
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The next step consists in adding line by line the five statutory cash flow statements previously built. This new cash flow statement is supposed to converge to the consolidated one.",
+        "bbox": [
+            101,
+            153,
+            869,
+            203
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Obviously, there are some advantages to proceed like this.",
+        "bbox": [
+            103,
+            218,
+            675,
+            234
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- All transactions declared at statutory level are reflected as real cash transactions and are kept unchanged in this \"temporary\" cash flow",
+            "- In particular, the cash transactions on consolidated financial investments are also kept and we know that at consolidation level they are eliminated",
+            "- Consolidation goodwills, which appear at consolidation level as intangible assets, have no place at statutory level. This is a good point because they cannot appear at consolidation level.",
+            "- All flows related to translation adjustments have already been ignored at statutory level."
+        ],
+        "bbox": [
+            141,
+            250,
+            867,
+            459
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "But there is quite a distance before achieving our work for some of the main following reasons",
+        "bbox": [
+            103,
+            475,
+            867,
+            508
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- The result on the first line is not equal to the consolidated result, because we didn't take care of the consolidation adjustments",
+            "- Some gains/losses have been adjusted and are presently not in line with the P&L gains/losses",
+            "Intercompany amounts have also been ignored",
+            "- The increase in capital in GAMMA should ignore the subscription of ALPHA which is a group flow",
+            "- Dividends paid are too high because the amount includes the payment to ALPHA, corresponding to a group transaction"
+        ],
+        "bbox": [
+            141,
+            522,
+            867,
+            732
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "And on top of these few comments, we cannot forget that we added the GAMMA cash flow statement corresponding to an equity method company!",
+        "bbox": [
+            103,
+            749,
+            867,
+            781
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The next pages show how we are going to take care of all these issues.",
+        "bbox": [
+            103,
+            797,
+            795,
+            812
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            434,
+            74,
+            852,
+            89
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/b1046354444fd5a45cfeb5bc3740df0b01a5ffa9e7df7266d87c7538b553092a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">ALPHA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr><tr><td rowspan=\"6\">Result</td><td>Depreciations</td><td>800</td><td>(168)</td><td>(400)</td><td>(100)</td><td>(60)</td><td>72</td></tr><tr><td>Provisions</td><td>0</td><td></td><td></td><td>100</td><td>60</td><td>160</td></tr><tr><td>Exchange gain(unrealized)</td><td>200</td><td></td><td></td><td></td><td></td><td>200</td></tr><tr><td>Gain/disposals</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss/disposals</td><td>(500)</td><td></td><td>400</td><td></td><td></td><td>(100)</td></tr><tr><td>Loss from hed cies</td><td>400</td><td></td><td></td><td></td><td></td><td>400</td></tr><tr><td>Cash Flow</td><td></td><td>900</td><td>(168)</td><td>0</td><td>0</td><td>0</td><td>732</td></tr><tr><td colspan=\"2\">Net variation or receivables</td><td>(1,100)</td><td></td><td></td><td></td><td></td><td>(1,100)</td></tr><tr><td colspan=\"2\">Net variation of payables</td><td>1,300</td><td></td><td></td><td></td><td></td><td>1,300</td></tr><tr><td>Link flow</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td colspan=\"2\">Cash from operating activities</td><td>1,100</td><td>(168)</td><td>0</td><td>0</td><td>0</td><td>932</td></tr><tr><td colspan=\"2\">Investments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td colspan=\"2\">Tangibles assets acquisitions</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td colspan=\"2\">Financial assets acquisitions</td><td>(2,400)</td><td></td><td></td><td></td><td></td><td>(2,400)</td></tr><tr><td colspan=\"2\">Disinvestments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td colspan=\"2\">Tangibles assets disposals</td><td>1,500</td><td></td><td></td><td></td><td></td><td>1,500</td></tr><tr><td colspan=\"2\">Financial assets disposals</td><td>800</td><td></td><td></td><td></td><td></td><td>800</td></tr><tr><td colspan=\"2\">Cash from investment activities</td><td>(100)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>(100)</td></tr><tr><td colspan=\"2\">Capital increase</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td colspan=\"2\">Subscription by the group</td><td></td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td colspan=\"2\">Dividends paid (M)</td><td>(300)</td><td></td><td></td><td></td><td></td><td>(300)</td></tr><tr><td colspan=\"2\">Dividends paid (other cies)</td><td>0</td><td>168</td><td></td><td></td><td></td><td>168</td></tr><tr><td colspan=\"2\">Cash from financial activities</td><td>(300)</td><td>168</td><td>0</td><td>0</td><td>0</td><td>(132)</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td colspan=\"2\">Net cash variation</td><td>700</td><td>0</td><td>0</td><td>0</td><td>0</td><td>700</td></tr></table>",
+        "bbox": [
+            118,
+            120,
+            858,
+            609
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            118,
+            68,
+            366,
+            82
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "ALPHA - Contribution to consolidated cash flow statement",
+        "text_level": 1,
+        "bbox": [
+            101,
+            118,
+            739,
+            137
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We start with the statutory cash flow statement that will be adapted considering two aspects",
+        "bbox": [
+            99,
+            152,
+            870,
+            185
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "list",
+        "sub_type": "text",
+        "list_items": [
+            "- On one side we must evaluate the impact of each consolidation adjustment on the cash flow statement",
+            "- On the other side, we must adopt a \"helicopter\" view on the amounts to estimate their compliance with the financial situation."
+        ],
+        "bbox": [
+            139,
+            200,
+            862,
+            279
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column (1)",
+        "text_level": 2,
+        "bbox": [
+            101,
+            297,
+            220,
+            314
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Statutory cash flow statement.",
+        "bbox": [
+            101,
+            329,
+            404,
+            346
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column (2)",
+        "text_level": 2,
+        "bbox": [
+            101,
+            361,
+            220,
+            377
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The elimination of the DELTA dividends for an amount of 168 has an impact on the result. Moreover the line \"Dividends paid (other cies) \", in the added version of the cash flow statement, is presently too high because these 168 remain in the group. We must show only  \\((112) = 40\\%\\)  * (400) * 0.7 corresponding to the dividends paid to  \\(3^{\\text{rd}}\\)  Parties.",
+        "bbox": [
+            101,
+            393,
+            870,
+            475
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column (3)",
+        "text_level": 2,
+        "bbox": [
+            101,
+            490,
+            220,
+            506
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We have booked an adjustment to eliminate the gain on lands disposal to BETA for an amount of 400. The profit must be reduced by this amount with the Gain line as counterpart. Indeed, the ALPHA contribution to the final consolidated P&L is only a gain of 100 for this transaction.",
+        "bbox": [
+            101,
+            522,
+            870,
+            588
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column (4)",
+        "text_level": 2,
+        "bbox": [
+            101,
+            601,
+            220,
+            620
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The goodwill depreciation adjustment for 100 related to BETA participation reduces the group profit. The counterpart is booked on the \"Depreciations\" line of the cash flow statement.",
+        "bbox": [
+            101,
+            633,
+            870,
+            683
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column (5)",
+        "text_level": 2,
+        "bbox": [
+            108,
+            699,
+            226,
+            717
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "When selling the  \\(40\\%\\)  shares in GAMMA, we decided to book the remaining goodwill in the P&L, for an amount of 60. This gives the same reclassification as the one before.",
+        "bbox": [
+            101,
+            730,
+            870,
+            780
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Column (6)",
+        "text_level": 2,
+        "bbox": [
+            101,
+            795,
+            220,
+            812
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "This column is the addition of columns (1) to (5), giving a contributed cash flow statement with an improved picture with regard to the statutory one in column (1).",
+        "bbox": [
+            101,
+            827,
+            870,
+            878
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            434,
+            71,
+            853,
+            87
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/c1439fc09fbf5ffb37245c91da9982e51c2a071af76181d5e714949360f09dcc.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>ALPHA</td><td>(6)</td><td>(7)</td><td>(8)</td><td>(9)</td><td>(10)</td><td>TOTAL</td></tr><tr><td>Result</td><td>72</td><td>680</td><td></td><td></td><td></td><td>752</td></tr><tr><td>Depreciations</td><td>160</td><td></td><td></td><td></td><td></td><td>160</td></tr><tr><td>Provisions</td><td>200</td><td></td><td></td><td></td><td></td><td>200</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Gain/disposals</td><td>(100)</td><td>(280)</td><td></td><td></td><td></td><td>(380)</td></tr><tr><td>Loss/disposals</td><td>400</td><td>(400)</td><td></td><td></td><td></td><td>0</td></tr><tr><td>Loss from equity method cies</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Cash Flow</td><td>732</td><td>0</td><td>0</td><td></td><td>0</td><td>732</td></tr><tr><td>Net variation of receivables</td><td>(1,100)</td><td></td><td></td><td></td><td>1,000</td><td>(100)</td></tr><tr><td>Net variation of payables</td><td>1,300</td><td></td><td></td><td>1,500</td><td>(1,000)</td><td>1,300</td></tr><tr><td>Link flow</td><td></td><td></td><td></td><td></td><td></td><td>500</td></tr><tr><td>Cask from op?ratingactivities</td><td>932</td><td>0</td><td>0</td><td></td><td>0</td><td>2,432</td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Financial acquisitions</td><td>(2,400)</td><td></td><td>2,400</td><td></td><td></td><td>0</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibla assets disposals</td><td>1,500</td><td></td><td></td><td>(1,500)</td><td></td><td>0</td></tr><tr><td>Financial assets disposals</td><td>800</td><td></td><td></td><td></td><td></td><td>800</td></tr><tr><td>Cash from investment activities</td><td>(100)</td><td>0</td><td>2400</td><td></td><td>0</td><td>800</td></tr><tr><td>Capital increase</td><td>0</td><td></td><td></td><td></td><td></td><td>0</td></tr><tr><td>Subscription by the group</td><td>0</td><td></td><td>(2,400)</td><td></td><td></td><td>(2,400)</td></tr><tr><td>Dividends paid (M)</td><td>(300)</td><td></td><td></td><td></td><td></td><td>(300)</td></tr><tr><td>Dividends paid (other cies)</td><td>168</td><td></td><td></td><td></td><td></td><td>168</td></tr><tr><td>Cash from financial activities</td><td>(132)</td><td>0</td><td>(2,400)</td><td></td><td>0</td><td>(2,532)</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Net cash variation</td><td>700</td><td>0</td><td>0</td><td></td><td>0</td><td>700</td></tr></table>",
+        "bbox": [
+            117,
+            117,
+            865,
+            649
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            119,
+            64,
+            372,
+            78
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Column (7)",
+        "text_level": 3,
+        "bbox": [
+            105,
+            120,
+            220,
+            137
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This column deals with the adjustment concerning the loss on disposal of the  \\(40\\%\\)  shares owned on GAMMA. The net impact was an improvement of the profit for 680 with two counterparts, an elimination of the statutory loss for 400 and a consolidated gain for 280.",
+        "bbox": [
+            105,
+            152,
+            870,
+            218
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Column (8)",
+        "text_level": 3,
+        "bbox": [
+            105,
+            232,
+            220,
+            250
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The subscription of ALPHA to the BETA capital increase is 2400. We reclassify this amount in the \"Cash from financial activities\" in order to reduce the capital increase of 3000. Besides the fact we still show both amounts, the net value of 600 is the cash brought by the  \\(3^{\\text{rd}}\\)  Parties, which is the only cash in.",
+        "bbox": [
+            105,
+            265,
+            870,
+            330
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Column (9)",
+        "text_level": 3,
+        "bbox": [
+            105,
+            345,
+            220,
+            361
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The Tangible assets disposal for 1500 corresponds to the lands acquired by BETA. This group transaction cannot appear in the consolidated cash flow statement. Notice the use of a \"Link flow\" line that must become zero at the end.",
+        "bbox": [
+            105,
+            377,
+            870,
+            442
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Column (10)",
+        "text_level": 3,
+        "bbox": [
+            105,
+            458,
+            230,
+            475
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We know there were intercompany receivables with partner DELTA for an amount of 1000. Up to now, we ignored this situation by starting with a statutory situation. We have now to eliminate the flow via a link flow like for intercompany closing amounts.",
+        "bbox": [
+            105,
+            490,
+            870,
+            554
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Column TOTAL",
+        "text_level": 3,
+        "bbox": [
+            105,
+            571,
+            252,
+            587
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "This column becomes the contribution of company ALPHA in the final consolidated cash flow statement.",
+        "bbox": [
+            105,
+            601,
+            870,
+            635
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            434,
+            73,
+            853,
+            87
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/9b55b09aff938027a9daa98823e1d38a93f20b6e15fe15b14c6251cc31a44edd.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>BETA</td><td>(1)</td><td>(2)</td><td>(3)</td><td>TOTAL</td></tr><tr><td>Result</td><td>900</td><td>(100)</td><td>(22)</td><td>778</td></tr><tr><td>Depreciations</td><td>600</td><td>100</td><td>22</td><td>722</td></tr><tr><td>Provisions</td><td>100</td><td></td><td></td><td>100</td></tr><tr><td>Exchange gain(unrealized)</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Gain/disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Loss/disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Loss from equity method cies</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash flow</td><td>1,600</td><td>0</td><td></td><td>1,600</td></tr><tr><td>Net variation of receivables</td><td>(2,000)</td><td></td><td></td><td>(2,000)</td></tr><tr><td>Net variation of payables</td><td>3,700</td><td></td><td></td><td>3,700</td></tr><tr><td>Link Row</td><td></td><td></td><td>(1,500)</td><td>(1,500)</td></tr><tr><td>Cash from operating activities</td><td>3,300</td><td>0</td><td>(1,500)</td><td>1,800</td></tr><tr><td>Investments</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets acquisitions</td><td>(3,300)</td><td></td><td>1,500</td><td>(1,800)</td></tr><tr><td>Financial assets acquisitions</td><td>(4,000)</td><td></td><td></td><td>(4,000)</td></tr><tr><td>Disinvestments</td><td></td><td></td><td></td><td></td></tr><tr><td>Tangibles assets disposals</td><td>800</td><td></td><td></td><td>800</td></tr><tr><td>Financial assets disposals</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash from investment activities</td><td>(6,500)</td><td>0</td><td>1,500</td><td>(5,000)</td></tr><tr><td>Capital increase</td><td>3,000</td><td></td><td></td><td>3,000</td></tr><tr><td>Subscription by the group</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Dividends paid (M)</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Dividends paid (other cies)</td><td>0</td><td></td><td></td><td>0</td></tr><tr><td>Cash from financial activities</td><td>3,000</td><td>0</td><td>0</td><td>3,000</td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Net cash variation</td><td>(200)</td><td>0</td><td>0</td><td>(200)</td></tr></table>",
+        "bbox": [
+            117,
+            116,
+            713,
+            612
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "DIRECT CONSOLIDATION",
+        "bbox": [
+            119,
+            64,
+            370,
+            78
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "BETA = Contribution to consolidated cash flow statement",
+        "text_level": 1,
+        "bbox": [
+            103,
+            121,
+            724,
+            139
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Column (1)",
+        "bbox": [
+            103,
+            153,
+            218,
+            171
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Statutory cash flow statement.",
+        "bbox": [
+            103,
+            187,
+            404,
+            204
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Column (2)",
+        "bbox": [
+            103,
+            218,
+            218,
+            235
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We adjust the profit by the depreciation of the tangible assets revaluation for 100.",
+        "bbox": [
+            103,
+            250,
+            870,
+            282
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Column (3)",
+        "bbox": [
+            103,
+            298,
+            218,
+            316
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This adjustment concerns the new goodwill depreciation related to company MU.",
+        "bbox": [
+            103,
+            330,
+            870,
+            361
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Column TOTAL",
+        "bbox": [
+            103,
+            379,
+            252,
+            395
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This column becomes the contribution of company BETA in the final consolidated cash flow statement.",
+        "bbox": [
+            103,
+            411,
+            870,
+            443
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "PART 6 CONSOLIDATION CASE STUDY",
+        "bbox": [
+            432,
+            73,
+            855,
+            89
+        ],
+        "page_idx": 9
+    }
+]

@@ -1,0 +1,659 @@
+# API Debugging Patterns - Financial Consolidation AI Agent
+# Purpose: Debug patterns, failure scenarios, and recovery procedures
+# Version: 1.0
+# Created: 2025-12-04
+# Source: Extracted from error-handling-patterns.yaml during Phase 5 consolidation
+
+api_debugging_patterns:
+  name: "Financial Consolidation Debugging Patterns"
+  version: "1.0"
+  description: |
+    Comprehensive debugging guide for troubleshooting consolidation procedures.
+    Contains debug techniques, failure scenarios, and recovery procedures.
+
+    For error codes and definitions, see: api-error-catalog.yaml
+    For API-level error handling, see: api-error-handling.yaml
+
+  # ============================================================================
+  # SECTION 1: ERROR INFRASTRUCTURE
+  # ============================================================================
+  error_infrastructure:
+    description: "Core error handling mechanism in Prophix.Conso stored procedures"
+
+    xml_structure:
+      template: |
+        <ErrorInfo>
+          <Errors>
+            <Error Key="ERROR_CODE">
+              <Params>
+                <Param Value="param1" />
+                <Param Value="param2" />
+              </Params>
+            </Error>
+          </Errors>
+          <Warnings>
+            <Warning Key="WARNING_CODE">
+              <Params>
+                <Param Value="param1" />
+              </Params>
+            </Warning>
+          </Warnings>
+        </ErrorInfo>
+
+      notes:
+        - "All stored procedures use @errorinfo xml OUTPUT parameter"
+        - "Errors block processing; Warnings allow continuation"
+        - "Multiple errors/warnings can accumulate in single @errorinfo"
+
+    functions:
+      add_error:
+        - name: "AddError0"
+          signature: "AddError0(@errorKey, @xml)"
+          description: "Add error with no parameters"
+          example: "set @errorinfo = dbo.AddError0('CONSONOTFOUND', @errorinfo)"
+
+        - name: "AddError1"
+          signature: "AddError1(@errorKey, @param1, @xml)"
+          description: "Add error with 1 parameter"
+          example: "set @errorinfo = dbo.AddError1('ELIMINATION_S001_NOT_FOUND', 'context', @errorinfo)"
+
+        - name: "AddError2"
+          signature: "AddError2(@errorKey, @param1, @param2, @xml)"
+          description: "Add error with 2 parameters"
+          example: "set @errorinfo = dbo.AddError2('SPECIFIC_ACCOUNT_NOT_FOUND', 'DivReceived', 'procedure', @errorinfo)"
+
+        - name: "AddError3"
+          signature: "AddError3(@errorKey, @param1, @param2, @param3, @xml)"
+          description: "Add error with 3 parameters"
+          example: "set @errorinfo = dbo.AddError3('ConsoLockedByAdmin', @Login, @Date, @Reason, @errorinfo)"
+
+        - name: "AddError4"
+          signature: "AddError4(@errorKey, @param1, @param2, @param3, @param4, @xml)"
+          description: "Add error with 4 parameters"
+
+        - name: "AddErrorUncaught"
+          signature: "AddErrorUncaught(@errorMessage, @xml)"
+          description: "Handle unexpected SQL Server errors, extract constraint names"
+          patterns_detected:
+            - "IX_* (Index violations)"
+            - "FK_* (Foreign key violations)"
+            - "TR_* (Trigger errors)"
+            - "CK_* (Check constraint violations)"
+
+      add_warning:
+        - name: "AddWarning0-4"
+          description: "Same as AddError0-4 but adds to Warnings section"
+          behavior: "Warnings don't block execution, only errors do"
+
+      check_error:
+        - name: "HasError"
+          signature: "HasError(@xml) RETURNS bit"
+          description: "Check if @errorinfo contains any errors"
+          usage: "if dbo.HasError(@errorinfo) = 1 goto CleanupAndEnd"
+
+    standard_pattern:
+      description: "Standard error handling pattern in consolidation procedures"
+      code: |
+        CREATE PROCEDURE [dbo].[P_CONSO_*]
+            @ConsoID int,
+            @Debug bit = 0,
+            @errorinfo xml output
+        AS
+        BEGIN
+            SET NOCOUNT ON
+
+            DECLARE @errormessage nvarchar(4000)
+
+            BEGIN TRY
+                -- Validate prerequisites
+                IF @SomeAccount IS NULL
+                    SET @errorinfo = dbo.AddError2('SPECIFIC_ACCOUNT_NOT_FOUND', 'AccountCode', 'Context', @errorinfo)
+
+                IF dbo.HasError(@errorinfo) = 1 GOTO CleanupAndEnd
+
+                -- Main processing
+                ...
+
+            END TRY
+            BEGIN CATCH
+                SET @errormessage = 'Procedure: ' + ERROR_PROCEDURE() +
+                    ' - Line: ' + CAST(ERROR_LINE() AS varchar(10)) +
+                    ' - Message: ' + ERROR_MESSAGE()
+                SET @errorinfo = dbo.AddErrorUncaught(@errormessage, @errorinfo)
+            END CATCH
+
+            CleanupAndEnd:
+            -- Cleanup temp tables
+            ...
+        END
+
+  # ============================================================================
+  # SECTION 2: DEBUG PATTERNS
+  # ============================================================================
+  debug_patterns:
+    description: "Debugging techniques for consolidation procedures"
+
+    debug_parameter:
+      description: "All major procedures support @Debug = 1"
+      effect: |
+        - Prints timing information
+        - Shows intermediate results
+        - Outputs temp table contents
+        - Logs step-by-step progress
+      example: |
+        DECLARE @errorinfo xml
+        EXEC P_CONSO_ELIM
+            @UserID = 11,
+            @ConsoID = 25168,
+            @Debug = 1,  -- Enable debug output
+            @errorinfo = @errorinfo OUTPUT
+
+    debug_print_helper:
+      procedure: "P_SYS_DEBUG_PRINT"
+      signature: "P_SYS_DEBUG_PRINT @Message, @StartTime OUTPUT, @LastTime OUTPUT, @AdditionalInfo = NULL"
+      output_format: "[timestamp] Message (elapsed: Xms, total: Yms)"
+      example_output: |
+        [2024-12-02 10:15:32.123] [P_CONSO_ELIM] started (elapsed: 0ms, total: 0ms)
+        [2024-12-02 10:15:32.456] Get list of all companies (elapsed: 333ms, total: 333ms)
+        [2024-12-02 10:15:33.789] Some preparations (elapsed: 1333ms, total: 1666ms)
+
+    viewing_errorinfo:
+      description: "How to inspect @errorinfo XML"
+      techniques:
+        - name: "Print as string"
+          sql: "PRINT CAST(@errorinfo AS VARCHAR(MAX))"
+
+        - name: "Select as XML"
+          sql: "SELECT @errorinfo AS ErrorInfo"
+
+        - name: "Extract errors"
+          sql: |
+            SELECT
+                e.value('@Key', 'nvarchar(100)') AS ErrorCode,
+                p.value('@Value', 'nvarchar(4000)') AS Param
+            FROM @errorinfo.nodes('/ErrorInfo/Errors/Error') AS T(e)
+            CROSS APPLY e.nodes('Params/Param') AS P(p)
+
+        - name: "Count errors and warnings"
+          sql: |
+            SELECT
+                @errorinfo.value('count(/ErrorInfo/Errors/Error)', 'int') AS ErrorCount,
+                @errorinfo.value('count(/ErrorInfo/Warnings/Warning)', 'int') AS WarningCount
+
+    temp_table_inspection:
+      description: "Debug output often includes temp table contents"
+      common_temp_tables:
+        - name: "#AllCompanies"
+          description: "Companies in consolidation scope"
+          key_columns: ["CompanyID", "CompanyCode", "GroupPerc", "MinorPerc", "ConsoMethod"]
+
+        - name: "#SelectedCompanies"
+          description: "Companies selected for current operation"
+          key_columns: ["CompanyID", "CompanyCode"]
+
+        - name: "#Accounts"
+          description: "Accounts being processed"
+          key_columns: ["AccountID", "Account", "AccountType"]
+
+        - name: "#Flows"
+          description: "Flows being processed"
+          key_columns: ["FlowID", "FlowCode", "FlowType"]
+
+        - name: "#Lines"
+          description: "Elimination lines being calculated"
+          key_columns: ["CompanyID", "AccountID", "FlowID", "Amount"]
+
+    status_monitoring:
+      description: "Monitor consolidation status"
+      queries:
+        - name: "Company processing status"
+          sql: |
+            SELECT CompanyCode, CompanyName,
+                   Status_Bundles, Status_Adjustments,
+                   CASE Status_Bundles
+                       WHEN 0 THEN 'Completed'
+                       WHEN 1 THEN 'Pending'
+                       WHEN 2 THEN 'Processing'
+                       ELSE 'Error'
+                   END AS BundleStatus
+            FROM TS014C0
+            WHERE ConsoID = @ConsoID
+              AND ConsolidatedCompany = 1
+            ORDER BY Status_Bundles DESC, CompanyCode
+
+        - name: "Elimination execution status"
+          sql: |
+            SELECT e.ElimCode, e.Description, e.Active,
+                   COUNT(DISTINCT j.JournalEntryID) AS JournalCount
+            FROM TS070S0 e
+            LEFT JOIN TD045C2 j ON j.ConsoID = e.ConsoID
+              AND j.JournalTypeID = e.JournalTypeID
+            WHERE e.ConsoID = @ConsoID
+            GROUP BY e.ElimCode, e.Description, e.Active
+            ORDER BY e.Level, e.ElimCode
+
+        - name: "Recent job execution"
+          sql: |
+            SELECT TOP 10
+                JobTypeCode, JobStatusCode,
+                StartDateTime, EndDateTime,
+                DATEDIFF(second, StartDateTime, EndDateTime) AS DurationSec,
+                ErrorMessage
+            FROM TL020S0
+            WHERE ConsoID = @ConsoID
+            ORDER BY StartDateTime DESC
+
+    tracing_data_flow:
+      description: "Trace data through consolidation pipeline"
+      steps:
+        - step: 1
+          name: "Check local data input"
+          sql: |
+            SELECT CompanyCode, Account, FlowCode,
+                   SUM(AmountLocal) AS LocalTotal
+            FROM TD030B2 d
+            INNER JOIN TS014C0 c ON c.CompanyID = d.CompanyID
+            INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+            INNER JOIN TS011C0 f ON f.FlowID = d.FlowID
+            WHERE d.ConsoID = @ConsoID
+            GROUP BY CompanyCode, Account, FlowCode
+
+        - step: 2
+          name: "Check translated data"
+          sql: |
+            SELECT CompanyCode, Account, FlowCode,
+                   SUM(AmountLocal) AS LocalTotal,
+                   SUM(AmountGroup) AS GroupTotal
+            FROM TD035C2 d
+            INNER JOIN TS014C0 c ON c.CompanyID = d.CompanyID
+            INNER JOIN TS010S0 a ON a.AccountID = d.AccountID
+            INNER JOIN TS011C0 f ON f.FlowID = d.FlowID
+            WHERE d.ConsoID = @ConsoID
+            GROUP BY CompanyCode, Account, FlowCode
+
+        - step: 3
+          name: "Check elimination journals"
+          sql: |
+            SELECT j.JournalTypeCode, CompanyCode, Account,
+                   SUM(Amount) AS EliminationAmount
+            FROM TD045C2 e
+            INNER JOIN TS020S0 j ON j.JournalTypeID = e.JournalTypeID
+            INNER JOIN TS014C0 c ON c.CompanyID = e.CompanyID
+            INNER JOIN TS010S0 a ON a.AccountID = e.AccountID
+            WHERE e.ConsoID = @ConsoID
+            GROUP BY j.JournalTypeCode, CompanyCode, Account
+            ORDER BY j.JournalTypeCode, CompanyCode
+
+  # ============================================================================
+  # SECTION 3: COMMON FAILURE SCENARIOS
+  # ============================================================================
+  failure_scenarios:
+    description: "Common failure scenarios with step-by-step recovery procedures"
+
+    scenarios:
+      - id: "FAIL-001"
+        name: "Bundle Integration Fails - Missing Exchange Rates"
+        symptoms:
+          - "P_CONSO_CALCULATE_BUNDLE_INTEGRATION returns error"
+          - "Status_Bundles stays at 1 or 2"
+          - "No data in TD035C2"
+        root_cause: "Missing exchange rates for company currencies"
+
+        diagnosis:
+          steps:
+            - step: 1
+              action: "Identify companies with missing rates"
+              sql: |
+                SELECT DISTINCT c.CurrCode, c.CompanyCode
+                FROM TS014C0 c
+                LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID
+                  AND r.CurrCode = c.CurrCode AND r.RateType = 'CC'
+                WHERE c.ConsoID = @ConsoID
+                  AND c.ConsolidatedCompany = 1
+                  AND r.CurrCode IS NULL
+
+            - step: 2
+              action: "Verify consolidation currency"
+              sql: |
+                SELECT ConsoID, CurrCode AS ConsoCurrency
+                FROM TS096S0
+                WHERE ConsoID = @ConsoID
+
+        recovery:
+          steps:
+            - step: 1
+              action: "Load missing exchange rates"
+              sql: |
+                INSERT INTO TS017R0 (ConsoID, CurrCode, RateType, Rate)
+                VALUES (@ConsoID, 'USD', 'CC', 1.10),  -- Closing rate
+                       (@ConsoID, 'USD', 'AC', 1.08)   -- Average rate
+
+            - step: 2
+              action: "Re-run bundle integration"
+              sql: |
+                DECLARE @errorinfo xml
+                EXEC P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+                    @UserID = @UserID,
+                    @ConsoID = @ConsoID,
+                    @Debug = 1,
+                    @errorinfo = @errorinfo OUTPUT
+
+      - id: "FAIL-002"
+        name: "Ownership Calculation Fails - Orphan Companies"
+        symptoms:
+          - "P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES returns error"
+          - "GroupPerc/MinorPerc are NULL or 0"
+          - "NO_SHAREHOLDER error code"
+        root_cause: "Companies in consolidation scope have no ownership links"
+
+        diagnosis:
+          steps:
+            - step: 1
+              action: "Find orphan companies"
+              sql: |
+                SELECT c.CompanyCode, c.CompanyName
+                FROM TS014C0 c
+                LEFT JOIN TS015S0 o ON o.ConsoID = c.ConsoID
+                  AND o.CompanyOwnedID = c.CompanyID
+                WHERE c.ConsoID = @ConsoID
+                  AND c.ConsolidatedCompany = 1
+                  AND c.FlagParent = 0
+                  AND o.OwnershipID IS NULL
+
+        recovery:
+          options:
+            - option: "A"
+              description: "Add ownership link if company should be consolidated"
+              sql: |
+                INSERT INTO TS015S0 (ConsoID, CompanyID, CompanyOwnedID,
+                                     FinPercentage, CtrlPercentage)
+                SELECT @ConsoID,
+                       (SELECT CompanyID FROM TS014C0 WHERE ConsoID = @ConsoID AND FlagParent = 1),
+                       c.CompanyID,
+                       100, 100  -- Adjust percentages as needed
+                FROM TS014C0 c
+                WHERE c.ConsoID = @ConsoID
+                  AND c.CompanyCode = @OrphanCompanyCode
+
+            - option: "B"
+              description: "Remove from scope if company should not be consolidated"
+              sql: |
+                UPDATE TS014C0
+                SET ConsolidatedCompany = 0
+                WHERE ConsoID = @ConsoID
+                  AND CompanyCode = @OrphanCompanyCode
+
+      - id: "FAIL-003"
+        name: "Elimination Fails - Missing Special Account"
+        symptoms:
+          - "P_CONSO_ELIM returns SPECIFIC_ACCOUNT_NOT_FOUND"
+          - "Elimination journals not created"
+        root_cause: "Required special account not configured"
+
+        diagnosis:
+          steps:
+            - step: 1
+              action: "Identify missing account from error message"
+              note: "Error parameter 1 contains the account code"
+
+            - step: 2
+              action: "Check account configuration"
+              sql: |
+                -- For DivReceived:
+                SELECT AccountID, Account, AccountName, FlagDivReceived
+                FROM TS010S0
+                WHERE ConsoID = @ConsoID
+                  AND FlagDivReceived = 1
+
+        recovery:
+          steps:
+            - step: 1
+              action: "Identify existing account to use"
+              sql: |
+                SELECT AccountID, Account, AccountName
+                FROM TS010S0
+                WHERE ConsoID = @ConsoID
+                  AND Account LIKE '%DIVIDEND%'  -- Adjust pattern
+
+            - step: 2
+              action: "Set special account flag"
+              sql: |
+                UPDATE TS010S0
+                SET FlagDivReceived = 1
+                WHERE ConsoID = @ConsoID
+                  AND AccountID = @SelectedAccountID
+
+            - step: 3
+              action: "Re-run eliminations"
+              sql: |
+                DECLARE @errorinfo xml
+                EXEC P_CONSO_ELIM
+                    @UserID = @UserID,
+                    @ConsoID = @ConsoID,
+                    @Debug = 1,
+                    @errorinfo = @errorinfo OUTPUT
+
+      - id: "FAIL-004"
+        name: "Consolidation Locked During Processing"
+        symptoms:
+          - "ConsoLocked or ConsoLockedByAdmin error"
+          - "Cannot save changes"
+        root_cause: "Period locked by administrator or concurrent process"
+
+        diagnosis:
+          steps:
+            - step: 1
+              action: "Check lock status"
+              sql: |
+                SELECT ConsoID, ConsoCode, ConsoStatus,
+                       LockedByLogin, LockedDate, LockedReason,
+                       LockedReasonType, LockedReasonDetail
+                FROM TS096S0
+                WHERE ConsoID = @ConsoID
+
+        recovery:
+          options:
+            - option: "A"
+              description: "Wait for concurrent process"
+              condition: "LockedReasonType = 'PROCESSING'"
+              action: "Monitor ConsoStatus until changes to 'O'"
+
+            - option: "B"
+              description: "Request administrator unlock"
+              condition: "LockedReasonType = 'ADMIN'"
+              action: "Contact LockedByLogin user"
+
+            - option: "C"
+              description: "Force unlock (admin only)"
+              sql: |
+                UPDATE TS096S0
+                SET ConsoStatus = 'O',
+                    LockedByLogin = NULL,
+                    LockedDate = NULL,
+                    LockedReason = NULL
+                WHERE ConsoID = @ConsoID
+
+      - id: "FAIL-005"
+        name: "Circular Ownership Calculation Issues"
+        symptoms:
+          - "Ownership percentages seem wrong"
+          - "GroupPerc doesn't match expected"
+          - "Matrix calculation warnings"
+        root_cause: "Circular ownership not resolving correctly"
+
+        diagnosis:
+          steps:
+            - step: 1
+              action: "Identify circular structures"
+              sql: |
+                -- Find simple A-B-A circles
+                SELECT c1.CompanyCode AS Company1,
+                       c2.CompanyCode AS Company2,
+                       o1.FinPercentage AS Pct1to2,
+                       o2.FinPercentage AS Pct2to1
+                FROM TS015S0 o1
+                INNER JOIN TS015S0 o2 ON o2.ConsoID = o1.ConsoID
+                  AND o2.CompanyID = o1.CompanyOwnedID
+                  AND o2.CompanyOwnedID = o1.CompanyID
+                INNER JOIN TS014C0 c1 ON c1.CompanyID = o1.CompanyID
+                INNER JOIN TS014C0 c2 ON c2.CompanyID = o1.CompanyOwnedID
+                WHERE o1.ConsoID = @ConsoID
+                  AND o1.CompanyID < o1.CompanyOwnedID
+
+            - step: 2
+              action: "Run ownership with debug"
+              sql: |
+                DECLARE @errorinfo xml, @SessionID int
+                EXEC P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+                    @ConsoID = @ConsoID,
+                    @CustomerID = @CustomerID,
+                    @UseSessionTable = 1,
+                    @SessionID = @SessionID OUTPUT,
+                    @errorinfo = @errorinfo OUTPUT,
+                    @Debug = 1
+
+        recovery:
+          notes:
+            - "Circular ownership IS supported via Gauss elimination"
+            - "If results seem wrong, verify input percentages"
+            - "Check that all links have correct FinPercentage and CtrlPercentage"
+
+  # ============================================================================
+  # SECTION 4: RECOVERY PROCEDURES
+  # ============================================================================
+  recovery_procedures:
+    description: "Standard recovery procedures for common situations"
+
+    procedures:
+      - id: "RECOVERY-001"
+        name: "Reset Company Integration Status"
+        use_case: "Company stuck in processing state"
+        sql: |
+          -- Reset bundle integration status
+          UPDATE TS014C0
+          SET Status_Bundles = 1  -- Set to Pending
+          WHERE ConsoID = @ConsoID
+            AND CompanyID = @CompanyID
+
+          -- Then re-run integration
+          DECLARE @errorinfo xml
+          EXEC P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+              @UserID = @UserID,
+              @ConsoID = @ConsoID,
+              @CompanyIDs = @CompanyID,
+              @errorinfo = @errorinfo OUTPUT
+
+      - id: "RECOVERY-002"
+        name: "Clear and Regenerate Eliminations"
+        use_case: "Elimination results are incorrect"
+        sql: |
+          -- Delete elimination journals for specific elimination
+          DELETE FROM TD045C2
+          WHERE ConsoID = @ConsoID
+            AND JournalTypeID = (
+                SELECT JournalTypeID FROM TS070S0
+                WHERE ConsoID = @ConsoID AND ElimCode = @ElimCode
+            )
+
+          -- Re-run all eliminations
+          DECLARE @errorinfo xml
+          EXEC P_CONSO_ELIM
+              @UserID = @UserID,
+              @ConsoID = @ConsoID,
+              @Debug = 1,
+              @errorinfo = @errorinfo OUTPUT
+
+      - id: "RECOVERY-003"
+        name: "Recalculate Ownership Percentages"
+        use_case: "Ownership structure changed"
+        sql: |
+          -- Clear calculated percentages
+          UPDATE TS014C0
+          SET GroupPerc = NULL,
+              MinorPerc = NULL,
+              GroupCtrlPerc = NULL
+          WHERE ConsoID = @ConsoID
+            AND FlagParent = 0
+
+          -- Recalculate
+          DECLARE @errorinfo xml
+          EXEC P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+              @ConsoID = @ConsoID,
+              @CustomerID = @CustomerID,
+              @UpdateConsoMethod = 1,
+              @UseSessionTable = 0,
+              @errorinfo = @errorinfo OUTPUT,
+              @Debug = 1
+
+      - id: "RECOVERY-004"
+        name: "Full Consolidation Reset"
+        use_case: "Major data corruption, need fresh start"
+        warning: "This deletes all consolidation results!"
+        sql: |
+          -- Delete in correct order due to foreign keys
+          DELETE FROM TD045C2 WHERE ConsoID = @ConsoID  -- Elimination journals
+          DELETE FROM TD035C2 WHERE ConsoID = @ConsoID  -- Consolidated data
+          DELETE FROM TD040B2 WHERE ConsoID = @ConsoID  -- IC data
+
+          -- Reset all company statuses
+          UPDATE TS014C0
+          SET Status_Bundles = 1,
+              Status_Adjustments = 1,
+              GroupPerc = NULL,
+              MinorPerc = NULL,
+              GroupCtrlPerc = NULL
+          WHERE ConsoID = @ConsoID
+            AND FlagParent = 0
+
+          -- Then run full consolidation sequence:
+          -- 1. P_CALC_OWNERSHIP_INDIRECT_PERCENTAGES
+          -- 2. P_CONSO_CALCULATE_BUNDLE_INTEGRATION
+          -- 3. P_CONSO_CALCULATE_ADJUSTMENTS_INTEGRATION
+          -- 4. P_CONSO_ELIM
+
+  # ============================================================================
+  # SECTION 5: QUICK REFERENCE
+  # ============================================================================
+  quick_reference:
+    debug_checklist:
+      - "Always run with @Debug = 1 when troubleshooting"
+      - "Check @errorinfo output for error codes"
+      - "Review temp table contents in debug output"
+      - "Verify Status_Bundles = 0 before eliminations"
+      - "Check exchange rates for all currencies"
+      - "Verify ownership links exist for all companies"
+
+    common_debug_commands:
+      check_status: |
+        SELECT CompanyCode, Status_Bundles, Status_Adjustments
+        FROM TS014C0 WHERE ConsoID = @ConsoID AND ConsolidatedCompany = 1
+
+      check_rates: |
+        SELECT c.CurrCode, r.RateType, r.Rate
+        FROM TS014C0 c
+        LEFT JOIN TS017R0 r ON r.ConsoID = c.ConsoID AND r.CurrCode = c.CurrCode
+        WHERE c.ConsoID = @ConsoID AND c.ConsolidatedCompany = 1
+
+      check_ownership: |
+        SELECT c.CompanyCode, c.GroupPerc, c.MinorPerc, c.ConsoMethod
+        FROM TS014C0 c WHERE c.ConsoID = @ConsoID AND c.ConsolidatedCompany = 1
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2025-12-04"
+    version: "1.0"
+    source: "Extracted from error-handling-patterns.yaml during Phase 5 consolidation"
+
+    related_files:
+      - "api-error-catalog.yaml - Complete error code reference"
+      - "api-error-handling.yaml - API-level error handling"
+      - "api-workflow-state-machine.yaml - Workflow prerequisites"
+
+    purpose: |
+      Provides debugging guidance for AI agents to:
+      - Understand stored procedure error handling patterns
+      - Use @Debug parameter effectively
+      - Diagnose common failure scenarios
+      - Execute recovery procedures safely

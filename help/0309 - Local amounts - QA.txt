@@ -1,0 +1,380 @@
+Topics:
+Financial Consolidation Data Entry, Intercompany Management, Local Amounts Management, Report Generation
+
+Keywords:
+Financial Consolidation, Intercompany Management, Local Amounts, Bundle Reports, Data Entry, Adjustments
+
+Summary:
+The documents provide detailed guidance on managing various aspects of Financial Consolidation, including entering and verifying data for local amounts, intercompany transactions, and generating bundle reports. They cover accessing specific pages, selecting input forms, entering data, reviewing adjusted amounts, and generating reports. Terminology has been standardized, and detailed instructions from images have been incorporated into the text.
+
+Contents:
+
+Question: What is the purpose of the Local Amounts entry page in financial consolidation?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). The local amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page displayed after selecting the parameters on this page.
+
+Question: How do you access the Local Amounts entry page?
+Answer: To access the Local Amounts entry page, click Data Entry > Manual Data Entry > Local Amounts.
+
+Question: What options are available in the Option field when entering local amounts?
+Answer: The options available in the Option field are determined by the selected input form and include Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1.
+
+Question: How do you start data entry in local amounts?
+Answer: To start data entry in local amounts: 1. In the InputForm field, select an input form. 2. Select a company. 3. In the Option field, select Local Amounts. 4. Click Select. The Bundle Data Entry - Standard page is displayed for entering the local amount details.
+
+Question: What is displayed in the top part of the Bundle Data Entry - Standard page?
+Answer: The top part of the Bundle Data Entry - Standard page displays the following parameters selected on the Local Amounts page: Company, Option, Currency, and InputForm.
+
+Question: What information does the Company parameter show on the Bundle Data Entry - Standard page?
+Answer: The Company parameter shows information about the company, including the code, name, and local currency.
+
+Question: What is the function of the Zero button on the Bundle Data Entry - Standard page?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: What does the Balance button do on the Bundle Data Entry - Standard page?
+Answer: The Balance button opens a pop-up window showing the total debit and credit for the Balance Sheet, Profit and Loss, and Contingencies accounts, as well as the result of the year in the Balance Sheet and Profit and Loss.
+
+Question: How can you filter and display data on the Bundle Data Entry - Standard page?
+Answer: To filter and display data on the Bundle Data Entry - Standard page, use the filter box right above the table on the left side of the page. Several options are available to display data accordingly.
+
+Question: What does the Save button do on the Bundle Data Entry - Standard page?
+Answer: The Save button saves the modifications made to the amounts. When you change the contents of a field, this button will become red, and all affected totals will get borders around them.
+
+Question: What is the purpose of the Bundle Last Modified page?
+Answer: The Bundle Last Modified page allows you to create a report of recently modified bundles.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: How do you generate a Bundle Last Modified report?
+Answer: To generate a Bundle Last Modified report: 1. In the Period field, click to search for and select the current consolidation period. 2. In the Ref Period field, click to search for and select a reference consolidation period. 3. In the File type field, select the output file type (PDF, XLS, XLSX). 4. Click Generate Report.
+
+Question: What does the Local Adjustments option show on the Local Amounts page?
+Answer: The Local Adjustments option shows the impact of the Local Adjustments, including the Reference and the Current amounts, and the difference between both.
+
+Question: What does the Adjusted Bundles option show on the Local Amounts page?
+Answer: The Adjusted Bundles option shows the local amounts corrected with the local adjustments, including the Reference and the Current amounts, and the difference between both.
+
+Question: How do you view the impact of local adjustments on bundle amounts for the current consolidation?
+Answer: To view the impact of local adjustments on bundle amounts for the current consolidation: 1. Select an input form. 2. Select a company. 3. Select Adjusted Bundles from the Option field. 4. Click Select. The Bundle Data Entry - Standard page is displayed to view the impact.
+
+Question: What information is displayed in the data area of the Bundle Data Entry - Standard page?
+Answer: The data area of the Bundle Data Entry - Standard page contains the accounts available on the Input Form, including the account code, account description, amount from the reference period, amount from the current period, and the calculated difference between the reference amount and the current amount.
+
+Question: What does the Financial Flow button do on the Bundle Data Entry - Standard page?
+Answer: The Financial Flow button opens a page to enter the Financial Flow data. The button only appears for accounts defined to work with flows.
+
+Question: What does the Dimension button do on the Bundle Data Entry - Standard page?
+Answer: The Dimension button opens a page to enter dimension information. This button only appears for accounts defined to work with dimension information.
+
+Question: How do you copy data from the reference consolidation period?
+Answer: To copy data from the reference consolidation period: 1. Select the checkbox at the top left of the data area to copy all lines or select specific lines. 2. Click Copy to transfer the amounts from reference to current period. 3. Click Update to confirm the update of the amounts.
+
+Question: What does the Grid button do on the Bundle Data Entry - Standard page?
+Answer: The Grid button is a toggle that adds Excel-like grid lines to the displayed data on the page when selected.
+
+Question: What is the function of the Partner button on the Bundle Data Entry - Standard page?
+Answer: The Partner button opens a page to enter the partner company details. This button appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: What does the Zero button on the Bundle Data Entry - Standard page do?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: How do you change an amount on the Bundle Data Entry - Standard page?
+Answer: To change an amount on the Bundle Data Entry - Standard page: 1. Place the cursor on the amount to be changed. 2. Change the amount. A border will appear around all the subtotal and total amounts impacted by this change. 3. Click Save to save the changes.
+
+Question: What is the purpose of the Local Amounts entry page?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). These amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page after selecting parameters.
+
+Question: What information is provided by the Company parameter on the Bundle Data Entry - Standard page?
+Answer: The Company parameter provides information about the company, including the code, name, and local currency.
+
+Question: How do you access the Local Amounts entry page in financial consolidation?
+Answer: To access the Local Amounts entry page, click Data Entry > Manual Data Entry > Local Amounts.
+
+Question: What does the Financial Flow button on the Bundle Data Entry - Standard page do?
+Answer: The Financial Flow button opens a page for entering flow data. It only appears for accounts defined to work with flows.
+
+Question: What is the purpose of the Local Amounts entry page in financial consolidation?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). The local amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page displayed after selecting the parameters on this page.
+
+Question: How do you access the Local Amounts entry page?
+Answer: To access the Local Amounts entry page, click Data Entry > Manual Data Entry > Local Amounts.
+
+Question: What options are available in the Option field when entering local amounts?
+Answer: The options available in the Option field are determined by the selected input form and include Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1.
+
+Question: How do you start data entry in local amounts?
+Answer: To start data entry in local amounts: 1. In the InputForm field, select an input form. 2. Select a company. 3. In the Option field, select Local Amounts. 4. Click Select. The Bundle Data Entry - Standard page is displayed for entering the local amount details.
+
+Question: What is displayed in the top part of the Bundle Data Entry - Standard page?
+Answer: The top part of the Bundle Data Entry - Standard page displays the following parameters selected on the Local Amounts page: Company, Option, Currency, and InputForm.
+
+Question: What information does the Company parameter show on the Bundle Data Entry - Standard page?
+Answer: The Company parameter shows information about the company, including the code, name, and local currency.
+
+Question: What is the function of the Zero button on the Bundle Data Entry - Standard page?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: What does the Balance button do on the Bundle Data Entry - Standard page?
+Answer: The Balance button opens a pop-up window showing the total debit and credit for the Balance Sheet, Profit and Loss, and Contingencies accounts, as well as the result of the year in the Balance Sheet and Profit and Loss.
+
+Question: How can you filter and display data on the Bundle Data Entry - Standard page?
+Answer: To filter and display data on the Bundle Data Entry - Standard page, use the filter box right above the table on the left side of the page. Several options are available to display data accordingly.
+
+Question: What does the Save button do on the Bundle Data Entry - Standard page?
+Answer: The Save button saves the modifications made to the amounts. When you change the contents of a field, this button will become red, and all affected totals will get borders around them.
+
+Question: What is the purpose of the Bundle Last Modified page?
+Answer: The Bundle Last Modified page allows you to create a report of recently modified bundles.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: How do you generate a Bundle Last Modified report?
+Answer: To generate a Bundle Last Modified report: 1. In the Period field, click to search for and select the current consolidation period. 2. In the Ref Period field, click to search for and select a reference consolidation period. 3. In the File type field, select the output file type (PDF, XLS, XLSX). 4. Click Generate Report.
+
+Question: What does the Local Adjustments option show on the Local Amounts page?
+Answer: The Local Adjustments option shows the impact of the Local Adjustments, including the Reference and the Current amounts, and the difference between both.
+
+Question: What does the Adjusted Bundles option show on the Local Amounts page?
+Answer: The Adjusted Bundles option shows the local amounts corrected with the local adjustments, including the Reference and the Current amounts, and the difference between both.
+
+Question: How do you view the impact of local adjustments on bundle amounts for the current consolidation?
+Answer: To view the impact of local adjustments on bundle amounts for the current consolidation: 1. Select an input form. 2. Select a company. 3. Select Adjusted Bundles from the Option field. 4. Click Select. The Bundle Data Entry - Standard page is displayed to view the impact.
+
+Question: What information is displayed in the data area of the Bundle Data Entry - Standard page?
+Answer: The data area of the Bundle Data Entry - Standard page contains the accounts available on the Input Form, including the account code, account description, amount from the reference period, amount from the current period, and the calculated difference between the reference amount and the current amount.
+
+Question: What does the Financial Flow button do on the Bundle Data Entry - Standard page?
+Answer: The Financial Flow button opens a page to enter the Financial Flow data. The button only appears for accounts defined to work with flows.
+
+Question: What does the Dimension button do on the Bundle Data Entry - Standard page?
+Answer: The Dimension button opens a page to enter dimension information. This button only appears for accounts defined to work with dimension information.
+
+Question: How do you copy data from the reference consolidation period?
+Answer: To copy data from the reference consolidation period: 1. Select the checkbox at the top left of the data area to copy all lines or select specific lines. 2. Click Copy to transfer the amounts from reference to current period. 3. Click Update to confirm the update of the amounts.
+
+Question: What does the Grid button do on the Bundle Data Entry - Standard page?
+Answer: The Grid button is a toggle that adds Excel-like grid lines to the displayed data on the page when selected.
+
+Question: What is the function of the Partner button on the Bundle Data Entry - Standard page?
+Answer: The Partner button opens a page to enter the partner company details. This button appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: What does the Zero button on the Bundle Data Entry - Standard page do?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: How do you change an amount on the Bundle Data Entry - Standard page?
+Answer: To change an amount on the Bundle Data Entry - Standard page: 1. Place the cursor on the amount to be changed. 2. Change the amount. A border will appear around all the subtotal and total amounts impacted by this change. 3. Click Save to save the changes.
+
+Question: What is the purpose of the Local Amounts entry page?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). These amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page after selecting parameters.
+
+Question: What information is provided by the Company parameter on the Bundle Data Entry - Standard page?
+Answer: The Company parameter provides information about the company, including the code, name, and local currency.
+
+Question: How do you access the Local Amounts entry page in financial consolidation?
+Answer: To access the Local Amounts entry page, click Data Entry > Manual Data Entry > Local Amounts.
+
+Question: What does the Financial Flow button on the Bundle Data Entry - Standard page do?
+Answer: The Financial Flow button opens a page for entering flow data. It only appears for accounts defined to work with flows.
+
+Question: What options can you choose from in the Option field on the Local Amounts page?
+Answer: In the Option field, you can choose from options such as Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1, based on the selected input form.
+
+Question: How do you view adjusted amounts for both current and reference periods?
+Answer: To view adjusted amounts for both current and reference periods: 1. Select an input form. 2. Select a company. 3. Select Adjusted Bundles from the Option field. 4. Click Select to display the adjusted amounts.
+
+Question: What does the Copy button on the Bundle Data Entry - Standard page do?
+Answer: The Copy button transfers the amounts from the reference to the current period. It works only in combination with the checkboxes in the first column, allowing copying one or more (or all) accounts within the form.
+
+Question: What is the purpose of the Balance button on the Bundle Data Entry - Standard page?
+Answer: The Balance button opens a pop-up window showing the total debit and credit for the Balance Sheet, Profit and Loss, and Contingencies accounts, as well as the result of the year in the Balance Sheet and Profit and Loss.
+
+Question: What are the options in the Option field on the Local Amounts page?
+Answer: The options in the Option field include Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1, which are determined by the selected input form.
+
+Question: How do you save modifications made to amounts on the Bundle Data Entry - Standard page?
+Answer: To save modifications made to amounts: 1. Change the contents of a field. 2. Click the Save button, which will become red, and all affected totals will get borders around them. 3. Confirm the operation by clicking the Update button.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: What does the Save button on the Bundle Data Entry - Standard page do?
+Answer: The Save button saves the modifications made to the amounts. It becomes red when changes are made, and all affected totals get borders around them.
+
+Question: How can you filter data on the Bundle Data Entry - Standard page?
+Answer: To filter data on the Bundle Data Entry - Standard page, use the filter box right above the table on the left side of the page. Several options are available to display data accordingly.
+
+Question: What does the Copy button do on the Bundle Data Entry - Standard page?
+Answer: The Copy button transfers the amounts from the reference to the current period. It works only in combination with the checkboxes in the first column, allowing copying one or more (or all) accounts within the form.
+
+Question: What is displayed in the data area of the Bundle Data Entry - Standard page?
+Answer: The data area of the Bundle Data Entry - Standard page contains the accounts available on the Input Form, including the account code, account description, amount from the reference period, amount from the current period, and the calculated difference between the reference amount and the current amount.
+
+Question: What does the Zero button do on the Bundle Data Entry - Standard page?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: How do you enter partner details on the Bundle Data Entry - Standard page?
+Answer: To enter partner details on the Bundle Data Entry - Standard page, click the Partner button, which appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: What information does the Currency parameter show on the Bundle Data Entry - Standard page?
+Answer: The Currency parameter shows the code for the currency in use.
+
+Question: What is the purpose of the Partner button on the Bundle Data Entry - Standard page?
+Answer: The Partner button opens a page to enter the partner company details. This button appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: What does the Grid button on the Bundle Data Entry - Standard page do?
+Answer: The Grid button is a toggle that adds Excel-like grid lines to the displayed data on the page when selected.
+
+Question: How do you change an amount on the Bundle Data Entry - Standard page?
+Answer: To change an amount: 1. Place the cursor on the amount to be changed. 2. Change the amount. A border appears around all the subtotal and total amounts impacted by the change. 3. Click Save to save the changes.
+
+Question: What does the Financial Flow button do on the Bundle Data Entry - Standard page?
+Answer: The Financial Flow button opens a page for entering flow data. It only appears for accounts defined to work with flows.
+
+Question: What does the Copy button do on the Bundle Data Entry - Standard page?
+Answer: The Copy button transfers the amounts from the reference to the current period. It works only in combination with the checkboxes in the first column, allowing copying one or more (or all) accounts within the form.
+
+Question: What is the purpose of the Local Amounts entry page?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). These amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page after selecting parameters.
+
+Question: How do you access the Local Amounts entry page?
+Answer: To access the Local Amounts entry page, click Data Entry > Manual Data Entry > Local Amounts.
+
+Question: What does the Zero button on the Bundle Data Entry - Standard page do?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: How do you start data entry in local amounts?
+Answer: To start data entry in local amounts: 1. In the InputForm field, select an input form. 2. Select a company. 3. In the Option field, select Local Amounts. 4. Click Select. The Bundle Data Entry - Standard page is displayed for entering the local amount details.
+
+Question: What options are available in the Option field on the Local Amounts page?
+Answer: The options available in the Option field are determined by the selected input form and include Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1.
+
+Question: What does the Financial Flow button do on the Bundle Data Entry - Standard page?
+Answer: The Financial Flow button opens a page for entering flow data. It only appears for accounts defined to work with flows.
+
+Question: What information does the Company parameter show on the Bundle Data Entry - Standard page?
+Answer: The Company parameter shows information about the company, including the code, name, and local currency.
+
+Question: How do you generate a Bundle Last Modified report?
+Answer: To generate a Bundle Last Modified report: 1. In the Period field, click to search for and select the current consolidation period. 2. In the Ref Period field, click to search for and select a reference consolidation period. 3. In the File type field, select the output file type (PDF, XLS, XLSX). 4. Click Generate Report.
+
+Question: How do you save modifications made to amounts on the Bundle Data Entry - Standard page?
+Answer: To save modifications made to amounts: 1. Change the contents of a field. 2. Click the Save button, which will become red, and all affected totals will get borders around them. 3. Confirm the operation by clicking the Update button.
+
+Question: What is the purpose of the Balance button on the Bundle Data Entry - Standard page?
+Answer: The Balance button opens a pop-up window showing the total debit and credit for the Balance Sheet, Profit and Loss, and Contingencies accounts, as well as the result of the year in the Balance Sheet and Profit and Loss.
+
+Question: What does the Dimension button do on the Bundle Data Entry - Standard page?
+Answer: The Dimension button opens a page to enter dimension information. This button only appears for accounts defined to work with dimension information.
+
+Question: What options can you choose from in the Option field on the Local Amounts page?
+Answer: In the Option field, you can choose from options such as Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1, based on the selected input form.
+
+Question: How do you copy data from the reference consolidation period?
+Answer: To copy data from the reference consolidation period: 1. Select the checkbox at the top left of the data area to copy all lines or select specific lines. 2. Click Copy to transfer the amounts from reference to current period. 3. Click Update to confirm the update of the amounts.
+
+Question: What is the purpose of the Bundle Last Modified page?
+Answer: The Bundle Last Modified page allows you to create a report of recently modified bundles.
+
+Question: What is displayed in the data area of the Bundle Data Entry - Standard page?
+Answer: The data area of the Bundle Data Entry - Standard page contains the accounts available on the Input Form, including the account code, account description, amount from the reference period, amount from the current period, and the calculated difference between the reference amount and the current amount.
+
+Question: How do you view the impact of local adjustments on bundle amounts for the current consolidation?
+Answer: To view the impact of local adjustments on bundle amounts for the current consolidation: 1. Select an input form. 2. Select a company. 3. Select Adjusted Bundles from the Option field. 4. Click Select. The Bundle Data Entry - Standard page is displayed to view the impact.
+
+Question: What does the Grid button on the Bundle Data Entry - Standard page do?
+Answer: The Grid button is a toggle that adds Excel-like grid lines to the displayed data on the page when selected.
+
+Question: What does the Partner button on the Bundle Data Entry - Standard page do?
+Answer: The Partner button opens a page to enter the partner company details. This button appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: How do you change an amount on the Bundle Data Entry - Standard page?
+Answer: To change an amount: 1. Place the cursor on the amount to be changed. 2. Change the amount. A border appears around all the subtotal and total amounts impacted by the change. 3. Click Save to save the changes.
+
+Question: How do you filter data on the Bundle Data Entry - Standard page?
+Answer: To filter data on the Bundle Data Entry - Standard page, use the filter box right above the table on the left side of the page. Several options are available to display data accordingly.
+
+Question: How do you enter partner details on the Bundle Data Entry - Standard page?
+Answer: To enter partner details on the Bundle Data Entry - Standard page, click the Partner button, which appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: What is the function of the Zero button on the Bundle Data Entry - Standard page?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: What does the Balance button do on the Bundle Data Entry - Standard page?
+Answer: The Balance button opens a pop-up window showing the total debit and credit for the Balance Sheet, Profit and Loss, and Contingencies accounts, as well as the result of the year in the Balance Sheet and Profit and Loss.
+
+Question: What does the Financial Flow button on the Bundle Data Entry - Standard page do?
+Answer: The Financial Flow button opens a page for entering flow data. It only appears for accounts defined to work with flows.
+
+Question: What options are available in the Option field on the Local Amounts page?
+Answer: The options available in the Option field are determined by the selected input form and include Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1.
+
+Question: How do you save modifications made to amounts on the Bundle Data Entry - Standard page?
+Answer: To save modifications made to amounts: 1. Change the contents of a field. 2. Click the Save button, which will become red, and all affected totals will get borders around them. 3. Confirm the operation by clicking the Update button.
+
+Question: What is the purpose of the Local Amounts entry page?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). These amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page after selecting parameters.
+
+Question: How do you generate a Bundle Last Modified report?
+Answer: To generate a Bundle Last Modified report: 1. In the Period field, click to search for and select the current consolidation period. 2. In the Ref Period field, click to search for and select a reference consolidation period. 3. In the File type field, select the output file type (PDF, XLS, XLSX). 4. Click Generate Report.
+
+Question: What information does the Company parameter show on the Bundle Data Entry - Standard page?
+Answer: The Company parameter shows information about the company, including the code, name, and local currency.
+
+Question: What does the Dimension button do on the Bundle Data Entry - Standard page?
+Answer: The Dimension button opens a page to enter dimension information. This button only appears for accounts defined to work with dimension information.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: What is displayed in the data area of the Bundle Data Entry - Standard page?
+Answer: The data area of the Bundle Data Entry - Standard page contains the accounts available on the Input Form, including the account code, account description, amount from the reference period, amount from the current period, and the calculated difference between the reference amount and the current amount.
+
+Question: How do you start data entry in local amounts?
+Answer: To start data entry in local amounts: 1. In the InputForm field, select an input form. 2. Select a company. 3. In the Option field, select Local Amounts. 4. Click Select. The Bundle Data Entry - Standard page is displayed for entering the local amount details.
+
+Question: What information does the Currency parameter show on the Bundle Data Entry - Standard page?
+Answer: The Currency parameter shows the code for the currency in use.
+
+Question: What is the function of the Partner button on the Bundle Data Entry - Standard page?
+Answer: The Partner button opens a page to enter the partner company details. This button appears on accounts defined to work with partner information such as intercompany accounts, participation accounts, or partner accounts.
+
+Question: What does the Grid button do on the Bundle Data Entry - Standard page?
+Answer: The Grid button is a toggle that adds Excel-like grid lines to the displayed data on the page when selected.
+
+Question: What does the Financial Flow button do on the Bundle Data Entry - Standard page?
+Answer: The Financial Flow button opens a page for entering flow data. It only appears for accounts defined to work with flows.
+
+Question: How do you filter data on the Bundle Data Entry - Standard page?
+Answer: To filter data on the Bundle Data Entry - Standard page, use the filter box right above the table on the left side of the page. Several options are available to display data accordingly.
+
+Question: What does the Copy button on the Bundle Data Entry - Standard page do?
+Answer: The Copy button transfers the amounts from the reference to the current period. It works only in combination with the checkboxes in the first column, allowing copying one or more (or all) accounts within the form.
+
+Question: How do you change an amount on the Bundle Data Entry - Standard page?
+Answer: To change an amount: 1. Place the cursor on the amount to be changed. 2. Change the amount. A border appears around all the subtotal and total amounts impacted by the change. 3. Click Save to save the changes.
+
+Question: What options are available in the Option field on the Local Amounts page?
+Answer: The options available in the Option field are determined by the selected input form and include Local Amounts, Local Adjustments, Adjusted Bundles, Local + Adjustments N, and Local + Adjustments N-1.
+
+Question: How do you view the impact of local adjustments on bundle amounts for the current consolidation?
+Answer: To view the impact of local adjustments on bundle amounts for the current consolidation: 1. Select an input form. 2. Select a company. 3. Select Adjusted Bundles from the Option field. 4. Click Select. The Bundle Data Entry - Standard page is displayed to view the impact.
+
+Question: What is the purpose of the Local Amounts entry page?
+Answer: The Local Amounts entry page is used for selecting the input form or template needed to enter local amounts (statutory figures). These amounts are entered on the Bundle Data Entry - Standard page or in an Advanced input page after selecting parameters.
+
+Question: What does the Save button on the Bundle Data Entry - Standard page do?
+Answer: The Save button saves the modifications made to the amounts. It becomes red when changes are made, and all affected totals get borders around them.
+
+Question: How do you access the Bundle Last Modified page?
+Answer: To access the Bundle Last Modified page, click Reports > Standard Reports > Bundle Last Modified.
+
+Question: How do you generate a Bundle Last Modified report?
+Answer: To generate a Bundle Last Modified report: 1. In the Period field, click to search for and select the current consolidation period. 2. In the Ref Period field, click to search for and select a reference consolidation period. 3. In the File type field, select the output file type (PDF, XLS, XLSX). 4. Click Generate Report.
+
+Question: What does the Zero button on the Bundle Data Entry - Standard page do?
+Answer: The Zero button replaces all selected values with zero. It works only in combination with the checkboxes in the first column, allowing you to set to zero one or more (or all) accounts within the form.
+
+Question: What is displayed in the data area of the Bundle Data Entry - Standard page?
+Answer: The data area of the Bundle Data Entry - Standard page contains the accounts available on the Input Form, including the account code, account description, amount from the reference period, amount from the current period, and the calculated difference between the reference amount and the current amount.
+

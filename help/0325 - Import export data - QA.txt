@@ -1,0 +1,254 @@
+Topics:
+Data Import and Export, Mapping Tables, Adjustments, Data Reporting
+
+Keywords:
+Import Data, Export Data, Mapping Tables, Adjustments, File Structure, Data Report, CSV, Excel, HUB, Validation, Overwrite, Parameters, Journal, Period
+
+Summary:
+The provided documentation for the Financial Consolidation product includes comprehensive instructions on importing and exporting data, defining mapping tables, managing adjustments, and generating data reports. The Data Import and Export sections explain how to handle different file structures, specify import/export parameters, and validate data quality. The Mapping Tables section details how to define and manage mappings between source and target data structures. The Adjustments section covers importing and exporting adjustment data, specifying file types, and setting overwrite options. The Data Reporting section provides steps to generate import data reports, detailing account and company selections, sorting options, and output formats.
+
+Contents:
+
+Question: What are mapping tables used for in financial consolidation?
+Answer: Mapping tables establish relationships between different sets of data, defining how data from the source system should be transformed and mapped to the target system.
+
+Question: How do you access the Define Mapping Tables page?
+Answer: To access the Define Mapping Tables page, click Transfers > Data > Define Mapping Tables. The page allows you to define and manage mapping tables for various structures.
+
+Question: What structures can be used to create mapping tables?
+Answer: The structures available for creating mapping tables include Accounts, Companies, Dimension Groups, Dimension Detail Codes, and Flows.
+
+Question: How do you map an item in a mapping table?
+Answer: To map an item, click on the code in the Target table, enter a Code to identify the item on the source mapping table, add a Mapping Factor (optional), and a Description. Click to add the item to the Source table.
+
+Question: What is the process for defining an import file structure?
+Answer: To define an import file structure, specify general file properties, type of data, import options, and parameters. Map the columns to attributes and enable import rules to transform the imported data.
+
+Question: What are the steps to create an export file structure?
+Answer: To create an export file structure, specify general export file properties, type of data, export options, and parameters. Enable export rules to transform the exported data.
+
+Question: How can you import data into the Financial Consolidation application?
+Answer: To import data, go to Transfers > Data > Import Data, select a structure from the File Structure drop-down list, upload the file, fill in the parameters, and specify the data type to overwrite. Options include discarding errors and replacing imported types and accounts.
+
+Question: What options are available when importing adjustments?
+Answer: Options for importing adjustments include selecting the file type (CSV, Excel, HUB), specifying Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and setting overwrite options before uploading the file.
+
+Question: How do you export adjustment data to an external system?
+Answer: To export adjustment data, go to Transfers > Adjustments > Export Adjustments, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Choose the companies and journal types to export, then download the data.
+
+Question: What are the steps to export consolidated data?
+Answer: To export consolidated data, go to Transfers > Data > Export Data, select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Select the data to export, including local amounts, contribution, and consolidated amounts.
+
+Question: What is the purpose of the Import Data Report page?
+Answer: The Import Data Report page is used to generate reports of data (ledger accounts) imported into the Financial Consolidation application. Select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX).
+
+Question: What is the role of mapping tables in data import and export?
+Answer: Mapping tables define how data from the source system should be transformed and mapped to the target system, ensuring data consistency and accuracy during import and export.
+
+Question: How do you create a new mapping table?
+Answer: To create a new mapping table, click the add button on the Define Mapping Tables page, enter the Code and Name, select a structure (Accounts, Companies, Flows, Dimension Groups, or Dimension Detail Codes), and map items by entering a Code and Description.
+
+Question: What details are shown in the parameters of a mapping table?
+Answer: The parameters of a mapping table include Code, Name, Period, Created by, Modified by, Created On, and Modified On. These details help track and manage the mapping table.
+
+Question: How do you filter items in a mapping table?
+Answer: To filter items in a mapping table, use the options to display items With Source Only (with mapping data) or Without Source Only (without mapping data). This helps focus on specific items during mapping.
+
+Question: What general properties can you specify for an import file structure?
+Answer: General properties for an import file structure include file ID, Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options like summarizing Interco, signed amounts, calculating profit, and scale of amounts.
+
+Question: How do you enable import rules for data transformation?
+Answer: To enable import rules, specify the parameters and mapping tables for the import file structure. Use functions like Substr, Merge, Prefix, Suffix, and Fix to transform the imported data according to the rules.
+
+Question: What options are available for defining an export file structure?
+Answer: Options for defining an export file structure include specifying the Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options and parameters for data transformation.
+
+Question: How do you import data into the Financial Consolidation application?
+Answer: To import data, select a structure from the File Structure drop-down list, upload the file, fill in the parameters, and specify the data type to overwrite. Options include discarding errors and replacing imported types and accounts.
+
+Question: What parameters can you set when importing adjustments?
+Answer: When importing adjustments, you can specify parameters like file type (CSV, Excel, HUB), Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and overwrite options. Upload the file and start the import.
+
+Question: How do you export adjustment data?
+Answer: To export adjustment data, go to Transfers > Adjustments > Export Adjustments, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Select the companies and journal types to export, then download the data.
+
+Question: How can I export consolidated data from the Financial Consolidation application?
+Answer: To export consolidated data, go to Transfers > Data > Export Data, select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Select the data to export, including local amounts, contribution, and consolidated amounts.
+
+Question: How do you generate an import data report?
+Answer: To generate an import data report, go to Transfers > Data > Import Data Report, select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX), then click to generate.
+
+Question: How can I define mapping tables in the Financial Consolidation application?
+Answer: To define mapping tables, go to Transfers > Data > Define Mapping Tables. You can create mappings for Accounts, Companies, Dimension Groups, Dimension Detail Codes, and Flows by specifying the Code, Name, and mapping details.
+
+Question: What information is displayed on the Define Mapping Tables page?
+Answer: The Define Mapping Tables page displays a list of available mapping tables with their Code and Name. The right-side panel shows parameters like Code, Name, Period, Created by, Modified by, Created On, and Modified On for the selected mapping.
+
+Question: How do you create a new mapping table?
+Answer: To create a new mapping table, click the add button, enter the Code and Name, select the structure (Accounts, Companies, Flows, Dimension Groups, or Dimension Detail Codes), and map items by entering a Code and Description for each item in the source mapping table.
+
+Question: How can I duplicate an existing mapping table?
+Answer: To duplicate a mapping table, select an existing table, click the duplicate button, enter the new Code and Name, select a different Period if needed, and save the new mapping table.
+
+Question: How do you define an import file structure?
+Answer: To define an import file structure, go to Transfers > Data > Define File Structure, select Import, and specify file properties like Type of Amount, file type (XLS, CSV, HUB), and parameters. Map columns to attributes and enable import rules for data transformation.
+
+Question: What steps should I follow to define an export file structure?
+Answer: To define an export file structure, go to Transfers > Data > Define File Structure, select Export, specify general properties like Type of Amount, file type (XLS, CSV, HUB), and parameters. Enable export rules to transform the exported information.
+
+Question: How can I import data into the Financial Consolidation application?
+Answer: To import data, go to Transfers > Data > Import Data, select a structure from the File Structure drop-down list, upload the file, fill in the parameters, and specify the data type to overwrite. Options include discarding errors, replacing imported types, and accounts.
+
+Question: What parameters can you specify when importing adjustments?
+Answer: When importing adjustments, you can specify parameters like file type (CSV, Excel, HUB), Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and overwrite options. Upload the file and start the import.
+
+Question: How do you export adjustment data?
+Answer: To export adjustment data, go to Transfers > Adjustments > Export Adjustments, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Select the companies and journal types to export, then download the data.
+
+Question: How can I export consolidated data from the Financial Consolidation application?
+Answer: To export consolidated data, go to Transfers > Data > Export Data, select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Select the data to export, including local amounts, contribution, and consolidated amounts.
+
+Question: What is the purpose of the Import Data Report page?
+Answer: The Import Data Report page is used to generate reports of data (ledger accounts) imported into the Financial Consolidation application. Select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX).
+
+Question: What are mapping tables used for in financial consolidation?
+Answer: Mapping tables establish relationships between different sets of data, defining how data from the source system should be transformed and mapped to the target system.
+
+Question: How do you access the Define Mapping Tables page?
+Answer: To access the Define Mapping Tables page, click Transfers > Data > Define Mapping Tables. The page allows you to define and manage mapping tables for various structures.
+
+Question: What structures can be used to create mapping tables?
+Answer: The structures available for creating mapping tables include Accounts, Companies, Dimension Groups, Dimension Detail Codes, and Flows.
+
+Question: How do you map an item in a mapping table?
+Answer: To map an item, click on the code in the Target table, enter a Code to identify the item on the source mapping table, add a Mapping Factor (optional), and a Description. Click to add the item to the Source table.
+
+Question: What is the process for defining an import file structure?
+Answer: To define an import file structure, specify general file properties, type of data, import options, and parameters. Map the columns to attributes and enable import rules to transform the imported data.
+
+Question: What are the steps to create an export file structure?
+Answer: To create an export file structure, specify general export file properties, type of data, export options, and parameters. Enable export rules to transform the exported data.
+
+Question: How can you import data using the Import Data page?
+Answer: To import data, select a structure from the File Structure drop-down list, upload the file, expand the Details section, fill in the parameters, and specify the data type to overwrite. Options include discarding errors and replacing imported types and accounts.
+
+Question: What options are available when importing adjustments?
+Answer: Options for importing adjustments include selecting the file type (CSV, Excel, HUB), specifying Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and setting overwrite options before uploading the file.
+
+Question: How do you export adjustment data to an external system?
+Answer: To export adjustment data, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Choose the companies and journal types to export, then click to download the data.
+
+Question: What are the steps to export consolidated data?
+Answer: To export consolidated data, select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Choose the data to export, including local amounts, contribution, and consolidated amounts, then click to download.
+
+Question: How do you generate an import data report?
+Answer: To generate an import data report, go to Transfers > Data > Import Data Report, select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX), then click to generate.
+
+Question: What is the role of mapping tables in data import and export?
+Answer: Mapping tables define how data from the source system should be transformed and mapped to the target system, ensuring data consistency and accuracy during import and export.
+
+Question: How do you create a new mapping table?
+Answer: To create a new mapping table, click the add button on the Define Mapping Tables page, enter the Code and Name, select a structure (Accounts, Companies, Flows, Dimension Groups, or Dimension Detail Codes), and map items by entering a Code and Description.
+
+Question: What details are shown in the parameters of a mapping table?
+Answer: The parameters of a mapping table include Code, Name, Period, Created by, Modified by, Created On, and Modified On. These details help track and manage the mapping table.
+
+Question: How do you filter items in a mapping table?
+Answer: To filter items in a mapping table, use the options to display items With Source Only (with mapping data) or Without Source Only (without mapping data). This helps focus on specific items during mapping.
+
+Question: What general properties can you specify for an import file structure?
+Answer: General properties for an import file structure include file ID, Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options like summarizing Interco, signed amounts, calculating profit, and scale of amounts.
+
+Question: How do you enable import rules for data transformation?
+Answer: To enable import rules, specify the parameters and mapping tables for the import file structure. Use functions like Substr, Merge, Prefix, Suffix, and Fix to transform the imported data according to the rules.
+
+Question: What options are available for defining an export file structure?
+Answer: Options for defining an export file structure include specifying the Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options and parameters for data transformation.
+
+Question: How do you import bundle data into the Financial Consolidation application?
+Answer: To import bundle data, go to Transfers > Data > Import Data, select a structure from the File Structure drop-down list, upload the file, fill in the parameters, and specify the type of data to overwrite during import.
+
+Question: What parameters can you set when importing adjustments?
+Answer: When importing adjustments, you can set parameters like file type (CSV, Excel, HUB), Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and overwrite options. Then upload the file and start the import.
+
+Question: How do you export adjustments from the Financial Consolidation application?
+Answer: To export adjustments, go to Transfers > Adjustments > Export Adjustments, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Choose the companies and journal types to export, then download the data.
+
+Question: How can you export consolidated data?
+Answer: To export consolidated data, select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Choose the data to export, including local amounts, contribution, and consolidated amounts, then click to download.
+
+Question: What is the process for generating an import data report?
+Answer: To generate an import data report, go to Transfers > Data > Import Data Report, select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX), then click to generate the report.
+
+Question: How do mapping tables ensure data consistency?
+Answer: Mapping tables ensure data consistency by defining how data from the source system should be transformed and mapped to the target system, aligning data structures and formats between systems.
+
+Question: What steps are involved in creating a mapping table?
+Answer: To create a mapping table, click the add button, enter the Code and Name, select a structure (Accounts, Companies, Flows, Dimension Groups, or Dimension Detail Codes), and map items by entering a Code and Description for each item.
+
+Question: What information is displayed for each mapping table?
+Answer: For each mapping table, the information displayed includes Code, Name, Period, Created by, Modified by, Created On, and Modified On. These details help manage the mapping table effectively.
+
+Question: How do you filter items in a mapping table?
+Answer: To filter items, use the options to display items With Source Only (with mapping data) or Without Source Only (without mapping data). This helps in managing and focusing on specific items during mapping.
+
+Question: What general properties can be specified for an import file structure?
+Answer: General properties for an import file structure include file ID, Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options like summarizing Interco, signed amounts, calculating profit, and scale of amounts.
+
+Question: How do you enable import rules for transforming data?
+Answer: Enable import rules by specifying the parameters and mapping tables for the import file structure. Use functions like Substr, Merge, Prefix, Suffix, and Fix to transform the imported data according to the rules.
+
+Question: What options can be defined in an export file structure?
+Answer: Options for an export file structure include specifying the Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options and parameters for data transformation.
+
+Question: How do you import data into the Financial Consolidation application?
+Answer: To import data, select a structure from the File Structure drop-down list, upload the file, fill in the parameters, and specify the type of data to overwrite. Options include discarding errors and replacing imported types and accounts.
+
+Question: What parameters can you set when importing adjustments?
+Answer: Set parameters like file type (CSV, Excel, HUB), Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and overwrite options. Then upload the file and start the import process.
+
+Question: How do you export adjustment data from the Financial Consolidation application?
+Answer: To export adjustment data, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Choose the companies and journal types to export, then click to download the data.
+
+Question: How can you export consolidated data?
+Answer: Select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Choose the data to export, including local amounts, contribution, and consolidated amounts, then click to download.
+
+Question: How do you generate an import data report?
+Answer: To generate an import data report, go to Transfers > Data > Import Data Report, select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX), then click to generate.
+
+Question: How do mapping tables ensure data alignment?
+Answer: Mapping tables ensure data alignment by defining how data from the source system should be transformed and mapped to the target system, ensuring consistency and accuracy during import and export.
+
+Question: What steps are required to create a new mapping table?
+Answer: To create a new mapping table, click the add button, enter the Code and Name, select a structure (Accounts, Companies, Flows, Dimension Groups, or Dimension Detail Codes), and map items by entering a Code and Description for each item.
+
+Question: What details are shown for each mapping table?
+Answer: Details shown for each mapping table include Code, Name, Period, Created by, Modified by, Created On, and Modified On. These details help track and manage the mapping table effectively.
+
+Question: How do you filter items during mapping?
+Answer: To filter items during mapping, use the options to display items With Source Only (with mapping data) or Without Source Only (without mapping data). This helps in managing and focusing on specific items.
+
+Question: What general properties can be specified for an import file structure?
+Answer: Specify properties like file ID, Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options such as summarizing Interco, signed amounts, calculating profit, and scale of amounts.
+
+Question: How do you enable import rules for data transformation?
+Answer: Enable import rules by specifying the parameters and mapping tables for the import file structure. Use functions like Substr, Merge, Prefix, Suffix, and Fix to transform the imported data according to the rules.
+
+Question: What options are available for defining an export file structure?
+Answer: Options for defining an export file structure include specifying the Type of Amount (Net Amounts, Debit/Credit amounts), file type (XLS, CSV, HUB), and additional options and parameters for data transformation.
+
+Question: How do you import data into the Financial Consolidation application?
+Answer: To import data, select a structure from the File Structure drop-down list, upload the file, expand the Details section, fill in the parameters, and specify the type of data to overwrite during import.
+
+Question: What parameters can be set when importing adjustments?
+Answer: Parameters include file type (CSV, Excel, HUB), Sheet Name, CSV Separator, Decimal Separator, Thousand Separator, and overwrite options. Then upload the file and start the import.
+
+Question: How do you export adjustments from the Financial Consolidation application?
+Answer: To export adjustments, select the consolidation period, file type (XLS, CSV, HUB), and parameters. Choose the companies and journal types to export, then download the data.
+
+Question: How can you export consolidated data?
+Answer: Select the consolidation period, file structure (XLS, CSV, HUB), and parameters. Choose the data to export, including local amounts, contribution, and consolidated amounts, then click to download.
+
+Question: How do you generate an import data report?
+Answer: To generate an import data report, go to Transfers > Data > Import Data Report, select accounts and companies, enter a Calc Account code, choose sort order, data type, and output file type (PDF, XLS, XLSX), then click to generate.
+

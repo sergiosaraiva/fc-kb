@@ -1,0 +1,1463 @@
+[
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.066,
+                0.368,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.156,
+                0.121,
+                0.874,
+                0.185
+            ],
+            "angle": 0,
+            "content": "- If a group contains a large number of companies or if the group increases its consolidation scope by acquiring new companies, the risk exists for companies to forget some intercompany positions or to indicate wrong partners."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.201,
+                0.875,
+                0.266
+            ],
+            "angle": 0,
+            "content": "- An important number of unmatched transactions can come from a lack of information in some local accounting systems. Some of them just don't give the possibility to keep track of intercompany information."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.282,
+                0.875,
+                0.362
+            ],
+            "angle": 0,
+            "content": "- A group without internal procedures can also meet problems with intercompany. A typical example is an invoice sent to the production manager instead of the accounting department, with consequence that such invoice is not booked and gives an unmatched situation with the turnover in the partner accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.378,
+                0.875,
+                0.459
+            ],
+            "angle": 0,
+            "content": "- Besides the fact a group relies on organized procedures, using professional ERP systems with well trained employees in all companies, one cannot avoid that a transaction between two foreign companies will probably generate some differences because of the currency rates used in each accounting system."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.155,
+                0.474,
+                0.875,
+                0.571
+            ],
+            "angle": 0,
+            "content": "- Moreover, we cannot avoid some accounting practices leading to unmatched transactions. The most frequent one consisting for a company to send an invoice with an impact on the turnover when the partner decides to capitalize the corresponding amount. That means an intercompany turnover in one company but no intercompany purchase in the other company."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.155,
+                0.121,
+                0.875,
+                0.571
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.586,
+                0.875,
+                0.619
+            ],
+            "angle": 0,
+            "content": "Finally, we are justifying that is normal for a group to produce unmatched transactions. Of course, we can hope that this number remains reasonable."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.634,
+                0.844,
+                0.651
+            ],
+            "angle": 0,
+            "content": "How a group can improve the quality of the intercompany process?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.666,
+                0.875,
+                0.731
+            ],
+            "angle": 0,
+            "content": "Usually, a group checks intercompany positions when a consolidation is performed. The problem happens if such consolidation is produced only once a year because intercompany matching has to be done over a period of 12 months. This means an analysis of quite a huge number of transactions."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.746,
+                0.872,
+                0.796
+            ],
+            "angle": 0,
+            "content": "It is highly recommended to proceed to an intercompany matching several times during the year and independently of the consolidation cycle itself. Ideally, intercompany matching should be organized each quarter."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.811,
+                0.875,
+                0.86
+            ],
+            "angle": 0,
+            "content": "For groups having foreign companies, closing rates and average rates should be sent to each company the first day after the date of the closing period. This organization would give the opportunity to each company to adapt their"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.478,
+                0.922,
+                0.508,
+                0.936
+            ],
+            "angle": 0,
+            "content": "84"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.303,
+                0.073,
+                0.856,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.121,
+                0.875,
+                0.155
+            ],
+            "angle": 0,
+            "content": "intercompany positions and to avoid currency translation differences at consolidation time."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.169,
+                0.875,
+                0.235
+            ],
+            "angle": 0,
+            "content": "There also exist web systems giving the possibility for each company of a group to upload their intercompany positions and to check them with all the other partners. When a difference is detected they are able to correct the situation or to add a comment explaining the reason for such difference."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.25,
+                0.875,
+                0.285
+            ],
+            "angle": 0,
+            "content": "In most of the groups using such a system, the quality of the information has been largely improved for the satisfaction of every one, including Auditors."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.298,
+                0.819,
+                0.315
+            ],
+            "angle": 0,
+            "content": "What to do when an intercompany difference has been detected?"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.331,
+                0.875,
+                0.364
+            ],
+            "angle": 0,
+            "content": "Considering a classical organization of intercompany matching, differences are detected by the consolidation office during the consolidation process."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.379,
+                0.62,
+                0.395
+            ],
+            "angle": 0,
+            "content": "In such situation, several actions can be undertaken"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.411,
+                0.867,
+                0.442
+            ],
+            "angle": 0,
+            "content": "- Consolidation office sends back the difference to the two companies, asking them to solve or explain it within a short delay"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.458,
+                0.869,
+                0.52
+            ],
+            "angle": 0,
+            "content": "- With the Auditor's agreement, the consolidation department can avoid losing too much time and give the priority to the amount on the invoice side. The same amount is then reflected in the partners accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.147,
+                0.539,
+                0.869,
+                0.601
+            ],
+            "angle": 0,
+            "content": "- Consolidation office may also solve the difference the best way by booking a consolidation adjustment. But we have to keep in mind that such adjustment will have to be reversed next year. This means an additional work."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.147,
+                0.411,
+                0.869,
+                0.601
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.619,
+                0.875,
+                0.685
+            ],
+            "angle": 0,
+            "content": "When we consider the possible number of differences that may appear in a group, we again recommend to decentralize the whole intercompany matching process using today's technologies (web) with the benefit of making each company responsible for this problem."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.107,
+                0.7,
+                0.875,
+                0.733
+            ],
+            "angle": 0,
+            "content": "Now, intercompany differences will be adjusted depending on the nature of the transaction. Here are some examples."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.113,
+                0.068,
+                0.367,
+                0.084
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.123,
+                0.872,
+                0.171
+            ],
+            "angle": 0,
+            "content": "7.2 Intercompany matching adjustments: some examples"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.189,
+                0.819,
+                0.207
+            ],
+            "angle": 0,
+            "content": "Unmatched intercompany transactions because of \"lost\" invoices"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.222,
+                0.245,
+                0.239
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.253,
+                0.875,
+                0.318
+            ],
+            "angle": 0,
+            "content": "Company A sends an invoice of 100 to company B the last day of the year. Instead of addressing that invoice to the Accounting department of company B, the document arrives at the Technical department and the manager is out of the office for two weeks!"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.333,
+                0.874,
+                0.381
+            ],
+            "angle": 0,
+            "content": "Meanwhile, the Accounting department of B fills in a consolidation bundle and sends it to the parent company without mentioning an intercompany purchase with company A of course."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.397,
+                0.875,
+                0.43
+            ],
+            "angle": 0,
+            "content": "When proceeding to the intercompany matching, a difference of 100 is detected between both companies."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.431,
+                0.281,
+                0.446
+            ],
+            "angle": 0,
+            "content": "The adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.461,
+                0.842,
+                0.48
+            ],
+            "angle": 0,
+            "content": "Company B accounts shows no payables and no purchases with company A"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.114,
+                0.492,
+                0.478,
+                0.56
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 1)</td></tr><tr><td>Receivables/B</td><td>100</td><td>Result</td><td>100</td></tr><tr><td>Result</td><td>100</td><td>Sales/B</td><td>100</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.494,
+                0.492,
+                0.857,
+                0.56
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B (Year 1)</td></tr><tr><td></td><td>Result\nPayables/A</td></tr><tr><td>Purchases/A\nResult</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.575,
+                0.854,
+                0.592
+            ],
+            "angle": 0,
+            "content": "and this situation requires to book a consolidation adjustment in company B."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.494,
+                0.598,
+                0.857,
+                0.666
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B (Year 1)</td></tr><tr><td></td><td>Result (100)</td></tr><tr><td></td><td>Payables/A 100</td></tr><tr><td>Purchases/A 100</td><td></td></tr><tr><td>Result (100)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.687,
+                0.875,
+                0.769
+            ],
+            "angle": 0,
+            "content": "During Year 2, we can suppose that the invoice finally will arrive at the Accounting department of B. That means the invoice is booked twice in B accounts, once at consolidation level during Year 1 and a second time in statutory accounts of B during Year 2. That's the reason why in Year 2 consolidation, this adjustment has to be reversed as shown here."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.494,
+                0.782,
+                0.857,
+                0.85
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B (Year 2)</td></tr><tr><td></td><td>Reserves (100)</td></tr><tr><td></td><td>Result 100</td></tr><tr><td>Purchases/A (100)</td><td></td></tr><tr><td>Result 100</td><td></td></tr></table>"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.301,
+                0.073,
+                0.854,
+                0.089
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.104,
+                0.12,
+                0.856,
+                0.137
+            ],
+            "angle": 0,
+            "content": "Unmatched intercompany transactions because of foreign currencies"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.153,
+                0.238,
+                0.168
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.185,
+                0.872,
+                0.233
+            ],
+            "angle": 0,
+            "content": "Company A (EUR) sends an invoice of 1000 to company B (CUR) booked for an amount of 778 CUR, corresponding to a transaction rate of 1 CUR = 1.4 EUR at that time."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.25,
+                0.872,
+                0.283
+            ],
+            "angle": 0,
+            "content": "At the end of the year, we suppose the invoice is not paid yet and the situation in both company accounts is the following"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.108,
+                0.303,
+                0.468,
+                0.369
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (EUR)</td></tr><tr><td>Receivables/B</td><td>1,000</td><td>Result</td><td>1,000</td></tr><tr><td>Result</td><td>1,000</td><td>Sales/B</td><td>1,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.491,
+                0.303,
+                0.865,
+                0.369
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B (CUR)</td></tr><tr><td></td><td>Result (714)</td></tr><tr><td></td><td>Payables/A 714</td></tr><tr><td>Purchases/A 714</td><td></td></tr><tr><td>Result (714)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.384,
+                0.872,
+                0.418
+            ],
+            "angle": 0,
+            "content": "At the end of the year, closing rate is 1 CUR = 1.5 EUR and average rate is 1 CUR = 1.7 EUR, giving the following translated accounts for B"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.108,
+                0.444,
+                0.468,
+                0.523
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (EUR)</td></tr><tr><td>Receivables/B</td><td>1,000</td><td>Result</td><td>1,000</td></tr><tr><td>Result</td><td>1,000</td><td>Sales/B</td><td>1,000</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.491,
+                0.444,
+                0.865,
+                0.523
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B (EUR)</td></tr><tr><td></td><td>Result (1,214)</td></tr><tr><td></td><td>Trans. Adj. 143</td></tr><tr><td></td><td>Payables/A 1,071</td></tr><tr><td>Purchases/A 1,214</td><td></td></tr><tr><td>Result (1,214)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.539,
+                0.875,
+                0.586
+            ],
+            "angle": 0,
+            "content": "where we can see a double intercompany difference arising because of the currency conversion, one in the balance sheet for 71 and another in the P&L for 214."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.105,
+                0.602,
+                0.277,
+                0.619
+            ],
+            "angle": 0,
+            "content": "The adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.635,
+                0.872,
+                0.716
+            ],
+            "angle": 0,
+            "content": "The transaction is supposed to be labelled in EUR and so we are going to adjust B accounts by considering the Payables/A too high, the difference consisting in a currency effect. Speaking about a transaction that will be paid within a short term, we consider the amount of 71 as an exchange gain impacting the result."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.104,
+                0.731,
+                0.872,
+                0.78
+            ],
+            "angle": 0,
+            "content": "The Purchases/A are also too high for 214, but here they are already booked in the P&L and we have to consider that amount as an expense booked on a wrong account. In fact, these 214 should be considered as an exchange loss."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.105,
+                0.795,
+                0.542,
+                0.812
+            ],
+            "angle": 0,
+            "content": "Here is the impact of these two adjustments"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.067,
+                0.373,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.306,
+                0.118,
+                0.781,
+                0.314
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B (EUR)</td></tr><tr><td></td><td>Result (1,214) 71 Trans. Adj. 143 Payables/A 1,071 (71)</td></tr><tr><td>Purchases/A 1,214 (214) Exchange loss (71) 214 Result (1,214) 71</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.33,
+                0.878,
+                0.364
+            ],
+            "angle": 0,
+            "content": "where 71 is indeed an exchange gain, but we have to net that amount with the exchange loss of 214, both amounts coming from a single transaction."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.377,
+                0.879,
+                0.41
+            ],
+            "angle": 0,
+            "content": "Note also that the adjustment of 71 will need to be reversed next year after the payment of the invoice."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.112,
+                0.426,
+                0.845,
+                0.442
+            ],
+            "angle": 0,
+            "content": "Unmatched intercompany transactions because of cut-off oroblems"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.459,
+                0.245,
+                0.474
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.49,
+                0.878,
+                0.587
+            ],
+            "angle": 0,
+            "content": "Supposing a group that produces consolidated accounts at the end of Year 1, a \"cut-off\" procedure consists in asking to all group companies not to make transactions any more between them during a certain number of days before the end of the year. The idea behind this organization procedure is to avoid transactions that are booked on one company side but not on the partner side."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.607,
+                0.281,
+                0.623
+            ],
+            "angle": 0,
+            "content": "The adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.638,
+                0.878,
+                0.671
+            ],
+            "angle": 0,
+            "content": "There are two different consequences when speaking about the non respect of a cut-off procedure."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.686,
+                0.878,
+                0.783
+            ],
+            "angle": 0,
+            "content": "First consequence: Company A sends an invoice which is not booked by the partner B within the required reporting delays needed for consolidation. In such situation, the invoice has to be booked in company B accounts through a consolidation adjustment. This is what we have in fact already explained in point 7.2.1. But this situation has to be analyzed a little deeper depending on the type of transaction. Let's consider the two following examples."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.798,
+                0.878,
+                0.879
+            ],
+            "angle": 0,
+            "content": "First example: we suppose that the invoice is related to some R&D activities. The question is how these R&D costs have been booked in B accounts? If they have been considered as intangible assets and depreciated over a certain period, is that compatible with the group rules? If not (IFRS), depreciations must be reversed and the total R&D costs have to be booked in P&L."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.306,
+                0.073,
+                0.854,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.121,
+                0.874,
+                0.217
+            ],
+            "angle": 0,
+            "content": "Second example: Let's suppose the invoice is related to some stocks disposed from company A to company B. These stocks are not in company A accounts any more, but they are not yet in B accounts and nevertheless these stocks didn't leave the group. More precisely, the stocks are in a truck somewhere on a highway! The consolidation adjustment has to debit the stock in company B accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.233,
+                0.874,
+                0.329
+            ],
+            "angle": 0,
+            "content": "Second consequence : Company A has sent an invoice to company B quite a long time before the end of the year and transactions are correctly booked in both companies accounts. But the problem is that company B pays this invoice the last day of the period. It is not recorded in A accounts in the same period. In such situation, the consolidation adjustment consists in a credit on the Receivables account and a debit on the Cash account of company A."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.113,
+                0.346,
+                0.836,
+                0.379
+            ],
+            "angle": 0,
+            "content": "Unmatched intercompany transactions because of different closing dates"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.394,
+                0.24,
+                0.41
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.426,
+                0.874,
+                0.458
+            ],
+            "angle": 0,
+            "content": "When a group is closing, for instance, on December 31, it is supposed that all companies of the consolidation scope are closing at the same date."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.473,
+                0.874,
+                0.521
+            ],
+            "angle": 0,
+            "content": "Unfortunately, from a legal point of view, there is flexibility in such a way that it is accepted for some companies to report on another date, if there is less than three months difference between these two dates."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.538,
+                0.874,
+                0.617
+            ],
+            "angle": 0,
+            "content": "We consider the parent company P closing on December 31 and a company A producing its reporting on September 30, three months before, which is legally acceptable. Intercompany problems arise when company A sends invoices to P during October because these invoices are all booked in P accounts but not known in A accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.634,
+                0.279,
+                0.65
+            ],
+            "angle": 0,
+            "content": "The adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.666,
+                0.874,
+                0.747
+            ],
+            "angle": 0,
+            "content": "There is an important principle in consolidation called the \"Simultaneity principle\". It means that if a transaction impacts the accounts of a company A of a group and if that transaction has also an impact on another company B in the group, both impacts must be booked during the same consolidation period."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.763,
+                0.874,
+                0.81
+            ],
+            "angle": 0,
+            "content": "This is clearly not the situation we are just considering and consolidation adjustments are again required. By closing on December 31, the transactions considered in October must be booked in company A accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.826,
+                0.871,
+                0.859
+            ],
+            "angle": 0,
+            "content": "The same argument applies for any payment that would be done on one side but not recorded on the other side, just as in the cut-off situation."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.114,
+                0.068,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.122,
+                0.874,
+                0.157
+            ],
+            "angle": 0,
+            "content": "The advice we would suggest is to ask to all companies to close their accounts at the same date, whatever the legal closing date is."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.17,
+                0.871,
+                0.187
+            ],
+            "angle": 0,
+            "content": "Unmatched intercompany transactions because of non deductible VAT"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.202,
+                0.245,
+                0.218
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.234,
+                0.875,
+                0.3
+            ],
+            "angle": 0,
+            "content": "Depending on groups and countries, holding companies having mainly financial activities instead of commercial activities may sometimes not deduct VAT on the invoices they receive. This is again a situation leading to intercompany problems."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.308,
+                0.875,
+                0.375
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A</td><td colspan=\"3\">H</td></tr><tr><td rowspan=\"2\">Receivables/B</td><td rowspan=\"2\">120</td><td>Result</td><td>100</td><td></td><td>Result</td><td>(120)</td></tr><tr><td>Payables (VAT)</td><td>20</td><td></td><td>Payables/A</td><td>120</td></tr><tr><td rowspan=\"2\">Result</td><td rowspan=\"2\">100</td><td rowspan=\"2\">Sales/H</td><td rowspan=\"2\">100</td><td>Purchases/A</td><td>120</td><td></td></tr><tr><td>Result</td><td>(120)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.39,
+                0.875,
+                0.472
+            ],
+            "angle": 0,
+            "content": "Let's consider company A invoicing an amount of 120 to a holding company H. The amount of 120 includes VAT for 20 which is a payable to the VAT administration. In H accounts, the VAT is considered as an expense because it cannot be deducted. Here are the accounts of both companies, reflecting the described situation."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.487,
+                0.28,
+                0.503
+            ],
+            "angle": 0,
+            "content": "The adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.519,
+                0.874,
+                0.552
+            ],
+            "angle": 0,
+            "content": "It just consists in a reclassification of 20 from Purchases/A to some Other expenses account."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.304,
+                0.559,
+                0.706,
+                0.652
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">H</td></tr><tr><td></td><td>Result (120)Payables/A 120</td></tr><tr><td>Purchases/A 120(20)</td><td></td></tr><tr><td>Other expenses 20</td><td></td></tr><tr><td>Result (120)</td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.679,
+                0.875,
+                0.728
+            ],
+            "angle": 0,
+            "content": "Looking to each individual accounts, they show A having a debt of 20 with the VAT administration but it is H that recognizes the expense of 20 in its P&L accounts."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.111,
+                0.743,
+                0.874,
+                0.777
+            ],
+            "angle": 0,
+            "content": "When both accounts are consolidated, we just see that the group has a debt of 20 corresponding to an expense of 20."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.305,
+                0.073,
+                0.852,
+                0.09
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.108,
+                0.121,
+                0.833,
+                0.154
+            ],
+            "angle": 0,
+            "content": "Unmatched intercompany transactions because of capitalization of costs"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.169,
+                0.241,
+                0.186
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.202,
+                0.875,
+                0.252
+            ],
+            "angle": 0,
+            "content": "A company A charges intellectual services to company B that decides to capitalize them in the Intangible Assets, which is accepted by the group's procedures."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.111,
+                0.268,
+                0.451,
+                0.332
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A</td></tr><tr><td>Receivables/B</td><td>100</td><td>Result</td><td>100</td></tr><tr><td>Result</td><td>100</td><td>Sales/B</td><td>100</td></tr></table>"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.474,
+                0.269,
+                0.865,
+                0.332
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B</td></tr><tr><td>Intangible assets</td><td>100 Pa ables A\nPayables/A 100</td></tr><tr><td></td><td></td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.348,
+                0.872,
+                0.38
+            ],
+            "angle": 0,
+            "content": "Here is the situation showing matched intercompany amounts in the balance sheet but a problem at P&L level."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.109,
+                0.396,
+                0.279,
+                0.414
+            ],
+            "angle": 0,
+            "content": "The adjustments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.428,
+                0.875,
+                0.461
+            ],
+            "angle": 0,
+            "content": "Considering the Intangible assets are accepted by the group procedures, we book the following adjustment"
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.303,
+                0.475,
+                0.693,
+                0.539
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"2\">B</td></tr><tr><td>Intangible assets</td><td>100</td></tr><tr><td></td><td>Payables/A</td></tr><tr><td>Purchases/A</td><td>100</td></tr><tr><td></td><td>Own production</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.556,
+                0.876,
+                0.637
+            ],
+            "angle": 0,
+            "content": "which has no impact on the result of the company. The \"Own production\" account or \"Capitalized costs\" account is used when costs are finally booked as an asset. The only problem we can have, just as in the previous example, is that the costs are in A accounts (employees salaries) and it is B showing the capitalization of these costs."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.651,
+                0.873,
+                0.684
+            ],
+            "angle": 0,
+            "content": "Fortunately, at consolidation level, we will just see the group capitalizing some costs, which is the correct view."
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.115,
+                0.067,
+                0.367,
+                0.082
+            ],
+            "angle": 0,
+            "content": "DIRECT CONSOLIDATION"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.235,
+                0.121,
+                0.783,
+                0.145
+            ],
+            "angle": 0,
+            "content": "CONSOLIDATION ADJUSTMENTS"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.114,
+                0.165,
+                0.394,
+                0.189
+            ],
+            "angle": 0,
+            "content": "8.1 Methodology"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.209,
+                0.876,
+                0.258
+            ],
+            "angle": 0,
+            "content": "The step of consolidation adjustments is certainly the most important one for which the person in charge of the consolidation will play a critical role for various reasons."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.274,
+                0.874,
+                0.354
+            ],
+            "angle": 0,
+            "content": "- Consolidation adjustments require a good knowledge of all events having potentially an impact on the consolidated financial statements. By events we mean company acquisition, company disposal, merge of companies, capital increase, shares acquisition/disposal, dividends, ... These events are usually easy to identify."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.369,
+                0.875,
+                0.435
+            ],
+            "angle": 0,
+            "content": "- Some other events such as disposal of assets with group profit between companies, local bookings which do not comply with group's rules of consolidation, ... also require consolidation adjustments but are sometimes rather difficult to identify."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.45,
+                0.873,
+                0.496
+            ],
+            "angle": 0,
+            "content": "- Very often, some adjustments may last for long in the consolidation and it is part of the job to keep track of these adjustments through time."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.274,
+                0.875,
+                0.496
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.113,
+                0.498,
+                0.741,
+                0.515
+            ],
+            "angle": 0,
+            "content": "For all these reasons, consolidation adjustments require method."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.53,
+                0.874,
+                0.596
+            ],
+            "angle": 0,
+            "content": "- A consolidation adjustment is a journal entry that a local company cannot book on its own. By journal entry, we mean accounts that are debited and accounts that are credited because behind all this, we speak about a consolidation accounting approach."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.61,
+                0.874,
+                0.692
+            ],
+            "angle": 0,
+            "content": "Each adjustment is fully booked within a single company. If an event requires adjustments impacting accounts of two or more companies, the consolidation accounting approach recommend booking a fully balanced adjustment in each individual company. In such case, use of \"linked accounts\" will be sometimes necessary."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.706,
+                0.874,
+                0.772
+            ],
+            "angle": 0,
+            "content": "- Some difficult events imply to book adjustments that will stay for a long time in the consolidation. Such events need to be documented because consolidation actors will maybe stay for less time in the consolidation department than these adjustments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.151,
+                0.786,
+                0.873,
+                0.835
+            ],
+            "angle": 0,
+            "content": "- Same comment can be stated for Auditors who may change from time to time. A professional documentation maintained up-to-date is highly recommended to prevent these transition situations."
+        },
+        {
+            "type": "list",
+            "bbox": [
+                0.151,
+                0.53,
+                0.874,
+                0.835
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.186,
+                0.85,
+                0.873,
+                0.884
+            ],
+            "angle": 0,
+            "content": "Within the scope of a choice of a consolidation software, an advantage will be given to those offering the possibility to classify consolidation"
+        }
+    ],
+    [
+        {
+            "type": "header",
+            "bbox": [
+                0.306,
+                0.071,
+                0.855,
+                0.088
+            ],
+            "angle": 0,
+            "content": "PART 2 BASICS OF CONSOLIDATION TECHNIQUES"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.185,
+                0.12,
+                0.877,
+                0.203
+            ],
+            "angle": 0,
+            "content": "adjustments by journals just as in a classical accounting system. Elimination of dividends will be booked in a specific journal, same for goodwill, elimination of group profit, stocks margins, ... Such feature gives the possibility to keep the information system clear and auditable."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.108,
+                0.216,
+                0.874,
+                0.248
+            ],
+            "angle": 0,
+            "content": "The following sections will provide a number of consolidation adjustments examples based on the application of this methodology."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.109,
+                0.248,
+                0.875,
+                0.364
+            ],
+            "angle": 0,
+            "content": "However, it is not possible to draw up an exhaustive list of all the consolidation adjustments or the events related to them. In the next section, our objective is to propose a set of the most classical events usually met during a consolidation. These examples are generally built over at least two periods, which shows how consolidation adjustments are booked. Methodology is really the key point until the end of this chapter, much more than the technical issues behind the events we describe."
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.11,
+                0.396,
+                0.857,
+                0.442
+            ],
+            "angle": 0,
+            "content": "8.2 A company doesn't apply the group's rules in its statutory accounts"
+        },
+        {
+            "type": "title",
+            "bbox": [
+                0.111,
+                0.463,
+                0.262,
+                0.481
+            ],
+            "angle": 0,
+            "content": "The situation"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.495,
+                0.875,
+                0.543
+            ],
+            "angle": 0,
+            "content": "Beginning of Year 1, company A acquires an asset for a price of 110, including an amount of secondary costs for 10. This asset is depreciated over 10 years, so 11 at the end of Year 1."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.543,
+                0.875,
+                0.577
+            ],
+            "angle": 0,
+            "content": "The problem is that the group's rules of consolidation ask to book in P&L all secondary costs attached to an acquisition."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.59,
+                0.605,
+                0.659
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"3\">A (Year 1)</td></tr><tr><td>Asset (Acq. Val.)</td><td>110</td><td>Capital 200</td></tr><tr><td>Asset (Deprec.)</td><td>(11)</td><td>Reserves 0</td></tr><tr><td>Cash</td><td>90</td><td>Result (11)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.618,
+                0.59,
+                0.875,
+                0.657
+            ],
+            "angle": 0,
+            "content": "Decision is taken to adjust that situation at consolidation level via adjustments."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.112,
+                0.688,
+                0.875,
+                0.721
+            ],
+            "angle": 0,
+            "content": "During Year 2, the asset remains in company A and it is depreciated again for 11. Its net value is now \\(88 = 110 - 22\\)."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.115,
+                0.74,
+                0.605,
+                0.809
+            ],
+            "angle": 0,
+            "content": "<table><tr><td colspan=\"4\">A (Year 2)</td></tr><tr><td>Asset (Acq. Val.)</td><td>110</td><td>Capital</td><td>200</td></tr><tr><td>Asset (Deprec.)</td><td>(22)</td><td>Reserves</td><td>(11)</td></tr><tr><td>Cash</td><td>90</td><td>Result</td><td>(11)</td></tr></table>"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.11,
+                0.832,
+                0.872,
+                0.867
+            ],
+            "angle": 0,
+            "content": "At the beginning of Year 3, company A sells this asset to \\(3^{rd}\\) Parties for a price of 120, making a profit of \\(32 = 120 - 88\\)."
+        }
+    ]
+]

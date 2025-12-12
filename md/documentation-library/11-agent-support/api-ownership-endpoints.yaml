@@ -1,0 +1,721 @@
+# API Ownership Endpoints
+# Financial Consolidation Agent API Documentation
+# Version: 1.0
+# Purpose: Machine-parseable endpoint definitions for AI agent orchestration of ownership operations
+
+api_ownership_endpoints:
+  name: "Ownership API Endpoints"
+  version: "1.0"
+  description: |
+    API endpoints for managing ownership structures in financial consolidation.
+
+    Ownership is fundamental to consolidation as it determines:
+    - Parent/subsidiary relationships in the group structure
+    - Consolidation method (Full, Proportional, Equity)
+    - Group percentage and minority interest calculations
+    - Intercompany elimination requirements
+
+    Key concepts:
+    - Financial Rights: Ownership of shares/capital (determines profit sharing)
+    - Voting Rights: Control percentage (determines consolidation method)
+    - Shareholders: Companies that own shares in the subject company
+    - Participations: Companies in which the subject company owns shares
+
+    Source: Sigma.Mona.WebApplication/Screens/Ownership/OwnershipService.cs
+
+  # ============================================================================
+  # DATA TRANSFER OBJECTS
+  # ============================================================================
+  dto_definitions:
+    OwnerShipDTO:
+      description: "Main ownership data for a company"
+      source: "Sigma.Mona.WebApplication/Screens/Ownership/OwnershipService.cs"
+      fields:
+        - name: "CompanyID"
+          type: "integer"
+          description: "Unique company identifier"
+        - name: "CompanyCode"
+          type: "string"
+          description: "Company code"
+        - name: "CompanyName"
+          type: "string"
+          description: "Company display name"
+        - name: "IsParentCompany"
+          type: "boolean"
+          description: "Whether this is the ultimate parent company"
+        - name: "OwnershipFinancialRights"
+          type: "long"
+          nullable: true
+          description: "Total financial rights (shares/capital) issued by this company"
+        - name: "OwnershipVotingRights"
+          type: "long"
+          nullable: true
+          description: "Total voting rights issued by this company"
+        - name: "RefFinancialRights"
+          type: "long"
+          nullable: true
+          description: "Financial rights from reference period (for comparison)"
+        - name: "RefVotingRights"
+          type: "long"
+          nullable: true
+          description: "Voting rights from reference period"
+        - name: "GroupPerc"
+          type: "decimal"
+          nullable: true
+          description: "Group ownership percentage (0-100)"
+        - name: "MinorPerc"
+          type: "decimal"
+          nullable: true
+          description: "Minority interest percentage (100 - GroupPerc)"
+        - name: "GroupCtrlPerc"
+          type: "decimal"
+          nullable: true
+          description: "Group control percentage based on voting rights"
+        - name: "Shareholders"
+          type: "array<OwnerShipDetailDTO>"
+          description: "List of companies that own shares in this company"
+        - name: "Participations"
+          type: "array<OwnerShipDetailDTO>"
+          description: "List of companies this company owns shares in"
+        - name: "EntityVersion"
+          type: "array<EntityVersion>"
+          nullable: true
+          description: "Entity versions for optimistic concurrency"
+
+    OwnerShipDetailDTO:
+      description: "Ownership detail line for shareholder or participation"
+      fields:
+        - name: "OtherCompanyID"
+          type: "integer"
+          description: "ID of the related company (shareholder or subsidiary)"
+        - name: "OtherCompanyCode"
+          type: "string"
+          description: "Code of the related company"
+        - name: "OtherCompanyName"
+          type: "string"
+          description: "Name of the related company"
+        - name: "CurFinAmount"
+          type: "long"
+          nullable: true
+          description: "Current period financial amount (shares held)"
+        - name: "RefFinAmount"
+          type: "long"
+          nullable: true
+          description: "Reference period financial amount"
+        - name: "CurFinPercent"
+          type: "decimal"
+          nullable: true
+          description: "Current period financial percentage"
+        - name: "RefFinPercent"
+          type: "decimal"
+          nullable: true
+          description: "Reference period financial percentage"
+        - name: "CurVotingAmount"
+          type: "long"
+          nullable: true
+          description: "Current period voting amount"
+        - name: "RefVotingAmount"
+          type: "long"
+          nullable: true
+          description: "Reference period voting amount"
+        - name: "CurControlPercent"
+          type: "decimal"
+          nullable: true
+          description: "Current period control percentage"
+        - name: "RefControlPercent"
+          type: "decimal"
+          nullable: true
+          description: "Reference period control percentage"
+        - name: "CompanyFinRightsIssued"
+          type: "long"
+          nullable: true
+          description: "Total financial rights issued by the other company"
+        - name: "CompanyVotingRightsIssued"
+          type: "long"
+          nullable: true
+          description: "Total voting rights issued by the other company"
+
+  # ============================================================================
+  # OWNERSHIP CONCEPTS
+  # ============================================================================
+  concepts:
+    ownership_types:
+      description: "Types of ownership relationships"
+      types:
+        - name: "Shareholder"
+          code: "S"
+          description: |
+            A company that owns shares in the subject company.
+            Shareholders appear in the ownership chain above the company.
+        - name: "Participation"
+          code: "P"
+          description: |
+            A company in which the subject company owns shares.
+            Participations appear in the ownership chain below the company.
+
+    consolidation_methods:
+      description: "Consolidation methods determined by ownership percentage"
+      methods:
+        - name: "Full Consolidation"
+          control_range: "> 50% voting rights"
+          description: "100% of assets/liabilities included, minority interest recorded"
+        - name: "Proportional Consolidation"
+          control_range: "Joint control (typically 50%)"
+          description: "Pro-rata share of assets/liabilities included"
+        - name: "Equity Method"
+          control_range: "20-50% significant influence"
+          description: "Investment recorded at cost plus share of profits"
+        - name: "Cost Method"
+          control_range: "< 20%"
+          description: "Investment recorded at cost only"
+
+    percentage_calculations:
+      description: "How ownership percentages are calculated"
+      formulas:
+        direct_percentage:
+          formula: "(Shares Held / Total Shares Issued) * 100"
+          description: "Direct ownership percentage in a single company"
+        indirect_percentage:
+          formula: "Product of all direct percentages in ownership chain"
+          description: "Effective ownership through intermediate companies"
+        group_percentage:
+          formula: "Sum of (Direct% + Indirect%) for all paths"
+          description: "Total group ownership percentage"
+        minority_percentage:
+          formula: "100 - Group Percentage"
+          description: "Percentage owned by parties outside the group"
+
+  # ============================================================================
+  # HANDLERS
+  # ============================================================================
+  handlers:
+    - name: "Ownership_GetOwnership"
+      description: |
+        Retrieves ownership data for a specific company including:
+        - Company's issued financial and voting rights
+        - Group and minority percentages
+        - List of shareholders (companies owning this company)
+        - List of participations (companies owned by this company)
+        - Reference period data for comparison
+
+        Uses stored procedures:
+        - P_VIEW_OWNERSHIP: Main ownership data
+        - P_VIEW_OWNERSHIP_DETAIL: Shareholder and participation details
+      access_right: "Ownership_GetOwnership"
+      async: false
+      legacy_pattern: true
+
+      request:
+        _t: "Ownership_GetOwnership"
+        parameters:
+          - name: "CompanyId"
+            type: "integer"
+            required: true
+            validation: "ValidateID"
+            description: "Company ID to retrieve ownership for"
+          - name: "CompanyCode"
+            type: "string"
+            required: false
+            validation: "ValidateString"
+            description: "Company code (optional filter)"
+          - name: "FilterCountryCode"
+            type: "string"
+            required: false
+            validation: "ValidateString"
+            description: "Filter by country code"
+          - name: "FilterCompanyCode"
+            type: "string"
+            required: false
+            validation: "ValidateString"
+            description: "Filter by company code pattern"
+          - name: "FilterCompanyName"
+            type: "string"
+            required: false
+            validation: "ValidateString"
+            description: "Filter by company name pattern"
+          - name: "FilterConsolidatedCompany"
+            type: "boolean"
+            required: false
+            validation: "ValidateBool"
+            description: "Filter to consolidated companies only"
+          - name: "scf_include_entities"
+            type: "boolean"
+            required: false
+            default: false
+            description: "Include entity version for optimistic concurrency"
+          - name: "scf_include_total_row_count"
+            type: "boolean"
+            required: false
+            default: false
+          - name: "scf_from_row"
+            type: "integer"
+            required: false
+            default: 0
+          - name: "scf_row_count"
+            type: "integer"
+            required: false
+          - name: "scf_order_by"
+            type: "string"
+            required: false
+          - name: "Debug"
+            type: "boolean"
+            required: false
+            default: false
+        example:
+          json: |
+            {
+              "_t": "Ownership_GetOwnership",
+              "CompanyId": 123,
+              "scf_include_entities": true,
+              "Debug": false
+            }
+
+      response:
+        success:
+          scf_items:
+            type: "OwnerShipDTO"
+            description: "Single ownership object (not array)"
+            schema_ref: "OwnerShipDTO"
+          EntityVersion:
+            type: "array<EntityVersion>"
+            nullable: true
+            description: "Entity versions when scf_include_entities=true"
+          example:
+            json: |
+              {
+                "scf_items": {
+                  "CompanyID": 123,
+                  "CompanyCode": "ACME",
+                  "CompanyName": "Acme Corporation",
+                  "IsParentCompany": false,
+                  "OwnershipFinancialRights": 1000000,
+                  "OwnershipVotingRights": 1000000,
+                  "RefFinancialRights": 1000000,
+                  "RefVotingRights": 1000000,
+                  "GroupPerc": 75.00,
+                  "MinorPerc": 25.00,
+                  "GroupCtrlPerc": 80.00,
+                  "Shareholders": [
+                    {
+                      "OtherCompanyID": 100,
+                      "OtherCompanyCode": "PARENT",
+                      "OtherCompanyName": "Parent Holdings",
+                      "CurFinAmount": 750000,
+                      "CurFinPercent": 75.00,
+                      "CurVotingAmount": 800000,
+                      "CurControlPercent": 80.00
+                    }
+                  ],
+                  "Participations": [
+                    {
+                      "OtherCompanyID": 200,
+                      "OtherCompanyCode": "SUB01",
+                      "OtherCompanyName": "Subsidiary One",
+                      "CurFinAmount": 500000,
+                      "CurFinPercent": 100.00,
+                      "CurVotingAmount": 500000,
+                      "CurControlPercent": 100.00
+                    }
+                  ],
+                  "EntityVersion": [
+                    {
+                      "Name": "Company",
+                      "Key": "456_123",
+                      "Version": 5
+                    }
+                  ]
+                }
+              }
+
+    - name: "Ownership_SaveOwnership"
+      description: |
+        Saves ownership data for a company including:
+        - Company's issued financial and voting rights
+        - Shareholder ownership amounts (who owns this company)
+        - Participation ownership amounts (what this company owns)
+
+        Validates:
+        - Entity versions for concurrent modification
+        - Numeric amounts are valid
+        - Total ownership consistency
+
+        Uses stored procedures:
+        - P_UPDATE_OWNERSHIP: Update main ownership data
+        - P_UPDATE_OWNERSHIP_DETAIL: Update shareholder/participation details
+        - P_UPDATE_OWNERSHIP_DETAIL_CHECK_TOTAL: Validate totals
+      access_right: "Ownership_ManageOwnership"
+      async: false
+      legacy_pattern: true
+
+      request:
+        _t: "Ownership_SaveOwnership"
+        parameters:
+          - name: "Ownership"
+            type: "object"
+            required: true
+            validation: "ValidateDictionary"
+            description: "Ownership data object to save"
+            nested_parameters:
+              - name: "CompanyID"
+                type: "integer"
+                required: true
+                validation: "ValidateID"
+                description: "Company ID to update"
+              - name: "OwnershipFinancialRights"
+                type: "long"
+                required: true
+                validation: "ValidateLong"
+                description: "Total financial rights issued"
+              - name: "OwnershipVotingRights"
+                type: "long"
+                required: true
+                validation: "ValidateLong"
+                description: "Total voting rights issued"
+              - name: "Shareholders"
+                type: "array"
+                required: false
+                description: "List of shareholder ownership details"
+                element_schema:
+                  OtherCompanyID:
+                    type: "integer"
+                    required: true
+                  CurFinAmount:
+                    type: "long"
+                    nullable: true
+                    description: "Financial amount held by shareholder"
+                  CurVotingAmount:
+                    type: "long"
+                    nullable: true
+                    description: "Voting amount held by shareholder"
+              - name: "Participations"
+                type: "array"
+                required: false
+                description: "List of participation ownership details"
+                element_schema:
+                  OtherCompanyID:
+                    type: "integer"
+                    required: true
+                  CurFinAmount:
+                    type: "long"
+                    nullable: true
+                    description: "Financial amount held in participation"
+                  CurVotingAmount:
+                    type: "long"
+                    nullable: true
+                    description: "Voting amount held in participation"
+              - name: "EntityVersion"
+                type: "array<EntityVersion>"
+                required: false
+                description: "Entity versions for optimistic concurrency"
+          - name: "LogScreenID"
+            type: "integer"
+            required: false
+            validation: "ValidateID"
+            description: "Screen ID for audit logging"
+          - name: "Debug"
+            type: "boolean"
+            required: false
+            default: false
+        example:
+          json: |
+            {
+              "_t": "Ownership_SaveOwnership",
+              "Ownership": {
+                "CompanyID": 123,
+                "OwnershipFinancialRights": 1000000,
+                "OwnershipVotingRights": 1000000,
+                "Shareholders": [
+                  {
+                    "OtherCompanyID": 100,
+                    "CurFinAmount": 750000,
+                    "CurVotingAmount": 800000
+                  }
+                ],
+                "Participations": [
+                  {
+                    "OtherCompanyID": 200,
+                    "CurFinAmount": 500000,
+                    "CurVotingAmount": 500000
+                  }
+                ],
+                "EntityVersion": [
+                  {
+                    "Name": "Company",
+                    "Key": "456_123",
+                    "Version": 5
+                  }
+                ]
+              },
+              "LogScreenID": 100
+            }
+
+      response:
+        success:
+          description: "Empty response on success"
+          note: "Use Ownership_GetOwnership to retrieve updated data"
+        errors:
+          - pattern: "CurFinAmountInvalid"
+            cause: "Invalid financial amount value"
+            error_field_format: "{OtherCompanyID};{S|P};CurFinAmount"
+          - pattern: "CurVotingAmountInvalid"
+            cause: "Invalid voting amount value"
+            error_field_format: "{OtherCompanyID};{S|P};CurVotingAmount"
+          - pattern: "MultiUserException"
+            cause: "Entity modified by another user"
+
+    - name: "Ownership_LaunchCalculateIndirectPercentagesJob"
+      description: |
+        Launches a background job to calculate indirect ownership percentages.
+
+        Indirect percentages account for ownership through intermediate companies:
+        - If A owns 80% of B, and B owns 60% of C
+        - A's indirect ownership of C = 80% * 60% = 48%
+
+        This calculation propagates through the entire ownership tree to determine:
+        - Group percentage for each company
+        - Minority interest percentages
+        - Consolidation method recommendations
+
+        Job: CalculateIndirectPercentagesJob
+      access_right: "Ownership_ManageOwnership"
+      async: false
+      background_job: true
+      job_class: "Jobs.Database.CalculateIndirectPercentagesJob"
+
+      request:
+        _t: "Ownership_LaunchCalculateIndirectPercentagesJob"
+        parameters:
+          - name: "ScreenID"
+            type: "integer"
+            required: true
+            validation: "ValidateInt"
+            description: "Screen ID for job tracking and audit"
+          - name: "UpdateConsoMethod"
+            type: "boolean"
+            required: false
+            validation: "ValidateBool"
+            description: "Whether to update consolidation method based on calculated percentages"
+          - name: "UseSessionTable"
+            type: "boolean"
+            required: false
+            default: false
+            validation: "ValidateBool"
+            description: "Use session table for large calculations (internal)"
+          - name: "Debug"
+            type: "boolean"
+            required: false
+            default: false
+        example:
+          json: |
+            {
+              "_t": "Ownership_LaunchCalculateIndirectPercentagesJob",
+              "ScreenID": 100,
+              "UpdateConsoMethod": true,
+              "Debug": false
+            }
+
+      response:
+        success:
+          JobID:
+            type: "integer"
+            description: "Background job ID for monitoring progress"
+          example:
+            json: |
+              {
+                "JobID": 12345
+              }
+        notes:
+          - "Use Job_GetJobStatusPolling to monitor job completion"
+          - "Job calculates for the current working consolidation period"
+          - "When UpdateConsoMethod=true, companies may have their consolidation method automatically updated"
+
+  # ============================================================================
+  # WORKFLOW ORCHESTRATION
+  # ============================================================================
+  orchestration:
+    ownership_update_workflow:
+      name: "Ownership Update Workflow"
+      description: "Complete workflow for updating ownership and recalculating percentages"
+      steps:
+        - step: 1
+          name: "Get Current Ownership"
+          handler: "Ownership_GetOwnership"
+          parameters:
+            scf_include_entities: true
+          purpose: "Retrieve current ownership data with entity lock"
+          output: "OwnerShipDTO with EntityVersion"
+
+        - step: 2
+          name: "Validate Changes"
+          description: |
+            Before saving, validate:
+            - Sum of shareholder financial amounts <= OwnershipFinancialRights
+            - Sum of shareholder voting amounts <= OwnershipVotingRights
+            - All OtherCompanyIDs exist and are valid
+          validation_rules:
+            - "Shareholder amounts cannot exceed issued rights"
+            - "Participation amounts must match target company's records"
+
+        - step: 3
+          name: "Save Ownership"
+          handler: "Ownership_SaveOwnership"
+          parameters:
+            include_entity_version: true
+          purpose: "Save updated ownership data"
+          error_handling: "Retry with fresh EntityVersion if MultiUserException"
+
+        - step: 4
+          name: "Recalculate Percentages"
+          handler: "Ownership_LaunchCalculateIndirectPercentagesJob"
+          parameters:
+            UpdateConsoMethod: true
+          purpose: "Recalculate indirect percentages for entire group"
+          monitor: "Job_GetJobStatusPolling"
+
+        - step: 5
+          name: "Verify Results"
+          handler: "Ownership_GetOwnership"
+          purpose: "Confirm calculated percentages are correct"
+          validation: "Check GroupPerc and MinorPerc values"
+
+    ownership_analysis_workflow:
+      name: "Ownership Analysis Workflow"
+      description: "Analyze ownership structure for consolidation planning"
+      steps:
+        - step: 1
+          name: "Get Parent Company"
+          description: "Identify ultimate parent (IsParentCompany=true)"
+          handler: "Ownership_GetOwnership"
+          purpose: "Start from top of ownership tree"
+
+        - step: 2
+          name: "Traverse Participations"
+          description: "For each participation, retrieve its ownership"
+          handler: "Ownership_GetOwnership"
+          loop: "For each company in Participations array"
+          purpose: "Build complete ownership tree"
+
+        - step: 3
+          name: "Identify Consolidation Methods"
+          description: |
+            Based on GroupCtrlPerc:
+            - > 50%: Full consolidation
+            - = 50% (joint control): Proportional
+            - 20-50%: Equity method
+            - < 20%: Cost method
+          purpose: "Determine appropriate consolidation treatment"
+
+        - step: 4
+          name: "Identify Minority Interests"
+          description: "Companies with MinorPerc > 0 have minority interests"
+          purpose: "Plan minority interest calculations"
+
+  # ============================================================================
+  # STORED PROCEDURES
+  # ============================================================================
+  stored_procedures:
+    description: "Database procedures used by ownership handlers"
+    procedures:
+      - name: "P_VIEW_OWNERSHIP"
+        description: "Returns main ownership data for a company"
+        parameters:
+          - "ConsoID: Current consolidation period"
+          - "RefConsoID: Reference consolidation period"
+          - "CustomerID: Tenant ID"
+          - "CompanyID: Company to query"
+        returns: "Single row with company ownership summary"
+
+      - name: "P_VIEW_OWNERSHIP_DETAIL"
+        description: "Returns shareholder or participation details"
+        parameters:
+          - "ConsoID: Current consolidation period"
+          - "RefConsoID: Reference consolidation period"
+          - "CompanyID: Company to query"
+          - "Type: 'S' for Shareholders, 'P' for Participations"
+          - "CustomerID: Tenant ID"
+        returns: "List of ownership detail rows"
+
+      - name: "P_UPDATE_OWNERSHIP"
+        description: "Updates main ownership record"
+        parameters:
+          - "ConsoID, CompanyID, CompanyCode"
+          - "IsParentCompany"
+          - "CurrFinancialRights, CurrVotingRights"
+          - "RefFinancialRights, RefVotingRights"
+          - "GroupPerc, MinorPerc, GroupCtrlPerc"
+        returns: "XML error info if validation fails"
+
+      - name: "P_UPDATE_OWNERSHIP_DETAIL"
+        description: "Updates shareholder or participation detail"
+        parameters:
+          - "CompanyID, ConsoID, OtherCompanyID"
+          - "Type: 'S' or 'P'"
+          - "CurFinAmount, CurVotingAmount"
+        returns: "XML error info if validation fails"
+
+      - name: "P_UPDATE_OWNERSHIP_DETAIL_CHECK_TOTAL"
+        description: "Validates total ownership amounts are consistent"
+        parameters:
+          - "CompanyID, ConsoID"
+        returns: "XML error info if totals don't match"
+
+  # ============================================================================
+  # INTEGRATION WITH CONSOLIDATION
+  # ============================================================================
+  consolidation_integration:
+    description: "How ownership relates to consolidation calculations"
+
+    impact_on_consolidation:
+      - area: "Consolidation Method"
+        description: |
+          GroupCtrlPerc determines how a company is consolidated:
+          - Full: All balances included, minority interest recognized
+          - Proportional: Pro-rata balances included
+          - Equity: Only investment and share of profit
+        trigger: "When UpdateConsoMethod=true in percentage calculation"
+
+      - area: "Minority Interest"
+        description: |
+          MinorPerc determines minority interest calculations:
+          - Balance sheet: Minority share of net assets
+          - Income statement: Minority share of profit/loss
+        formula: "Minority Amount = Total Amount * (MinorPerc / 100)"
+
+      - area: "Intercompany Eliminations"
+        description: |
+          Ownership determines elimination percentages:
+          - 100% owned: Full elimination
+          - < 100% owned: Partial elimination with minority share
+        formula: "Elimination = Interco Amount * (GroupPerc / 100)"
+
+      - area: "Goodwill Calculation"
+        description: |
+          Ownership percentages affect goodwill:
+          - Acquisition cost vs fair value of net assets
+          - Adjusted for ownership percentage
+        note: "Calculated during acquisition processing"
+
+    workflow_sequence:
+      description: "Recommended order of operations"
+      steps:
+        - "1. Update ownership structure (Ownership_SaveOwnership)"
+        - "2. Calculate indirect percentages (Ownership_LaunchCalculateIndirectPercentagesJob)"
+        - "3. Run consolidation integration (ConsolidationIntegration_RunConsolidationIntegration)"
+        - "4. Review eliminations (ConsolidationEliminations_GetEliminations)"
+
+  # ============================================================================
+  # METADATA
+  # ============================================================================
+  metadata:
+    created: "2024-12-02"
+    source_files:
+      - "Sigma.Mona.WebApplication/Screens/Ownership/OwnershipService.cs"
+      - "Sigma.Mona.WebApplication/Screens/Ownership/OwnershipController.cs"
+    handler_count: 3
+    stored_procedure_count: 5
+    purpose: |
+      Enable AI agents to manage ownership structures including:
+      - Retrieving ownership data with shareholder/participation details
+      - Updating ownership amounts and percentages
+      - Triggering indirect percentage calculations
+      - Understanding consolidation method implications

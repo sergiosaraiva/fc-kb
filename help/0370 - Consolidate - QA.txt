@@ -1,0 +1,401 @@
+Topics:
+Consolidation Status, Consolidation Batch, Bundle Integration, Adjustment Integration
+
+Keywords:
+Consolidation Status, Consolidation Batch, Bundle Integration, Adjustment Integration, Process Eliminations, Financial Consolidation, Company Selection, Run Consolidation, Consolidation Period
+
+Summary:
+The provided documentation for the Financial Consolidation product includes comprehensive instructions on viewing consolidation status, running consolidation batches, integrating bundle data, and processing adjustments. The Consolidation Status section explains how to track the status of consolidation for parent and subsidiary companies, indicating when re-consolidation is necessary. The Consolidation Batch section details running consolidations for multiple periods simultaneously. The Bundle Integration section covers the process of integrating and processing bundles for companies within the group. The Adjustment Integration section provides guidance on integrating journal adjustments and determining when re-consolidation is required. The documentation ensures accurate financial data consolidation and efficient management of intercompany transactions and eliminations.
+
+Contents:
+
+Question: How do you integrate journal adjustments?
+Answer: To integrate journal adjustments, access the Integrate Adjustments page, select the companies, ensure the Adj checkbox is selected, and click to start the integration.
+
+Question: What indicates the need for a new consolidation?
+Answer: A checkmark in the Bundle, Adjustments, or Conso columns indicates the need for a new consolidation.
+
+Question: How do you access the Consolidation Batch page?
+Answer: To access the Consolidation Batch page, click Consolidation > Consolidation > Statusboard and then click .
+
+Question: How do you select companies for re-consolidation?
+Answer: To select companies for re-consolidation, use the select option to choose only the companies that need to be re-consolidated.
+
+Question: How do you include dimensions in the T-journals during consolidation?
+Answer: To include dimensions in the T-journals during consolidation, select the Include dimensions option before running the consolidation process.
+
+Question: What does the Statusboard page display?
+Answer: The Statusboard page displays the consolidation status of either the parent company or subsidiary companies, showing changes that require re-consolidation.
+
+Question: What actions can impact the consolidation status?
+Answer: Actions such as currency changes or posting/unposting journals can impact the consolidation status.
+
+Question: What is the purpose of processing eliminations?
+Answer: The purpose of processing eliminations is to eliminate intercompany transactions, balances, and activities within the group to present a clear financial picture of the consolidated entity.
+
+Question: How do you integrate bundles for a company?
+Answer: Integrate bundles for a company by selecting the company from the list on the Integrate Bundles page, ensuring the Bundle checkbox is selected, and clicking to start the integration.
+
+Question: What is indicated by a checkmark in the Conso column?
+Answer: A checkmark in the Conso column indicates that a modification has been made in either the bundles or the adjustments, requiring the consolidation to be recalculated.
+
+Question: How do you access the Eliminations page?
+Answer: To access the Eliminations page, click Consolidation > Consolidation > Eliminations.
+
+Question: How do you handle changes in statutory accounts?
+Answer: Handle changes in statutory accounts by running a new consolidation process to update the totals.
+
+Question: How do you include dimensions in adjustments?
+Answer: To include dimensions in adjustments, select the Include dimensions option on the Integrate Adjustments page before starting the adjustment integration process.
+
+Question: How do you track consolidation status changes?
+Answer: Track consolidation status changes by monitoring the checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: How do you process journal adjustments?
+Answer: Process journal adjustments by accessing the Integrate Adjustments page, selecting the companies, ensuring the Adj checkbox is selected, and clicking to start the integration.
+
+Question: What is indicated by the Bundle checkbox?
+Answer: The Bundle checkbox indicates that a modification has been made in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you access the Integrate Bundles page?
+Answer: To access the Integrate Bundles page, click Consolidation > Consolidation > Integrate Bundles.
+
+Question: How do you run a consolidation batch?
+Answer: To run a consolidation batch, access the Consolidation Batch page, specify the date range, data category, version, and click to run the batch.
+
+Question: How do you track changes that impact consolidation status?
+Answer: Changes such as currency changes or posting/unposting journals can impact consolidation status, indicated by checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: How do you execute a consolidation for multiple periods?
+Answer: Execute a consolidation for multiple periods by accessing the Consolidation Batch page, specifying the date range, data category, version, and clicking to run the batch.
+
+Question: What is the purpose of the Integrate Adjustments page?
+Answer: The Integrate Adjustments page allows you to perform the integration of journal adjustments for the companies in the group.
+
+Question: How do you manage intercompany eliminations?
+Answer: Manage intercompany eliminations by accessing the Eliminations page, selecting companies, and clicking to process the eliminations.
+
+Question: What is the final step in the consolidation process?
+Answer: The final step in the consolidation process is processing eliminations to eliminate intercompany transactions and balances.
+
+Question: How do you process consolidation adjustments?
+Answer: Process consolidation adjustments by accessing the Integrate Adjustments page, selecting companies, ensuring the Adj checkbox is selected, and clicking to start the integration.
+
+Question: How do you handle multiple consolidation periods?
+Answer: Handle multiple consolidation periods by using the Consolidation Batch page to execute consolidations for the specified periods.
+
+Question: How do you include dimensions in T-journals during adjustment integration?
+Answer: Include dimensions in T-journals during adjustment integration by selecting the Include dimensions option on the Integrate Adjustments page.
+
+Question: How do you integrate bundles for multiple companies?
+Answer: To integrate bundles for multiple companies, select the desired companies from the list on the Integrate Bundles page, ensure the Bundle checkbox is selected, and click to start the integration.
+
+Question: How do you integrate bundle data for selected companies?
+Answer: To integrate bundle data for selected companies, select the desired companies from the list, ensure the Bundle checkbox is selected, and click to start the integration process.
+
+Question: What does the Integrate Adjustments page display?
+Answer: The Integrate Adjustments page displays all companies in the group and allows you to perform adjustment integration for selected companies.
+
+Question: How do you perform consolidation eliminations?
+Answer: Perform consolidation eliminations by accessing the Eliminations page, selecting companies, and clicking to start the elimination process.
+
+Question: How do you specify batch settings for consolidation?
+Answer: Specify batch settings for consolidation by providing the date range, data category, version, and selecting the Include dimensions option if needed.
+
+Question: How do you view the consolidation status of companies?
+Answer: To view the consolidation status, access the Statusboard page by clicking Consolidation > Consolidation > Statusboard.
+
+Question: What indicates the need to run a consolidation process?
+Answer: A checkmark in the Bundle, Adjustments, or Conso columns indicates that a new consolidation process needs to be run to update the totals.
+
+Question: How do you run a consolidation process for selected companies?
+Answer: To run a consolidation process for selected companies, ensure they are selected in the table, then click to run consolidation based on the consolidation period using your selections.
+
+Question: How do you execute a consolidation batch for multiple periods?
+Answer: To execute a consolidation batch for multiple periods, access the Consolidation Batch page by clicking Consolidation > Consolidation > Statusboard and then click . Specify the range of dates, data category, version, and click to run the consolidation batch.
+
+Question: What does selecting the Bundle checkbox trigger?
+Answer: Selecting the Bundle checkbox triggers the Bundle Integration process for the specified company.
+
+Question: How do you integrate bundle data for selected companies?
+Answer: To integrate bundle data for selected companies, select the desired companies from the list, ensure the Bundle checkbox is selected, and click to start the integration process.
+
+Question: How do you integrate journal adjustments for selected companies?
+Answer: To integrate journal adjustments for selected companies, select the desired companies from the list, ensure the Adj checkbox is selected, and click to start the adjustment integration process.
+
+Question: What is the final step of consolidation?
+Answer: The final step of consolidation is processing eliminations, which eliminate intercompany transactions, balances, and activities.
+
+Question: How do you process consolidation eliminations?
+Answer: To process consolidation eliminations, access the Eliminations page by clicking Consolidation > Consolidation > Eliminations. Select the companies, include dimensions if needed, and click to start the elimination process.
+
+Question: What should you do if a checkmark appears in the Conso column?
+Answer: If a checkmark appears in the Conso column, it indicates a modification requiring the consolidation to be recalculated.
+
+Question: How do you include dimensions in the T-journals during consolidation?
+Answer: To include dimensions in the T-journals during consolidation, select the Include dimensions option before running the consolidation process.
+
+Question: What does the Adjustments checkbox indicate?
+Answer: The Adjustments checkbox indicates that a modification has been made in the adjustments, and a new consolidation should be performed.
+
+Question: How do you select companies for re-consolidation?
+Answer: To select companies for re-consolidation, use the select option to choose only the companies that need to be re-consolidated.
+
+Question: How do you integrate adjustments in T-journals?
+Answer: To integrate adjustments in T-journals, select the Include dimensions option on the Integrate Adjustments page before starting the adjustment integration process.
+
+Question: How do you track changes that impact consolidation status?
+Answer: Changes such as currency changes or posting/unposting journals can impact consolidation status, indicated by checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: How do you access the Integrate Bundles page?
+Answer: To access the Integrate Bundles page, click Consolidation > Consolidation > Integrate Bundles.
+
+Question: What does the Bundle checkbox signify?
+Answer: The Bundle checkbox signifies that a modification has been made in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you start the bundle integration process?
+Answer: To start the bundle integration process, select the desired companies, ensure the Bundle checkbox is selected, and click to start the integration.
+
+Question: How do you access the Integrate Adjustments page?
+Answer: To access the Integrate Adjustments page, click Consolidation > Consolidation > Integrate Adjustments.
+
+Question: What is the purpose of the Integrate Adjustments page?
+Answer: The Integrate Adjustments page allows you to perform the integration of journal adjustments for the companies in the group.
+
+Question: How do you include dimensions in adjustments?
+Answer: To include dimensions in adjustments, select the Include dimensions option on the Integrate Adjustments page before starting the adjustment integration process.
+
+Question: How do you access the Eliminations page?
+Answer: To access the Eliminations page, click Consolidation > Consolidation > Eliminations.
+
+Question: How do you handle intercompany transactions during consolidation?
+Answer: Handle intercompany transactions during consolidation by processing eliminations on the Eliminations page.
+
+Question: What does a checkmark in the Bundle column indicate?
+Answer: A checkmark in the Bundle column indicates that a modification has been made in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you perform a consolidation batch for multiple months?
+Answer: To perform a consolidation batch for multiple months, access the Consolidation Batch page, specify the date range, data category, version, and click to run the batch.
+
+Question: What steps are involved in running a consolidation batch?
+Answer: The steps involved in running a consolidation batch include specifying the date range, data category, version, and clicking to run the batch.
+
+Question: How do you track the progress of a consolidation batch?
+Answer: Track the progress of a consolidation batch by watching for notifications below the run button on the Consolidation Batch page.
+
+Question: What does the Statusboard page display?
+Answer: The Statusboard page displays the consolidation status of either the parent company or subsidiary companies, showing changes that require re-consolidation.
+
+Question: How do you identify companies needing re-consolidation?
+Answer: Identify companies needing re-consolidation by looking for checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: What is the purpose of the Consolidation Batch page?
+Answer: The Consolidation Batch page allows you to execute consolidations for multiple consolidation periods simultaneously.
+
+Question: How do you access the Consolidation Batch page?
+Answer: To access the Consolidation Batch page, click Consolidation > Consolidation > Statusboard and then click .
+
+Question: What information is required to run a consolidation batch?
+Answer: To run a consolidation batch, you need to specify the date range, data category, version, and whether to include dimensions in the T journals.
+
+Question: How do you integrate bundles for multiple companies?
+Answer: To integrate bundles for multiple companies, select the desired companies from the list on the Integrate Bundles page, ensure the Bundle checkbox is selected, and click to start the integration.
+
+Question: What indicates a need for bundle integration?
+Answer: A checkmark in the Bundle column indicates a modification in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you process journal adjustments?
+Answer: Process journal adjustments by accessing the Integrate Adjustments page, selecting the companies, ensuring the Adj checkbox is selected, and clicking to start the integration.
+
+Question: What triggers the Adjustment Integration process?
+Answer: Selecting the Adj checkbox for a company triggers the Adjustment Integration process.
+
+Question: How do you integrate dimensions in T-journals?
+Answer: Integrate dimensions in T-journals by selecting the Include dimensions option on the Integrate Adjustments page.
+
+Question: How do you perform consolidations based on consolidation periods?
+Answer: Perform consolidations based on consolidation periods by selecting the periods and clicking to run the consolidation process.
+
+Question: What does a checkmark in the Adjustments column signify?
+Answer: A checkmark in the Adjustments column signifies that a modification has been made in the adjustments, requiring a new consolidation.
+
+Question: How do you manage intercompany eliminations?
+Answer: Manage intercompany eliminations by accessing the Eliminations page, selecting companies, and clicking to process the eliminations.
+
+Question: What is the final step in the consolidation process?
+Answer: The final step in the consolidation process is processing eliminations to eliminate intercompany transactions and balances.
+
+Question: How do you update totals after changes in bundles or adjustments?
+Answer: Update totals after changes in bundles or adjustments by running a new consolidation process.
+
+Question: What is indicated by a selected Bundle checkbox?
+Answer: A selected Bundle checkbox indicates a modification in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you select companies for bundle integration?
+Answer: Select companies for bundle integration by choosing the desired companies from the list on the Integrate Bundles page.
+
+Question: What does the Integrate Adjustments page display?
+Answer: The Integrate Adjustments page displays all companies in the group and allows you to perform adjustment integration for selected companies.
+
+Question: How do you perform consolidation for a specific period?
+Answer: Perform consolidation for a specific period by selecting the period and running the consolidation process on the Statusboard page.
+
+Question: What does a checkmark in the Conso column mean?
+Answer: A checkmark in the Conso column means that a modification has been made in either the bundles or the adjustments, requiring the consolidation to be recalculated.
+
+Question: How do you access the Statusboard page?
+Answer: To access the Statusboard page, click Consolidation > Consolidation > Statusboard.
+
+Question: What is the purpose of the Statusboard page?
+Answer: The Statusboard page allows you to track the consolidation status of either the parent company or subsidiary companies within the group.
+
+Question: How do you identify changes that require re-consolidation?
+Answer: Identify changes that require re-consolidation by looking for checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: How do you include all dimensions in a consolidation?
+Answer: Include all dimensions in a consolidation by selecting the Include dimensions option before running the consolidation process.
+
+Question: What actions can impact the consolidation status?
+Answer: Actions such as currency changes or posting/unposting journals can impact the consolidation status.
+
+Question: How do you run a consolidation for multiple periods?
+Answer: Run a consolidation for multiple periods by accessing the Consolidation Batch page, specifying the date range, data category, version, and clicking to run the batch.
+
+Question: What does the Consolidation Batch page allow you to do?
+Answer: The Consolidation Batch page allows you to execute consolidations for multiple consolidation periods simultaneously.
+
+Question: How do you specify batch settings for consolidation?
+Answer: Specify batch settings for consolidation by providing the date range, data category, version, and selecting the Include dimensions option if needed.
+
+Question: What is indicated by the Bundle checkbox on the Integrate Bundles page?
+Answer: The Bundle checkbox on the Integrate Bundles page indicates that a modification has been made in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you integrate bundles for a company?
+Answer: Integrate bundles for a company by selecting the company from the list on the Integrate Bundles page, ensuring the Bundle checkbox is selected, and clicking to start the integration.
+
+Question: What is the purpose of the Integrate Bundles page?
+Answer: The Integrate Bundles page allows you to integrate and process the bundles of the companies in the group.
+
+Question: How do you access the Eliminations page?
+Answer: To access the Eliminations page, click Consolidation > Consolidation > Eliminations.
+
+Question: How do you process intercompany eliminations?
+Answer: Process intercompany eliminations by selecting companies on the Eliminations page, including dimensions if needed, and clicking to start the elimination process.
+
+Question: How do you track consolidation status changes?
+Answer: Track consolidation status changes by monitoring the checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: What is the purpose of processing eliminations?
+Answer: The purpose of processing eliminations is to eliminate intercompany transactions, balances, and activities within the group to present a clear financial picture of the consolidated entity.
+
+Question: How do you handle changes in statutory accounts?
+Answer: Handle changes in statutory accounts by running a new consolidation process to update the totals.
+
+Question: What indicates a need for adjustment integration?
+Answer: A checkmark in the Adj column indicates a modification in the adjustments, requiring a new consolidation.
+
+Question: How do you include dimensions in the T-journals during adjustment integration?
+Answer: Include dimensions in the T-journals during adjustment integration by selecting the Include dimensions option on the Integrate Adjustments page.
+
+Question: How do you process consolidation adjustments?
+Answer: Process consolidation adjustments by accessing the Integrate Adjustments page, selecting companies, ensuring the Adj checkbox is selected, and clicking to start the integration.
+
+Question: How do you manage consolidation status for parent and subsidiary companies?
+Answer: Manage consolidation status for parent and subsidiary companies by tracking changes on the Statusboard page and running necessary consolidation processes.
+
+Question: How do you handle multiple consolidation periods?
+Answer: Handle multiple consolidation periods by using the Consolidation Batch page to execute consolidations for the specified periods.
+
+Question: What is the significance of the Bundle checkbox?
+Answer: The Bundle checkbox signifies a modification in the statutory accounts or bundles, indicating that a new consolidation is required.
+
+Question: How do you integrate bundle data for a company?
+Answer: Integrate bundle data for a company by selecting the company on the Integrate Bundles page, ensuring the Bundle checkbox is selected, and clicking to start the integration.
+
+Question: How do you process eliminations for selected companies?
+Answer: Process eliminations for selected companies by accessing the Eliminations page, selecting the companies, and clicking to start the elimination process.
+
+Question: What actions require re-consolidation?
+Answer: Actions such as currency changes, posting/unposting journals, and modifications in bundles or adjustments require re-consolidation.
+
+Question: How do you execute a consolidation batch?
+Answer: Execute a consolidation batch by specifying the date range, data category, version, and clicking to run the batch on the Consolidation Batch page.
+
+Question: What does the Integrate Adjustments page allow you to do?
+Answer: The Integrate Adjustments page allows you to perform the integration of journal adjustments for the companies in the group.
+
+Question: How do you process consolidation eliminations?
+Answer: Process consolidation eliminations by selecting companies on the Eliminations page, including dimensions if needed, and clicking to start the elimination process.
+
+Question: How do you access the Statusboard page?
+Answer: To access the Statusboard page, click Consolidation > Consolidation > Statusboard.
+
+Question: What does the Statusboard page display?
+Answer: The Statusboard page displays the consolidation status of either the parent company or subsidiary companies, showing changes that require re-consolidation.
+
+Question: What is the purpose of the Consolidation Batch page?
+Answer: The Consolidation Batch page allows you to execute consolidations for multiple consolidation periods simultaneously.
+
+Question: How do you specify batch settings for consolidation?
+Answer: Specify batch settings for consolidation by providing the date range, data category, version, and selecting the Include dimensions option if needed.
+
+Question: What indicates a need for bundle integration?
+Answer: A checkmark in the Bundle column indicates a modification in the statutory accounts or bundles, requiring a new consolidation.
+
+Question: How do you integrate bundles for a company?
+Answer: Integrate bundles for a company by selecting the company from the list on the Integrate Bundles page, ensuring the Bundle checkbox is selected, and clicking to start the integration.
+
+Question: What is the purpose of the Integrate Bundles page?
+Answer: The Integrate Bundles page allows you to integrate and process the bundles of the companies in the group.
+
+Question: How do you access the Eliminations page?
+Answer: To access the Eliminations page, click Consolidation > Consolidation > Eliminations.
+
+Question: How do you process intercompany eliminations?
+Answer: Process intercompany eliminations by selecting companies on the Eliminations page, including dimensions if needed, and clicking to start the elimination process.
+
+Question: How do you track consolidation status changes?
+Answer: Track consolidation status changes by monitoring the checkmarks in the Bundle, Adjustments, or Conso columns on the Statusboard page.
+
+Question: What is the purpose of processing eliminations?
+Answer: The purpose of processing eliminations is to eliminate intercompany transactions, balances, and activities within the group to present a clear financial picture of the consolidated entity.
+
+Question: How do you handle changes in statutory accounts?
+Answer: Handle changes in statutory accounts by running a new consolidation process to update the totals.
+
+Question: What indicates a need for adjustment integration?
+Answer: A checkmark in the Adj column indicates a modification in the adjustments, requiring a new consolidation.
+
+Question: How do you include dimensions in the T-journals during adjustment integration?
+Answer: Include dimensions in the T-journals during adjustment integration by selecting the Include dimensions option on the Integrate Adjustments page.
+
+Question: How do you process consolidation adjustments?
+Answer: Process consolidation adjustments by accessing the Integrate Adjustments page, selecting companies, ensuring the Adj checkbox is selected, and clicking to start the integration.
+
+Question: How do you manage consolidation status for parent and subsidiary companies?
+Answer: Manage consolidation status for parent and subsidiary companies by tracking changes on the Statusboard page and running necessary consolidation processes.
+
+Question: How do you handle multiple consolidation periods?
+Answer: Handle multiple consolidation periods by using the Consolidation Batch page to execute consolidations for the specified periods.
+
+Question: What is the significance of the Bundle checkbox?
+Answer: The Bundle checkbox signifies a modification in the statutory accounts or bundles, indicating that a new consolidation is required.
+
+Question: How do you integrate bundle data for a company?
+Answer: Integrate bundle data for a company by selecting the company on the Integrate Bundles page, ensuring the Bundle checkbox is selected, and clicking to start the integration.
+
+Question: How do you process eliminations for selected companies?
+Answer: Process eliminations for selected companies by accessing the Eliminations page, selecting the companies, and clicking to start the elimination process.
+
+Question: What actions require re-consolidation?
+Answer: Actions such as currency changes, posting/unposting journals, and modifications in bundles or adjustments require re-consolidation.
+
+Question: How do you execute a consolidation batch?
+Answer: Execute a consolidation batch by specifying the date range, data category, version, and clicking to run the batch on the Consolidation Batch page.
+
+Question: What does the Integrate Adjustments page allow you to do?
+Answer: The Integrate Adjustments page allows you to perform the integration of journal adjustments for the companies in the group.
+
+Question: How do you process consolidation eliminations?
+Answer: Process consolidation eliminations by selecting companies on the Eliminations page, including dimensions if needed, and clicking to start the elimination process.
+
