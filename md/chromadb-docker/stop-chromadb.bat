@@ -9,4 +9,3 @@ REM Stop container
 docker-compose -f docker-compose.yml down
 
 echo OK: ChromaDB stopped
-pause

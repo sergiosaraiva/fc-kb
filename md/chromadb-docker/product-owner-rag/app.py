@@ -1551,13 +1551,14 @@ def main():
     concept_map_check_js = """
     <script>
     (function() {
-        const query = sessionStorage.getItem('concept_map_query');
+        // Check parent's sessionStorage (concept map iframe stores query there)
+        const query = window.parent.sessionStorage.getItem('concept_map_query');
         if (query) {
-            sessionStorage.removeItem('concept_map_query');
+            window.parent.sessionStorage.removeItem('concept_map_query');
             // Add query to URL and reload (Streamlit can read query params)
-            const url = new URL(window.location.href);
+            const url = new URL(window.parent.location.href);
             url.searchParams.set('cm_query', query);
-            window.location.href = url.toString();
+            window.parent.location.href = url.toString();
         }
     })();
     </script>
@@ -3385,14 +3386,16 @@ Closing Rate Assets - Historical Rate Equity
             <button onclick="copyToClipboard()" style="
                 background-color: #5B7FFF;
                 color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 4px;
+                border: 1px solid #5B7FFF;
+                padding: 0.25rem 0.75rem;
+                border-radius: 0.5rem;
                 cursor: pointer;
                 font-size: 14px;
+                font-weight: 400;
                 width: 100%;
-                height: 38px;
-                transition: background-color 0.2s ease;
+                min-height: 38px;
+                line-height: 1.6;
+                transition: background-color 0.2s ease, border-color 0.2s ease;
             ">
                 Copy
             </button>
@@ -3413,7 +3416,7 @@ Closing Rate Assets - Historical Rate Equity
             }}
             </script>
             """
-            st.components.v1.html(copy_button_html, height=45)
+            st.components.v1.html(copy_button_html, height=42)
 
         with btn_col2:
             st.download_button(
@@ -3431,14 +3434,16 @@ Closing Rate Assets - Historical Rate Equity
             <button onclick="printAnswer()" style="
                 background-color: #5B7FFF;
                 color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 4px;
+                border: 1px solid #5B7FFF;
+                padding: 0.25rem 0.75rem;
+                border-radius: 0.5rem;
                 cursor: pointer;
                 font-size: 14px;
+                font-weight: 400;
                 width: 100%;
-                height: 38px;
-                transition: background-color 0.2s ease;
+                min-height: 38px;
+                line-height: 1.6;
+                transition: background-color 0.2s ease, border-color 0.2s ease;
             ">
                 Print
             </button>
@@ -3493,7 +3498,7 @@ Closing Rate Assets - Historical Rate Equity
             }}
             </script>
             """
-            st.components.v1.html(print_html, height=45)
+            st.components.v1.html(print_html, height=42)
 
         with btn_col4:
             # Go Deeper button - re-queries with Detailed level
@@ -3517,18 +3522,20 @@ Closing Rate Assets - Historical Rate Equity
 
             bookmark_html = f"""
             <button id="bookmark-btn-{bookmark_id}" onclick="toggleBookmark()" style="
-                background-color: {'#5B7FFF' if is_bookmarked else '#5B7FFF'};
+                background-color: {'#4A6FEE' if is_bookmarked else '#5B7FFF'};
                 color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 4px;
+                border: 1px solid {'#4A6FEE' if is_bookmarked else '#5B7FFF'};
+                padding: 0.25rem 0.75rem;
+                border-radius: 0.5rem;
                 cursor: pointer;
                 font-size: 14px;
+                font-weight: 400;
                 width: 100%;
-                height: 38px;
-                transition: background-color 0.2s ease;
+                min-height: 38px;
+                line-height: 1.6;
+                transition: background-color 0.2s ease, border-color 0.2s ease;
             ">
-                {'★ Saved' if is_bookmarked else '☆ Save'}
+                {'Saved' if is_bookmarked else 'Save'}
             </button>
             <script>
             function toggleBookmark() {{
@@ -3543,9 +3550,9 @@ Closing Rate Assets - Historical Rate Equity
                 if (existingIdx >= 0) {{
                     // Remove bookmark
                     bookmarks.splice(existingIdx, 1);
-                    document.getElementById('bookmark-btn-{bookmark_id}').innerHTML = '☆ Save';
+                    document.getElementById('bookmark-btn-{bookmark_id}').innerHTML = 'Save';
                     document.getElementById('bookmark-btn-{bookmark_id}').style.backgroundColor = '#5B7FFF';
-                    document.getElementById('bookmark-btn-{bookmark_id}').style.color = 'white';
+                    document.getElementById('bookmark-btn-{bookmark_id}').style.borderColor = '#5B7FFF';
                 }} else {{
                     // Add bookmark
                     bookmarks.unshift({{
@@ -3556,9 +3563,9 @@ Closing Rate Assets - Historical Rate Equity
                     }});
                     // Keep only last 20 bookmarks
                     if (bookmarks.length > 20) bookmarks = bookmarks.slice(0, 20);
-                    document.getElementById('bookmark-btn-{bookmark_id}').innerHTML = '★ Saved';
+                    document.getElementById('bookmark-btn-{bookmark_id}').innerHTML = 'Saved';
                     document.getElementById('bookmark-btn-{bookmark_id}').style.backgroundColor = '#4A6FEE';
-                    document.getElementById('bookmark-btn-{bookmark_id}').style.color = 'white';
+                    document.getElementById('bookmark-btn-{bookmark_id}').style.borderColor = '#4A6FEE';
                 }}
 
                 localStorage.setItem('fc_bookmarks', JSON.stringify(bookmarks));
@@ -3568,7 +3575,7 @@ Closing Rate Assets - Historical Rate Equity
             }}
             </script>
             """
-            st.components.v1.html(bookmark_html, height=45)
+            st.components.v1.html(bookmark_html, height=42)
 
         # Smart Follow-Up Questions - AI-generated deeper questions
         st.markdown("### Explore Further")

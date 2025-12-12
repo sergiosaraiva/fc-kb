@@ -13,7 +13,6 @@ docker-compose -f docker-compose.yml ps | findstr "chromadb" | findstr "Up" >nul
 if errorlevel 1 (
     echo Error: ChromaDB is not running.
     echo Please run start-chromadb.bat first.
-    pause
     exit /b 1
 )
 
@@ -21,7 +20,6 @@ REM Check if ZIP file exists
 if not exist "FC-Full-KnowledgeBase.zip" (
     echo Error: FC-Full-KnowledgeBase.zip not found.
     echo Please ensure the ZIP file is in the same directory.
-    pause
     exit /b 1
 )
 
@@ -38,7 +36,6 @@ if exist "..\..\venv-win\Scripts\python.exe" (
     echo   python -m venv venv-win
     echo   .\venv-win\Scripts\pip install chromadb boto3
     echo.
-    pause
     exit /b 1
 )
 
@@ -49,7 +46,6 @@ if errorlevel 1 (
     echo Error: AWS credentials not configured.
     echo Please configure AWS profile: prophix-devops
     echo Run: aws configure --profile prophix-devops
-    pause
     exit /b 1
 )
 
@@ -72,4 +68,3 @@ echo ============================================================
 echo Ingestion complete!
 echo ============================================================
 echo.
-pause

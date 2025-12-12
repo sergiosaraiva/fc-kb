@@ -6,7 +6,6 @@ REM Check if Docker is running
 docker info >nul 2>&1
 if errorlevel 1 (
     echo Error: Docker is not running. Please start Docker Desktop.
-    pause
     exit /b 1
 )
 
@@ -40,4 +39,3 @@ echo   CHROMADB_PORT=8847
 echo.
 echo Stop: stop-chromadb.bat
 echo.
-pause
