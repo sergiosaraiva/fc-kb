@@ -239,11 +239,25 @@ st.markdown("""
         content: "✓";
     }
 
-    /* Left-aligned buttons for learning paths and glossary */
-    section[data-testid="stSidebar"] .stExpander .stButton button {
+    /* Left-aligned buttons for learning paths and glossary (exclude primary) */
+    section[data-testid="stSidebar"] .stExpander .stButton button:not([kind="primary"]):not([data-testid="baseButton-primary"]) {
         text-align: left !important;
         justify-content: flex-start !important;
         padding-left: 12px !important;
+    }
+
+    /* Center primary buttons in expanders (Enhance with AI) - full width blue */
+    section[data-testid="stSidebar"] .stExpander .stButton button[kind="primary"],
+    section[data-testid="stSidebar"] .stExpander .stButton button[data-testid="baseButton-primary"],
+    section[data-testid="stSidebar"] .stExpander div[data-testid="stButton"] button[kind="primary"] {
+        text-align: center !important;
+        justify-content: center !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        width: 100% !important;
+        background-color: #5B7FFF !important;
+        border-color: #5B7FFF !important;
+        color: white !important;
     }
 
     /* Progress bar styling */
@@ -2082,7 +2096,7 @@ Calculate effective ownership in Sub B and determine NCI at each level.""",
                     st.markdown("""<span style="background-color: rgba(91, 127, 255, 0.2); color: #5B7FFF; padding: 2px 8px; border-radius: 8px; font-size: 10px;">AI-Generated</span>""", unsafe_allow_html=True)
                 else:
                     # Offer to enhance with AI (lazy loading)
-                    if st.button("Enhance with AI", key=f"enhance_{path_id}", help="Generate better topics using AI"):
+                    if st.button("Enhance with AI", key=f"enhance_{path_id}", help="Generate better topics using AI", use_container_width=True, type="primary"):
                         with st.spinner("Generating topics..."):
                             try:
                                 rag_topics = generate_learning_path_topics_rag(path_id, path_data["description"])
@@ -2147,7 +2161,7 @@ Calculate effective ownership in Sub B and determine NCI at each level.""",
         if st.session_state.glossary_rag_enhanced:
             st.caption("AI-generated from knowledge base")
         else:
-            if st.button("Enhance with AI", key="enhance_glossary", help="Generate better terms using AI"):
+            if st.button("Enhance with AI", key="enhance_glossary", help="Generate better terms using AI", use_container_width=True, type="primary"):
                 with st.spinner("Loading glossary terms..."):
                     try:
                         rag_glossary = generate_glossary_terms_rag()
