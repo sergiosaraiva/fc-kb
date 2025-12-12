@@ -7,15 +7,15 @@ cd /d "%~dp0"
 
 REM Stop existing containers
 echo Stopping existing containers...
-docker-compose -f docker-compose-with-po-rag.yml down
+docker-compose --profile with-rag down
 
 REM Rebuild Product Owner RAG (force rebuild)
 echo Rebuilding Product Owner RAG container...
-docker-compose -f docker-compose-with-po-rag.yml build --no-cache product-owner-rag
+docker-compose --profile with-rag build --no-cache product-owner-rag
 
 REM Start services
 echo Starting services...
-docker-compose -f docker-compose-with-po-rag.yml up -d
+docker-compose --profile with-rag up -d
 
 REM Wait for services to be healthy
 echo Waiting for services to be healthy...
@@ -27,4 +27,3 @@ echo.
 echo Access the Product Owner Portal at:
 echo   http://localhost:8501
 echo.
-pause

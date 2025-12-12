@@ -9,7 +9,7 @@ REM Navigate to script directory
 cd /d "%~dp0"
 
 REM Check if ChromaDB is running
-docker-compose -f docker-compose.yml ps | findstr "chromadb" | findstr "Up" >nul
+docker-compose ps | findstr "chromadb" | findstr "Up" >nul
 if errorlevel 1 (
     echo Error: ChromaDB is not running.
     echo Please run start-chromadb.bat first.

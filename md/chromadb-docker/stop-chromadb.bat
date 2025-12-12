@@ -6,6 +6,6 @@ REM Navigate to script directory
 cd /d "%~dp0"
 
 REM Stop container
-docker-compose -f docker-compose.yml down
+docker-compose down
 
 echo OK: ChromaDB stopped

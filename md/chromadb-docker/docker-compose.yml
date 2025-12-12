@@ -1,4 +1,5 @@
 services:
+  # ChromaDB - Vector Database
   chromadb:
     build:
       context: .
@@ -21,6 +22,35 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+
+  # Product Owner RAG - Streamlit App (optional)
+  product-owner-rag:
+    build:
+      context: ..
+      dockerfile: product-owner-rag/Dockerfile
+    container_name: fc-product-owner-rag
+    ports:
+      - "8501:8501"
+    environment:
+      - CHROMADB_HOST=chromadb
+      - CHROMADB_PORT=8000
+      - CHROMADB_TOKEN=fc-knowledge-base-token
+      - AWS_PROFILE=prophix-devops
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - ~/.aws:/root/.aws:ro
+    depends_on:
+      chromadb:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    profiles:
+      - with-rag
 
 volumes:
   chromadb_data:

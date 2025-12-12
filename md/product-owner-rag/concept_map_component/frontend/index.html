@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Concept Map</title>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Source Sans Pro", sans-serif;
+            background-color: transparent;
+        }
+        #concept-map-container {
+            width: 100%;
+            height: 650px;
+            border: 1px solid #30363D;
+            border-radius: 8px;
+            background-color: #0D1117;
+        }
+        #concept-map-legend {
+            margin-top: 10px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: #C9D1D9;
+            font-size: 14px;
+        }
+        #concept-map-legend span span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        #selected-concept {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(91,127,255,0.1);
+            border-radius: 4px;
+            display: none;
+            color: #C9D1D9;
+        }
+        #search-btn {
+            margin-top: 8px;
+            width: 100%;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            background: #5B7FFF;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        #search-btn:hover {
+            background: #4A6FEE;
+        }
+    </style>
+</head>
+<body>
+    <div id="concept-map-container"></div>
+    <div id="concept-map-legend">
+        <span><span style="background:#5B7FFF;"></span>Methods</span>
+        <span><span style="background:#2EA043;"></span>Standards</span>
+        <span><span style="background:#A371F7;"></span>Calculations</span>
+        <span><span style="background:#F0883E;"></span>Eliminations</span>
+        <span><span style="background:#58A6FF;"></span>Currency</span>
+        <span><span style="background:#DB6D6D;"></span>Concepts</span>
+    </div>
+    <div id="selected-concept">
+        <strong>Selected:</strong> <span id="concept-name"></span>
+        <button id="search-btn">
+            <span id="concept-query-text"></span>
+        </button>
+    </div>
+
+    <script>
+        // Initialize Streamlit component communication
+        function sendMessageToStreamlit(type, data) {
+            const outData = Object.assign({
+                isStreamlitMessage: true,
+                type: type,
+            }, data);
+            window.parent.postMessage(outData, "*");
+        }
+
+        function init() {
+            sendMessageToStreamlit("streamlit:componentReady", {apiVersion: 1});
+        }
+
+        function setFrameHeight(height) {
+            sendMessageToStreamlit("streamlit:setFrameHeight", {height: height});
+        }
+
+        function sendDataToPython(data) {
+            sendMessageToStreamlit("streamlit:setComponentValue", {value: data});
+        }
+
+        // Node categories and colors
+        const colors = {
+            method: '#5B7FFF',
+            standard: '#2EA043',
+            calculation: '#A371F7',
+            elimination: '#F0883E',
+            currency: '#58A6FF',
+            concept: '#DB6D6D'
+        };
+
+        // Define nodes with search queries
+        const nodes = new vis.DataSet([
+            // Central node
+            {id: 1, label: 'Consolidation', color: colors.method, query: 'What is financial consolidation?', font: {size: 16, color: '#fff'}},
+
+            // Methods
+            {id: 2, label: 'Global\nIntegration', color: colors.method, query: 'How does global integration consolidation work?'},
+            {id: 3, label: 'Equity\nMethod', color: colors.method, query: 'How does equity method consolidation work?'},
+            {id: 4, label: 'Proportional', color: colors.method, query: 'How does proportional consolidation work?'},
+
+            // Standards
+            {id: 10, label: 'IFRS 10', color: colors.standard, query: 'What does IFRS 10 say about control?'},
+            {id: 11, label: 'IFRS 3', color: colors.standard, query: 'What does IFRS 3 cover for business combinations?'},
+            {id: 12, label: 'IAS 28', color: colors.standard, query: 'What does IAS 28 say about associates?'},
+            {id: 13, label: 'IAS 21', color: colors.standard, query: 'What does IAS 21 say about currency translation?'},
+            {id: 14, label: 'IFRS 11', color: colors.standard, query: 'What does IFRS 11 say about joint arrangements?'},
+
+            // Calculations
+            {id: 20, label: 'Goodwill', color: colors.calculation, query: 'How is goodwill calculated in consolidation?'},
+            {id: 21, label: 'NCI', color: colors.calculation, query: 'How is minority interest (NCI) calculated?'},
+            {id: 22, label: 'Ownership %', color: colors.calculation, query: 'How are direct and indirect ownership percentages calculated?'},
+            {id: 23, label: 'Equity\nPickup', color: colors.calculation, query: 'How is equity method pickup calculated?'},
+
+            // Eliminations
+            {id: 30, label: 'Intercompany', color: colors.elimination, query: 'What are intercompany eliminations?'},
+            {id: 31, label: 'Participation', color: colors.elimination, query: 'How do participation eliminations work?'},
+            {id: 32, label: 'Dividends', color: colors.elimination, query: 'How are dividends eliminated in consolidation?'},
+            {id: 33, label: 'Unrealized\nProfit', color: colors.elimination, query: 'How is unrealized profit in inventory eliminated?'},
+
+            // Currency
+            {id: 40, label: 'Translation', color: colors.currency, query: 'How does currency translation work?'},
+            {id: 41, label: 'CTA', color: colors.currency, query: 'What is cumulative translation adjustment (CTA)?'},
+            {id: 42, label: 'Exchange\nRates', color: colors.currency, query: 'What exchange rates are used for translation?'},
+
+            // Concepts
+            {id: 50, label: 'Control', color: colors.concept, query: 'What is control in financial consolidation?'},
+            {id: 51, label: 'Significant\nInfluence', color: colors.concept, query: 'What is significant influence under IAS 28?'},
+            {id: 52, label: 'Subsidiary', color: colors.concept, query: 'What defines a subsidiary?'},
+            {id: 53, label: 'Associate', color: colors.concept, query: 'What is an associate in consolidation?'},
+            {id: 54, label: 'Joint\nVenture', color: colors.concept, query: 'What is a joint venture in consolidation?'}
+        ]);
+
+        // Define edges (relationships)
+        const edges = new vis.DataSet([
+            // Consolidation to Methods
+            {from: 1, to: 2, label: '>50%'},
+            {from: 1, to: 3, label: '20-50%'},
+            {from: 1, to: 4, label: 'joint'},
+
+            // Methods to Standards
+            {from: 2, to: 10, dashes: true},
+            {from: 2, to: 11, dashes: true},
+            {from: 3, to: 12, dashes: true},
+            {from: 4, to: 14, dashes: true},
+
+            // Global Integration connections
+            {from: 2, to: 20},
+            {from: 2, to: 21},
+            {from: 2, to: 30},
+            {from: 2, to: 50, dashes: true},
+            {from: 2, to: 52, dashes: true},
+
+            // Equity Method connections
+            {from: 3, to: 23},
+            {from: 3, to: 51, dashes: true},
+            {from: 3, to: 53, dashes: true},
+
+            // Proportional connections
+            {from: 4, to: 54, dashes: true},
+
+            // Calculations relationships
+            {from: 20, to: 11, dashes: true},
+            {from: 21, to: 22},
+
+            // Eliminations relationships
+            {from: 30, to: 31},
+            {from: 30, to: 32},
+            {from: 30, to: 33},
+
+            // Currency relationships
+            {from: 40, to: 13, dashes: true},
+            {from: 40, to: 41},
+            {from: 40, to: 42},
+
+            // Concept relationships
+            {from: 50, to: 52},
+            {from: 51, to: 53}
+        ]);
+
+        // Create network
+        const container = document.getElementById('concept-map-container');
+        const data = { nodes: nodes, edges: edges };
+        const options = {
+            nodes: {
+                shape: 'box',
+                borderWidth: 2,
+                shadow: true,
+                font: { color: '#ffffff', size: 12 },
+                margin: 10
+            },
+            edges: {
+                color: { color: '#8B949E', hover: '#5B7FFF' },
+                width: 1,
+                font: { size: 10, color: '#8B949E', strokeWidth: 0 },
+                arrows: { to: { enabled: true, scaleFactor: 0.5 } }
+            },
+            physics: {
+                enabled: true,
+                solver: 'forceAtlas2Based',
+                forceAtlas2Based: {
+                    gravitationalConstant: -50,
+                    springLength: 100,
+                    springConstant: 0.08
+                },
+                stabilization: { iterations: 100 }
+            },
+            interaction: {
+                hover: true,
+                dragNodes: true,
+                zoomView: true,
+                dragView: true
+            }
+        };
+
+        const network = new vis.Network(container, data, options);
+
+        // Store selected query
+        let selectedQuery = null;
+
+        // Click handler - show search button and store query
+        network.on('click', function(params) {
+            if (params.nodes.length > 0) {
+                const nodeId = params.nodes[0];
+                const node = nodes.get(nodeId);
+                if (node && node.query) {
+                    selectedQuery = node.query;
+                    document.getElementById('concept-name').textContent = node.label.replace(/\n/g, ' ');
+                    document.getElementById('concept-query-text').textContent = node.query;
+                    document.getElementById('selected-concept').style.display = 'block';
+                }
+            }
+        });
+
+        // Search button click - send query to Python
+        document.getElementById('search-btn').addEventListener('click', function() {
+            if (selectedQuery) {
+                sendDataToPython(selectedQuery);
+            }
+        });
+
+        // Initialize and set frame height
+        init();
+        // Set height after a brief delay to allow layout
+        setTimeout(function() {
+            setFrameHeight(800);
+        }, 100);
+    </script>
+</body>
+</html>

@@ -12,16 +12,16 @@ if errorlevel 1 (
 REM Navigate to script directory
 cd /d "%~dp0"
 
-REM Start ChromaDB only
+REM Start ChromaDB only (without product-owner-rag profile)
 echo Starting ChromaDB container...
-docker-compose -f docker-compose.yml up -d
+docker-compose up -d chromadb
 
 REM Wait for health check
 echo Waiting for ChromaDB to be healthy...
 timeout /t 5 /nobreak >nul
 
 REM Check ChromaDB health
-docker-compose -f docker-compose.yml ps | findstr "chromadb" | findstr "healthy" >nul
+docker-compose ps | findstr "chromadb" | findstr "healthy" >nul
 if errorlevel 1 (
     echo Warning: ChromaDB is starting... ^(may take a few seconds^)
 ) else (
