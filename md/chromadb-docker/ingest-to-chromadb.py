@@ -3,10 +3,12 @@
 Ingest FC Knowledge Base documents into ChromaDB with AWS Bedrock embeddings.
 
 This script:
-1. Extracts documents from the full KB ZIP file
-2. Chunks documents intelligently (respecting markdown structure)
+1. Extracts pre-chunked documents from the KB ZIP file
+2. Each file = 1 semantic chunk (no re-chunking needed)
 3. Generates high-quality embeddings using AWS Bedrock Titan V1 (1536 dimensions)
 4. Stores in ChromaDB running in Docker
+
+The ZIP is created by create-knowledge-zip.py which handles semantic chunking.
 
 Usage:
     python ingest-to-chromadb.py
@@ -19,7 +21,7 @@ import sys
 import time
 import zipfile
 from pathlib import Path
-from typing import List, Dict
+from typing import Dict
 
 import chromadb
 from chromadb.config import Settings
@@ -29,8 +31,6 @@ from config import (
     CHROMADB_PORT,
     CHROMADB_TOKEN,
     FULL_COLLECTION,
-    MAX_CHUNK_SIZE,
-    CHUNK_OVERLAP,
     BATCH_SIZE,
     TOPICS,
     LAYERS,
@@ -81,8 +81,8 @@ def get_document_id(content: str, source: str) -> str:
     return hashlib.md5(hash_input.encode()).hexdigest()
 
 
-def classify_document(filepath: str) -> Dict[str, str]:
-    """Extract metadata from document path."""
+def classify_document(filepath: str, content: str) -> Dict[str, str]:
+    """Extract metadata from document path and content."""
     metadata = {
         "source": filepath,
         "topic": "general",
@@ -106,62 +106,27 @@ def classify_document(filepath: str) -> Dict[str, str]:
                 metadata["audience"] = "technical"
             break
 
-    # Extract IFRS standard if mentioned
-    ifrs_match = re.search(r"(IFRS\s*\d+|IAS\s*\d+)", filepath, re.IGNORECASE)
+    # Extract IFRS standard if mentioned (from content too)
+    ifrs_match = re.search(r"(IFRS\s*\d+|IAS\s*\d+)", content, re.IGNORECASE)
     if ifrs_match:
         metadata["ifrs_standard"] = ifrs_match.group(1).upper().replace(" ", "")
 
+    # Extract document title from content header
+    title_match = re.search(r"^\*\*Document:\*\*\s*(.+?)(?:\s*$|\s{2})", content, re.MULTILINE)
+    if title_match:
+        metadata["document"] = title_match.group(1).strip()
+
+    # Extract section from content
+    section_match = re.search(r"^#\s+(.+?)$", content, re.MULTILINE)
+    if section_match:
+        metadata["section"] = section_match.group(1).strip()[:100]
+
+    # Extract keywords from content
+    keywords_match = re.search(r"^\*\*Keywords:\*\*\s*(.+?)$", content, re.MULTILINE)
+    if keywords_match:
+        metadata["keywords"] = keywords_match.group(1).strip()[:200]
+
     return metadata
-
-
-def chunk_document(content: str, max_size: int = MAX_CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> List[str]:
-    """
-    Split document into chunks, respecting markdown structure.
-
-    Tries to split on:
-    1. Markdown headers (## or ###)
-    2. Paragraph breaks
-    3. Character boundaries (last resort)
-    """
-    if len(content) <= max_size:
-        return [content]
-
-    chunks = []
-
-    # Try to split on markdown headers
-    sections = re.split(r"\n(#{1,3}\s+[^\n]+)\n", content)
-
-    current_chunk = ""
-    for section in sections:
-        if len(current_chunk) + len(section) <= max_size:
-            current_chunk += section + "\n"
-        else:
-            if current_chunk.strip():
-                chunks.append(current_chunk.strip())
-
-            # Handle oversized sections
-            if len(section) > max_size:
-                paragraphs = section.split("\n\n")
-                for para in paragraphs:
-                    if len(para) <= max_size:
-                        if len(current_chunk) + len(para) <= max_size:
-                            current_chunk += para + "\n\n"
-                        else:
-                            if current_chunk.strip():
-                                chunks.append(current_chunk.strip())
-                            current_chunk = para + "\n\n"
-                    else:
-                        # Character split with overlap
-                        for i in range(0, len(para), max_size - overlap):
-                            chunks.append(para[i : i + max_size])
-                        current_chunk = ""
-            else:
-                current_chunk = section + "\n"
-
-    if current_chunk.strip():
-        chunks.append(current_chunk.strip())
-
-    return [c for c in chunks if c.strip()]
 
 
 def process_zip(
@@ -203,33 +168,25 @@ def process_zip(
     metadatas = []
     ids = []
 
-    # Extract and process documents
+    # Extract and process documents (1 file = 1 semantic chunk, no re-chunking)
     with zipfile.ZipFile(zip_path, "r") as zf:
         file_list = [f for f in zf.namelist() if f.endswith((".md", ".yaml", ".yml"))]
-        logger.info(f"Found {len(file_list)} files in ZIP")
+        logger.info(f"Found {len(file_list)} pre-chunked files in ZIP")
 
         for filepath in file_list:
             try:
                 content = zf.read(filepath).decode("utf-8", errors="ignore")
+                # Normalize Windows line endings (should already be done by create-knowledge-zip.py)
+                content = content.replace('\r\n', '\n').replace('\r', '\n')
                 if not content.strip():
                     continue
 
-                metadata = classify_document(filepath)
-                chunks = chunk_document(content)
+                metadata = classify_document(filepath, content)
+                doc_id = get_document_id(content, filepath)
 
-                for i, chunk in enumerate(chunks):
-                    if not chunk.strip():
-                        continue
-
-                    doc_id = get_document_id(chunk, f"{filepath}:{i}")
-
-                    chunk_metadata = metadata.copy()
-                    if len(chunks) > 1:
-                        chunk_metadata["chunk"] = f"{i + 1}/{len(chunks)}"
-
-                    documents.append(chunk)
-                    metadatas.append(chunk_metadata)
-                    ids.append(doc_id)
+                documents.append(content)
+                metadatas.append(metadata)
+                ids.append(doc_id)
 
             except Exception as e:
                 logger.warning(f"Error processing {filepath}: {e}")
@@ -237,7 +194,7 @@ def process_zip(
 
     # Add documents in batches (Bedrock has rate limits)
     total_added = 0
-    logger.info(f"Adding {len(documents)} chunks in batches of {BATCH_SIZE}...")
+    logger.info(f"Adding {len(documents)} semantic chunks in batches of {BATCH_SIZE}...")
 
     for i in range(0, len(documents), BATCH_SIZE):
         batch_docs = documents[i : i + BATCH_SIZE]
@@ -301,7 +258,7 @@ def main():
     logger.info("=" * 60)
     logger.info("INGESTION COMPLETE")
     logger.info("=" * 60)
-    logger.info(f"  Full Collection: {count} chunks")
+    logger.info(f"  Full Collection: {count} semantic chunks")
     logger.info("")
     logger.info("ChromaDB URL: http://localhost:8847")
     logger.info("")

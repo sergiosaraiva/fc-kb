@@ -11,6 +11,7 @@ This is used when Cohere Embed v4 is not available due to marketplace access.
 
 import json
 import logging
+import os
 from typing import List
 
 import boto3
@@ -54,14 +55,20 @@ class TitanV1EmbeddingFunction(EmbeddingFunction):
         """Lazy initialization of Bedrock client."""
         if self._client is None:
             try:
-                session = boto3.Session(profile_name=self.profile_name)
+                # Prefer environment variables over profile
+                if os.environ.get("AWS_ACCESS_KEY_ID") and os.environ.get("AWS_SECRET_ACCESS_KEY"):
+                    session = boto3.Session()
+                    auth_method = "environment variables"
+                else:
+                    session = boto3.Session(profile_name=self.profile_name)
+                    auth_method = f"profile '{self.profile_name}'"
                 config = Config(
                     region_name=self.region_name,
                     retries={"max_attempts": 3, "mode": "adaptive"},
                 )
                 self._client = session.client("bedrock-runtime", config=config)
                 logger.info(
-                    f"Initialized Bedrock client with profile '{self.profile_name}' "
+                    f"Initialized Bedrock client with {auth_method} "
                     f"in {self.region_name} for Titan V1"
                 )
             except Exception as e:

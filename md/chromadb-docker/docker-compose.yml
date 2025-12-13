@@ -31,14 +31,12 @@ services:
     container_name: fc-product-owner-rag
     ports:
       - "8501:8501"
+    env_file:
+      - .env
     environment:
       - CHROMADB_HOST=chromadb
       - CHROMADB_PORT=8000
       - CHROMADB_TOKEN=fc-knowledge-base-token
-      - AWS_PROFILE=prophix-devops
-      - AWS_DEFAULT_REGION=us-east-1
-    volumes:
-      - ~/.aws:/root/.aws:ro
     depends_on:
       chromadb:
         condition: service_started
