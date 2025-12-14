@@ -9,8 +9,8 @@ echo ""
 echo "This will process ~1,400 documentation chunks through Bedrock Claude"
 echo "to generate semantic summaries, keywords, and hypothetical questions."
 echo ""
-echo "Estimated time: 10-15 minutes"
-echo "Estimated cost: ~\$3-5"
+echo "Estimated time: 3-4 hours (using Claude Sonnet 4.5 for best quality)"
+echo "Estimated cost: ~\$20-30"
 echo ""
 
 cd "$(dirname "$0")"
@@ -37,8 +37,8 @@ fi
 echo "Starting LLM-enhanced ZIP creation..."
 echo ""
 
-# Run with --enhance flag
-$PYTHON create-knowledge-zip.py --enhance
+# Run with LLM enhancement (default - no flags needed)
+$PYTHON create-knowledge-zip.py
 
 echo ""
 echo "Done! The ZIP now contains world-class semantic chunks."

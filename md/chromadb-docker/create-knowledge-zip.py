@@ -29,10 +29,10 @@ from typing import List, Tuple, Optional, Dict
 SCRIPT_DIR = Path(__file__).parent.resolve()
 ZIP_FILE = SCRIPT_DIR / "FC-Full-KnowledgeBase.zip"
 
-# Chunking configuration
-TARGET_CHUNK_SIZE = 2000  # Target chars per chunk (good for complex/technical content)
-MIN_CHUNK_SIZE = 300      # Merge smaller chunks with neighbors
-MAX_CHUNK_SIZE = 4000     # Split if section exceeds this
+# Chunking configuration - optimized for faster RAG responses
+TARGET_CHUNK_SIZE = 1200  # Smaller chunks for faster processing + more focused context
+MIN_CHUNK_SIZE = 200      # Merge smaller chunks with neighbors
+MAX_CHUNK_SIZE = 2000     # Split if section exceeds this
 
 
 def normalize_content(content: str) -> str:
@@ -51,7 +51,7 @@ def semantic_chunk_yaml(content: str, source_file: str) -> List[Tuple[str, str]]
 
     Returns list of (chunk_content, chunk_id_suffix) tuples.
     """
-    YAML_MAX_CHUNK = 8000  # YAML chunks target max (API docs need more context)
+    YAML_MAX_CHUNK = 4000  # YAML chunks target max (reduced for faster responses)
 
     def split_by_indent(lines: List[str], indent_level: int, base_idx: int,
                         parent_key: str) -> List[Tuple[str, str]]:
@@ -580,6 +580,23 @@ def create_zip(use_llm: bool = False):
 
         total_files = stats["pre_chunked"] + stats["semantic_chunked"] + stats["yaml_files"]
 
+    # Retry failed LLM chunks if any
+    if use_llm and _llm_enhancer is not None:
+        enhancer_stats = _llm_enhancer.get_stats()
+
+        if enhancer_stats["pending_retry"] > 0:
+            print()
+            print("-" * 60)
+            print(f"Retrying {enhancer_stats['pending_retry']} failed chunks...")
+            print("-" * 60)
+
+            retry_success = _llm_enhancer.retry_failed_chunks()
+            enhancer_stats = _llm_enhancer.get_stats()  # Refresh stats
+
+            print(f"  Retry results: {retry_success} succeeded")
+            if enhancer_stats["pending_retry"] > 0:
+                print(f"  Still failed: {enhancer_stats['pending_retry']} (using fallback)")
+
     print()
     print("=" * 60)
     print(f"Created: {ZIP_FILE.name}")
@@ -589,7 +606,121 @@ def create_zip(use_llm: bool = False):
     print(f"  Semantic chunks (markdown):          {stats['semantic_chunked']:,}")
     print(f"  Semantic chunks (yaml):              {stats['yaml_files']:,}")
     print(f"  TOTAL:                               {total_files:,}")
+
+    # Show LLM enhancement stats
+    if use_llm and _llm_enhancer is not None:
+        enhancer_stats = _llm_enhancer.get_stats()
+        print("-" * 60)
+        print("LLM Enhancement Statistics:")
+        print(f"  Successful enhancements:  {enhancer_stats['success']:,}")
+        print(f"  Fallback (rule-based):    {enhancer_stats['fallback']:,}")
+        success_rate = enhancer_stats['success'] / max(1, enhancer_stats['success'] + enhancer_stats['fallback']) * 100
+        print(f"  Success rate:             {success_rate:.1f}%")
+
     print("=" * 60)
+
+
+def process_single_file(filepath: str, use_llm: bool = True):
+    """Process a single file and update/add to the existing ZIP."""
+    filepath = Path(filepath)
+
+    if not filepath.exists():
+        print(f"Error: File not found: {filepath}")
+        return
+
+    if filepath.suffix not in (".md", ".yaml", ".yml"):
+        print(f"Error: Unsupported file type: {filepath.suffix}")
+        return
+
+    print("=" * 60)
+    print(f"Processing single file: {filepath.name}")
+    print(f"Mode: {'LLM-Enhanced' if use_llm else 'Rule-based'}")
+    print("=" * 60)
+
+    # Determine source path relative to documentation-library
+    src_docs = SCRIPT_DIR.parent / "documentation-library"
+    try:
+        rel_path = filepath.relative_to(src_docs)
+        rel_path_str = str(rel_path).replace(os.sep, "_")
+        prefix = "documentation-library_"
+    except ValueError:
+        # File is not in documentation-library, use filename
+        rel_path = filepath
+        rel_path_str = filepath.name
+        prefix = ""
+
+    # Read and chunk the file
+    content = read_file(filepath)
+
+    if filepath.suffix in (".yaml", ".yml"):
+        chunks = semantic_chunk_yaml(content, str(rel_path))
+    else:
+        chunks = semantic_chunk_markdown(content, str(rel_path))
+
+    print(f"Generated {len(chunks)} chunks")
+
+    # Process chunks with enhancement
+    processed_chunks = []
+    for idx, (chunk_content, chunk_suffix) in enumerate(chunks):
+        chunk_with_context = add_chunk_context(
+            chunk_content, str(rel_path), idx, len(chunks), use_llm
+        )
+
+        # Create filename
+        if filepath.suffix in (".yaml", ".yml"):
+            base_name = rel_path_str.replace(".yaml", "").replace(".yml", "")
+            flat_name = f"{prefix}{base_name}_chunk{chunk_suffix}.yaml"
+        else:
+            base_name = rel_path_str.replace(".md", "")
+            flat_name = f"{prefix}{base_name}_chunk{chunk_suffix}.md"
+
+        processed_chunks.append((flat_name, chunk_with_context))
+
+        if (idx + 1) % 5 == 0:
+            print(f"  Enhanced {idx + 1}/{len(chunks)} chunks")
+
+    # Update ZIP file
+    if not ZIP_FILE.exists():
+        print(f"\nCreating new ZIP: {ZIP_FILE.name}")
+        mode = "w"
+    else:
+        print(f"\nUpdating existing ZIP: {ZIP_FILE.name}")
+        mode = "a"
+
+    # Remove old chunks for this file from ZIP (if updating)
+    if mode == "a":
+        # Read existing entries, filter out old chunks for this file
+        import tempfile
+        temp_zip = SCRIPT_DIR / "temp_knowledge.zip"
+
+        base_pattern = f"{prefix}{rel_path_str.replace('.md', '').replace('.yaml', '').replace('.yml', '')}_chunk"
+
+        with zipfile.ZipFile(ZIP_FILE, "r") as zf_read:
+            with zipfile.ZipFile(temp_zip, "w", zipfile.ZIP_DEFLATED) as zf_write:
+                for item in zf_read.namelist():
+                    if not item.startswith(base_pattern):
+                        # Keep entries not matching our file
+                        zf_write.writestr(item, zf_read.read(item))
+
+                # Add new chunks
+                for flat_name, chunk_content in processed_chunks:
+                    zf_write.writestr(flat_name, chunk_content)
+
+        # Replace original with temp
+        temp_zip.replace(ZIP_FILE)
+        print(f"  Removed old chunks and added {len(processed_chunks)} new chunks")
+    else:
+        with zipfile.ZipFile(ZIP_FILE, mode, zipfile.ZIP_DEFLATED) as zf:
+            for flat_name, chunk_content in processed_chunks:
+                zf.writestr(flat_name, chunk_content)
+
+    # Show LLM stats if used
+    if use_llm and _llm_enhancer is not None:
+        stats = _llm_enhancer.get_stats()
+        print(f"\nLLM Stats: {stats['success']} success, {stats['fallback']} fallback")
+
+    print(f"\nDone! ZIP updated: {ZIP_FILE.name}")
+    print(f"Size: {ZIP_FILE.stat().st_size / 1024 / 1024:.1f} MB")
 
 
 if __name__ == "__main__":
@@ -598,8 +729,9 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python create-knowledge-zip.py            # Fast, rule-based
-  python create-knowledge-zip.py --enhance  # LLM-enhanced (recommended for best quality)
+  python create-knowledge-zip.py                    # Full ZIP, LLM-enhanced
+  python create-knowledge-zip.py --no-llm           # Full ZIP, rule-based (fast)
+  python create-knowledge-zip.py --file path/to/file.md   # Single file only
         """
     )
     parser.add_argument(
@@ -607,13 +739,23 @@ Examples:
         action="store_true",
         help="Disable LLM enhancement (faster but lower quality)"
     )
+    parser.add_argument(
+        "--file",
+        type=str,
+        help="Process a single file and update the ZIP (instead of full rebuild)"
+    )
     args = parser.parse_args()
 
     use_llm = not args.no_llm
 
-    if use_llm:
-        print("\n🚀 LLM Enhancement enabled (default) - this produces world-class results\n")
+    if args.file:
+        # Single file mode
+        process_single_file(args.file, use_llm=use_llm)
     else:
-        print("\n⚡ Fast mode (no LLM) - rule-based enhancement\n")
+        # Full ZIP mode
+        if use_llm:
+            print("\n🚀 LLM Enhancement enabled (default) - this produces world-class results\n")
+        else:
+            print("\n⚡ Fast mode (no LLM) - rule-based enhancement\n")
 
-    create_zip(use_llm=use_llm)
+        create_zip(use_llm=use_llm)

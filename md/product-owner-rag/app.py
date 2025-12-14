@@ -9,13 +9,14 @@ Uses:
 - Same ChromaDB Docker container (localhost:8847)
 - Same AWS Bedrock credentials (prophix-devops)
 - Titan V1 embeddings (1536 dimensions)
-- Claude 3.5 Sonnet via Bedrock for responses
+- Claude Sonnet 4.5 via Bedrock for responses
 """
 
 import json
 import logging
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import List, Dict, Optional
 
@@ -46,13 +47,33 @@ logger = logging.getLogger("product-owner-rag")
 import boto3
 from botocore.config import Config
 
-# Configuration
-CLAUDE_MODEL_ID = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
-MAX_TOKENS = 8000            # Increased for longer, more detailed educational answers
+# Configuration - Model Selection (3 tiers)
+MODEL_TIERS = {
+    "Good": {
+        "id": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+        "name": "Claude Haiku 4.5",
+        "description": "Fast responses (~5-10s)",
+        "max_tokens": 4000,
+    },
+    "Great": {
+        "id": "us.anthropic.claude-sonnet-4-20250514-v1:0",
+        "name": "Claude Sonnet 4",
+        "description": "Balanced quality & speed (~15-30s)",
+        "max_tokens": 6000,
+    },
+    "Ultra": {
+        "id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+        "name": "Claude Sonnet 4.5",
+        "description": "Best quality (~30-60s)",
+        "max_tokens": 8000,
+    },
+}
+CLAUDE_FAST_MODEL_ID = MODEL_TIERS["Good"]["id"]  # Always use fast model for auxiliary calls
+DEFAULT_MODEL_TIER = "Great"  # Default selection
 TEMPERATURE = 0.3            # Reduced for more consistent, reliable answers
 
 # Retrieval configuration
-BUSINESS_LAYER_RESULTS = 15  # Increased for better coverage of help content
+BUSINESS_LAYER_RESULTS = 8   # More smaller chunks = better coverage + fast response
 RELEVANCE_THRESHOLD = 0.35   # Lowered from 0.55 - more permissive for business users
 
 # Page configuration
@@ -475,11 +496,20 @@ def get_chroma_client():
 @st.cache_resource
 def get_bedrock_client():
     """Get AWS Bedrock client (cached)."""
-    aws_profile = os.environ.get("AWS_PROFILE", "prophix-devops")
-    session = boto3.Session(profile_name=aws_profile)
+    # Prefer environment variables over AWS profile
+    if os.environ.get("AWS_ACCESS_KEY_ID") and os.environ.get("AWS_SECRET_ACCESS_KEY"):
+        session = boto3.Session()
+        logger.info("Using AWS credentials from environment variables")
+    else:
+        aws_profile = os.environ.get("AWS_PROFILE", "prophix-devops")
+        session = boto3.Session(profile_name=aws_profile)
+        logger.info(f"Using AWS profile: {aws_profile}")
+
     config = Config(
         region_name=AWS_REGION,
-        retries={"max_attempts": 3, "mode": "adaptive"},
+        retries={"max_attempts": 5, "mode": "adaptive"},
+        read_timeout=300,  # 5 minute timeout for Sonnet 4.5 long responses
+        connect_timeout=30,  # 30 seconds for initial connection
     )
     return session.client("bedrock-runtime", config=config)
 
@@ -575,20 +605,28 @@ def search_business_layer(query: str, n_results: int = BUSINESS_LAYER_RESULTS, t
     return formatted
 
 
-def generate_answer_with_claude(query: str, context: str, conversation_history: list = None, explanation_level: str = "Standard") -> str:
+def generate_answer_with_claude(query: str, context: str, conversation_history: list = None, explanation_level: str = "Standard", model_tier: str = None) -> str:
     """
-    Generate answer using AWS Bedrock Claude 3.5 Sonnet with optimized system prompt.
+    Generate answer using AWS Bedrock Claude with selected model tier.
 
     Args:
         query: User's question
         context: Retrieved context from knowledge base
         conversation_history: List of previous Q&A pairs for context
         explanation_level: "Executive Summary", "Standard", or "Detailed"
+        model_tier: "Good", "Great", or "Ultra" - determines model and max_tokens
 
     Returns:
         Claude's response text
     """
     bedrock = get_bedrock_client()
+
+    # Select model based on tier (default to Great if not specified)
+    if model_tier is None:
+        model_tier = DEFAULT_MODEL_TIER
+    model_config = MODEL_TIERS.get(model_tier, MODEL_TIERS[DEFAULT_MODEL_TIER])
+    model_id = model_config["id"]
+    max_tokens = model_config["max_tokens"]
 
     # Limit conversation history to last 3 exchanges (but with more context per exchange)
     if conversation_history:
@@ -882,7 +920,7 @@ Begin your answer now:""")
     # Call Claude via Bedrock with proper system prompt
     body = json.dumps({
         "anthropic_version": "bedrock-2023-05-31",
-        "max_tokens": MAX_TOKENS,
+        "max_tokens": max_tokens,  # Uses tier-specific max_tokens
         "temperature": TEMPERATURE,
         "system": system_prompt,  # Proper system prompt
         "messages": [
@@ -895,7 +933,7 @@ Begin your answer now:""")
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=model_id,  # Uses tier-specific model
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -962,7 +1000,7 @@ Generate 3 follow-up questions to deepen understanding:"""
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=CLAUDE_FAST_MODEL_ID,  # Use fast model for auxiliary calls
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -1178,7 +1216,7 @@ Suggest 4 related topics to explore next. Return ONLY a JSON array:
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=CLAUDE_FAST_MODEL_ID,  # Use fast model for auxiliary calls
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -1586,6 +1624,8 @@ def main():
         st.session_state.current_learning_topic = None
     if "force_detailed" not in st.session_state:
         st.session_state.force_detailed = False
+    if "model_tier" not in st.session_state:
+        st.session_state.model_tier = DEFAULT_MODEL_TIER
 
     # Keyboard shortcuts and localStorage JavaScript (injected once)
     keyboard_shortcuts_js = """
@@ -2807,6 +2847,29 @@ Closing Rate Assets - Historical Rate Equity
         )
         topic_filter = topic_options[selected_topic_label]
 
+    # Model tier selector
+    st.markdown("#### Choose AI Model")
+    model_cols = st.columns(3)
+    for idx, (tier_name, tier_config) in enumerate(MODEL_TIERS.items()):
+        with model_cols[idx]:
+            is_selected = st.session_state.model_tier == tier_name
+            button_type = "primary" if is_selected else "secondary"
+            if st.button(
+                f"{'✓ ' if is_selected else ''}{tier_name}",
+                key=f"model_{tier_name}",
+                use_container_width=True,
+                type=button_type,
+                help=f"{tier_config['name']}: {tier_config['description']}"
+            ):
+                st.session_state.model_tier = tier_name
+                st.rerun()
+
+    # Show selected model info
+    selected_model = MODEL_TIERS[st.session_state.model_tier]
+    st.caption(f"Using **{selected_model['name']}** - {selected_model['description']}")
+
+    st.markdown("")  # Spacing
+
     # Main query input with keyboard hint
     # Sync query_input with query if trigger_search is set (from concept map or other sources)
     if st.session_state.get("trigger_search") and st.session_state.get("query"):
@@ -2985,21 +3048,21 @@ Closing Rate Assets - Historical Rate Equity
                 context_parts.append("=== THEORETICAL FOUNDATION (Direct Consolidation Framework / IFRS) ===\n")
                 for i, result in enumerate(theory_results, 1):
                     source = result["metadata"].get("source", "Unknown")
-                    content = result["content"]
+                    content = result["content"]  # Full content - no truncation
                     context_parts.append(f"[Theory Source {i}: {source}]\n{content}")
 
             if help_results:
                 context_parts.append("\n=== USER GUIDE & UI INSTRUCTIONS ===\n")
                 for i, result in enumerate(help_results, 1):
                     source = result["metadata"].get("source", "Unknown")
-                    content = result["content"]
+                    content = result["content"]  # Full content - no truncation
                     context_parts.append(f"[Help Source {i}: {source}]\n{content}")
 
             if implementation_results:
                 context_parts.append("\n=== PROPHIX.CONSO IMPLEMENTATION ===\n")
                 for i, result in enumerate(implementation_results, 1):
                     source = result["metadata"].get("source", "Unknown")
-                    content = result["content"]
+                    content = result["content"]  # Full content - no truncation
                     context_parts.append(f"[Implementation Source {i}: {source}]\n{content}")
 
             context = "\n\n---\n\n".join(context_parts)
@@ -3013,12 +3076,13 @@ Closing Rate Assets - Historical Rate Equity
             </div>
             """, unsafe_allow_html=True)
 
-            # Generate answer with conversation history and explanation level
+            # Generate answer with conversation history, explanation level, and selected model
             answer = generate_answer_with_claude(
                 query,
                 context,
                 conversation_history=st.session_state.conversation_history,
-                explanation_level=explanation_level
+                explanation_level=explanation_level,
+                model_tier=st.session_state.model_tier
             )
 
             # Mark step 2 complete
@@ -3435,12 +3499,34 @@ Closing Rate Assets - Historical Rate Equity
             """
             st.components.v1.html(bookmark_html, height=50)
 
+        # Generate follow-up questions and related topics IN PARALLEL using fast model
+        with st.spinner("Generating suggestions..."):
+            follow_up_questions = []
+            related = []
+
+            # Run both auxiliary calls in parallel for faster response
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                future_followup = executor.submit(generate_follow_up_questions, query, answer)
+                future_related = executor.submit(generate_related_topics_rag, query, answer)
+
+                try:
+                    follow_up_questions = future_followup.result(timeout=60)
+                except Exception as e:
+                    logger.warning(f"Follow-up generation failed: {e}")
+                    follow_up_questions = get_fallback_follow_ups(query)
+
+                try:
+                    related = future_related.result(timeout=60)
+                except Exception:
+                    related = []
+
+            # Fallback to hardcoded if RAG fails
+            if not related:
+                related = get_related_topics(query)
+
         # Smart Follow-Up Questions - AI-generated deeper questions
         st.markdown("### Explore Further")
         st.caption("AI-suggested questions to deepen your understanding")
-
-        with st.spinner("Generating follow-up questions..."):
-            follow_up_questions = generate_follow_up_questions(query, answer)
 
         if follow_up_questions:
             fu_cols = st.columns(len(follow_up_questions))
@@ -3458,17 +3544,6 @@ Closing Rate Assets - Historical Rate Equity
         # Related Topics - RAG-generated contextual suggestions
         st.markdown("### Related Topics")
         st.caption("AI-suggested based on your query")
-
-        # Try RAG-generated related topics, fall back to hardcoded
-        with st.spinner("Finding related topics..."):
-            try:
-                related = generate_related_topics_rag(query, answer)
-            except Exception:
-                related = []
-
-            # Fallback to hardcoded if RAG fails
-            if not related:
-                related = get_related_topics(query)
 
         if related:
             cols = st.columns(min(len(related), 4))

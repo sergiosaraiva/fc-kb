@@ -23,10 +23,11 @@ from botocore.config import Config
 logger = logging.getLogger(__name__)
 
 # Bedrock configuration
-BEDROCK_MODEL = "anthropic.claude-3-haiku-20240307-v1:0"  # Fast and cost-effective
+# Using Sonnet 4.5 for best quality (slower but produces world-class results)
+BEDROCK_MODEL = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"  # Best quality
 BEDROCK_REGION = os.environ.get("AWS_DEFAULT_REGION", "us-east-1")
-MAX_RETRIES = 3
-RETRY_DELAY = 2
+MAX_RETRIES = 5
+RETRY_DELAY = 3
 
 
 class ChunkEnhancer:
@@ -36,6 +37,9 @@ class ChunkEnhancer:
         self._client = None
         self._request_count = 0
         self._last_request_time = 0
+        self._failed_chunks = []  # Track failed chunks for retry
+        self._success_count = 0
+        self._fallback_count = 0
 
     @property
     def client(self):
@@ -52,6 +56,8 @@ class ChunkEnhancer:
             config = Config(
                 region_name=BEDROCK_REGION,
                 retries={"max_attempts": MAX_RETRIES, "mode": "adaptive"},
+                read_timeout=120,  # 2 minutes for response
+                connect_timeout=30,  # 30 seconds to connect
             )
             self._client = session.client("bedrock-runtime", config=config)
             logger.info(f"Initialized Bedrock client with {auth_method} for chunk enhancement")
@@ -149,7 +155,10 @@ Respond with ONLY the JSON, no other text."""
 
         response = self._call_claude(prompt, max_tokens=800)
 
-        if not response:
+        if not response or not response.strip():
+            logger.warning("Empty LLM response, queuing for retry")
+            self._failed_chunks.append((content, source_path, topic_area))
+            self._fallback_count += 1
             return self._fallback_enhancement(content, source_path, topic_area)
 
         try:
@@ -162,6 +171,12 @@ Respond with ONLY the JSON, no other text."""
                     response = response[4:]
             response = response.strip()
 
+            # Try to extract JSON if there's extra text
+            import re
+            json_match = re.search(r'\{[\s\S]*\}', response)
+            if json_match:
+                response = json_match.group()
+
             result = json.loads(response)
 
             # Validate required fields
@@ -170,10 +185,13 @@ Respond with ONLY the JSON, no other text."""
                 if field not in result:
                     result[field] = []
 
+            self._success_count += 1
             return result
 
         except json.JSONDecodeError as e:
             logger.warning(f"Failed to parse LLM response: {e}")
+            self._failed_chunks.append((content, source_path, topic_area))
+            self._fallback_count += 1
             return self._fallback_enhancement(content, source_path, topic_area)
 
     def _fallback_enhancement(self, content: str, source_path: str, topic_area: str) -> Dict:
@@ -208,6 +226,77 @@ Respond with ONLY the JSON, no other text."""
             "questions": [f"What is {topic_area.lower()}?"],
             "related_topics": [topic_area],
         }
+
+    def get_stats(self) -> Dict:
+        """Get enhancement statistics."""
+        return {
+            "success": self._success_count,
+            "fallback": self._fallback_count,
+            "pending_retry": len(self._failed_chunks),
+        }
+
+    def retry_failed_chunks(self) -> int:
+        """
+        Retry all failed chunks with longer delays.
+        Returns number of successfully retried chunks.
+        """
+        if not self._failed_chunks:
+            return 0
+
+        logger.info(f"Retrying {len(self._failed_chunks)} failed chunks...")
+        retry_success = 0
+        still_failed = []
+
+        for content, source_path, topic_area in self._failed_chunks:
+            # Longer delay between retries
+            time.sleep(5)
+
+            # Try again
+            prompt = f"""You are an expert in financial consolidation and IFRS accounting standards.
+
+Analyze this documentation chunk and provide structured metadata to improve search and retrieval.
+
+SOURCE: {source_path}
+TOPIC AREA: {topic_area}
+
+CONTENT:
+{content[:3500]}
+
+Respond in this exact JSON format (no markdown, just JSON):
+{{
+    "summary": "A clear 1-2 sentence summary.",
+    "keywords": ["keyword1", "keyword2", "keyword3"],
+    "concepts": ["concept1", "concept2"],
+    "questions": ["Question 1?", "Question 2?"],
+    "related_topics": ["Topic 1", "Topic 2"]
+}}
+
+Respond with ONLY the JSON, no other text."""
+
+            response = self._call_claude(prompt, max_tokens=600)
+
+            if response and response.strip():
+                try:
+                    import re
+                    response = response.strip()
+                    json_match = re.search(r'\{[\s\S]*\}', response)
+                    if json_match:
+                        json.loads(json_match.group())  # Validate JSON
+                        retry_success += 1
+                        logger.info(f"Retry succeeded for: {source_path}")
+                        continue
+                except:
+                    pass
+
+            still_failed.append((content, source_path, topic_area))
+            logger.warning(f"Retry failed for: {source_path}")
+
+        self._failed_chunks = still_failed
+        self._success_count += retry_success
+        self._fallback_count -= retry_success
+
+        logger.info(f"Retry complete: {retry_success} succeeded, {len(still_failed)} still failed")
+        return retry_success
 
 
 def get_enhancer() -> ChunkEnhancer:
