@@ -12,13 +12,19 @@ Uses:
 - Claude Sonnet 4.5 via Bedrock for responses
 """
 
+import html
 import json
 import logging
 import os
+import random
+import re
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional
+from urllib.parse import unquote
 
 import streamlit as st
 import chromadb
@@ -83,8 +89,6 @@ def extract_content_only(chunk_text: str) -> str:
     with embedding quality but shouldn't be sent to Claude as context.
     This function strips the metadata and returns only the core content.
     """
-    import re
-
     # Try to find the "## Content" section (LLM-enhanced chunks)
     content_match = re.search(r'## Content\s*\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
     if content_match:
@@ -505,36 +509,49 @@ st.markdown("""
 @st.cache_resource
 def get_chroma_client():
     """Get ChromaDB client (cached)."""
-    return chromadb.HttpClient(
-        host=CHROMADB_HOST,
-        port=CHROMADB_PORT,
-        settings=Settings(
-            anonymized_telemetry=False,
-            chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
-            chroma_client_auth_credentials=CHROMADB_TOKEN,
-        ),
-    )
+    try:
+        client = chromadb.HttpClient(
+            host=CHROMADB_HOST,
+            port=CHROMADB_PORT,
+            settings=Settings(
+                anonymized_telemetry=False,
+                chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+                chroma_client_auth_credentials=CHROMADB_TOKEN,
+            ),
+        )
+        # Test connection
+        client.heartbeat()
+        return client
+    except Exception as e:
+        logger.error(f"Failed to connect to ChromaDB at {CHROMADB_HOST}:{CHROMADB_PORT}: {e}")
+        st.error("Knowledge base unavailable. Please ensure ChromaDB is running.")
+        return None
 
 
 @st.cache_resource
 def get_bedrock_client():
     """Get AWS Bedrock client (cached)."""
-    # Prefer environment variables over AWS profile
-    if os.environ.get("AWS_ACCESS_KEY_ID") and os.environ.get("AWS_SECRET_ACCESS_KEY"):
-        session = boto3.Session()
-        logger.info("Using AWS credentials from environment variables")
-    else:
-        aws_profile = os.environ.get("AWS_PROFILE", "prophix-devops")
-        session = boto3.Session(profile_name=aws_profile)
-        logger.info(f"Using AWS profile: {aws_profile}")
+    try:
+        # Prefer environment variables over AWS profile
+        if os.environ.get("AWS_ACCESS_KEY_ID") and os.environ.get("AWS_SECRET_ACCESS_KEY"):
+            session = boto3.Session()
+            logger.info("Using AWS credentials from environment variables")
+        else:
+            aws_profile = os.environ.get("AWS_PROFILE", "prophix-devops")
+            session = boto3.Session(profile_name=aws_profile)
+            logger.info(f"Using AWS profile: {aws_profile}")
 
-    config = Config(
-        region_name=AWS_REGION,
-        retries={"max_attempts": 5, "mode": "adaptive"},
-        read_timeout=300,  # 5 minute timeout for Sonnet 4.5 long responses
-        connect_timeout=30,  # 30 seconds for initial connection
-    )
-    return session.client("bedrock-runtime", config=config)
+        config = Config(
+            region_name=AWS_REGION,
+            retries={"max_attempts": 5, "mode": "adaptive"},
+            read_timeout=300,  # 5 minute timeout for Sonnet 4.5 long responses
+            connect_timeout=30,  # 30 seconds for initial connection
+        )
+        return session.client("bedrock-runtime", config=config)
+    except Exception as e:
+        logger.error(f"Failed to initialize AWS Bedrock client: {e}")
+        st.error("AI service unavailable. Please check AWS credentials.")
+        return None
 
 
 @st.cache_resource
@@ -923,7 +940,7 @@ Remember: A product owner or financial consolidator reading your answer should g
         user_message_parts.append("Previous exchanges in this session for context:\n")
         for i, exchange in enumerate(conversation_history, 1):
             user_message_parts.append(f"Q{i}: {exchange['question']}")
-            user_message_parts.append(f"A{i}: {exchange['answer'][:800]}...\n")  # First 800 chars for better context
+            user_message_parts.append(f"A{i}: {exchange['answer'][:600]}...\n")  # Standardized context length
         user_message_parts.append("")
 
     # Add knowledge base context
@@ -1080,7 +1097,7 @@ Use markdown formatting and cite specific IFRS standards."""
         user_message_parts.append("=== CONVERSATION HISTORY ===")
         for i, exchange in enumerate(conversation_history[-3:], 1):
             user_message_parts.append(f"Q{i}: {exchange['question']}")
-            user_message_parts.append(f"A{i}: {exchange['answer'][:500]}...\n")
+            user_message_parts.append(f"A{i}: {exchange['answer'][:600]}...\n")  # Standardized context length
 
     user_message_parts.append("=== KNOWLEDGE BASE CONTEXT ===")
     user_message_parts.append(context)
@@ -1113,7 +1130,10 @@ Use markdown formatting and cite specific IFRS standards."""
             for event in stream:
                 chunk = event.get("chunk")
                 if chunk:
-                    chunk_data = json.loads(chunk.get("bytes").decode())
+                    chunk_bytes = chunk.get("bytes")
+                    if not chunk_bytes:
+                        continue
+                    chunk_data = json.loads(chunk_bytes.decode())
 
                     # Handle different event types
                     if chunk_data.get("type") == "content_block_delta":
@@ -1125,7 +1145,7 @@ Use markdown formatting and cite specific IFRS standards."""
 
     except Exception as e:
         logger.error(f"Error in streaming Claude call: {e}")
-        yield f"\n\nError generating response: {str(e)}"
+        yield "\n\nAn error occurred generating the response. Please try again."
 
 
 def get_source_tier(result: Dict) -> tuple:
@@ -1268,7 +1288,6 @@ def generate_quiz_questions_rag(topic: str = None, count: int = 5, difficulty: s
     if topic:
         search_topic = topic
     else:
-        import random
         search_topic = random.choice(topics)
 
     # Search knowledge base for content
@@ -1338,7 +1357,7 @@ The "answer" field is the index (0-3) of the correct option."""
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=CLAUDE_FAST_MODEL_ID,
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -1348,7 +1367,6 @@ The "answer" field is the index (0-3) of the correct option."""
 
         # Parse JSON response
         # Find JSON array in response
-        import re
         json_match = re.search(r'\[[\s\S]*\]', response_text)
         if json_match:
             questions = json.loads(json_match.group())
@@ -1404,7 +1422,6 @@ Suggest 4 related topics to explore next. Return ONLY a JSON array:
         response_text = response_body["content"][0]["text"]
 
         # Parse JSON
-        import re
         json_match = re.search(r'\[[\s\S]*\]', response_text)
         if json_match:
             topics = json.loads(json_match.group())
@@ -1468,7 +1485,7 @@ Extract key glossary terms. Return ONLY a JSON object:
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=CLAUDE_FAST_MODEL_ID,
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -1477,7 +1494,6 @@ Extract key glossary terms. Return ONLY a JSON object:
         response_text = response_body["content"][0]["text"]
 
         # Parse JSON
-        import re
         json_match = re.search(r'\{[\s\S]*\}', response_text)
         if json_match:
             glossary = json.loads(json_match.group())
@@ -1533,7 +1549,7 @@ Generate 20 useful questions users might search for. Return ONLY a JSON array:
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=CLAUDE_FAST_MODEL_ID,
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -1542,7 +1558,6 @@ Generate 20 useful questions users might search for. Return ONLY a JSON array:
         response_text = response_body["content"][0]["text"]
 
         # Parse JSON
-        import re
         json_match = re.search(r'\[[\s\S]*\]', response_text)
         if json_match:
             questions = json.loads(json_match.group())
@@ -1627,7 +1642,7 @@ Generate 4 learning topics for the "{path_id}" learning path. Return ONLY a JSON
 
     try:
         response = bedrock.invoke_model(
-            modelId=CLAUDE_MODEL_ID,
+            modelId=CLAUDE_FAST_MODEL_ID,
             body=body,
             contentType="application/json",
             accept="application/json",
@@ -1636,7 +1651,6 @@ Generate 4 learning topics for the "{path_id}" learning path. Return ONLY a JSON
         response_text = response_body["content"][0]["text"]
 
         # Parse JSON
-        import re
         json_match = re.search(r'\[[\s\S]*\]', response_text)
         if json_match:
             topics_data = json.loads(json_match.group())
@@ -1767,7 +1781,6 @@ def main():
     """Main Streamlit application."""
 
     # Check URL params for concept map query (set by concept map link click)
-    from urllib.parse import unquote
     query_params = st.query_params
     if "cm_query" in query_params:
         cm_query = unquote(query_params["cm_query"])
@@ -1807,6 +1820,8 @@ def main():
         st.session_state.model_tier = DEFAULT_MODEL_TIER
     if "explanation_level" not in st.session_state:
         st.session_state.explanation_level = "Executive Summary"  # Default
+    if "selected_topic" not in st.session_state:
+        st.session_state.selected_topic = "All Topics"  # Default
 
     # Keyboard shortcuts and localStorage JavaScript (injected once)
     keyboard_shortcuts_js = """
@@ -2760,7 +2775,6 @@ Closing Rate Assets - Historical Rate Equity
             st.caption(f"{len(st.session_state.conversation_history)} Q&A in session")
 
             # Generate session summary
-            from datetime import datetime
             session_date = datetime.now().strftime("%Y-%m-%d")
             session_time = datetime.now().strftime("%H:%M")
 
@@ -3106,7 +3120,6 @@ Closing Rate Assets - Historical Rate Equity
     ]
 
     # Randomly select 8 questions (truly random on each refresh)
-    import random
     example_questions = random.sample(all_example_questions, 8)
 
     # Create 2 rows of 4 buttons each
@@ -3163,13 +3176,18 @@ Closing Rate Assets - Historical Rate Equity
             "Troubleshooting": "troubleshooting",
             "Reference & Glossary": "reference",
         }
+        topic_keys = list(topic_options.keys())
+        current_topic_index = topic_keys.index(st.session_state.selected_topic) if st.session_state.selected_topic in topic_keys else 0
         selected_topic_label = st.selectbox(
             "Select topic",
-            options=list(topic_options.keys()),
-            index=0,  # Default to All Topics
+            options=topic_keys,
+            index=current_topic_index,
             help="Filter results to a specific topic area",
             label_visibility="collapsed",
         )
+        # Update session state if changed
+        if selected_topic_label != st.session_state.selected_topic:
+            st.session_state.selected_topic = selected_topic_label
         topic_filter = topic_options[selected_topic_label]
 
     # Model tier selector (same style as Explanation Level)
@@ -3277,6 +3295,15 @@ Closing Rate Assets - Historical Rate Equity
 
     # Process query
     if search_button and query:
+        # Input validation - limit query length to prevent abuse
+        MAX_QUERY_LENGTH = 500
+        if len(query) > MAX_QUERY_LENGTH:
+            st.warning(f"Query too long ({len(query)} chars). Please limit to {MAX_QUERY_LENGTH} characters.")
+            query = query[:MAX_QUERY_LENGTH]
+
+        # Sanitize query - strip excessive whitespace
+        query = " ".join(query.split())
+
         # Save to search history (both session state and localStorage)
         if query not in st.session_state.search_history:
             st.session_state.search_history.insert(0, query)
@@ -3287,8 +3314,7 @@ Closing Rate Assets - Historical Rate Equity
             st.session_state.search_history.insert(0, query)
 
         # Save to localStorage via JS
-        import html as html_module
-        escaped_query = html_module.escape(query).replace("'", "\\'")
+        escaped_query = html.escape(query).replace("'", "\\'")
         st.components.v1.html(f"<script>if(window.fcSearchHistory) window.fcSearchHistory.save('{escaped_query}');</script>", height=0)
 
         # Show active filters
@@ -3415,8 +3441,7 @@ Closing Rate Assets - Historical Rate Equity
             st.info(f"Answer #{len(st.session_state.conversation_history)} in this conversation (considering previous context)")
 
         # Generate answer with STREAMING - text appears as it's generated
-        import time as _time
-        _start = _time.time()
+        _start = time.time()
         logger.info(f"Starting STREAMING Claude call: model={st.session_state.model_tier}, level={explanation_level}, context_chars={len(context)}")
 
         # Create streaming generator
@@ -3432,7 +3457,7 @@ Closing Rate Assets - Historical Rate Equity
         # This shows text appearing in real-time
         answer = st.write_stream(stream_generator)
 
-        _elapsed = _time.time() - _start
+        _elapsed = time.time() - _start
         logger.info(f"Streaming Claude call completed in {_elapsed:.2f}s, answer_chars={len(answer) if answer else 0}")
 
         # Mark step 2 complete
@@ -3452,16 +3477,19 @@ Closing Rate Assets - Historical Rate Equity
             "topic_filter": selected_topic_label
         })
 
+        # Limit conversation history to prevent memory growth (keep last 20 exchanges)
+        MAX_HISTORY = 20
+        if len(st.session_state.conversation_history) > MAX_HISTORY:
+            st.session_state.conversation_history = st.session_state.conversation_history[-MAX_HISTORY:]
+
         # Audio Narration - Web Speech API
         # Strip markdown for cleaner audio reading
-        import re
         answer_text = answer if answer else ""
         clean_text_for_audio = re.sub(r'[#*`|_\[\]()]', '', answer_text)  # Remove markdown chars
         clean_text_for_audio = re.sub(r'\n{2,}', '. ', clean_text_for_audio)  # Replace multiple newlines with period
         clean_text_for_audio = clean_text_for_audio.replace('\n', ' ')  # Replace single newlines with space
         # Escape for JavaScript
-        import html as html_lib
-        audio_text = html_lib.escape(clean_text_for_audio).replace("'", "\\'").replace('"', '\\"')
+        audio_text = html.escape(clean_text_for_audio).replace("'", "\\'").replace('"', '\\"')
 
         audio_controls_html = f"""
         <div class="audio-controls">
@@ -3540,13 +3568,11 @@ Closing Rate Assets - Historical Rate Equity
         st.components.v1.html(audio_controls_html, height=50)
 
         # Copy to clipboard button - single click copies directly
-        import html
         answer_id = f"answer_{len(st.session_state.conversation_history)}"
         # Properly escape HTML content
         escaped_answer = html.escape(answer)
 
         # Download as Markdown - prepare content first
-        from datetime import datetime
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
         filename_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
