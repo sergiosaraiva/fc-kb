@@ -49,32 +49,55 @@ from botocore.config import Config
 
 # Configuration - Model Selection (3 tiers)
 MODEL_TIERS = {
-    "Good": {
+    "Haiku 4.5": {
         "id": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
-        "name": "Claude Haiku 4.5",
-        "description": "Fast responses (~5-10s)",
+        "description": "Fast responses",
         "max_tokens": 4000,
     },
-    "Great": {
+    "Sonnet 4": {
         "id": "us.anthropic.claude-sonnet-4-20250514-v1:0",
-        "name": "Claude Sonnet 4",
-        "description": "Balanced quality & speed (~15-30s)",
+        "description": "Balanced quality & speed",
         "max_tokens": 6000,
     },
-    "Ultra": {
+    "Sonnet 4.5": {
         "id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-        "name": "Claude Sonnet 4.5",
-        "description": "Best quality (~30-60s)",
+        "description": "Best quality",
         "max_tokens": 8000,
     },
 }
-CLAUDE_FAST_MODEL_ID = MODEL_TIERS["Good"]["id"]  # Always use fast model for auxiliary calls
-DEFAULT_MODEL_TIER = "Great"  # Default selection
+CLAUDE_FAST_MODEL_ID = MODEL_TIERS["Haiku 4.5"]["id"]  # Always use fast model for auxiliary calls
+DEFAULT_MODEL_TIER = "Haiku 4.5"  # Default to fast model for responsive UX
 TEMPERATURE = 0.3            # Reduced for more consistent, reliable answers
 
 # Retrieval configuration
 BUSINESS_LAYER_RESULTS = 8   # More smaller chunks = better coverage + fast response
 RELEVANCE_THRESHOLD = 0.35   # Lowered from 0.55 - more permissive for business users
+MAX_CONTEXT_CHUNKS = 10      # Limit chunks sent to Claude (balanced speed vs completeness)
+
+
+def extract_content_only(chunk_text: str) -> str:
+    """
+    Extract only the actual content from LLM-enhanced chunks.
+
+    LLM-enhanced chunks have metadata (summary, questions, keywords) that helped
+    with embedding quality but shouldn't be sent to Claude as context.
+    This function strips the metadata and returns only the core content.
+    """
+    import re
+
+    # Try to find the "## Content" section (LLM-enhanced chunks)
+    content_match = re.search(r'## Content\s*\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
+    if content_match:
+        return content_match.group(1).strip()
+
+    # Fallback: try to find content after "## Context" section ends
+    context_end = re.search(r'\*\*Keywords:\*\*.*?\n\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
+    if context_end:
+        return context_end.group(1).strip()
+
+    # If no markers found, return FULL original content (pre-chunked or different format)
+    # No truncation - preserve all information
+    return chunk_text
 
 # Page configuration
 st.set_page_config(
@@ -614,7 +637,7 @@ def generate_answer_with_claude(query: str, context: str, conversation_history: 
         context: Retrieved context from knowledge base
         conversation_history: List of previous Q&A pairs for context
         explanation_level: "Executive Summary", "Standard", or "Detailed"
-        model_tier: "Good", "Great", or "Ultra" - determines model and max_tokens
+        model_tier: "Haiku 4.5", "Sonnet 4", or "Sonnet 4.5" - determines model and max_tokens
 
     Returns:
         Claude's response text
@@ -627,6 +650,11 @@ def generate_answer_with_claude(query: str, context: str, conversation_history: 
     model_config = MODEL_TIERS.get(model_tier, MODEL_TIERS[DEFAULT_MODEL_TIER])
     model_id = model_config["id"]
     max_tokens = model_config["max_tokens"]
+
+    # Adjust max_tokens based on explanation level
+    # Only limit Executive Summary - streaming makes longer responses fine
+    if explanation_level == "Executive Summary":
+        max_tokens = min(max_tokens, 1000)  # ~400 words for quick overview
 
     # Limit conversation history to last 3 exchanges (but with more context per exchange)
     if conversation_history:
@@ -682,7 +710,23 @@ You are providing COMPREHENSIVE COVERAGE for consolidation specialists who need 
     }
 
     # System prompt - defines the AI's role and behavior
-    system_prompt = f"""{level_instructions.get(explanation_level, level_instructions["Standard"])}
+    # OPTIMIZATION: Use minimal prompt for Executive Summary (faster processing)
+    if explanation_level == "Executive Summary":
+        system_prompt = """You are a Financial Consolidation Expert. Provide concise, executive-level answers.
+
+RULES:
+- Keep response under 400 words
+- Focus on business impact and key takeaways
+- Use bullet points for quick scanning
+- Include ONE formula or diagram maximum
+- Skip edge cases and technical details
+- Cite relevant IFRS/IAS standard briefly
+- End with 2-3 bullet summary
+
+Structure: Definition → Key implications → IFRS reference → Prophix.FC mention"""
+    else:
+        # Full detailed prompt for Standard/Detailed modes
+        system_prompt = f"""{level_instructions.get(explanation_level, level_instructions["Standard"])}
 
 You are a Financial Consolidation Expert and Educator specializing in:
 - The Direct Consolidation Framework methodology (the authoritative framework)
@@ -947,6 +991,141 @@ Begin your answer now:""")
     except Exception as e:
         logger.error(f"Error calling Claude: {e}")
         return f"Error generating response: {str(e)}"
+
+
+def generate_answer_streaming(query: str, context: str, conversation_history: list = None,
+                               explanation_level: str = "Standard", model_tier: str = None):
+    """
+    Generate answer using AWS Bedrock Claude with STREAMING response.
+
+    Yields text chunks as they're generated for real-time display.
+    First words appear in 1-2 seconds, then streams continuously.
+    """
+    bedrock = get_bedrock_client()
+
+    # Select model based on tier
+    if model_tier is None:
+        model_tier = DEFAULT_MODEL_TIER
+    model_config = MODEL_TIERS.get(model_tier, MODEL_TIERS[DEFAULT_MODEL_TIER])
+    model_id = model_config["id"]
+    max_tokens = model_config["max_tokens"]
+
+    # Adjust max_tokens based on explanation level
+    # Only limit Executive Summary - streaming makes longer responses fine
+    if explanation_level == "Executive Summary":
+        max_tokens = min(max_tokens, 1000)  # ~400 words for quick overview
+
+    # Level-specific instructions (matches non-streaming function)
+    level_instructions = {
+        "Executive Summary": """
+# EXPLANATION LEVEL: EXECUTIVE SUMMARY
+You are providing a HIGH-LEVEL OVERVIEW for busy executives and managers.
+
+**Format Requirements:**
+- Keep total response under 400 words
+- Focus on business impact and key takeaways
+- Use bullet points for quick scanning
+- Include ONE key formula or diagram maximum
+- Skip edge cases and technical details
+- End with 2-3 bullet point summary
+""",
+        "Standard": """
+# EXPLANATION LEVEL: STANDARD
+You are providing a BALANCED EXPLANATION suitable for product owners and consolidation professionals.
+
+**Format Requirements:**
+- Provide comprehensive but focused coverage
+- Include theory, principles, implementation, and examples
+- Use diagrams and formulas where helpful
+- Cover common scenarios and main edge cases
+- Balance depth with readability
+- Keep response under 1500 words
+""",
+        "Detailed": """
+# EXPLANATION LEVEL: DETAILED
+You are providing COMPREHENSIVE COVERAGE for consolidation specialists who need complete understanding.
+
+**Format Requirements:**
+- Provide exhaustive, in-depth coverage
+- Include ALL edge cases and special situations
+- Show multiple examples with varying complexity
+- Include complete journal entries and calculations
+- Reference specific IFRS paragraphs where applicable
+- Include troubleshooting guidance and common mistakes
+""",
+    }
+
+    # Build system prompt based on explanation level
+    if explanation_level == "Executive Summary":
+        system_prompt = f"""{level_instructions["Executive Summary"]}
+
+You are a Financial Consolidation Expert. Provide concise, executive-level answers.
+
+Structure: Definition → Key implications → IFRS reference → Prophix.FC mention"""
+    else:
+        system_prompt = f"""{level_instructions.get(explanation_level, level_instructions["Standard"])}
+
+You are a Financial Consolidation Expert and Educator specializing in:
+- The Direct Consolidation Framework methodology
+- IFRS/IAS accounting standards (IFRS 3, IFRS 10, IFRS 11, IAS 21, IAS 27, IAS 28)
+- Prophix.FC financial consolidation software implementation
+
+Provide well-structured answers with theory, formulas, and practical implementation details.
+Use markdown formatting and cite specific IFRS standards."""
+
+    # Build user message
+    user_message_parts = []
+
+    if conversation_history:
+        user_message_parts.append("=== CONVERSATION HISTORY ===")
+        for i, exchange in enumerate(conversation_history[-3:], 1):
+            user_message_parts.append(f"Q{i}: {exchange['question']}")
+            user_message_parts.append(f"A{i}: {exchange['answer'][:500]}...\n")
+
+    user_message_parts.append("=== KNOWLEDGE BASE CONTEXT ===")
+    user_message_parts.append(context)
+    user_message_parts.append("")
+    user_message_parts.append("=== QUESTION ===")
+    user_message_parts.append(query)
+
+    user_message = "\n".join(user_message_parts)
+
+    body = json.dumps({
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": max_tokens,
+        "temperature": TEMPERATURE,
+        "system": system_prompt,
+        "messages": [{"role": "user", "content": user_message}]
+    })
+
+    try:
+        # Use streaming API
+        response = bedrock.invoke_model_with_response_stream(
+            modelId=model_id,
+            body=body,
+            contentType="application/json",
+            accept="application/json",
+        )
+
+        # Process the stream
+        stream = response.get("body")
+        if stream:
+            for event in stream:
+                chunk = event.get("chunk")
+                if chunk:
+                    chunk_data = json.loads(chunk.get("bytes").decode())
+
+                    # Handle different event types
+                    if chunk_data.get("type") == "content_block_delta":
+                        delta = chunk_data.get("delta", {})
+                        if delta.get("type") == "text_delta":
+                            text = delta.get("text", "")
+                            if text:
+                                yield text
+
+    except Exception as e:
+        logger.error(f"Error in streaming Claude call: {e}")
+        yield f"\n\nError generating response: {str(e)}"
 
 
 def get_source_tier(result: Dict) -> tuple:
@@ -1626,6 +1805,8 @@ def main():
         st.session_state.force_detailed = False
     if "model_tier" not in st.session_state:
         st.session_state.model_tier = DEFAULT_MODEL_TIER
+    if "explanation_level" not in st.session_state:
+        st.session_state.explanation_level = "Executive Summary"  # Default
 
     # Keyboard shortcuts and localStorage JavaScript (injected once)
     keyboard_shortcuts_js = """
@@ -2775,19 +2956,158 @@ Closing Rate Assets - Historical Rate Equity
 
                 st.markdown("---")
 
-    # Example Questions - 4 rows x 2 columns
+    # Example Questions - randomly select 8 from pool of 128 business questions
     st.markdown("**Try these questions:**")
 
-    example_questions = [
+    all_example_questions = [
+        # === CONSOLIDATION METHODS (16 questions) ===
         ("Equity Method", "How does equity method consolidation work?"),
-        ("Global Integration", "How does global integration consolidation work?"),
-        ("Goodwill Calculation", "How is goodwill calculated in consolidation?"),
-        ("Minority Interest (NCI)", "What is minority interest and how is it calculated?"),
-        ("Intercompany Eliminations", "What are intercompany eliminations and how do they work?"),
-        ("Currency Translation", "What IFRS standard covers currency translation?"),
-        ("Consolidation Methods", "What is the difference between consolidation methods?"),
-        ("Consolidation Workflow", "What are the steps in the consolidation workflow?"),
+        ("Global Integration", "What is global integration and when is it used?"),
+        ("Proportional Method", "How does proportional consolidation work?"),
+        ("Cost Method", "When should the cost method be applied?"),
+        ("Consolidation Methods", "What are the different consolidation methods?"),
+        ("Method Selection", "How do you determine which consolidation method to use?"),
+        ("Full Consolidation", "What does full consolidation mean?"),
+        ("Line-by-Line", "What is line-by-line consolidation?"),
+        ("One-Line Consolidation", "What is one-line consolidation in equity method?"),
+        ("Method Thresholds", "What ownership thresholds determine consolidation method?"),
+        ("Significant Influence", "What is significant influence in consolidation?"),
+        ("Joint Control", "What is joint control and how does it affect consolidation?"),
+        ("Control Definition", "How is control defined for consolidation purposes?"),
+        ("De Facto Control", "What is de facto control in consolidation?"),
+        ("Potential Voting Rights", "How do potential voting rights affect control?"),
+        ("Structured Entities", "How are structured entities consolidated?"),
+
+        # === IFRS/IAS STANDARDS (16 questions) ===
+        ("IFRS 10 Control", "What defines control under IFRS 10?"),
+        ("IFRS 3 Overview", "What does IFRS 3 cover for business combinations?"),
+        ("IFRS 11 Joint Arrangements", "What is the difference between joint operations and joint ventures under IFRS 11?"),
+        ("IAS 28 Associates", "How does IAS 28 apply to investments in associates?"),
+        ("IAS 21 Currency", "What are the key requirements of IAS 21 for currency translation?"),
+        ("IAS 27 Separate", "What does IAS 27 require for separate financial statements?"),
+        ("IAS 36 Impairment", "How does IAS 36 impairment testing apply to goodwill?"),
+        ("IFRS 10 vs IAS 27", "What is the difference between IFRS 10 and IAS 27?"),
+        ("IFRS 3 vs IFRS 10", "How do IFRS 3 and IFRS 10 work together?"),
+        ("Fair Value IFRS 13", "How is fair value determined under IFRS 13 for acquisitions?"),
+        ("Disclosure Requirements", "What are the key disclosure requirements for consolidated statements?"),
+        ("First-Time Adoption", "What are the considerations for first-time IFRS adoption in consolidation?"),
+        ("Control Assessment", "How do you assess control under IFRS 10?"),
+        ("Principal vs Agent", "What is the principal versus agent assessment in IFRS 10?"),
+        ("Investment Entities", "What are the special rules for investment entities?"),
+        ("Held for Sale", "How are subsidiaries held for sale treated?"),
+
+        # === GOODWILL & PURCHASE ACCOUNTING (16 questions) ===
+        ("Goodwill Calculation", "How is goodwill calculated in a business combination?"),
+        ("Negative Goodwill", "What is negative goodwill and how is it treated?"),
+        ("Goodwill Impairment", "How is goodwill tested for impairment?"),
+        ("Bargain Purchase", "What is a bargain purchase in consolidation?"),
+        ("Purchase Price Allocation", "What is purchase price allocation?"),
+        ("Fair Value Adjustments", "How are fair value adjustments made at acquisition?"),
+        ("Identifiable Assets", "What are identifiable net assets in an acquisition?"),
+        ("Contingent Consideration", "How is contingent consideration treated in acquisitions?"),
+        ("Acquisition Costs", "How are acquisition-related costs treated?"),
+        ("Measurement Period", "What is the measurement period for business combinations?"),
+        ("Goodwill by Subsidiary", "How is goodwill tracked by subsidiary?"),
+        ("Goodwill Amortization", "Is goodwill amortized under IFRS?"),
+        ("Acquisition Date", "How is the acquisition date determined?"),
+        ("Step Acquisition Goodwill", "How is goodwill calculated in a step acquisition?"),
+        ("Full vs Partial Goodwill", "What is the difference between full and partial goodwill methods?"),
+        ("Goodwill Allocation", "How is goodwill allocated to cash-generating units?"),
+
+        # === NON-CONTROLLING INTEREST (16 questions) ===
+        ("NCI Definition", "What is non-controlling interest?"),
+        ("NCI Calculation", "How is non-controlling interest calculated?"),
+        ("NCI Presentation", "How is NCI presented in consolidated statements?"),
+        ("NCI in Losses", "How are losses allocated to non-controlling interests?"),
+        ("NCI Measurement", "What are the options for measuring NCI at acquisition?"),
+        ("Minority Interest", "What is minority interest in consolidation?"),
+        ("NCI Changes", "How do changes in ownership affect NCI?"),
+        ("NCI Dividends", "How are dividends to NCI shareholders treated?"),
+        ("NCI in Equity", "Where does NCI appear in consolidated equity?"),
+        ("Negative NCI", "Can NCI have a negative balance?"),
+        ("NCI Transactions", "How are transactions with NCI shareholders recorded?"),
+        ("NCI Put Options", "How do put options over NCI shares affect consolidation?"),
+        ("NCI Share of Reserves", "How is NCI's share of reserves calculated?"),
+        ("NCI at Disposal", "How is NCI treated when a subsidiary is disposed?"),
+        ("Direct vs Indirect NCI", "What is the difference between direct and indirect NCI?"),
+        ("NCI Profit Attribution", "How is profit attributed to non-controlling interests?"),
+
+        # === ELIMINATIONS (16 questions) ===
+        ("Intercompany Eliminations", "What are intercompany eliminations?"),
+        ("Investment Elimination", "How does investment elimination work?"),
+        ("Dividend Elimination", "How are intercompany dividends eliminated?"),
+        ("Intercompany Sales", "How are intercompany sales eliminated?"),
+        ("Unrealized Profit", "How is unrealized profit on intercompany transactions eliminated?"),
+        ("Upstream vs Downstream", "What is the difference between upstream and downstream transactions?"),
+        ("Intercompany Loans", "How are intercompany loans eliminated?"),
+        ("Intercompany Interest", "How is intercompany interest eliminated?"),
+        ("Inventory Elimination", "How are intercompany profits in inventory eliminated?"),
+        ("Fixed Asset Elimination", "How are intercompany profits in fixed assets eliminated?"),
+        ("Service Eliminations", "How are intercompany service charges eliminated?"),
+        ("Management Fees", "How are intercompany management fees eliminated?"),
+        ("Royalty Eliminations", "How are intercompany royalties eliminated?"),
+        ("Elimination Timing", "When should eliminations be recorded?"),
+        ("Partial Elimination", "When is partial elimination of unrealized profit required?"),
+        ("Elimination Reversal", "When are elimination entries reversed?"),
+
+        # === CURRENCY TRANSLATION (16 questions) ===
+        ("Currency Translation", "How does currency translation work in consolidation?"),
+        ("Functional Currency", "What is functional currency?"),
+        ("Presentation Currency", "What is presentation currency?"),
+        ("Translation Method", "What translation method is used under IAS 21?"),
+        ("Translation Differences", "What are currency translation differences?"),
+        ("CTA Reserve", "What is the cumulative translation adjustment reserve?"),
+        ("Exchange Rates", "Which exchange rates are used for translation?"),
+        ("Monetary vs Non-Monetary", "What is the monetary/non-monetary method?"),
+        ("Temporal Method", "What is the temporal method of translation?"),
+        ("Current Rate Method", "What is the current rate method?"),
+        ("Hyperinflation", "How does hyperinflation affect currency translation?"),
+        ("Foreign Operations", "How are foreign operations translated?"),
+        ("Net Investment Hedge", "What is a net investment hedge?"),
+        ("Translation of Goodwill", "How is goodwill translated in foreign subsidiaries?"),
+        ("Intercompany Foreign Currency", "How are intercompany balances in foreign currency treated?"),
+        ("Exchange Differences P&L", "When do exchange differences go to profit or loss?"),
+
+        # === OWNERSHIP & GROUP STRUCTURE (16 questions) ===
+        ("Direct Ownership", "What is direct ownership in a group structure?"),
+        ("Indirect Ownership", "How is indirect ownership calculated?"),
+        ("Effective Ownership", "What is effective ownership percentage?"),
+        ("Ownership Changes", "How do ownership changes affect consolidation?"),
+        ("Control vs Ownership", "What is the difference between control and ownership?"),
+        ("Parent Company", "What defines a parent company?"),
+        ("Ultimate Parent", "What is the ultimate parent in a group?"),
+        ("Intermediate Holdings", "How are intermediate holding companies treated?"),
+        ("Cross Holdings", "How are cross holdings between subsidiaries handled?"),
+        ("Circular Ownership", "What are the issues with circular ownership structures?"),
+        ("Tiered Structures", "How do multi-tiered group structures affect consolidation?"),
+        ("Acquisition of Control", "What happens when control is acquired?"),
+        ("Loss of Control", "What happens when control is lost?"),
+        ("Retained Interest", "How is a retained interest measured after losing control?"),
+        ("Subsidiary Definition", "What defines a subsidiary for consolidation?"),
+        ("Associate Definition", "What defines an associate company?"),
+
+        # === BUSINESS COMBINATIONS & ACQUISITIONS (16 questions) ===
+        ("Business Combination", "What is a business combination?"),
+        ("Acquisition Method", "What is the acquisition method of accounting?"),
+        ("Step Acquisition", "What is a step acquisition?"),
+        ("Partial Acquisition", "How is a partial acquisition accounted for?"),
+        ("Business vs Assets", "How do you distinguish a business from an asset acquisition?"),
+        ("Common Control", "What are business combinations under common control?"),
+        ("Reverse Acquisition", "What is a reverse acquisition?"),
+        ("Acquisition Date Fair Value", "How are assets measured at acquisition date?"),
+        ("Intangible Assets Acquired", "How are acquired intangible assets recognized?"),
+        ("Contingent Liabilities", "How are contingent liabilities treated in acquisitions?"),
+        ("Pre-existing Relationships", "How are pre-existing relationships treated in acquisitions?"),
+        ("Reacquired Rights", "What are reacquired rights in a business combination?"),
+        ("Share-Based Payments", "How are share-based payments treated in acquisitions?"),
+        ("Deferred Tax Acquisition", "How is deferred tax recognized in acquisitions?"),
+        ("Successive Acquisitions", "How are successive share purchases accounted for?"),
+        ("Put Option Acquisition", "How do put options affect acquisition accounting?"),
     ]
+
+    # Randomly select 8 questions (truly random on each refresh)
+    import random
+    example_questions = random.sample(all_example_questions, 8)
 
     # Create 2 rows of 4 buttons each
     for row in range(0, len(example_questions), 4):
@@ -2810,18 +3130,23 @@ Closing Rate Assets - Historical Rate Equity
         # Explanation Level Toggle
         st.markdown("**Explanation Level:**")
         # Check if "Go Deeper" was clicked - override to Detailed
-        default_level_index = 2 if st.session_state.force_detailed else 1
+        if st.session_state.force_detailed:
+            st.session_state.explanation_level = "Detailed"
+            st.session_state.force_detailed = False
+
+        level_options = ["Executive Summary", "Standard", "Detailed"]
+        current_level_index = level_options.index(st.session_state.explanation_level) if st.session_state.explanation_level in level_options else 0
         explanation_level = st.radio(
             "Select detail level",
-            ["Executive Summary", "Standard", "Detailed"],
-            index=default_level_index,
+            level_options,
+            index=current_level_index,
             horizontal=True,
             help="Executive Summary: Brief overview for managers | Standard: Balanced explanation | Detailed: Comprehensive with all edge cases",
             label_visibility="collapsed",
         )
-        # Reset force_detailed after use
-        if st.session_state.force_detailed:
-            st.session_state.force_detailed = False
+        # Update session state if changed
+        if explanation_level != st.session_state.explanation_level:
+            st.session_state.explanation_level = explanation_level
 
     with col_topic:
         # Topic Filter Dropdown
@@ -2847,26 +3172,21 @@ Closing Rate Assets - Historical Rate Equity
         )
         topic_filter = topic_options[selected_topic_label]
 
-    # Model tier selector
-    st.markdown("#### Choose AI Model")
-    model_cols = st.columns(3)
-    for idx, (tier_name, tier_config) in enumerate(MODEL_TIERS.items()):
-        with model_cols[idx]:
-            is_selected = st.session_state.model_tier == tier_name
-            button_type = "primary" if is_selected else "secondary"
-            if st.button(
-                f"{'✓ ' if is_selected else ''}{tier_name}",
-                key=f"model_{tier_name}",
-                use_container_width=True,
-                type=button_type,
-                help=f"{tier_config['name']}: {tier_config['description']}"
-            ):
-                st.session_state.model_tier = tier_name
-                st.rerun()
-
-    # Show selected model info
-    selected_model = MODEL_TIERS[st.session_state.model_tier]
-    st.caption(f"Using **{selected_model['name']}** - {selected_model['description']}")
+    # Model tier selector (same style as Explanation Level)
+    st.markdown("**Choose AI Model:**")
+    model_options = list(MODEL_TIERS.keys())
+    current_model_index = model_options.index(st.session_state.model_tier) if st.session_state.model_tier in model_options else 0
+    selected_model_name = st.radio(
+        "Select AI model",
+        model_options,
+        index=current_model_index,
+        horizontal=True,
+        help="Haiku 4.5: Fast responses | Sonnet 4: Balanced | Sonnet 4.5: Best quality",
+        label_visibility="collapsed",
+    )
+    # Update session state if changed
+    if selected_model_name != st.session_state.model_tier:
+        st.session_state.model_tier = selected_model_name
 
     st.markdown("")  # Spacing
 
@@ -3042,79 +3362,101 @@ Closing Rate Assets - Historical Rate Equity
             st.markdown(" ".join(tier_summary), unsafe_allow_html=True)
 
             # Build context: Theory → Help/UI → Implementation
+            # OPTIMIZATION: Extract only core content (strip LLM metadata) and limit chunks
             context_parts = []
+            chunks_used = 0
 
-            if theory_results:
+            if theory_results and chunks_used < MAX_CONTEXT_CHUNKS:
                 context_parts.append("=== THEORETICAL FOUNDATION (Direct Consolidation Framework / IFRS) ===\n")
-                for i, result in enumerate(theory_results, 1):
+                for i, result in enumerate(theory_results[:5], 1):  # Max 5 theory chunks
+                    if chunks_used >= MAX_CONTEXT_CHUNKS:
+                        break
                     source = result["metadata"].get("source", "Unknown")
-                    content = result["content"]  # Full content - no truncation
+                    content = extract_content_only(result["content"])  # Extract core content only
                     context_parts.append(f"[Theory Source {i}: {source}]\n{content}")
+                    chunks_used += 1
 
-            if help_results:
+            if help_results and chunks_used < MAX_CONTEXT_CHUNKS:
                 context_parts.append("\n=== USER GUIDE & UI INSTRUCTIONS ===\n")
-                for i, result in enumerate(help_results, 1):
+                for i, result in enumerate(help_results[:3], 1):  # Max 3 help chunks
+                    if chunks_used >= MAX_CONTEXT_CHUNKS:
+                        break
                     source = result["metadata"].get("source", "Unknown")
-                    content = result["content"]  # Full content - no truncation
+                    content = extract_content_only(result["content"])  # Extract core content only
                     context_parts.append(f"[Help Source {i}: {source}]\n{content}")
+                    chunks_used += 1
 
-            if implementation_results:
+            if implementation_results and chunks_used < MAX_CONTEXT_CHUNKS:
                 context_parts.append("\n=== PROPHIX.CONSO IMPLEMENTATION ===\n")
-                for i, result in enumerate(implementation_results, 1):
+                for i, result in enumerate(implementation_results[:3], 1):  # Max 3 impl chunks
+                    if chunks_used >= MAX_CONTEXT_CHUNKS:
+                        break
                     source = result["metadata"].get("source", "Unknown")
-                    content = result["content"]  # Full content - no truncation
+                    content = extract_content_only(result["content"])  # Extract core content only
                     context_parts.append(f"[Implementation Source {i}: {source}]\n{content}")
+                    chunks_used += 1
 
             context = "\n\n---\n\n".join(context_parts)
 
-            # Step 2: Generating
+            # Step 2: Generating with STREAMING
             step2_placeholder = st.empty()
             step2_placeholder.markdown("""
             <div class="progress-step active">
                 <div class="step-indicator">2</div>
-                <span>Generating answer with Claude...</span>
+                <span>Generating answer with Claude (streaming)...</span>
             </div>
             """, unsafe_allow_html=True)
 
-            # Generate answer with conversation history, explanation level, and selected model
-            answer = generate_answer_with_claude(
-                query,
-                context,
-                conversation_history=st.session_state.conversation_history,
-                explanation_level=explanation_level,
-                model_tier=st.session_state.model_tier
-            )
-
-            # Mark step 2 complete
-            step2_placeholder.markdown("""
-            <div class="progress-step complete">
-                <div class="step-indicator complete"></div>
-                <span>Answer generated</span>
-            </div>
-            """, unsafe_allow_html=True)
-
-        # Store in conversation history
-        st.session_state.conversation_history.append({
-            "question": query,
-            "answer": answer,
-            "sources_count": len(results),
-            "explanation_level": explanation_level,
-            "topic_filter": selected_topic_label
-        })
-
-        # Display answer
+        # Display answer header BEFORE streaming starts
         st.markdown("## Answer")
 
         # Show conversation context indicator if this is a follow-up
         if len(st.session_state.conversation_history) > 1:
             st.info(f"Answer #{len(st.session_state.conversation_history)} in this conversation (considering previous context)")
 
-        st.markdown(answer)
+        # Generate answer with STREAMING - text appears as it's generated
+        import time as _time
+        _start = _time.time()
+        logger.info(f"Starting STREAMING Claude call: model={st.session_state.model_tier}, level={explanation_level}, context_chars={len(context)}")
+
+        # Create streaming generator
+        stream_generator = generate_answer_streaming(
+            query,
+            context,
+            conversation_history=st.session_state.conversation_history,
+            explanation_level=explanation_level,
+            model_tier=st.session_state.model_tier
+        )
+
+        # Use Streamlit's write_stream to display chunks as they arrive
+        # This shows text appearing in real-time
+        answer = st.write_stream(stream_generator)
+
+        _elapsed = _time.time() - _start
+        logger.info(f"Streaming Claude call completed in {_elapsed:.2f}s, answer_chars={len(answer) if answer else 0}")
+
+        # Mark step 2 complete
+        step2_placeholder.markdown("""
+        <div class="progress-step complete">
+            <div class="step-indicator complete"></div>
+            <span>Answer generated</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Store in conversation history
+        st.session_state.conversation_history.append({
+            "question": query,
+            "answer": answer if answer else "",
+            "sources_count": len(results),
+            "explanation_level": explanation_level,
+            "topic_filter": selected_topic_label
+        })
 
         # Audio Narration - Web Speech API
         # Strip markdown for cleaner audio reading
         import re
-        clean_text_for_audio = re.sub(r'[#*`|_\[\]()]', '', answer)  # Remove markdown chars
+        answer_text = answer if answer else ""
+        clean_text_for_audio = re.sub(r'[#*`|_\[\]()]', '', answer_text)  # Remove markdown chars
         clean_text_for_audio = re.sub(r'\n{2,}', '. ', clean_text_for_audio)  # Replace multiple newlines with period
         clean_text_for_audio = clean_text_for_audio.replace('\n', ' ')  # Replace single newlines with space
         # Escape for JavaScript
@@ -3499,33 +3841,39 @@ Closing Rate Assets - Historical Rate Equity
             """
             st.components.v1.html(bookmark_html, height=50)
 
-        # Generate follow-up questions and related topics IN PARALLEL using fast model
-        with st.spinner("Generating suggestions..."):
-            follow_up_questions = []
-            related = []
+        # Generate follow-up questions and related topics
+        # OPTIMIZATION: Skip for "Executive Summary" mode - users want fast answers
+        follow_up_questions = []
+        related = []
 
-            # Run both auxiliary calls in parallel for faster response
-            with ThreadPoolExecutor(max_workers=2) as executor:
-                future_followup = executor.submit(generate_follow_up_questions, query, answer)
-                future_related = executor.submit(generate_related_topics_rag, query, answer)
+        if explanation_level == "Executive Summary":
+            # Fast mode: use hardcoded suggestions, skip LLM calls
+            follow_up_questions = get_fallback_follow_ups(query)
+            related = get_related_topics(query)
+        else:
+            # Standard/Detailed: generate with LLM in parallel
+            with st.spinner("Generating suggestions..."):
+                with ThreadPoolExecutor(max_workers=2) as executor:
+                    future_followup = executor.submit(generate_follow_up_questions, query, answer)
+                    future_related = executor.submit(generate_related_topics_rag, query, answer)
 
-                try:
-                    follow_up_questions = future_followup.result(timeout=60)
-                except Exception as e:
-                    logger.warning(f"Follow-up generation failed: {e}")
-                    follow_up_questions = get_fallback_follow_ups(query)
+                    try:
+                        follow_up_questions = future_followup.result(timeout=60)
+                    except Exception as e:
+                        logger.warning(f"Follow-up generation failed: {e}")
+                        follow_up_questions = get_fallback_follow_ups(query)
 
-                try:
-                    related = future_related.result(timeout=60)
-                except Exception:
-                    related = []
+                    try:
+                        related = future_related.result(timeout=60)
+                    except Exception:
+                        related = []
 
-            # Fallback to hardcoded if RAG fails
-            if not related:
-                related = get_related_topics(query)
+                # Fallback to hardcoded if RAG fails
+                if not related:
+                    related = get_related_topics(query)
 
         # Smart Follow-Up Questions - AI-generated deeper questions
-        st.markdown("### Explore Further")
+        st.markdown("**Explore Further**")
         st.caption("AI-suggested questions to deepen your understanding")
 
         if follow_up_questions:
@@ -3542,7 +3890,7 @@ Closing Rate Assets - Historical Rate Equity
         st.markdown("")  # Spacing
 
         # Related Topics - RAG-generated contextual suggestions
-        st.markdown("### Related Topics")
+        st.markdown("**Related Topics**")
         st.caption("AI-suggested based on your query")
 
         if related:

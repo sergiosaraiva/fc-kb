@@ -19,6 +19,8 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import Tool, TextContent
 
+import re
+
 from config import (
     CHROMADB_HOST,
     CHROMADB_PORT,
@@ -30,6 +32,28 @@ from config import (
     RELEVANCE_THRESHOLD,
 )
 from titan_v1_embeddings import get_embedding_function
+
+
+def extract_content_only(chunk_text: str) -> str:
+    """
+    Extract only the actual content from LLM-enhanced chunks.
+
+    LLM-enhanced chunks have metadata (summary, questions, keywords) that helped
+    with embedding quality but is redundant when displaying results.
+    This function extracts only the core content section.
+    """
+    # Try to find the "## Content" section (LLM-enhanced chunks)
+    content_match = re.search(r'## Content\s*\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
+    if content_match:
+        return content_match.group(1).strip()
+
+    # Fallback: try to find content after Keywords section
+    context_end = re.search(r'\*\*Keywords:\*\*.*?\n\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
+    if context_end:
+        return context_end.group(1).strip()
+
+    # If no markers found, return full content (pre-chunked or different format)
+    return chunk_text
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -255,8 +279,9 @@ async def call_tool(name: str, arguments: dict) -> List[TextContent]:
                 response += f"**Layer**: {layer}\n"
             if topic:
                 response += f"**Topic**: {topic}\n"
-            content = r["content"][:2000]
-            response += f"\n{content}{'...' if len(r['content']) > 2000 else ''}\n\n---\n\n"
+            # Extract core content only (strip LLM enhancement metadata)
+            content = extract_content_only(r["content"])
+            response += f"\n{content}\n\n---\n\n"
 
         return [TextContent(type="text", text=response)]
 
