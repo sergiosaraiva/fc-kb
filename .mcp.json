@@ -1,18 +1,11 @@
 {
   "mcpServers": {
     "fc-knowledge-base": {
-      "command": "/bin/bash",
+      "command": "md/chromadb-docker/run-mcp-server.sh",
       "args": [
-        "md/chromadb-docker/run-mcp-server.sh",
-        "/mnt/c/Work/direct-consolidation-docs/venv/bin/python",
+        "venv/bin/python",
         "md/chromadb-docker/mcp-server.py"
-      ],
-      "cwd": "/mnt/c/Work/direct-consolidation-docs",
-      "env": {
-        "CHROMADB_HOST": "localhost",
-        "CHROMADB_PORT": "8847",
-        "CHROMADB_TOKEN": "fc-knowledge-base-token"
-      }
+      ]
     }
   }
 }

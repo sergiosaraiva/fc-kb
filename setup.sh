@@ -104,12 +104,7 @@ else
   "mcpServers": {
     "fc-knowledge-base": {
       "command": "md/chromadb-docker/run-mcp-server.sh",
-      "args": ["venv/bin/python", "md/chromadb-docker/mcp-server.py"],
-      "env": {
-        "CHROMADB_HOST": "localhost",
-        "CHROMADB_PORT": "8847",
-        "CHROMADB_TOKEN": "fc-knowledge-base-token"
-      }
+      "args": ["venv/bin/python", "md/chromadb-docker/mcp-server.py"]
     }
   }
 }
