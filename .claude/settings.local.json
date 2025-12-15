@@ -10,7 +10,8 @@
       "WebFetch(domain:logto.io)",
       "WebFetch(domain:hub.docker.com)",
       "WebFetch(domain:docs.trychroma.com)",
-      "WebFetch(domain:www.authelia.com)"
+      "WebFetch(domain:www.authelia.com)",
+      "Bash(find:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
