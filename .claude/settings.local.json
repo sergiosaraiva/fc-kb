@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "mcp__fc-knowledge-base__search_fc_full",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "WebFetch(domain:docs.railway.app)",
+      "WebFetch(domain:railway.app)",
+      "WebFetch(domain:docs.railway.com)",
+      "WebFetch(domain:railway.com)",
+      "WebFetch(domain:logto.io)",
+      "WebFetch(domain:hub.docker.com)",
+      "WebFetch(domain:docs.trychroma.com)",
+      "WebFetch(domain:www.authelia.com)"
     ]
   },
   "enableAllProjectMcpServers": true,

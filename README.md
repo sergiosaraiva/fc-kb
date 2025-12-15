@@ -21,13 +21,13 @@ cd fc-kb
 chmod +x setup.sh
 ./setup.sh
 
-# 3. Configure AWS credentials (choose one option)
+# 3. Configure AWS credentials (needed for ingest + search queries)
 
-# Option A: Edit .env file directly
+# Option A: Edit .env file (used by ingest.sh and app)
 nano md/chromadb-docker/.env
 # Fill in AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
-# Option B: Use AWS CLI profile
+# Option B: Use AWS CLI profile (used by MCP server)
 aws configure --profile prophix-devops
 # Region: us-east-1
 
@@ -95,6 +95,17 @@ AWS Bedrock Titan V1 (embeddings)
 - **ChromaDB**: Vector database on port 8847
 - **AWS Bedrock Titan V1**: 1536-dimension embeddings
 - **MCP Server**: Claude Code integration via `.mcp.json`
+
+### Why AWS Credentials Are Required
+
+AWS Bedrock Titan V1 generates embeddings (1536-dimensional vectors) for semantic search. Credentials are needed in **two places**:
+
+| Component | When | Purpose |
+|-----------|------|---------|
+| **Ingest script** | One-time setup | Convert 1,500+ documents into vectors |
+| **App / MCP Server** | Every search query | Convert your query into a vector to find matches |
+
+The app calls AWS Bedrock on every search to embed the query text. Cost is minimal (~$0.0001 per 1K tokens).
 
 ## Troubleshooting
 
