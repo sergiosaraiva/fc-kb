@@ -45,6 +45,7 @@ cd md/chromadb-docker
 ./start-chromadb.sh
 
 # When done, stop ChromaDB
+cd md/chromadb-docker
 ./stop-chromadb.sh
 ```
 
