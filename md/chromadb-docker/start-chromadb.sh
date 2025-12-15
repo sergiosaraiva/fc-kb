@@ -14,14 +14,14 @@ fi
 
 # Start ChromaDB only (without product-owner-rag profile)
 echo "Starting ChromaDB container..."
-docker-compose up -d chromadb
+docker compose up -d chromadb
 
 # Wait for health check
 echo "Waiting for ChromaDB to be healthy..."
 sleep 5
 
 # Check ChromaDB health
-if docker-compose ps | grep -q "chromadb.*healthy"; then
+if docker compose ps | grep -q "chromadb.*healthy"; then
     echo "OK: ChromaDB is healthy"
 else
     echo "Warning: ChromaDB is starting... (may take a few seconds)"

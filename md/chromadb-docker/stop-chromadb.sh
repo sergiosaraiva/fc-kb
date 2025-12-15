@@ -6,6 +6,6 @@ echo "Stopping ChromaDB..."
 cd "$(dirname "$0")"
 
 # Stop container
-docker-compose down
+docker compose down
 
 echo "OK: ChromaDB stopped"

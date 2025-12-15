@@ -6,6 +6,6 @@ echo "Stopping FC Knowledge Base - Product Owner RAG..."
 cd "$(dirname "$0")"
 
 # Stop containers (including profile services)
-docker-compose --profile with-rag down
+docker compose --profile with-rag down
 
 echo "OK: Services stopped successfully"

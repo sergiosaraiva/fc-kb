@@ -9,7 +9,7 @@ echo ""
 cd "$(dirname "$0")"
 
 # Check if ChromaDB is running
-if ! docker-compose ps | grep -q "chromadb.*Up"; then
+if ! docker compose ps | grep -q "chromadb.*Up"; then
     echo "Error: ChromaDB is not running."
     echo "Please run ./start-chromadb.sh first."
     exit 1
