@@ -9,6 +9,16 @@ FC knowledge base including business concepts and technical implementation.
 Uses AWS Bedrock Titan embeddings for high-quality semantic search.
 """
 
+import sys
+import os
+from pathlib import Path
+
+# Add this script's directory to Python path for local imports
+# This makes the config work regardless of where the repo is located
+script_dir = Path(__file__).parent.resolve()
+if str(script_dir) not in sys.path:
+    sys.path.insert(0, str(script_dir))
+
 import json
 import logging
 from typing import Optional, Dict, List, Any
