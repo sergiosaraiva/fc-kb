@@ -103,11 +103,9 @@ else
 {
   "mcpServers": {
     "fc-knowledge-base": {
-      "command": "venv/bin/python",
-      "args": ["md/chromadb-docker/mcp-server.py"],
+      "command": "md/chromadb-docker/run-mcp-server.sh",
+      "args": ["venv/bin/python", "md/chromadb-docker/mcp-server.py"],
       "env": {
-        "AWS_PROFILE": "prophix-devops",
-        "AWS_DEFAULT_REGION": "us-east-1",
         "CHROMADB_HOST": "localhost",
         "CHROMADB_PORT": "8847",
         "CHROMADB_TOKEN": "fc-knowledge-base-token"
@@ -126,9 +124,9 @@ echo "============================================================"
 echo ""
 echo "Next steps:"
 echo ""
-echo "  1. Configure AWS credentials (if not already done):"
-echo "     - Option A: Edit md/chromadb-docker/.env with your keys"
-echo "     - Option B: Run 'aws configure --profile prophix-devops'"
+echo "  1. Configure AWS credentials in md/chromadb-docker/.env:"
+echo "     AWS_ACCESS_KEY_ID=your_key"
+echo "     AWS_SECRET_ACCESS_KEY=your_secret"
 echo ""
 echo "  2. Start ChromaDB:"
 echo "     cd md/chromadb-docker && ./start-chromadb.sh"

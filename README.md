@@ -22,14 +22,8 @@ chmod +x setup.sh
 ./setup.sh
 
 # 3. Configure AWS credentials (needed for ingest + search queries)
-
-# Option A: Edit .env file (used by ingest.sh and app)
 nano md/chromadb-docker/.env
 # Fill in AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-
-# Option B: Use AWS CLI profile (used by MCP server)
-aws configure --profile prophix-devops
-# Region: us-east-1
 
 # 4. Start ChromaDB
 cd md/chromadb-docker
