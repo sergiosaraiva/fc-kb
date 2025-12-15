@@ -5,152 +5,162 @@ Financial Consolidation Knowledge Base for Claude Code MCP integration.
 ## Quick Start
 
 ### Prerequisites
-- **Docker Desktop** (Windows with WSL2 backend)
-- **AWS CLI** configured with `prophix-devops` profile
-- **Python 3.10+** (both Windows and WSL)
 
-### Setup Steps
+- **Docker Desktop** with WSL2 backend (Windows) or Docker Engine (Linux/Mac)
+- **Python 3.10+**
+- **AWS credentials** with access to Bedrock in us-east-1
 
-1. **Clone the repository**
-   ```powershell
-   git clone https://github.com/sergiosaraiva/fc-kb.git
-   cd fc-kb
-   ```
+### Setup (One-Time)
 
-2. **Create Python virtual environments**
+```bash
+# 1. Clone the repository
+git clone https://github.com/sergiosaraiva/fc-kb.git
+cd fc-kb
 
-   Two venvs are needed because Claude Code runs in WSL while batch scripts run in Windows:
+# 2. Run setup script
+chmod +x setup.sh
+./setup.sh
 
-   **WSL venv** (for MCP server - Claude Code runs in WSL):
-   ```bash
-   cd /mnt/c/Work/direct-consolidation-docs
-   python3 -m venv venv
-   ./venv/bin/pip install chromadb boto3 mcp
-   ```
+# 3. Configure AWS credentials (choose one option)
 
-   **Windows venv** (for batch scripts):
-   ```powershell
-   cd C:\Work\direct-consolidation-docs
-   python -m venv venv-win
-   .\venv-win\Scripts\pip install chromadb boto3
-   ```
+# Option A: Edit .env file directly
+nano md/chromadb-docker/.env
+# Fill in AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
-3. **Configure AWS credentials**
+# Option B: Use AWS CLI profile
+aws configure --profile prophix-devops
+# Region: us-east-1
 
-   AWS credentials are needed for Bedrock embeddings. Since we have two Python environments, credentials must be accessible from both:
+# 4. Start ChromaDB
+cd md/chromadb-docker
+./start-chromadb.sh
 
-   **Option A: Configure in both environments**
-   ```powershell
-   # Windows (for ingest.bat)
-   aws configure --profile prophix-devops
-   # Region: us-east-1
-   ```
-   ```bash
-   # WSL (for MCP server)
-   aws configure --profile prophix-devops
-   # Region: us-east-1
-   ```
+# 5. Ingest knowledge base (one-time, takes a few minutes)
+./ingest.sh
 
-   **Option B: Symlink WSL to Windows credentials (recommended)**
-   ```bash
-   # In WSL - link to Windows credentials (replace {username} with your Windows username)
-   rm -rf ~/.aws
-   ln -s /mnt/c/Users/{username}/.aws ~/.aws
-   ```
-   Then only configure once from Windows.
+# 6. Start Claude Code in the project directory
+cd ../..
+claude
+```
 
-   **Credential locations:**
-   | Environment | Path |
-   |-------------|------|
-   | Windows | `C:\Users\{username}\.aws\credentials` |
-   | WSL | `~/.aws/credentials` |
+### Daily Usage
 
-4. **Start ChromaDB** (from Windows CMD or PowerShell)
-   ```cmd
-   cd md\chromadb-docker
-   start-chromadb.bat
-   ```
+```bash
+# Start ChromaDB before using Claude Code
+cd md/chromadb-docker
+./start-chromadb.sh
 
-5. **Ingest the knowledge base** (one-time, from Windows)
-   ```cmd
-   cd md\chromadb-docker
-   ingest.bat
-   ```
-
-6. **Configure Claude Code MCP**
-
-   Create `.mcp.json` in your project root:
-   ```json
-   {
-     "mcpServers": {
-       "fc-knowledge-base": {
-         "command": "/mnt/c/Work/direct-consolidation-docs/venv/bin/python",
-         "args": ["md/chromadb-docker/mcp-server.py"],
-         "cwd": "/mnt/c/Work/direct-consolidation-docs",
-         "env": {
-           "AWS_PROFILE": "prophix-devops",
-           "AWS_DEFAULT_REGION": "us-east-1",
-           "CHROMADB_HOST": "localhost",
-           "CHROMADB_PORT": "8847",
-           "CHROMADB_TOKEN": "fc-knowledge-base-token"
-         }
-       }
-     }
-   }
-   ```
-
-   > **Note**: Uses WSL paths and WSL Python (`venv/bin/python`). Adjust paths to match your installation.
-
-7. **Restart Claude Code** to load the MCP server
+# When done, stop ChromaDB
+./stop-chromadb.sh
+```
 
 ## Available Scripts
 
-| Script | Purpose |
-|--------|---------|
-| `start-chromadb.bat` | Start ChromaDB (required for MCP) |
-| `stop-chromadb.bat` | Stop ChromaDB |
-| `ingest.bat` | Populate knowledge base (one-time) |
-| `start-po-rag.bat` | Start ChromaDB + Web UI (optional) |
-| `stop-po-rag.bat` | Stop ChromaDB + Web UI |
-| `rebuild-po-rag.bat` | Rebuild containers |
+All scripts are in `md/chromadb-docker/`:
 
-All scripts are in `md/chromadb-docker/`.
+| Script | Description |
+|--------|-------------|
+| `start-chromadb.sh` | Start ChromaDB container |
+| `stop-chromadb.sh` | Stop ChromaDB container |
+| `ingest.sh` | Populate knowledge base (one-time) |
+| `start-po-rag.sh` | Start ChromaDB + Web UI (optional) |
+| `stop-po-rag.sh` | Stop ChromaDB + Web UI |
 
-## Usage in Claude Code
+## Using the MCP Server
 
-Once configured, the MCP server provides `search_fc_full` tool:
+Once configured, Claude Code provides the `search_fc_full` tool:
 
 ```
-Use search_fc_full to search for:
+Search for:
 - Consolidation methods (global integration, equity method)
 - IFRS standards (IFRS 3, IFRS 10, IAS 21)
 - Database procedures (P_CONSO_*, P_CALC_*)
 - Application patterns and code examples
 ```
 
+Example queries:
+- "How does equity method consolidation work?"
+- "What is the P_CONSO_CALCULATE procedure?"
+- "Explain IAS 21 currency translation"
+
 ## Architecture
 
-- **ChromaDB**: Vector database (port 8847)
-- **AWS Bedrock Titan V1**: Embeddings (1536 dimensions)
-- **MCP Server**: Claude Code integration
+```
+ChromaDB (Docker) <-> MCP Server <-> Claude Code
+     |
+     v
+AWS Bedrock Titan V1 (embeddings)
+```
 
-### Why Two Virtual Environments?
-
-| venv | Location | Purpose |
-|------|----------|---------|
-| `venv/` | WSL Python | MCP server (Claude Code runs in WSL) |
-| `venv-win/` | Windows Python | Batch scripts (run from PowerShell/CMD) |
-
-Claude Code runs inside WSL, so the MCP server needs WSL Python. The batch scripts run from Windows, so they need Windows Python.
+- **ChromaDB**: Vector database on port 8847
+- **AWS Bedrock Titan V1**: 1536-dimension embeddings
+- **MCP Server**: Claude Code integration via `.mcp.json`
 
 ## Troubleshooting
 
 ### MCP server shows "failed" status
-1. Ensure ChromaDB is running: `docker ps | grep chromadb`
-2. Check Python path matches your venv location
-3. Verify AWS credentials: `aws sts get-caller-identity --profile prophix-devops`
+
+1. Ensure ChromaDB is running:
+   ```bash
+   docker ps | grep chromadb
+   ```
+
+2. Test ChromaDB health:
+   ```bash
+   curl http://localhost:8847/api/v2/heartbeat
+   ```
+
+3. Verify AWS credentials:
+   ```bash
+   aws sts get-caller-identity --profile prophix-devops
+   ```
+
+4. Check Python venv exists:
+   ```bash
+   ls venv/bin/python
+   ```
 
 ### Ingestion fails
-1. Ensure `FC-Full-KnowledgeBase.zip` exists in `md/chromadb-docker/`
-2. Check AWS Bedrock access in us-east-1 region
-3. Verify ChromaDB is healthy: `curl http://localhost:8847/api/v2/heartbeat`
+
+1. Ensure `FC-Full-KnowledgeBase.zip` exists:
+   ```bash
+   ls md/chromadb-docker/FC-Full-KnowledgeBase.zip
+   ```
+
+2. Check `.env` file has valid AWS credentials
+
+3. Verify Bedrock access in us-east-1 region
+
+### Docker not running (WSL)
+
+```bash
+sudo service docker start
+```
+
+## Project Structure
+
+```
+fc-kb/
+├── setup.sh                          # One-time setup script
+├── .mcp.json                         # Claude Code MCP config (auto-generated)
+├── venv/                             # Python virtual environment
+└── md/
+    ├── chromadb-docker/              # MCP server and Docker setup
+    │   ├── start-chromadb.sh         # Start database
+    │   ├── stop-chromadb.sh          # Stop database
+    │   ├── ingest.sh                 # Populate knowledge base
+    │   ├── mcp-server.py             # MCP server for Claude Code
+    │   ├── .env                      # AWS credentials (not in git)
+    │   └── FC-Full-KnowledgeBase.zip # Pre-packaged content
+    ├── direct_consolidation_chunks/  # 1,333 theory chunks
+    └── documentation-library/        # 169 documentation files
+```
+
+## Knowledge Base Contents
+
+- **1,333 theory chunks** from Allen White's "Direct Consolidation" book
+- **169 documentation files** covering database, application, and frontend layers
+- **IFRS standards**: IFRS 3, IFRS 10, IFRS 11, IAS 21, IAS 27, IAS 28, IAS 29, IAS 36
+- **65 stored procedures** (P_CONSO_*, P_CALC_*, P_SYS_*)
+- **120+ database tables** documented
+- **525 API handlers** indexed

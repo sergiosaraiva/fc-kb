@@ -10,9 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf 
 
 # Install dependencies with BuildKit cache mount for faster rebuilds
 # The cache mount persists pip's download cache across builds
+# Extended timeout and retries for slow/unstable networks
 COPY product-owner-rag/requirements.txt .
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install -r requirements.txt
+    pip install --timeout=120 --retries=5 -r requirements.txt
 
 # Copy shared modules from chromadb-docker directory (build context is md/)
 COPY chromadb-docker/config.py /app/

@@ -7,15 +7,15 @@ cd "$(dirname "$0")"
 
 # Stop existing containers
 echo "Stopping existing containers..."
-docker-compose --profile with-rag down
+docker compose --profile with-rag down
 
 # Rebuild Product Owner RAG (force rebuild)
 echo "Rebuilding Product Owner RAG container..."
-docker-compose --profile with-rag build --no-cache product-owner-rag
+docker compose --profile with-rag build --no-cache product-owner-rag
 
 # Start services
 echo "Starting services..."
-docker-compose --profile with-rag up -d
+docker compose --profile with-rag up -d
 
 # Wait for services to be healthy
 echo "Waiting for services to be healthy..."

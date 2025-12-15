@@ -103,6 +103,7 @@ def extract_content_only(chunk_text: str) -> str:
     # No truncation - preserve all information
     return chunk_text
 
+
 # Page configuration
 st.set_page_config(
     page_title="FC Knowledge Base - Education Portal",

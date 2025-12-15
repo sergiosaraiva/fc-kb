@@ -1,11 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "mcp__fc-knowledge-base__search_fc_full",
+      "Bash(chmod:*)"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "fc-knowledge-base"
-  ],
-  "permissions": {
-    "allow": [
-      "mcp__fc-knowledge-base__search_fc_full"
-    ]
-  }
+  ]
 }
