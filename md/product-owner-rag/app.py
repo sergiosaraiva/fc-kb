@@ -3348,11 +3348,14 @@ Closing Rate Assets - Historical Rate Equity
         else:
             st.markdown(shortcuts_hint, unsafe_allow_html=True)
 
-    # Check if search was triggered by example button
+    # Check if search was triggered by example button or related topic
     trigger_search = st.session_state.get("trigger_search", False)
     if trigger_search:
         st.session_state.trigger_search = False
         search_button = True  # Simulate button press
+        # Use the query from session state (set by button click) if different from text input
+        if st.session_state.get("query") and st.session_state.get("query") != query:
+            query = st.session_state.query
 
     # Process query
     if search_button and query:
