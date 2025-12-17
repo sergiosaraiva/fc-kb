@@ -511,9 +511,12 @@ st.markdown("""
 def get_chroma_client():
     """Get ChromaDB client (cached)."""
     try:
+        # Use SSL for port 443 (Railway/cloud) or when explicitly set
+        use_ssl = CHROMADB_PORT == 443 or os.environ.get("CHROMADB_SSL", "").lower() == "true"
         client = chromadb.HttpClient(
             host=CHROMADB_HOST,
             port=CHROMADB_PORT,
+            ssl=use_ssl,
             settings=Settings(
                 anonymized_telemetry=False,
                 chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
