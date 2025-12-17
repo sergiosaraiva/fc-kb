@@ -11,7 +11,16 @@
       "WebFetch(domain:hub.docker.com)",
       "WebFetch(domain:docs.trychroma.com)",
       "WebFetch(domain:www.authelia.com)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git -C /mnt/c/Work/direct-consolidation-docs status md/product-owner-rag/concept_map_component/)",
+      "Bash(git -C /mnt/c/Work/direct-consolidation-docs ls-files md/product-owner-rag/concept_map_component/)",
+      "Bash(git -C /mnt/c/Work/direct-consolidation-docs log --oneline -1 -- md/product-owner-rag/concept_map_component/)",
+      "Bash(git -C /mnt/c/Work/direct-consolidation-docs log --oneline)",
+      "Bash(git -C /mnt/c/Work/direct-consolidation-docs log --oneline origin/main)",
+      "Bash(git -C /mnt/c/Work/direct-consolidation-docs show HEAD:md/product-owner-rag/concept_map_component/__init__.py)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
