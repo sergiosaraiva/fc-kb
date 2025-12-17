@@ -75,6 +75,9 @@ CLAUDE_FAST_MODEL_ID = MODEL_TIERS["Haiku 4.5"]["id"]  # Always use fast model f
 DEFAULT_MODEL_TIER = "Haiku 4.5"  # Default to fast model for responsive UX
 TEMPERATURE = 0.3            # Reduced for more consistent, reliable answers
 
+# Knowledge mode: "Business" (hide technical details) or "Full (Technical)" (show everything)
+DEFAULT_KNOWLEDGE_MODE = os.environ.get("KNOWLEDGE_MODE", "Business")
+
 # Retrieval configuration
 BUSINESS_LAYER_RESULTS = 8   # More smaller chunks = better coverage + fast response
 RELEVANCE_THRESHOLD = 0.35   # Lowered from 0.55 - more permissive for business users
@@ -649,7 +652,7 @@ def search_business_layer(query: str, n_results: int = BUSINESS_LAYER_RESULTS, t
     return formatted
 
 
-def generate_answer_with_claude(query: str, context: str, conversation_history: list = None, explanation_level: str = "Standard", model_tier: str = None) -> str:
+def generate_answer_with_claude(query: str, context: str, conversation_history: list = None, explanation_level: str = "Standard", model_tier: str = None, knowledge_mode: str = "Business") -> str:
     """
     Generate answer using AWS Bedrock Claude with selected model tier.
 
@@ -659,6 +662,7 @@ def generate_answer_with_claude(query: str, context: str, conversation_history: 
         conversation_history: List of previous Q&A pairs for context
         explanation_level: "Executive Summary", "Standard", or "Detailed"
         model_tier: "Haiku 4.5", "Sonnet 4", or "Sonnet 4.5" - determines model and max_tokens
+        knowledge_mode: "Business" or "Full (Technical)" - controls technical detail filtering
 
     Returns:
         Claude's response text
@@ -935,6 +939,46 @@ Avoid:
 
 Remember: A product owner or financial consolidator reading your answer should gain **comprehensive understanding** of both the accounting standard and how Prophix implements it, with emphasis on business value, education, and operational guidance."""
 
+    # Add business mode filtering instructions
+    if knowledge_mode == "Business":
+        system_prompt += """
+
+# BUSINESS MODE RESTRICTIONS (ACTIVE)
+
+You are in BUSINESS MODE. DO NOT include any technical implementation details:
+
+**NEVER mention or include:**
+- Stored procedure names (P_CONSO_*, P_CALC_*, P_SYS_*, etc.)
+- Database table names (TS_*, TD_*, TM_*, T_*, etc.)
+- SQL code or database queries
+- C# code, TypeScript code, or any programming code
+- API endpoint names or handler names
+- Technical column names or field mappings
+- Internal system architecture details
+
+**INSTEAD, focus on:**
+- Business concepts and accounting principles
+- IFRS/IAS standards and their requirements
+- User-facing screens and workflows (without technical implementation)
+- Business rules and validation logic (described in business terms)
+- Practical examples with numbers
+- Navigation paths in the UI
+
+When the knowledge base context contains technical details, translate them into business-friendly language or omit them entirely."""
+    else:
+        system_prompt += """
+
+# FULL TECHNICAL MODE (ACTIVE)
+
+You are in FULL TECHNICAL MODE. You may include all technical implementation details:
+- Stored procedure names and their purposes
+- Database table names and relationships
+- Code snippets when relevant
+- API handlers and endpoints
+- Technical architecture details
+
+This mode is appropriate for developers, technical consultants, and implementers who need the full technical context."""
+
     # Build user message with optional conversation history
     user_message_parts = []
 
@@ -1015,7 +1059,8 @@ Begin your answer now:""")
 
 
 def generate_answer_streaming(query: str, context: str, conversation_history: list = None,
-                               explanation_level: str = "Standard", model_tier: str = None):
+                               explanation_level: str = "Standard", model_tier: str = None,
+                               knowledge_mode: str = "Business"):
     """
     Generate answer using AWS Bedrock Claude with STREAMING response.
 
@@ -1093,6 +1138,16 @@ You are a Financial Consolidation Expert and Educator specializing in:
 
 Provide well-structured answers with theory, formulas, and practical implementation details.
 Use markdown formatting and cite specific IFRS standards."""
+
+    # Add business mode filtering instructions
+    if knowledge_mode == "Business":
+        system_prompt += """
+
+BUSINESS MODE: Do NOT include technical details like stored procedure names (P_CONSO_*, P_CALC_*), database tables (TS_*, TD_*), SQL code, or programming code. Focus on business concepts, IFRS standards, and user-facing workflows only."""
+    else:
+        system_prompt += """
+
+FULL TECHNICAL MODE: You may include all technical implementation details including stored procedures, database tables, and code snippets."""
 
     # Build user message
     user_message_parts = []
@@ -1826,6 +1881,8 @@ def main():
         st.session_state.explanation_level = "Executive Summary"  # Default
     if "selected_topic" not in st.session_state:
         st.session_state.selected_topic = "All Topics"  # Default
+    if "knowledge_mode" not in st.session_state:
+        st.session_state.knowledge_mode = DEFAULT_KNOWLEDGE_MODE  # From env var or "Business"
 
     # Keyboard shortcuts and localStorage JavaScript (injected once)
     keyboard_shortcuts_js = """
@@ -3210,6 +3267,22 @@ Closing Rate Assets - Historical Rate Equity
     if selected_model_name != st.session_state.model_tier:
         st.session_state.model_tier = selected_model_name
 
+    # Knowledge Mode selector
+    st.markdown("**Knowledge Mode:**")
+    mode_options = ["Business", "Full (Technical)"]
+    current_mode_index = mode_options.index(st.session_state.knowledge_mode) if st.session_state.knowledge_mode in mode_options else 0
+    selected_mode = st.radio(
+        "Select knowledge mode",
+        mode_options,
+        index=current_mode_index,
+        horizontal=True,
+        help="Business: Focus on concepts, methods, and IFRS standards | Full: Include technical details (stored procedures, tables, code)",
+        label_visibility="collapsed",
+    )
+    # Update session state if changed
+    if selected_mode != st.session_state.knowledge_mode:
+        st.session_state.knowledge_mode = selected_mode
+
     st.markdown("")  # Spacing
 
     # Main query input with keyboard hint
@@ -3454,7 +3527,8 @@ Closing Rate Assets - Historical Rate Equity
             context,
             conversation_history=st.session_state.conversation_history,
             explanation_level=explanation_level,
-            model_tier=st.session_state.model_tier
+            model_tier=st.session_state.model_tier,
+            knowledge_mode=st.session_state.knowledge_mode
         )
 
         # Use Streamlit's write_stream to display chunks as they arrive
