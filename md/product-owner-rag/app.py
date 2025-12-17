@@ -3267,22 +3267,6 @@ Closing Rate Assets - Historical Rate Equity
     if selected_model_name != st.session_state.model_tier:
         st.session_state.model_tier = selected_model_name
 
-    # Knowledge Mode selector
-    st.markdown("**Knowledge Mode:**")
-    mode_options = ["Business", "Full (Technical)"]
-    current_mode_index = mode_options.index(st.session_state.knowledge_mode) if st.session_state.knowledge_mode in mode_options else 0
-    selected_mode = st.radio(
-        "Select knowledge mode",
-        mode_options,
-        index=current_mode_index,
-        horizontal=True,
-        help="Business: Focus on concepts, methods, and IFRS standards | Full: Include technical details (stored procedures, tables, code)",
-        label_visibility="collapsed",
-    )
-    # Update session state if changed
-    if selected_mode != st.session_state.knowledge_mode:
-        st.session_state.knowledge_mode = selected_mode
-
     st.markdown("")  # Spacing
 
     # Main query input with keyboard hint
