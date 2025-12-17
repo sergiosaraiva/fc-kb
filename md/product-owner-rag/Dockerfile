@@ -1,5 +1,4 @@
 # Product Owner RAG - Streamlit Application
-# syntax=docker/dockerfile:1.4
 FROM python:3.11-slim
 
 # Set working directory
@@ -8,12 +7,9 @@ WORKDIR /app
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies with BuildKit cache mount for faster rebuilds
-# The cache mount persists pip's download cache across builds
-# Extended timeout and retries for slow/unstable networks
+# Install dependencies
 COPY product-owner-rag/requirements.txt .
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --timeout=120 --retries=5 -r requirements.txt
+RUN pip install --no-cache-dir --timeout=120 --retries=5 -r requirements.txt
 
 # Copy shared modules from chromadb-docker directory (build context is md/)
 COPY chromadb-docker/config.py /app/
