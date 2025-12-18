@@ -5,6 +5,13 @@ echo "Starting ChromaDB (FC Knowledge Base)..."
 # Navigate to script directory
 cd "$(dirname "$0")"
 
+# Detect docker compose command (V2 plugin or V1 standalone)
+if docker compose version &>/dev/null; then
+    COMPOSE_CMD="docker compose"
+else
+    COMPOSE_CMD="docker-compose"
+fi
+
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
     echo "Error: Docker is not running. Please start Docker service."
@@ -14,14 +21,14 @@ fi
 
 # Start ChromaDB only (without product-owner-rag profile)
 echo "Starting ChromaDB container..."
-docker compose up -d chromadb
+$COMPOSE_CMD up -d chromadb
 
 # Wait for health check
 echo "Waiting for ChromaDB to be healthy..."
 sleep 5
 
 # Check ChromaDB health
-if docker compose ps | grep -q "chromadb.*healthy"; then
+if $COMPOSE_CMD ps | grep -q "chromadb.*healthy"; then
     echo "OK: ChromaDB is healthy"
 else
     echo "Warning: ChromaDB is starting... (may take a few seconds)"
@@ -37,4 +44,3 @@ echo "  CHROMADB_HOST=localhost"
 echo "  CHROMADB_PORT=8847"
 echo ""
 echo "Stop: ./stop-chromadb.sh"
-echo ""

@@ -37,7 +37,11 @@ prompt_templates:
       6. Configure system settings using standard templates
 
       **Response Principles:**
-      - Provide direct answers first, then supporting detail
+      - **ALWAYS start with a Brief Summary** (1-2 sentences) that directly answers the question before any details
+      - Then provide the detailed explanation based on the selected Explanation Level:
+        - Summary: Only the brief summary, no additional details
+        - Complete: Summary + full explanation with key details (DEFAULT)
+        - Detailed: Summary + comprehensive coverage with examples, context, and edge cases
       - Include SQL templates adapted to user's specific parameters
       - Add verification queries to confirm correct execution
       - Reference IFRS standards when relevant
@@ -512,10 +516,28 @@ prompt_templates:
   response_formatting:
     description: "Standardized response structures"
 
+    global_rule: |
+      **ALL responses MUST start with a Brief Summary (1-2 sentences) that directly answers
+      the user's question. This summary appears BEFORE any other sections.**
+
+    explanation_levels:
+      summary:
+        description: "Only the brief summary, no additional details"
+        sections: ["Brief Summary"]
+      complete:
+        description: "Summary + full explanation with key details (DEFAULT)"
+        sections: ["Brief Summary", "Main Content"]
+      detailed:
+        description: "Summary + comprehensive coverage with examples, context, and edge cases"
+        sections: ["Brief Summary", "Main Content", "Examples", "Edge Cases", "Related Topics"]
+
     formats:
       decision_response:
         use_for: "Questions requiring a choice/determination"
         structure:
+          - section: "Brief Summary"
+            required: true
+            description: "1-2 sentence answer to the question"
           - section: "Answer"
             required: true
             description: "Direct answer with confidence"
@@ -535,6 +557,9 @@ prompt_templates:
       workflow_response:
         use_for: "Step-by-step process guidance"
         structure:
+          - section: "Brief Summary"
+            required: true
+            description: "1-2 sentence summary of what this workflow does"
           - section: "Overview"
             required: true
             description: "What we'll accomplish"
@@ -557,6 +582,9 @@ prompt_templates:
       troubleshooting_response:
         use_for: "Error diagnosis and resolution"
         structure:
+          - section: "Brief Summary"
+            required: true
+            description: "1-2 sentence summary of the likely issue and fix"
           - section: "Issue Acknowledged"
             required: true
             description: "Restate the problem"
@@ -579,6 +607,9 @@ prompt_templates:
       configuration_response:
         use_for: "System setup and configuration"
         structure:
+          - section: "Brief Summary"
+            required: true
+            description: "1-2 sentence summary of the configuration being applied"
           - section: "Configuration Overview"
             required: true
             description: "What we're configuring"
@@ -598,6 +629,9 @@ prompt_templates:
       validation_response:
         use_for: "Quality checks and verification"
         structure:
+          - section: "Brief Summary"
+            required: true
+            description: "1-2 sentence summary of validation status (pass/fail/warnings)"
           - section: "Validation Summary"
             required: true
             description: "Overview of checks"

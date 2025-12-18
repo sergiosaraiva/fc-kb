@@ -24,7 +24,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional
-from urllib.parse import unquote
+from urllib.parse import unquote, quote
 
 import streamlit as st
 import chromadb
@@ -44,6 +44,39 @@ from titan_v1_embeddings import get_embedding_function
 
 # Import custom concept map component
 from concept_map_component import concept_map
+
+# Import prompts from separate module
+from prompts import (
+    LEVEL_INSTRUCTIONS,
+    LEVEL_INSTRUCTIONS_STREAMING,
+    EXECUTIVE_SUMMARY_PROMPT,
+    MAIN_SYSTEM_PROMPT,
+    BUSINESS_MODE_ADDON,
+    TECHNICAL_MODE_ADDON,
+    BUSINESS_MODE_ADDON_SHORT,
+    TECHNICAL_MODE_ADDON_SHORT,
+    STREAMING_SYSTEM_PROMPT,
+    FOLLOW_UP_QUESTIONS_PROMPT,
+    QUIZ_DIFFICULTY_INSTRUCTIONS,
+    get_quiz_system_prompt,
+    RELATED_TOPICS_PROMPT,
+    GLOSSARY_PROMPT,
+    AUTOCOMPLETE_PROMPT,
+    get_learning_path_prompt,
+    get_fallback_follow_ups,
+)
+
+# Import UI components (JavaScript for keyboard shortcuts, localStorage)
+from ui.components import KEYBOARD_SHORTCUTS_JS
+
+# Import services
+from services.bedrock_service import get_bedrock_client
+from services.chroma_service import (
+    get_chroma_client,
+    get_embeddings,
+    search_business_layer,
+    extract_content_only,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -84,27 +117,7 @@ RELEVANCE_THRESHOLD = 0.35   # Lowered from 0.55 - more permissive for business 
 MAX_CONTEXT_CHUNKS = 10      # Limit chunks sent to Claude (balanced speed vs completeness)
 
 
-def extract_content_only(chunk_text: str) -> str:
-    """
-    Extract only the actual content from LLM-enhanced chunks.
-
-    LLM-enhanced chunks have metadata (summary, questions, keywords) that helped
-    with embedding quality but shouldn't be sent to Claude as context.
-    This function strips the metadata and returns only the core content.
-    """
-    # Try to find the "## Content" section (LLM-enhanced chunks)
-    content_match = re.search(r'## Content\s*\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
-    if content_match:
-        return content_match.group(1).strip()
-
-    # Fallback: try to find content after "## Context" section ends
-    context_end = re.search(r'\*\*Keywords:\*\*.*?\n\n(.*?)(?=\n## Related Topics|\n---|\Z)', chunk_text, re.DOTALL)
-    if context_end:
-        return context_end.group(1).strip()
-
-    # If no markers found, return FULL original content (pre-chunked or different format)
-    # No truncation - preserve all information
-    return chunk_text
+# NOTE: extract_content_only is now imported from services/chroma_service.py
 
 
 # Page configuration
@@ -510,146 +523,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-@st.cache_resource
-def get_chroma_client():
-    """Get ChromaDB client (cached)."""
-    try:
-        # Use SSL for port 443 (Railway/cloud) or when explicitly set
-        use_ssl = CHROMADB_PORT == 443 or os.environ.get("CHROMADB_SSL", "").lower() == "true"
-        client = chromadb.HttpClient(
-            host=CHROMADB_HOST,
-            port=CHROMADB_PORT,
-            ssl=use_ssl,
-            settings=Settings(
-                anonymized_telemetry=False,
-                chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
-                chroma_client_auth_credentials=CHROMADB_TOKEN,
-            ),
-        )
-        # Test connection
-        client.heartbeat()
-        return client
-    except Exception as e:
-        logger.error(f"Failed to connect to ChromaDB at {CHROMADB_HOST}:{CHROMADB_PORT}: {e}")
-        st.error("Knowledge base unavailable. Please ensure ChromaDB is running.")
-        return None
-
-
-@st.cache_resource
-def get_bedrock_client():
-    """Get AWS Bedrock client (cached)."""
-    try:
-        # Prefer environment variables over AWS profile
-        if os.environ.get("AWS_ACCESS_KEY_ID") and os.environ.get("AWS_SECRET_ACCESS_KEY"):
-            session = boto3.Session()
-            logger.info("Using AWS credentials from environment variables")
-        else:
-            aws_profile = os.environ.get("AWS_PROFILE", "prophix-devops")
-            session = boto3.Session(profile_name=aws_profile)
-            logger.info(f"Using AWS profile: {aws_profile}")
-
-        config = Config(
-            region_name=AWS_REGION,
-            retries={"max_attempts": 5, "mode": "adaptive"},
-            read_timeout=300,  # 5 minute timeout for Sonnet 4.5 long responses
-            connect_timeout=30,  # 30 seconds for initial connection
-        )
-        return session.client("bedrock-runtime", config=config)
-    except Exception as e:
-        logger.error(f"Failed to initialize AWS Bedrock client: {e}")
-        st.error("AI service unavailable. Please check AWS credentials.")
-        return None
-
-
-@st.cache_resource
-def get_embeddings():
-    """Get embedding function (cached)."""
-    return get_embedding_function()
-
-
-def search_business_layer(query: str, n_results: int = BUSINESS_LAYER_RESULTS, topic_filter: str = None) -> List[Dict]:
-    """
-    Search ChromaDB for business layer content only.
-
-    Filters out technical implementation details (code, stored procedures, etc.)
-    and returns only business concepts, theory, and user-facing information.
-
-    Args:
-        query: Search query text
-        n_results: Number of results to retrieve
-        topic_filter: Optional topic to filter results (e.g., "theory", "calculations")
-
-    Returns:
-        List of result dictionaries with content, metadata, and relevance scores
-    """
-    client = get_chroma_client()
-    embedding_func = get_embeddings()
-
-    try:
-        collection = client.get_collection(
-            name=FULL_COLLECTION,
-            embedding_function=embedding_func,
-        )
-    except Exception as e:
-        logger.error(f"Collection not found: {e}")
-        st.error("Knowledge base not initialized. Please contact administrator.")
-        return []
-
-    # Generate query embedding
-    query_embedding = embedding_func.embed_query(query)
-
-    # Build where filter
-    if topic_filter and topic_filter != "all":
-        # Combine layer and topic filters
-        where_filter = {
-            "$and": [
-                {"layer": "business"},
-                {"topic": topic_filter}
-            ]
-        }
-    else:
-        # Business layer only
-        where_filter = {"layer": "business"}
-
-    # Query with filters
-    results = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=n_results,
-        where=where_filter,
-        include=["documents", "metadatas", "distances"],
-    )
-
-    # Format results
-    formatted = []
-    all_results = []  # Track all results for debugging
-
-    if results and results["documents"]:
-        for i, doc in enumerate(results["documents"][0]):
-            distance = results["distances"][0][i] if results["distances"] else 0
-            relevance = max(0, 1 - (distance / 2))  # Convert distance to relevance
-
-            result = {
-                "content": doc,
-                "metadata": results["metadatas"][0][i] if results["metadatas"] else {},
-                "relevance": relevance,
-                "distance": distance,
-            }
-            all_results.append(result)
-
-            # Only include results above threshold
-            if relevance >= RELEVANCE_THRESHOLD:
-                formatted.append(result)
-
-    # Debug logging
-    logger.info(f"Query: '{query}' | Total results: {len(all_results)} | Above threshold: {len(formatted)}")
-    if all_results and not formatted:
-        max_relevance = max(r["relevance"] for r in all_results)
-        logger.warning(f"All results filtered out! Max relevance: {max_relevance:.2f}, Threshold: {RELEVANCE_THRESHOLD:.2f}")
-
-    # Sort by relevance
-    formatted.sort(key=lambda x: x["relevance"], reverse=True)
-
-    return formatted
+# NOTE: get_chroma_client, get_embeddings, search_business_layer are now imported from services/chroma_service.py
+# NOTE: get_bedrock_client is now imported from services/bedrock_service.py
 
 
 def generate_answer_with_claude(query: str, context: str, conversation_history: list = None, explanation_level: str = "Standard", model_tier: str = None, knowledge_mode: str = "Business") -> str:
@@ -685,299 +560,21 @@ def generate_answer_with_claude(query: str, context: str, conversation_history: 
     if conversation_history:
         conversation_history = conversation_history[-3:]
 
-    # Level-specific instructions
-    level_instructions = {
-        "Executive Summary": """
-# EXPLANATION LEVEL: EXECUTIVE SUMMARY
-You are providing a HIGH-LEVEL OVERVIEW for executives and managers.
-
-**Format Requirements:**
-- Keep total response under 400 words
-- Focus on business impact and key takeaways
-- Use bullet points for quick scanning
-- Include ONE key formula or diagram maximum
-- Skip edge cases and technical details
-- Emphasize "what it means" over "how it works"
-- End with 2-3 bullet point summary
-
-**Structure:**
-1. One-paragraph concept definition
-2. Key business implications (3-4 bullets)
-3. Quick reference to IFRS standard
-4. Brief Prophix.FC mention (1-2 sentences)
-""",
-        "Standard": """
-# EXPLANATION LEVEL: STANDARD
-You are providing a BALANCED EXPLANATION suitable for product owners and consolidation professionals.
-
-**Format Requirements:**
-- Provide comprehensive but focused coverage
-- Include theory, principles, implementation, and examples
-- Use diagrams and formulas where helpful
-- Cover common scenarios and main edge cases
-- Balance depth with readability
-""",
-        "Detailed": """
-# EXPLANATION LEVEL: DETAILED
-You are providing COMPREHENSIVE COVERAGE for consolidation specialists who need complete understanding.
-
-**Format Requirements:**
-- Provide exhaustive, in-depth coverage
-- Include ALL edge cases and special situations
-- Show multiple examples with varying complexity
-- Include complete journal entries and calculations
-- Reference specific IFRS paragraphs where applicable
-- Cover historical context and alternative approaches
-- Include troubleshooting guidance and common mistakes
-- Provide step-by-step UI instructions with field-level detail
-- No length limit - be as thorough as needed
-""",
-    }
-
     # System prompt - defines the AI's role and behavior
     # OPTIMIZATION: Use minimal prompt for Executive Summary (faster processing)
+    # NOTE: level_instructions imported from prompts.py
     if explanation_level == "Executive Summary":
-        system_prompt = """You are a Financial Consolidation Expert. Provide concise, executive-level answers.
-
-RULES:
-- Keep response under 400 words
-- Focus on business impact and key takeaways
-- Use bullet points for quick scanning
-- Include ONE formula or diagram maximum
-- Skip edge cases and technical details
-- Cite relevant IFRS/IAS standard briefly
-- End with 2-3 bullet summary
-
-Structure: Definition → Key implications → IFRS reference → Prophix.FC mention"""
+        system_prompt = EXECUTIVE_SUMMARY_PROMPT
     else:
         # Full detailed prompt for Standard/Detailed modes
-        system_prompt = f"""{level_instructions.get(explanation_level, level_instructions["Standard"])}
-
-You are a Financial Consolidation Expert and Educator specializing in:
-- The Direct Consolidation Framework methodology (the authoritative framework)
-- IFRS/IAS accounting standards (IFRS 3, IFRS 10, IFRS 11, IAS 21, IAS 27, IAS 28)
-- Prophix.FC financial consolidation software implementation
-
-# YOUR ROLE
-You bridge theoretical accounting principles with practical software implementation. Your audience is product owners, financial controllers, and consolidation managers who need to understand both the "why" (accounting standards) and the "how" (system implementation).
-
-# RESPONSE STRUCTURE (MANDATORY)
-
-Your answers MUST follow this hierarchy:
-
-## 1. THEORETICAL FOUNDATION (Always start here)
-- Define the concept using the Direct Consolidation Framework
-- Cite the governing IFRS/IAS standard(s)
-- Explain the business purpose and accounting rationale
-- Include the control/ownership thresholds when applicable
-
-## 2. KEY PRINCIPLES & FORMULAS
-- Core accounting treatment rules
-- Mathematical formulas (use proper notation)
-- Journal entry patterns
-- Edge cases and special situations
-
-## 3. PROPHIX.CONSO IMPLEMENTATION
-- How the system operationalizes the theory
-- Relevant screens, workflows, and stored procedures
-- Elimination codes and consolidation methods
-- User actions and configuration
-
-## 4. HOW TO USE IN THE APPLICATION (UI Workflow)
-Provide detailed step-by-step instructions for using the feature in Prophix.FC:
-- Navigation path: Menu → Submenu → Screen name
-- Field-by-field guidance with business context for each field
-- Button actions and what they trigger
-- Grid operations (add, edit, delete, refresh)
-- Validation rules and error messages users might encounter
-- Dependencies between fields or screens
-- Workflow sequence (what to do first, second, etc.)
-- Where results appear and how to interpret them
-- Common user mistakes and how to avoid them
-
-**Example UI instruction format:**
-```
-To configure equity method investments:
-
-1. Navigate to: Group Management → Ownership Structure → Investments
-
-2. Click "New Investment" button to create a new entry
-
-3. Fill in the following fields:
-   - Parent Company: Select the investing entity (must be a legal entity in your group)
-   - Investee Company: Select the associate company (ownership 20-50%)
-   - Ownership %: Enter the exact ownership percentage (determines equity pickup)
-   - Effective Date: Select the acquisition date (controls when equity method begins)
-   - Consolidation Method: Select "Equity Method" from dropdown
-
-4. Click "Save" to validate and store the investment relationship
-
-5. Navigate to: Consolidation → Run Consolidation to apply the equity method calculations
-
-The system will automatically calculate your share of the investee's net income based on the ownership percentage.
-```
-
-## 5. PRACTICAL EXAMPLES
-- Concrete scenarios with numbers
-- Step-by-step business scenarios with journal entries
-- Before/After examples showing consolidation impact
-- Common mistakes to avoid
-- Real-world situations financial consolidators encounter
-
-# VISUAL AIDS & DIAGRAMS
-
-Use diagrams liberally to illustrate complex concepts. IMPORTANT: Use only ASCII/text art - NO mermaid syntax.
-
-**Ownership Structures** - Use ASCII art:
-```
-        [Parent 80%]
-             |
-             v
-        [Subsidiary]
-
-    Multi-level example:
-         [Parent]
-            |
-         100% |
-            v
-         [Sub A]
-            |
-         60% |
-            v
-         [Sub B]
-```
-
-**Process Flows** - Use ASCII art:
-```
-Local Books → Restatements → Translation → Eliminations → Consolidated
-
-Detailed flow:
-  Step 1          Step 2         Step 3          Step 4
-┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
-│ Local   │ -> │ Adjust  │ -> │ Currency│ -> │ Elimin- │
-│ Books   │    │ IFRS    │    │ Convert │    │ ations  │
-└─────────┘    └─────────┘    └─────────┘    └─────────┘
-```
-
-**Comparison Tables** - Use markdown:
-| Method | Ownership | Standard | Treatment |
-|--------|-----------|----------|-----------|
-| Global | >50% | IFRS 10 | 100% consolidation |
-| Equity | 20-50% | IAS 28 | One-line |
-
-**Formulas** - Use proper notation:
-```
-Goodwill = Purchase Price - Fair Value of Net Assets Acquired
-NCI = Ownership % × Subsidiary Equity
-Equity Pickup = Ownership % × Associate Net Income
-```
-
-**Journal Entries** - Use T-account or simple format:
-```
-Dr. Investment Elimination    100
-    Cr. Share Capital              100
-```
-
-# CITATION STANDARDS
-
-- Always cite the IFRS/IAS standard: "Under IAS 28..."
-- Reference Direct Consolidation Framework chunks when using the methodology: "According to the Direct Consolidation Framework..."
-- Quote exact elimination codes: "Elimination code S087..."
-- Name specific stored procedures: "P_CONSO_ELIM_EQUITYMETHOD..."
-
-# QUALITY CRITERIA
-
-✓ Start with theory, never implementation-first
-✓ Always explain "why" before "how"
-✓ Include at least one diagram for complex topics
-✓ Provide numerical examples when discussing calculations
-✓ Cite specific IFRS/IAS paragraphs when available
-✓ Distinguish between "control" vs "ownership" vs "significant influence"
-✓ Clarify whether something is an accounting requirement vs system configuration choice
-
-# AUDIENCE AWARENESS
-
-Your primary audience is **product owners** and **financial consolidation professionals** including:
-- **Product Owners**: Defining requirements, validating features, understanding business value
-- **Financial Controllers**: Ensuring IFRS/IAS compliance, validating accounting treatment
-- **Consolidation Managers**: Operating the system, understanding workflows, troubleshooting results
-- **CFO Office**: Understanding consolidation methodology, reviewing consolidated results
-- **External Auditors**: Validating system compliance with accounting standards
-
-They need:
-- **Detailed explanations** with comprehensive coverage of the topic
-- **Business language** - speak in terms of accounting, not technology
-- **Conceptual understanding** before technical implementation details
-- **Confidence** that the system is standards-compliant
-- **Practical UI guidance** for day-to-day operations
-- **Educational foundation** in consolidation theory
-- **Context** for why features exist and when to use them
-
-Avoid:
-- Code snippets, SQL syntax, or technical implementation details (unless specifically requested)
-- Over-technical database jargon
-- Assuming they know consolidation theory
-- Brief or rushed answers - be thorough and comprehensive
-- Skipping the "why" to jump to the "how"
-
-# RESPONSE TONE & DETAIL LEVEL
-
-- **Authoritative yet accessible**: Speak as a seasoned financial consolidation expert
-- **Comprehensive and detailed**: Don't rush - provide thorough, complete explanations
-- **Business-focused language**: Use accounting and finance terminology, not IT jargon
-- **Educational**: Teach the concepts thoroughly, don't assume prior knowledge
-- **Precise with terminology**: Distinguish between "control" vs "ownership" vs "significant influence"
-- **Patient and thorough**: Product owners need complete understanding to make decisions
-- **Practical and actionable**: Always connect theory to real-world usage
-
-**Detail Level Examples:**
-- ❌ "Use the Ownership Structure screen"
-- ✅ "Navigate to Group Management → Ownership Structure → Investments, where you configure parent-subsidiary relationships that determine which consolidation method applies (global integration for >50% ownership, equity method for 20-50%, or cost method for <20%)"
-
-- ❌ "Enter the ownership percentage"
-- ✅ "In the Ownership % field, enter the exact voting rights percentage (not economic interest, unless they differ), as this percentage determines: (1) which consolidation method to apply per IFRS 10/IAS 28, (2) the NCI calculation for >50% ownership, and (3) the equity pickup percentage for 20-50% ownership"
-
-Remember: A product owner or financial consolidator reading your answer should gain **comprehensive understanding** of both the accounting standard and how Prophix implements it, with emphasis on business value, education, and operational guidance."""
+        level_instruction = LEVEL_INSTRUCTIONS.get(explanation_level, LEVEL_INSTRUCTIONS["Standard"])
+        system_prompt = f"{level_instruction}\n\n{MAIN_SYSTEM_PROMPT}"
 
     # Add business mode filtering instructions
     if knowledge_mode == "Business":
-        system_prompt += """
-
-# BUSINESS MODE RESTRICTIONS (ACTIVE)
-
-You are in BUSINESS MODE. DO NOT include any technical implementation details:
-
-**NEVER mention or include:**
-- Stored procedure names (P_CONSO_*, P_CALC_*, P_SYS_*, etc.)
-- Database table names (TS_*, TD_*, TM_*, T_*, etc.)
-- SQL code or database queries
-- C# code, TypeScript code, or any programming code
-- API endpoint names or handler names
-- Technical column names or field mappings
-- Internal system architecture details
-
-**INSTEAD, focus on:**
-- Business concepts and accounting principles
-- IFRS/IAS standards and their requirements
-- User-facing screens and workflows (without technical implementation)
-- Business rules and validation logic (described in business terms)
-- Practical examples with numbers
-- Navigation paths in the UI
-
-When the knowledge base context contains technical details, translate them into business-friendly language or omit them entirely."""
+        system_prompt += BUSINESS_MODE_ADDON
     else:
-        system_prompt += """
-
-# FULL TECHNICAL MODE (ACTIVE)
-
-You are in FULL TECHNICAL MODE. You may include all technical implementation details:
-- Stored procedure names and their purposes
-- Database table names and relationships
-- Code snippets when relevant
-- API handlers and endpoints
-- Technical architecture details
-
-This mode is appropriate for developers, technical consultants, and implementers who need the full technical context."""
+        system_prompt += TECHNICAL_MODE_ADDON
 
     # Build user message with optional conversation history
     user_message_parts = []
@@ -1081,73 +678,20 @@ def generate_answer_streaming(query: str, context: str, conversation_history: li
     if explanation_level == "Executive Summary":
         max_tokens = min(max_tokens, 1000)  # ~400 words for quick overview
 
-    # Level-specific instructions (matches non-streaming function)
-    level_instructions = {
-        "Executive Summary": """
-# EXPLANATION LEVEL: EXECUTIVE SUMMARY
-You are providing a HIGH-LEVEL OVERVIEW for busy executives and managers.
-
-**Format Requirements:**
-- Keep total response under 400 words
-- Focus on business impact and key takeaways
-- Use bullet points for quick scanning
-- Include ONE key formula or diagram maximum
-- Skip edge cases and technical details
-- End with 2-3 bullet point summary
-""",
-        "Standard": """
-# EXPLANATION LEVEL: STANDARD
-You are providing a BALANCED EXPLANATION suitable for product owners and consolidation professionals.
-
-**Format Requirements:**
-- Provide comprehensive but focused coverage
-- Include theory, principles, implementation, and examples
-- Use diagrams and formulas where helpful
-- Cover common scenarios and main edge cases
-- Balance depth with readability
-- Keep response under 1500 words
-""",
-        "Detailed": """
-# EXPLANATION LEVEL: DETAILED
-You are providing COMPREHENSIVE COVERAGE for consolidation specialists who need complete understanding.
-
-**Format Requirements:**
-- Provide exhaustive, in-depth coverage
-- Include ALL edge cases and special situations
-- Show multiple examples with varying complexity
-- Include complete journal entries and calculations
-- Reference specific IFRS paragraphs where applicable
-- Include troubleshooting guidance and common mistakes
-""",
-    }
-
     # Build system prompt based on explanation level
+    # NOTE: Using LEVEL_INSTRUCTIONS_STREAMING which has slightly different wording
     if explanation_level == "Executive Summary":
-        system_prompt = f"""{level_instructions["Executive Summary"]}
-
-You are a Financial Consolidation Expert. Provide concise, executive-level answers.
-
-Structure: Definition → Key implications → IFRS reference → Prophix.FC mention"""
+        level_instruction = LEVEL_INSTRUCTIONS_STREAMING["Executive Summary"]
+        system_prompt = f"{level_instruction}\n\n{EXECUTIVE_SUMMARY_PROMPT}"
     else:
-        system_prompt = f"""{level_instructions.get(explanation_level, level_instructions["Standard"])}
-
-You are a Financial Consolidation Expert and Educator specializing in:
-- The Direct Consolidation Framework methodology
-- IFRS/IAS accounting standards (IFRS 3, IFRS 10, IFRS 11, IAS 21, IAS 27, IAS 28)
-- Prophix.FC financial consolidation software implementation
-
-Provide well-structured answers with theory, formulas, and practical implementation details.
-Use markdown formatting and cite specific IFRS standards."""
+        level_instruction = LEVEL_INSTRUCTIONS_STREAMING.get(explanation_level, LEVEL_INSTRUCTIONS_STREAMING["Standard"])
+        system_prompt = f"{level_instruction}\n\n{STREAMING_SYSTEM_PROMPT}"
 
     # Add business mode filtering instructions
     if knowledge_mode == "Business":
-        system_prompt += """
-
-BUSINESS MODE: Do NOT include technical details like stored procedure names (P_CONSO_*, P_CALC_*), database tables (TS_*, TD_*), SQL code, or programming code. Focus on business concepts, IFRS standards, and user-facing workflows only."""
+        system_prompt += BUSINESS_MODE_ADDON_SHORT
     else:
-        system_prompt += """
-
-FULL TECHNICAL MODE: You may include all technical implementation details including stored procedures, database tables, and code snippets."""
+        system_prompt += TECHNICAL_MODE_ADDON_SHORT
 
     # Build user message
     user_message_parts = []
@@ -1233,15 +777,6 @@ def generate_follow_up_questions(query: str, answer: str) -> list:
     """
     bedrock = get_bedrock_client()
 
-    system_prompt = """You are a Financial Consolidation Education assistant. Based on the user's question and the answer provided, suggest exactly 3 follow-up questions that would help them learn more deeply.
-
-Rules:
-- Questions should be specific and actionable
-- Progress from the current topic to related deeper concepts
-- Each question should be 1 sentence, under 80 characters
-- Focus on practical understanding and application
-- Return ONLY the 3 questions, one per line, no numbering or bullets"""
-
     user_message = f"""Question asked: {query}
 
 Answer summary (first 500 chars): {answer[:500]}...
@@ -1252,7 +787,7 @@ Generate 3 follow-up questions to deepen understanding:"""
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 300,
         "temperature": 0.7,
-        "system": system_prompt,
+        "system": FOLLOW_UP_QUESTIONS_PROMPT,
         "messages": [{"role": "user", "content": user_message}]
     })
 
@@ -1284,46 +819,7 @@ Generate 3 follow-up questions to deepen understanding:"""
         return get_fallback_follow_ups(query)
 
 
-def get_fallback_follow_ups(query: str) -> list:
-    """Provide fallback follow-up questions when AI generation fails."""
-    query_lower = query.lower()
-
-    if "equity" in query_lower:
-        return [
-            "How is the equity pickup calculated in practice?",
-            "What journal entries are needed for equity method?",
-            "When does equity method become global integration?"
-        ]
-    elif "global" in query_lower or "integration" in query_lower:
-        return [
-            "How is NCI calculated in global integration?",
-            "What eliminations are required for global integration?",
-            "How does goodwill arise in global integration?"
-        ]
-    elif "goodwill" in query_lower:
-        return [
-            "How is goodwill tested for impairment?",
-            "What is the difference between full and partial goodwill?",
-            "How does NCI measurement affect goodwill?"
-        ]
-    elif "currency" in query_lower or "translation" in query_lower:
-        return [
-            "What exchange rates apply to different accounts?",
-            "Where do translation adjustments appear?",
-            "How does IAS 21 handle hyperinflation?"
-        ]
-    elif "elimination" in query_lower or "intercompany" in query_lower:
-        return [
-            "What types of intercompany transactions exist?",
-            "How is unrealized profit in inventory eliminated?",
-            "How are intercompany dividends handled?"
-        ]
-    else:
-        return [
-            "How does this concept apply in practice?",
-            "What are common mistakes to avoid?",
-            "How does Prophix.FC implement this?"
-        ]
+# NOTE: get_fallback_follow_ups is now imported from prompts.py
 
 
 def generate_quiz_questions_rag(topic: str = None, count: int = 5, difficulty: str = "medium") -> list:
@@ -1357,38 +853,9 @@ def generate_quiz_questions_rag(topic: str = None, count: int = 5, difficulty: s
     # Build context from results
     context = "\n\n".join([r["content"][:500] for r in results[:3]])
 
-    # Difficulty-specific instructions
-    difficulty_instructions = {
-        "easy": """
-- Ask about basic definitions and terminology
-- Focus on recall of key facts
-- Use straightforward language
-- Avoid complex scenarios or edge cases""",
-        "medium": """
-- Test understanding of concepts
-- Include application scenarios
-- Mix theoretical and practical questions
-- Require connecting related concepts""",
-        "hard": """
-- Focus on complex scenarios and edge cases
-- Ask about exceptions to rules
-- Require analysis of multi-step problems
-- Include questions about interactions between concepts
-- Test deep understanding with tricky distractors"""
-    }
-
-    system_prompt = f"""You are a Financial Consolidation quiz generator. Create {difficulty.upper()} difficulty multiple-choice questions based on the provided knowledge base content.
-
-Difficulty Guidelines for {difficulty.upper()}:
-{difficulty_instructions.get(difficulty, difficulty_instructions["medium"])}
-
-Rules:
-- Generate exactly the requested number of questions
-- Each question must have exactly 4 options (A, B, C, D)
-- Only ONE option should be correct
-- Questions should match the {difficulty} difficulty level
-- Include a brief explanation for the correct answer
-- Format response as valid JSON array"""
+    # Get difficulty-specific instructions and build system prompt
+    difficulty_instruction = QUIZ_DIFFICULTY_INSTRUCTIONS.get(difficulty, QUIZ_DIFFICULTY_INSTRUCTIONS["medium"])
+    system_prompt = get_quiz_system_prompt(difficulty, difficulty_instruction)
 
     user_message = f"""Based on this knowledge base content about {search_topic}:
 
@@ -1444,14 +911,6 @@ def generate_related_topics_rag(query: str, answer: str) -> list:
     """
     bedrock = get_bedrock_client()
 
-    system_prompt = """You are a Financial Consolidation education assistant. Based on a user's question and the answer they received, suggest 4 related topics they should explore next.
-
-Rules:
-- Suggest topics that naturally follow from the current question
-- Include a mix of deeper dives and related concepts
-- Each suggestion should have a short label (2-4 words) and a search question
-- Return ONLY a JSON array, no other text"""
-
     user_message = f"""User asked: {query}
 
 Answer summary (first 400 chars): {answer[:400]}...
@@ -1466,7 +925,7 @@ Suggest 4 related topics to explore next. Return ONLY a JSON array:
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 500,
         "temperature": 0.7,
-        "system": system_prompt,
+        "system": RELATED_TOPICS_PROMPT,
         "messages": [{"role": "user", "content": user_message}]
     })
 
@@ -1515,14 +974,6 @@ def generate_glossary_terms_rag() -> dict:
 
     context = "\n\n---\n\n".join(all_content[:10])
 
-    system_prompt = """You are a Financial Consolidation glossary generator. Extract key terms and concepts from the knowledge base content.
-
-Rules:
-- Identify 20-30 important terms
-- Group them into 3 categories: A-G, H-P, Q-Z (alphabetically)
-- Each term should have a short search query
-- Return ONLY a JSON object, no other text"""
-
     user_message = f"""From this financial consolidation knowledge base content:
 
 {context}
@@ -1538,7 +989,7 @@ Extract key glossary terms. Return ONLY a JSON object:
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 2000,
         "temperature": 0.3,
-        "system": system_prompt,
+        "system": GLOSSARY_PROMPT,
         "messages": [{"role": "user", "content": user_message}]
     })
 
@@ -1583,14 +1034,6 @@ def generate_autocomplete_suggestions_rag() -> list:
 
     context = "\n\n".join(all_content[:8])
 
-    system_prompt = """You are a Financial Consolidation education assistant. Generate useful search questions that users might want to ask.
-
-Rules:
-- Generate 20 diverse questions covering different topics
-- Questions should be clear and specific
-- Mix beginner and advanced questions
-- Return ONLY a JSON array of strings"""
-
     user_message = f"""Based on this knowledge base content:
 
 {context}
@@ -1602,7 +1045,7 @@ Generate 20 useful questions users might search for. Return ONLY a JSON array:
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 1500,
         "temperature": 0.8,
-        "system": system_prompt,
+        "system": AUTOCOMPLETE_PROMPT,
         "messages": [{"role": "user", "content": user_message}]
     })
 
@@ -1658,26 +1101,8 @@ def generate_learning_path_topics_rag(path_id: str, path_description: str) -> li
 
     context = "\n\n".join(all_content[:6])
 
-    # Path-specific instructions
-    path_instructions = {
-        "beginner": "Create foundational questions that introduce basic consolidation concepts. Progress from 'what is' to 'why' to 'how'.",
-        "methods": "Create questions that explore each consolidation method in depth - global integration, equity method, and proportional. Include comparison questions.",
-        "currency": "Create questions about currency translation, exchange rates, IAS 21 requirements, and translation adjustments (CTA).",
-        "eliminations": "Create questions about intercompany eliminations, participation eliminations, dividend eliminations, and unrealized profit elimination.",
-        "calculations": "Create questions about key calculations: goodwill, NCI/minority interest, ownership percentages, and acquisition accounting.",
-    }
-
-    system_prompt = f"""You are a Financial Consolidation education curriculum designer. Create a structured learning path with progressive questions.
-
-Path Focus: {path_description}
-{path_instructions.get(path_id, '')}
-
-Rules:
-- Generate exactly 4 progressive learning topics
-- Each topic should build on previous knowledge
-- Questions should be clear and educational
-- Number topics 1-4 with descriptive labels
-- Return valid JSON array"""
+    # Get system prompt from prompts module
+    system_prompt = get_learning_path_prompt(path_id, path_description)
 
     user_message = f"""Based on this knowledge base content:
 
@@ -1848,6 +1273,7 @@ def main():
         # Set the query and trigger search
         st.session_state.query = cm_query
         st.session_state.trigger_search = True
+        st.session_state.input_key_counter = st.session_state.get("input_key_counter", 0) + 1
         st.session_state.show_concept_map = False
 
     # Check URL params for go_deeper (set by Go Deeper button click)
@@ -1858,7 +1284,25 @@ def main():
         # Set the query and trigger detailed search
         st.session_state.query = deeper_query
         st.session_state.trigger_search = True
+        st.session_state.input_key_counter = st.session_state.get("input_key_counter", 0) + 1
         st.session_state.force_detailed = True
+
+    # Check URL params for followup_query (set by Explore Further / Related Topics buttons)
+    if "followup_query" in query_params:
+        followup_query = unquote(query_params["followup_query"])
+        # Clear the URL param
+        st.query_params.clear()
+        # Set the query and trigger search
+        st.session_state.query = followup_query
+        st.session_state.trigger_search = True
+        st.session_state.input_key_counter = st.session_state.get("input_key_counter", 0) + 1
+
+    # Check for pending followup from button click (processed BEFORE any search)
+    if st.session_state.get("pending_followup"):
+        pending_query = st.session_state.pending_followup
+        st.session_state.pending_followup = None  # Clear it
+        st.session_state.query = pending_query
+        st.session_state.trigger_search = True
 
     # Initialize session state for conversation history
     if "conversation_history" not in st.session_state:
@@ -1883,228 +1327,15 @@ def main():
         st.session_state.selected_topic = "All Topics"  # Default
     if "knowledge_mode" not in st.session_state:
         st.session_state.knowledge_mode = DEFAULT_KNOWLEDGE_MODE  # From env var or "Business"
+    if "input_key_counter" not in st.session_state:
+        st.session_state.input_key_counter = 0  # Used to force text_input widget refresh
+    if "follow_up_questions" not in st.session_state:
+        st.session_state.follow_up_questions = []  # Stored for button rendering outside search block
+    if "related_topics" not in st.session_state:
+        st.session_state.related_topics = []  # Stored for button rendering outside search block
 
-    # Keyboard shortcuts and localStorage JavaScript (injected once)
-    keyboard_shortcuts_js = """
-    <script>
-    // Search History localStorage functions
-    const HISTORY_KEY = 'fc_search_history';
-    const PROGRESS_KEY = 'fc_learning_progress';
-    const MAX_HISTORY = 10;
-
-    function getSearchHistory() {
-        try {
-            const history = localStorage.getItem(HISTORY_KEY);
-            return history ? JSON.parse(history) : [];
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function saveToHistory(query) {
-        if (!query || query.trim() === '') return;
-        try {
-            let history = getSearchHistory();
-            history = history.filter(q => q.toLowerCase() !== query.toLowerCase());
-            history.unshift(query);
-            history = history.slice(0, MAX_HISTORY);
-            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-        } catch (e) {
-            console.error('Failed to save search history:', e);
-        }
-    }
-
-    function clearHistory() {
-        localStorage.removeItem(HISTORY_KEY);
-    }
-
-    // Learning Path Progress functions
-    function getLearningProgress() {
-        try {
-            const progress = localStorage.getItem(PROGRESS_KEY);
-            return progress ? JSON.parse(progress) : {};
-        } catch (e) {
-            return {};
-        }
-    }
-
-    function markTopicComplete(pathId, topicId) {
-        try {
-            let progress = getLearningProgress();
-            if (!progress[pathId]) {
-                progress[pathId] = [];
-            }
-            if (!progress[pathId].includes(topicId)) {
-                progress[pathId].push(topicId);
-            }
-            localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
-            return progress;
-        } catch (e) {
-            console.error('Failed to save progress:', e);
-            return {};
-        }
-    }
-
-    function isTopicComplete(pathId, topicId) {
-        const progress = getLearningProgress();
-        return progress[pathId] && progress[pathId].includes(topicId);
-    }
-
-    function getPathProgress(pathId, totalTopics) {
-        const progress = getLearningProgress();
-        const completed = progress[pathId] ? progress[pathId].length : 0;
-        return {
-            completed: completed,
-            total: totalTopics,
-            percentage: totalTopics > 0 ? Math.round((completed / totalTopics) * 100) : 0
-        };
-    }
-
-    function clearProgress() {
-        localStorage.removeItem(PROGRESS_KEY);
-    }
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !e.target.matches('input, textarea'))) {
-            e.preventDefault();
-            const searchInput = document.querySelector('input[data-testid="stTextInput"]') ||
-                               document.querySelector('input[type="text"]');
-            if (searchInput) {
-                searchInput.focus();
-                searchInput.select();
-            }
-        }
-        if (e.key === 'Escape') {
-            const activeElement = document.activeElement;
-            if (activeElement && activeElement.matches('input, textarea')) {
-                activeElement.blur();
-            }
-        }
-    });
-
-    // Bookmarks functions
-    const BOOKMARKS_KEY = 'fc_bookmarks';
-
-    function getBookmarks() {
-        try {
-            const bookmarks = localStorage.getItem(BOOKMARKS_KEY);
-            return bookmarks ? JSON.parse(bookmarks) : [];
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function addBookmark(question, answer, timestamp) {
-        try {
-            let bookmarks = getBookmarks();
-            // Check if already bookmarked
-            if (!bookmarks.find(b => b.question === question)) {
-                bookmarks.unshift({ question, answer, timestamp, id: Date.now() });
-                bookmarks = bookmarks.slice(0, 20); // Keep max 20 bookmarks
-                localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(bookmarks));
-            }
-            return bookmarks;
-        } catch (e) {
-            console.error('Failed to save bookmark:', e);
-            return [];
-        }
-    }
-
-    function removeBookmark(id) {
-        try {
-            let bookmarks = getBookmarks();
-            bookmarks = bookmarks.filter(b => b.id !== id);
-            localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(bookmarks));
-            return bookmarks;
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function isBookmarked(question) {
-        const bookmarks = getBookmarks();
-        return bookmarks.some(b => b.question === question);
-    }
-
-    function clearBookmarks() {
-        localStorage.removeItem(BOOKMARKS_KEY);
-    }
-
-    // Quiz Performance Tracking (for adaptive learning)
-    const QUIZ_PERFORMANCE_KEY = 'fc_quiz_performance';
-
-    function getQuizPerformance() {
-        try {
-            const perf = localStorage.getItem(QUIZ_PERFORMANCE_KEY);
-            return perf ? JSON.parse(perf) : { totalQuizzes: 0, totalCorrect: 0, totalQuestions: 0, topicScores: {} };
-        } catch (e) {
-            return { totalQuizzes: 0, totalCorrect: 0, totalQuestions: 0, topicScores: {} };
-        }
-    }
-
-    function saveQuizResult(score, total, topic) {
-        try {
-            let perf = getQuizPerformance();
-            perf.totalQuizzes += 1;
-            perf.totalCorrect += score;
-            perf.totalQuestions += total;
-            if (topic) {
-                if (!perf.topicScores[topic]) {
-                    perf.topicScores[topic] = { correct: 0, total: 0 };
-                }
-                perf.topicScores[topic].correct += score;
-                perf.topicScores[topic].total += total;
-            }
-            localStorage.setItem(QUIZ_PERFORMANCE_KEY, JSON.stringify(perf));
-            return perf;
-        } catch (e) {
-            return {};
-        }
-    }
-
-    function getQuizDifficulty() {
-        const perf = getQuizPerformance();
-        if (perf.totalQuestions < 5) return 'medium'; // Not enough data
-        const accuracy = perf.totalCorrect / perf.totalQuestions;
-        if (accuracy >= 0.8) return 'hard';
-        if (accuracy <= 0.4) return 'easy';
-        return 'medium';
-    }
-
-    function clearQuizPerformance() {
-        localStorage.removeItem(QUIZ_PERFORMANCE_KEY);
-    }
-
-    // Make functions available globally
-    window.fcSearchHistory = {
-        get: getSearchHistory,
-        save: saveToHistory,
-        clear: clearHistory
-    };
-    window.fcLearningProgress = {
-        get: getLearningProgress,
-        mark: markTopicComplete,
-        isComplete: isTopicComplete,
-        getPath: getPathProgress,
-        clear: clearProgress
-    };
-    window.fcBookmarks = {
-        get: getBookmarks,
-        add: addBookmark,
-        remove: removeBookmark,
-        isBookmarked: isBookmarked,
-        clear: clearBookmarks
-    };
-    window.fcQuizPerformance = {
-        get: getQuizPerformance,
-        save: saveQuizResult,
-        getDifficulty: getQuizDifficulty,
-        clear: clearQuizPerformance
-    };
-    </script>
-    """
-    st.components.v1.html(keyboard_shortcuts_js, height=0)
+    # Inject keyboard shortcuts and localStorage JavaScript (imported from ui/components.py)
+    st.components.v1.html(KEYBOARD_SHORTCUTS_JS, height=0)
 
     # Define learning paths data structure with RAG-generated topics and hardcoded fallback
     # Hardcoded fallback topics for each path
@@ -2346,6 +1577,7 @@ Calculate effective ownership in Sub B and determine NCI at each level.""",
             # Trigger search
             st.session_state.query = query
             st.session_state.trigger_search = True
+            st.session_state.input_key_counter += 1
             st.rerun()
 
     # Sidebar - Learning Paths and About section
@@ -2483,6 +1715,7 @@ Calculate effective ownership in Sub B and determine NCI at each level.""",
                 if st.button(term, key=f"gl_ag_{term}"):
                     st.session_state.query = query
                     st.session_state.trigger_search = True
+                    st.session_state.input_key_counter += 1
                     st.rerun()
 
         with st.expander("Terms H-P", expanded=False):
@@ -2490,6 +1723,7 @@ Calculate effective ownership in Sub B and determine NCI at each level.""",
                 if st.button(term, key=f"gl_hp_{term}"):
                     st.session_state.query = query
                     st.session_state.trigger_search = True
+                    st.session_state.input_key_counter += 1
                     st.rerun()
 
         with st.expander("Terms R-Z", expanded=False):
@@ -2497,6 +1731,7 @@ Calculate effective ownership in Sub B and determine NCI at each level.""",
                 if st.button(term, key=f"gl_rz_{term}"):
                     st.session_state.query = query
                     st.session_state.trigger_search = True
+                    st.session_state.input_key_counter += 1
                     st.rerun()
 
         with st.expander("Key Formulas", expanded=False):
@@ -2765,6 +2000,7 @@ Closing Rate Assets - Historical Rate Equity
                     # Set the first question from the case study
                     st.session_state.query = case_data['questions'][0]
                     st.session_state.trigger_search = True
+                    st.session_state.input_key_counter += 1
                     st.rerun()
 
         # Show active case study details in main area via session state
@@ -2810,6 +2046,7 @@ Closing Rate Assets - Historical Rate Equity
                         if st.button("Load", key=f"load_bm_{idx}", use_container_width=True):
                             st.session_state.query = bookmark['question']
                             st.session_state.trigger_search = True
+                            st.session_state.input_key_counter += 1
                             st.rerun()
                     with col_remove:
                         if st.button("Remove", key=f"rm_bm_{idx}", use_container_width=True):
@@ -2916,6 +2153,7 @@ Closing Rate Assets - Historical Rate Equity
             st.session_state.query = selected_query
             st.session_state.show_concept_map = False
             st.session_state.trigger_search = True
+            st.session_state.input_key_counter += 1
             st.rerun()
             return  # Ensure clean exit
 
@@ -2940,6 +2178,7 @@ Closing Rate Assets - Historical Rate Equity
                         st.session_state.query = q
                         st.session_state.show_concept_map = False
                         st.session_state.trigger_search = True
+                        st.session_state.input_key_counter += 1
                         st.rerun()
 
         with tab_standards:
@@ -2957,6 +2196,7 @@ Closing Rate Assets - Historical Rate Equity
                         st.session_state.query = q
                         st.session_state.show_concept_map = False
                         st.session_state.trigger_search = True
+                        st.session_state.input_key_counter += 1
                         st.rerun()
 
         with tab_calc:
@@ -2973,6 +2213,7 @@ Closing Rate Assets - Historical Rate Equity
                         st.session_state.query = q
                         st.session_state.show_concept_map = False
                         st.session_state.trigger_search = True
+                        st.session_state.input_key_counter += 1
                         st.rerun()
 
         with tab_elim:
@@ -2989,6 +2230,7 @@ Closing Rate Assets - Historical Rate Equity
                         st.session_state.query = q
                         st.session_state.show_concept_map = False
                         st.session_state.trigger_search = True
+                        st.session_state.input_key_counter += 1
                         st.rerun()
 
         with tab_currency:
@@ -3004,6 +2246,7 @@ Closing Rate Assets - Historical Rate Equity
                         st.session_state.query = q
                         st.session_state.show_concept_map = False
                         st.session_state.trigger_search = True
+                        st.session_state.input_key_counter += 1
                         st.rerun()
 
         st.markdown("---")
@@ -3027,11 +2270,13 @@ Closing Rate Assets - Historical Rate Equity
                         if st.button(q_label, key=f"case_q_{idx}", use_container_width=True, help=case_q):
                             st.session_state.query = case_q
                             st.session_state.trigger_search = True
+                            st.session_state.input_key_counter += 1
                             st.rerun()
 
                 st.markdown("---")
 
     # Example Questions - randomly select 8 from pool of 128 business questions
+    # Store selection in session state so it persists across reruns (prevents button key mismatch)
     st.markdown("**Try these questions:**")
 
     all_example_questions = [
@@ -3180,8 +2425,10 @@ Closing Rate Assets - Historical Rate Equity
         ("Put Option Acquisition", "How do put options affect acquisition accounting?"),
     ]
 
-    # Randomly select 8 questions (truly random on each refresh)
-    example_questions = random.sample(all_example_questions, 8)
+    # Store random selection in session state so buttons stay consistent across reruns
+    if "example_questions" not in st.session_state:
+        st.session_state.example_questions = random.sample(all_example_questions, 8)
+    example_questions = st.session_state.example_questions
 
     # Create 2 rows of 4 buttons each
     for row in range(0, len(example_questions), 4):
@@ -3270,18 +2517,13 @@ Closing Rate Assets - Historical Rate Equity
     st.markdown("")  # Spacing
 
     # Main query input with keyboard hint
-    # Sync query_input with query if trigger_search is set (from concept map or other sources)
-    if st.session_state.get("trigger_search") and st.session_state.get("query"):
-        st.session_state.query_input = st.session_state.query
-    elif "query_input" not in st.session_state:
-        st.session_state.query_input = st.session_state.get("query", "")
-
+    # Using key="query" so it syncs with st.session_state.query (set by follow-up buttons)
     col_input, col_hint = st.columns([5, 1])
     with col_input:
         query = st.text_input(
             "Ask your question:",
             placeholder="e.g., How does the equity method work?",
-            key="query_input",
+            key="query",
         )
     with col_hint:
         st.markdown("")  # Spacing
@@ -3313,6 +2555,7 @@ Closing Rate Assets - Historical Rate Equity
                     if st.button(display_text, key=f"suggest_{idx}", use_container_width=True, help=suggestion):
                         st.session_state.query = suggestion
                         st.session_state.trigger_search = True
+                        st.session_state.input_key_counter += 1
                         st.rerun()
 
     # Recent Searches dropdown (populated from session state which syncs with localStorage)
@@ -3329,6 +2572,7 @@ Closing Rate Assets - Historical Rate Equity
                 if st.button(f"{hist_query[:60]}{'...' if len(hist_query) > 60 else ''}", key=f"hist_{i}", use_container_width=True):
                     st.session_state.query = hist_query
                     st.session_state.trigger_search = True
+                    st.session_state.input_key_counter += 1
                     st.rerun()
 
     # Search and Clear buttons
@@ -3356,7 +2600,6 @@ Closing Rate Assets - Historical Rate Equity
         # Use the query from session state (set by button click) if different from text input
         if st.session_state.get("query") and st.session_state.get("query") != query:
             query = st.session_state.query
-
     # Process query
     if search_button and query:
         # Input validation - limit query length to prevent abuse
@@ -3963,37 +3206,9 @@ Closing Rate Assets - Historical Rate Equity
                 if not related:
                     related = get_related_topics(query)
 
-        # Smart Follow-Up Questions - AI-generated deeper questions
-        st.markdown("**Explore Further**")
-        st.caption("AI-suggested questions to deepen your understanding")
-
-        if follow_up_questions:
-            fu_cols = st.columns(len(follow_up_questions))
-            for idx, fu_question in enumerate(follow_up_questions):
-                with fu_cols[idx]:
-                    # Truncate long questions for button display
-                    btn_label = fu_question[:45] + "..." if len(fu_question) > 45 else fu_question
-                    if st.button(btn_label, key=f"followup_{idx}", use_container_width=True, help=fu_question):
-                        st.session_state.query = fu_question
-                        st.session_state.trigger_search = True
-                        st.rerun()
-
-        st.markdown("")  # Spacing
-
-        # Related Topics - RAG-generated contextual suggestions
-        st.markdown("**Related Topics**")
-        st.caption("AI-suggested based on your query")
-
-        if related:
-            cols = st.columns(min(len(related), 4))
-            for idx, (label, related_query) in enumerate(related[:4]):
-                with cols[idx % 4]:
-                    if st.button(label, key=f"related_{idx}", use_container_width=True, help=related_query):
-                        st.session_state.query = related_query
-                        st.session_state.trigger_search = True
-                        st.rerun()
-
-        st.markdown("")  # Spacing
+        # Store in session state for rendering OUTSIDE this block
+        st.session_state.follow_up_questions = follow_up_questions
+        st.session_state.related_topics = related
 
         # Display conversation history if exists
         if len(st.session_state.conversation_history) > 1:
@@ -4037,6 +3252,42 @@ Closing Rate Assets - Historical Rate Equity
 
     elif not query and search_button:
         st.info("Please enter a question to search.")
+
+    # ==========================================================================
+    # EXPLORE FURTHER & RELATED TOPICS BUTTONS
+    # Rendered OUTSIDE search block so they exist on every rerun (required for clicks to work)
+    # ==========================================================================
+
+    if st.session_state.follow_up_questions or st.session_state.related_topics:
+        st.markdown("---")
+
+        # Explore Further buttons
+        if st.session_state.follow_up_questions:
+            st.markdown("**Explore Further**")
+            st.caption("AI-suggested questions to deepen your understanding")
+
+            fu_cols = st.columns(len(st.session_state.follow_up_questions))
+            for idx, fu_question in enumerate(st.session_state.follow_up_questions):
+                with fu_cols[idx]:
+                    btn_label = fu_question[:45] + "..." if len(fu_question) > 45 else fu_question
+                    btn_key = f"followup_btn_{idx}"
+                    if st.button(btn_label, key=btn_key, use_container_width=True, help=fu_question):
+                        st.session_state.pending_followup = fu_question
+                        st.rerun()
+
+            st.markdown("")  # Spacing
+
+        # Related Topics buttons
+        if st.session_state.related_topics:
+            st.markdown("**Related Topics**")
+            st.caption("AI-suggested based on your query")
+            cols = st.columns(min(len(st.session_state.related_topics), 4))
+            for idx, (label, related_query) in enumerate(st.session_state.related_topics[:4]):
+                with cols[idx % 4]:
+                    btn_key = f"related_btn_{idx}"
+                    if st.button(label, key=btn_key, use_container_width=True, help=related_query):
+                        st.session_state.pending_followup = related_query
+                        st.rerun()
 
 
 if __name__ == "__main__":

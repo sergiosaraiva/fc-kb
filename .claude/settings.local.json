@@ -20,7 +20,15 @@
       "Bash(git -C /mnt/c/Work/direct-consolidation-docs show HEAD:md/product-owner-rag/concept_map_component/__init__.py)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(python -m py_compile:*)",
+      "Bash(python3:*)",
+      "WebFetch(domain:docs.docker.com)",
+      "Bash(docker compose:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker --version)",
+      "Bash(./rebuild-po-rag.sh:*)",
+      "Bash(DOCKER_BUILDKIT=0 docker build:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

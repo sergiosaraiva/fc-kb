@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf 
 
 # Install dependencies
 COPY product-owner-rag/requirements.txt .
-RUN pip install --no-cache-dir --timeout=120 --retries=5 -r requirements.txt
+RUN pip install --no-cache-dir --timeout=300 --retries=5 -r requirements.txt
 
 # Copy shared modules from chromadb-docker directory (build context is md/)
 COPY chromadb-docker/config.py /app/
@@ -17,6 +17,9 @@ COPY chromadb-docker/titan_v1_embeddings.py /app/
 
 # Copy application from product-owner-rag subdirectory
 COPY product-owner-rag/app.py .
+COPY product-owner-rag/prompts.py .
+COPY product-owner-rag/services /app/services
+COPY product-owner-rag/ui /app/ui
 
 # Copy concept map component (bidirectional Streamlit component)
 COPY product-owner-rag/concept_map_component /app/concept_map_component
