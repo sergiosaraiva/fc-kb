@@ -63,7 +63,7 @@ def extract_content_only(chunk_text: str) -> str:
     return chunk_text
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def get_chroma_client():
     """
     Get ChromaDB client (cached).
@@ -96,7 +96,7 @@ def get_chroma_client():
         return None
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def get_embeddings():
     """
     Get embedding function (cached).

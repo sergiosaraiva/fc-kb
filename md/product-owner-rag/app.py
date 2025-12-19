@@ -105,7 +105,7 @@ MODEL_TIERS = {
     },
 }
 CLAUDE_FAST_MODEL_ID = MODEL_TIERS["Haiku 4.5"]["id"]  # Always use fast model for auxiliary calls
-DEFAULT_MODEL_TIER = "Haiku 4.5"  # Default to fast model for responsive UX
+DEFAULT_MODEL_TIER = "Sonnet 4"  # Default to balanced model
 TEMPERATURE = 0.3            # Reduced for more consistent, reliable answers
 
 # Knowledge mode: "Business" (hide technical details) or "Full (Technical)" (show everything)
@@ -1322,7 +1322,7 @@ def main():
     if "model_tier" not in st.session_state:
         st.session_state.model_tier = DEFAULT_MODEL_TIER
     if "explanation_level" not in st.session_state:
-        st.session_state.explanation_level = "Executive Summary"  # Default
+        st.session_state.explanation_level = "Standard"  # Default
     if "selected_topic" not in st.session_state:
         st.session_state.selected_topic = "All Topics"  # Default
     if "knowledge_mode" not in st.session_state:
@@ -3288,6 +3288,23 @@ Closing Rate Assets - Historical Rate Equity
                     if st.button(label, key=btn_key, use_container_width=True, help=related_query):
                         st.session_state.pending_followup = related_query
                         st.rerun()
+
+
+    # ==========================================================================
+    # BETA DISCLAIMER FOOTER
+    # ==========================================================================
+    st.markdown("---")
+    st.markdown("""
+    <div style="text-align: center; padding: 20px 0; color: #8B949E; font-size: 12px;">
+        <p style="margin-bottom: 8px;">
+            <strong style="color: #FFA500;">BETA</strong> — This application is currently in beta testing.
+        </p>
+        <p style="margin: 0;">
+            AI-generated answers may contain inaccuracies. Always verify critical information with official documentation.
+            Use at your own risk.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
