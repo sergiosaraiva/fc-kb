@@ -2137,11 +2137,11 @@ Closing Rate Assets - Historical Rate Equity
     # Introduction paragraph
     st.markdown("""
     <p style="color: #8B949E; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
-    <strong>Direct Financial Consolidation</strong> is a methodology developed by Allen White that combines
-    parent and subsidiary financial statements into unified group financials. It handles ownership structures,
-    eliminates intercompany transactions, applies currency translation (IAS 21), and supports multiple
-    consolidation methods including global integration (>50% control), equity method (20-50% influence),
-    and proportional consolidation for joint ventures—all in compliance with IFRS 10, IFRS 3, and IAS 28 standards.
+    <strong>Direct Financial Consolidation</strong> is a methodology that combines parent and subsidiary
+    financial statements into unified group financials. It handles ownership structures, eliminates
+    intercompany transactions, applies currency translation (IAS 21), and supports multiple consolidation
+    methods including global integration (>50% control), equity method (20-50% influence), and proportional
+    consolidation for joint ventures—all in compliance with IFRS 10, IFRS 3, and IAS 28 standards.
     </p>
     """, unsafe_allow_html=True)
 
